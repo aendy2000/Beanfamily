@@ -10,21 +10,30 @@ namespace Beanfamily.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return View("index");
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            return View("about");
         }
 
+        public ActionResult Restaurant()
+        {
+            return View("restaurant");
+        }
+
+        public ActionResult Garden()
+        {
+            return View("garden");
+        }
+        public ActionResult Shopping()
+        {
+            return View("shopping");
+        }
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            return View("contact");
         }
     }
 }

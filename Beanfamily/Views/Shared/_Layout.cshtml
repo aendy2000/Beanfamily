@@ -1,11 +1,11 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
-    <title>Home</title>
+    <title>@ViewBag.Title</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
-    <link rel="icon" type="image/png" href="~/Content/assets/images/icons/favicon.png" />
+    <link rel="icon" type="image/png" href="~/Content/assets/images/logo/logo-2745.png" />
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="~/Content/assets/vendor/bootstrap/css/bootstrap.min.css">
     <!--===============================================================================================-->
@@ -31,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="~/Content/assets/css/main.css">
     <!--===============================================================================================-->
 </head>
-<body class="animsition">
+<body>
 
     <!-- Header -->
     <header>
@@ -42,7 +42,7 @@
                     <!-- Logo -->
                     <div class="logo">
                         <a href="~/Content/assets/index.html">
-                            <img src="~/Content/assets/images/icons/logo.png" alt="IMG-LOGO" data-logofixed="/Content/assets/images/icons/logo2.png">
+                            <img src="~/Content/assets/images/logo/logo-2745.png" alt="IMG-LOGO" data-logofixed="/Content/assets/images/logo/logo-2745.png">
                         </a>
                     </div>
 
@@ -51,31 +51,37 @@
                         <nav class="menu">
                             <ul class="main_menu">
                                 <li>
-                                    <a href="~/Content/assets/index.html">Home</a>
+                                    <a href="@Url.Action("index", "home")">Trang Chủ</a>
                                 </li>
 
                                 <li>
-                                    <a href="~/Content/assets/menu.html">Menu</a>
+                                    <a href="@Url.Action("about", "home")">Giới thiệu</a>
                                 </li>
 
                                 <li>
-                                    <a href="~/Content/assets/reservation.html">Reservation</a>
+                                    <a href="@Url.Action("restaurant", "home")">Nhà hàng</a>
+                                    <ul class="sub_menu">
+                                        <li style=" border-top-right-radius: 20px;">
+                                            <a href="@Url.Action("about", "home")">Menu hằng ngày</a>
+                                        </li>
+
+                                        <li>
+                                            <a href="@Url.Action("restaurant", "home")">Menu tiệc bàn</a>
+                                        </li>
+                                        <li style="border-bottom-left-radius: 20px;">
+                                            <a href="@Url.Action("restaurant", "home")">Menu buffet</a>
+                                        </li>
+                                    </ul>
                                 </li>
 
                                 <li>
-                                    <a href="~/Content/assets/gallery.html">Gallery</a>
+                                    <a href="@Url.Action("garden", "home")">Vườn rau</a>
                                 </li>
-
                                 <li>
-                                    <a href="~/Content/assets/about.html">About</a>
+                                    <a href="@Url.Action("shopping", "home")">Mua sắm</a>
                                 </li>
-
                                 <li>
-                                    <a href="~/Content/assets/blog.html">Blog</a>
-                                </li>
-
-                                <li>
-                                    <a href="~/Content/assets/contact.html">Contact</a>
+                                    <a href="@Url.Action("contact", "home")">Liên Hệ</a>
                                 </li>
                             </ul>
                         </nav>
@@ -83,9 +89,9 @@
 
                     <!-- Social -->
                     <div class="social flex-w flex-l-m p-r-20">
-                        <a href="~/Content/assets/#"><i class="fa fa-tripadvisor" aria-hidden="true"></i></a>
+                        <a href="~/Content/assets/#"><i class="fa fa-wechat" aria-hidden="true"></i></a>
                         <a href="~/Content/assets/#"><i class="fa fa-facebook m-l-21" aria-hidden="true"></i></a>
-                        <a href="~/Content/assets/#"><i class="fa fa-twitter m-l-21" aria-hidden="true"></i></a>
+                        <a href="~/Content/assets/#"><i class="fa fa-phone m-l-21" aria-hidden="true"></i></a>
 
                         <button class="btn-show-sidebar m-l-33 trans-0-4"></button>
                     </div>
@@ -102,33 +108,31 @@
         <!-- - -->
         <ul class="menu-sidebar p-t-95 p-b-70">
             <li class="t-center m-b-13">
-                <a href="~/Content/assets/index.html" class="txt19">Home</a>
+                <a href="@Url.Action("index", "home")">Trang Chủ</a>
             </li>
 
             <li class="t-center m-b-13">
-                <a href="~/Content/assets/menu.html" class="txt19">Menu</a>
+                <a href="@Url.Action("about", "home")">Giới thiệu</a>
             </li>
 
             <li class="t-center m-b-13">
-                <a href="~/Content/assets/gallery.html" class="txt19">Gallery</a>
+                <a href="@Url.Action("restaurant", "home")">Nhà hàng</a>
             </li>
 
             <li class="t-center m-b-13">
-                <a href="~/Content/assets/about.html" class="txt19">About</a>
+                <a href="@Url.Action("garden", "home")">Vườn rau</a>
             </li>
-
             <li class="t-center m-b-13">
-                <a href="~/Content/assets/blog.html" class="txt19">Blog</a>
+                <a href="@Url.Action("shopping", "home")">Mua sắm</a>
             </li>
-
-            <li class="t-center m-b-33">
-                <a href="~/Content/assets/contact.html" class="txt19">Contact</a>
+            <li class="t-center m-b-13">
+                <a href="@Url.Action("contact", "home")">Liên Hệ</a>
             </li>
 
             <li class="t-center">
                 <!-- Button3 -->
                 <a href="~/Content/assets/reservation.html" class="btn3 flex-c-m size13 txt11 trans-0-4 m-l-r-auto">
-                    Reservation
+                    Liên Hệ Đặt Bàn
                 </a>
             </li>
         </ul>
@@ -137,7 +141,7 @@
         <div class="gallery-sidebar t-center p-l-60 p-r-60 p-b-40">
             <!-- - -->
             <h4 class="txt20 m-b-33">
-                Gallery
+                Trưng bày
             </h4>
 
             <!-- Gallery -->
@@ -185,26 +189,6 @@
     @RenderSection("scripts", required: false)
 
 
-    <!-- Sign up -->
-    <div class="section-signup bg1-pattern p-t-85 p-b-85">
-        <form class="flex-c-m flex-w flex-col-c-m-lg p-l-5 p-r-5">
-            <span class="txt5 m-10">
-                Specials Sign up
-            </span>
-
-            <div class="wrap-input-signup size17 bo2 bo-rad-10 bgwhite pos-relative txt10 m-10">
-                <input class="bo-rad-10 sizefull txt10 p-l-20" type="text" name="email-address" placeholder="Email Adrress">
-                <i class="fa fa-envelope ab-r-m m-r-18" aria-hidden="true"></i>
-            </div>
-
-            <!-- Button3 -->
-            <button type="submit" class="btn3 flex-c-m size18 txt11 trans-0-4 m-10">
-                Sign-up
-            </button>
-        </form>
-    </div>
-
-
     <!-- Footer -->
     <footer class="bg1">
         <div class="container p-t-40 p-b-70">
@@ -212,38 +196,38 @@
                 <div class="col-sm-6 col-md-4 p-t-50">
                     <!-- - -->
                     <h4 class="txt13 m-b-33">
-                        Contact Us
+                        Thông Tin Liên Hệ
                     </h4>
 
                     <ul class="m-b-70">
                         <li class="txt14 m-b-14">
                             <i class="fa fa-map-marker fs-16 dis-inline-block size19" aria-hidden="true"></i>
-                            8th floor, 379 Hudson St, New York, NY 10018
+                            Số 38 - Đường D1 - KDC Phú Hòa 1 - Phường Phú Hòa - Thủ Dầu Một - Bình Dương
                         </li>
 
                         <li class="txt14 m-b-14">
                             <i class="fa fa-phone fs-16 dis-inline-block size19" aria-hidden="true"></i>
-                            (+1) 96 716 6879
+                            (+84) 274 3844 554
                         </li>
 
                         <li class="txt14 m-b-14">
                             <i class="fa fa-envelope fs-13 dis-inline-block size19" aria-hidden="true"></i>
-                            contact@site.com
+                            duongle15012000@gmail.com
                         </li>
                     </ul>
 
                     <!-- - -->
                     <h4 class="txt13 m-b-32">
-                        Opening Times
+                        Giờ mở cửa
                     </h4>
 
                     <ul>
                         <li class="txt14">
-                            09:30 AM – 11:00 PM
+                            07:00 AM – 23:00 PM
                         </li>
 
                         <li class="txt14">
-                            Every Day
+                            Tất cả các ngày
                         </li>
                     </ul>
                 </div>
@@ -251,7 +235,7 @@
                 <div class="col-sm-6 col-md-4 p-t-50">
                     <!-- - -->
                     <h4 class="txt13 m-b-33">
-                        Latest twitter
+                        Bài viết mới
                     </h4>
 
                     <div class="m-b-25">
@@ -270,7 +254,7 @@
                         </p>
 
                         <span class="txt16">
-                            21 Dec 2017
+                            21 Th2 2017
                         </span>
                     </div>
 
@@ -290,7 +274,7 @@
                         </p>
 
                         <span class="txt16">
-                            21 Dec 2017
+                            21 Th2 2017
                         </span>
                     </div>
                 </div>
@@ -298,7 +282,7 @@
                 <div class="col-sm-6 col-md-4 p-t-50">
                     <!-- - -->
                     <h4 class="txt13 m-b-38">
-                        Gallery
+                        Hình Ảnh Nhà Hàng
                     </h4>
 
                     <!-- Gallery footer -->
