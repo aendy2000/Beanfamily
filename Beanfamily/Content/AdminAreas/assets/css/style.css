@@ -741,6 +741,7 @@ h6 {
   transition: 0.3s;
 }
 
+
 .sidebar-nav .nav-content a i {
   font-size: 6px;
   margin-right: 8px;
@@ -1235,4 +1236,12 @@ h6 {
   text-align: center;
   font-size: 13px;
   color: #012970;
+}
+
+.valid-was-validated input {
+    border: 3px solid darkred;
+}
+
+.valid-was-validated:focus {
+    border: 3px solid darkred;
 }

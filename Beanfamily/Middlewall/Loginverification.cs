@@ -10,14 +10,9 @@ namespace Beanfamily.Middlewall
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            if (filterContext.HttpContext.Session["user-role"] == null)
+            if (filterContext.HttpContext.Session["user-id"] == null)
             {
-                filterContext.Result = new RedirectResult("~/admin/account/dangnhap");
-                return;
-            }
-            else
-            {
-                filterContext.Result = new RedirectResult("~/admin");
+                filterContext.Result = new RedirectResult("~/admin/dangnhap");
                 return;
             }
         }

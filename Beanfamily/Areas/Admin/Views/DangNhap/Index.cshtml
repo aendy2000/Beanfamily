@@ -57,30 +57,31 @@
 
                                     </div>
 
-                                    <form class="row g-3 needs-validation" novalidate>
+                                    <div class="row g-3 needs-validation" novalidate>
 
                                         <div class="col-12">
-                                            <div class="input-group has-validation">
+                                            <div class="input-group">
+                                                <!-- valid-was-validated -->
                                                 <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-person"></i></span>
                                                 <input type="text" name="username" class="form-control" id="yourUsername" placeholder="Tên đăng nhập hoặc Email" required>
-                                                <div class="invalid-feedback">Vui lòng nhập vào tài khoản đăng nhập của bạn.</div>
+                                                <div id="invalid-username-feedback" class="invalid-feedback"></div>
                                             </div>
                                         </div>
 
                                         <div class="col-12 pb-4">
-                                            <div class="input-group has-validation">
+                                            <div class="input-group">
                                                 <span class="input-group-text" id="inputGroupPrepend">
                                                     <i class="bi bi-key"></i>
                                                 </span>
-                                                <input type="text" name="username" class="form-control" id="yourUsername" placeholder="Mật khẩu đăng nhập" required>
-                                                <div class="invalid-feedback">Vui lòng nhập vào mật khẩu đăng nhập của bạn.</div>
+                                                <input type="password" name="username" class="form-control" id="yourPassword" placeholder="Mật khẩu đăng nhập" required>
+                                                <div id="invalid-password-feedback" class="invalid-feedback"></div>
                                             </div>
                                         </div>
 
                                         <div class="col-12 pb-3">
-                                            <button class="btn btn-primary w-100" type="submit">Đăng nhập</button>
+                                            <button class="btn btn-primary w-100" id="loginsubmit">Đăng nhập</button>
                                         </div>
-                                    </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -88,12 +89,11 @@
                 </div>
 
             </section>
-
         </div>
     </main><!-- End #main -->
-
+    <input hidden id="requestPath" value="@Url.Content("~")" />
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     <!-- Vendor JS Files -->
     <script src="~/Content/AdminAreas/assets/vendor/apexcharts/apexcharts.min.js"></script>
     <script src="~/Content/AdminAreas/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -106,5 +106,7 @@
 
     <!-- Template Main JS File -->
     <script src="~/Content/AdminAreas/assets/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/Validation/Login/login.js"></script>
 </body>
 </html>

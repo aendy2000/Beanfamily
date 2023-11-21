@@ -27,6 +27,7 @@
 
     <!-- Template Main CSS File -->
     <link href="~/Content/AdminAreas/assets/css/style.css" rel="stylesheet">
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 
 </head>
 <body>
@@ -201,53 +202,39 @@
                 <li class="nav-item dropdown pe-3">
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                        <img src="~/Content/AdminAreas/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-                        <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+                        @if (string.IsNullOrEmpty(Session["user-avatar"].ToString()))
+                        {
+                            <img src="~/Content/AdminAreas/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+                        }
+                        else
+                        {
+                            <img src="@Url.Content(Session["user-avatar"].ToString())" alt="Profile" class="rounded-circle">
+                        }
+                        <span class="d-none d-md-block dropdown-toggle ps-2">@Session["user-fullname"].ToString()</span>
                     </a><!-- End Profile Iamge Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
-                            <h6>Kevin Anderson</h6>
-                            <span>Web Designer</span>
+                            <h6>@Session["user-fullname"].ToString()</h6>
+                            <span>@Session["user-chucdanh"].ToString()</span>
                         </li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                            <a class="dropdown-item d-flex align-items-center" href="@Url.Action("index", "accountprofile")">
                                 <i class="bi bi-person"></i>
-                                <span>My Profile</span>
+                                <span>Thông tin cá nhân</span>
                             </a>
                         </li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                                <i class="bi bi-gear"></i>
-                                <span>Account Settings</span>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
-                                <i class="bi bi-question-circle"></i>
-                                <span>Need Help?</span>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
+                            <a class="dropdown-item d-flex align-items-center" href="@Url.Action("logout", "dangnhap")">
                                 <i class="bi bi-box-arrow-right"></i>
-                                <span>Sign Out</span>
+                                <span>Đăng Xuất</span>
                             </a>
                         </li>
 
@@ -447,8 +434,9 @@
     <main id="main" class="main">
         @RenderBody()
         @RenderSection("scripts", required: false)
+        <input hidden id="requestPath" value="@Url.Content("~")" />
     </main>
-   
+
     <!-- ======= Footer ======= -->
     <footer id="footer" class="footer">
         <div class="copyright">
@@ -458,7 +446,7 @@
             Designed by <a target="_blank" href="https://www.aendy.net/">www.Aendy.net</a> | Tel: <a href="tel::0367909248">0367 909 248</a> | Mail: <a href="mailto::dv.tuan3010@gmail.com">Dv.tuan3010@gmail.com</a>
         </div>
         <div class="credits">
-            
+
         </div>
     </footer><!-- End Footer -->
 
@@ -476,6 +464,8 @@
 
     <!-- Template Main JS File -->
     <script src="~/Content/AdminAreas/assets/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </body>
 </html>
 

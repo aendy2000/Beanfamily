@@ -15,6 +15,9 @@ namespace Beanfamily.Areas.Admin.Controllers
         // GET: Admin/Account
         public ActionResult Index()
         {
+            if (Session["user-id"] != null)
+                return RedirectToAction("index", "dashboard");
+
             return View("index");
         }
 
@@ -35,8 +38,9 @@ namespace Beanfamily.Areas.Admin.Controllers
                         Session["user-fullname"] = taikhoan.hovaten;
                         Session["user-id"] = taikhoan.id;
                         Session["user-email"] = taikhoan.email;
-                        Session["user-role"] = taikhoan.QuyenTaiKhoanBean.name.ToLower();
-                        Session["user-vatatar"] = taikhoan.hinhdaidien;
+                        Session["user-chucdanh"] = taikhoan.chucdanh;
+                        Session["user-role-id"] = taikhoan.id_quyentaikhoanbean;
+                        Session["user-avatar"] = taikhoan.hinhdaidien + "";
 
                         return Content("SUCCESS");
                     }
@@ -59,6 +63,12 @@ namespace Beanfamily.Areas.Admin.Controllers
                 return Content("SAIMATKHAU");
             }
             return Content("KHONGTONTAI");
+        }
+
+        public ActionResult Logout()
+        {
+            Session.Abandon();
+            return RedirectToAction("index");
         }
     }
 }
