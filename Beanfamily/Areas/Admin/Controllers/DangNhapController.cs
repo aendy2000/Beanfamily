@@ -10,7 +10,7 @@ namespace Beanfamily.Areas.Admin.Controllers
 {
     public class DangNhapController : Controller
     {
-        BeanfamilyEntities model = new BeanfamilyEntities();
+        beanfamilyEntities model = new beanfamilyEntities();
 
         // GET: Admin/Account
         public ActionResult Index()

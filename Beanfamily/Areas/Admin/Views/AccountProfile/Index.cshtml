@@ -60,21 +60,7 @@
                     <div class="tab-content pt-2">
 
                         <div class="tab-pane fade show active profile-overview" id="profile-overview">
-                            <h5 class="card-title">Thông tin cá nhân</h5>
-
-                            <div class="row">
-                                <div class="col-lg-3 col-md-4 label ">Trạng thái</div>
-                                <div class="col-lg-9 col-md-8">
-                                    @if (Model.khoataikhoan == true)
-                                    {
-                                        <span>Đang khóa | </span><button class="btn btn-success btn-sm">Mở khóa tài khoản</button>
-                                    }
-                                    else
-                                    {
-                                        <span>Hoạt động | </span><button class="btn btn-danger btn-sm">Khóa tài khoản</button>
-                                    }
-                                </div>
-                            </div>
+                            <h5 class="card-title"></h5>
 
                             <div class="row">
                                 <div class="col-lg-3 col-md-4 label ">Họ & Tên</div>
@@ -121,7 +107,7 @@
                             <!-- Profile Edit Form -->
                             <div>
                                 <div class="row mb-3">
-                                    <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Hình đại diện</label>
+                                    <label for="profileImage" class="col-md-4 col-lg-3 col-form-label"></label>
                                     <div class="col-md-8 col-lg-9 text-center">
 
                                         @if (string.IsNullOrEmpty(Model.hinhdaidien))
@@ -210,7 +196,7 @@
                                 </div>
 
 
-                                <div class="text-center">
+                                <div class="text-end mt-2 mb-2">
                                     <button id="btnluuchinhsua" class="btn btn-primary">Lưu thay đổi</button>
                                 </div>
                             </div><!-- End Profile Edit Form -->
@@ -225,24 +211,28 @@
                                     <label for="matkhauhientai" class="col-md-4 col-lg-3 col-form-label">Mật khẩu hiện tại</label>
                                     <div class="col-md-8 col-lg-9">
                                         <input name="matkhauhientai" type="password" class="form-control" id="matkhauhientai">
+                                        <div id="invalid-matkhauhientai-feedback" class="invalid-feedback"></div>
+
                                     </div>
                                 </div>
 
                                 <div class="row mb-3">
                                     <label for="matkhaumoi" class="col-md-4 col-lg-3 col-form-label">Mật khẩu mới</label>
                                     <div class="col-md-8 col-lg-9">
-                                        <input name="matkhaumoi" type="password" class="form-control" id="matkhaumoi">
+                                        <input name="matkhaumoi" type="password" class="form-control" id="matkhaumoi">       
+                                        <div id="invalid-matkhaumoi-feedback" class="invalid-feedback"></div>
                                     </div>
                                 </div>
 
                                 <div class="row mb-3">
                                     <label for="nhaplaimatkhaumoi" class="col-md-4 col-lg-3 col-form-label">Nhập lại mật khẩu mới</label>
                                     <div class="col-md-8 col-lg-9">
-                                        <input name="nhaplaimatkhaumoi" type="password" class="form-control" id="nhaplaimatkhaumoi">
+                                        <input name="nhaplaimatkhaumoi" type="password" class="form-control" id="nhaplaimatkhaumoi">      
+                                        <div id="invalid-nhaplaimatkhaumoi-feedback" class="invalid-feedback"></div>
                                     </div>
                                 </div>
 
-                                <div class="text-center">
+                                <div class="text-end mt-2 mb-2">
                                     <button id="btndoimatkhau" class="btn btn-primary">Lưu thay đổi</button>
                                 </div>
                             </div><!-- End Change Password Form -->

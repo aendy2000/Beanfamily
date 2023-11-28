@@ -1,0 +1,202 @@
+﻿@model Beanfamily.Models.QuyenTaiKhoanBean
+@using Beanfamily.Models
+@{
+    beanfamilyEntities models = new beanfamilyEntities();
+    var lstFunc = models.ChucNangHeThongBean.ToList();
+    int i = 1;
+}
+<div id="chinhsuaquyenpartial" class="modal-body">
+    <div class="row mb-4 mt-3">
+        <div class="col-sm-12">
+            <input hidden id="editid" value="@Model.id">
+            <input id="editname" value="@Model.name" type="text" placeholder="Nhập tên quyền" class="form-control">
+            <label style="margin-left: 5px" id="invalid-editname-feedback" class="text-danger" hidden></label>
+        </div>
+    </div>
+    <h6 class="text-center  mb-4">CHỌN CHỨC NĂNG CHO PHÉP TRUY CẬP</h6>
+    <ul class="list-group">
+
+        @foreach (var item in lstFunc)
+        {
+            string hide = "";
+            int idFunc = item.id;
+            var func = Model.ApDungChucNangChoQuyenTaiKhoan.FirstOrDefault(f => f.id_chucnanghethongbean == idFunc);
+            i++;
+            if (i % 2 == 0)
+            {
+                <li class="list-group-item list-group-item-primary">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="form-check form-switch">
+                                @if (func != null)
+                                {
+                                    <input checked class="form-check-input" type="checkbox" name="@item.id" id="editcheckchucnang@(item.id)">
+                                }
+                                else
+                                {
+                                    hide = "hidden";
+                                    <input class="form-check-input" type="checkbox" name="@item.id" id="editcheckchucnang@(item.id)">
+                                }
+                                <label class="form-check-label" for="editcheckchucnang@(item.id)">@item.tenchucnang</label>
+                            </div>
+                        </div>
+                        <div @hide id="editchild-chucnang@(item.id)" class="row col-sm-4">
+                            <div class="col-sm-5">
+                                <div class="form-check">
+                                    @if (func != null)
+                                    {
+                                        if (func.chophepthem == true)
+                                        {
+                                            <input checked class="form-check-input" type="checkbox" id="editthem-chucnang@(item.id)">
+                                        }
+                                        else
+                                        {
+                                            <input class="form-check-input" type="checkbox" id="editthem-chucnang@(item.id)">
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <input class="form-check-input" type="checkbox" id="editthem-chucnang@(item.id)">
+                                    }
+                                    <label class="form-check-label" for="editthem-chucnang@(item.id)">Thêm</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-check">
+                                    @if (func != null)
+                                    {
+                                        if (func.chophepsua == true)
+                                        {
+                                            <input checked class="form-check-input" type="checkbox" id="editsua-chucnang@(item.id)">
+                                        }
+                                        else
+                                        {
+                                            <input class="form-check-input" type="checkbox" id="editsua-chucnang@(item.id)">
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <input class="form-check-input" type="checkbox" id="editsua-chucnang@(item.id)">
+                                    }
+                                    <label class="form-check-label" for="editsua-chucnang@(item.id)">Sửa</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-check">
+                                    @if (func != null)
+                                    {
+                                        if (func.chophepxoa == true)
+                                        {
+                                            <input checked class="form-check-input" type="checkbox" id="editxoa-chucnang@(item.id)">
+                                        }
+                                        else
+                                        {
+                                            <input class="form-check-input" type="checkbox" id="editxoa-chucnang@(item.id)">
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <input class="form-check-input" type="checkbox" id="editxoa-chucnang@(item.id)">
+                                    }
+                                    <label class="form-check-label" for="editxoa-chucnang@(item.id)">Xóa</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            }
+            else
+            {
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="form-check form-switch">
+                                @if (func != null)
+                                {
+                                    <input checked class="form-check-input" type="checkbox" name="@item.id" id="editcheckchucnang@(item.id)">
+                                }
+                                else
+                                {
+                                    hide = "hidden";
+                                    <input class="form-check-input" type="checkbox" name="@item.id" id="editcheckchucnang@(item.id)">
+                                }                                <label class="form-check-label" for="editcheckchucnang@(item.id)">@item.tenchucnang</label>
+                            </div>
+                        </div>
+                        <div @hide id="editchild-chucnang@(item.id)" class="row col-sm-4">
+                            <div class="col-sm-5">
+                                <div class="form-check">
+                                    @if (func != null)
+                                    {
+                                        if (func.chophepthem == true)
+                                        {
+                                            <input checked class="form-check-input" type="checkbox" id="editthem-chucnang@(item.id)">
+                                        }
+                                        else
+                                        {
+                                            <input class="form-check-input" type="checkbox" id="editthem-chucnang@(item.id)">
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <input class="form-check-input" type="checkbox" id="editthem-chucnang@(item.id)">
+                                    }
+                                    <label class="form-check-label" for="editthem-chucnang@(item.id)">Thêm</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-check">
+                                    @if (func != null)
+                                    {
+                                        if (func.chophepsua == true)
+                                        {
+                                            <input checked class="form-check-input" type="checkbox" id="editsua-chucnang@(item.id)">
+                                        }
+                                        else
+                                        {
+                                            <input class="form-check-input" type="checkbox" id="editsua-chucnang@(item.id)">
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <input class="form-check-input" type="checkbox" id="editsua-chucnang@(item.id)">
+                                    }
+                                    <label class="form-check-label" for="editsua-chucnang@(item.id)">Sửa</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-check">
+                                    @if (func != null)
+                                    {
+                                        if (func.chophepxoa == true)
+                                        {
+                                            <input checked class="form-check-input" type="checkbox" id="editxoa-chucnang@(item.id)">
+                                        }
+                                        else
+                                        {
+                                            <input class="form-check-input" type="checkbox" id="editxoa-chucnang@(item.id)">
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <input class="form-check-input" type="checkbox" id="editxoa-chucnang@(item.id)">
+                                    }
+                                    <label class="form-check-label" for="editxoa-chucnang@(item.id)">Xóa</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+            }
+        }
+    </ul>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+        <button id="btnluuchinhsuarole" type="button" class="btn btn-primary">Lưu thay đổi</button>
+    </div>
+</div>
+<script src="~/Validation/Role/EditRole.js"></script>
+
+
+

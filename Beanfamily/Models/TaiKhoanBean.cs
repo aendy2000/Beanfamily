@@ -22,8 +22,8 @@ namespace Beanfamily.Models
             this.LichSuSuaDoiSanPhamMuaSam = new HashSet<LichSuSuaDoiSanPhamMuaSam>();
             this.LichSuSuaDoiSanPhamRauNhaTrong = new HashSet<LichSuSuaDoiSanPhamRauNhaTrong>();
             this.LichSuSuaDoiSanPhamThucDonHangNgay = new HashSet<LichSuSuaDoiSanPhamThucDonHangNgay>();
-            this.TinhTrangDonHangMuaSamVaMenuHangNgay = new HashSet<TinhTrangDonHangMuaSamVaMenuHangNgay>();
             this.MangXaHoi = new HashSet<MangXaHoi>();
+            this.TinhTrangDonHangMuaSamVaMenuHangNgay = new HashSet<TinhTrangDonHangMuaSamVaMenuHangNgay>();
         }
     
         public int id { get; set; }
@@ -54,10 +54,10 @@ namespace Beanfamily.Models
         public virtual ICollection<LichSuSuaDoiSanPhamRauNhaTrong> LichSuSuaDoiSanPhamRauNhaTrong { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LichSuSuaDoiSanPhamThucDonHangNgay> LichSuSuaDoiSanPhamThucDonHangNgay { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MangXaHoi> MangXaHoi { get; set; }
         public virtual QuyenTaiKhoanBean QuyenTaiKhoanBean { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TinhTrangDonHangMuaSamVaMenuHangNgay> TinhTrangDonHangMuaSamVaMenuHangNgay { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MangXaHoi> MangXaHoi { get; set; }
     }
 }

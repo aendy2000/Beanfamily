@@ -54,7 +54,7 @@
 }
 
 .apexcharts-tooltip {
-  border-radius: 5px;
+  border-radius: 15px;
   box-shadow: 2px 2px 6px -4px #999;
   cursor: default;
   font-size: 14px;

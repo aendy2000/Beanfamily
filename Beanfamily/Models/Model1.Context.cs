@@ -13,10 +13,10 @@ namespace Beanfamily.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class BeanfamilyEntities : DbContext
+    public partial class beanfamilyEntities : DbContext
     {
-        public BeanfamilyEntities()
-            : base("name=BeanfamilyEntities")
+        public beanfamilyEntities()
+            : base("name=beanfamilyEntities")
         {
         }
     
@@ -43,6 +43,7 @@ namespace Beanfamily.Models
         public virtual DbSet<LichSuSuaDoiSanPhamMuaSam> LichSuSuaDoiSanPhamMuaSam { get; set; }
         public virtual DbSet<LichSuSuaDoiSanPhamRauNhaTrong> LichSuSuaDoiSanPhamRauNhaTrong { get; set; }
         public virtual DbSet<LichSuSuaDoiSanPhamThucDonHangNgay> LichSuSuaDoiSanPhamThucDonHangNgay { get; set; }
+        public virtual DbSet<MangXaHoi> MangXaHoi { get; set; }
         public virtual DbSet<NoiDungSEO> NoiDungSEO { get; set; }
         public virtual DbSet<QuyenTaiKhoanBean> QuyenTaiKhoanBean { get; set; }
         public virtual DbSet<QuyTrinhTrongCay> QuyTrinhTrongCay { get; set; }
@@ -55,6 +56,5 @@ namespace Beanfamily.Models
         public virtual DbSet<TaiKhoanKhachHang> TaiKhoanKhachHang { get; set; }
         public virtual DbSet<TinhTrangDonHangMuaSamVaMenuHangNgay> TinhTrangDonHangMuaSamVaMenuHangNgay { get; set; }
         public virtual DbSet<ThongTinChung> ThongTinChung { get; set; }
-        public virtual DbSet<MangXaHoi> MangXaHoi { get; set; }
     }
 }

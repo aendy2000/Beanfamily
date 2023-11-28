@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="BeanfamilyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="beanfamilyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ApDungChucNangChoQuyenTaiKhoan">
           <Key>
             <PropertyRef Name="id" />
@@ -795,7 +795,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="BeanfamilyModelStoreContainer">
+        <EntityContainer Name="beanfamilyModelStoreContainer">
           <EntitySet Name="ApDungChucNangChoQuyenTaiKhoan" EntityType="Self.ApDungChucNangChoQuyenTaiKhoan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CacBuocQuyTrinhTrongCay" EntityType="Self.CacBuocQuyTrinhTrongCay" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ChiTietDonHangMuaSamVaMenuHangNgay" EntityType="Self.ChiTietDonHangMuaSamVaMenuHangNgay" Schema="dbo" store:Type="Tables" />
@@ -960,10 +960,11 @@
             <End Role="TinhTrangDonHangMuaSamVaMenuHangNgay" EntitySet="TinhTrangDonHangMuaSamVaMenuHangNgay" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="BeanfamilyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="beanfamilyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="ApDungChucNangChoQuyenTaiKhoan">
           <Key>
             <PropertyRef Name="id" />
@@ -1206,6 +1207,20 @@
           <NavigationProperty Name="SanPhamThucDonHangNgay" Relationship="Self.FK_LichSuSuaDoiSanPhamThucDonHangNgay_SanPhamThucDonHangNgay" FromRole="LichSuSuaDoiSanPhamThucDonHangNgay" ToRole="SanPhamThucDonHangNgay" />
           <NavigationProperty Name="TaiKhoanBean" Relationship="Self.FK_LichSuSuaDoiSanPhamThucDonHangNgay_TaiKhoanBean" FromRole="LichSuSuaDoiSanPhamThucDonHangNgay" ToRole="TaiKhoanBean" />
         </EntityType>
+        <EntityType Name="MangXaHoi">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="logo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="tenmangxahoi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="lienketmangxahoi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="hienthi" Type="Boolean" Nullable="false" />
+          <Property Name="id_taikhoanbean" Type="Int32" Nullable="false" />
+          <Property Name="ngaytao" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ngaysuadoi" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="TaiKhoanBean" Relationship="Self.FK_MangXaHoi_TaiKhoanBean" FromRole="MangXaHoi" ToRole="TaiKhoanBean" />
+        </EntityType>
         <EntityType Name="NoiDungSEO">
           <Key>
             <PropertyRef Name="id" />
@@ -1346,15 +1361,15 @@
           <Property Name="khoataikhoan" Type="Boolean" Nullable="false" />
           <Property Name="solansaimatkhautoida" Type="Int32" Nullable="false" />
           <Property Name="solandasaimatkhau" Type="Int32" Nullable="false" />
+          <Property Name="hinhdaidien" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="LichSuSuaDoiSanPhamMenuBuffet" Relationship="Self.FK_LichSuSuaDoiSanPhamMenuBuffet_TaiKhoanBean" FromRole="TaiKhoanBean" ToRole="LichSuSuaDoiSanPhamMenuBuffet" />
           <NavigationProperty Name="LichSuSuaDoiSanPhamMenuTiecBan" Relationship="Self.FK_LichSuSuaDoiSanPhamMenuTiecBan_TaiKhoanBean" FromRole="TaiKhoanBean" ToRole="LichSuSuaDoiSanPhamMenuTiecBan" />
           <NavigationProperty Name="LichSuSuaDoiSanPhamMuaSam" Relationship="Self.FK_LichSuSuaDoiSanPhamMuaSam_TaiKhoanBean" FromRole="TaiKhoanBean" ToRole="LichSuSuaDoiSanPhamMuaSam" />
           <NavigationProperty Name="LichSuSuaDoiSanPhamRauNhaTrong" Relationship="Self.FK_LichSuSuaDoiSanPhamRauNhaTrong_TaiKhoanBean" FromRole="TaiKhoanBean" ToRole="LichSuSuaDoiSanPhamRauNhaTrong" />
           <NavigationProperty Name="LichSuSuaDoiSanPhamThucDonHangNgay" Relationship="Self.FK_LichSuSuaDoiSanPhamThucDonHangNgay_TaiKhoanBean" FromRole="TaiKhoanBean" ToRole="LichSuSuaDoiSanPhamThucDonHangNgay" />
+          <NavigationProperty Name="MangXaHoi" Relationship="Self.FK_MangXaHoi_TaiKhoanBean" FromRole="TaiKhoanBean" ToRole="MangXaHoi" />
           <NavigationProperty Name="QuyenTaiKhoanBean" Relationship="Self.FK_TaiKhoanBean_QuyenTaiKhoanBean" FromRole="TaiKhoanBean" ToRole="QuyenTaiKhoanBean" />
           <NavigationProperty Name="TinhTrangDonHangMuaSamVaMenuHangNgay" Relationship="Self.FK_TinhTrangDonHangMuaSamVaMenuHangNgay_TaiKhoanBean" FromRole="TaiKhoanBean" ToRole="TinhTrangDonHangMuaSamVaMenuHangNgay" />
-          <NavigationProperty Name="MangXaHoi" Relationship="BeanfamilyModel.FK_MangXaHoi_TaiKhoanBean" FromRole="TaiKhoanBean" ToRole="MangXaHoi" />
-          <Property Name="hinhdaidien" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="TaiKhoanKhachHang">
           <Key>
@@ -1371,9 +1386,9 @@
           <Property Name="diachi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ngaytao" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ngaysuadoi" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="hinhdaidien" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="DonHangMuaSamVaMenuHangNgay" Relationship="Self.FK_DonHangMuaSamVaMenuHangNgay_TaiKhoanKhachHang" FromRole="TaiKhoanKhachHang" ToRole="DonHangMuaSamVaMenuHangNgay" />
           <NavigationProperty Name="GioHang" Relationship="Self.FK_GioHang_TaiKhoanKhachHang" FromRole="TaiKhoanKhachHang" ToRole="GioHang" />
-          <Property Name="hinhdaidien" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="TinhTrangDonHangMuaSamVaMenuHangNgay">
           <Key>
@@ -1758,6 +1773,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_MangXaHoi_TaiKhoanBean">
+          <End Role="TaiKhoanBean" Type="Self.TaiKhoanBean" Multiplicity="1" />
+          <End Role="MangXaHoi" Type="Self.MangXaHoi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaiKhoanBean">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="MangXaHoi">
+              <PropertyRef Name="id_taikhoanbean" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TaiKhoanBean_QuyenTaiKhoanBean">
           <End Role="QuyenTaiKhoanBean" Type="Self.QuyenTaiKhoanBean" Multiplicity="1" />
           <End Role="TaiKhoanBean" Type="Self.TaiKhoanBean" Multiplicity="*" />
@@ -1794,7 +1821,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="BeanfamilyEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="beanfamilyEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ApDungChucNangChoQuyenTaiKhoan" EntityType="Self.ApDungChucNangChoQuyenTaiKhoan" />
           <EntitySet Name="CacBuocQuyTrinhTrongCay" EntityType="Self.CacBuocQuyTrinhTrongCay" />
           <EntitySet Name="ChiTietDonHangMuaSamVaMenuHangNgay" EntityType="Self.ChiTietDonHangMuaSamVaMenuHangNgay" />
@@ -1813,6 +1840,7 @@
           <EntitySet Name="LichSuSuaDoiSanPhamMuaSam" EntityType="Self.LichSuSuaDoiSanPhamMuaSam" />
           <EntitySet Name="LichSuSuaDoiSanPhamRauNhaTrong" EntityType="Self.LichSuSuaDoiSanPhamRauNhaTrong" />
           <EntitySet Name="LichSuSuaDoiSanPhamThucDonHangNgay" EntityType="Self.LichSuSuaDoiSanPhamThucDonHangNgay" />
+          <EntitySet Name="MangXaHoi" EntityType="Self.MangXaHoi" />
           <EntitySet Name="NoiDungSEO" EntityType="Self.NoiDungSEO" />
           <EntitySet Name="QuyenTaiKhoanBean" EntityType="Self.QuyenTaiKhoanBean" />
           <EntitySet Name="QuyTrinhTrongCay" EntityType="Self.QuyTrinhTrongCay" />
@@ -1941,6 +1969,10 @@
             <End Role="TaiKhoanBean" EntitySet="TaiKhoanBean" />
             <End Role="LichSuSuaDoiSanPhamThucDonHangNgay" EntitySet="LichSuSuaDoiSanPhamThucDonHangNgay" />
           </AssociationSet>
+          <AssociationSet Name="FK_MangXaHoi_TaiKhoanBean" Association="Self.FK_MangXaHoi_TaiKhoanBean">
+            <End Role="TaiKhoanBean" EntitySet="TaiKhoanBean" />
+            <End Role="MangXaHoi" EntitySet="MangXaHoi" />
+          </AssociationSet>
           <AssociationSet Name="FK_TaiKhoanBean_QuyenTaiKhoanBean" Association="Self.FK_TaiKhoanBean_QuyenTaiKhoanBean">
             <End Role="QuyenTaiKhoanBean" EntitySet="QuyenTaiKhoanBean" />
             <End Role="TaiKhoanBean" EntitySet="TaiKhoanBean" />
@@ -1953,46 +1985,15 @@
             <End Role="TaiKhoanBean" EntitySet="TaiKhoanBean" />
             <End Role="TinhTrangDonHangMuaSamVaMenuHangNgay" EntitySet="TinhTrangDonHangMuaSamVaMenuHangNgay" />
           </AssociationSet>
-          <EntitySet Name="MangXaHoi" EntityType="BeanfamilyModel.MangXaHoi" />
-          <AssociationSet Name="FK_MangXaHoi_TaiKhoanBean" Association="BeanfamilyModel.FK_MangXaHoi_TaiKhoanBean">
-            <End Role="TaiKhoanBean" EntitySet="TaiKhoanBean" />
-            <End Role="MangXaHoi" EntitySet="MangXaHoi" />
-          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="MangXaHoi">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="logo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="tenmangxahoi" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="lienketmangxahoi" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="hienthi" Type="Boolean" Nullable="false" />
-          <Property Name="id_taikhoanbean" Type="Int32" Nullable="false" />
-          <Property Name="ngaytao" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ngaysuadoi" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="TaiKhoanBean" Relationship="BeanfamilyModel.FK_MangXaHoi_TaiKhoanBean" FromRole="MangXaHoi" ToRole="TaiKhoanBean" />
-        </EntityType>
-        <Association Name="FK_MangXaHoi_TaiKhoanBean">
-          <End Type="BeanfamilyModel.TaiKhoanBean" Role="TaiKhoanBean" Multiplicity="1" />
-          <End Type="BeanfamilyModel.MangXaHoi" Role="MangXaHoi" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TaiKhoanBean">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="MangXaHoi">
-              <PropertyRef Name="id_taikhoanbean" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="BeanfamilyModelStoreContainer" CdmEntityContainer="BeanfamilyEntities">
+        <EntityContainerMapping StorageEntityContainer="beanfamilyModelStoreContainer" CdmEntityContainer="beanfamilyEntities">
           <EntitySetMapping Name="ApDungChucNangChoQuyenTaiKhoan">
-            <EntityTypeMapping TypeName="BeanfamilyModel.ApDungChucNangChoQuyenTaiKhoan">
+            <EntityTypeMapping TypeName="beanfamilyModel.ApDungChucNangChoQuyenTaiKhoan">
               <MappingFragment StoreEntitySet="ApDungChucNangChoQuyenTaiKhoan">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_chucnanghethongbean" ColumnName="id_chucnanghethongbean" />
@@ -2004,7 +2005,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CacBuocQuyTrinhTrongCay">
-            <EntityTypeMapping TypeName="BeanfamilyModel.CacBuocQuyTrinhTrongCay">
+            <EntityTypeMapping TypeName="beanfamilyModel.CacBuocQuyTrinhTrongCay">
               <MappingFragment StoreEntitySet="CacBuocQuyTrinhTrongCay">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_quytrinhtrongcay" ColumnName="id_quytrinhtrongcay" />
@@ -2017,7 +2018,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ChiTietDonHangMuaSamVaMenuHangNgay">
-            <EntityTypeMapping TypeName="BeanfamilyModel.ChiTietDonHangMuaSamVaMenuHangNgay">
+            <EntityTypeMapping TypeName="beanfamilyModel.ChiTietDonHangMuaSamVaMenuHangNgay">
               <MappingFragment StoreEntitySet="ChiTietDonHangMuaSamVaMenuHangNgay">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_donhangmuasamvamenuhangngay" ColumnName="id_donhangmuasamvamenuhangngay" />
@@ -2033,7 +2034,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ChucNangHeThongBean">
-            <EntityTypeMapping TypeName="BeanfamilyModel.ChucNangHeThongBean">
+            <EntityTypeMapping TypeName="beanfamilyModel.ChucNangHeThongBean">
               <MappingFragment StoreEntitySet="ChucNangHeThongBean">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="tenchucnang" ColumnName="tenchucnang" />
@@ -2044,7 +2045,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DanhMucMenuBuffetCap1">
-            <EntityTypeMapping TypeName="BeanfamilyModel.DanhMucMenuBuffetCap1">
+            <EntityTypeMapping TypeName="beanfamilyModel.DanhMucMenuBuffetCap1">
               <MappingFragment StoreEntitySet="DanhMucMenuBuffetCap1">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="sothutu" ColumnName="sothutu" />
@@ -2056,7 +2057,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DanhMucMenuTiecBanCap1">
-            <EntityTypeMapping TypeName="BeanfamilyModel.DanhMucMenuTiecBanCap1">
+            <EntityTypeMapping TypeName="beanfamilyModel.DanhMucMenuTiecBanCap1">
               <MappingFragment StoreEntitySet="DanhMucMenuTiecBanCap1">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="sothutu" ColumnName="sothutu" />
@@ -2068,7 +2069,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DanhMucPhucVuMenuBuffetCap1">
-            <EntityTypeMapping TypeName="BeanfamilyModel.DanhMucPhucVuMenuBuffetCap1">
+            <EntityTypeMapping TypeName="beanfamilyModel.DanhMucPhucVuMenuBuffetCap1">
               <MappingFragment StoreEntitySet="DanhMucPhucVuMenuBuffetCap1">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_danhmucmenubuffetcap1" ColumnName="id_danhmucmenubuffetcap1" />
@@ -2081,7 +2082,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DanhMucPhucVuMenuTiecBanCap1">
-            <EntityTypeMapping TypeName="BeanfamilyModel.DanhMucPhucVuMenuTiecBanCap1">
+            <EntityTypeMapping TypeName="beanfamilyModel.DanhMucPhucVuMenuTiecBanCap1">
               <MappingFragment StoreEntitySet="DanhMucPhucVuMenuTiecBanCap1">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_danhmucmenutiecbancap1" ColumnName="id_danhmucmenutiecbancap1" />
@@ -2094,7 +2095,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DanhMucSanPhamMuaSamCap1">
-            <EntityTypeMapping TypeName="BeanfamilyModel.DanhMucSanPhamMuaSamCap1">
+            <EntityTypeMapping TypeName="beanfamilyModel.DanhMucSanPhamMuaSamCap1">
               <MappingFragment StoreEntitySet="DanhMucSanPhamMuaSamCap1">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="sothutu" ColumnName="sothutu" />
@@ -2106,7 +2107,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DanhMucSanPhamRauNhaTrongCap1">
-            <EntityTypeMapping TypeName="BeanfamilyModel.DanhMucSanPhamRauNhaTrongCap1">
+            <EntityTypeMapping TypeName="beanfamilyModel.DanhMucSanPhamRauNhaTrongCap1">
               <MappingFragment StoreEntitySet="DanhMucSanPhamRauNhaTrongCap1">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="sothutu" ColumnName="sothutu" />
@@ -2118,7 +2119,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DanhMucThucDocHangNgayCap1">
-            <EntityTypeMapping TypeName="BeanfamilyModel.DanhMucThucDocHangNgayCap1">
+            <EntityTypeMapping TypeName="beanfamilyModel.DanhMucThucDocHangNgayCap1">
               <MappingFragment StoreEntitySet="DanhMucThucDocHangNgayCap1">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="sothutu" ColumnName="sothutu" />
@@ -2130,7 +2131,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DonHangMuaSamVaMenuHangNgay">
-            <EntityTypeMapping TypeName="BeanfamilyModel.DonHangMuaSamVaMenuHangNgay">
+            <EntityTypeMapping TypeName="beanfamilyModel.DonHangMuaSamVaMenuHangNgay">
               <MappingFragment StoreEntitySet="DonHangMuaSamVaMenuHangNgay">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_taikhoankhkachhang" ColumnName="id_taikhoankhkachhang" />
@@ -2147,7 +2148,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="GioHang">
-            <EntityTypeMapping TypeName="BeanfamilyModel.GioHang">
+            <EntityTypeMapping TypeName="beanfamilyModel.GioHang">
               <MappingFragment StoreEntitySet="GioHang">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_taikhoankhachhang" ColumnName="id_taikhoankhachhang" />
@@ -2159,7 +2160,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="LichSuSuaDoiSanPhamMenuBuffet">
-            <EntityTypeMapping TypeName="BeanfamilyModel.LichSuSuaDoiSanPhamMenuBuffet">
+            <EntityTypeMapping TypeName="beanfamilyModel.LichSuSuaDoiSanPhamMenuBuffet">
               <MappingFragment StoreEntitySet="LichSuSuaDoiSanPhamMenuBuffet">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_sanphammenubuffet" ColumnName="id_sanphammenubuffet" />
@@ -2171,7 +2172,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="LichSuSuaDoiSanPhamMenuTiecBan">
-            <EntityTypeMapping TypeName="BeanfamilyModel.LichSuSuaDoiSanPhamMenuTiecBan">
+            <EntityTypeMapping TypeName="beanfamilyModel.LichSuSuaDoiSanPhamMenuTiecBan">
               <MappingFragment StoreEntitySet="LichSuSuaDoiSanPhamMenuTiecBan">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_sanphammenutiecban" ColumnName="id_sanphammenutiecban" />
@@ -2183,7 +2184,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="LichSuSuaDoiSanPhamMuaSam">
-            <EntityTypeMapping TypeName="BeanfamilyModel.LichSuSuaDoiSanPhamMuaSam">
+            <EntityTypeMapping TypeName="beanfamilyModel.LichSuSuaDoiSanPhamMuaSam">
               <MappingFragment StoreEntitySet="LichSuSuaDoiSanPhamMuaSam">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_sanphammuasam" ColumnName="id_sanphammuasam" />
@@ -2195,7 +2196,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="LichSuSuaDoiSanPhamRauNhaTrong">
-            <EntityTypeMapping TypeName="BeanfamilyModel.LichSuSuaDoiSanPhamRauNhaTrong">
+            <EntityTypeMapping TypeName="beanfamilyModel.LichSuSuaDoiSanPhamRauNhaTrong">
               <MappingFragment StoreEntitySet="LichSuSuaDoiSanPhamRauNhaTrong">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_sanphamraunhatrong" ColumnName="id_sanphamraunhatrong" />
@@ -2207,7 +2208,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="LichSuSuaDoiSanPhamThucDonHangNgay">
-            <EntityTypeMapping TypeName="BeanfamilyModel.LichSuSuaDoiSanPhamThucDonHangNgay">
+            <EntityTypeMapping TypeName="beanfamilyModel.LichSuSuaDoiSanPhamThucDonHangNgay">
               <MappingFragment StoreEntitySet="LichSuSuaDoiSanPhamThucDonHangNgay">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_sanphamthucdonhangngay" ColumnName="id_sanphamthucdonhangngay" />
@@ -2218,8 +2219,22 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="MangXaHoi">
+            <EntityTypeMapping TypeName="beanfamilyModel.MangXaHoi">
+              <MappingFragment StoreEntitySet="MangXaHoi">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="logo" ColumnName="logo" />
+                <ScalarProperty Name="tenmangxahoi" ColumnName="tenmangxahoi" />
+                <ScalarProperty Name="lienketmangxahoi" ColumnName="lienketmangxahoi" />
+                <ScalarProperty Name="hienthi" ColumnName="hienthi" />
+                <ScalarProperty Name="id_taikhoanbean" ColumnName="id_taikhoanbean" />
+                <ScalarProperty Name="ngaytao" ColumnName="ngaytao" />
+                <ScalarProperty Name="ngaysuadoi" ColumnName="ngaysuadoi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="NoiDungSEO">
-            <EntityTypeMapping TypeName="BeanfamilyModel.NoiDungSEO">
+            <EntityTypeMapping TypeName="beanfamilyModel.NoiDungSEO">
               <MappingFragment StoreEntitySet="NoiDungSEO">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="SEOtitle" ColumnName="SEOtitle" />
@@ -2229,7 +2244,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="QuyenTaiKhoanBean">
-            <EntityTypeMapping TypeName="BeanfamilyModel.QuyenTaiKhoanBean">
+            <EntityTypeMapping TypeName="beanfamilyModel.QuyenTaiKhoanBean">
               <MappingFragment StoreEntitySet="QuyenTaiKhoanBean">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
@@ -2239,7 +2254,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="QuyTrinhTrongCay">
-            <EntityTypeMapping TypeName="BeanfamilyModel.QuyTrinhTrongCay">
+            <EntityTypeMapping TypeName="beanfamilyModel.QuyTrinhTrongCay">
               <MappingFragment StoreEntitySet="QuyTrinhTrongCay">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="tenquytrinhtrongcay" ColumnName="tenquytrinhtrongcay" />
@@ -2251,7 +2266,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SanPhamMenuBuffet">
-            <EntityTypeMapping TypeName="BeanfamilyModel.SanPhamMenuBuffet">
+            <EntityTypeMapping TypeName="beanfamilyModel.SanPhamMenuBuffet">
               <MappingFragment StoreEntitySet="SanPhamMenuBuffet">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_danhmucmenubuffetcap1" ColumnName="id_danhmucmenubuffetcap1" />
@@ -2265,7 +2280,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SanPhamMenuTiecBan">
-            <EntityTypeMapping TypeName="BeanfamilyModel.SanPhamMenuTiecBan">
+            <EntityTypeMapping TypeName="beanfamilyModel.SanPhamMenuTiecBan">
               <MappingFragment StoreEntitySet="SanPhamMenuTiecBan">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="hinhanh" ColumnName="hinhanh" />
@@ -2279,7 +2294,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SanPhamMuaSam">
-            <EntityTypeMapping TypeName="BeanfamilyModel.SanPhamMuaSam">
+            <EntityTypeMapping TypeName="beanfamilyModel.SanPhamMuaSam">
               <MappingFragment StoreEntitySet="SanPhamMuaSam">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_danhmucmuasamcap1" ColumnName="id_danhmucmuasamcap1" />
@@ -2295,7 +2310,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SanPhamRauNhaTrong">
-            <EntityTypeMapping TypeName="BeanfamilyModel.SanPhamRauNhaTrong">
+            <EntityTypeMapping TypeName="beanfamilyModel.SanPhamRauNhaTrong">
               <MappingFragment StoreEntitySet="SanPhamRauNhaTrong">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_danhmucsanphamraunhatrongcap1" ColumnName="id_danhmucsanphamraunhatrongcap1" />
@@ -2312,7 +2327,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SanPhamThucDonHangNgay">
-            <EntityTypeMapping TypeName="BeanfamilyModel.SanPhamThucDonHangNgay">
+            <EntityTypeMapping TypeName="beanfamilyModel.SanPhamThucDonHangNgay">
               <MappingFragment StoreEntitySet="SanPhamThucDonHangNgay">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_danhmucthucdonhangngaycap1" ColumnName="id_danhmucthucdonhangngaycap1" />
@@ -2327,9 +2342,8 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TaiKhoanBean">
-            <EntityTypeMapping TypeName="BeanfamilyModel.TaiKhoanBean">
+            <EntityTypeMapping TypeName="beanfamilyModel.TaiKhoanBean">
               <MappingFragment StoreEntitySet="TaiKhoanBean">
-                <ScalarProperty Name="hinhdaidien" ColumnName="hinhdaidien" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="username" ColumnName="username" />
                 <ScalarProperty Name="password" ColumnName="password" />
@@ -2346,13 +2360,13 @@
                 <ScalarProperty Name="khoataikhoan" ColumnName="khoataikhoan" />
                 <ScalarProperty Name="solansaimatkhautoida" ColumnName="solansaimatkhautoida" />
                 <ScalarProperty Name="solandasaimatkhau" ColumnName="solandasaimatkhau" />
+                <ScalarProperty Name="hinhdaidien" ColumnName="hinhdaidien" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TaiKhoanKhachHang">
-            <EntityTypeMapping TypeName="BeanfamilyModel.TaiKhoanKhachHang">
+            <EntityTypeMapping TypeName="beanfamilyModel.TaiKhoanKhachHang">
               <MappingFragment StoreEntitySet="TaiKhoanKhachHang">
-                <ScalarProperty Name="hinhdaidien" ColumnName="hinhdaidien" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="username" ColumnName="username" />
                 <ScalarProperty Name="password" ColumnName="password" />
@@ -2364,11 +2378,12 @@
                 <ScalarProperty Name="diachi" ColumnName="diachi" />
                 <ScalarProperty Name="ngaytao" ColumnName="ngaytao" />
                 <ScalarProperty Name="ngaysuadoi" ColumnName="ngaysuadoi" />
+                <ScalarProperty Name="hinhdaidien" ColumnName="hinhdaidien" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TinhTrangDonHangMuaSamVaMenuHangNgay">
-            <EntityTypeMapping TypeName="BeanfamilyModel.TinhTrangDonHangMuaSamVaMenuHangNgay">
+            <EntityTypeMapping TypeName="beanfamilyModel.TinhTrangDonHangMuaSamVaMenuHangNgay">
               <MappingFragment StoreEntitySet="TinhTrangDonHangMuaSamVaMenuHangNgay">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_donhangmuasamvathucdonhangngay" ColumnName="id_donhangmuasamvathucdonhangngay" />
@@ -2381,7 +2396,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ThongTinChung">
-            <EntityTypeMapping TypeName="BeanfamilyModel.ThongTinChung">
+            <EntityTypeMapping TypeName="beanfamilyModel.ThongTinChung">
               <MappingFragment StoreEntitySet="ThongTinChung">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="diachi" ColumnName="diachi" />
@@ -2399,20 +2414,6 @@
                 <ScalarProperty Name="headjs" ColumnName="headjs" />
                 <ScalarProperty Name="bodyjs" ColumnName="bodyjs" />
                 <ScalarProperty Name="tieude" ColumnName="tieude" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="MangXaHoi">
-            <EntityTypeMapping TypeName="BeanfamilyModel.MangXaHoi">
-              <MappingFragment StoreEntitySet="MangXaHoi">
-                <ScalarProperty Name="ngaysuadoi" ColumnName="ngaysuadoi" />
-                <ScalarProperty Name="ngaytao" ColumnName="ngaytao" />
-                <ScalarProperty Name="id_taikhoanbean" ColumnName="id_taikhoanbean" />
-                <ScalarProperty Name="hienthi" ColumnName="hienthi" />
-                <ScalarProperty Name="lienketmangxahoi" ColumnName="lienketmangxahoi" />
-                <ScalarProperty Name="tenmangxahoi" ColumnName="tenmangxahoi" />
-                <ScalarProperty Name="logo" ColumnName="logo" />
-                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

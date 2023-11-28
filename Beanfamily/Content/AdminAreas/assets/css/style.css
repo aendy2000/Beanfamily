@@ -14,7 +14,7 @@
 }
 
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Inter", sans-serif;
   background: #f6f9ff;
   color: #444444;
 }
@@ -220,7 +220,7 @@ h6 {
 .card {
   margin-bottom: 30px;
   border: none;
-  border-radius: 5px;
+  border-radius: 15px;
   box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
 }
 
@@ -896,7 +896,7 @@ h6 {
 .dashboard .news img {
   width: 80px;
   float: left;
-  border-radius: 5px;
+  border-radius: 15px;
 }
 
 .dashboard .news h4 {
@@ -960,7 +960,7 @@ h6 {
 }
 
 .dashboard .top-selling img {
-  border-radius: 5px;
+  border-radius: 15px;
   max-width: 60px;
 }
 

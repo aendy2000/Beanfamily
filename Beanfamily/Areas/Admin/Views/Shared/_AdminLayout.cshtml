@@ -14,7 +14,7 @@
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
     <link href="~/Content/AdminAreas/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -253,7 +253,7 @@
         <ul class="sidebar-nav" id="sidebar-nav">
 
             <li class="nav-item">
-                <a class="nav-link " href="index.html">
+                <a class="nav-link " href="@Url.Action("index", "dashboard")">
                     <i class="bi bi-grid"></i>
                     <span>Bảng Điều Khiển</span>
                 </a>
@@ -361,12 +361,12 @@
                 </a>
                 <ul id="taikhoan-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
-                        <a href="components-alerts.html">
+                        <a href="@Url.Action("index", "role")">
                             <i class="bi bi-circle"></i><span>Phân Quyền</span>
                         </a>
                     </li>
                     <li>
-                        <a href="components-accordion.html">
+                        <a href="@Url.Action("index", "accountbean")">
                             <i class="bi bi-circle"></i><span>Tài Khoản</span>
                         </a>
                     </li>
@@ -440,10 +440,10 @@
     <!-- ======= Footer ======= -->
     <footer id="footer" class="footer">
         <div class="copyright">
-            &copy; Copyright @DateTime.Now.Year <strong><span>Beanfamily.vn</span></strong>. All Rights Reserved
+            Copyright &copy; @DateTime.Now.Year <strong><span>Beanfamily.vn</span></strong>. All Rights Reserved
         </div>
         <div class="credits">
-            Designed by <a target="_blank" href="https://www.aendy.net/">www.Aendy.net</a> | Tel: <a href="tel::0367909248">0367 909 248</a> | Mail: <a href="mailto::dv.tuan3010@gmail.com">Dv.tuan3010@gmail.com</a>
+            Designed by <a target="_blank" href="https://www.aendy.net/">www.Aendy.net</a> | Tel: <a href="tel::0367909248">0367 909 248</a> | Mail: <a href="mailto::info@aendy.net">Info@aendy.net</a>
         </div>
         <div class="credits">
 

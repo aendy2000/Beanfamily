@@ -54,11 +54,94 @@
                         text: "Thông tin cá nhân đã được thay đổi.",
                         icon: "success"
                     }).then(() => {
-                        window.location.href = $('#requestPath').val() + 'admin/accountprofile';
+                        window.location.reload();
                     });
                 }
                 else {
-                    window.location.href = $('#requestPath').val() + 'admin/accountprofile';
+                    window.location.reload();
+                }
+            });
+        }
+    });
+
+    $('#btndoimatkhau').on('click', function () {
+        var matkhauhientai = $('#matkhauhientai').val();
+        var matkhaumoi = $('#matkhaumoi').val().trim();
+        var nhaplaimatkhaumoi = $('#nhaplaimatkhaumoi').val();
+
+        $("#matkhauhientai").removeClass('valid-was-validated');
+        $("#matkhaumoi").removeClass('valid-was-validated');
+        $("#nhaplaimatkhaumoi").removeClass('valid-was-validated');
+
+        var validatematkhauhientai = $('#invalid-matkhauhientai-feedback');
+        validatematkhauhientai.hide();
+        var validatematkhaumoi = $('#invalid-matkhaumoi-feedback');
+        validatematkhaumoi.hide();
+        var validatenhaplaimatkhaumoi = $('#invalid-nhaplaimatkhaumoi-feedback');
+        validatenhaplaimatkhaumoi.hide();
+
+        var check = true;
+        if (nhaplaimatkhaumoi.length < 1) {
+            check = false;
+            $('#nhaplaimatkhaumoi').focus();
+            $("#nhaplaimatkhaumoi").addClass('valid-was-validated');
+            validatenhaplaimatkhaumoi.text("Hãy nhập lại mật khẩu mới để xác nhận.").show();
+        }
+        else if (nhaplaimatkhaumoi !== matkhaumoi) {
+            check = false;
+            $('#nhaplaimatkhaumoi').focus();
+            $("#nhaplaimatkhaumoi").addClass('valid-was-validated');
+            validatenhaplaimatkhaumoi.text("Mật khẩu mới không trùng khớp.").show();
+        }
+
+        if (matkhaumoi.length < 1) {
+            check = false;
+            $('#matkhaumoi').focus();
+            $("#matkhaumoi").addClass('valid-was-validated');
+            validatematkhaumoi.text("Vui lòng nhập mật khẩu mới.").show();
+        }
+
+        if (matkhauhientai.length < 1) {
+            check = false;
+            $('#matkhauhientai').focus();
+            $("#matkhauhientai").addClass('valid-was-validated');
+            validatematkhauhientai.text("Vui lòng nhập mật khẩu hiện tại.").show();
+        }
+
+        if (check == true) {
+
+            var formData = new FormData();
+            formData.append('matkhauhientai', matkhauhientai);
+            formData.append('matkhaumoi', matkhaumoi);
+            formData.append('nhaplaimatkhaumoi', nhaplaimatkhaumoi);
+
+            $.ajax({
+                url: $('#requestPath').val() + "accountprofile/updatepassword",
+                data: formData,
+                dataType: 'html',
+                type: 'POST',
+                processData: false,
+                contentType: false
+            }).done(function (ketqua) {
+                if (ketqua == "SUCCESS") {
+
+                    $('#matkhauhientai').val('');
+                    $('#matkhaumoi').val('');
+                    $('#nhaplaimatkhaumoi').val('');
+
+                    Swal.fire({
+                        title: "Thành công!",
+                        text: "Mật khẩu đăng nhập đã được thay đổi.",
+                        icon: "success"
+                    });
+                }
+                else if (ketqua == "MKHIENTAIKHONGDUNG") {
+                    $('#matkhauhientai').focus();
+                    $("#matkhauhientai").addClass('valid-was-validated');
+                    validatematkhauhientai.text("Mật khẩu hiện tại chưa chính xác.").show();
+                }
+                else if (ketqua == "INDEX") {
+                    window.location.reload();
                 }
             });
         }

@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Beanfamily.Models.TaiKhoanBean>
+
+@{
+    ViewBag.Title = "Quản Lý Tài Khoản Bean";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="pagetitle">
+    <h1>Tài Khoản Bean</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="@Url.Action("index", "dashboard")">Bảng Điều Khiển</a></li>
+            <li class="breadcrumb-item">Tài Khoản Bean</li>
+            <li class="breadcrumb-item active">Tài Khoản</li>
+        </ol>
+    </nav>
+</div><!-- End Page Title -->
+
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Danh sách tài khoản</h5>
+
+                    <!-- Table with stripped rows -->
+                    <table class="table datatable">
+                        <thead>
+                            <tr>
+                                <th scope="col">Mã</th>
+                                <th scope="col">Họ & Tên</th>
+                                <th scope="col">Chức danh</th>
+                                <th scope="col">Số điện thoại</th>
+                                <th scope="col">Địa chỉ Email</th>
+                                <th scope="col">Phân quyền</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <th scope="row">@item.id.ToString("D8")</th>
+                                    <td>@item.hovaten</td>
+                                    <td>@item.chucdanh</td>
+                                    <td>@item.sodienthoai</td>
+                                    <td>@item.email</td>
+                                    <td>
+                                        @item.QuyenTaiKhoanBean.name;
+                                    </td>
+                                </tr>
+                            }
+                            
+                        </tbody>
+                    </table>
+                    <!-- End Table with stripped rows -->
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+

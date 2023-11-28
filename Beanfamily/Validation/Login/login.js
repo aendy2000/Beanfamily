@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    $('#loginsubmit').on('click', function () {
+    function login() {
         var usname = $("#yourUsername").val().trim();
         var pass = $('#yourPassword').val().trim();
 
@@ -64,6 +64,18 @@
                     $("#yourUsername").focus();
                 }
             });
+        }
+    };
+    $('#loginsubmit').on('click', function () {
+        login();
+    });
+
+    $('input').bind("enterKey", function (e) {
+        login();
+    });
+    $('input').keyup(function (e) {
+        if (e.keyCode == 13) {
+            $(this).trigger("enterKey");
         }
     });
 });

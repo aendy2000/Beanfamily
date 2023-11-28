@@ -2398,7 +2398,7 @@ body.tox-dialog__disable-scroll {
 .tox .tox-promotion-link {
   align-items: unsafe center;
   background-color: #E8F1F8;
-  border-radius: 5px;
+  border-radius: 15px;
   color: #086BE6;
   cursor: pointer;
   display: flex;
