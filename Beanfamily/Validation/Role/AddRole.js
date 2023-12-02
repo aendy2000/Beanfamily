@@ -13,6 +13,9 @@
 
     //Luu them moi
     $('#btnluuthemrole').on('click', function () {
+        $('#btnluuthemrole').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"> </span> Đang tải...');
+        $('#btnluuthemrole').prop('disabled', true);
+
         var name = $('#name').val().trim();
 
         $("#name").removeClass('valid-was-validated');
@@ -26,6 +29,9 @@
             $("#name").addClass('valid-was-validated');
             $('#invalid-name-feedback').text("Vui lòng nhập tên phân quyền.").prop('hidden', false);
             $("#name").focus();
+
+            $('#btnluuthemrole').html('Lưu thông tin');
+            $('#btnluuthemrole').prop('disabled', false);
         }
         else {
             $('[id^="checkchucnang"]').each(function () {
@@ -40,6 +46,9 @@
             });
 
             if (lstIdFunction.length < 1) {
+                $('#btnluuthemrole').html('Lưu thông tin');
+                $('#btnluuthemrole').prop('disabled', false);
+
                 check = false;
                 Swal.fire({
                     title: "Thông báo!",
@@ -64,6 +73,9 @@
                 contentType: false
             }).done(function (ketqua) {
                 if (ketqua == "SUCCESS") {
+                    $('#btnluuthemrole').html('Lưu thông tin');
+                    $('#btnluuthemrole').prop('disabled', false);
+
                     Swal.fire({
                         title: "Thành công!",
                         text: "Đã thêm một phân quyền mới.",
@@ -76,8 +88,14 @@
                     $("#name").addClass('valid-was-validated');
                     $('#invalid-name-feedback').text("Quyền này đã tồn tại trên hệ thống.").prop('hidden', false);
                     $("#name").focus();
+
+                    $('#btnluuthemrole').html('Lưu thông tin');
+                    $('#btnluuthemrole').prop('disabled', false);
                 }
                 else {
+                    $('#btnluuthemrole').html('Lưu thông tin');
+                    $('#btnluuthemrole').prop('disabled', false);
+
                     Swal.fire({
                         title: "Đã xảy ra lỗi, vui lòng thử lại sau ít phút.",
                         text: "Chi tiết lỗi: " + ketqua,

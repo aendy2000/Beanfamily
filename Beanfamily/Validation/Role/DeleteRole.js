@@ -5,12 +5,11 @@
         Swal.fire({
             title: 'Xóa bỏ?',
             text: 'Bạn có chắc muốn xóa quyền "' + name + '" không?',
-            icon: "warning",
+            icon: "question",
             showCancelButton: true,
-            confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
             confirmButtonText: "Xóa ngay!",
-            cancelButtonText: "Hủy bỏ"
+            cancelButtonText: "Hủy"
         }).then((result) => {
             if (result.isConfirmed) {
                 var formData = new FormData();

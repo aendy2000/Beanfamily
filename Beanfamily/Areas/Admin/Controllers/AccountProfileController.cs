@@ -30,7 +30,7 @@ namespace Beanfamily.Areas.Admin.Controllers
             return View("Index", info);
         }
         [HttpPost]
-        public ActionResult UpdateInfor(HttpPostedFileBase avatar, string hovaten, string chucdanh, string sodienthoai, string email, string ngaysinh, string gioitinh, string diachi)
+        public ActionResult UpdateInfor(HttpPostedFileBase avatar, string tendangnhap, string hovaten, string sodienthoai, string email, DateTime? ngaysinh, string gioitinh, string diachi, string xoahinhdaidien)
         {
             int id = Int32.Parse(Session["user-id"].ToString());
             var info = model.TaiKhoanBean.Find(id);
@@ -51,12 +51,21 @@ namespace Beanfamily.Areas.Admin.Controllers
                     Session["user-avatar"] = "~/Content/AdminAreas/images/taikhoanbean/" + avatar.FileName;
                 }
             }
+            else
+            {
+                if (xoahinhdaidien.Equals("yes"))
+                {
+                    Session["user-avatar"] = "~/Content/AdminAreas/assets/img/profile-img.jpg";
+                    info.hinhdaidien = "";
+                }
+            }
 
             info.hovaten = hovaten;
-            info.chucdanh = chucdanh;
+            info.username = tendangnhap;
             info.sodienthoai = sodienthoai;
             info.email = email;
-            info.ngaysinh = ngaysinh;
+            if (ngaysinh != null)
+                info.ngaysinh = Convert.ToDateTime(ngaysinh).ToString("yyyy-MM-dd");
             info.gioitinh = gioitinh;
             info.diachi = diachi;
 

@@ -1,19 +1,29 @@
 ﻿@model IEnumerable<Beanfamily.Models.TaiKhoanBean>
-
+@using Beanfamily.Models;
 @{
+    beanfamilyEntities models = new beanfamilyEntities();
+    var lstRole = models.QuyenTaiKhoanBean.ToList();
     ViewBag.Title = "Quản Lý Tài Khoản Bean";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
 <div class="pagetitle">
-    <h1>Tài Khoản Bean</h1>
-    <nav>
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="@Url.Action("index", "dashboard")">Bảng Điều Khiển</a></li>
-            <li class="breadcrumb-item">Tài Khoản Bean</li>
-            <li class="breadcrumb-item active">Tài Khoản</li>
-        </ol>
-    </nav>
+    <div class="row">
+        <div class="col-7">
+            <h1>Tài Khoản Bean</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="@Url.Action("index", "dashboard")">Bảng Điều Khiển</a></li>
+                    <li class="breadcrumb-item">Tài Khoản Bean</li>
+                    <li class="breadcrumb-item active">Tài Khoản</li>
+                </ol>
+            </nav>
+        </div>
+        <div class="col-5 text-end">
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ThemTaiKhoanBeanModal">Thêm mới</button>
+        </div>
+    </div>
+
 </div><!-- End Page Title -->
 
 <section class="section">
@@ -25,15 +35,16 @@
                     <h5 class="card-title">Danh sách tài khoản</h5>
 
                     <!-- Table with stripped rows -->
-                    <table class="table datatable">
+                    <table id="lstAccountTable" class="table datatable">
                         <thead>
                             <tr>
                                 <th scope="col">Mã</th>
-                                <th scope="col">Họ & Tên</th>
-                                <th scope="col">Chức danh</th>
-                                <th scope="col">Số điện thoại</th>
+                                <th scope="col">Họ và Tên</th>
+                                <th scope="col">Quyền</th>
+                                <th scope="col">Điện thoại</th>
                                 <th scope="col">Địa chỉ Email</th>
-                                <th scope="col">Phân quyền</th>
+                                <th scope="col">Trạng thái</th>
+                                <th scope="col">#</th>
 
                             </tr>
                         </thead>
@@ -41,17 +52,51 @@
                             @foreach (var item in Model)
                             {
                                 <tr>
-                                    <th scope="row">@item.id.ToString("D8")</th>
-                                    <td>@item.hovaten</td>
-                                    <td>@item.chucdanh</td>
+                                    <th scope="row">NV@(item.id.ToString("D6"))</th>
+                                    <td>
+                                        <a role="button" id="opentDetail@(item.id)" name="@item.id" class="nav-link nav-profile d-flex align-items-center pe-0 text-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Xem tài khoản">
+                                            @if (string.IsNullOrEmpty(item.hinhdaidien))
+                                            {
+                                                <img style="max-width: 30px" src="~/Content/AdminAreas/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+                                            }
+                                            else
+                                            {
+                                                <img style="max-width: 30px" src="@Url.Content(item.hinhdaidien)" alt="Profile" class="rounded-circle">
+                                            }
+                                            <span class="d-none d-md-block ps-2">@item.hovaten</span>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        @item.QuyenTaiKhoanBean.name
+                                    </td>
                                     <td>@item.sodienthoai</td>
                                     <td>@item.email</td>
                                     <td>
-                                        @item.QuyenTaiKhoanBean.name;
+                                        @if (item.khoataikhoan)
+                                        {
+                                            <span class="badge bg-danger"><i class="bi bi-exclamation-octagon me-1"></i> Đã khóa</span> }
+                                        else
+                                        {
+                                            <span class="badge bg-success"><i class="bi bi-check-circle me-1"></i> Hoạt động</span>
+                                        }
+                                    </td>
+
+                                    <td class="text-nowrap">
+                                        @if (item.id != 3)
+                                        {
+                                            <button id="btnxemchitiet@(item.id)" name="@item.id" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Chi tiết tài khoản"><i class="bi bi-info-square"></i></button>
+                                            if (item.khoataikhoan == true)
+                                            {
+                                                <button id="btnmokhoataikhoan@(item.id)" name="@item.id#@("NV" + item.id.ToString("D6"))" class="btn btn-sm btn-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Mở khóa tài khoản"><i class="bi bi-unlock-fill"></i></button>
+                                            }
+                                            else
+                                            {
+                                                <button id="btnkhoataikhoan@(item.id)" name="@item.id#@("NV" + item.id.ToString("D6"))" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Khóa tài khoản"><i class="bi bi-lock-fill"></i></button>
+                                            }
+                                        }
                                     </td>
                                 </tr>
                             }
-                            
                         </tbody>
                     </table>
                     <!-- End Table with stripped rows -->
@@ -63,3 +108,145 @@
     </div>
 </section>
 
+<!-- Thêm tài khoản -->
+<div class="modal fade" id="ThemTaiKhoanBeanModal" tabindex="-1">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Thêm tài khoản mới</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12 col-lg-1"></div>
+                    <div class="col-sm-12 col-lg-10">
+                        <div class="row mb-3">
+                            <label for="profileImage" class="col-md-4 col-lg-3 col-form-label"></label>
+                            <div class="col-md-12 col-lg-12 text-center profile-edit">
+                                <img src="~/Content/AdminAreas/assets/img/profile-img.jpg" id="previewImage" alt="Profile" class="rounded-circle">
+                                <input hidden id="selectFiles" type="file" name="file" accept="image/*" onchange="ShowImageUpload(this, document.getElementById('previewImage'))" />
+                                <div class="pt-2">
+                                    <a id="themhinhdaidien" role="button" class="btn btn-primary btn-sm" title="Tải lên hình đại diện"><i class="bi bi-upload"></i></a>
+                                    <a id="xoahinhdaidien" role="button" class="btn btn-danger btn-sm" title="Xóa hình đại diện"><i class="bi bi-trash"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="tendangnhap" class="col-md-2 col-lg-2 col-form-label">Tài khoản <span class="text-danger">*</span></label>
+                            <div class="col-md-10 col-lg-10">
+                                <input id="tendangnhap" type="text" placeholder="Tên đăng nhập" class="form-control">
+                                <label style="margin-left: 5px" id="invalid-tendangnhap-feedback" class="text-danger" hidden></label>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="matkhau" class="col-md-2 col-lg-2 col-form-label">Mật khẩu <span class="text-danger">*</span></label>
+                            <div class="col-md-10 col-lg-10">
+                                <input id="matkhau" type="password" placeholder="Mật khẩu" class="form-control">
+                                <label style="margin-left: 5px" id="invalid-matkhau-feedback" class="text-danger" hidden></label>
+                            </div>
+                        </div>
+                        <hr class="text-secondary mb-4 mt-4" />
+
+                        <div class="row mb-3">
+                            <label for="hovaten" class="col-md-2 col-lg-2 col-form-label">Họ & Tên <span class="text-danger">*</span></label>
+                            <div class="col-md-10 col-lg-10">
+                                <input id="hovaten" type="text" placeholder="Họ và Tên" class="form-control">
+                                <label style="margin-left: 5px" id="invalid-hovaten-feedback" class="text-danger" hidden></label>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="phanquyen" class="col-md-2 col-lg-2 col-form-label">Phân quyền <span class="text-danger">*</span></label>
+                            <div class="col-md-10 col-lg-10">
+                                <select id="phanquyen" class="form-select">
+                                    <option value="">Chọn phân quyền</option>
+                                    @foreach (var quyen in lstRole)
+                                    {
+                                        <option value="@quyen.id">@quyen.name</option>
+                                    }
+                                </select>
+                                <label style="margin-left: 5px" id="invalid-phanquyen-feedback" class="text-danger" hidden></label>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="email" class="col-md-2 col-lg-2 col-form-label">Đ/C Email <span class="text-danger">*</span></label>
+                            <div class="col-md-10 col-lg-10">
+                                <input id="email" type="email" placeholder="Địa chỉ Email" class="form-control">
+                                <label style="margin-left: 5px" id="invalid-email-feedback" class="text-danger" hidden></label>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="chucdanh" class="col-md-2 col-lg-2 col-form-label">Chức danh</label>
+                            <div class="col-md-10 col-lg-10">
+                                <input id="chucdanh" type="text" placeholder="Chức danh" class="form-control">
+                                <label style="margin-left: 5px" id="invalid-chucdanh-feedback" class="text-danger" hidden></label>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="sodienthoai" class="col-md-2 col-lg-2 col-form-label">Số điện thoại</label>
+                            <div class="col-md-10 col-lg-10">
+                                <input id="sodienthoai" type="text" placeholder="Số điện thoại" class="form-control">
+                                <label style="margin-left: 5px" id="invalid-sodienthoai-feedback" class="text-danger" hidden></label>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="ngaysinh" class="col-md-2 col-lg-2 col-form-label">Ngày sinh</label>
+                            <div class="col-md-10 col-lg-10">
+                                <input id="ngaysinh" type="date" placeholder="Ngày sinh" class="form-control">
+                                <label style="margin-left: 5px" id="invalid-ngaysinh-feedback" class="text-danger" hidden></label>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="gioitinh" class="col-md-2 col-lg-2 col-form-label">Giới tính</label>
+                            <div class="col-md-10 col-lg-10">
+                                <select name="gioitinh" id="gioitinh" class="form-select">
+                                    <option value="" selected>Chọn giới tính</option>
+                                    <option value="Nam">Nam</option>
+                                    <option value="Nữ">Nữ</option>
+                                </select>
+                                <label style="margin-left: 5px" id="invalid-gioitinh-feedback" class="text-danger" hidden></label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label for="diachi" class="col-md-2 col-lg-2 col-form-label">Địa chỉ nhà</label>
+                            <div class="col-md-10 col-lg-10">
+                                <textarea id="diachi" name="diachi" class="form-control" rows="4"></textarea>
+                                <label style="margin-left: 5px" id="invalid-diachi-feedback" class="text-danger" hidden></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-1"></div>
+                </div>
+            </div>
+
+            <div class="modal-footer mt-3">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                <button id="btnluuthemtaikhoan" type="button" class="btn btn-primary">Lưu thông tin</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Xem chi tiết -->
+<div class="modal fade" id="chitiettaikhoanModal"  data-bs-focus="false" tabindex="-1">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Thông tin tài khoản</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="contentChiTietModal" style="margin: 15px">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#lstAccountTable').DataTable();
+    });
+</script>
+<script src="~/Validation/AccountBean/AddAccount.js"></script>
+<script src="~/Content/AdminAreas/assets/js/reviewImage.js"></script>
+<script src="~/Validation/AccountBean/DetailAccount.js"></script>
+<script src="~/Validation/AccountBean/LockAccount.js"></script>

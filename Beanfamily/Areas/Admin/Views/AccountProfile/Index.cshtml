@@ -61,10 +61,24 @@
 
                         <div class="tab-pane fade show active profile-overview" id="profile-overview">
                             <h5 class="card-title"></h5>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label ">Tên đăng nhập</div>
+                                <div class="col-lg-9 col-md-8">@Model.username</div>
+                            </div>
 
                             <div class="row">
                                 <div class="col-lg-3 col-md-4 label ">Họ & Tên</div>
                                 <div class="col-lg-9 col-md-8">@Model.hovaten</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label ">Phân quyền</div>
+                                <div class="col-lg-9 col-md-8">@Model.QuyenTaiKhoanBean.name</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Địa chỉ Email</div>
+                                <div class="col-lg-9 col-md-8">@Model.email</div>
                             </div>
 
                             <div class="row">
@@ -78,11 +92,6 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-lg-3 col-md-4 label">Địa chỉ Email</div>
-                                <div class="col-lg-9 col-md-8">@Model.email</div>
-                            </div>
-
-                            <div class="row">
                                 <div class="col-lg-3 col-md-4 label">Ngày sinh</div>
                                 <div class="col-lg-9 col-md-8">@Model.ngaysinh</div>
                             </div>
@@ -93,7 +102,7 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-lg-3 col-md-4 label">Địa chỉ</div>
+                                <div class="col-lg-3 col-md-4 label">Địa chỉ nhà</div>
                                 <div class="col-lg-9 col-md-8">@Model.diachi</div>
                             </div>
                             <div class="row">
@@ -102,105 +111,104 @@
                             </div>
                         </div>
 
-                        <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
+                        <div class="tab-pane fade pt-3" id="profile-edit">
 
                             <!-- Profile Edit Form -->
-                            <div>
-                                <div class="row mb-3">
-                                    <label for="profileImage" class="col-md-4 col-lg-3 col-form-label"></label>
-                                    <div class="col-md-8 col-lg-9 text-center">
+                            <div class="row mb-3">
+                                <label for="profileImage" class="col-md-4 col-lg-3 col-form-label"></label>
+                                <div class="col-md-8 col-lg-9 text-center profile-edit">
 
-                                        @if (string.IsNullOrEmpty(Model.hinhdaidien))
+                                    @if (string.IsNullOrEmpty(Model.hinhdaidien))
+                                    {
+                                        <img src="~/Content/AdminAreas/assets/img/profile-img.jpg" id="previewImage" alt="Profile" class="rounded-circle">
+                                    }
+                                    else
+                                    {
+                                        <img src="@Url.Content(Model.hinhdaidien)" alt="Profile" id="previewImage" class="rounded-circle">
+                                    }
+                                    <input hidden id="selectFiles" type="file" name="file" accept="image/*" onchange="ShowImageUpload(this, document.getElementById('previewImage'))" />
+                                    <div class="pt-2">
+                                        <a id="themhinhdaidien" role="button" class="btn btn-primary btn-sm" title="Tải lên hình đại diện"><i class="bi bi-upload"></i></a>
+                                        <a id="xoahinhdaidien" role="button" class="btn btn-danger btn-sm" title="Xóa hình đại diện"><i class="bi bi-trash"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="tendangnhap" class="col-md-4 col-lg-3 col-form-label">Tên đăng nhập <span class="text-danger">*</span></label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input name="tendangnhap" type="text" class="form-control" id="tendangnhap" value="@Model.username">
+                                    <div id="invalid-tendangnhap-feedback" class="invalid-feedback"></div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="hovaten" class="col-md-4 col-lg-3 col-form-label">Họ và Tên <span class="text-danger">*</span></label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input name="hovaten" type="text" class="form-control" id="hovaten" value="@Model.hovaten">
+                                    <div id="invalid-hovaten-feedback" class="invalid-feedback"></div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="email" class="col-md-4 col-lg-3 col-form-label">Địa chỉ Email <span class="text-danger">*</span></label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input name="email" type="email" class="form-control" id="email" value="@Model.email">
+                                    <div id="invalid-email-feedback" class="invalid-feedback"></div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="sodienthoai" class="col-md-4 col-lg-3 col-form-label">Số điện thoại</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input name="sodienthoai" type="tel" class="form-control" id="sodienthoai" value="@Model.sodienthoai">
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="ngaysinh" class="col-md-4 col-lg-3 col-form-label">Ngày sinh</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input name="ngaysinh" type="date" class="form-control" id="ngaysinh" value="@Model.ngaysinh">
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="gioitinh" class="col-md-4 col-lg-3 col-form-label">Giới tính</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <select name="gioitinh" id="gioitinh" class="form-select">
+                                        @if (string.IsNullOrEmpty(Model.gioitinh))
                                         {
-                                            <img src="~/Content/AdminAreas/assets/img/profile-img.jpg" id="previewImage" alt="Profile" class="rounded-circle">
+                                            <option value="" selected>Chọn giới tính</option>
+                                            <option value="Nam">Nam</option>
+                                            <option value="Nữ">Nữ</option>
+                                        }
+                                        else if (Model.gioitinh.Equals("Nam"))
+                                        {
+                                            <option value="">Chọn giới tính</option>
+                                            <option value="Nam" selected>Nam</option>
+                                            <option value="Nữ">Nữ</option>
                                         }
                                         else
                                         {
-                                            <img src="@Url.Content(Model.hinhdaidien)" alt="Profile" id="previewImage" class="rounded-circle">
+                                            <option value="">Chọn giới tính</option>
+                                            <option value="Nam">Nam</option>
+                                            <option value="Nữ" selected>Nữ</option>
                                         }
-                                        <input hidden id="selectFiles" type="file" name="file" accept="image/*" onchange="ShowImageUpload(this, document.getElementById('previewImage'))" />
-                                        <div class="pt-2">
-                                            <a id="themhinhdaidien" role="button" class="btn btn-primary btn-sm" title="Tải lên hình đại diện"><i class="bi bi-upload"></i></a>
-                                            <a id="xoahinhdaidien" role="button" class="btn btn-danger btn-sm" title="Xóa hình đại diện"><i class="bi bi-trash"></i></a>
-                                        </div>
-                                    </div>
+                                    </select>
                                 </div>
+                            </div>
 
-                                <div class="row mb-3">
-                                    <label for="hovaten" class="col-md-4 col-lg-3 col-form-label">Họ & Tên</label>
-                                    <div class="col-md-8 col-lg-9">
-                                        <input name="hovaten" type="text" class="form-control" id="hovaten" value="@Model.hovaten">
-                                    </div>
+                            <div class="row mb-3">
+                                <label for="diachi" class="col-md-4 col-lg-3 col-form-label">Địa chỉ nhà</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <textarea id="diachi" rows="4" name="diachi" class="form-control">@Model.diachi</textarea>
                                 </div>
-
-                                <div class="row mb-3">
-                                    <label for="chucdanh" class="col-md-4 col-lg-3 col-form-label">Chức danh</label>
-                                    <div class="col-md-8 col-lg-9">
-                                        <input name="chucdanh" type="text" class="form-control" id="chucdanh" value="@Model.chucdanh">
-                                    </div>
-                                </div>
-
-                                <div class="row mb-3">
-                                    <label for="sodienthoai" class="col-md-4 col-lg-3 col-form-label">Số điện thoại</label>
-                                    <div class="col-md-8 col-lg-9">
-                                        <input name="sodienthoai" type="tel" class="form-control" id="sodienthoai" value="@Model.sodienthoai">
-                                    </div>
-                                </div>
-
-                                <div class="row mb-3">
-                                    <label for="email" class="col-md-4 col-lg-3 col-form-label">Địa chỉ Email</label>
-                                    <div class="col-md-8 col-lg-9">
-                                        <input name="email" type="email" class="form-control" id="email" value="@Model.email">
-                                        <div id="invalid-updateemail-feedback" class="invalid-feedback"></div>
-                                    </div>
-                                </div>
-
-                                <div class="row mb-3">
-                                    <label for="ngaysinh" class="col-md-4 col-lg-3 col-form-label">Ngày sinh</label>
-                                    <div class="col-md-8 col-lg-9">
-                                        <input name="ngaysinh" type="date" class="form-control" id="ngaysinh" value="@Model.ngaysinh">
-                                    </div>
-                                </div>
-
-                                <div class="row mb-3">
-                                    <label for="gioitinh" class="col-md-4 col-lg-3 col-form-label">Giới tính</label>
-                                    <div class="col-md-8 col-lg-9">
-                                        <select name="gioitinh" id="gioitinh" class="form-select">
-                                            @if (string.IsNullOrEmpty(Model.gioitinh))
-                                            {
-                                                <option value="" selected>Chọn giới tính</option>
-                                                <option value="Nam">Nam</option>
-                                                <option value="Nữ">Nữ</option>
-                                            }
-                                            else if (Model.gioitinh.Equals("Nam"))
-                                            {
-                                                <option value="">Chọn giới tính</option>
-                                                <option value="Nam" selected>Nam</option>
-                                                <option value="Nữ">Nữ</option>
-                                            }
-                                            else
-                                            {
-                                                <option value="">Chọn giới tính</option>
-                                                <option value="Nam">Nam</option>
-                                                <option value="Nữ" selected>Nữ</option>
-                                            }
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="row mb-3">
-                                    <label for="diachi" class="col-md-4 col-lg-3 col-form-label">Địa chỉ</label>
-                                    <div class="col-md-8 col-lg-9">
-                                        <textarea id="diachi" rows="4" name="diachi" class="form-control">@Model.diachi</textarea>
-                                    </div>
-                                </div>
+                            </div>
 
 
-                                <div class="text-end mt-2 mb-2">
-                                    <button id="btnluuchinhsua" class="btn btn-primary">Lưu thay đổi</button>
-                                </div>
-                            </div><!-- End Profile Edit Form -->
-
+                            <div class="text-end mt-2 mb-2">
+                                <button id="btnluuchinhsua" class="btn btn-primary">Lưu thông tin</button>
+                            </div>
                         </div>
 
                         <div class="tab-pane fade pt-3" id="profile-change-password">
@@ -208,7 +216,7 @@
                             <div>
 
                                 <div class="row mb-3">
-                                    <label for="matkhauhientai" class="col-md-4 col-lg-3 col-form-label">Mật khẩu hiện tại</label>
+                                    <label for="matkhauhientai" class="col-md-4 col-lg-3 col-form-label">Mật khẩu hiện tại <span class="text-danger">*</span></label>
                                     <div class="col-md-8 col-lg-9">
                                         <input name="matkhauhientai" type="password" class="form-control" id="matkhauhientai">
                                         <div id="invalid-matkhauhientai-feedback" class="invalid-feedback"></div>
@@ -217,23 +225,23 @@
                                 </div>
 
                                 <div class="row mb-3">
-                                    <label for="matkhaumoi" class="col-md-4 col-lg-3 col-form-label">Mật khẩu mới</label>
+                                    <label for="matkhaumoi" class="col-md-4 col-lg-3 col-form-label">Mật khẩu mới <span class="text-danger">*</span></label>
                                     <div class="col-md-8 col-lg-9">
-                                        <input name="matkhaumoi" type="password" class="form-control" id="matkhaumoi">       
+                                        <input name="matkhaumoi" type="password" class="form-control" id="matkhaumoi">
                                         <div id="invalid-matkhaumoi-feedback" class="invalid-feedback"></div>
                                     </div>
                                 </div>
 
                                 <div class="row mb-3">
-                                    <label for="nhaplaimatkhaumoi" class="col-md-4 col-lg-3 col-form-label">Nhập lại mật khẩu mới</label>
+                                    <label for="nhaplaimatkhaumoi" class="col-md-4 col-lg-3 col-form-label">Nhập lại MK mới <span class="text-danger">*</span></label>
                                     <div class="col-md-8 col-lg-9">
-                                        <input name="nhaplaimatkhaumoi" type="password" class="form-control" id="nhaplaimatkhaumoi">      
+                                        <input name="nhaplaimatkhaumoi" type="password" class="form-control" id="nhaplaimatkhaumoi">
                                         <div id="invalid-nhaplaimatkhaumoi-feedback" class="invalid-feedback"></div>
                                     </div>
                                 </div>
 
                                 <div class="text-end mt-2 mb-2">
-                                    <button id="btndoimatkhau" class="btn btn-primary">Lưu thay đổi</button>
+                                    <button id="btndoimatkhau" class="btn btn-primary">Lưu thông tin</button>
                                 </div>
                             </div><!-- End Change Password Form -->
 

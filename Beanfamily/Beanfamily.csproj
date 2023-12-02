@@ -275,6 +275,7 @@
     <Content Include="Content\AdminAreas\assets\img\slides-2.jpg" />
     <Content Include="Content\AdminAreas\assets\img\slides-3.jpg" />
     <Content Include="Content\AdminAreas\assets\js\main.js" />
+    <Content Include="Content\AdminAreas\assets\js\reviewImageEdit.js" />
     <Content Include="Content\AdminAreas\assets\js\reviewImage.js" />
     <Content Include="Content\AdminAreas\assets\scss\Readme.txt" />
     <Content Include="Content\AdminAreas\assets\vendor\apexcharts\apexcharts.amd.js" />
@@ -316,6 +317,47 @@
     <Content Include="Content\AdminAreas\assets\vendor\chart.js\chart.umd.js" />
     <Content Include="Content\AdminAreas\assets\vendor\chart.js\chunks\helpers.segment.js" />
     <Content Include="Content\AdminAreas\assets\vendor\chart.js\helpers.js" />
+    <Content Include="Content\AdminAreas\assets\vendor\DataTables\css\dataTables.bootstrap.css" />
+    <Content Include="Content\AdminAreas\assets\vendor\DataTables\css\dataTables.bootstrap.min.css" />
+    <Content Include="Content\AdminAreas\assets\vendor\DataTables\css\dataTables.bootstrap4.css" />
+    <Content Include="Content\AdminAreas\assets\vendor\DataTables\css\dataTables.bootstrap4.min.css" />
+    <Content Include="Content\AdminAreas\assets\vendor\DataTables\css\dataTables.bootstrap5.css" />
+    <Content Include="Content\AdminAreas\assets\vendor\DataTables\css\dataTables.bootstrap5.min.css" />
+    <Content Include="Content\AdminAreas\assets\vendor\DataTables\css\dataTables.bulma.css" />
+    <Content Include="Content\AdminAreas\assets\vendor\DataTables\css\dataTables.bulma.min.css" />
+    <Content Include="Content\AdminAreas\assets\vendor\DataTables\css\dataTables.dataTables.css" />
+    <Content Include="Content\AdminAreas\assets\vendor\DataTables\css\dataTables.dataTables.min.css" />
+    <Content Include="Content\AdminAreas\assets\vendor\DataTables\css\dataTables.foundation.css" />
+    <Content Include="Content\AdminAreas\assets\vendor\DataTables\css\dataTables.foundation.min.css" />
+    <Content Include="Content\AdminAreas\assets\vendor\DataTables\css\dataTables.jqueryui.css" />
+    <Content Include="Content\AdminAreas\assets\vendor\DataTables\css\dataTables.jqueryui.min.css" />
+    <Content Include="Content\AdminAreas\assets\vendor\DataTables\css\dataTables.semanticui.css" />
+    <Content Include="Content\AdminAreas\assets\vendor\DataTables\css\dataTables.semanticui.min.css" />
+    <Content Include="Content\AdminAreas\assets\vendor\DataTables\css\jquery.dataTables.css" />
+    <Content Include="Content\AdminAreas\assets\vendor\DataTables\css\jquery.dataTables.min.css" />
+    <Content Include="Content\AdminAreas\assets\vendor\DataTables\images\sort_asc.png" />
+    <Content Include="Content\AdminAreas\assets\vendor\DataTables\images\sort_asc_disabled.png" />
+    <Content Include="Content\AdminAreas\assets\vendor\DataTables\images\sort_both.png" />
+    <Content Include="Content\AdminAreas\assets\vendor\DataTables\images\sort_desc.png" />
+    <Content Include="Content\AdminAreas\assets\vendor\DataTables\images\sort_desc_disabled.png" />
+    <Content Include="Content\AdminAreas\assets\vendor\DataTables\js\dataTables.bootstrap.js" />
+    <Content Include="Content\AdminAreas\assets\vendor\DataTables\js\dataTables.bootstrap.min.js" />
+    <Content Include="Content\AdminAreas\assets\vendor\DataTables\js\dataTables.bootstrap4.js" />
+    <Content Include="Content\AdminAreas\assets\vendor\DataTables\js\dataTables.bootstrap4.min.js" />
+    <Content Include="Content\AdminAreas\assets\vendor\DataTables\js\dataTables.bootstrap5.js" />
+    <Content Include="Content\AdminAreas\assets\vendor\DataTables\js\dataTables.bootstrap5.min.js" />
+    <Content Include="Content\AdminAreas\assets\vendor\DataTables\js\dataTables.bulma.js" />
+    <Content Include="Content\AdminAreas\assets\vendor\DataTables\js\dataTables.bulma.min.js" />
+    <Content Include="Content\AdminAreas\assets\vendor\DataTables\js\dataTables.dataTables.js" />
+    <Content Include="Content\AdminAreas\assets\vendor\DataTables\js\dataTables.dataTables.min.js" />
+    <Content Include="Content\AdminAreas\assets\vendor\DataTables\js\dataTables.foundation.js" />
+    <Content Include="Content\AdminAreas\assets\vendor\DataTables\js\dataTables.foundation.min.js" />
+    <Content Include="Content\AdminAreas\assets\vendor\DataTables\js\dataTables.jqueryui.js" />
+    <Content Include="Content\AdminAreas\assets\vendor\DataTables\js\dataTables.jqueryui.min.js" />
+    <Content Include="Content\AdminAreas\assets\vendor\DataTables\js\dataTables.semanticui.js" />
+    <Content Include="Content\AdminAreas\assets\vendor\DataTables\js\dataTables.semanticui.min.js" />
+    <Content Include="Content\AdminAreas\assets\vendor\DataTables\js\jquery.dataTables.js" />
+    <Content Include="Content\AdminAreas\assets\vendor\DataTables\js\jquery.dataTables.min.js" />
     <Content Include="Content\AdminAreas\assets\vendor\echarts\echarts.common.js" />
     <Content Include="Content\AdminAreas\assets\vendor\echarts\echarts.common.min.js" />
     <Content Include="Content\AdminAreas\assets\vendor\echarts\echarts.esm.js" />
@@ -2493,6 +2535,10 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Content Include="Validation\AccountBean\DetailLockAccount.js" />
+    <Content Include="Validation\AccountBean\LockAccount.js" />
+    <Content Include="Validation\AccountBean\EditAccount.js" />
+    <Content Include="Validation\AccountBean\DetailAccount.js" />
     <Content Include="Validation\Login\login.js" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.js" />
@@ -2722,6 +2768,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
     <Content Include="Areas\Admin\Views\Role\_EditView.cshtml" />
+    <Content Include="Areas\Admin\Views\AccountBean\_DetailAccount.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2734,6 +2781,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Validation\Profile\UpdateInformation.js" />
+    <Content Include="Validation\AccountBean\AddAccount.js" />
     <Content Include="Validation\Role\EditRole.js" />
     <Content Include="Validation\Role\DeleteRole.js" />
     <Content Include="Validation\Role\ShowViewEditRole.js" />

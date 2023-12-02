@@ -8,6 +8,25 @@
     <meta name="robots" content="noindex" />
     <meta name="keywords" content="beanfamily, beanfamily.vn, nhà hàng chay bình dương, nhà hàng chay, rau, vườn rau, bean, family">
 
+    <style>
+        /* width */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 3px SlateGray;
+            border-radius: 10px;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: SlateGray;
+            border-radius: 10px;
+        }
+    </style>
+
     <!-- Favicons -->
     <link href="~/Content/assets/images/logo/logo-2745.png" rel="icon">
     <link href="~/Content/AdminAreas/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -23,7 +42,10 @@
     <link href="~/Content/AdminAreas/assets/vendor/quill/quill.snow.css" rel="stylesheet">
     <link href="~/Content/AdminAreas/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
     <link href="~/Content/AdminAreas/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-    <link href="~/Content/AdminAreas/assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+    @*<link href="~/Content/AdminAreas/assets/vendor/simple-datatables/style.css" rel="stylesheet">*@
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
+
 
     <!-- Template Main CSS File -->
     <link href="~/Content/AdminAreas/assets/css/style.css" rel="stylesheet">
@@ -453,19 +475,21 @@
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
     <!-- Vendor JS Files -->
+    <script src="~/Content/AdminAreas/assets/vendor/apexcharts/apexcharts.js"></script>
     <script src="~/Content/AdminAreas/assets/vendor/apexcharts/apexcharts.min.js"></script>
     <script src="~/Content/AdminAreas/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="~/Content/AdminAreas/assets/vendor/chart.js/chart.umd.js"></script>
     <script src="~/Content/AdminAreas/assets/vendor/echarts/echarts.min.js"></script>
     <script src="~/Content/AdminAreas/assets/vendor/quill/quill.min.js"></script>
-    <script src="~/Content/AdminAreas/assets/vendor/simple-datatables/simple-datatables.js"></script>
+
+    @*<script src="~/Content/AdminAreas/assets/vendor/simple-datatables/simple-datatables.js"></script>*@
+    <script src="~/Content/AdminAreas/assets/vendor/DataTables/js/jquery.dataTables.min.js"></script>
+
     <script src="~/Content/AdminAreas/assets/vendor/tinymce/tinymce.min.js"></script>
-    <script src="~/Content/AdminAreas/assets/vendor/php-email-form/validate.js"></script>
 
     <!-- Template Main JS File -->
     <script src="~/Content/AdminAreas/assets/js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 </body>
 </html>
 

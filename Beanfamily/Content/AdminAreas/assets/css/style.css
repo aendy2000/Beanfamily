@@ -1050,7 +1050,7 @@ h6 {
   color: rgba(1, 41, 112, 0.6);
 }
 
-.profile .profile-edit img {
+.profile-edit img {
   max-width: 120px;
 }
 
@@ -1238,10 +1238,10 @@ h6 {
   color: #012970;
 }
 
-.valid-was-validated input {
-    border: 3px solid darkred;
+.valid-was-validated {
+    border: 3px solid #ff0000;
 }
 
 .valid-was-validated:focus {
-    border: 3px solid darkred;
+    border: 3px solid #ff0000;
 }

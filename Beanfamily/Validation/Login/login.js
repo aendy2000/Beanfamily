@@ -1,5 +1,8 @@
 ﻿$(document).ready(function () {
     function login() {
+        $('#loginsubmit').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"> </span> Đang tải...');
+        $('#loginsubmit').prop('disabled', true);
+
         var usname = $("#yourUsername").val().trim();
         var pass = $('#yourPassword').val().trim();
 
@@ -13,19 +16,31 @@
 
         if (pass.length < 1) {
             check = false;
+            $("#yourPassword").addClass('valid-was-validated');
             $('#invalid-password-feedback').text("Vui lòng nhập mật khẩu đăng nhập của bạn.").show();
             $("#yourPassword").focus();
+
+            $('#loginsubmit').html('Đăng nhập');
+            $('#loginsubmit').prop('disabled', false);
         }
 
         if (usname.length < 1) {
             check = false;
             $('#invalid-username-feedback').text("Vui lòng nhập tên đăng nhập của bạn.").show();
             $("#yourUsername").focus();
+            $("#yourUsername").addClass('valid-was-validated');
+
+            $('#loginsubmit').html('Đăng nhập');
+            $('#loginsubmit').prop('disabled', false);
         }
         else if (usname.indexOf(" ") != -1) {
             check = false;
             $('#invalid-username-feedback').text("Tên đăng nhập không hợp lệ.").show();
             $("#yourUsername").focus();
+            $("#yourUsername").addClass('valid-was-validated');
+
+            $('#loginsubmit').html('Đăng nhập');
+            $('#loginsubmit').prop('disabled', false);
         }
 
         if (check == true) {
@@ -49,12 +64,18 @@
 
                     $('#invalid-username-feedback').text("Không tìm thấy tài khoản.").show();
                     $("#yourUsername").focus();
+
+                    $('#loginsubmit').html('Đăng nhập');
+                    $('#loginsubmit').prop('disabled', false);
                 }
                 else if (ketqua == "SAIMATKHAU") {
                     $("#yourPassword").addClass('valid-was-validated');
 
                     $('#invalid-password-feedback').text("Mật khẩu không chính xác.").show();
                     $("#yourPassword").focus();
+
+                    $('#loginsubmit').html('Đăng nhập');
+                    $('#loginsubmit').prop('disabled', false);
                 }
                 else if (ketqua == "BIKHOA") {
                     $("#yourUsername").addClass('valid-was-validated');
@@ -62,6 +83,9 @@
 
                     $('#invalid-password-feedback').text("Tài khoản của bạn đã bị khóa.").show();
                     $("#yourUsername").focus();
+
+                    $('#loginsubmit').html('Đăng nhập');
+                    $('#loginsubmit').prop('disabled', false);
                 }
             });
         }

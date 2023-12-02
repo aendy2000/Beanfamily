@@ -11,8 +11,11 @@
         }
     });
 
-    //Luu them moi
+    //Luu chinh sua
     $('#btnluuchinhsuarole').on('click', function () {
+        $('#btnluuchinhsuarole').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"> </span> Đang tải...');
+        $('#btnluuchinhsuarole').prop('disabled', true);
+
         var name = $('#editname').val().trim();
 
         $("#editname").removeClass('valid-was-validated');
@@ -26,6 +29,9 @@
             $("#editname").addClass('valid-was-validated');
             $('#invalid-editname-feedback').text("Vui lòng nhập tên phân quyền.").prop('hidden', false);
             $("#editname").focus();
+
+            $('#btnluuchinhsuarole').html('Lưu thông tin');
+            $('#btnluuchinhsuarole').prop('disabled', false);
         }
         else {
             $('[id^="editcheckchucnang"]').each(function () {
@@ -40,6 +46,9 @@
             });
 
             if (lstIdFunction.length < 1) {
+                $('#btnluuchinhsuarole').html('Lưu thông tin');
+                $('#btnluuchinhsuarole').prop('disabled', false);
+
                 check = false;
                 Swal.fire({
                     title: "Thông báo!",
@@ -65,6 +74,9 @@
                 contentType: false
             }).done(function (ketqua) {
                 if (ketqua == "SUCCESS") {
+                    $('#btnluuchinhsuarole').html('Lưu thông tin');
+                    $('#btnluuchinhsuarole').prop('disabled', false);
+
                     Swal.fire({
                         title: "Thành công!",
                         text: "Đã lưu thông tin cập nhật quyền.",
@@ -77,8 +89,14 @@
                     $("#editname").addClass('valid-was-validated');
                     $('#invalid-editname-feedback').text("Quyền này đã tồn tại trên hệ thống.").prop('hidden', false);
                     $("#editname").focus();
+
+                    $('#btnluuchinhsuarole').html('Lưu thông tin');
+                    $('#btnluuchinhsuarole').prop('disabled', false);
                 }
                 else if (ketqua == "KHONGTONTAI") {
+                    $('#btnluuchinhsuarole').html('Lưu thông tin');
+                    $('#btnluuchinhsuarole').prop('disabled', false);
+
                     Swal.fire({
                         title: "Thông báo!",
                         text: "Phân quyền này vừa mới được xóa bỏ.",
@@ -88,6 +106,9 @@
                     });
                 }
                 else {
+                    $('#btnluuchinhsuarole').html('Lưu thông tin');
+                    $('#btnluuchinhsuarole').prop('disabled', false);
+
                     Swal.fire({
                         title: "Đã xảy ra lỗi, vui lòng thử lại sau ít phút.",
                         text: "Chi tiết lỗi: " + ketqua,

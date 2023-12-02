@@ -44,7 +44,7 @@
                                 <th scope="col">Ngày tạo</th>
                                 <th scope="col">Cập nhật cuối</th>
                                 <th scope="col">Quyền truy cập</th>
-                                <th scope="col"></th>
+                                <th scope="col">#</th>
                             </tr>
                         </thead>
                         <tbody style="overflow-x: scroll;">
@@ -56,18 +56,21 @@
                                         <input hidden id="tenquyen@(item.id)" value="@item.name" />
                                         @item.name
                                     </td>
-                                    <td>@item.ngaytao.ToString("dd") Tháng @item.ngaytao.ToString("MM, yyyy")</td>
-                                    <td>@item.ngaysuadoi.ToString("dd") Tháng @item.ngaysuadoi.ToString("MM, yyyy")</td>
+                                    <td>@item.ngaytao.ToString("HH:mm dd/MM/yy")</td>
+                                    <td>@item.ngaysuadoi.ToString("HH:mm dd/MM/yy")</td>
                                     <td>
                                         <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modal@(item.id)">
-                                            <i class="bi bi-info-circle"> </i> Xem danh sách
+                                            <i class="bi bi-info-circle me-1"> </i> Xem danh sách
                                         </button>
                                     </td>
                                     <td>
-                                        <button id="btnsuaquyen@(item.id)" name="@item.id" class="btn btn-sm btn-primary"><i class="bi bi-pencil-square"></i></button>
-                                        @if (item.TaiKhoanBean.Count() < 1)
+                                        @if (item.id != 1)
                                         {
-                                            <button id="btnxoaquyen@(item.id)" name="@item.id" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button>
+                                            <button id="btnsuaquyen@(item.id)" name="@item.id" class="btn btn-sm btn-primary"data-bs-toggle="tooltip" data-bs-placement="top" title="Cập nhật quyền"><i class="bi bi-pencil-square"></i></button>
+                                            if (item.TaiKhoanBean.Count() < 1)
+                                            {
+                                                <button id="btnxoaquyen@(item.id)" name="@item.id" class="btn btn-sm btn-danger"data-bs-toggle="tooltip" data-bs-placement="top" title="Xóa quyền"><i class="bi bi-trash"></i></button>
+                                            }
                                         }
                                     </td>
                                 </tr>
@@ -87,7 +90,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Thêm mới quyền</h5>
+                <h5 class="modal-title">Thêm quyền mới</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -187,7 +190,7 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                    <button id="btnluuthemrole" type="button" class="btn btn-primary">Lưu thay đổi</button>
+                    <button id="btnluuthemrole" type="button" class="btn btn-primary">Lưu thông tin</button>
                 </div>
             </div>
         </div>
@@ -301,6 +304,11 @@
     </div>
 
 }
+<script>
+    $(document).ready(function () {
+        $('#tbRole').DataTable();
+    });
+</script>
 <script src="~/Validation/Role/AddRole.js"></script>
 <script src="~/Validation/Role/ShowViewEditRole.js"></script>
 <script src="~/Validation/Role/DeleteRole.js"></script>
