@@ -16,7 +16,7 @@ namespace Beanfamily.Areas.Admin.Controllers
     [AdminLoginverification]
     public class AccountProfileController : Controller
     {
-        beanfamilyEntities model = new beanfamilyEntities();
+        BeanfamilyEntities model = new BeanfamilyEntities();
         // GET: Admin/Profile
         public ActionResult Index()
         {
@@ -71,7 +71,7 @@ namespace Beanfamily.Areas.Admin.Controllers
 
             model.Entry(info).State = EntityState.Modified;
             model.SaveChanges();
-            model = new beanfamilyEntities();
+            model = new BeanfamilyEntities();
 
             return Content("SUCCESS");
         }
@@ -92,7 +92,7 @@ namespace Beanfamily.Areas.Admin.Controllers
             info.password = matkhaumoi;
             model.Entry(info).State = EntityState.Modified;
             model.SaveChanges();
-            model = new beanfamilyEntities();
+            model = new BeanfamilyEntities();
 
             return Content("SUCCESS");
         }

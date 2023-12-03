@@ -25,6 +25,7 @@ namespace Beanfamily.Models
         public bool hiethi { get; set; }
         public System.DateTime ngaytao { get; set; }
         public System.DateTime ngaysuadoi { get; set; }
+        public string keycode { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ApDungChucNangChoQuyenTaiKhoan> ApDungChucNangChoQuyenTaiKhoan { get; set; }

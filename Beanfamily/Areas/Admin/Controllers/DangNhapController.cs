@@ -10,7 +10,7 @@ namespace Beanfamily.Areas.Admin.Controllers
 {
     public class DangNhapController : Controller
     {
-        beanfamilyEntities model = new beanfamilyEntities();
+        BeanfamilyEntities model = new BeanfamilyEntities();
 
         // GET: Admin/Account
         public ActionResult Index()
@@ -41,6 +41,85 @@ namespace Beanfamily.Areas.Admin.Controllers
                         Session["user-chucdanh"] = taikhoan.chucdanh;
                         Session["user-role-id"] = taikhoan.id_quyentaikhoanbean;
                         Session["user-avatar"] = taikhoan.hinhdaidien + "";
+
+                        //Set check function null
+                        Session["mtb-dmc1"] = null;
+                        Session["mtb-qlm"] = null;
+                        Session["mb-dmc1"] = null;
+                        Session["mb-qlm"] = null;
+                        Session["mhn-dmc1"] = null;
+                        Session["mhn-qlm"] = null;
+                        Session["vrb-dmc1"] = null;
+                        Session["vrb-spr"] = null;
+                        Session["vrb-qltc"] = null;
+                        Session["chtl-dmc1"] = null;
+                        Session["chtl-sp"] = null;
+                        Session["tkb-pq"] = null;
+                        Session["tkb-tk"] = null;
+                        Session["ddh"] = null;
+                        Session["ddbt"] = null;
+                        Session["ddbb"] = null;
+                        Session["hab"] = null;
+                        Session["qlsp"] = null;
+                        Session["tlc-ttw"] = null;
+                        Session["tlc-lkmxh"] = null;
+
+                        //LstFunction for account accept
+                        foreach (var item in taikhoan.QuyenTaiKhoanBean.ApDungChucNangChoQuyenTaiKhoan.ToList())
+                        {
+                            string keycodes = item.ChucNangHeThongBean.keycode.ToString();
+                            if (keycodes.Equals("mtb-dmc1"))
+                                Session["mtb-dmc1"] = true;
+                            else if (keycodes.Equals("mtb-qlm"))
+                                Session["mtb-qlm"] = true;
+
+                            else if (keycodes.Equals("mb-dmc1"))
+                                Session["mb-dmc1"] = true;
+                            else if (keycodes.Equals("mb-qlm"))
+                                Session["mb-qlm"] = true;
+
+                            else if (keycodes.Equals("mhn-dmc1"))
+                                Session["mhn-dmc1"] = true;
+                            else if (keycodes.Equals("mhn-qlm"))
+                                Session["mhn-qlm"] = true;
+
+                            else if (keycodes.Equals("vrb-dmc1"))
+                                Session["vrb-dmc1"] = true;
+                            else if (keycodes.Equals("vrb-spr"))
+                                Session["vrb-spr"] = true;
+                            else if (keycodes.Equals("vrb-qltc"))
+                                Session["vrb-qltc"] = true;
+
+                            else if (keycodes.Equals("chtl-dmc1"))
+                                Session["chtl-dmc1"] = true;
+                            else if (keycodes.Equals("chtl-sp"))
+                                Session["chtl-sp"] = true;
+
+                            else if (keycodes.Equals("tkb-pq"))
+                                Session["tkb-pq"] = true;
+                            else if (keycodes.Equals("tkb-tk"))
+                                Session["tkb-tk"] = true;
+
+                            else if (keycodes.Equals("ddh"))
+                                Session["ddh"] = true;
+
+                            else if (keycodes.Equals("ddbt"))
+                                Session["ddbt"] = true;
+
+                            else if (keycodes.Equals("ddbb"))
+                                Session["ddbb"] = true;
+
+                            else if (keycodes.Equals("hab"))
+                                Session["hab"] = true;
+
+                            else if (keycodes.Equals("qlsp"))
+                                Session["qlsp"] = true;
+
+                            else if (keycodes.Equals("tlc-ttw"))
+                                Session["tlc-ttw"] = true;
+                            else if (keycodes.Equals("tlc-lkmxh"))
+                                Session["tlc-lkmxh"] = true;
+                        }
 
                         return Content("SUCCESS");
                     }

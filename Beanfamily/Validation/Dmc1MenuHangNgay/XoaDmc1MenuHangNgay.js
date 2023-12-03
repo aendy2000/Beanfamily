@@ -1,10 +1,11 @@
 ﻿$(document).ready(function () {
-    $('body').on('click', '[id^="btnxoaquyen"]', function () {
-        var id = $(this).attr('name');
-        var name = $('#tenquyen' + id).val();
+    $('body').on('click', '[id^="btnxoadm"]', function () {
+        var id = $(this).attr("name");
+        var name = $("#inpTendanhmuc" + id).val();
+
         Swal.fire({
             title: 'Xóa bỏ?',
-            text: 'Bạn có chắc muốn xóa quyền "' + name + '" không?',
+            text: 'Bạn có chắc muốn xóa danh mục "' + name + '" không?',
             icon: "question",
             showCancelButton: true,
             cancelButtonColor: "#d33",
@@ -15,7 +16,7 @@
                 var formData = new FormData();
                 formData.append('id', id);
                 $.ajax({
-                    url: $('#requestPath').val() + "admin/role/removerole",
+                    url: $('#requestPath').val() + "admin/dmcap1menuhangngay/xoadm",
                     data: formData,
                     dataType: 'html',
                     type: 'POST',
@@ -25,7 +26,7 @@
                     if (ketqua == "SUCCESS") {
                         Swal.fire({
                             title: "Thành công!",
-                            text: 'Phân quyền "' + name + '" đã được xóa bỏ.',
+                            text: 'Danh mục "' + name + '" đã được xóa bỏ.',
                             icon: "success"
                         }).then(() => {
                             window.location.reload();
@@ -34,7 +35,7 @@
                     else if (ketqua == "KHONGTONTAI") {
                         Swal.fire({
                             title: "Thông báo",
-                            text: "Phân quyền này vừa mới được xóa bỏ.",
+                            text: "Danh mục này vừa mới được xóa bỏ.",
                             icon: "warning"
                         }).then(() => {
                             window.location.reload();

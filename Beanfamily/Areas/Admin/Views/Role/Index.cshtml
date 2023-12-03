@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Beanfamily.Models.QuyenTaiKhoanBean>
 @using Beanfamily.Models
 @{
-    beanfamilyEntities models = new beanfamilyEntities();
+    BeanfamilyEntities models = new BeanfamilyEntities();
     var lstFunc = models.ChucNangHeThongBean.ToList();
     ViewBag.Title = "Quản Lý Tài Khoản Bean";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";

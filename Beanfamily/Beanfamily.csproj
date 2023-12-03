@@ -134,6 +134,8 @@
     <Compile Include="Areas\Admin\Controllers\DangNhapController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountProfileController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DmCap1MenuHangNgayController.cs" />
+    <Compile Include="Areas\Admin\Controllers\MonAnMenuHangNgayController.cs" />
     <Compile Include="Areas\Admin\Controllers\RoleController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -2539,6 +2541,9 @@
     <Content Include="Validation\AccountBean\LockAccount.js" />
     <Content Include="Validation\AccountBean\EditAccount.js" />
     <Content Include="Validation\AccountBean\DetailAccount.js" />
+    <Content Include="Validation\Dmc1MenuHangNgay\XemMonDmc1MenuHangNgay.js" />
+    <Content Include="Validation\Dmc1MenuHangNgay\XoaDmc1MenuHangNgay.js" />
+    <Content Include="Validation\Dmc1MenuHangNgay\SuaDmc1MenuHangNgay.js" />
     <Content Include="Validation\Login\login.js" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.js" />
@@ -2760,6 +2765,8 @@
     <Content Include="Areas\Admin\Views\AccountProfile\Index.cshtml" />
     <Content Include="Areas\Admin\Views\AccountBean\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Role\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Role\_EditView.cshtml" />
+    <Content Include="Areas\Admin\Views\AccountBean\_DetailAccount.cshtml" />
     <EntityDeploy Include="Models\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
@@ -2767,8 +2774,9 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
-    <Content Include="Areas\Admin\Views\Role\_EditView.cshtml" />
-    <Content Include="Areas\Admin\Views\AccountBean\_DetailAccount.cshtml" />
+    <Content Include="Areas\Admin\Views\DmCap1MenuHangNgay\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\DmCap1MenuHangNgay\_DanhSachMonHangNgay.cshtml" />
+    <Content Include="Areas\Admin\Views\MonAnMenuHangNgay\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2786,6 +2794,7 @@
     <Content Include="Validation\Role\DeleteRole.js" />
     <Content Include="Validation\Role\ShowViewEditRole.js" />
     <Content Include="Validation\Role\AddRole.js" />
+    <Content Include="Validation\Dmc1MenuHangNgay\ThemDmc1MenuHangNgay.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -2805,6 +2814,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\Home\" />
+    <Folder Include="Areas\Admin\Views\MenuHangNgay\" />
     <Folder Include="Areas\Admin\Views\Profile\" />
     <Folder Include="Content\AdminAreas\images\taikhoanbean\" />
   </ItemGroup>

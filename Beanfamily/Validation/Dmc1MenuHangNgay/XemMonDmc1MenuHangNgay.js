@@ -1,10 +1,11 @@
 ﻿$(document).ready(function () {
-    $('body').on('click', '[id^="btnsuaquyen"]', function () {
-        var id = $(this).attr('name');
+    $('body').on('click', '[id^="danhsachmonan"]', function () {
+        var id = $(this).attr("name");
         var formData = new FormData();
         formData.append('id', id);
+
         $.ajax({
-            url: $('#requestPath').val() + "admin/role/showviewedit",
+            url: $('#requestPath').val() + "admin/dmcap1menuhangngay/showdanhsachmon",
             data: formData,
             dataType: 'html',
             type: 'POST',
@@ -14,7 +15,7 @@
             if (ketqua == "KHONGTONTAI") {
                 Swal.fire({
                     title: "Thông báo!",
-                    text: "Phân quyền này vừa mới được xóa bỏ.",
+                    text: "Danh mục này vừa mới được xóa bỏ.",
                     icon: "warning"
                 }).then(() => {
                     window.location.reload();
@@ -30,10 +31,10 @@
                 });
             }
             else {
-                $('#chinhsuaquyenpartial').replaceWith(ketqua);
-                $('#SuaPhanQuyenModal').modal('toggle');
+                $('#XemDanhSachMonModalPartial').replaceWith(ketqua);
+                $('#titleDanhSachMonDanhMuc').text('Danh sách món của danh mục "' + $('#inpMadanhmuc' + id).val() + '".');
+                $('#XemDanhSachMonModal').modal('toggle');
             }
         });
     });
-
 });

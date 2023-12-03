@@ -4,7 +4,7 @@
         $('#btnxemchitiet' + id).click();
     });
 
-    $('[id^="btnxemchitiet"]').on('click', function () {
+    $('body').on('click', '[id^="btnxemchitiet"]', function () {
         var id = $(this).attr('name');
 
         var formData = new FormData();

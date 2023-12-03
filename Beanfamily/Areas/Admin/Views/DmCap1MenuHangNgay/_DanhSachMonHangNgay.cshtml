@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Beanfamily.Models.SanPhamThucDonHangNgay>
+@{
+    Layout = null;
+    int i = 1;
+}
+
+<div id="XemDanhSachMonModalPartial" class="modal-body">
+    <ul class="list-group">
+
+        @foreach (var item in Model)
+        {
+            i++;
+            if (i % 2 == 0)
+            {
+                <li class="list-group-item list-group-item-primary">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            SP@(item.id.ToString("D6"))
+                        </div>
+                        <div class="row col-sm-8">
+                            @item.tensanpham
+                        </div>
+                    </div>
+                </li>
+            }
+            else
+            {
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            SP@(item.id.ToString("D6"))
+                        </div>
+                        <div class="row col-sm-8">
+                            @item.tensanpham
+                        </div>
+                    </div>
+                </li>
+            }
+        }
+    </ul>
+</div>

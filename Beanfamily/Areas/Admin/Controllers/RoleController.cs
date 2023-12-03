@@ -12,10 +12,13 @@ namespace Beanfamily.Areas.Admin.Controllers
     [AdminLoginverification]
     public class RoleController : Controller
     {
-        beanfamilyEntities model = new beanfamilyEntities();
+        BeanfamilyEntities model = new BeanfamilyEntities();
         // GET: Admin/Role
         public ActionResult Index()
         {
+            if (Session["tkb-pq"] == null)
+                return RedirectToAction("index", "dashboard");
+
             var lstRole = model.QuyenTaiKhoanBean.ToList();
             return View("index", lstRole);
         }

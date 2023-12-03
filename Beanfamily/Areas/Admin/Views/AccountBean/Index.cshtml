@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Beanfamily.Models.TaiKhoanBean>
 @using Beanfamily.Models;
 @{
-    beanfamilyEntities models = new beanfamilyEntities();
+    BeanfamilyEntities models = new BeanfamilyEntities();
     var lstRole = models.QuyenTaiKhoanBean.ToList();
     ViewBag.Title = "Quản Lý Tài Khoản Bean";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
@@ -82,7 +82,7 @@
                                     </td>
 
                                     <td class="text-nowrap">
-                                        @if (item.id != 3)
+                                        @if (item.id != 1)
                                         {
                                             <button id="btnxemchitiet@(item.id)" name="@item.id" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Chi tiết tài khoản"><i class="bi bi-info-square"></i></button>
                                             if (item.khoataikhoan == true)

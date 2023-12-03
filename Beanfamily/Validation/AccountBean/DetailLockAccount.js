@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
 
     //Mở khóa
-    $('[id^="btnmokhoataikhoandetail"]').on('click', function () {
+    $('body').on('click', '[id^="btnmokhoataikhoandetail"]', function () {
         var id = $(this).attr('name').split('#')[0];
         var idaccount = $(this).attr('name').split('#')[1];
         
@@ -60,7 +60,7 @@
     });
 
     //Khóa tài khoản
-    $('[id^="btnkhoataikhoandetail"]').on('click', function () {
+    $('body').on('click', '[id^="btnkhoataikhoandetail"]', function () {
         var id = $(this).attr('name').split('#')[0];
         var idaccount = $(this).attr('name').split('#')[1];
         Swal.fire({
@@ -68,7 +68,6 @@
             text: 'Bạn có chắc muốn khóa tài khoản "' + idaccount + '" không?',
             icon: "question",
             showCancelButton: true,
-            confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
             confirmButtonText: "Khóa ngay!",
             cancelButtonText: "Hủy"

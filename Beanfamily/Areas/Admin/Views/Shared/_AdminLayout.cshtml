@@ -42,10 +42,7 @@
     <link href="~/Content/AdminAreas/assets/vendor/quill/quill.snow.css" rel="stylesheet">
     <link href="~/Content/AdminAreas/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
     <link href="~/Content/AdminAreas/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-
-    @*<link href="~/Content/AdminAreas/assets/vendor/simple-datatables/style.css" rel="stylesheet">*@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
-
 
     <!-- Template Main CSS File -->
     <link href="~/Content/AdminAreas/assets/css/style.css" rel="stylesheet">
@@ -279,177 +276,259 @@
                     <i class="bi bi-grid"></i>
                     <span>Bảng Điều Khiển</span>
                 </a>
-            </li><!-- End Dashboard Nav -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#tiecban-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-card-checklist"></i><span>Menu Tiệc Bàn</span><i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-                <ul id="tiecban-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                    <li>
-                        <a href="components-alerts.html">
-                            <i class="bi bi-circle"></i><span>Danh Mục Cấp 1</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="components-accordion.html">
-                            <i class="bi bi-circle"></i><span>Quản Lý Món</span>
-                        </a>
-                    </li>
-
-                </ul>
-            </li><!-- End Components Nav -->
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#buffet-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-card-checklist"></i><span>Menu Buffet</span><i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-                <ul id="buffet-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                    <li>
-                        <a href="components-alerts.html">
-                            <i class="bi bi-circle"></i><span>Danh Mục Cấp 1</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="components-accordion.html">
-                            <i class="bi bi-circle"></i><span>Quản Lý Món</span>
-                        </a>
-                    </li>
-                </ul>
-            </li><!-- End Components Nav -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#hangngay-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-card-checklist"></i><span>Menu Hằng Ngày</span><i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-                <ul id="hangngay-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                    <li>
-                        <a href="components-alerts.html">
-                            <i class="bi bi-circle"></i><span>Danh Mục Cấp 1</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="components-accordion.html">
-                            <i class="bi bi-circle"></i><span>Quản Lý Món</span>
-                        </a>
-                    </li>
-
-                </ul>
-            </li><!-- End Components Nav -->
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#vuonrau-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-flower1"></i><span>Vườn Rau Bean</span><i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-                <ul id="vuonrau-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                    <li>
-                        <a href="components-alerts.html">
-                            <i class="bi bi-circle"></i><span>Danh Mục Cấp 1</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="components-accordion.html">
-                            <i class="bi bi-circle"></i><span>Sản Phẩm Rau</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="components-accordion.html">
-                            <i class="bi bi-circle"></i><span>Quy Trình Trồng Cây</span>
-                        </a>
-                    </li>
-                </ul>
-            </li><!-- End Components Nav -->
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-basket"></i><span>Cửa Hàng Tiện Lợi</span><i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-                <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                    <li>
-                        <a href="components-alerts.html">
-                            <i class="bi bi-circle"></i><span>Danh Mục Cấp 1</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="components-accordion.html">
-                            <i class="bi bi-circle"></i><span>Sản Phẩm</span>
-                        </a>
-                    </li>
-
-                </ul>
-            </li><!-- End Components Nav -->
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#taikhoan-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-person-badge"></i><span>Tài Khoản Bean</span><i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-                <ul id="taikhoan-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                    <li>
-                        <a href="@Url.Action("index", "role")">
-                            <i class="bi bi-circle"></i><span>Phân Quyền</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="@Url.Action("index", "accountbean")">
-                            <i class="bi bi-circle"></i><span>Tài Khoản</span>
-                        </a>
-                    </li>
-
-                </ul>
-            </li><!-- End Components Nav -->
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="index.html">
-                    <i class="bi bi-box-seam"></i>
-                    <span>Đơn Đặt Hàng</span>
-                </a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="index.html">
-                    <i class="bi bi-receipt-cutoff"></i>
-                    <span>Đơn Đặt Bàn Tiệc</span>
-                </a>
-            </li>
+            @if (Session["mtb-dmc1"] != null || Session["mtb-qlm"] != null)
+            {
+                <li class="nav-item">
+                    <a class="nav-link collapsed" data-bs-target="#tiecban-nav" data-bs-toggle="collapse" href="#">
+                        <i class="bi bi-card-checklist"></i><span>Menu Tiệc Bàn</span><i class="bi bi-chevron-down ms-auto"></i>
+                    </a>
+                    <ul id="tiecban-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                        @if (Session["mtb-dmc1"] != null)
+                        {
+                            <li>
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="index.html">
-                    <i class="bi bi-receipt-cutoff"></i>
-                    <span>Đơn Đặt Bàn Buffet</span>
-                </a>
-            </li>
+                                <a href="components-alerts.html">
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="index.html">
-                    <i class="bi bi-images"></i>
-                    <span>Hình Ảnh Bean</span>
-                </a>
-            </li>
+                                    <i class="bi bi-circle"></i><span>Danh Mục Cấp 1</span>
+                                </a>
+                            </li>
+                        }
+                        @if (Session["mtb-qlm"] != null)
+                        {
+                            <li>
+                                <a href="components-accordion.html">
+                                    <i class="bi bi-circle"></i><span>Quản Lý Món</span>
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </li>
+            }
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="index.html">
-                    <i class="bi bi-graph-up-arrow"></i>
-                    <span>Quản Lý SEO Page</span>
-                </a>
-            </li>
+            @if (Session["mb-dmc1"] != null || Session["mb-qlm"] != null)
+            {
+                <li class="nav-item">
+                    <a class="nav-link collapsed" data-bs-target="#buffet-nav" data-bs-toggle="collapse" href="#">
+                        <i class="bi bi-card-checklist"></i><span>Menu Buffet</span><i class="bi bi-chevron-down ms-auto"></i>
+                    </a>
+                    <ul id="buffet-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#thongtinchung-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-gear"></i><span>Thiết Lập Chung</span><i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-                <ul id="thongtinchung-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                    <li>
-                        <a href="components-alerts.html">
-                            <i class="bi bi-circle"></i><span>Thông Tin Website</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="components-accordion.html">
-                            <i class="bi bi-circle"></i><span>Liên Kết Mạng Xã Hội</span>
-                        </a>
-                    </li>
-                </ul>
-            </li><!-- End Components Nav -->
+                        @if (Session["mb-dmc1"] != null)
+                        {
+                            <li>
+                                <a href="components-alerts.html">
+                                    <i class="bi bi-circle"></i><span>Danh Mục Cấp 1</span>
+                                </a>
+                            </li>
+                        }
+                        @if (Session["mb-qlm"] != null)
+                        {
+                            <li>
+                                <a href="components-accordion.html">
+                                    <i class="bi bi-circle"></i><span>Quản Lý Món</span>
+                                </a>
+                            </li>
+                        }
+
+                    </ul>
+                </li>
+            }
+            @if (Session["mhn-dmc1"] != null || Session["mhn-qlm"] != null)
+            {
+                <li class="nav-item">
+                    <a class="nav-link collapsed" data-bs-target="#hangngay-nav" data-bs-toggle="collapse" href="#">
+                        <i class="bi bi-card-checklist"></i><span>Menu Hằng Ngày</span><i class="bi bi-chevron-down ms-auto"></i>
+                    </a>
+                    <ul id="hangngay-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                        @if (Session["mhn-dmc1"] != null)
+                        {
+                            <li>
+                                <a href="@Url.Action("index", "dmcap1menuhangngay")">
+                                    <i class="bi bi-circle"></i><span>Danh Mục Cấp 1</span>
+                                </a>
+                            </li>
+                        }
+                        @if (Session["mhn-qlm"] != null)
+                        {
+                            <li>
+                                <a href="@Url.Action("index", "monanmenuhangngay")">
+                                    <i class="bi bi-circle"></i><span>Quản Lý Món</span>
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </li>
+            }
+
+            @if (Session["vrb-dmc1"] != null || Session["vrb-spr"] != null || Session["vrb-qltc"] != null)
+            {
+                <li class="nav-item">
+                    <a class="nav-link collapsed" data-bs-target="#vuonrau-nav" data-bs-toggle="collapse" href="#">
+                        <i class="bi bi-flower1"></i><span>Vườn Rau Bean</span><i class="bi bi-chevron-down ms-auto"></i>
+                    </a>
+                    <ul id="vuonrau-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+
+                        @if (Session["vrb-dmc1"] != null)
+                        {
+                            <li>
+                                <a href="components-alerts.html">
+                                    <i class="bi bi-circle"></i><span>Danh Mục Cấp 1</span>
+                                </a>
+                            </li>
+                        }
+                        @if (Session["vrb-spr"] != null)
+                        {
+                            <li>
+                                <a href="components-accordion.html">
+                                    <i class="bi bi-circle"></i><span>Sản Phẩm Rau</span>
+                                </a>
+                            </li>
+                        }
+                        @if (Session["vrb-qltc"] != null)
+                        {
+                            <li>
+                                <a href="components-accordion.html">
+                                    <i class="bi bi-circle"></i><span>Quy Trình Trồng Cây</span>
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </li>
+            }
+
+            @if (Session["chtl-dmc1"] != null || Session["chtl-sp"] != null)
+            {
+                <li class="nav-item">
+                    <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+                        <i class="bi bi-basket"></i><span>Cửa Hàng Tiện Lợi</span><i class="bi bi-chevron-down ms-auto"></i>
+                    </a>
+                    <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                        @if (Session["chtl-dmc1"] != null)
+                        {
+                            <li>
+                                <a href="components-alerts.html">
+                                    <i class="bi bi-circle"></i><span>Danh Mục Cấp 1</span>
+                                </a>
+                            </li>
+                        }
+                        @if (Session["chtl-sp"] != null)
+                        {
+                            <li>
+                                <a href="components-accordion.html">
+                                    <i class="bi bi-circle"></i><span>Sản Phẩm</span>
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </li>
+            }
+
+            @if (Session["tkb-pq"] != null || Session["tkb-tk"] != null)
+            {
+                <li class="nav-item">
+                    <a class="nav-link collapsed" data-bs-target="#taikhoan-nav" data-bs-toggle="collapse" href="#">
+                        <i class="bi bi-person-badge"></i><span>Tài Khoản Bean</span><i class="bi bi-chevron-down ms-auto"></i>
+                    </a>
+                    <ul id="taikhoan-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                        @if (Session["tkb-pq"] != null)
+                        {
+                            <li>
+                                <a href="@Url.Action("index", "role")">
+                                    <i class="bi bi-circle"></i><span>Phân Quyền</span>
+                                </a>
+                            </li>
+                        }
+                        @if (Session["tkb-tk"] != null)
+                        {
+                            <li>
+                                <a href="@Url.Action("index", "accountbean")">
+                                    <i class="bi bi-circle"></i><span>Tài Khoản</span>
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </li>
+            }
+
+            @if (Session["ddh"] != null)
+            {
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="index.html">
+                        <i class="bi bi-box-seam"></i>
+                        <span>Đơn Đặt Hàng</span>
+                    </a>
+                </li>
+            }
+
+            @if (Session["ddbt"] != null)
+            {
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="index.html">
+                        <i class="bi bi-receipt-cutoff"></i>
+                        <span>Đơn Đặt Bàn Tiệc</span>
+                    </a>
+                </li>
+            }
+
+            @if (Session["ddbb"] != null)
+            {
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="index.html">
+                        <i class="bi bi-receipt-cutoff"></i>
+                        <span>Đơn Đặt Bàn Buffet</span>
+                    </a>
+                </li>
+            }
+
+            @if (Session["hab"] != null)
+            {
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="index.html">
+                        <i class="bi bi-images"></i>
+                        <span>Hình Ảnh Bean</span>
+                    </a>
+                </li>
+            }
+
+            @if (Session["qlsp"] != null)
+            {
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="index.html">
+                        <i class="bi bi-graph-up-arrow"></i>
+                        <span>Quản Lý SEO Page</span>
+                    </a>
+                </li>
+            }
+
+            @if (Session["tlc-ttw"] != null || Session["tlc-lkmxh"] != null)
+            {
+                <li class="nav-item">
+                    <a class="nav-link collapsed" data-bs-target="#thongtinchung-nav" data-bs-toggle="collapse" href="#">
+                        <i class="bi bi-gear"></i><span>Thiết Lập Chung</span><i class="bi bi-chevron-down ms-auto"></i>
+                    </a>
+                    <ul id="thongtinchung-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                        @if (Session["tlc-ttw"] != null)
+                        {
+                            <li>
+                                <a href="components-alerts.html">
+                                    <i class="bi bi-circle"></i><span>Thông Tin Website</span>
+                                </a>
+                            </li>
+                        }
+                        @if (Session["tlc-lkmxh"] != null)
+                        {
+                            <li>
+                                <a href="components-accordion.html">
+                                    <i class="bi bi-circle"></i><span>Liên Kết Mạng Xã Hội</span>
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </li>
+            }
         </ul>
-
     </aside>
     <!-- End Sidebar-->
 
@@ -481,10 +560,7 @@
     <script src="~/Content/AdminAreas/assets/vendor/chart.js/chart.umd.js"></script>
     <script src="~/Content/AdminAreas/assets/vendor/echarts/echarts.min.js"></script>
     <script src="~/Content/AdminAreas/assets/vendor/quill/quill.min.js"></script>
-
-    @*<script src="~/Content/AdminAreas/assets/vendor/simple-datatables/simple-datatables.js"></script>*@
     <script src="~/Content/AdminAreas/assets/vendor/DataTables/js/jquery.dataTables.min.js"></script>
-
     <script src="~/Content/AdminAreas/assets/vendor/tinymce/tinymce.min.js"></script>
 
     <!-- Template Main JS File -->

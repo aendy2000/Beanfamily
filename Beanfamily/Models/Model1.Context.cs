@@ -13,10 +13,10 @@ namespace Beanfamily.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class beanfamilyEntities : DbContext
+    public partial class BeanfamilyEntities : DbContext
     {
-        public beanfamilyEntities()
-            : base("name=beanfamilyEntities")
+        public BeanfamilyEntities()
+            : base("name=BeanfamilyEntities")
         {
         }
     

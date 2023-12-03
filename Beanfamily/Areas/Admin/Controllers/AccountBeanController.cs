@@ -13,11 +13,15 @@ namespace Beanfamily.Areas.Admin.Controllers
     [AdminLoginverification]
     public class AccountBeanController : Controller
     {
-        beanfamilyEntities model = new beanfamilyEntities();
+        BeanfamilyEntities model = new BeanfamilyEntities();
         // GET: Admin/AccountBean
         public ActionResult Index()
         {
-            var user = model.TaiKhoanBean.ToList();
+            if (Session["tkb-tk"] == null)
+                return RedirectToAction("index", "dashboard");
+
+            int id = Int32.Parse(Session["user-id"].ToString());
+            var user = model.TaiKhoanBean.Where(t => t.id != id && t.id != 1).ToList();
             return View("Index", user);
         }
 
