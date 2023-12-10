@@ -1,0 +1,35 @@
+﻿@model Beanfamily.Models.SanPhamThucDonHangNgay
+@{
+    Layout = null;
+    var lstImage = string.IsNullOrEmpty(Model.hinhanh) ? null : Model.hinhanh.Split('#').ToList();
+    int i = 0;
+}
+
+<div id="XemHinhAnhMonModalPartial" class="modal-body">
+    <section class="gallery">
+        <div class="container">
+            <div class="grid row">
+                @foreach (var item in lstImage)
+                {
+                    i++;
+                    if (i == 3 || i == 6 || i == 9 || i == 12 || i == 15 || i == 18 || i == 21 || i == 24 || i == 27 || i == 30)
+                    {
+                        <div class="col-md-12">
+                            <figure class="img-container">
+                                <img src="@Url.Content(item)" />
+                            </figure>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-md-6">
+                            <figure class="img-container">
+                                <img src="@Url.Content(item)" />
+                            </figure>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </section>
+</div>

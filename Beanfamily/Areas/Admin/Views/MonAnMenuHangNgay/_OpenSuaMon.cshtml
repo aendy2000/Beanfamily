@@ -1,0 +1,131 @@
+﻿@model Beanfamily.Models.SanPhamThucDonHangNgay
+@using Beanfamily.Models
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+    BeanfamilyEntities models = new BeanfamilyEntities();
+    var lstDmC1 = models.DanhMucThucDocHangNgayCap1.ToList();
+
+    string lstImage = Model.hinhanh;
+}
+
+<div id="SuaMonModalPartial">
+    <div class="modal-body">
+        <div class="row m-2">
+            <div class="col-sm-12 col-lg-12">
+                <div class="row mb-3">
+                    <label for="suatenmon" class="col-md-12 col-lg-2 col-form-label">Tên món <span class="text-danger">*</span></label>
+                    <div class="col-md-12 col-lg-10">
+                        <input value="@Model.id" id="idmonsua" hidden />
+                        <input value="@Model.tensanpham" id="suatenmon" type="text" placeholder="Tên món" class="form-control">
+                        <label style="margin-left: 5px" id="invalid-suatenmon-feedback" class="text-danger" hidden></label>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="suagia" class="col-md-12 col-lg-2 col-form-label">Giá món <span class="text-danger">*</span></label>
+                    <div class="col-md-12 col-lg-10">
+                        <input value="@Model.gia" id="suagia" type="text" data-type="currency" placeholder="Giá món" class="form-control">
+                        <label style="margin-left: 5px" id="invalid-suagia-feedback" class="text-danger" hidden></label>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="suadanhmuc" class="col-md-12 col-lg-2 col-form-label">Danh mục <span class="text-danger">*</span></label>
+                    <div class="col-md-12 col-lg-10">
+                        <select id="suadanhmuc" class="form-select">
+                            <option value="">Chọn danh mục cấp 1</option>
+                            @foreach (var item in lstDmC1)
+                            {
+                                if (item.id == Model.id)
+                                {
+                                    <option selected value="@item.id">@item.tendanhmuc</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.id">@item.tendanhmuc</option>
+                                }
+                            }
+                        </select>
+                        <label style="margin-left: 5px" id="invalid-suadanhmuc-feedback" class="text-danger" hidden></label>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="suahienthi" class="col-md-12 col-lg-2 col-form-label">Hiển thị</label>
+                    <div class="col-md-12 col-lg-10">
+                        <div class="form-check form-switch form-control">
+                            @if (Model.hienthi == true)
+                            {
+                                <input checked class="form-check-input" style="margin-left: -1.5em" type="checkbox" id="suahienthi">
+                            }
+                            else
+                            {
+                                <input class="form-check-input" style="margin-left: -1.5em" type="checkbox" id="suahienthi">
+                            }
+                            <label class="form-check-label" style="margin-left: 0.8em" for="suahienthi"> Hiển thị sau khi tạo</label>
+                        </div>
+                        <label style="margin-left: 5px" id="invalid-suahienthi-feedback" class="text-danger" hidden></label>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="suamota" class="col-md-12 col-lg-2 col-form-label">Mô tả</label>
+                    <div class="col-md-12 col-lg-10">
+                        <textarea rows="4" class="form-control" id="suamota" placeholder="Mô tả món"></textarea>
+                        <label style="margin-left: 5px" id="invalid-suamota-feedback" class="text-danger" hidden></label>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label for="mota" class="col-md-12 col-lg-2 col-form-label">Hình ảnh</label>
+                    <div class="col-md-12 col-lg-10">
+                        <fieldset class="form-group">
+                            <a class="btn btn-sm btn-primary mb-2" onclick="$('#suapro-image').click()"><i class="bi bi-images me-1"></i> Tải lên hình ảnh</a>
+                            <input accept="image/jpeg, image/png" value="" type="file" id="suapro-image" name="suapro-image[]" style="display: none;" class="form-control" multiple>
+                        </fieldset>
+                        <div class="suapreview-images-zone form-control">
+                            @if (!string.IsNullOrEmpty(lstImage))
+                            {
+                                foreach (string item in lstImage.Split('#').ToList())
+                                {
+                                    int lastindex = item.LastIndexOf("/") + 1;
+                                    int childLength = item.Length - lastindex;
+                                    <div id="suaidHinhAnh-hinhcu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" class="preview-image preview-show-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")">
+                                        <div id="suaxoa-hinhanhsp-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" class="image-cancel" name="daylahinhcu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")"><i class="bi bi-x-circle-fill text-dark"></i></div>
+                                        <div class="image-zone"><img id="@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" src="@Url.Content(item)"></div>
+                                    </div>
+                                    <input id="url-suaidHinhAnh-hinhcu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" value="@Url.Content(item)" hidden />
+                                }
+                            }
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="suavideo" class="col-md-12 col-lg-2 col-form-label">Video món</label>
+                    <div class="col-md-12 col-lg-10">
+                        <fieldset class="form-group">
+                            <a class="btn btn-sm btn-primary mb-2" onclick="$('#suapro-video').click()"><i class="bi bi-file-earmark-play-fill"></i> Tải lên video</a>
+                            <a id="suabtn-xoa-video" class="btn btn-sm btn-danger mb-2" data-bs-toggle="tooltip" dropzone="top" title="Xóa video upload"><i class="bi bi-trash"></i></a>
+
+                            <input accept="video/*" type="file" id="suapro-video" name="suapro-video" style="display: none;" class="form-control">
+                            <input hidden value="@Model.video" id="url-suapro-video" />
+                        </fieldset>
+                        @if (string.IsNullOrEmpty(Model.video) == true)
+                        {
+                            <video id="suaload-video" style="border-radius: 10px; border: 1px solid #ddd" class="video-list text-center form-control" type="video/mp4" width="100%" height="300px"></video>
+                        }
+                        else
+                        {
+                            <video id="suaload-video" autoplay="autoplay" style="border-radius: 10px" controls="text-center video-list form-control controls" src="@Url.Content(Model.video)" type="video/mp4" width="100%" height="300px"></video>
+                        }
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer mt-3">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+        <button id="btnluusuaMonAn" type="button" class="btn btn-primary">Lưu thông tin</button>
+    </div>
+    <script src="~/Validation/MonAnMenuHangNgay/SuaMonAn.js"></script>
+</div>

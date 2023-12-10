@@ -10,21 +10,21 @@ using System.Data.Entity;
 namespace Beanfamily.Areas.Admin.Controllers
 {
     [AdminLoginverification]
-    public class DmCap1MenuHangNgayController : Controller
+    public class DmCap1MenuTiecBanController : Controller
     {
         BeanfamilyEntities model = new BeanfamilyEntities();
-        // GET: Admin/MenuHangNgay
+        // GET: Admin/DmCap1MenuTiecBan
         public ActionResult Index()
         {
             Session["active-dashboard"] = "collapsed # # ";
-            Session["active-mtb-dmc1"] = "collapsed # # ";
-            Session["active-mtb-dmpv"] = "collapsed # # ";
-            Session["active-mtb-qlm"] = "collapsed # # ";
+            Session["active-mtb-dmc1"] = " # show # active";
+            Session["active-mtb-dmpv"] = " # show # ";
+            Session["active-mtb-qlm"] = " # show # ";
             Session["active-mb-dmc1"] = "collapsed # # ";
             Session["active-mb-dmpv"] = "collapsed # # ";
             Session["active-mb-qlm"] = "collapsed # # ";
-            Session["active-mhn-dmc1"] = " # show # active";
-            Session["active-mhn-qlm"] = " # show # ";
+            Session["active-mhn-dmc1"] = "collapsed # # ";
+            Session["active-mhn-qlm"] = "collapsed # # ";
             Session["active-vrb-dmc1"] = "collapsed # # ";
             Session["active-vrb-spr"] = "collapsed # # ";
             Session["active-vrb-qltc"] = "collapsed # # ";
@@ -43,7 +43,7 @@ namespace Beanfamily.Areas.Admin.Controllers
             if (Session["mhn-dmc1"] == null)
                 return RedirectToAction("index", "dashboard");
 
-            var dm = model.DanhMucThucDocHangNgayCap1.ToList();
+            var dm = model.DanhMucMenuTiecBanCap1.ToList();
             return View("index", dm);
         }
 
@@ -52,11 +52,11 @@ namespace Beanfamily.Areas.Admin.Controllers
         {
             try
             {
-                var checkExist = model.DanhMucThucDocHangNgayCap1.FirstOrDefault(d => d.tendanhmuc.ToLower().Equals(tendanhmuc.ToLower().Trim()));
+                var checkExist = model.DanhMucMenuTiecBanCap1.FirstOrDefault(d => d.tendanhmuc.ToLower().Equals(tendanhmuc.ToLower().Trim()));
                 if (checkExist != null)
                     return Content("EXIST");
 
-                DanhMucThucDocHangNgayCap1 dm = new DanhMucThucDocHangNgayCap1();
+                DanhMucMenuTiecBanCap1 dm = new DanhMucMenuTiecBanCap1();
                 dm.tendanhmuc = tendanhmuc;
                 dm.hienthi = hienthi;
                 if (!string.IsNullOrEmpty(sothutu))
@@ -66,7 +66,7 @@ namespace Beanfamily.Areas.Admin.Controllers
                 dm.ngaytao = DateTime.Now;
                 dm.ngaysuadoi = DateTime.Now;
 
-                model.DanhMucThucDocHangNgayCap1.Add(dm);
+                model.DanhMucMenuTiecBanCap1.Add(dm);
                 model.SaveChanges();
                 return Content("SUCCESS");
             }
@@ -81,11 +81,11 @@ namespace Beanfamily.Areas.Admin.Controllers
         {
             try
             {
-                var checkExist = model.DanhMucThucDocHangNgayCap1.FirstOrDefault(d => d.tendanhmuc.ToLower().Equals(tendanhmuc.ToLower().Trim()) && d.id != id);
+                var checkExist = model.DanhMucMenuTiecBanCap1.FirstOrDefault(d => d.tendanhmuc.ToLower().Equals(tendanhmuc.ToLower().Trim()) && d.id != id);
                 if (checkExist != null)
                     return Content("EXIST");
 
-                var dm = model.DanhMucThucDocHangNgayCap1.Find(id);
+                var dm = model.DanhMucMenuTiecBanCap1.Find(id);
                 if (dm == null)
                     return Content("KHONGTONTAI");
 
@@ -111,11 +111,11 @@ namespace Beanfamily.Areas.Admin.Controllers
         {
             try
             {
-                var dm = model.DanhMucThucDocHangNgayCap1.Find(id);
+                var dm = model.DanhMucMenuTiecBanCap1.Find(id);
                 if (dm == null)
                     return Content("KHONGTONTAI");
 
-                model.DanhMucThucDocHangNgayCap1.Remove(dm);
+                model.DanhMucMenuTiecBanCap1.Remove(dm);
                 model.SaveChanges();
 
                 return Content("SUCCESS");
@@ -131,11 +131,11 @@ namespace Beanfamily.Areas.Admin.Controllers
         {
             try
             {
-                var dm = model.DanhMucThucDocHangNgayCap1.Find(id);
+                var dm = model.DanhMucMenuTiecBanCap1.Find(id);
                 if (dm == null)
                     return Content("KHONGTONTAI");
 
-                var mon = model.SanPhamThucDonHangNgay.Where(m => m.id_danhmucthucdonhangngaycap1 == id).ToList();
+                var mon = model.SanPhamMenuTiecBan.Where(m => m.id_danhmucmenutiecbancap1 == id).ToList();
                 return PartialView("_DanhSachMonHangNgay", mon);
             }
             catch (Exception ex)

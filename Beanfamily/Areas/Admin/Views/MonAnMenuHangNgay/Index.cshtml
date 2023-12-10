@@ -1,8 +1,10 @@
 ﻿@model IEnumerable<Beanfamily.Models.SanPhamThucDonHangNgay>
-
+@using Beanfamily.Models
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    BeanfamilyEntities models = new BeanfamilyEntities();
+    var lstDmC1 = models.DanhMucThucDocHangNgayCap1.ToList();
 }
 <div class="pagetitle">
     <div class="row">
@@ -32,7 +34,7 @@
                     <h5 class="card-title">Danh sách món menu hằng ngày</h5>
 
                     <!-- Table with stripped rows -->
-                    <table id="lstMonAnMenuHangNgayTable" class="table datatable">
+                    <table id="lstMonAnMenuHangNgayTable" class="table datatable striped">
                         <thead>
                             <tr>
                                 <th scope="col">Mã</th>
@@ -50,10 +52,12 @@
                             @foreach (var item in Model)
                             {
                                 <tr>
-                                    <th scope="row">SP@(item.id.ToString("D6"))</th>
+                                    <th scope="row">
+                                        SP@(item.id.ToString("D6"))
+                                        <input hidden id="inpMamonan@(item.id)" value="SP@(item.id.ToString("D6"))" />
+                                    </th>
                                     <td>@item.DanhMucThucDocHangNgayCap1.tendanhmuc</td>
-                                    <td>@item.tensanpham</td>
-                                    <td>@item.mota</td>
+                                    <td data-bs-toggle="tooltip" dropzone="top" title="@item.mota">@item.tensanpham</td>
                                     <td>@item.gia.ToString("0,0")</td>
                                     <td>@item.luotxem.ToString("0,0") Lượt</td>
                                     <td>
@@ -65,12 +69,26 @@
                                             <span class="badge bg-danger"><i class="bi bi-eye-slash-fill me-1"></i> Đã ẩn</span>
                                         }
                                     </td>
-                                    <td><button id="btnXemHinhAnhItem@(item.id)" name="@item.id" class="btn btn-sm btn-primary">Xem hình ảnh</button></td>
                                     <td>
-                                        <button id="btnsuasp@(item.id)" name="@item.id" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Cập nhật danh mục"><i class="bi bi-pencil-square"></i></button>
+                                        @if (string.IsNullOrEmpty(item.hinhanh))
+                                        {
+                                            <span class="badge bg-warning"><i class="bi bi-exclamation-octagon me-1"></i> Không có hình</span>
+                                        }
+                                        else
+                                        {
+                                            <button id="btnXemHinhAnhItem@(item.id)" data-bs-toggle="tooltip" data-bs-placement="top" title="Xem danh sách hình ảnh" name="@item.id" class="btn btn-sm btn-primary">
+                                                Xem
+                                                @item.hinhanh.Split('#').Count()
+                                                hình ảnh
+                                            </button>
+                                        }
+
+                                    </td>
+                                    <td>
+                                        <button id="btnsuasp@(item.id)" name="@item.id" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Cập nhật món"><i class="bi bi-pencil-square"></i></button>
                                         @if (item.ChiTietDonHangMuaSamVaMenuHangNgay.Count < 1)
                                         {
-                                            <button id="btnxoasp@(item.id)" name="@item.id" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Xóa danh mục"><i class="bi bi-trash"></i></button>
+                                            <button id="btnxoasp@(item.id)" name="@item.id" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Xóa món"><i class="bi bi-trash"></i></button>
                                         }
                                     </td>
                                 </tr>
@@ -84,35 +102,47 @@
     </div>
 </section>
 
-<!-- Thêm danh mục -->
+<!-- Thêm món ăn -->
 <div class="modal fade" id="ThemMonAnModal" tabindex="-1">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Thêm danh mục mới</h5>
+                <h5 class="modal-title">Thêm món mới</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div class="row">
-                    <div class="col-sm-12 col-lg-1"></div>
-                    <div class="col-sm-12 col-lg-10">
+                <div class="row m-2">
+                    <div class="col-sm-12 col-lg-12">
                         <div class="row mb-3">
-                            <label for="tendanhmuc" class="col-md-12 col-lg-3 col-form-label">Tên danh mục <span class="text-danger">*</span></label>
-                            <div class="col-md-12 col-lg-9">
-                                <input id="tendanhmuc" type="text" placeholder="Tên danh mục cấp 1" class="form-control">
-                                <label style="margin-left: 5px" id="invalid-tendanhmuc-feedback" class="text-danger" hidden></label>
+                            <label for="tenmon" class="col-md-12 col-lg-2 col-form-label">Tên món <span class="text-danger">*</span></label>
+                            <div class="col-md-12 col-lg-10">
+                                <input id="tenmon" type="text" placeholder="Tên món mới" class="form-control">
+                                <label style="margin-left: 5px" id="invalid-tenmon-feedback" class="text-danger" hidden></label>
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="sothutu" class="col-md-12 col-lg-3 col-form-label">Số thứ tự</label>
-                            <div class="col-md-12 col-lg-9">
-                                <input id="sothutu" type="text" placeholder="Số thứ tự" class="form-control">
-                                <label style="margin-left: 5px" id="invalid-sothutu-feedback" class="text-danger" hidden></label>
+                            <label for="gia" class="col-md-12 col-lg-2 col-form-label">Giá món <span class="text-danger">*</span></label>
+                            <div class="col-md-12 col-lg-10">
+                                <input id="gia" type="text" data-type="currency" placeholder="Giá món" class="form-control">
+                                <label style="margin-left: 5px" id="invalid-gia-feedback" class="text-danger" hidden></label>
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="sothutu" class="col-md-12 col-lg-3 col-form-label">Hiển thị</label>
-                            <div class="col-md-12 col-lg-9">
+                            <label for="danhmuc" class="col-md-12 col-lg-2 col-form-label">Danh mục <span class="text-danger">*</span></label>
+                            <div class="col-md-12 col-lg-10">
+                                <select id="danhmuc" class="form-select">
+                                    <option selected value="">Chọn danh mục cấp 1</option>
+                                    @foreach (var item in lstDmC1)
+                                    {
+                                        <option value="@item.id">@item.tendanhmuc</option>
+                                    }
+                                </select>
+                                <label style="margin-left: 5px" id="invalid-danhmuc-feedback" class="text-danger" hidden></label>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="hienthi" class="col-md-12 col-lg-2 col-form-label">Hiển thị</label>
+                            <div class="col-md-12 col-lg-10">
                                 <div class="form-check form-switch form-control">
                                     <input checked class="form-check-input" style="margin-left: -1.5em" type="checkbox" id="hienthi">
                                     <label class="form-check-label" style="margin-left: 0.8em" for="hienthi"> Hiển thị sau khi tạo</label>
@@ -120,22 +150,89 @@
                                 <label style="margin-left: 5px" id="invalid-hienthi-feedback" class="text-danger" hidden></label>
                             </div>
                         </div>
+                        <div class="row mb-3">
+                            <label for="mota" class="col-md-12 col-lg-2 col-form-label">Mô tả</label>
+                            <div class="col-md-12 col-lg-10">
+                                <textarea rows="4" class="form-control" id="mota" placeholder="Mô tả món"></textarea>
+                                <label style="margin-left: 5px" id="invalid-mota-feedback" class="text-danger" hidden></label>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="mota" class="col-md-12 col-lg-2 col-form-label">Hình ảnh</label>
+                            <div class="col-md-12 col-lg-10">
+                                <fieldset class="form-group">
+                                    <a class="btn btn-sm btn-primary mb-2" onclick="$('#pro-image').click()"><i class="bi bi-images me-1"></i> Tải lên hình ảnh</a>
+                                    <input accept="image/jpeg, image/png" type="file" id="pro-image" name="pro-image[]" style="display: none;" class="form-control" multiple>
+                                </fieldset>
+                                <div class="preview-images-zone form-control">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="mota" class="col-md-12 col-lg-2 col-form-label">Video món</label>
+                            <div class="col-md-12 col-lg-10">
+                                <fieldset class="form-group">
+                                    <a class="btn btn-sm btn-primary mb-2" onclick="$('#pro-video').click()"><i class="bi bi-file-earmark-play-fill"></i> Tải lên video</a>
+                                    <a id="btn-xoa-video" class="btn btn-sm btn-danger mb-2" data-bs-toggle="tooltip" dropzone="top" title="Xóa video upload"><i class="bi bi-trash"></i></a>
+
+                                    <input accept="video/*" type="file" id="pro-video" name="pro-video" style="display: none;" class="form-control">
+                                </fieldset>
+                                <video id="load-video" style="border-radius: 10px; border: 1px solid #ddd" class="video-list text-center form-control" type="video/mp4" width="100%" height="300px"></video>
+                            </div>
+                        </div>
+
                     </div>
-                    <div class="col-sm-12 col-lg-1"></div>
                 </div>
             </div>
 
             <div class="modal-footer mt-3">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                <button id="btnluuthemDmtdhn" type="button" class="btn btn-primary">Lưu thông tin</button>
+                <button id="btnluuthemMonAn" type="button" class="btn btn-primary">Lưu thông tin</button>
             </div>
         </div>
     </div>
 </div>
 
-<script>
-    $(document).ready(function () {
-        $('#lstMonAnMenuHangNgayTable').DataTable();
-    });
-</script>
+<!-- Xem hình ảnh -->
+<div class="modal fade" id="XemHinhAnhMonModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="titleHinhAnhMonAn" class="modal-title"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div id="XemHinhAnhMonModalPartial" class="modal-body">
+            </div>
+        </div>
+    </div>
+</div>
 
+<!-- Sửa món ăn -->
+<div class="modal fade" id="SuaMonAnModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="titleSuaMonAn" class="modal-title"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div id="SuaMonModalPartial">
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer mt-3">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button id="btnluuthemMonAn" type="button" class="btn btn-primary">Lưu thông tin</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="~/Scripts/jquery-ui.js"></script>
+<script src="~/Validation/MonAnMenuHangNgay/ThemMonAn.js"></script>
+<script src="~/Validation/MonAnMenuHangNgay/XemHinhAnh.js"></script>
+<script src="~/Validation/MonAnMenuHangNgay/XoaMonAn.js"></script>
+<script src="~/Validation/MonAnMenuHangNgay/OpenModalSuaMonAn.js"></script>

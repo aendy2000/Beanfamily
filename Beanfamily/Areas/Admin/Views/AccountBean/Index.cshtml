@@ -110,16 +110,15 @@
 
 <!-- Thêm tài khoản -->
 <div class="modal fade" id="ThemTaiKhoanBeanModal" tabindex="-1">
-    <div class="modal-dialog modal-xl">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Thêm tài khoản mới</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div class="row">
-                    <div class="col-sm-12 col-lg-1"></div>
-                    <div class="col-sm-12 col-lg-10">
+                <div class="row m-2">
+                    <div class="col-sm-12 col-lg-12">
                         <div class="row mb-3">
                             <label for="profileImage" class="col-md-4 col-lg-3 col-form-label"></label>
                             <div class="col-md-12 col-lg-12 text-center profile-edit">
@@ -155,7 +154,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="phanquyen" class="col-md-2 col-lg-2 col-form-label">Phân quyền <span class="text-danger">*</span></label>
+                            <label for="phanquyen" class="col-md-2 col-lg-2 col-form-label">P. Quyền <span class="text-danger">*</span></label>
                             <div class="col-md-10 col-lg-10">
                                 <select id="phanquyen" class="form-select">
                                     <option value="">Chọn phân quyền</option>
@@ -184,7 +183,7 @@
                         <div class="row mb-3">
                             <label for="sodienthoai" class="col-md-2 col-lg-2 col-form-label">Số điện thoại</label>
                             <div class="col-md-10 col-lg-10">
-                                <input id="sodienthoai" type="text" placeholder="Số điện thoại" class="form-control">
+                                <input id="sodienthoai" type="text" data-type='numbers' placeholder="Số điện thoại" class="form-control">
                                 <label style="margin-left: 5px" id="invalid-sodienthoai-feedback" class="text-danger" hidden></label>
                             </div>
                         </div>
@@ -209,12 +208,11 @@
                         <div class="row">
                             <label for="diachi" class="col-md-2 col-lg-2 col-form-label">Địa chỉ nhà</label>
                             <div class="col-md-10 col-lg-10">
-                                <textarea id="diachi" name="diachi" class="form-control" rows="4"></textarea>
+                                <textarea placeholder="Địa chỉ nhà" id="diachi" name="diachi" class="form-control" rows="4"></textarea>
                                 <label style="margin-left: 5px" id="invalid-diachi-feedback" class="text-danger" hidden></label>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-12 col-lg-1"></div>
                 </div>
             </div>
 
@@ -241,11 +239,6 @@
         </div>
     </div>
 </div>
-<script>
-    $(document).ready(function () {
-        $('#lstAccountTable').DataTable();
-    });
-</script>
 <script src="~/Validation/AccountBean/AddAccount.js"></script>
 <script src="~/Content/AdminAreas/assets/js/reviewImage.js"></script>
 <script src="~/Validation/AccountBean/DetailAccount.js"></script>

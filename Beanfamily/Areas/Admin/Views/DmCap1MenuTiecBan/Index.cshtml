@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Beanfamily.Models.DanhMucThucDocHangNgayCap1>
+﻿@model IEnumerable<Beanfamily.Models.DanhMucMenuTiecBanCap1>
 
 @{
     ViewBag.Title = "Index";
@@ -7,17 +7,17 @@
 <div class="pagetitle">
     <div class="row">
         <div class="col-7">
-            <h1>Menu Hằng Ngày</h1>
+            <h1>Menu Tiệc Bàn</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="@Url.Action("index", "dashboard")">Bảng Điều Khiển</a></li>
-                    <li class="breadcrumb-item">Menu Hằng Ngày</li>
+                    <li class="breadcrumb-item">Menu Tiệc Bàn</li>
                     <li class="breadcrumb-item active">Danh Mục Cấp 1</li>
                 </ol>
             </nav>
         </div>
         <div class="col-5 text-end">
-            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ThemDmTdhnModal">Thêm mới</button>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ThemDmMtbModal">Thêm mới</button>
         </div>
     </div>
 
@@ -62,13 +62,13 @@
                                     <td>@item.ngaytao.ToString("HH:mm dd/MM/yy")</td>
                                     <td>@item.ngaysuadoi.ToString("HH:mm dd/MM/yy")</td>
                                     <td>
-                                        @if (item.SanPhamThucDonHangNgay.Count < 1)
+                                        @if (item.SanPhamMenuTiecBan.Count < 1)
                                         {
                                             <span class="badge bg-warning"><i class="bi bi-exclamation-octagon me-1"></i> Chưa có món</span>
                                         }
                                         else
                                         {
-                                            <button id="danhsachmonan@(item.id)" name="@item.id" data-bs-toggle="tooltip" data-bs-placement="top" title="Xem danh sách món" tool class="btn btn-sm btn-primary">Xem @item.SanPhamThucDonHangNgay.Count() món</button>
+                                            <button id="danhsachmonan@(item.id)" name="@item.id" data-bs-toggle="tooltip" data-bs-placement="top" title="Xem danh sách món" tool class="btn btn-sm btn-primary">Xem @item.SanPhamMenuTiecBan.Count() món</button>
                                         }
                                     </td>
                                     <td>
@@ -82,7 +82,7 @@
                                     </td>
                                     <td>
                                         <button id="btnsuadm@(item.id)" name="@item.id" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Cập nhật danh mục"><i class="bi bi-pencil-square"></i></button>
-                                        @if (item.SanPhamThucDonHangNgay.Count < 1)
+                                        @if (item.SanPhamMenuTiecBan.Count < 1)
                                         {
                                             <button id="btnxoadm@(item.id)" name="@item.id" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Xóa danh mục"><i class="bi bi-trash"></i></button>
                                         }
@@ -99,7 +99,7 @@
 </section>
 
 <!-- Thêm danh mục -->
-<div class="modal fade" id="ThemDmTdhnModal" tabindex="-1">
+<div class="modal fade" id="ThemDmMtbModal" tabindex="-1">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -138,14 +138,14 @@
 
             <div class="modal-footer mt-3">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                <button id="btnluuthemDmtdhn" type="button" class="btn btn-primary">Lưu thông tin</button>
+                <button id="btnluuthemDmMtb" type="button" class="btn btn-primary">Lưu thông tin</button>
             </div>
         </div>
     </div>
 </div>
 
 <!-- Sửa danh mục -->
-<div class="modal fade" id="SuaDmTdhnModal" tabindex="-1">
+<div class="modal fade" id="SuaDmMtbModal" tabindex="-1">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -186,7 +186,7 @@
 
             <div class="modal-footer mt-3">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                <button id="btnluuSuaDmtdhn" type="button" class="btn btn-primary">Lưu thông tin</button>
+                <button id="btnluuSuaDmMtb" type="button" class="btn btn-primary">Lưu thông tin</button>
             </div>
         </div>
     </div>
@@ -207,7 +207,7 @@
     </div>
 </div>
 
-<script src="~/Validation/Dmc1MenuHangNgay/ThemDmc1MenuHangNgay.js"></script>
-<script src="~/Validation/Dmc1MenuHangNgay/SuaDmc1MenuHangNgay.js"></script>
-<script src="~/Validation/Dmc1MenuHangNgay/XoaDmc1MenuHangNgay.js"></script>
-<script src="~/Validation/Dmc1MenuHangNgay/XemMonDmc1MenuHangNgay.js"></script>
+<script src="~/Validation/Dmc1MenuTiecBan/ThemDmc1MenuTiecBan.js"></script>
+<script src="~/Validation/Dmc1MenuTiecBan/SuaDmc1MenuTiecBan.js"></script>
+<script src="~/Validation/Dmc1MenuTiecBan/XoaDmc1MenuTiecBan.js"></script>
+<script src="~/Validation/Dmc1MenuTiecBan/XemMonDmc1MenuTiecBan.js"></script>

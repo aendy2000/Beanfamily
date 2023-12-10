@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
-    $('#btnluuthemDmtdhn').on('click', function () {
-        $('#btnluuthemDmtdhn').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"> </span> Đang tải...');
-        $('#btnluuthemDmtdhn').prop('disabled', true);
+    $('#btnluuthemDmMtb').on('click', function () {
+        $('#btnluuthemDmMtb').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"> </span> Đang tải...');
+        $('#btnluuthemDmMtb').prop('disabled', true);
 
         var tendanhmuc = $('#tendanhmuc').val().trim();
         var sothutu = $('#sothutu').val().trim();
@@ -18,8 +18,8 @@
             $('#invalid-tendanhmuc-feedback').text("Vui lòng nhập tên danh mục.").prop('hidden', false);
             $("#tendanhmuc").focus();
 
-            $('#btnluuthemDmtdhn').html('Lưu thông tin');
-            $('#btnluuthemDmtdhn').prop('disabled', false);
+            $('#btnluuthemDmMtb').html('Lưu thông tin');
+            $('#btnluuthemDmMtb').prop('disabled', false);
         }
 
 
@@ -30,7 +30,7 @@
             formData.append('sothutu', sothutu);
 
             $.ajax({
-                url: $('#requestPath').val() + "admin/dmcap1menuhangngay/themdm",
+                url: $('#requestPath').val() + "admin/dmcap1menutiecban/themdm",
                 data: formData,
                 dataType: 'html',
                 type: 'POST',
@@ -38,8 +38,8 @@
                 contentType: false
             }).done(function (ketqua) {
                 if (ketqua == "SUCCESS") {
-                    $('#btnluuthemDmtdhn').html('Lưu thông tin');
-                    $('#btnluuthemDmtdhn').prop('disabled', false);
+                    $('#btnluuthemDmMtb').html('Lưu thông tin');
+                    $('#btnluuthemDmMtb').prop('disabled', false);
 
                     Swal.fire({
                         title: "Thành công!",
@@ -54,12 +54,12 @@
                     $('#invalid-tendanhmuc-feedback').text("Danh mục này đã tồn tại.").prop('hidden', false);
                     $("#tendanhmuc").focus();
 
-                    $('#btnluuthemDmtdhn').html('Lưu thông tin');
-                    $('#btnluuthemDmtdhn').prop('disabled', false);
+                    $('#btnluuthemDmMtb').html('Lưu thông tin');
+                    $('#btnluuthemDmMtb').prop('disabled', false);
                 }
                 else {
-                    $('#btnluuthemDmtdhn').html('Lưu thông tin');
-                    $('#btnluuthemDmtdhn').prop('disabled', false);
+                    $('#btnluuthemDmMtb').html('Lưu thông tin');
+                    $('#btnluuthemDmMtb').prop('disabled', false);
 
                     Swal.fire({
                         title: "Đã xảy ra lỗi, vui lòng thử lại sau ít phút.",

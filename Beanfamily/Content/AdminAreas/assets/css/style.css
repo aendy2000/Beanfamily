@@ -756,7 +756,6 @@ h6 {
 
 .sidebar-nav .nav-content a.active {
   color: #4154f1;
-  background: #dbdcff;
 }
 
 .sidebar-nav .nav-content a.active i {
@@ -1244,4 +1243,219 @@ h6 {
 
 .valid-was-validated:focus {
     border: 3px solid #ff0000;
+}
+
+
+
+/* CSS upload image */
+
+.preview-images-zone {
+    width: 100%;
+    border: 1px solid #ddd;
+    min-height: 126px;
+    /* display: flex; */
+    padding: 5px 5px 0px 5px;
+    position: relative;
+    overflow: auto;
+}
+
+    .preview-images-zone > .preview-image:first-child {
+        height: 112px;
+        width: 112px;
+        position: relative;
+        margin-right: 5px;
+    }
+
+    .preview-images-zone > .preview-image {
+        height: 112px;
+        width: 112px;
+        position: relative;
+        margin-right: 5px;
+        float: left;
+        margin-bottom: 5px;
+    }
+
+        .preview-images-zone > .preview-image > .image-zone {
+            width: 100%;
+            height: 100%;
+        }
+
+            .preview-images-zone > .preview-image > .image-zone > img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 5px;
+            }
+
+        .preview-images-zone > .preview-image > .tools-edit-image {
+            position: absolute;
+            z-index: 100;
+            color: #fff;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            margin-bottom: 10px;
+            display: none;
+        }
+
+        .preview-images-zone > .preview-image > .image-cancel {
+            font-size: 18px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-weight: bold;
+            margin-right: 10px;
+            cursor: pointer;
+            display: none;
+            z-index: 100;
+        }
+
+.suapreview-images-zone {
+    width: 100%;
+    border: 1px solid #ddd;
+    min-height: 126px;
+    /* display: flex; */
+    padding: 5px 5px 0px 5px;
+    position: relative;
+    overflow: auto;
+}
+
+    .suapreview-images-zone > .preview-image:first-child {
+        height: 112px;
+        width: 112px;
+        position: relative;
+        margin-right: 5px;
+    }
+
+    .suapreview-images-zone > .preview-image {
+        height: 112px;
+        width: 112px;
+        position: relative;
+        margin-right: 5px;
+        float: left;
+        margin-bottom: 5px;
+    }
+
+        .suapreview-images-zone > .preview-image > .image-zone {
+            width: 100%;
+            height: 100%;
+        }
+
+            .suapreview-images-zone > .preview-image > .image-zone > img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 5px;
+            }
+
+        .suapreview-images-zone > .preview-image > .tools-edit-image {
+            position: absolute;
+            z-index: 100;
+            color: #fff;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            margin-bottom: 10px;
+            display: none;
+        }
+
+        .suapreview-images-zone > .preview-image > .image-cancel {
+            font-size: 18px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-weight: bold;
+            margin-right: 10px;
+            cursor: pointer;
+            display: none;
+            z-index: 100;
+        }
+
+
+
+
+
+.preview-image:hover > .image-zone {
+    cursor: move;
+    opacity: .5;
+}
+
+.preview-image:hover > .tools-edit-image,
+.preview-image:hover > .image-cancel {
+    display: block;
+}
+
+.ui-sortable-helper {
+    width: 90px !important;
+    height: 90px !important;
+}
+
+
+
+/* CSS upload video */
+.videos-list ul {
+    margin: 0px;
+    padding: 0px;
+}
+
+    .videos-list ul li {
+        list-style: none;
+        float: left;
+        width: 19%;
+        margin: 5px;
+        position: relative;
+    }
+
+        .videos-list ul li img {
+            width: 100%;
+            border-radius: 10px;
+            height: 110px;
+        }
+
+        .videos-list ul li span {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background: rgba(0, 0, 0, .5);
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+            .videos-list ul li span svg {
+                color: #fff;
+            }
+
+/* CSS danh sách h?nh ?nh */
+
+#highlight {
+    color: #ea8478;
+    font-size: 1.25rem;
+}
+
+.gallery * {
+    box-sizing: border-box;
+}
+
+.img-container {
+    width: 100%;
+    height: 400px;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.img-container img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    transform: scale(1);
+    transition: all 0.3s ease-in-out;
+}
+
+.img-container img:hover {
+    transform: scale(1.05);
+}
+
+figure {
+    margin: 0 0 1.5rem;
 }

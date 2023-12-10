@@ -135,6 +135,7 @@
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountProfileController.cs" />
     <Compile Include="Areas\Admin\Controllers\DmCap1MenuHangNgayController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DmCap1MenuTiecBanController.cs" />
     <Compile Include="Areas\Admin\Controllers\MonAnMenuHangNgayController.cs" />
     <Compile Include="Areas\Admin\Controllers\RoleController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -2537,6 +2538,9 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Content Include="ScriptDatabases\beanfamily-ver2016.sql" />
+    <Content Include="ScriptDatabases\beanfamily-ver2019.sql" />
+    <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Validation\AccountBean\DetailLockAccount.js" />
     <Content Include="Validation\AccountBean\LockAccount.js" />
     <Content Include="Validation\AccountBean\EditAccount.js" />
@@ -2544,6 +2548,10 @@
     <Content Include="Validation\Dmc1MenuHangNgay\XemMonDmc1MenuHangNgay.js" />
     <Content Include="Validation\Dmc1MenuHangNgay\XoaDmc1MenuHangNgay.js" />
     <Content Include="Validation\Dmc1MenuHangNgay\SuaDmc1MenuHangNgay.js" />
+    <Content Include="Validation\Dmc1MenuTiecBan\SuaDmc1MenuTiecBan.js" />
+    <Content Include="Validation\Dmc1MenuTiecBan\ThemDmc1MenuTiecBan.js" />
+    <Content Include="Validation\Dmc1MenuTiecBan\XemMonDmc1MenuTiecBan.js" />
+    <Content Include="Validation\Dmc1MenuTiecBan\XoaDmc1MenuTiecBan.js" />
     <Content Include="Validation\Login\login.js" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.js" />
@@ -2777,6 +2785,10 @@
     <Content Include="Areas\Admin\Views\DmCap1MenuHangNgay\Index.cshtml" />
     <Content Include="Areas\Admin\Views\DmCap1MenuHangNgay\_DanhSachMonHangNgay.cshtml" />
     <Content Include="Areas\Admin\Views\MonAnMenuHangNgay\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\MonAnMenuHangNgay\_xemHinhAnhMon.cshtml" />
+    <Content Include="Areas\Admin\Views\MonAnMenuHangNgay\_OpenSuaMon.cshtml" />
+    <Content Include="Areas\Admin\Views\DmCap1MenuTiecBan\Index.cshtml" />
+    <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2788,6 +2800,11 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Validation\MonAnMenuHangNgay\OpenModalSuaMonAn.js" />
+    <Content Include="Validation\MonAnMenuHangNgay\SuaMonAn.js" />
+    <Content Include="Validation\MonAnMenuHangNgay\XoaMonAn.js" />
+    <Content Include="Validation\MonAnMenuHangNgay\ThemMonAn.js" />
+    <Content Include="Validation\MonAnMenuHangNgay\XemHinhAnh.js" />
     <Content Include="Validation\Profile\UpdateInformation.js" />
     <Content Include="Validation\AccountBean\AddAccount.js" />
     <Content Include="Validation\Role\EditRole.js" />

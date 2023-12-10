@@ -13,12 +13,27 @@
             if (i % 2 == 0)
             {
                 <li class="list-group-item list-group-item-primary">
-                    <div class="row">
+                    <div class="row" style="display: flex; align-items: center; text-align:center">
+                        @if (!string.IsNullOrEmpty(item.hinhanh))
+                        {
+                            <div class="col-sm-2">
+                                <div style="height: 80px; width: 80px; text-align: center">
+                                    <img style="margin-left: -10px; height: 80px; width: 80px; object-fit: cover; border-radius: 5px " src="@Url.Content(item.hinhanh.Split('#')[0])" />
+                                </div>
+                            </div>
+                        }
+
                         <div class="col-sm-2">
                             SP@(item.id.ToString("D6"))
                         </div>
-                        <div class="row col-sm-8">
+                        <div class="col-sm-2">
                             @item.tensanpham
+                        </div>
+                        <div class="col-sm-2">
+                            @item.gia.ToString("0,0") đ
+                        </div>
+                        <div class="col-sm-2">
+                            @item.mota
                         </div>
                     </div>
                 </li>
@@ -26,12 +41,27 @@
             else
             {
                 <li class="list-group-item">
-                    <div class="row">
+                    <div class="row" style="display: flex; align-items: center; text-align:center">
+                        @if (!string.IsNullOrEmpty(item.hinhanh))
+                        {
+                            <div class="col-sm-2">
+                                <div style="height: 80px; width: 80px; text-align: center ">
+                                    <img style="margin-left: -10px; height: 80px; width: 80px; object-fit: cover; border-radius: 5px " src="@Url.Content(item.hinhanh.Split('#')[0])" />
+                                </div>
+                            </div>
+                        }
+
                         <div class="col-sm-2">
                             SP@(item.id.ToString("D6"))
                         </div>
-                        <div class="row col-sm-8">
+                        <div class="col-sm-2">
                             @item.tensanpham
+                        </div>
+                        <div class="col-sm-2">
+                            @item.gia.ToString("0,0") đ
+                        </div>
+                        <div class="col-sm-2">
+                            @item.mota
                         </div>
                     </div>
                 </li>

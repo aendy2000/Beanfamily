@@ -13,12 +13,12 @@
         }
 
         $('#suastriddanhmuc').val($('#inpMadanhmuc' + id).val());
-        $('#SuaDmTdhnModal').modal('toggle');
+        $('#SuaDmMtbModal').modal('toggle');
     });
 
-    $('#btnluuSuaDmtdhn').on('click', function () {
-        $('#btnluuSuaDmtdhn').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"> </span> Đang tải...');
-        $('#btnluuSuaDmtdhn').prop('disabled', true);
+    $('#btnluuSuaDmMtb').on('click', function () {
+        $('#btnluuSuaDmMtb').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"> </span> Đang tải...');
+        $('#btnluuSuaDmMtb').prop('disabled', true);
 
         var tendanhmuc = $('#suatendanhmuc').val().trim();
         var sothutu = $('#suasothutu').val().trim();
@@ -35,8 +35,8 @@
             $('#invalid-suatendanhmuc-feedback').text("Vui lòng nhập tên danh mục.").prop('hidden', false);
             $("#tendanhmuc").focus();
 
-            $('#btnluuSuaDmtdhn').html('Lưu thông tin');
-            $('#btnluuSuaDmtdhn').prop('disabled', false);
+            $('#btnluuSuaDmMtb').html('Lưu thông tin');
+            $('#btnluuSuaDmMtb').prop('disabled', false);
         }
 
 
@@ -48,7 +48,7 @@
             formData.append('sothutu', sothutu);
 
             $.ajax({
-                url: $('#requestPath').val() + "admin/dmcap1menuhangngay/suadm",
+                url: $('#requestPath').val() + "admin/dmcap1menutiecban/suadm",
                 data: formData,
                 dataType: 'html',
                 type: 'POST',
@@ -56,8 +56,8 @@
                 contentType: false
             }).done(function (ketqua) {
                 if (ketqua == "SUCCESS") {
-                    $('#btnluuSuaDmtdhn').html('Lưu thông tin');
-                    $('#btnluuSuaDmtdhn').prop('disabled', false);
+                    $('#btnluuSuaDmMtb').html('Lưu thông tin');
+                    $('#btnluuSuaDmMtb').prop('disabled', false);
 
                     Swal.fire({
                         title: "Thành công!",
@@ -72,12 +72,12 @@
                     $('#invalid-suatendanhmuc-feedback').text("Danh mục này đã tồn tại.").prop('hidden', false);
                     $("#suatendanhmuc").focus();
 
-                    $('#btnluuSuaDmtdhn').html('Lưu thông tin');
-                    $('#btnluuSuaDmtdhn').prop('disabled', false);
+                    $('#btnluuSuaDmMtb').html('Lưu thông tin');
+                    $('#btnluuSuaDmMtb').prop('disabled', false);
                 }
                 else if (ketqua == "KHONGTONTAI") {
-                    $('#btnluuSuaDmtdhn').html('Lưu thông tin');
-                    $('#btnluuSuaDmtdhn').prop('disabled', false);
+                    $('#btnluuSuaDmMtb').html('Lưu thông tin');
+                    $('#btnluuSuaDmMtb').prop('disabled', false);
 
                     Swal.fire({
                         title: "Thông báo!",
@@ -88,8 +88,8 @@
                     });
                 }
                 else {
-                    $('#btnluuSuaDmtdhn').html('Lưu thông tin');
-                    $('#btnluuSuaDmtdhn').prop('disabled', false);
+                    $('#btnluuSuaDmMtb').html('Lưu thông tin');
+                    $('#btnluuSuaDmMtb').prop('disabled', false);
 
                     Swal.fire({
                         title: "Đã xảy ra lỗi, vui lòng thử lại sau ít phút.",
