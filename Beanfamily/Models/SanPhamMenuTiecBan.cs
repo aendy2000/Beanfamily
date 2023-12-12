@@ -21,13 +21,12 @@ namespace Beanfamily.Models
         }
     
         public int id { get; set; }
+        public int id_danhmucmenutiecbancap1 { get; set; }
+        public int sothutu { get; set; }
         public string hinhanh { get; set; }
-        public string video { get; set; }
         public string tensanpham { get; set; }
         public decimal gia { get; set; }
-        public string mota { get; set; }
         public bool hienthi { get; set; }
-        public int id_danhmucmenutiecbancap1 { get; set; }
     
         public virtual DanhMucMenuTiecBanCap1 DanhMucMenuTiecBanCap1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

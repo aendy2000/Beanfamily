@@ -18,11 +18,10 @@ namespace Beanfamily.Areas.Admin.Controllers
         {
             Session["active-dashboard"] = "collapsed # # ";
             Session["active-mtb-dmc1"] = " # show # active";
-            Session["active-mtb-dmpv"] = " # show # ";
             Session["active-mtb-qlm"] = " # show # ";
             Session["active-mb-dmc1"] = "collapsed # # ";
-            Session["active-mb-dmpv"] = "collapsed # # ";
             Session["active-mb-qlm"] = "collapsed # # ";
+            Session["active-dmpv"] = "collapsed # # ";
             Session["active-mhn-dmc1"] = "collapsed # # ";
             Session["active-mhn-qlm"] = "collapsed # # ";
             Session["active-vrb-dmc1"] = "collapsed # # ";
@@ -40,7 +39,7 @@ namespace Beanfamily.Areas.Admin.Controllers
             Session["active-tlc-ttw"] = "collapsed # # ";
             Session["active-tlc-lkmxh"] = "collapsed # # ";
 
-            if (Session["mhn-dmc1"] == null)
+            if (Session["mtb-dmc1"] == null)
                 return RedirectToAction("index", "dashboard");
 
             var dm = model.DanhMucMenuTiecBanCap1.ToList();
@@ -48,7 +47,7 @@ namespace Beanfamily.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult ThemDm(string tendanhmuc, bool hienthi, string sothutu)
+        public ActionResult ThemDm(string tendanhmuc, bool hienthi, string sothutu, string idPv)
         {
             try
             {
@@ -68,6 +67,32 @@ namespace Beanfamily.Areas.Admin.Controllers
 
                 model.DanhMucMenuTiecBanCap1.Add(dm);
                 model.SaveChanges();
+
+                if (!string.IsNullOrEmpty(idPv))
+                {
+                    int idDm = dm.id;
+                    model = new BeanfamilyEntities();
+
+                    if (idPv.IndexOf("-") != -1)
+                    {
+                        foreach (var item in idPv.Split('-').ToList())
+                        {
+                            var apdungPv = new ApDungDanhMucPhucVu();
+                            apdungPv.id_danhmucmenutiecbancap1 = idDm;
+                            apdungPv.id_danhmucphucvu = Int32.Parse(item);
+                            model.ApDungDanhMucPhucVu.Add(apdungPv);
+                        }
+                    }
+                    else
+                    {
+                        var apdungPv = new ApDungDanhMucPhucVu();
+                        apdungPv.id_danhmucmenutiecbancap1 = idDm;
+                        apdungPv.id_danhmucphucvu = Int32.Parse(idPv);
+                        model.ApDungDanhMucPhucVu.Add(apdungPv);
+                    }
+                    model.SaveChanges();
+                }
+
                 return Content("SUCCESS");
             }
             catch (Exception ex)
@@ -77,7 +102,7 @@ namespace Beanfamily.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult SuaDm(int id, string tendanhmuc, bool hienthi, string sothutu)
+        public ActionResult SuaDm(int id, string tendanhmuc, bool hienthi, string sothutu, string idPv)
         {
             try
             {
@@ -96,6 +121,29 @@ namespace Beanfamily.Areas.Admin.Controllers
                 else
                     dm.sothutu = 0;
                 dm.ngaysuadoi = DateTime.Now;
+
+                model.ApDungDanhMucPhucVu.RemoveRange(dm.ApDungDanhMucPhucVu);
+                if (!string.IsNullOrEmpty(idPv))
+                {
+                    if (idPv.IndexOf("-") != -1)
+                    {
+                        foreach (var item in idPv.Split('-').ToList())
+                        {
+                            var apdungPv = new ApDungDanhMucPhucVu();
+                            apdungPv.id_danhmucmenutiecbancap1 = id;
+                            apdungPv.id_danhmucphucvu = Int32.Parse(item);
+                            model.ApDungDanhMucPhucVu.Add(apdungPv);
+                        }
+                    }
+                    else
+                    {
+                        var apdungPv = new ApDungDanhMucPhucVu();
+                        apdungPv.id_danhmucmenutiecbancap1 = id;
+                        apdungPv.id_danhmucphucvu = Int32.Parse(idPv);
+                        model.ApDungDanhMucPhucVu.Add(apdungPv);
+                    }
+                }
+
                 model.Entry(dm).State = EntityState.Modified;
                 model.SaveChanges();
                 return Content("SUCCESS");
@@ -115,6 +163,7 @@ namespace Beanfamily.Areas.Admin.Controllers
                 if (dm == null)
                     return Content("KHONGTONTAI");
 
+                model.ApDungDanhMucPhucVu.RemoveRange(dm.ApDungDanhMucPhucVu);
                 model.DanhMucMenuTiecBanCap1.Remove(dm);
                 model.SaveChanges();
 

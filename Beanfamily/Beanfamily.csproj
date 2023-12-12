@@ -132,6 +132,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountBeanController.cs" />
     <Compile Include="Areas\Admin\Controllers\DangNhapController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DanhMucPhucVuController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountProfileController.cs" />
     <Compile Include="Areas\Admin\Controllers\DmCap1MenuHangNgayController.cs" />
@@ -144,6 +145,9 @@
     </Compile>
     <Compile Include="Middlewall\Loginverification.cs" />
     <Compile Include="Models\ApDungChucNangChoQuyenTaiKhoan.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ApDungDanhMucPhucVu.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CacBuocQuyTrinhTrongCay.cs">
@@ -161,10 +165,7 @@
     <Compile Include="Models\DanhMucMenuTiecBanCap1.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DanhMucPhucVuMenuBuffetCap1.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DanhMucPhucVuMenuTiecBanCap1.cs">
+    <Compile Include="Models\DanhMucPhucVuMenuTiecBanVaMenuBuffet.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DanhMucSanPhamMuaSamCap1.cs">
@@ -2548,6 +2549,9 @@
     <Content Include="Validation\Dmc1MenuHangNgay\XemMonDmc1MenuHangNgay.js" />
     <Content Include="Validation\Dmc1MenuHangNgay\XoaDmc1MenuHangNgay.js" />
     <Content Include="Validation\Dmc1MenuHangNgay\SuaDmc1MenuHangNgay.js" />
+    <Content Include="Validation\DanhMucPhucVu\SuaDmpvMenu.js" />
+    <Content Include="Validation\DanhMucPhucVu\ThemDmpvMenu.js" />
+    <Content Include="Validation\DanhMucPhucVu\XoaDmpvMenu.js" />
     <Content Include="Validation\Dmc1MenuTiecBan\SuaDmc1MenuTiecBan.js" />
     <Content Include="Validation\Dmc1MenuTiecBan\ThemDmc1MenuTiecBan.js" />
     <Content Include="Validation\Dmc1MenuTiecBan\XemMonDmc1MenuTiecBan.js" />
@@ -2775,6 +2779,13 @@
     <Content Include="Areas\Admin\Views\Role\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Role\_EditView.cshtml" />
     <Content Include="Areas\Admin\Views\AccountBean\_DetailAccount.cshtml" />
+    <Content Include="Areas\Admin\Views\DmCap1MenuHangNgay\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\DmCap1MenuHangNgay\_DanhSachMonHangNgay.cshtml" />
+    <Content Include="Areas\Admin\Views\MonAnMenuHangNgay\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\MonAnMenuHangNgay\_xemHinhAnhMon.cshtml" />
+    <Content Include="Areas\Admin\Views\MonAnMenuHangNgay\_OpenSuaMon.cshtml" />
+    <Content Include="Areas\Admin\Views\DmCap1MenuTiecBan\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\DanhMucPhucVu\Index.cshtml" />
     <EntityDeploy Include="Models\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
@@ -2782,12 +2793,6 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
-    <Content Include="Areas\Admin\Views\DmCap1MenuHangNgay\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\DmCap1MenuHangNgay\_DanhSachMonHangNgay.cshtml" />
-    <Content Include="Areas\Admin\Views\MonAnMenuHangNgay\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\MonAnMenuHangNgay\_xemHinhAnhMon.cshtml" />
-    <Content Include="Areas\Admin\Views\MonAnMenuHangNgay\_OpenSuaMon.cshtml" />
-    <Content Include="Areas\Admin\Views\DmCap1MenuTiecBan\Index.cshtml" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -2831,7 +2836,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\Home\" />
-    <Folder Include="Areas\Admin\Views\MenuHangNgay\" />
     <Folder Include="Areas\Admin\Views\Profile\" />
     <Folder Include="Content\AdminAreas\images\taikhoanbean\" />
   </ItemGroup>

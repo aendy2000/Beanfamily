@@ -47,6 +47,7 @@ namespace Beanfamily.Areas.Admin.Controllers
                         Session["mtb-qlm"] = null;
                         Session["mb-dmc1"] = null;
                         Session["mb-qlm"] = null;
+                        Session["dmpv"] = null;
                         Session["mhn-dmc1"] = null;
                         Session["mhn-qlm"] = null;
                         Session["vrb-dmc1"] = null;
@@ -77,6 +78,9 @@ namespace Beanfamily.Areas.Admin.Controllers
                                 Session["mb-dmc1"] = true;
                             else if (keycodes.Equals("mb-qlm"))
                                 Session["mb-qlm"] = true;
+
+                            else if (keycodes.Equals("dmpv"))
+                                Session["dmpv"] = true;
 
                             else if (keycodes.Equals("mhn-dmc1"))
                                 Session["mhn-dmc1"] = true;

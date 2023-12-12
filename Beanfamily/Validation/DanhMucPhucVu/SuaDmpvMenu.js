@@ -12,25 +12,13 @@
             $('#suahienthi').prop("checked", false);
         }
 
-
-        $('[id^="suaiddmpv"]').each(function () {
-            $(this).prop('checked', false);
-        });
-        var dmPv = $('#inpDmpv' + id).val();
-        if (dmPv.length > 0) {
-            var lstDmpv = dmPv.split("-");
-            for (var i = 0; i < lstDmpv.length; i++) {
-                $('#suaiddmpv' + lstDmpv[i]).prop('checked', true);
-            }
-        }
-
         $('#suastriddanhmuc').val($('#inpMadanhmuc' + id).val());
         $('#SuaDmMtbModal').modal('toggle');
     });
 
-    $('#btnluuSuaDmMtb').on('click', function () {
-        $('#btnluuSuaDmMtb').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"> </span> Đang tải...');
-        $('#btnluuSuaDmMtb').prop('disabled', true);
+    $('#btnluuSuaDmpv').on('click', function () {
+        $('#btnluuSuaDmpv').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"> </span> Đang tải...');
+        $('#btnluuSuaDmpv').prop('disabled', true);
 
         var tendanhmuc = $('#suatendanhmuc').val().trim();
         var sothutu = $('#suasothutu').val().trim();
@@ -47,8 +35,8 @@
             $('#invalid-suatendanhmuc-feedback').text("Vui lòng nhập tên danh mục.").prop('hidden', false);
             $("#tendanhmuc").focus();
 
-            $('#btnluuSuaDmMtb').html('Lưu thông tin');
-            $('#btnluuSuaDmMtb').prop('disabled', false);
+            $('#btnluuSuaDmpv').html('Lưu thông tin');
+            $('#btnluuSuaDmpv').prop('disabled', false);
         }
 
 
@@ -59,19 +47,8 @@
             formData.append('hienthi', $('#suahienthi').prop('checked'));
             formData.append('sothutu', sothutu);
 
-            var lstIdPv = "";
-            $('[id^="suaiddmpv"]').each(function () {
-                $(this).attr('name');
-                if ($(this).prop('checked')) lstIdPv += $(this).attr('name') + "-";
-            });
-
-            if (lstIdPv.length < 1)
-                formData.append('idPv', lstIdPv);
-            else
-                formData.append('idPv', lstIdPv.substring(0, lstIdPv.length - 1));
-
             $.ajax({
-                url: $('#requestPath').val() + "admin/dmcap1menutiecban/suadm",
+                url: $('#requestPath').val() + "admin/danhmucphucvu/suadm",
                 data: formData,
                 dataType: 'html',
                 type: 'POST',
@@ -79,8 +56,8 @@
                 contentType: false
             }).done(function (ketqua) {
                 if (ketqua == "SUCCESS") {
-                    $('#btnluuSuaDmMtb').html('Lưu thông tin');
-                    $('#btnluuSuaDmMtb').prop('disabled', false);
+                    $('#btnluuSuaDmpv').html('Lưu thông tin');
+                    $('#btnluuSuaDmpv').prop('disabled', false);
 
                     Swal.fire({
                         title: "Thành công!",
@@ -95,12 +72,12 @@
                     $('#invalid-suatendanhmuc-feedback').text("Danh mục này đã tồn tại.").prop('hidden', false);
                     $("#suatendanhmuc").focus();
 
-                    $('#btnluuSuaDmMtb').html('Lưu thông tin');
-                    $('#btnluuSuaDmMtb').prop('disabled', false);
+                    $('#btnluuSuaDmpv').html('Lưu thông tin');
+                    $('#btnluuSuaDmpv').prop('disabled', false);
                 }
                 else if (ketqua == "KHONGTONTAI") {
-                    $('#btnluuSuaDmMtb').html('Lưu thông tin');
-                    $('#btnluuSuaDmMtb').prop('disabled', false);
+                    $('#btnluuSuaDmpv').html('Lưu thông tin');
+                    $('#btnluuSuaDmpv').prop('disabled', false);
 
                     Swal.fire({
                         title: "Thông báo!",
@@ -111,8 +88,8 @@
                     });
                 }
                 else {
-                    $('#btnluuSuaDmMtb').html('Lưu thông tin');
-                    $('#btnluuSuaDmMtb').prop('disabled', false);
+                    $('#btnluuSuaDmpv').html('Lưu thông tin');
+                    $('#btnluuSuaDmpv').prop('disabled', false);
 
                     Swal.fire({
                         title: "Đã xảy ra lỗi, vui lòng thử lại sau ít phút.",

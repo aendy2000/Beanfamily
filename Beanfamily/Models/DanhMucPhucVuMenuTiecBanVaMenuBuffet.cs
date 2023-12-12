@@ -12,16 +12,22 @@ namespace Beanfamily.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class DanhMucPhucVuMenuTiecBanCap1
+    public partial class DanhMucPhucVuMenuTiecBanVaMenuBuffet
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public DanhMucPhucVuMenuTiecBanVaMenuBuffet()
+        {
+            this.ApDungDanhMucPhucVu = new HashSet<ApDungDanhMucPhucVu>();
+        }
+    
         public int id { get; set; }
-        public int id_danhmucmenutiecbancap1 { get; set; }
         public int sothutu { get; set; }
         public string tendanhmuc { get; set; }
         public System.DateTime ngaytao { get; set; }
         public System.DateTime ngaysuadoi { get; set; }
         public bool hienthi { get; set; }
     
-        public virtual DanhMucMenuTiecBanCap1 DanhMucMenuTiecBanCap1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ApDungDanhMucPhucVu> ApDungDanhMucPhucVu { get; set; }
     }
 }

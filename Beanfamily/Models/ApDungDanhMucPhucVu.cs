@@ -12,16 +12,15 @@ namespace Beanfamily.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class DanhMucPhucVuMenuBuffetCap1
+    public partial class ApDungDanhMucPhucVu
     {
         public int id { get; set; }
-        public int id_danhmucmenubuffetcap1 { get; set; }
-        public int sothutu { get; set; }
-        public string tendanhmuc { get; set; }
-        public System.DateTime ngaytao { get; set; }
-        public System.DateTime ngaysuadoi { get; set; }
-        public bool hienthi { get; set; }
+        public Nullable<int> id_danhmucmenutiecbancap1 { get; set; }
+        public Nullable<int> id_danhmucmenubuffetcap1 { get; set; }
+        public int id_danhmucphucvu { get; set; }
     
         public virtual DanhMucMenuBuffetCap1 DanhMucMenuBuffetCap1 { get; set; }
+        public virtual DanhMucMenuTiecBanCap1 DanhMucMenuTiecBanCap1 { get; set; }
+        public virtual DanhMucPhucVuMenuTiecBanVaMenuBuffet DanhMucPhucVuMenuTiecBanVaMenuBuffet { get; set; }
     }
 }

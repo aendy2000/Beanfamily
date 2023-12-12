@@ -51,7 +51,7 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                                <tr>
+                                <tr style="vertical-align: middle">
                                     <th scope="row">
                                         SP@(item.id.ToString("D6"))
                                         <input hidden id="inpMamonan@(item.id)" value="SP@(item.id.ToString("D6"))" />
@@ -197,7 +197,7 @@
 
 <!-- Xem hình ảnh -->
 <div class="modal fade" id="XemHinhAnhMonModal" tabindex="-1">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 id="titleHinhAnhMonAn" class="modal-title"></h5>

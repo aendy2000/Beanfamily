@@ -19,11 +19,10 @@ namespace Beanfamily.Areas.Admin.Controllers
         {
             Session["active-dashboard"] = "collapsed # # ";
             Session["active-mtb-dmc1"] = "collapsed # # ";
-            Session["active-mtb-dmpv"] = "collapsed # # ";
             Session["active-mtb-qlm"] = "collapsed # # ";
             Session["active-mb-dmc1"] = "collapsed # # ";
-            Session["active-mb-dmpv"] = "collapsed # # ";
             Session["active-mb-qlm"] = "collapsed # # ";
+            Session["active-dmpv"] = "collapsed # # ";
             Session["active-mhn-dmc1"] = " # show # ";
             Session["active-mhn-qlm"] = " # show # active";
             Session["active-vrb-dmc1"] = "collapsed # # ";

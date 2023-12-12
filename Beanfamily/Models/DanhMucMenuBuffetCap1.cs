@@ -17,7 +17,7 @@ namespace Beanfamily.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public DanhMucMenuBuffetCap1()
         {
-            this.DanhMucPhucVuMenuBuffetCap1 = new HashSet<DanhMucPhucVuMenuBuffetCap1>();
+            this.ApDungDanhMucPhucVu = new HashSet<ApDungDanhMucPhucVu>();
             this.SanPhamMenuBuffet = new HashSet<SanPhamMenuBuffet>();
         }
     
@@ -29,7 +29,7 @@ namespace Beanfamily.Models
         public bool hienthi { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DanhMucPhucVuMenuBuffetCap1> DanhMucPhucVuMenuBuffetCap1 { get; set; }
+        public virtual ICollection<ApDungDanhMucPhucVu> ApDungDanhMucPhucVu { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SanPhamMenuBuffet> SanPhamMenuBuffet { get; set; }
     }

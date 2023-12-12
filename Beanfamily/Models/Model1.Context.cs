@@ -26,13 +26,13 @@ namespace Beanfamily.Models
         }
     
         public virtual DbSet<ApDungChucNangChoQuyenTaiKhoan> ApDungChucNangChoQuyenTaiKhoan { get; set; }
+        public virtual DbSet<ApDungDanhMucPhucVu> ApDungDanhMucPhucVu { get; set; }
         public virtual DbSet<CacBuocQuyTrinhTrongCay> CacBuocQuyTrinhTrongCay { get; set; }
         public virtual DbSet<ChiTietDonHangMuaSamVaMenuHangNgay> ChiTietDonHangMuaSamVaMenuHangNgay { get; set; }
         public virtual DbSet<ChucNangHeThongBean> ChucNangHeThongBean { get; set; }
         public virtual DbSet<DanhMucMenuBuffetCap1> DanhMucMenuBuffetCap1 { get; set; }
         public virtual DbSet<DanhMucMenuTiecBanCap1> DanhMucMenuTiecBanCap1 { get; set; }
-        public virtual DbSet<DanhMucPhucVuMenuBuffetCap1> DanhMucPhucVuMenuBuffetCap1 { get; set; }
-        public virtual DbSet<DanhMucPhucVuMenuTiecBanCap1> DanhMucPhucVuMenuTiecBanCap1 { get; set; }
+        public virtual DbSet<DanhMucPhucVuMenuTiecBanVaMenuBuffet> DanhMucPhucVuMenuTiecBanVaMenuBuffet { get; set; }
         public virtual DbSet<DanhMucSanPhamMuaSamCap1> DanhMucSanPhamMuaSamCap1 { get; set; }
         public virtual DbSet<DanhMucSanPhamRauNhaTrongCap1> DanhMucSanPhamRauNhaTrongCap1 { get; set; }
         public virtual DbSet<DanhMucThucDocHangNgayCap1> DanhMucThucDocHangNgayCap1 { get; set; }

@@ -50,7 +50,7 @@
                         <tbody style="overflow-x: scroll;">
                             @foreach (var item in Model)
                             {
-                                <tr>
+                                <tr style="vertical-align: middle">
                                     <td>R@(item.id.ToString("D6"))</td>
                                     <td>
                                         <input hidden id="tenquyen@(item.id)" value="@item.name" />

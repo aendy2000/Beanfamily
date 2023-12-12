@@ -16,6 +16,15 @@
           <Property Name="chophepsua" Type="bit" Nullable="false" />
           <Property Name="chophepxoa" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="ApDungDanhMucPhucVu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_danhmucmenutiecbancap1" Type="int" />
+          <Property Name="id_danhmucmenubuffetcap1" Type="int" />
+          <Property Name="id_danhmucphucvu" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="CacBuocQuyTrinhTrongCay">
           <Key>
             <PropertyRef Name="id" />
@@ -76,24 +85,11 @@
           <Property Name="ngaysuadoi" Type="datetime" Nullable="false" />
           <Property Name="hienthi" Type="bit" Nullable="false" />
         </EntityType>
-        <EntityType Name="DanhMucPhucVuMenuBuffetCap1">
+        <EntityType Name="DanhMucPhucVuMenuTiecBanVaMenuBuffet">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="id_danhmucmenubuffetcap1" Type="int" Nullable="false" />
-          <Property Name="sothutu" Type="int" Nullable="false" />
-          <Property Name="tendanhmuc" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="ngaytao" Type="datetime" Nullable="false" />
-          <Property Name="ngaysuadoi" Type="datetime" Nullable="false" />
-          <Property Name="hienthi" Type="bit" Nullable="false" />
-        </EntityType>
-        <EntityType Name="DanhMucPhucVuMenuTiecBanCap1">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="id_danhmucmenutiecbancap1" Type="int" Nullable="false" />
           <Property Name="sothutu" Type="int" Nullable="false" />
           <Property Name="tendanhmuc" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="ngaytao" Type="datetime" Nullable="false" />
@@ -263,11 +259,9 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_danhmucmenubuffetcap1" Type="int" Nullable="false" />
+          <Property Name="sothutu" Type="int" Nullable="false" />
           <Property Name="hinhanh" Type="nvarchar(max)" />
-          <Property Name="video" Type="nvarchar(max)" />
           <Property Name="tensanpham" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="gia" Type="money" Nullable="false" />
-          <Property Name="mota" Type="nvarchar(max)" />
           <Property Name="hienthi" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="SanPhamMenuTiecBan">
@@ -275,13 +269,12 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_danhmucmenutiecbancap1" Type="int" Nullable="false" />
+          <Property Name="sothutu" Type="int" Nullable="false" />
           <Property Name="hinhanh" Type="nvarchar(max)" />
-          <Property Name="video" Type="nvarchar(max)" />
           <Property Name="tensanpham" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="gia" Type="money" Nullable="false" />
-          <Property Name="mota" Type="nvarchar(max)" />
           <Property Name="hienthi" Type="bit" Nullable="false" />
-          <Property Name="id_danhmucmenutiecbancap1" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="SanPhamMuaSam">
           <Key>
@@ -424,6 +417,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ApDungDanhMucPhucVu_DanhMucMenuBuffetCap1">
+          <End Role="DanhMucMenuBuffetCap1" Type="Self.DanhMucMenuBuffetCap1" Multiplicity="0..1" />
+          <End Role="ApDungDanhMucPhucVu" Type="Self.ApDungDanhMucPhucVu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DanhMucMenuBuffetCap1">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ApDungDanhMucPhucVu">
+              <PropertyRef Name="id_danhmucmenubuffetcap1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApDungDanhMucPhucVu_DanhMucMenuTiecBanCap1">
+          <End Role="DanhMucMenuTiecBanCap1" Type="Self.DanhMucMenuTiecBanCap1" Multiplicity="0..1" />
+          <End Role="ApDungDanhMucPhucVu" Type="Self.ApDungDanhMucPhucVu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DanhMucMenuTiecBanCap1">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ApDungDanhMucPhucVu">
+              <PropertyRef Name="id_danhmucmenutiecbancap1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApDungDanhMucPhucVu_DanhMucPhucVuMenuTiecBanVaMenuBuffet">
+          <End Role="DanhMucPhucVuMenuTiecBanVaMenuBuffet" Type="Self.DanhMucPhucVuMenuTiecBanVaMenuBuffet" Multiplicity="1" />
+          <End Role="ApDungDanhMucPhucVu" Type="Self.ApDungDanhMucPhucVu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DanhMucPhucVuMenuTiecBanVaMenuBuffet">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ApDungDanhMucPhucVu">
+              <PropertyRef Name="id_danhmucphucvu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_CacBuocQuyTrinhTrongCay_QuyTrinhTrongCay">
           <End Role="QuyTrinhTrongCay" Type="Self.QuyTrinhTrongCay" Multiplicity="1" />
           <End Role="CacBuocQuyTrinhTrongCay" Type="Self.CacBuocQuyTrinhTrongCay" Multiplicity="*" />
@@ -469,30 +498,6 @@
             </Principal>
             <Dependent Role="ChiTietDonHangMuaSamVaMenuHangNgay">
               <PropertyRef Name="id_sanphamthucdonhangngay" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_DanhMucPhucVuMenuBuffetCap1_DanhMucMenuBuffetCap1">
-          <End Role="DanhMucMenuBuffetCap1" Type="Self.DanhMucMenuBuffetCap1" Multiplicity="1" />
-          <End Role="DanhMucPhucVuMenuBuffetCap1" Type="Self.DanhMucPhucVuMenuBuffetCap1" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DanhMucMenuBuffetCap1">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="DanhMucPhucVuMenuBuffetCap1">
-              <PropertyRef Name="id_danhmucmenubuffetcap1" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_DanhMucPhucVuMenuTiecBanCap1_DanhMucMenuTiecBanCap1">
-          <End Role="DanhMucMenuTiecBanCap1" Type="Self.DanhMucMenuTiecBanCap1" Multiplicity="1" />
-          <End Role="DanhMucPhucVuMenuTiecBanCap1" Type="Self.DanhMucPhucVuMenuTiecBanCap1" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DanhMucMenuTiecBanCap1">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="DanhMucPhucVuMenuTiecBanCap1">
-              <PropertyRef Name="id_danhmucmenutiecbancap1" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -798,13 +803,13 @@
         </Association>
         <EntityContainer Name="BeanfamilyModelStoreContainer">
           <EntitySet Name="ApDungChucNangChoQuyenTaiKhoan" EntityType="Self.ApDungChucNangChoQuyenTaiKhoan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ApDungDanhMucPhucVu" EntityType="Self.ApDungDanhMucPhucVu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CacBuocQuyTrinhTrongCay" EntityType="Self.CacBuocQuyTrinhTrongCay" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ChiTietDonHangMuaSamVaMenuHangNgay" EntityType="Self.ChiTietDonHangMuaSamVaMenuHangNgay" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ChucNangHeThongBean" EntityType="Self.ChucNangHeThongBean" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DanhMucMenuBuffetCap1" EntityType="Self.DanhMucMenuBuffetCap1" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DanhMucMenuTiecBanCap1" EntityType="Self.DanhMucMenuTiecBanCap1" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="DanhMucPhucVuMenuBuffetCap1" EntityType="Self.DanhMucPhucVuMenuBuffetCap1" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="DanhMucPhucVuMenuTiecBanCap1" EntityType="Self.DanhMucPhucVuMenuTiecBanCap1" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DanhMucPhucVuMenuTiecBanVaMenuBuffet" EntityType="Self.DanhMucPhucVuMenuTiecBanVaMenuBuffet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DanhMucSanPhamMuaSamCap1" EntityType="Self.DanhMucSanPhamMuaSamCap1" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DanhMucSanPhamRauNhaTrongCap1" EntityType="Self.DanhMucSanPhamRauNhaTrongCap1" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DanhMucThucDocHangNgayCap1" EntityType="Self.DanhMucThucDocHangNgayCap1" Schema="dbo" store:Type="Tables" />
@@ -836,6 +841,18 @@
             <End Role="QuyenTaiKhoanBean" EntitySet="QuyenTaiKhoanBean" />
             <End Role="ApDungChucNangChoQuyenTaiKhoan" EntitySet="ApDungChucNangChoQuyenTaiKhoan" />
           </AssociationSet>
+          <AssociationSet Name="FK_ApDungDanhMucPhucVu_DanhMucMenuBuffetCap1" Association="Self.FK_ApDungDanhMucPhucVu_DanhMucMenuBuffetCap1">
+            <End Role="DanhMucMenuBuffetCap1" EntitySet="DanhMucMenuBuffetCap1" />
+            <End Role="ApDungDanhMucPhucVu" EntitySet="ApDungDanhMucPhucVu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApDungDanhMucPhucVu_DanhMucMenuTiecBanCap1" Association="Self.FK_ApDungDanhMucPhucVu_DanhMucMenuTiecBanCap1">
+            <End Role="DanhMucMenuTiecBanCap1" EntitySet="DanhMucMenuTiecBanCap1" />
+            <End Role="ApDungDanhMucPhucVu" EntitySet="ApDungDanhMucPhucVu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApDungDanhMucPhucVu_DanhMucPhucVuMenuTiecBanVaMenuBuffet" Association="Self.FK_ApDungDanhMucPhucVu_DanhMucPhucVuMenuTiecBanVaMenuBuffet">
+            <End Role="DanhMucPhucVuMenuTiecBanVaMenuBuffet" EntitySet="DanhMucPhucVuMenuTiecBanVaMenuBuffet" />
+            <End Role="ApDungDanhMucPhucVu" EntitySet="ApDungDanhMucPhucVu" />
+          </AssociationSet>
           <AssociationSet Name="FK_CacBuocQuyTrinhTrongCay_QuyTrinhTrongCay" Association="Self.FK_CacBuocQuyTrinhTrongCay_QuyTrinhTrongCay">
             <End Role="QuyTrinhTrongCay" EntitySet="QuyTrinhTrongCay" />
             <End Role="CacBuocQuyTrinhTrongCay" EntitySet="CacBuocQuyTrinhTrongCay" />
@@ -851,14 +868,6 @@
           <AssociationSet Name="FK_ChiTietDonHangMuaSamVaMenuHangNgay_SanPhamThucDonHangNgay" Association="Self.FK_ChiTietDonHangMuaSamVaMenuHangNgay_SanPhamThucDonHangNgay">
             <End Role="SanPhamThucDonHangNgay" EntitySet="SanPhamThucDonHangNgay" />
             <End Role="ChiTietDonHangMuaSamVaMenuHangNgay" EntitySet="ChiTietDonHangMuaSamVaMenuHangNgay" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DanhMucPhucVuMenuBuffetCap1_DanhMucMenuBuffetCap1" Association="Self.FK_DanhMucPhucVuMenuBuffetCap1_DanhMucMenuBuffetCap1">
-            <End Role="DanhMucMenuBuffetCap1" EntitySet="DanhMucMenuBuffetCap1" />
-            <End Role="DanhMucPhucVuMenuBuffetCap1" EntitySet="DanhMucPhucVuMenuBuffetCap1" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DanhMucPhucVuMenuTiecBanCap1_DanhMucMenuTiecBanCap1" Association="Self.FK_DanhMucPhucVuMenuTiecBanCap1_DanhMucMenuTiecBanCap1">
-            <End Role="DanhMucMenuTiecBanCap1" EntitySet="DanhMucMenuTiecBanCap1" />
-            <End Role="DanhMucPhucVuMenuTiecBanCap1" EntitySet="DanhMucPhucVuMenuTiecBanCap1" />
           </AssociationSet>
           <AssociationSet Name="FK_DonHangMuaSamVaMenuHangNgay_TaiKhoanKhachHang" Association="Self.FK_DonHangMuaSamVaMenuHangNgay_TaiKhoanKhachHang">
             <End Role="TaiKhoanKhachHang" EntitySet="TaiKhoanKhachHang" />
@@ -979,6 +988,18 @@
           <NavigationProperty Name="ChucNangHeThongBean" Relationship="Self.FK_ApDungChucNangChoQuyenTaiKhoan_ChucNangHeThongBean" FromRole="ApDungChucNangChoQuyenTaiKhoan" ToRole="ChucNangHeThongBean" />
           <NavigationProperty Name="QuyenTaiKhoanBean" Relationship="Self.FK_ApDungChucNangChoQuyenTaiKhoan_QuyenTaiKhoanBean" FromRole="ApDungChucNangChoQuyenTaiKhoan" ToRole="QuyenTaiKhoanBean" />
         </EntityType>
+        <EntityType Name="ApDungDanhMucPhucVu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_danhmucmenutiecbancap1" Type="Int32" />
+          <Property Name="id_danhmucmenubuffetcap1" Type="Int32" />
+          <Property Name="id_danhmucphucvu" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DanhMucMenuBuffetCap1" Relationship="Self.FK_ApDungDanhMucPhucVu_DanhMucMenuBuffetCap1" FromRole="ApDungDanhMucPhucVu" ToRole="DanhMucMenuBuffetCap1" />
+          <NavigationProperty Name="DanhMucMenuTiecBanCap1" Relationship="Self.FK_ApDungDanhMucPhucVu_DanhMucMenuTiecBanCap1" FromRole="ApDungDanhMucPhucVu" ToRole="DanhMucMenuTiecBanCap1" />
+          <NavigationProperty Name="DanhMucPhucVuMenuTiecBanVaMenuBuffet" Relationship="Self.FK_ApDungDanhMucPhucVu_DanhMucPhucVuMenuTiecBanVaMenuBuffet" FromRole="ApDungDanhMucPhucVu" ToRole="DanhMucPhucVuMenuTiecBanVaMenuBuffet" />
+        </EntityType>
         <EntityType Name="CacBuocQuyTrinhTrongCay">
           <Key>
             <PropertyRef Name="id" />
@@ -1032,7 +1053,7 @@
           <Property Name="ngaytao" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ngaysuadoi" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="hienthi" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="DanhMucPhucVuMenuBuffetCap1" Relationship="Self.FK_DanhMucPhucVuMenuBuffetCap1_DanhMucMenuBuffetCap1" FromRole="DanhMucMenuBuffetCap1" ToRole="DanhMucPhucVuMenuBuffetCap1" />
+          <NavigationProperty Name="ApDungDanhMucPhucVu" Relationship="Self.FK_ApDungDanhMucPhucVu_DanhMucMenuBuffetCap1" FromRole="DanhMucMenuBuffetCap1" ToRole="ApDungDanhMucPhucVu" />
           <NavigationProperty Name="SanPhamMenuBuffet" Relationship="Self.FK_SanPhamMenuBuffet_DanhMucMenuBuffetCap1" FromRole="DanhMucMenuBuffetCap1" ToRole="SanPhamMenuBuffet" />
         </EntityType>
         <EntityType Name="DanhMucMenuTiecBanCap1">
@@ -1045,34 +1066,20 @@
           <Property Name="ngaytao" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ngaysuadoi" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="hienthi" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="DanhMucPhucVuMenuTiecBanCap1" Relationship="Self.FK_DanhMucPhucVuMenuTiecBanCap1_DanhMucMenuTiecBanCap1" FromRole="DanhMucMenuTiecBanCap1" ToRole="DanhMucPhucVuMenuTiecBanCap1" />
+          <NavigationProperty Name="ApDungDanhMucPhucVu" Relationship="Self.FK_ApDungDanhMucPhucVu_DanhMucMenuTiecBanCap1" FromRole="DanhMucMenuTiecBanCap1" ToRole="ApDungDanhMucPhucVu" />
           <NavigationProperty Name="SanPhamMenuTiecBan" Relationship="Self.FK_SanPhamMenuTiecBan_DanhMucMenuTiecBanCap1" FromRole="DanhMucMenuTiecBanCap1" ToRole="SanPhamMenuTiecBan" />
         </EntityType>
-        <EntityType Name="DanhMucPhucVuMenuBuffetCap1">
+        <EntityType Name="DanhMucPhucVuMenuTiecBanVaMenuBuffet">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="id_danhmucmenubuffetcap1" Type="Int32" Nullable="false" />
           <Property Name="sothutu" Type="Int32" Nullable="false" />
           <Property Name="tendanhmuc" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ngaytao" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ngaysuadoi" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="hienthi" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="DanhMucMenuBuffetCap1" Relationship="Self.FK_DanhMucPhucVuMenuBuffetCap1_DanhMucMenuBuffetCap1" FromRole="DanhMucPhucVuMenuBuffetCap1" ToRole="DanhMucMenuBuffetCap1" />
-        </EntityType>
-        <EntityType Name="DanhMucPhucVuMenuTiecBanCap1">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="id_danhmucmenutiecbancap1" Type="Int32" Nullable="false" />
-          <Property Name="sothutu" Type="Int32" Nullable="false" />
-          <Property Name="tendanhmuc" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ngaytao" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ngaysuadoi" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="hienthi" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="DanhMucMenuTiecBanCap1" Relationship="Self.FK_DanhMucPhucVuMenuTiecBanCap1_DanhMucMenuTiecBanCap1" FromRole="DanhMucPhucVuMenuTiecBanCap1" ToRole="DanhMucMenuTiecBanCap1" />
+          <NavigationProperty Name="ApDungDanhMucPhucVu" Relationship="Self.FK_ApDungDanhMucPhucVu_DanhMucPhucVuMenuTiecBanVaMenuBuffet" FromRole="DanhMucPhucVuMenuTiecBanVaMenuBuffet" ToRole="ApDungDanhMucPhucVu" />
         </EntityType>
         <EntityType Name="DanhMucSanPhamMuaSamCap1">
           <Key>
@@ -1262,11 +1269,9 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_danhmucmenubuffetcap1" Type="Int32" Nullable="false" />
+          <Property Name="sothutu" Type="Int32" Nullable="false" />
           <Property Name="hinhanh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="video" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="tensanpham" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="gia" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <Property Name="mota" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="hienthi" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="DanhMucMenuBuffetCap1" Relationship="Self.FK_SanPhamMenuBuffet_DanhMucMenuBuffetCap1" FromRole="SanPhamMenuBuffet" ToRole="DanhMucMenuBuffetCap1" />
           <NavigationProperty Name="LichSuSuaDoiSanPhamMenuBuffet" Relationship="Self.FK_LichSuSuaDoiSanPhamMenuBuffet_SanPhamMenuBuffet" FromRole="SanPhamMenuBuffet" ToRole="LichSuSuaDoiSanPhamMenuBuffet" />
@@ -1276,13 +1281,12 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_danhmucmenutiecbancap1" Type="Int32" Nullable="false" />
+          <Property Name="sothutu" Type="Int32" Nullable="false" />
           <Property Name="hinhanh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="video" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="tensanpham" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="gia" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <Property Name="mota" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="hienthi" Type="Boolean" Nullable="false" />
-          <Property Name="id_danhmucmenutiecbancap1" Type="Int32" Nullable="false" />
           <NavigationProperty Name="DanhMucMenuTiecBanCap1" Relationship="Self.FK_SanPhamMenuTiecBan_DanhMucMenuTiecBanCap1" FromRole="SanPhamMenuTiecBan" ToRole="DanhMucMenuTiecBanCap1" />
           <NavigationProperty Name="LichSuSuaDoiSanPhamMenuTiecBan" Relationship="Self.FK_LichSuSuaDoiSanPhamMenuTiecBan_SanPhamMenuTiecBan" FromRole="SanPhamMenuTiecBan" ToRole="LichSuSuaDoiSanPhamMenuTiecBan" />
         </EntityType>
@@ -1451,6 +1455,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ApDungDanhMucPhucVu_DanhMucMenuBuffetCap1">
+          <End Role="DanhMucMenuBuffetCap1" Type="Self.DanhMucMenuBuffetCap1" Multiplicity="0..1" />
+          <End Role="ApDungDanhMucPhucVu" Type="Self.ApDungDanhMucPhucVu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DanhMucMenuBuffetCap1">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ApDungDanhMucPhucVu">
+              <PropertyRef Name="id_danhmucmenubuffetcap1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApDungDanhMucPhucVu_DanhMucMenuTiecBanCap1">
+          <End Role="DanhMucMenuTiecBanCap1" Type="Self.DanhMucMenuTiecBanCap1" Multiplicity="0..1" />
+          <End Role="ApDungDanhMucPhucVu" Type="Self.ApDungDanhMucPhucVu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DanhMucMenuTiecBanCap1">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ApDungDanhMucPhucVu">
+              <PropertyRef Name="id_danhmucmenutiecbancap1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApDungDanhMucPhucVu_DanhMucPhucVuMenuTiecBanVaMenuBuffet">
+          <End Role="DanhMucPhucVuMenuTiecBanVaMenuBuffet" Type="Self.DanhMucPhucVuMenuTiecBanVaMenuBuffet" Multiplicity="1" />
+          <End Role="ApDungDanhMucPhucVu" Type="Self.ApDungDanhMucPhucVu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DanhMucPhucVuMenuTiecBanVaMenuBuffet">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ApDungDanhMucPhucVu">
+              <PropertyRef Name="id_danhmucphucvu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_CacBuocQuyTrinhTrongCay_QuyTrinhTrongCay">
           <End Role="QuyTrinhTrongCay" Type="Self.QuyTrinhTrongCay" Multiplicity="1" />
           <End Role="CacBuocQuyTrinhTrongCay" Type="Self.CacBuocQuyTrinhTrongCay" Multiplicity="*" />
@@ -1499,18 +1539,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_DanhMucPhucVuMenuBuffetCap1_DanhMucMenuBuffetCap1">
-          <End Role="DanhMucMenuBuffetCap1" Type="Self.DanhMucMenuBuffetCap1" Multiplicity="1" />
-          <End Role="DanhMucPhucVuMenuBuffetCap1" Type="Self.DanhMucPhucVuMenuBuffetCap1" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DanhMucMenuBuffetCap1">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="DanhMucPhucVuMenuBuffetCap1">
-              <PropertyRef Name="id_danhmucmenubuffetcap1" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_SanPhamMenuBuffet_DanhMucMenuBuffetCap1">
           <End Role="DanhMucMenuBuffetCap1" Type="Self.DanhMucMenuBuffetCap1" Multiplicity="1" />
           <End Role="SanPhamMenuBuffet" Type="Self.SanPhamMenuBuffet" Multiplicity="*" />
@@ -1520,18 +1548,6 @@
             </Principal>
             <Dependent Role="SanPhamMenuBuffet">
               <PropertyRef Name="id_danhmucmenubuffetcap1" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_DanhMucPhucVuMenuTiecBanCap1_DanhMucMenuTiecBanCap1">
-          <End Role="DanhMucMenuTiecBanCap1" Type="Self.DanhMucMenuTiecBanCap1" Multiplicity="1" />
-          <End Role="DanhMucPhucVuMenuTiecBanCap1" Type="Self.DanhMucPhucVuMenuTiecBanCap1" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DanhMucMenuTiecBanCap1">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="DanhMucPhucVuMenuTiecBanCap1">
-              <PropertyRef Name="id_danhmucmenutiecbancap1" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1825,13 +1841,13 @@
         </Association>
         <EntityContainer Name="BeanfamilyEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ApDungChucNangChoQuyenTaiKhoan" EntityType="Self.ApDungChucNangChoQuyenTaiKhoan" />
+          <EntitySet Name="ApDungDanhMucPhucVu" EntityType="Self.ApDungDanhMucPhucVu" />
           <EntitySet Name="CacBuocQuyTrinhTrongCay" EntityType="Self.CacBuocQuyTrinhTrongCay" />
           <EntitySet Name="ChiTietDonHangMuaSamVaMenuHangNgay" EntityType="Self.ChiTietDonHangMuaSamVaMenuHangNgay" />
           <EntitySet Name="ChucNangHeThongBean" EntityType="Self.ChucNangHeThongBean" />
           <EntitySet Name="DanhMucMenuBuffetCap1" EntityType="Self.DanhMucMenuBuffetCap1" />
           <EntitySet Name="DanhMucMenuTiecBanCap1" EntityType="Self.DanhMucMenuTiecBanCap1" />
-          <EntitySet Name="DanhMucPhucVuMenuBuffetCap1" EntityType="Self.DanhMucPhucVuMenuBuffetCap1" />
-          <EntitySet Name="DanhMucPhucVuMenuTiecBanCap1" EntityType="Self.DanhMucPhucVuMenuTiecBanCap1" />
+          <EntitySet Name="DanhMucPhucVuMenuTiecBanVaMenuBuffet" EntityType="Self.DanhMucPhucVuMenuTiecBanVaMenuBuffet" />
           <EntitySet Name="DanhMucSanPhamMuaSamCap1" EntityType="Self.DanhMucSanPhamMuaSamCap1" />
           <EntitySet Name="DanhMucSanPhamRauNhaTrongCap1" EntityType="Self.DanhMucSanPhamRauNhaTrongCap1" />
           <EntitySet Name="DanhMucThucDocHangNgayCap1" EntityType="Self.DanhMucThucDocHangNgayCap1" />
@@ -1863,6 +1879,18 @@
             <End Role="QuyenTaiKhoanBean" EntitySet="QuyenTaiKhoanBean" />
             <End Role="ApDungChucNangChoQuyenTaiKhoan" EntitySet="ApDungChucNangChoQuyenTaiKhoan" />
           </AssociationSet>
+          <AssociationSet Name="FK_ApDungDanhMucPhucVu_DanhMucMenuBuffetCap1" Association="Self.FK_ApDungDanhMucPhucVu_DanhMucMenuBuffetCap1">
+            <End Role="DanhMucMenuBuffetCap1" EntitySet="DanhMucMenuBuffetCap1" />
+            <End Role="ApDungDanhMucPhucVu" EntitySet="ApDungDanhMucPhucVu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApDungDanhMucPhucVu_DanhMucMenuTiecBanCap1" Association="Self.FK_ApDungDanhMucPhucVu_DanhMucMenuTiecBanCap1">
+            <End Role="DanhMucMenuTiecBanCap1" EntitySet="DanhMucMenuTiecBanCap1" />
+            <End Role="ApDungDanhMucPhucVu" EntitySet="ApDungDanhMucPhucVu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApDungDanhMucPhucVu_DanhMucPhucVuMenuTiecBanVaMenuBuffet" Association="Self.FK_ApDungDanhMucPhucVu_DanhMucPhucVuMenuTiecBanVaMenuBuffet">
+            <End Role="DanhMucPhucVuMenuTiecBanVaMenuBuffet" EntitySet="DanhMucPhucVuMenuTiecBanVaMenuBuffet" />
+            <End Role="ApDungDanhMucPhucVu" EntitySet="ApDungDanhMucPhucVu" />
+          </AssociationSet>
           <AssociationSet Name="FK_CacBuocQuyTrinhTrongCay_QuyTrinhTrongCay" Association="Self.FK_CacBuocQuyTrinhTrongCay_QuyTrinhTrongCay">
             <End Role="QuyTrinhTrongCay" EntitySet="QuyTrinhTrongCay" />
             <End Role="CacBuocQuyTrinhTrongCay" EntitySet="CacBuocQuyTrinhTrongCay" />
@@ -1879,17 +1907,9 @@
             <End Role="SanPhamThucDonHangNgay" EntitySet="SanPhamThucDonHangNgay" />
             <End Role="ChiTietDonHangMuaSamVaMenuHangNgay" EntitySet="ChiTietDonHangMuaSamVaMenuHangNgay" />
           </AssociationSet>
-          <AssociationSet Name="FK_DanhMucPhucVuMenuBuffetCap1_DanhMucMenuBuffetCap1" Association="Self.FK_DanhMucPhucVuMenuBuffetCap1_DanhMucMenuBuffetCap1">
-            <End Role="DanhMucMenuBuffetCap1" EntitySet="DanhMucMenuBuffetCap1" />
-            <End Role="DanhMucPhucVuMenuBuffetCap1" EntitySet="DanhMucPhucVuMenuBuffetCap1" />
-          </AssociationSet>
           <AssociationSet Name="FK_SanPhamMenuBuffet_DanhMucMenuBuffetCap1" Association="Self.FK_SanPhamMenuBuffet_DanhMucMenuBuffetCap1">
             <End Role="DanhMucMenuBuffetCap1" EntitySet="DanhMucMenuBuffetCap1" />
             <End Role="SanPhamMenuBuffet" EntitySet="SanPhamMenuBuffet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DanhMucPhucVuMenuTiecBanCap1_DanhMucMenuTiecBanCap1" Association="Self.FK_DanhMucPhucVuMenuTiecBanCap1_DanhMucMenuTiecBanCap1">
-            <End Role="DanhMucMenuTiecBanCap1" EntitySet="DanhMucMenuTiecBanCap1" />
-            <End Role="DanhMucPhucVuMenuTiecBanCap1" EntitySet="DanhMucPhucVuMenuTiecBanCap1" />
           </AssociationSet>
           <AssociationSet Name="FK_SanPhamMenuTiecBan_DanhMucMenuTiecBanCap1" Association="Self.FK_SanPhamMenuTiecBan_DanhMucMenuTiecBanCap1">
             <End Role="DanhMucMenuTiecBanCap1" EntitySet="DanhMucMenuTiecBanCap1" />
@@ -2006,6 +2026,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ApDungDanhMucPhucVu">
+            <EntityTypeMapping TypeName="BeanfamilyModel.ApDungDanhMucPhucVu">
+              <MappingFragment StoreEntitySet="ApDungDanhMucPhucVu">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_danhmucmenutiecbancap1" ColumnName="id_danhmucmenutiecbancap1" />
+                <ScalarProperty Name="id_danhmucmenubuffetcap1" ColumnName="id_danhmucmenubuffetcap1" />
+                <ScalarProperty Name="id_danhmucphucvu" ColumnName="id_danhmucphucvu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="CacBuocQuyTrinhTrongCay">
             <EntityTypeMapping TypeName="BeanfamilyModel.CacBuocQuyTrinhTrongCay">
               <MappingFragment StoreEntitySet="CacBuocQuyTrinhTrongCay">
@@ -2071,24 +2101,10 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="DanhMucPhucVuMenuBuffetCap1">
-            <EntityTypeMapping TypeName="BeanfamilyModel.DanhMucPhucVuMenuBuffetCap1">
-              <MappingFragment StoreEntitySet="DanhMucPhucVuMenuBuffetCap1">
+          <EntitySetMapping Name="DanhMucPhucVuMenuTiecBanVaMenuBuffet">
+            <EntityTypeMapping TypeName="BeanfamilyModel.DanhMucPhucVuMenuTiecBanVaMenuBuffet">
+              <MappingFragment StoreEntitySet="DanhMucPhucVuMenuTiecBanVaMenuBuffet">
                 <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="id_danhmucmenubuffetcap1" ColumnName="id_danhmucmenubuffetcap1" />
-                <ScalarProperty Name="sothutu" ColumnName="sothutu" />
-                <ScalarProperty Name="tendanhmuc" ColumnName="tendanhmuc" />
-                <ScalarProperty Name="ngaytao" ColumnName="ngaytao" />
-                <ScalarProperty Name="ngaysuadoi" ColumnName="ngaysuadoi" />
-                <ScalarProperty Name="hienthi" ColumnName="hienthi" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DanhMucPhucVuMenuTiecBanCap1">
-            <EntityTypeMapping TypeName="BeanfamilyModel.DanhMucPhucVuMenuTiecBanCap1">
-              <MappingFragment StoreEntitySet="DanhMucPhucVuMenuTiecBanCap1">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="id_danhmucmenutiecbancap1" ColumnName="id_danhmucmenutiecbancap1" />
                 <ScalarProperty Name="sothutu" ColumnName="sothutu" />
                 <ScalarProperty Name="tendanhmuc" ColumnName="tendanhmuc" />
                 <ScalarProperty Name="ngaytao" ColumnName="ngaytao" />
@@ -2273,11 +2289,9 @@
               <MappingFragment StoreEntitySet="SanPhamMenuBuffet">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_danhmucmenubuffetcap1" ColumnName="id_danhmucmenubuffetcap1" />
+                <ScalarProperty Name="sothutu" ColumnName="sothutu" />
                 <ScalarProperty Name="hinhanh" ColumnName="hinhanh" />
-                <ScalarProperty Name="video" ColumnName="video" />
                 <ScalarProperty Name="tensanpham" ColumnName="tensanpham" />
-                <ScalarProperty Name="gia" ColumnName="gia" />
-                <ScalarProperty Name="mota" ColumnName="mota" />
                 <ScalarProperty Name="hienthi" ColumnName="hienthi" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2286,13 +2300,12 @@
             <EntityTypeMapping TypeName="BeanfamilyModel.SanPhamMenuTiecBan">
               <MappingFragment StoreEntitySet="SanPhamMenuTiecBan">
                 <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_danhmucmenutiecbancap1" ColumnName="id_danhmucmenutiecbancap1" />
+                <ScalarProperty Name="sothutu" ColumnName="sothutu" />
                 <ScalarProperty Name="hinhanh" ColumnName="hinhanh" />
-                <ScalarProperty Name="video" ColumnName="video" />
                 <ScalarProperty Name="tensanpham" ColumnName="tensanpham" />
                 <ScalarProperty Name="gia" ColumnName="gia" />
-                <ScalarProperty Name="mota" ColumnName="mota" />
                 <ScalarProperty Name="hienthi" ColumnName="hienthi" />
-                <ScalarProperty Name="id_danhmucmenutiecbancap1" ColumnName="id_danhmucmenutiecbancap1" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
