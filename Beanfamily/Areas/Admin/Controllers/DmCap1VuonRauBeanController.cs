@@ -157,5 +157,35 @@ namespace Beanfamily.Areas.Admin.Controllers
                 return Content("Chi tiết lỗi: " + ex.Message);
             }
         }
+        [HttpPost]
+        public ActionResult XoaHangLoat(string lstId)
+        {
+            try
+            {
+                if (lstId.IndexOf("-") != -1)
+                {
+                    foreach (var item in lstId.Split('-'))
+                    {
+                        int id = Int32.Parse(item);
+                        var dm = model.DanhMucSanPhamRauNhaTrongCap1.Find(id);
+                        model.DanhMucSanPhamRauNhaTrongCap1.Remove(dm);
+                        model.SaveChanges();
+                    }
+                }
+                else
+                {
+                    int id = Int32.Parse(lstId);
+                    var dm = model.DanhMucSanPhamRauNhaTrongCap1.Find(id);
+                    model.DanhMucSanPhamRauNhaTrongCap1.Remove(dm);
+                    model.SaveChanges();
+                }
+
+                return Content("SUCCESS");
+            }
+            catch (Exception ex)
+            {
+                return Content(ex.Message);
+            }
+        }
     }
 }

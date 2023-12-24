@@ -278,6 +278,16 @@
                 </a>
             </li>
 
+            @if (Session["dmpv"] != null)
+            {
+                <li class="nav-item">
+                    <a class="nav-link @Session["active-dmpv"].ToString().Split('#')[0]" href="@Url.Action("index", "danhmucphucvu")">
+                        <i class="bi bi-card-list"></i>
+                        <span>Danh Mục Phục Vụ</span>
+                    </a>
+                </li>
+            }
+
             @if (Session["mtb-dmc1"] != null || Session["mtb-qlm"] != null)
             {
                 <li class="nav-item">
@@ -333,15 +343,6 @@
                         }
 
                     </ul>
-                </li>
-            }
-            @if (Session["dmpv"] != null)
-            {
-                <li class="nav-item">
-                    <a class="nav-link @Session["active-dmpv"].ToString().Split('#')[0]" href="@Url.Action("index", "danhmucphucvu")">
-                        <i class="bi bi-card-list"></i>
-                        <span>Danh Mục Phục Vụ</span>
-                    </a>
                 </li>
             }
 

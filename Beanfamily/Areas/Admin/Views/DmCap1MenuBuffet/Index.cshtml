@@ -18,15 +18,22 @@
                 </ol>
             </nav>
         </div>
-        @if (Session["chophep-them"] != null)
-        {
-            if (Convert.ToBoolean(Session["chophep-them"]) == true)
+        <div class="col-5 text-end">
+            @if (Session["chophep-them"] != null)
             {
-                <div class="col-5 text-end">
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ThemDmMtbModal">Thêm mới</button>
-                </div>
+                if (Convert.ToBoolean(Session["chophep-them"]) == true)
+                {
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ThemDmMtbModal"><i class="bi bi-plus-circle me-1"></i>Thêm mới</button>
+                }
             }
-        }
+            @if (Session["chophep-xoa"] != null)
+            {
+                if (Convert.ToBoolean(Session["chophep-xoa"]) == true)
+                {
+                    <button id="xoahangloat" class="btn btn-danger ms-1"><i class="bi bi-trash me-1"></i>Xóa mục đã chọn</button>
+                }
+            }
+        </div>
     </div>
 
 </div><!-- End Page Title -->
@@ -43,6 +50,12 @@
                     <table id="lstDmMbTable" class="table datatable" width="100%"> 
                         <thead>
                             <tr>
+                                <th style="width: 10px">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input p-2" id="checkAlls" />
+                                        <label class="form-check-label" for="checkAlls"></label>
+                                    </div>
+                                </th>
                                 <th scope="col">Mã</th>
                                 <th scope="col">STT</th>
                                 <th scope="col">Tên danh mục</th>
@@ -63,13 +76,22 @@
                                     lstIdDmpv += idDmpv.id_danhmucphucvu + "-";
                                 }
                                 <tr style="vertical-align: middle">
-                                    <th scope="row">DM@(item.id.ToString("D6"))</th>
+                                    <td>
+                                        <div class="form-check">
+                                            @if (item.SanPhamMenuBuffet.Count < 1)
+                                            {
+                                                <input type="checkbox" class="form-check-input p-2" id="checkitem@(item.id)" name="@item.id" />
+                                                <label class="form-check-label" for="checkitem@(item.id)"></label>
+                                            }
+                                        </div>
+                                    </td>
+                                    <td scope="row">DM@(item.id.ToString("D6"))</td>
                                     <td>@item.sothutu</td>
                                     <td>
                                         @item.tendanhmuc
                                         <input hidden id="inpMadanhmuc@(item.id)" value="DM@(item.id.ToString("D6"))" />
                                         <input hidden id="inpTendanhmuc@(item.id)" value="@item.tendanhmuc" />
-                                        <input hidden id="inpDmpv@(item.id)" value="@lstIdDmpv.Substring(0, lstIdDmpv.Length - 1)" />
+                                        <input hidden id="inpDmpv@(item.id)" value="@(string.IsNullOrEmpty(lstIdDmpv) ? "" : lstIdDmpv.Substring(0, lstIdDmpv.Length - 1))" />
                                         <input hidden id="inpSothutu@(item.id)" value="@item.sothutu" />
                                         <input hidden id="inpHienthi@(item.id)" value="@item.hienthi.ToString().ToLower()" />
                                     </td>
@@ -294,3 +316,4 @@
 <script src="~/Validation/Dmc1MenuBuffet/SuaDmc1MenuBuffet.js"></script>
 <script src="~/Validation/Dmc1MenuBuffet/XoaDmc1MenuBuffet.js"></script>
 <script src="~/Validation/Dmc1MenuBuffet/XemMonDmc1MenuBuffet.js"></script>
+<script src="~/Validation/Dmc1MenuBuffet/XoaHangLoat.js"></script>

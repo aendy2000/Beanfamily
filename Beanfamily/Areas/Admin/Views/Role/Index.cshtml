@@ -20,15 +20,22 @@
                 </ol>
             </nav>
         </div>
-        @if (Session["chophep-them"] != null)
-        {
-            if (Convert.ToBoolean(Session["chophep-them"]) == true)
+        <div class="col-5 text-end">
+            @if (Session["chophep-them"] != null)
             {
-                <div class="col-5 text-end">
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ThemPhanQuyenModal">Thêm mới</button>
-                </div>
+                if (Convert.ToBoolean(Session["chophep-them"]) == true)
+                {
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ThemPhanQuyenModal"><i class="bi bi-plus-circle me-1"></i>Thêm mới</button>
+                }
             }
-        }
+            @if (Session["chophep-xoa"] != null)
+            {
+                if (Convert.ToBoolean(Session["chophep-xoa"]) == true)
+                {
+                    <button id="xoahangloat" class="btn btn-danger ms-1"><i class="bi bi-trash me-1"></i>Xóa mục đã chọn</button>
+                }
+            }
+        </div>
     </div>
 
 </div><!-- End Page Title -->
@@ -42,9 +49,15 @@
                     <h5 class="card-title">Danh sách quyền</h5>
 
                     <!-- Table with stripped rows -->
-                    <table id="tbRole" class="table datatable" width="100%"> 
+                    <table id="tbRole" class="table datatable" width="100%">
                         <thead>
                             <tr>
+                                <th style="width: 10px">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input p-2" id="checkAlls" />
+                                        <label class="form-check-label" for="checkAlls"></label>
+                                    </div>
+                                </th>
                                 <th scope="col">Mã</th>
                                 <th scope="col">Tên phân quyền</th>
                                 <th scope="col">Ngày tạo</th>
@@ -57,6 +70,15 @@
                             @foreach (var item in Model)
                             {
                                 <tr style="vertical-align: middle">
+                                    <td>
+                                        @if (item.TaiKhoanBean.Count() < 1)
+                                        {
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input p-2" id="checkitem@(item.id)" name="@item.id" />
+                                                <label class="form-check-label" for="checkitem@(item.id)"></label>
+                                            </div>
+                                        }
+                                    </td>
                                     <td>R@(item.id.ToString("D6"))</td>
                                     <td>
                                         <input hidden id="tenquyen@(item.id)" value="@item.name" />
@@ -320,7 +342,7 @@
                                     }
                                 </li>
                             }
-                         
+
                             i++;
                         }
 
@@ -338,3 +360,4 @@
 <script src="~/Validation/Role/AddRole.js"></script>
 <script src="~/Validation/Role/ShowViewEditRole.js"></script>
 <script src="~/Validation/Role/DeleteRole.js"></script>
+<script src="~/Validation/Role/XoaHangLoat.js"></script>

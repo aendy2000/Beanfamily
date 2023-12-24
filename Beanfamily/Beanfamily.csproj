@@ -2553,6 +2553,11 @@
     <Content Include="Validation\AccountBean\LockAccount.js" />
     <Content Include="Validation\AccountBean\EditAccount.js" />
     <Content Include="Validation\AccountBean\DetailAccount.js" />
+    <Content Include="Validation\AccountBean\XoaHangLoat.js" />
+    <Content Include="Validation\DanhMucPhucVu\XoaHangLoat.js" />
+    <Content Include="Validation\Dmc1MenuBuffet\XoaHangLoat.js" />
+    <Content Include="Validation\Dmc1MenuHangNgay\XoaHangLoat.js" />
+    <Content Include="Validation\Dmc1MenuTiecBan\XoaHangLoat.js" />
     <Content Include="Validation\Dmc1VuonRauBean\SuaDmc1.js" />
     <Content Include="Validation\Dmc1VuonRauBean\ThemDmc1.js" />
     <Content Include="Validation\Dmc1VuonRauBean\XemMonDmc1.js" />
@@ -2571,6 +2576,7 @@
     <Content Include="Validation\Dmc1MenuTiecBan\ThemDmc1MenuTiecBan.js" />
     <Content Include="Validation\Dmc1MenuTiecBan\XemMonDmc1MenuTiecBan.js" />
     <Content Include="Validation\Dmc1MenuTiecBan\XoaDmc1MenuTiecBan.js" />
+    <Content Include="Validation\Dmc1VuonRauBean\XoaHangLoat.js" />
     <Content Include="Validation\Login\login.js" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.js" />
@@ -2801,13 +2807,6 @@
     <Content Include="Areas\Admin\Views\MonAnMenuHangNgay\_OpenSuaMonMenuHangNgay.cshtml" />
     <Content Include="Areas\Admin\Views\DmCap1MenuTiecBan\Index.cshtml" />
     <Content Include="Areas\Admin\Views\DanhMucPhucVu\Index.cshtml" />
-    <EntityDeploy Include="Models\Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Content>
     <Content Include="Areas\Admin\Views\MonAnMenuTiecBan\Index.cshtml" />
     <Content Include="Areas\Admin\Views\DmCap1MenuTiecBan\_DanhSachMonTiecBan.cshtml" />
     <Content Include="Areas\Admin\Views\MonAnMenuTiecBan\_OpenSuaMonTiecBan.cshtml" />
@@ -2818,7 +2817,13 @@
     <Content Include="Areas\Admin\Views\DmCap1VuonRauBean\Index.cshtml" />
     <Content Include="Areas\Admin\Views\DmCap1VuonRauBean\_DanhSachMonVuonRauBean.cshtml" />
     <Content Include="Areas\Admin\Views\SanPhamVuonRauBean\Index.cshtml" />
-    <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
+    <EntityDeploy Include="Models\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2833,10 +2838,13 @@
     <Content Include="Validation\MonAnMenuBuffet\OpenModalSuaMonAn.js" />
     <Content Include="Validation\MonAnMenuBuffet\SuaMonAn.js" />
     <Content Include="Validation\MonAnMenuBuffet\ThemMonAn.js" />
+    <Content Include="Validation\MonAnMenuBuffet\XoaHangLoat.js" />
     <Content Include="Validation\MonAnMenuBuffet\XoaMonAn.js" />
+    <Content Include="Validation\MonAnMenuHangNgay\XoaHangLoat.js" />
     <Content Include="Validation\MonAnMenuTiecBan\OpenModalSuaMonAn.js" />
     <Content Include="Validation\MonAnMenuTiecBan\SuaMonAn.js" />
     <Content Include="Validation\MonAnMenuTiecBan\ThemMonAn.js" />
+    <Content Include="Validation\MonAnMenuTiecBan\XoaHangLoat.js" />
     <Content Include="Validation\MonAnMenuTiecBan\XoaMonAn.js" />
     <Content Include="Validation\MonAnMenuHangNgay\OpenModalSuaMonAn.js" />
     <Content Include="Validation\MonAnMenuHangNgay\SuaMonAn.js" />
@@ -2850,6 +2858,7 @@
     <Content Include="Validation\Role\ShowViewEditRole.js" />
     <Content Include="Validation\Role\AddRole.js" />
     <Content Include="Validation\Dmc1MenuHangNgay\ThemDmc1MenuHangNgay.js" />
+    <Content Include="Validation\Role\XoaHangLoat.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -2869,9 +2878,9 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Views\Home\" />
     <Folder Include="Areas\Admin\Views\Profile\" />
     <Folder Include="Content\AdminAreas\images\taikhoanbean\" />
+    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

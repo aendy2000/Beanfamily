@@ -46,7 +46,7 @@ namespace Beanfamily.Areas.Admin.Controllers
             var dm = model.DanhMucPhucVuMenuTiecBanVaMenuBuffet.ToList();
 
             int idRole = Int32.Parse(Session["user-role-id"].ToString());
-            var chophepthemsuaxoa = model.ApDungChucNangChoQuyenTaiKhoan.FirstOrDefault(a => a.id_quyentaikhoanbean == idRole 
+            var chophepthemsuaxoa = model.ApDungChucNangChoQuyenTaiKhoan.FirstOrDefault(a => a.id_quyentaikhoanbean == idRole
             && a.ChucNangHeThongBean.keycode.Equals("dmpv"));
             if (chophepthemsuaxoa != null)
             {
@@ -66,7 +66,7 @@ namespace Beanfamily.Areas.Admin.Controllers
         {
             try
             {
-                var checkExist = model.DanhMucMenuTiecBanCap1.FirstOrDefault(d => d.tendanhmuc.ToLower().Equals(tendanhmuc.ToLower().Trim()));
+                var checkExist = model.DanhMucPhucVuMenuTiecBanVaMenuBuffet.FirstOrDefault(d => d.tendanhmuc.ToLower().Equals(tendanhmuc.ToLower().Trim()));
                 if (checkExist != null)
                     return Content("EXIST");
 
@@ -132,6 +132,37 @@ namespace Beanfamily.Areas.Admin.Controllers
                 model.DanhMucPhucVuMenuTiecBanVaMenuBuffet.Remove(dm);
                 model.SaveChanges();
 
+                return Content("SUCCESS");
+            }
+            catch (Exception ex)
+            {
+                return Content(ex.Message);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult XoaHangLoat(string lstId)
+        {
+            try
+            {
+                if (lstId.IndexOf("-") != -1)
+                {
+                    foreach (var item in lstId.Split('-'))
+                    {
+                        int id = Int32.Parse(item);
+                        var dm = model.DanhMucPhucVuMenuTiecBanVaMenuBuffet.Find(id);
+                        model.DanhMucPhucVuMenuTiecBanVaMenuBuffet.Remove(dm);
+                        model.SaveChanges();
+                    }
+                }
+                else
+                {
+                    int id = Int32.Parse(lstId);
+                    var dm = model.DanhMucPhucVuMenuTiecBanVaMenuBuffet.Find(id);
+                    model.DanhMucPhucVuMenuTiecBanVaMenuBuffet.Remove(dm);
+                    model.SaveChanges();
+                }
+                
                 return Content("SUCCESS");
             }
             catch (Exception ex)
