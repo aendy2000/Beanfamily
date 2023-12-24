@@ -25,14 +25,14 @@
             {
                 if (Convert.ToBoolean(Session["chophep-them"]) == true)
                 {
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ThemPhanQuyenModal"><i class="bi bi-plus-circle me-1"></i>Thêm mới</button>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ThemPhanQuyenModal"><i class="bi bi-plus-circle me-1"> </i> Thêm mới</button>
                 }
             }
             @if (Session["chophep-xoa"] != null)
             {
                 if (Convert.ToBoolean(Session["chophep-xoa"]) == true)
                 {
-                    <button id="xoahangloat" class="btn btn-danger ms-1"><i class="bi bi-trash me-1"></i>Xóa mục đã chọn</button>
+                    <button id="xoahangloat" class="btn btn-danger ms-1"><i class="bi bi-trash me-1"> </i> Xóa mục đã chọn</button>
                 }
             }
         </div>
@@ -51,7 +51,7 @@
                     <!-- Table with stripped rows -->
                     <table id="tbRole" class="table datatable" width="100%">
                         <thead>
-                            <tr>
+                            <tr class="text-nowrap">
                                 <th style="width: 10px">
                                     <div class="form-check">
                                         <input type="checkbox" class="form-check-input p-2" id="checkAlls" />
@@ -91,7 +91,7 @@
                                             <i class="bi bi-info-circle me-1"> </i> Xem danh sách
                                         </button>
                                     </td>
-                                    <td>
+                                    <td class="text-nowrap">
                                         @if (item.id != 1)
                                         {
                                             if (Session["chophep-sua"] != null)

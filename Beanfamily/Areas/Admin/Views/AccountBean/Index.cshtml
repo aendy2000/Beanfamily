@@ -24,7 +24,7 @@
             {
                 if (Convert.ToBoolean(Session["chophep-them"]) == true)
                 {
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ThemTaiKhoanBeanModal"><i class="bi bi-plus-circle me-1"></i>Thêm mới</button>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ThemTaiKhoanBeanModal"><i class="bi bi-plus-circle me-1"> </i> Thêm mới</button>
                 }
             }
         </div>
@@ -43,7 +43,7 @@
                     <!-- Table with stripped rows -->
                     <table id="lstAccountTable" class="table datatable" width="100%">
                         <thead>
-                            <tr>
+                            <tr class="text-nowrap">
                                 <th scope="col">Mã</th>
                                 <th scope="col">Họ và Tên</th>
                                 <th scope="col">Quyền</th>

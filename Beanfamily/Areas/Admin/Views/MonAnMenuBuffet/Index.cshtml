@@ -24,14 +24,14 @@
             {
                 if (Convert.ToBoolean(Session["chophep-them"]) == true)
                 {
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ThemMonAnModal"><i class="bi bi-plus-circle me-1"></i>Thêm mới</button>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ThemMonAnModal"><i class="bi bi-plus-circle me-1"> </i> Thêm mới</button>
                 }
             }
             @if (Session["chophep-xoa"] != null)
             {
                 if (Convert.ToBoolean(Session["chophep-xoa"]) == true)
                 {
-                    <button id="xoahangloat" class="btn btn-danger ms-1"><i class="bi bi-trash me-1"></i>Xóa mục đã chọn</button>
+                    <button id="xoahangloat" class="btn btn-danger ms-1"><i class="bi bi-trash me-1"> </i> Xóa mục đã chọn</button>
                 }
             }
         </div>
@@ -49,7 +49,7 @@
                     <!-- Table with stripped rows -->
                     <table id="lstMonAnMenuBuffetTable" class="table datatable striped" width="100%">
                         <thead>
-                            <tr>
+                            <tr class="text-nowrap">
                                 <th style="width: 10px">
                                     <div class="form-check">
                                         <input type="checkbox" class="form-check-input p-2" id="checkAlls" />
@@ -100,7 +100,7 @@
                                             <span class="badge bg-danger"><i class="bi bi-eye-slash-fill me-1"></i> Đã ẩn</span>
                                         }
                                     </td>
-                                    <td>
+                                    <td class="text-nowrap">
                                         @if (Session["chophep-sua"] != null)
                                         {
                                             if (Convert.ToBoolean(Session["chophep-sua"]) == true)
