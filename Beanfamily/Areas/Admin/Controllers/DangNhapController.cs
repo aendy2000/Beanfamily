@@ -65,6 +65,10 @@ namespace Beanfamily.Areas.Admin.Controllers
                         Session["tlc-ttw"] = null;
                         Session["tlc-lkmxh"] = null;
 
+                        Session["chophep-them"] = null;
+                        Session["chophep-sua"] = null;
+                        Session["chophep-xoa"] = null;
+
                         //LstFunction for account accept
                         foreach (var item in taikhoan.QuyenTaiKhoanBean.ApDungChucNangChoQuyenTaiKhoan.ToList())
                         {

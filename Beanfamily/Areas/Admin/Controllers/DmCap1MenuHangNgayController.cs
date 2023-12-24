@@ -43,6 +43,21 @@ namespace Beanfamily.Areas.Admin.Controllers
                 return RedirectToAction("index", "dashboard");
 
             var dm = model.DanhMucThucDocHangNgayCap1.ToList();
+
+            int idRole = Int32.Parse(Session["user-role-id"].ToString());
+            var chophepthemsuaxoa = model.ApDungChucNangChoQuyenTaiKhoan.FirstOrDefault(a => a.id_quyentaikhoanbean == idRole
+            && a.ChucNangHeThongBean.keycode.Equals("mhn-dmc1"));
+            if (chophepthemsuaxoa != null)
+            {
+                Session["chophep-them"] = chophepthemsuaxoa.chophepthem;
+                Session["chophep-sua"] = chophepthemsuaxoa.chophepsua;
+                Session["chophep-xoa"] = chophepthemsuaxoa.chophepxoa;
+            }
+            else
+            {
+                return RedirectToAction("index", "dashboard");
+            }
+
             return View("index", dm);
         }
 

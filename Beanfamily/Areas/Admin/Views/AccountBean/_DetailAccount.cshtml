@@ -36,12 +36,22 @@
                             <li class="nav-item">
                                 <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Tổng quan</button>
                             </li>
-                            <li class="nav-item">
-                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Cập nhật thông tin</button>
-                            </li>
-                            <li class="nav-item">
-                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-password">Cấp lại mật khẩu</button>
-                            </li>
+
+                            @if (Session["chophep-sua"] != null)
+                            {
+                                if (Convert.ToBoolean(Session["chophep-sua"]) == true)
+                                {
+                                    <li class="nav-item">
+                                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Cập nhật thông tin</button>
+                                    </li>
+                                }
+                                if (Int32.Parse(Session["user-id"].ToString()) == 1)
+                                {
+                                    <li class="nav-item">
+                                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-password">Cấp lại mật khẩu</button>
+                                    </li>
+                                }
+                            }
                         </ul>
                         <div class="tab-content pt-2">
 
@@ -232,32 +242,34 @@
                                     </div>
                                 </div>
                             </div>
+                            @if (Int32.Parse(Session["user-id"].ToString()) == 1)
+                            {
+                                <div class="tab-pane fade pt-3" id="profile-password">
+                                    <!-- Change Password Form -->
+                                    <div>
+                                        <div class="row mb-3">
+                                            <label for="caplaimatkhaumoi" class="col-md-4 col-lg-3 col-form-label">Mật khẩu mới <span class="text-danger">*</span></label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <input name="caplaimatkhaumoi" type="password" class="form-control" id="caplaimatkhaumoi">
+                                                <label style="margin-left: 5px" id="invalid-caplaimatkhaumoi-feedback" class="text-danger" hidden></label>
+                                            </div>
+                                        </div>
 
-                            <div class="tab-pane fade pt-3" id="profile-password">
-                                <!-- Change Password Form -->
-                                <div>
-                                    <div class="row mb-3">
-                                        <label for="caplaimatkhaumoi" class="col-md-4 col-lg-3 col-form-label">Mật khẩu mới <span class="text-danger">*</span></label>
-                                        <div class="col-md-8 col-lg-9">
-                                            <input name="caplaimatkhaumoi" type="password" class="form-control" id="caplaimatkhaumoi">
-                                            <label style="margin-left: 5px" id="invalid-caplaimatkhaumoi-feedback" class="text-danger" hidden></label>
+                                        <div class="row mb-3">
+                                            <label for="caplainhaplaimatkhaumoi" class="col-md-4 col-lg-3 col-form-label">Nhập lại MK mới <span class="text-danger">*</span></label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <input name="caplainhaplaimatkhaumoi" type="password" class="form-control" id="caplainhaplaimatkhaumoi">
+                                                <label style="margin-left: 5px" id="invalid-caplainhaplaimatkhaumoi-feedback" class="text-danger" hidden></label>
+                                            </div>
+                                        </div>
+
+                                        <div class="text-end mt-2 mb-2">
+                                            <button id="btncaplaimatkhau" class="btn btn-primary">Lưu thông tin</button>
                                         </div>
                                     </div>
-
-                                    <div class="row mb-3">
-                                        <label for="caplainhaplaimatkhaumoi" class="col-md-4 col-lg-3 col-form-label">Nhập lại MK mới <span class="text-danger">*</span></label>
-                                        <div class="col-md-8 col-lg-9">
-                                            <input name="caplainhaplaimatkhaumoi" type="password" class="form-control" id="caplainhaplaimatkhaumoi">
-                                            <label style="margin-left: 5px" id="invalid-caplainhaplaimatkhaumoi-feedback" class="text-danger" hidden></label>
-                                        </div>
-                                    </div>
-
-                                    <div class="text-end mt-2 mb-2">
-                                        <button id="btncaplaimatkhau" class="btn btn-primary">Lưu thông tin</button>
-                                    </div>
-                                </div><!-- End Change Password Form -->
-                            </div>
-                        </div><!-- End Bordered Tabs -->
+                                </div>
+                            }
+                        </div>
                     </div>
                 </div>
             </div>

@@ -135,10 +135,15 @@
     <Compile Include="Areas\Admin\Controllers\DanhMucPhucVuController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountProfileController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DmCap1MenuBuffetController.cs" />
     <Compile Include="Areas\Admin\Controllers\DmCap1MenuHangNgayController.cs" />
     <Compile Include="Areas\Admin\Controllers\DmCap1MenuTiecBanController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DmCap1VuonRauBeanController.cs" />
+    <Compile Include="Areas\Admin\Controllers\MonAnMenuBuffetController.cs" />
     <Compile Include="Areas\Admin\Controllers\MonAnMenuHangNgayController.cs" />
+    <Compile Include="Areas\Admin\Controllers\MonAnMenuTiecBanController.cs" />
     <Compile Include="Areas\Admin\Controllers\RoleController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SanPhamVuonRauBeanController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -2326,6 +2331,7 @@
     <Content Include="Content\assets\images\booking-03.jpg" />
     <Content Include="Content\assets\images\client1.jpg" />
     <Content Include="Content\assets\images\client2.jpg" />
+    <Content Include="Content\assets\images\commingsoon.png" />
     <Content Include="Content\assets\images\dinner-01.jpg" />
     <Content Include="Content\assets\images\dinner-02.jpg" />
     <Content Include="Content\assets\images\dinner-03.jpg" />
@@ -2463,6 +2469,7 @@
     <Content Include="Content\assets\js\main.js" />
     <Content Include="Content\assets\js\map-custom.js" />
     <Content Include="Content\assets\js\slick-custom.js" />
+    <Content Include="Content\assets\scss\comingsoon.css" />
     <Content Include="Content\assets\vendor\animate\animate.css" />
     <Content Include="Content\assets\vendor\animsition\css\animsition.css" />
     <Content Include="Content\assets\vendor\animsition\css\animsition.min.css" />
@@ -2546,12 +2553,20 @@
     <Content Include="Validation\AccountBean\LockAccount.js" />
     <Content Include="Validation\AccountBean\EditAccount.js" />
     <Content Include="Validation\AccountBean\DetailAccount.js" />
+    <Content Include="Validation\Dmc1VuonRauBean\SuaDmc1.js" />
+    <Content Include="Validation\Dmc1VuonRauBean\ThemDmc1.js" />
+    <Content Include="Validation\Dmc1VuonRauBean\XemMonDmc1.js" />
+    <Content Include="Validation\Dmc1VuonRauBean\XoaDmc1.js" />
     <Content Include="Validation\Dmc1MenuHangNgay\XemMonDmc1MenuHangNgay.js" />
     <Content Include="Validation\Dmc1MenuHangNgay\XoaDmc1MenuHangNgay.js" />
     <Content Include="Validation\Dmc1MenuHangNgay\SuaDmc1MenuHangNgay.js" />
     <Content Include="Validation\DanhMucPhucVu\SuaDmpvMenu.js" />
     <Content Include="Validation\DanhMucPhucVu\ThemDmpvMenu.js" />
     <Content Include="Validation\DanhMucPhucVu\XoaDmpvMenu.js" />
+    <Content Include="Validation\Dmc1MenuBuffet\SuaDmc1MenuBuffet.js" />
+    <Content Include="Validation\Dmc1MenuBuffet\ThemDmc1MenuBuffet.js" />
+    <Content Include="Validation\Dmc1MenuBuffet\XemMonDmc1MenuBuffet.js" />
+    <Content Include="Validation\Dmc1MenuBuffet\XoaDmc1MenuBuffet.js" />
     <Content Include="Validation\Dmc1MenuTiecBan\SuaDmc1MenuTiecBan.js" />
     <Content Include="Validation\Dmc1MenuTiecBan\ThemDmc1MenuTiecBan.js" />
     <Content Include="Validation\Dmc1MenuTiecBan\XemMonDmc1MenuTiecBan.js" />
@@ -2783,7 +2798,7 @@
     <Content Include="Areas\Admin\Views\DmCap1MenuHangNgay\_DanhSachMonHangNgay.cshtml" />
     <Content Include="Areas\Admin\Views\MonAnMenuHangNgay\Index.cshtml" />
     <Content Include="Areas\Admin\Views\MonAnMenuHangNgay\_xemHinhAnhMon.cshtml" />
-    <Content Include="Areas\Admin\Views\MonAnMenuHangNgay\_OpenSuaMon.cshtml" />
+    <Content Include="Areas\Admin\Views\MonAnMenuHangNgay\_OpenSuaMonMenuHangNgay.cshtml" />
     <Content Include="Areas\Admin\Views\DmCap1MenuTiecBan\Index.cshtml" />
     <Content Include="Areas\Admin\Views\DanhMucPhucVu\Index.cshtml" />
     <EntityDeploy Include="Models\Model1.edmx">
@@ -2793,6 +2808,16 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Views\MonAnMenuTiecBan\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\DmCap1MenuTiecBan\_DanhSachMonTiecBan.cshtml" />
+    <Content Include="Areas\Admin\Views\MonAnMenuTiecBan\_OpenSuaMonTiecBan.cshtml" />
+    <Content Include="Areas\Admin\Views\DmCap1MenuBuffet\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\DmCap1MenuBuffet\_DanhSachMonBuffet.cshtml" />
+    <Content Include="Areas\Admin\Views\MonAnMenuBuffet\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\MonAnMenuBuffet\_OpenSuaMonBuffet.cshtml" />
+    <Content Include="Areas\Admin\Views\DmCap1VuonRauBean\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\DmCap1VuonRauBean\_DanhSachMonVuonRauBean.cshtml" />
+    <Content Include="Areas\Admin\Views\SanPhamVuonRauBean\Index.cshtml" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -2805,6 +2830,14 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Validation\MonAnMenuBuffet\OpenModalSuaMonAn.js" />
+    <Content Include="Validation\MonAnMenuBuffet\SuaMonAn.js" />
+    <Content Include="Validation\MonAnMenuBuffet\ThemMonAn.js" />
+    <Content Include="Validation\MonAnMenuBuffet\XoaMonAn.js" />
+    <Content Include="Validation\MonAnMenuTiecBan\OpenModalSuaMonAn.js" />
+    <Content Include="Validation\MonAnMenuTiecBan\SuaMonAn.js" />
+    <Content Include="Validation\MonAnMenuTiecBan\ThemMonAn.js" />
+    <Content Include="Validation\MonAnMenuTiecBan\XoaMonAn.js" />
     <Content Include="Validation\MonAnMenuHangNgay\OpenModalSuaMonAn.js" />
     <Content Include="Validation\MonAnMenuHangNgay\SuaMonAn.js" />
     <Content Include="Validation\MonAnMenuHangNgay\XoaMonAn.js" />
@@ -2827,10 +2860,11 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_LayoutMain.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

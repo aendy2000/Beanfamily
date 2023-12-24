@@ -1,0 +1,118 @@
+﻿@model IEnumerable<Beanfamily.Models.SanPhamRauNhaTrong>
+@using Beanfamily.Models
+@{
+    ViewBag.Title = "Sản Phẩm - Vườn Rau Bean";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    BeanfamilyEntities models = new BeanfamilyEntities();
+    var lstDmC1 = models.DanhMucSanPhamRauNhaTrongCap1.ToList();
+}
+
+<div class="pagetitle">
+    <div class="row">
+        <div class="col-7">
+            <h1>Sản Phẩm Rau</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="@Url.Action("index", "dashboard")">Bảng Điều Khiển</a></li>
+                    <li class="breadcrumb-item">Vườn Rau Bean</li>
+                    <li class="breadcrumb-item active">Sản Phẩm Rau</li>
+                </ol>
+            </nav>
+        </div>
+        @if (Session["chophep-them"] != null)
+        {
+            if (Convert.ToBoolean(Session["chophep-them"]) == true)
+            {
+                <div class="col-5 text-end">
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ThemSanPhamModal">Thêm mới</button>
+                </div>
+            }
+        }
+    </div>
+</div><!-- End Page Title -->
+
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Danh sách sản phẩn</h5>
+
+                    <!-- Table with stripped rows -->
+                    <table id="lstSanPhamRauTable" class="table datatable striped" width="100%"> 
+                        <thead>
+                            <tr>
+                                <th scope="col">Mã</th>
+                                <th scope="col">Danh mục</th>
+                                <th scope="col">Tên sản phẩm</th>
+                                <th scope="col">Giá</th>
+                                <th scope="col">Lượt xem</th>
+                                <th scope="col">Trạng thái</th>
+                                <th scope="col">Hình ảnh</th>
+                                <th scope="col">#</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr style="vertical-align: middle">
+                                    <th scope="row">
+                                        SP@(item.id.ToString("D6"))
+                                        <input hidden id="inpMamonan@(item.id)" value="SP@(item.id.ToString("D6"))" />
+                                    </th>
+                                    <td>@item.DanhMucSanPhamRauNhaTrongCap1.tendanhmuc</td>
+                                    <td data-bs-toggle="tooltip" dropzone="top" title="@item.mota">@item.tensanpham</td>
+                                    <td>@item.gia.ToString("0,0") đ</td>
+                                    <td>@item.luotxem.ToString("0,0") Lượt</td>
+                                    <td>
+                                        @if (item.hienthi == true)
+                                        {
+                                            <span class="badge bg-success"><i class="bi bi-eye-fill me-1"></i> Hiển thị</span> }
+                                        else
+                                        {
+                                            <span class="badge bg-danger"><i class="bi bi-eye-slash-fill me-1"></i> Đã ẩn</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (string.IsNullOrEmpty(item.hinhanh))
+                                        {
+                                            <span class="badge bg-warning"><i class="bi bi-exclamation-octagon me-1"></i> Không có hình</span>
+                                        }
+                                        else
+                                        {
+                                            <button id="btnXemHinhAnhItem@(item.id)" data-bs-toggle="tooltip" data-bs-placement="top" title="Xem danh sách hình ảnh" name="@item.id" class="btn btn-sm btn-primary">
+                                                <i class="bi bi-image me-1"></i> xem @item.hinhanh.Split('#').Count() ảnh
+                                            </button>
+                                        }
+
+                                    </td>
+                                    <td>
+                                        @if (Session["chophep-sua"] != null)
+                                        {
+                                            if (Convert.ToBoolean(Session["chophep-sua"]) == true)
+                                            {
+                                                <button id="btnsuasp@(item.id)" name="@item.id" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Cập nhật món"><i class="bi bi-pencil-square"></i></button>
+                                            }
+                                        }
+                                        @if (Session["chophep-xoa"] != null)
+                                        {
+                                            if (Convert.ToBoolean(Session["chophep-xoa"]) == true)
+                                            {
+                                               
+                                                    <button id="btnxoasp@(item.id)" name="@item.id" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Xóa món"><i class="bi bi-trash"></i></button>
+                                                
+                                            }
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

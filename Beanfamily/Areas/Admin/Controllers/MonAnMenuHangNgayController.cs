@@ -40,7 +40,25 @@ namespace Beanfamily.Areas.Admin.Controllers
             Session["active-tlc-ttw"] = "collapsed # # ";
             Session["active-tlc-lkmxh"] = "collapsed # # ";
 
+            if (Session["mhn-qlm"] == null)
+                return RedirectToAction("index", "dashboard");
+
             var monAn = model.SanPhamThucDonHangNgay.ToList();
+
+            int idRole = Int32.Parse(Session["user-role-id"].ToString());
+            var chophepthemsuaxoa = model.ApDungChucNangChoQuyenTaiKhoan.FirstOrDefault(a => a.id_quyentaikhoanbean == idRole
+            && a.ChucNangHeThongBean.keycode.Equals("mhn-qlm"));
+            if (chophepthemsuaxoa != null)
+            {
+                Session["chophep-them"] = chophepthemsuaxoa.chophepthem;
+                Session["chophep-sua"] = chophepthemsuaxoa.chophepsua;
+                Session["chophep-xoa"] = chophepthemsuaxoa.chophepxoa;
+            }
+            else
+            {
+                return RedirectToAction("index", "dashboard");
+            }
+
             return View("index", monAn);
         }
 
@@ -171,7 +189,7 @@ namespace Beanfamily.Areas.Admin.Controllers
                 if (mon == null)
                     return Content("KHONGTONTAI");
 
-                return PartialView("_OpenSuaMon", mon);
+                return PartialView("_OpenSuaMonMenuHangNgay", mon);
             }
             catch (Exception ex)
             {

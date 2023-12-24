@@ -24,7 +24,7 @@
                 <div class="row mb-3">
                     <label for="suagia" class="col-md-12 col-lg-2 col-form-label">Giá món <span class="text-danger">*</span></label>
                     <div class="col-md-12 col-lg-10">
-                        <input value="@Model.gia" id="suagia" type="text" data-type="currency" placeholder="Giá món" class="form-control">
+                        <input value="@Model.gia.ToString("0,0").Replace(".", ",")" id="suagia" type="text" data-type="currency" placeholder="Giá món" class="form-control">
                         <label style="margin-left: 5px" id="invalid-suagia-feedback" class="text-danger" hidden></label>
                     </div>
                 </div>
@@ -128,4 +128,52 @@
         <button id="btnluusuaMonAn" type="button" class="btn btn-primary">Lưu thông tin</button>
     </div>
     <script src="~/Validation/MonAnMenuHangNgay/SuaMonAn.js"></script>
+    <script>
+        $(document).ready(function () {
+            //input money
+            $("input[data-type='currency']").on({
+                keyup: function () {
+                    formatCurrency($(this));
+                },
+                blur: function () {
+                    formatCurrency($(this), "blur");
+                }
+            });
+
+            function formatNumber(n) {
+                return n.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+            }
+
+            function formatCurrency(input, blur) {
+                var input_val = input.val();
+                if (input_val === "") { return; }
+                var original_len = input_val.length;
+
+                var caret_pos = input.prop("selectionStart");
+
+                if (input_val.indexOf(".") >= 0) {
+
+                    var decimal_pos = input_val.indexOf(".");
+
+                    var left_side = input_val.substring(0, decimal_pos);
+                    var right_side = input_val.substring(decimal_pos);
+
+                    left_side = formatNumber(left_side);
+                    right_side = formatNumber(right_side);
+
+                    if (blur === "blur") {
+                        right_side += "00";
+                    }
+
+                    right_side = right_side.substring(0, 2);
+                    input_val = left_side + "." + right_side;
+
+                } else {
+                    input_val = formatNumber(input_val);
+                    input_val = input_val;
+                }
+                input.val(input_val);
+            }
+        });
+    </script>
 </div>

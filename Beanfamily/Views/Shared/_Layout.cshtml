@@ -1,439 +1,108 @@
 ﻿<!DOCTYPE html>
-<html lang="vi">
+<html>
 <head>
-    <title>@ViewBag.Title</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Beanfamily.vn nhà hàng chay ngon bình dương, vườn rau nhà trồng đảm bảo an toàn sức khỏe, cửa hàng tiện lợi.">
-    <meta name="robots" content="noindex" />
-    <meta name="keywords" content="beanfamily, beanfamily.vn, nhà hàng chay bình dương, nhà hàng chay, rau, vườn rau, bean, family">
+    <meta name="viewport" content="width=device-width" />
+    <title>Beanfamily.vn</title>
     <style>
-        /* width */
-        ::-webkit-scrollbar {
-            width: 6px;
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
         }
 
-        /* Track */
-        ::-webkit-scrollbar-track {
-            box-shadow: inset 0 0 3px SlateGray;
-            border-radius: 10px;
+        div {
+            position: relative;
+            height: 100%;
+            width: 100%;
         }
 
-        /* Handle */
-        ::-webkit-scrollbar-thumb {
-            background: SlateGray;
-            border-radius: 10px;
+            div img {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                margin: auto;
+                filter: drop-shadow(0 0 0.75in #403);
+            }
+
+        .imgHeightcss {
+            width: 50vh;
+        }
+        .imgWidthcss {
+            width: 65vw;
         }
     </style>
-    <!--===============================================================================================-->
-    <link rel="icon" type="image/png" href="~/Content/assets/images/logo/logo-2745.png" />
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/vendor/bootstrap/css/bootstrap.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/fonts/themify/themify-icons.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/vendor/animate/animate.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/vendor/css-hamburgers/hamburgers.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/vendor/animsition/css/animsition.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/vendor/select2/select2.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/vendor/daterangepicker/daterangepicker.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/vendor/slick/slick.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/vendor/lightbox2/css/lightbox.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/css/util.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/css/main.css">
-    <!--===============================================================================================-->
+    <link href="~/Content/assets/scss/comingsoon.css" rel="stylesheet" />
 </head>
 <body>
+    <svg preserveAspectRatio="xMidYMid slice" viewBox="10 10 80 80">
+        <defs>
+            <style>
+                @@keyframes rotate {
+                    0% {
+                        transform: rotate(0deg);
+                    }
 
-    <!-- Header -->
-    <header>
-        <!-- Header desktop -->
-        <div class="wrap-menu-header gradient1 trans-0-4">
-            <div class="container h-full">
-                <div class="wrap_header trans-0-3">
-                    <!-- Logo -->
-                    <div class="logo">
-                        <a href="~/Content/assets/index.html">
-                            <img src="~/Content/assets/images/logo/logo-2745.png" alt="IMG-LOGO" data-logofixed="/Content/assets/images/logo/logo-2745.png">
-                        </a>
-                    </div>
+                    100% {
+                        transform: rotate(360deg);
+                    }
+                }
 
-                    <!-- Menu -->
-                    <div class="wrap_menu p-l-45 p-l-0-xl">
-                        <nav class="menu">
-                            <ul class="main_menu">
-                                <li>
-                                    <a href="@Url.Action("index", "home")">Trang Chủ</a>
-                                </li>
+                .out-top {
+                    animation: rotate 20s linear infinite;
+                    transform-origin: 13px 25px;
+                }
 
-                                <li>
-                                    <a href="@Url.Action("about", "home")">Giới thiệu</a>
-                                </li>
+                .in-top {
+                    animation: rotate 10s linear infinite;
+                    transform-origin: 13px 25px;
+                }
 
-                                <li>
-                                    <a href="@Url.Action("restaurant", "home")">Nhà hàng</a>
-                                    <ul class="sub_menu">
-                                        <li style=" border-top-right-radius: 20px;">
-                                            <a href="@Url.Action("about", "home")">Menu hằng ngày</a>
-                                        </li>
+                .out-bottom {
+                    animation: rotate 25s linear infinite;
+                    transform-origin: 84px 93px;
+                }
 
-                                        <li>
-                                            <a href="@Url.Action("restaurant", "home")">Menu tiệc bàn</a>
-                                        </li>
-                                        <li style="border-bottom-left-radius: 20px;">
-                                            <a href="@Url.Action("restaurant", "home")">Menu buffet</a>
-                                        </li>
-                                    </ul>
-                                </li>
+                .in-bottom {
+                    animation: rotate 15s linear infinite;
+                    transform-origin: 84px 93px;
+                }
+            </style>
+        </defs>
+        <path fill="#9b5de5" class="out-top" d="M37-5C25.1-14.7,5.7-19.1-9.2-10-28.5,1.8-32.7,31.1-19.8,49c15.5,21.5,52.6,22,67.2,2.3C59.4,35,53.7,8.5,37-5Z" />
+        <path fill="#f15bb5" class="in-top" d="M20.6,4.1C11.6,1.5-1.9,2.5-8,11.2-16.3,23.1-8.2,45.6,7.4,50S42.1,38.9,41,24.5C40.2,14.1,29.4,6.6,20.6,4.1Z" />
+        <path fill="#00bbf9" class="out-bottom" d="M105.9,48.6c-12.4-8.2-29.3-4.8-39.4.8-23.4,12.8-37.7,51.9-19.1,74.1s63.9,15.3,76-5.6c7.6-13.3,1.8-31.1-2.3-43.8C117.6,63.3,114.7,54.3,105.9,48.6Z" />
+        <path fill="#00f5d4" class="in-bottom" d="M102,67.1c-9.6-6.1-22-3.1-29.5,2-15.4,10.7-19.6,37.5-7.6,47.8s35.9,3.9,44.5-12.5C115.5,92.6,113.9,74.6,102,67.1Z" />
+    </svg>
 
-                                <li>
-                                    <a href="@Url.Action("garden", "home")">Vườn rau</a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("shopping", "home")">Mua sắm</a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("contact", "home")">Liên Hệ</a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-
-                    <!-- Social -->
-                    <div class="social flex-w flex-l-m p-r-20">
-                        <a href="~/Content/assets/#"><i class="fa fa-wechat" aria-hidden="true"></i></a>
-                        <a href="~/Content/assets/#"><i class="fa fa-facebook m-l-21" aria-hidden="true"></i></a>
-                        <a href="~/Content/assets/#"><i class="fa fa-phone m-l-21" aria-hidden="true"></i></a>
-
-                        <button class="btn-show-sidebar m-l-33 trans-0-4"></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- Sidebar -->
-    <aside class="sidebar trans-0-4">
-        <!-- Button Hide sidebar -->
-        <button class="btn-hide-sidebar ti-close color0-hov trans-0-4"></button>
-
-        <!-- - -->
-        <ul class="menu-sidebar p-t-95 p-b-70">
-            <li class="t-center m-b-13">
-                <a href="@Url.Action("index", "home")">Trang Chủ</a>
-            </li>
-
-            <li class="t-center m-b-13">
-                <a href="@Url.Action("about", "home")">Giới thiệu</a>
-            </li>
-
-            <li class="t-center m-b-13">
-                <a href="@Url.Action("restaurant", "home")">Nhà hàng</a>
-            </li>
-
-            <li class="t-center m-b-13">
-                <a href="@Url.Action("garden", "home")">Vườn rau</a>
-            </li>
-            <li class="t-center m-b-13">
-                <a href="@Url.Action("shopping", "home")">Mua sắm</a>
-            </li>
-            <li class="t-center m-b-13">
-                <a href="@Url.Action("contact", "home")">Liên Hệ</a>
-            </li>
-
-            <li class="t-center">
-                <!-- Button3 -->
-                <a href="~/Content/assets/reservation.html" class="btn3 flex-c-m size13 txt11 trans-0-4 m-l-r-auto">
-                    Liên Hệ Đặt Bàn
-                </a>
-            </li>
-        </ul>
-
-        <!-- - -->
-        <div class="gallery-sidebar t-center p-l-60 p-r-60 p-b-40">
-            <!-- - -->
-            <h4 class="txt20 m-b-33">
-                Trưng bày
-            </h4>
-
-            <!-- Gallery -->
-            <div class="wrap-gallery-sidebar flex-w">
-                <a class="item-gallery-sidebar wrap-pic-w" href="~/Content/assets/images/photo-gallery-01.jpg" data-lightbox="gallery-footer">
-                    <img src="~/Content/assets/images/photo-gallery-thumb-01.jpg" alt="GALLERY">
-                </a>
-
-                <a class="item-gallery-sidebar wrap-pic-w" href="~/Content/assets/images/photo-gallery-02.jpg" data-lightbox="gallery-footer">
-                    <img src="~/Content/assets/images/photo-gallery-thumb-02.jpg" alt="GALLERY">
-                </a>
-
-                <a class="item-gallery-sidebar wrap-pic-w" href="~/Content/assets/images/photo-gallery-03.jpg" data-lightbox="gallery-footer">
-                    <img src="~/Content/assets/images/photo-gallery-thumb-03.jpg" alt="GALLERY">
-                </a>
-
-                <a class="item-gallery-sidebar wrap-pic-w" href="~/Content/assets/images/photo-gallery-05.jpg" data-lightbox="gallery-footer">
-                    <img src="~/Content/assets/images/photo-gallery-thumb-05.jpg" alt="GALLERY">
-                </a>
-
-                <a class="item-gallery-sidebar wrap-pic-w" href="~/Content/assets/images/photo-gallery-06.jpg" data-lightbox="gallery-footer">
-                    <img src="~/Content/assets/images/photo-gallery-thumb-06.jpg" alt="GALLERY">
-                </a>
-
-                <a class="item-gallery-sidebar wrap-pic-w" href="~/Content/assets/images/photo-gallery-07.jpg" data-lightbox="gallery-footer">
-                    <img src="~/Content/assets/images/photo-gallery-thumb-07.jpg" alt="GALLERY">
-                </a>
-
-                <a class="item-gallery-sidebar wrap-pic-w" href="~/Content/assets/images/photo-gallery-09.jpg" data-lightbox="gallery-footer">
-                    <img src="~/Content/assets/images/photo-gallery-thumb-09.jpg" alt="GALLERY">
-                </a>
-
-                <a class="item-gallery-sidebar wrap-pic-w" href="~/Content/assets/images/photo-gallery-10.jpg" data-lightbox="gallery-footer">
-                    <img src="~/Content/assets/images/photo-gallery-thumb-10.jpg" alt="GALLERY">
-                </a>
-
-                <a class="item-gallery-sidebar wrap-pic-w" href="~/Content/assets/images/photo-gallery-11.jpg" data-lightbox="gallery-footer">
-                    <img src="~/Content/assets/images/photo-gallery-thumb-11.jpg" alt="GALLERY">
-                </a>
-            </div>
-        </div>
-    </aside>
-
-    @RenderBody()
-    @RenderSection("scripts", required: false)
-
-
-    <!-- Footer -->
-    <footer class="bg1">
-        <div class="container p-t-40 p-b-70">
-            <div class="row">
-                <div class="col-sm-6 col-md-4 p-t-50">
-                    <!-- - -->
-                    <h4 class="txt13 m-b-33">
-                        Thông Tin Liên Hệ
-                    </h4>
-
-                    <ul class="m-b-70">
-                        <li class="txt14 m-b-14">
-                            <i class="fa fa-map-marker fs-16 dis-inline-block size19" aria-hidden="true"></i>
-                            Số 38 - Đường D1 - KDC Phú Hòa 1 - Phường Phú Hòa - Thủ Dầu Một - Bình Dương
-                        </li>
-
-                        <li class="txt14 m-b-14">
-                            <i class="fa fa-phone fs-16 dis-inline-block size19" aria-hidden="true"></i>
-                            (+84) 274 3844 554
-                        </li>
-
-                        <li class="txt14 m-b-14">
-                            <i class="fa fa-envelope fs-13 dis-inline-block size19" aria-hidden="true"></i>
-                            duongle15012000@gmail.com
-                        </li>
-                    </ul>
-
-                    <!-- - -->
-                    <h4 class="txt13 m-b-32">
-                        Giờ mở cửa
-                    </h4>
-
-                    <ul>
-                        <li class="txt14">
-                            07:00 AM – 23:00 PM
-                        </li>
-
-                        <li class="txt14">
-                            Tất cả các ngày
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="col-sm-6 col-md-4 p-t-50">
-                    <!-- - -->
-                    <h4 class="txt13 m-b-33">
-                        Bài viết mới
-                    </h4>
-
-                    <div class="m-b-25">
-                        <span class="fs-13 color2 m-r-5">
-                            <i class="fa fa-twitter" aria-hidden="true"></i>
-                        </span>
-                        <a href="~/Content/assets/#" class="txt15">
-                            @@colorlib
-                        </a>
-
-                        <p class="txt14 m-b-18">
-                            Activello is a good option. It has a slider built into that displays the featured image in the slider.
-                            <a href="~/Content/assets/#" class="txt15">
-                                https://buff.ly/2zaSfAQ
-                            </a>
-                        </p>
-
-                        <span class="txt16">
-                            21 Th2 2017
-                        </span>
-                    </div>
-
-                    <div>
-                        <span class="fs-13 color2 m-r-5">
-                            <i class="fa fa-twitter" aria-hidden="true"></i>
-                        </span>
-                        <a href="~/Content/assets/#" class="txt15">
-                            @@colorlib
-                        </a>
-
-                        <p class="txt14 m-b-18">
-                            Activello is a good option. It has a slider built into that displays
-                            <a href="~/Content/assets/#" class="txt15">
-                                https://buff.ly/2zaSfAQ
-                            </a>
-                        </p>
-
-                        <span class="txt16">
-                            21 Th2 2017
-                        </span>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-md-4 p-t-50">
-                    <!-- - -->
-                    <h4 class="txt13 m-b-38">
-                        Hình Ảnh Nhà Hàng
-                    </h4>
-
-                    <!-- Gallery footer -->
-                    <div class="wrap-gallery-footer flex-w">
-                        <a class="item-gallery-footer wrap-pic-w" href="~/Content/assets/images/photo-gallery-01.jpg" data-lightbox="gallery-footer">
-                            <img src="~/Content/assets/images/photo-gallery-thumb-01.jpg" alt="GALLERY">
-                        </a>
-
-                        <a class="item-gallery-footer wrap-pic-w" href="~/Content/assets/images/photo-gallery-02.jpg" data-lightbox="gallery-footer">
-                            <img src="~/Content/assets/images/photo-gallery-thumb-02.jpg" alt="GALLERY">
-                        </a>
-
-                        <a class="item-gallery-footer wrap-pic-w" href="~/Content/assets/images/photo-gallery-03.jpg" data-lightbox="gallery-footer">
-                            <img src="~/Content/assets/images/photo-gallery-thumb-03.jpg" alt="GALLERY">
-                        </a>
-
-                        <a class="item-gallery-footer wrap-pic-w" href="~/Content/assets/images/photo-gallery-04.jpg" data-lightbox="gallery-footer">
-                            <img src="~/Content/assets/images/photo-gallery-thumb-04.jpg" alt="GALLERY">
-                        </a>
-
-                        <a class="item-gallery-footer wrap-pic-w" href="~/Content/assets/images/photo-gallery-05.jpg" data-lightbox="gallery-footer">
-                            <img src="~/Content/assets/images/photo-gallery-thumb-05.jpg" alt="GALLERY">
-                        </a>
-
-                        <a class="item-gallery-footer wrap-pic-w" href="~/Content/assets/images/photo-gallery-06.jpg" data-lightbox="gallery-footer">
-                            <img src="~/Content/assets/images/photo-gallery-thumb-06.jpg" alt="GALLERY">
-                        </a>
-
-                        <a class="item-gallery-footer wrap-pic-w" href="~/Content/assets/images/photo-gallery-07.jpg" data-lightbox="gallery-footer">
-                            <img src="~/Content/assets/images/photo-gallery-thumb-07.jpg" alt="GALLERY">
-                        </a>
-
-                        <a class="item-gallery-footer wrap-pic-w" href="~/Content/assets/images/photo-gallery-08.jpg" data-lightbox="gallery-footer">
-                            <img src="~/Content/assets/images/photo-gallery-thumb-08.jpg" alt="GALLERY">
-                        </a>
-
-                        <a class="item-gallery-footer wrap-pic-w" href="~/Content/assets/images/photo-gallery-09.jpg" data-lightbox="gallery-footer">
-                            <img src="~/Content/assets/images/photo-gallery-thumb-09.jpg" alt="GALLERY">
-                        </a>
-
-                        <a class="item-gallery-footer wrap-pic-w" href="~/Content/assets/images/photo-gallery-10.jpg" data-lightbox="gallery-footer">
-                            <img src="~/Content/assets/images/photo-gallery-thumb-10.jpg" alt="GALLERY">
-                        </a>
-
-                        <a class="item-gallery-footer wrap-pic-w" href="~/Content/assets/images/photo-gallery-11.jpg" data-lightbox="gallery-footer">
-                            <img src="~/Content/assets/images/photo-gallery-thumb-11.jpg" alt="GALLERY">
-                        </a>
-
-                        <a class="item-gallery-footer wrap-pic-w" href="~/Content/assets/images/photo-gallery-12.jpg" data-lightbox="gallery-footer">
-                            <img src="~/Content/assets/images/photo-gallery-thumb-12.jpg" alt="GALLERY">
-                        </a>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="end-footer bg2">
-            <div class="container">
-                <div class="flex-sb-m flex-w p-t-22 p-b-22">
-                    <div class="p-t-5 p-b-5">
-                        <a href="~/Content/assets/#" class="fs-15 c-white"><i class="fa fa-tripadvisor" aria-hidden="true"></i></a>
-                        <a href="~/Content/assets/#" class="fs-15 c-white"><i class="fa fa-facebook m-l-18" aria-hidden="true"></i></a>
-                        <a href="~/Content/assets/#" class="fs-15 c-white"><i class="fa fa-twitter m-l-18" aria-hidden="true"></i></a>
-                    </div>
-
-                    <div class="txt17 p-r-20 p-t-5 p-b-5">
-                        Copyright &copy; 2018 All rights reserved  |  This template is made with <i class="fa fa-heart"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-
-    <!-- Back to top -->
-    <div class="btn-back-to-top bg0-hov" id="myBtn">
-        <span class="symbol-btn-back-to-top">
-            <i class="fa fa-angle-double-up" aria-hidden="true"></i>
-        </span>
+    <div class="links">
+        <a href="https://dev.to/uuuuuulala/making-background-blob-animation-in-just-15kb-step-by-step-guide-2482" target="_blank">tutorial<img class="icon" src="https://ksenia-k.com/img/icons/link.svg"></a>
     </div>
-
-    <!-- Container Selection1 -->
-    <div id="dropDownSelect1"></div>
-
-    <!-- Modal Video 01-->
-    <div class="modal fade" id="modal-video-01" tabindex="-1" role="dialog" aria-hidden="true">
-
-        <div class="modal-dialog" role="document" data-dismiss="modal">
-            <div class="close-mo-video-01 trans-0-4" data-dismiss="modal" aria-label="Close">&times;</div>
-
-            <div class="wrap-video-mo-01">
-                <div class="w-full wrap-pic-w op-0-0"><img src="~/Content/assets/images/icons/video-16-9.jpg" alt="IMG"></div>
-                <div class="video-mo-01">
-                    <iframe src="https://www.youtube.com/embed/5k1hSu2gdKE?rel=0&amp;showinfo=0" allowfullscreen></iframe>
-                </div>
-            </div>
-        </div>
+    <div>
+        <img id="hinhanh" src="~/Content/assets/images/commingsoon.png" />
     </div>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            viewPortWidth = window.innerWidth;
+            viewPortHeight = window.innerHeight;
 
-
-
-    <!--===============================================================================================-->
-    <script type="text/javascript" src="~/Content/assets/vendor/jquery/jquery-3.2.1.min.js"></script>
-    <!--===============================================================================================-->
-    <script type="text/javascript" src="~/Content/assets/vendor/animsition/js/animsition.min.js"></script>
-    <!--===============================================================================================-->
-    <script type="text/javascript" src="~/Content/assets/vendor/bootstrap/js/popper.js"></script>
-    <script type="text/javascript" src="~/Content/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
-    <!--===============================================================================================-->
-    <script type="text/javascript" src="~/Content/assets/vendor/select2/select2.min.js"></script>
-    <!--===============================================================================================-->
-    <script type="text/javascript" src="~/Content/assets/vendor/daterangepicker/moment.min.js"></script>
-    <script type="text/javascript" src="~/Content/assets/vendor/daterangepicker/daterangepicker.js"></script>
-    <!--===============================================================================================-->
-    <script type="text/javascript" src="~/Content/assets/vendor/slick/slick.min.js"></script>
-    <script type="text/javascript" src="~/Content/assets/js/slick-custom.js"></script>
-    <!--===============================================================================================-->
-    <script type="text/javascript" src="~/Content/assets/vendor/parallax100/parallax100.js"></script>
-    <script type="text/javascript">
-        $('.parallax100').parallax100();
+            if (Number(viewPortWidth) >= Number(viewPortHeight)) {
+                $('#hinhanh').removeClass('imgWidthcss');
+                $('#hinhanh').addClass('imgHeightcss');
+            }
+            else {
+                $('#hinhanh').removeClass('imgHeightcss');
+                $('#hinhanh').addClass('imgWidthcss');
+            }
+        });
     </script>
-    <!--===============================================================================================-->
-    <script type="text/javascript" src="~/Content/assets/vendor/countdowntime/countdowntime.js"></script>
-    <!--===============================================================================================-->
-    <script type="text/javascript" src="~/Content/assets/vendor/lightbox2/js/lightbox.min.js"></script>
-    <!--===============================================================================================-->
-    <script src="~/Content/assets/js/main.js"></script>
-
 </body>
 </html>
 
 
+
+<div style="display:none">
+    @RenderBody()
+</div>

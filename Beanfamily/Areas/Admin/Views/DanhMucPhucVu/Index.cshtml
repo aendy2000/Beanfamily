@@ -15,9 +15,15 @@
                 </ol>
             </nav>
         </div>
-        <div class="col-5 text-end">
-            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ThemDmpvModal">Thêm mới</button>
-        </div>
+        @if (Session["chophep-them"] != null)
+        {
+            if (Convert.ToBoolean(Session["chophep-them"]) == true)
+            {
+                <div class="col-5 text-end">
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ThemDmpvModal">Thêm mới</button>
+                </div>
+            }
+        }
     </div>
 
 </div><!-- End Page Title -->
@@ -31,7 +37,7 @@
                     <h5 class="card-title">Danh sách danh mục phục vụ</h5>
 
                     <!-- Table with stripped rows -->
-                    <table id="lstDmTdhnTable" class="table datatable">
+                    <table id="lstDmTdhnTable" class="table datatable" width="100%"> 
                         <thead>
                             <tr>
                                 <th scope="col">Mã</th>
@@ -102,10 +108,22 @@
                                         }
                                     </td>
                                     <td>
-                                        <button id="btnsuadm@(item.id)" name="@item.id" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Cập nhật danh mục"><i class="bi bi-pencil-square"></i></button>
-                                        @if (item.ApDungDanhMucPhucVu.Count < 1)
+                                        @if (Session["chophep-sua"] != null)
                                         {
-                                            <button id="btnxoadm@(item.id)" name="@item.id" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Xóa danh mục"><i class="bi bi-trash"></i></button>
+                                            if (Convert.ToBoolean(Session["chophep-sua"]) == true)
+                                            {
+                                                <button id="btnsuadm@(item.id)" name="@item.id" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Cập nhật danh mục"><i class="bi bi-pencil-square"></i></button>
+                                            }
+                                        }
+                                        @if (Session["chophep-xoa"] != null)
+                                        {
+                                            if (Convert.ToBoolean(Session["chophep-xoa"]) == true)
+                                            {
+                                                if (item.ApDungDanhMucPhucVu.Count < 1)
+                                                {
+                                                    <button id="btnxoadm@(item.id)" name="@item.id" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Xóa danh mục"><i class="bi bi-trash"></i></button>
+                                                }
+                                            }
                                         }
                                     </td>
                                 </tr>
@@ -118,101 +136,111 @@
         </div>
     </div>
 </section>
-
-<!-- Thêm danh mục -->
-<div class="modal fade" id="ThemDmpvModal" tabindex="-1">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Thêm danh mục mới</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row m-2">
-                    <div class="col-sm-12 col-lg-12">
-                        <div class="row mb-3">
-                            <label for="tendanhmuc" class="col-md-3 col-lg-3 col-form-label">Tên danh mục <span class="text-danger">*</span></label>
-                            <div class="col-md-9 col-lg-9">
-                                <input id="tendanhmuc" type="text" placeholder="Tên danh mục cấp 1" class="form-control">
-                                <label style="margin-left: 5px" id="invalid-tendanhmuc-feedback" class="text-danger" hidden></label>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label for="sothutu" class="col-md-3 col-lg-3 col-form-label">Số thứ tự</label>
-                            <div class="col-md-9 col-lg-9">
-                                <input id="sothutu" type="text" data-type='numbers' placeholder="Số thứ tự" class="form-control">
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label for="sothutu" class="col-md-3 col-lg-3 col-form-label">Hiển thị</label>
-                            <div class="col-md-9 col-lg-9">
-                                <div class="form-check form-switch form-control">
-                                    <input checked class="form-check-input" style="margin-left: -1.5em" type="checkbox" id="hienthi">
-                                    <label class="form-check-label" style="margin-left: 0.8em" for="hienthi"> Hiển thị sau khi tạo</label>
+@if (Session["chophep-them"] != null)
+{
+    if (Convert.ToBoolean(Session["chophep-them"]) == true)
+    {
+        <!-- Thêm danh mục -->
+        <div class="modal fade" id="ThemDmpvModal" tabindex="-1">
+            <div class="modal-dialog  modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Thêm danh mục mới</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row m-2">
+                            <div class="col-sm-12 col-lg-12">
+                                <div class="row mb-3">
+                                    <label for="tendanhmuc" class="col-md-3 col-lg-3 col-form-label">Tên danh mục <span class="text-danger">*</span></label>
+                                    <div class="col-md-9 col-lg-9">
+                                        <input id="tendanhmuc" type="text" placeholder="Tên danh mục cấp 1" class="form-control">
+                                        <label style="margin-left: 5px" id="invalid-tendanhmuc-feedback" class="text-danger" hidden></label>
+                                    </div>
                                 </div>
-                                <label style="margin-left: 5px" id="invalid-hienthi-feedback" class="text-danger" hidden></label>
+                                <div class="row mb-3">
+                                    <label for="sothutu" class="col-md-3 col-lg-3 col-form-label">Số thứ tự</label>
+                                    <div class="col-md-9 col-lg-9">
+                                        <input id="sothutu" type="text" data-type='numbers' placeholder="Số thứ tự" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="sothutu" class="col-md-3 col-lg-3 col-form-label">Hiển thị</label>
+                                    <div class="col-md-9 col-lg-9">
+                                        <div class="form-check form-switch form-control">
+                                            <input checked class="form-check-input" style="margin-left: -1.5em" type="checkbox" id="hienthi">
+                                            <label class="form-check-label" style="margin-left: 0.8em" for="hienthi"> Hiển thị sau khi tạo</label>
+                                        </div>
+                                        <label style="margin-left: 5px" id="invalid-hienthi-feedback" class="text-danger" hidden></label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
 
-            <div class="modal-footer mt-3">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                <button id="btnluuthemDmpv" type="button" class="btn btn-primary">Lưu thông tin</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Sửa danh mục -->
-<div class="modal fade" id="SuaDmMtbModal" tabindex="-1">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 id="TitleSuaDmTdhnModal" class="modal-title">Cập nhật danh mục</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row m-2">
-                    <div class="col-sm-12 col-lg-12">
-                        <div class="row mb-3">
-                            <label for="suatendanhmuc" class="col-md-12 col-lg-3 col-form-label">Tên danh mục <span class="text-danger">*</span></label>
-                            <div class="col-md-12 col-lg-9">
-                                <input hidden id="suaiddanhmuc">
-                                <input hidden id="suastriddanhmuc">
-                                <input id="suatendanhmuc" type="text" placeholder="Tên danh mục cấp 1" class="form-control">
-                                <label style="margin-left: 5px" id="invalid-suatendanhmuc-feedback" class="text-danger" hidden></label>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label for="suasothutu" class="col-md-12 col-lg-3 col-form-label">Số thứ tự</label>
-                            <div class="col-md-12 col-lg-9">
-                                <input id="suasothutu" type="text" placeholder="Số thứ tự" class="form-control">
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label for="suahienthi" class="col-md-12 col-lg-3 col-form-label">Hiển thị</label>
-                            <div class="col-md-12 col-lg-9">
-                                <div class="form-check form-switch form-control">
-                                    <input checked class="form-check-input" style="margin-left: -1.5em" type="checkbox" id="suahienthi">
-                                    <label class="form-check-label" style="margin-left: 0.8em" for="suahienthi"> Hiển thị sau khi tạo</label>
-                                </div>
-                                <label style="margin-left: 5px" id="invalid-suahienthi-feedback" class="text-danger" hidden></label>
-                            </div>
-                        </div>
+                    <div class="modal-footer mt-3">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                        <button id="btnluuthemDmpv" type="button" class="btn btn-primary">Lưu thông tin</button>
                     </div>
                 </div>
             </div>
+        </div>
+    }
+}
 
-            <div class="modal-footer mt-3">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                <button id="btnluuSuaDmpv" type="button" class="btn btn-primary">Lưu thông tin</button>
+@if (Session["chophep-sua"] != null)
+{
+    if (Convert.ToBoolean(Session["chophep-sua"]) == true)
+    {
+        <!-- Sửa danh mục -->
+        <div class="modal fade" id="SuaDmMtbModal" tabindex="-1">
+            <div class="modal-dialog  modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 id="TitleSuaDmTdhnModal" class="modal-title">Cập nhật danh mục</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row m-2">
+                            <div class="col-sm-12 col-lg-12">
+                                <div class="row mb-3">
+                                    <label for="suatendanhmuc" class="col-md-12 col-lg-3 col-form-label">Tên danh mục <span class="text-danger">*</span></label>
+                                    <div class="col-md-12 col-lg-9">
+                                        <input hidden id="suaiddanhmuc">
+                                        <input hidden id="suastriddanhmuc">
+                                        <input id="suatendanhmuc" type="text" placeholder="Tên danh mục cấp 1" class="form-control">
+                                        <label style="margin-left: 5px" id="invalid-suatendanhmuc-feedback" class="text-danger" hidden></label>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="suasothutu" class="col-md-12 col-lg-3 col-form-label">Số thứ tự</label>
+                                    <div class="col-md-12 col-lg-9">
+                                        <input id="suasothutu" type="text" placeholder="Số thứ tự" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="suahienthi" class="col-md-12 col-lg-3 col-form-label">Hiển thị</label>
+                                    <div class="col-md-12 col-lg-9">
+                                        <div class="form-check form-switch form-control">
+                                            <input checked class="form-check-input" style="margin-left: -1.5em" type="checkbox" id="suahienthi">
+                                            <label class="form-check-label" style="margin-left: 0.8em" for="suahienthi"> Hiển thị sau khi tạo</label>
+                                        </div>
+                                        <label style="margin-left: 5px" id="invalid-suahienthi-feedback" class="text-danger" hidden></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer mt-3">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                        <button id="btnluuSuaDmpv" type="button" class="btn btn-primary">Lưu thông tin</button>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-
+    }
+}
 
 <script src="~/Validation/DanhMucPhucVu/ThemDmpvMenu.js"></script>
 <script src="~/Validation/DanhMucPhucVu/SuaDmpvMenu.js"></script>

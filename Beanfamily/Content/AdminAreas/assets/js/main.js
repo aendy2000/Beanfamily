@@ -8,7 +8,9 @@
 (function () {
     "use strict";
 
-    jQuery('.datatable').DataTable();
+    jQuery('.datatable').DataTable({
+        scrollX: true,
+    });
 
     /**
      * Easy selector helper function
@@ -302,6 +304,58 @@
      * Initiate Datatables
      */
 
+    //input money
+    $("input[data-type='currency']").on({
+        keyup: function () {
+            formatCurrency($(this));
+        },
+        blur: function () {
+            formatCurrency($(this), "blur");
+        }
+    });
+
+    function formatNumber(n) {
+        return n.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    }
+
+    function formatCurrency(input, blur) {
+        var input_val = input.val();
+        if (input_val === "") { return; }
+        var original_len = input_val.length;
+
+        var caret_pos = input.prop("selectionStart");
+
+        if (input_val.indexOf(".") >= 0) {
+
+            var decimal_pos = input_val.indexOf(".");
+
+            var left_side = input_val.substring(0, decimal_pos);
+            var right_side = input_val.substring(decimal_pos);
+
+            left_side = formatNumber(left_side);
+            right_side = formatNumber(right_side);
+
+            if (blur === "blur") {
+                right_side += "00";
+            }
+
+            right_side = right_side.substring(0, 2);
+            input_val = left_side + "." + right_side;
+
+        } else {
+            input_val = formatNumber(input_val);
+            input_val = input_val;
+        }
+        input.val(input_val);
+    }
+
+    //Input number?
+    $("input[data-type='numbers']").keyup(function (e) {
+        if (/\D/g.test(this.value)) {
+            // Filter non-digits from input value.
+            this.value = this.value.replace(/\D/g, '');
+        }
+    });
 
     /**
      * Autoresize echart charts
@@ -318,88 +372,6 @@
     }
 
 
-    //input ti?n
-    $("input[data-type='currency']").on({
-        keyup: function () {
-            formatCurrency($(this));
-        },
-        blur: function () {
-            formatCurrency($(this), "blur");
-        }
-    });
-
-
-    function formatNumber(n) {
-        // format number 1000000 to 1,234,567
-        return n.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-    }
-
-
-    function formatCurrency(input, blur) {
-        // appends $ to value, validates decimal side
-        // and puts cursor back in right position.
-
-        // get input value
-        var input_val = input.val();
-
-        // don't validate empty input
-        if (input_val === "") { return; }
-
-        // original length
-        var original_len = input_val.length;
-
-        // initial caret position 
-        var caret_pos = input.prop("selectionStart");
-
-        // check for decimal
-        if (input_val.indexOf(".") >= 0) {
-
-            // get position of first decimal
-            // this prevents multiple decimals from
-            // being entered
-            var decimal_pos = input_val.indexOf(".");
-
-            // split number by decimal point
-            var left_side = input_val.substring(0, decimal_pos);
-            var right_side = input_val.substring(decimal_pos);
-
-            // add commas to left side of number
-            left_side = formatNumber(left_side);
-
-            // validate right side
-            right_side = formatNumber(right_side);
-
-            // On blur make sure 2 numbers after decimal
-            if (blur === "blur") {
-                right_side += "00";
-            }
-
-            // Limit decimal to only 2 digits
-            right_side = right_side.substring(0, 2);
-
-            // join number by .
-            input_val = left_side + "." + right_side;
-
-        } else {
-            // no decimal entered
-            // add commas to number
-            // remove all non-digits
-            input_val = formatNumber(input_val);
-            input_val = input_val;
-
-
-        }
-
-        // send updated string to input
-        input.val(input_val);
-    }
-
-    //Input s?
-    $("input[data-type='numbers']").keyup(function (e) {
-        if (/\D/g.test(this.value)) {
-            // Filter non-digits from input value.
-            this.value = this.value.replace(/\D/g, '');
-        }
-    });
+    
 
 })();

@@ -61,12 +61,12 @@
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </div><!-- End Logo -->
 
-        <div class="search-bar">
+        <!--<div class="search-bar">
             <div class="search-form d-flex align-items-center">
                 <input type="text" name="searchOnPage" placeholder="Tìm kiếm trên trang" title="Nhập từ khóa tìm kiếm">
                 <button type="submit" title="Search"><i class="bi bi-search"></i></button>
             </div>
-        </div><!-- End Search Bar -->
+        </div>--><!-- End Search Bar -->
 
         <nav class="header-nav ms-auto">
             <ul class="d-flex align-items-center">
@@ -77,14 +77,14 @@
                     </a>
                 </li><!-- End Search Icon-->
 
-                <li class="nav-item dropdown">
+                <!--<li class="nav-item dropdown">
 
                     <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
                         <i class="bi bi-bell"></i>
                         <span class="badge bg-primary badge-number">4</span>
-                    </a><!-- End Notification Icon -->
+                    </a>--><!-- End Notification Icon -->
 
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+                    <!--<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
                         <li class="dropdown-header">
                             4 thông báo mới
                             <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">Xem tất cả</span></a>
@@ -148,18 +148,18 @@
                             <a href="#">Show all notifications</a>
                         </li>
 
-                    </ul><!-- End Notification Dropdown Items -->
+                    </ul>--><!-- End Notification Dropdown Items -->
 
-                </li><!-- End Notification Nav -->
+                <!--</li>--><!-- End Notification Nav -->
 
-                <li class="nav-item dropdown">
+                <!--<li class="nav-item dropdown">
 
                     <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
                         <i class="bi bi-chat-left-text"></i>
                         <span class="badge bg-success badge-number">3</span>
-                    </a><!-- End Messages Icon -->
+                    </a>--><!-- End Messages Icon -->
 
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
+                    <!--<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
                         <li class="dropdown-header">
                             3 tin nhắn mới
                             <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
@@ -214,9 +214,9 @@
                             <a href="#">Show all messages</a>
                         </li>
 
-                    </ul><!-- End Messages Dropdown Items -->
+                    </ul>--><!-- End Messages Dropdown Items -->
 
-                </li><!-- End Messages Nav -->
+                <!--</li>--><!-- End Messages Nav -->
 
                 <li class="nav-item dropdown pe-3">
 
@@ -298,7 +298,7 @@
                         @if (Session["mtb-qlm"] != null)
                         {
                             <li>
-                                <a href="components-accordion.html" class="@Session["active-mtb-qlm"].ToString().Split('#')[2]">
+                                <a href="@Url.Action("index", "monanmenutiecban")" class="@Session["active-mtb-qlm"].ToString().Split('#')[2]">
                                     <i class="bi bi-circle"></i><span>Quản Lý Món</span>
                                 </a>
                             </li>
@@ -318,7 +318,7 @@
                         @if (Session["mb-dmc1"] != null)
                         {
                             <li>
-                                <a href="components-alerts.html" class="@Session["active-mb-dmc1"].ToString().Split('#')[2]">
+                                <a href="@Url.Action("index", "dmcap1menubuffet")" class="@Session["active-mb-dmc1"].ToString().Split('#')[2]">
                                     <i class="bi bi-circle"></i><span>Danh Mục Cấp 1</span>
                                 </a>
                             </li>
@@ -326,7 +326,7 @@
                         @if (Session["mb-qlm"] != null)
                         {
                             <li>
-                                <a href="components-accordion.html" class="@Session["active-mb-qlm"].ToString().Split('#')[2]">
+                                <a href="@Url.Action("index", "monanmenubuffet")" class="@Session["active-mb-qlm"].ToString().Split('#')[2]">
                                     <i class="bi bi-circle"></i><span>Quản Lý Món</span>
                                 </a>
                             </li>
@@ -383,7 +383,7 @@
                         @if (Session["vrb-dmc1"] != null)
                         {
                             <li>
-                                <a href="components-alerts.html" class="@Session["active-vrb-dmc1"].ToString().Split('#')[2]">
+                                <a href="@Url.Action("index", "dmcap1vuonraubean")" class="@Session["active-vrb-dmc1"].ToString().Split('#')[2]">
                                     <i class="bi bi-circle"></i><span>Danh Mục Cấp 1</span>
                                 </a>
                             </li>
@@ -391,7 +391,7 @@
                         @if (Session["vrb-spr"] != null)
                         {
                             <li>
-                                <a href="components-accordion.html" class="@Session["active-vrb-spr"].ToString().Split('#')[2]">
+                                <a href="@Url.Action("index", "sanphamvuonraubean")" class="@Session["active-vrb-spr"].ToString().Split('#')[2]">
                                     <i class="bi bi-circle"></i><span>Sản Phẩm Rau</span>
                                 </a>
                             </li>

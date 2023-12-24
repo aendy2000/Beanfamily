@@ -19,9 +19,15 @@
                 </ol>
             </nav>
         </div>
-        <div class="col-5 text-end">
-            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ThemTaiKhoanBeanModal">Thêm mới</button>
-        </div>
+        @if (Session["chophep-them"] != null)
+        {
+            if (Convert.ToBoolean(Session["chophep-them"]) == true)
+            {
+                <div class="col-5 text-end">
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ThemTaiKhoanBeanModal">Thêm mới</button>
+                </div>
+            }
+        }
     </div>
 
 </div><!-- End Page Title -->
@@ -35,7 +41,7 @@
                     <h5 class="card-title">Danh sách tài khoản</h5>
 
                     <!-- Table with stripped rows -->
-                    <table id="lstAccountTable" class="table datatable">
+                    <table id="lstAccountTable" class="table datatable" width="100%"> 
                         <thead>
                             <tr>
                                 <th scope="col">Mã</th>
@@ -110,7 +116,7 @@
 
 <!-- Thêm tài khoản -->
 <div class="modal fade" id="ThemTaiKhoanBeanModal" tabindex="-1">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog  modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Thêm tài khoản mới</h5>
@@ -225,8 +231,8 @@
 </div>
 
 <!-- Xem chi tiết -->
-<div class="modal fade" id="chitiettaikhoanModal"  data-bs-focus="false" tabindex="-1">
-    <div class="modal-dialog modal-xl">
+<div class="modal fade" id="chitiettaikhoanModal" data-bs-focus="false" tabindex="-1">
+    <div class="modal-dialog  modal-dialog-centered modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Thông tin tài khoản</h5>

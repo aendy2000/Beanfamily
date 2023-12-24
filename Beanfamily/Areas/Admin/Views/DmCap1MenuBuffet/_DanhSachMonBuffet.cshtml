@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Beanfamily.Models.SanPhamMenuBuffet>
+@{
+    Layout = null;
+    int i = 1;
+}
+
+<div id="XemDanhSachMonModalPartial" class="modal-body">
+    <ul class="list-group">
+
+        @foreach (var item in Model)
+        {
+            i++;
+            if (i % 2 == 0)
+            {
+                <li class="list-group-item list-group-item-primary">
+                    <div class="row" style="display: flex; align-items: center;">
+                        @if (!string.IsNullOrEmpty(item.hinhanh))
+                        {
+                            <div class="col-sm-1">
+                                <div style="height: 50px; width: 50px; text-align: center">
+                                    <img style="margin-left: -10px; height: 50px; width: 50px; object-fit: cover; border-radius: 50% " src="@Url.Content(item.hinhanh)" />
+                                </div>
+                            </div>
+                            <div class="col-sm-5">
+                                SP@(item.id.ToString("D6"))
+                            </div>
+                            <div class="col-sm-6 text-end">
+                                @item.tensanpham
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col-sm-6">
+                                SP@(item.id.ToString("D6"))
+                            </div>
+                            <div class="col-sm-6 text-end">
+                                @item.tensanpham
+                            </div>
+                        }
+
+
+                    </div>
+                </li>
+            }
+            else
+            {
+                <li class="list-group-item">
+                    <div class="row" style="display: flex; align-items: center;">
+                        @if (!string.IsNullOrEmpty(item.hinhanh))
+                        {
+                            <div class="col-sm-1">
+                                <div style="height: 50px; width: 50px; text-align: center">
+                                    <img style="margin-left: -10px; height: 50px; width: 50px; object-fit: cover; border-radius: 50% " src="@Url.Content(item.hinhanh)" />
+                                </div>
+                            </div>
+                            <div class="col-sm-5">
+                                SP@(item.id.ToString("D6"))
+                            </div>
+                            <div class="col-sm-6 text-end">
+                                @item.tensanpham
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col-sm-6">
+                                SP@(item.id.ToString("D6"))
+                            </div>
+                            <div class="col-sm-6 text-end">
+                                @item.tensanpham
+                            </div>
+                        }
+                    </div>
+                </li>
+            }
+        }
+    </ul>
+</div>

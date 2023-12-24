@@ -1,0 +1,162 @@
+﻿@model Beanfamily.Models.SanPhamMenuTiecBan
+@using Beanfamily.Models
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+    BeanfamilyEntities models = new BeanfamilyEntities();
+    var lstDmC1 = models.DanhMucMenuTiecBanCap1.ToList();
+
+    string image = Model.hinhanh;
+}
+
+<div id="SuaMonModalPartial">
+    <div class="modal-body">
+        <div class="row m-2">
+            <div class="col-sm-12 col-lg-12">
+                <div class="row mb-3">
+                    <label for="suatenmon" class="col-md-12 col-lg-2 col-form-label">Tên món<span class="text-danger">*</span></label>
+                    <div class="col-md-12 col-lg-10">
+                        <input id="idSuaMonAn" value="@Model.id" hidden>
+                        <input value="@Model.tensanpham" id="suatenmon" type="text" placeholder="Tên món" class="form-control">
+                        <label style="margin-left: 5px" id="invalid-tenmon-feedback" class="text-danger" hidden></label>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="suagia" class="col-md-12 col-lg-2 col-form-label">Giá món <span class="text-danger">*</span></label>
+                    <div class="col-md-12 col-lg-10">
+                        <input id="suagia" value="@Model.gia.ToString("0,0").Replace(".", ",")" type="text" data-type="currency" placeholder="Giá món" class="form-control">
+                        <label style="margin-left: 5px" id="invalid-suagia-feedback" class="text-danger" hidden></label>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="suadanhmuc" class="col-md-12 col-lg-2 col-form-label">Danh mục <span class="text-danger">*</span></label>
+                    <div class="col-md-12 col-lg-10">
+                        <select class="form-select" id="suadanhmuc">
+                            <option value="">Chọn danh mục cấp 1</option>
+                            @foreach (var item in lstDmC1)
+                            {
+                                if (item.id == Model.id_danhmucmenutiecbancap1)
+                                {
+                                    <option selected value="@item.id">@item.tendanhmuc</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.id">@item.tendanhmuc</option>
+                                }
+                            }
+                        </select>
+                        <label style="margin-left: 5px" id="invalid-suadanhmuc-feedback" class="text-danger" hidden></label>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="suasothutu" class="col-md-12 col-lg-2 col-form-label">Số thứ tự</label>
+                    <div class="col-md-12 col-lg-10">
+                        <input value="@Model.sothutu" id="suasothutu" type="text" data-type="numbers" placeholder="Số thứ tự" class="form-control">
+                        <label style="margin-left: 5px" id="invalid-suasothutu-feedback" class="text-danger" hidden></label>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="suahienthi" class="col-md-12 col-lg-2 col-form-label">Hiển thị</label>
+                    <div class="col-md-12 col-lg-10">
+                        <div class="form-check form-switch form-control">
+                            @if (Model.hienthi == true)
+                            {
+                                <input checked class="form-check-input" style="margin-left: -1.5em" type="checkbox" id="suahienthi">
+                            }
+                            else
+                            {
+                                <input class="form-check-input" style="margin-left: -1.5em" type="checkbox" id="suahienthi">
+                            }
+                            <label class="form-check-label" style="margin-left: 0.8em" for="suahienthi"> Hiển thị sau khi tạo</label>
+                        </div>
+                        <label style="margin-left: 5px" id="invalid-suahienthi-feedback" class="text-danger" hidden></label>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label for="mota" class="col-md-12 col-lg-2 col-form-label">Hình ảnh</label>
+                    <div class="col-md-12 col-lg-10">
+                        <fieldset class="form-group">
+                            <a class="btn btn-sm btn-primary mb-2" onclick="$('#suapro-image').click()"><i class="bi bi-image me-1"></i> Tải lên hình ảnh</a> <small class="text-muted fst-italic">(Chọn 1 hình ảnh).</small>
+                            <input accept="image/jpeg, image/png" type="file" id="suapro-image" name="suapro-image" style="display: none;" class="form-control">
+                            <input id="suapro-image-cu" value="@image" hidden />
+                        </fieldset>
+                        <div class="suapreview-images-zone form-control">
+                            @if (!string.IsNullOrEmpty(image))
+                            {
+                                <div class="preview-image preview-show">
+                                    <div id="suaxoa-hinhanhsp" class="image-cancel"><i class="bi bi-x-circle-fill text-dark"></i></div>
+                                    <div class="image-zone"><img src="@Url.Content(image)"></div>
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer mt-3">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+        <button id="btnluusuaMonAn" type="button" class="btn btn-primary">Lưu thông tin</button>
+    </div>
+    <script src="~/Validation/MonAnMenuTiecBan/SuaMonAn.js"></script>
+    <script>
+        $(document).ready(function () {
+            //Input number?
+            $("input[data-type='numbers']").keyup(function (e) {
+                if (/\D/g.test(this.value)) {
+                    // Filter non-digits from input value.
+                    this.value = this.value.replace(/\D/g, '');
+                }
+            });
+
+            //input money
+            $("input[data-type='currency']").on({
+                keyup: function () {
+                    formatCurrency($(this));
+                },
+                blur: function () {
+                    formatCurrency($(this), "blur");
+                }
+            });
+
+            function formatNumber(n) {
+                return n.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+            }
+
+            function formatCurrency(input, blur) {
+                var input_val = input.val();
+                if (input_val === "") { return; }
+                var original_len = input_val.length;
+
+                var caret_pos = input.prop("selectionStart");
+
+                if (input_val.indexOf(".") >= 0) {
+
+                    var decimal_pos = input_val.indexOf(".");
+
+                    var left_side = input_val.substring(0, decimal_pos);
+                    var right_side = input_val.substring(decimal_pos);
+
+                    left_side = formatNumber(left_side);
+                    right_side = formatNumber(right_side);
+
+                    if (blur === "blur") {
+                        right_side += "00";
+                    }
+
+                    right_side = right_side.substring(0, 2);
+                    input_val = left_side + "." + right_side;
+
+                } else {
+                    input_val = formatNumber(input_val);
+                    input_val = input_val;
+                }
+                input.val(input_val);
+            }
+        });
+    </script>
+
+</div>

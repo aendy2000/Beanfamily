@@ -20,9 +20,15 @@
                 </ol>
             </nav>
         </div>
-        <div class="col-5 text-end">
-            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ThemPhanQuyenModal">Thêm mới</button>
-        </div>
+        @if (Session["chophep-them"] != null)
+        {
+            if (Convert.ToBoolean(Session["chophep-them"]) == true)
+            {
+                <div class="col-5 text-end">
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ThemPhanQuyenModal">Thêm mới</button>
+                </div>
+            }
+        }
     </div>
 
 </div><!-- End Page Title -->
@@ -36,7 +42,7 @@
                     <h5 class="card-title">Danh sách quyền</h5>
 
                     <!-- Table with stripped rows -->
-                    <table id="tbRole" class="table datatable">
+                    <table id="tbRole" class="table datatable" width="100%"> 
                         <thead>
                             <tr>
                                 <th scope="col">Mã</th>
@@ -66,10 +72,22 @@
                                     <td>
                                         @if (item.id != 1)
                                         {
-                                            <button id="btnsuaquyen@(item.id)" name="@item.id" class="btn btn-sm btn-primary"data-bs-toggle="tooltip" data-bs-placement="top" title="Cập nhật quyền"><i class="bi bi-pencil-square"></i></button>
-                                            if (item.TaiKhoanBean.Count() < 1)
+                                            if (Session["chophep-sua"] != null)
                                             {
-                                                <button id="btnxoaquyen@(item.id)" name="@item.id" class="btn btn-sm btn-danger"data-bs-toggle="tooltip" data-bs-placement="top" title="Xóa quyền"><i class="bi bi-trash"></i></button>
+                                                if (Convert.ToBoolean(Session["chophep-sua"]) == true)
+                                                {
+                                                    <button id="btnsuaquyen@(item.id)" name="@item.id" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Cập nhật quyền"><i class="bi bi-pencil-square"></i></button>
+                                                }
+                                            }
+                                            if (Session["chophep-xoa"] != null)
+                                            {
+                                                if (Convert.ToBoolean(Session["chophep-xoa"]) == true)
+                                                {
+                                                    if (item.TaiKhoanBean.Count() < 1)
+                                                    {
+                                                        <button id="btnxoaquyen@(item.id)" name="@item.id" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Xóa quyền"><i class="bi bi-trash"></i></button>
+                                                    }
+                                                }
                                             }
                                         }
                                     </td>
@@ -85,139 +103,148 @@
     </div>
 </section>
 
-<!-- Thêm quyền -->
-<div class="modal fade" id="ThemPhanQuyenModal" tabindex="-1">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Thêm quyền mới</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row mb-4 mt-3">
-                    <div class="col-sm-12">
-                        <input id="name" type="text" placeholder="Nhập tên quyền mới..." class="form-control">
-                        <label style="margin-left: 5px" id="invalid-name-feedback" class="text-danger" hidden></label>
+@if (Session["chophep-them"] != null)
+{
+    if (Convert.ToBoolean(Session["chophep-them"]) == true)
+    {
+        <!-- Thêm quyền -->
+        <div class="modal fade" id="ThemPhanQuyenModal" tabindex="-1">
+            <div class="modal-dialog  modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Thêm quyền mới</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row mb-4 mt-3">
+                            <div class="col-sm-12">
+                                <input id="name" type="text" placeholder="Nhập tên quyền mới..." class="form-control">
+                                <label style="margin-left: 5px" id="invalid-name-feedback" class="text-danger" hidden></label>
+                            </div>
+                        </div>
+                        <h6 class="text-center  mb-4">CHỌN CHỨC NĂNG CHO PHÉP TRUY CẬP</h6>
+                        <ul class="list-group">
+
+                            @foreach (var item in lstFunc)
+                            {
+                                i++;
+                                if (i % 2 == 0)
+                                {
+                                    <li class="list-group-item list-group-item-primary">
+                                        <div class="row">
+                                            <div class="col-sm-8">
+                                                <div class="form-check form-switch">
+                                                    <input class="form-check-input" type="checkbox" name="@item.id" id="checkchucnang@(item.id)">
+                                                    <label class="form-check-label" for="checkchucnang@(item.id)">@item.tenchucnang</label>
+                                                </div>
+                                            </div>
+                                            <div hidden id="child-chucnang@(item.id)" class="row col-sm-4">
+                                                <div class="col-sm-5">
+                                                    <div class="form-check">
+                                                        <input checked class="form-check-input" type="checkbox" id="them-chucnang@(item.id)">
+                                                        <label class="form-check-label" for="them-chucnang@(item.id)">
+                                                            Thêm
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="form-check">
+                                                        <input checked class="form-check-input" type="checkbox" id="sua-chucnang@(item.id)">
+                                                        <label class="form-check-label" for="sua-chucnang@(item.id)">
+                                                            Sửa
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <div class="form-check">
+                                                        <input checked class="form-check-input" type="checkbox" id="xoa-chucnang@(item.id)">
+                                                        <label class="form-check-label" for="xoa-chucnang@(item.id)">
+                                                            Xóa
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="list-group-item">
+                                        <div class="row">
+                                            <div class="col-sm-8">
+                                                <div class="form-check form-switch">
+                                                    <input class="form-check-input" type="checkbox" name="@item.id" id="checkchucnang@(item.id)">
+                                                    <label class="form-check-label" for="checkchucnang@(item.id)">@item.tenchucnang</label>
+                                                </div>
+                                            </div>
+                                            <div hidden id="child-chucnang@(item.id)" class="row col-sm-4">
+                                                <div class="col-sm-5">
+                                                    <div class="form-check">
+                                                        <input checked class="form-check-input" type="checkbox" id="them-chucnang@(item.id)">
+                                                        <label class="form-check-label" for="them-chucnang@(item.id)">
+                                                            Thêm
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="form-check">
+                                                        <input checked class="form-check-input" type="checkbox" id="sua-chucnang@(item.id)">
+                                                        <label class="form-check-label" for="sua-chucnang@(item.id)">
+                                                            Sửa
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <div class="form-check">
+                                                        <input checked class="form-check-input" type="checkbox" id="xoa-chucnang@(item.id)">
+                                                        <label class="form-check-label" for="xoa-chucnang@(item.id)">
+                                                            Xóa
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                }
+                            }
+                        </ul>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                            <button id="btnluuthemrole" type="button" class="btn btn-primary">Lưu thông tin</button>
+                        </div>
                     </div>
                 </div>
-                <h6 class="text-center  mb-4">CHỌN CHỨC NĂNG CHO PHÉP TRUY CẬP</h6>
-                <ul class="list-group">
+            </div>
+        </div>
+    }
+}
 
-                    @foreach (var item in lstFunc)
-                    {
-                        i++;
-                        if (i % 2 == 0)
-                        {
-                            <li class="list-group-item list-group-item-primary">
-                                <div class="row">
-                                    <div class="col-sm-8">
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" name="@item.id" id="checkchucnang@(item.id)">
-                                            <label class="form-check-label" for="checkchucnang@(item.id)">@item.tenchucnang</label>
-                                        </div>
-                                    </div>
-                                    <div hidden id="child-chucnang@(item.id)" class="row col-sm-4">
-                                        <div class="col-sm-5">
-                                            <div class="form-check">
-                                                <input checked class="form-check-input" type="checkbox" id="them-chucnang@(item.id)">
-                                                <label class="form-check-label" for="them-chucnang@(item.id)">
-                                                    Thêm
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="form-check">
-                                                <input checked class="form-check-input" type="checkbox" id="sua-chucnang@(item.id)">
-                                                <label class="form-check-label" for="sua-chucnang@(item.id)">
-                                                    Sửa
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <div class="form-check">
-                                                <input checked class="form-check-input" type="checkbox" id="xoa-chucnang@(item.id)">
-                                                <label class="form-check-label" for="xoa-chucnang@(item.id)">
-                                                    Xóa
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        }
-                        else
-                        {
-                            <li class="list-group-item">
-                                <div class="row">
-                                    <div class="col-sm-8">
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" name="@item.id" id="checkchucnang@(item.id)">
-                                            <label class="form-check-label" for="checkchucnang@(item.id)">@item.tenchucnang</label>
-                                        </div>
-                                    </div>
-                                    <div hidden id="child-chucnang@(item.id)" class="row col-sm-4">
-                                        <div class="col-sm-5">
-                                            <div class="form-check">
-                                                <input checked class="form-check-input" type="checkbox" id="them-chucnang@(item.id)">
-                                                <label class="form-check-label" for="them-chucnang@(item.id)">
-                                                    Thêm
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="form-check">
-                                                <input checked class="form-check-input" type="checkbox" id="sua-chucnang@(item.id)">
-                                                <label class="form-check-label" for="sua-chucnang@(item.id)">
-                                                    Sửa
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <div class="form-check">
-                                                <input checked class="form-check-input" type="checkbox" id="xoa-chucnang@(item.id)">
-                                                <label class="form-check-label" for="xoa-chucnang@(item.id)">
-                                                    Xóa
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-
-                        }
-                    }
-                </ul>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                    <button id="btnluuthemrole" type="button" class="btn btn-primary">Lưu thông tin</button>
+@if (Session["chophep-sua"] != null)
+{
+    if (Convert.ToBoolean(Session["chophep-sua"]) == true)
+    {
+        <!-- Sửa quyền -->
+        <div class="modal fade" id="SuaPhanQuyenModal" tabindex="-1">
+            <div class="modal-dialog  modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Cập nhật phân quyền</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div id="chinhsuaquyenpartial" class="modal-body">
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-
-<!-- Sửa quyền -->
-
-<div class="modal fade" id="SuaPhanQuyenModal" tabindex="-1">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Cập nhật phân quyền</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div id="chinhsuaquyenpartial" class="modal-body">
-            </div>
-        </div>
-    </div>
-</div>
-
+    }
+}
 @foreach (var item in Model.ToList())
 {
-
     i = 1;
     <div class="modal fade" id="modal@(item.id)" tabindex="-1">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog  modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Quyền truy cập tính năng: @item.name - #R@(item.id.ToString("D6"))</h5>
@@ -234,7 +261,7 @@
                                     @function.ChucNangHeThongBean.tenchucnang
                                     @if (function.chophepthem == true)
                                     {<span class="badge bg-primary rounded-pill">
-                                            Thêm
+                                            Xem | Thêm
                                             @if (function.chophepsua == true)
                                             {<span> | Sửa</span>}
                                             @if (function.chophepxoa == true)
@@ -244,16 +271,17 @@
                                     else
                                     {
                                         <span class="badge bg-primary rounded-pill">
+                                            Xem
                                             @if (function.chophepsua == true)
                                             {
-                                                <span> Sửa</span>
+                                                <span> | Sửa</span>
                                                 if (function.chophepxoa == true)
                                                 {<span> | Xóa</span>}
                                             }
                                             else
                                             {
                                                 if (function.chophepxoa == true)
-                                                {<span> | Xóa</span>}
+                                                {<span>Xem | Xóa</span>}
                                             }
                                         </span>
                                     }
@@ -266,7 +294,7 @@
                                     @function.ChucNangHeThongBean.tenchucnang
                                     @if (function.chophepthem == true)
                                     {<span class="badge bg-primary rounded-pill">
-                                            Thêm
+                                            Xem | Thêm
                                             @if (function.chophepsua == true)
                                             {<span> | Sửa</span>}
                                             @if (function.chophepxoa == true)
@@ -276,22 +304,23 @@
                                     else
                                     {
                                         <span class="badge bg-primary rounded-pill">
+                                            Xem
                                             @if (function.chophepsua == true)
                                             {
-                                                <span> Sửa</span>
+                                                <span> | Sửa</span>
                                                 if (function.chophepxoa == true)
                                                 {<span> | Xóa</span>}
                                             }
                                             else
                                             {
                                                 if (function.chophepxoa == true)
-                                                {<span> | Xóa</span>}
+                                                {<span>Xem | Xóa</span>}
                                             }
                                         </span>
                                     }
                                 </li>
                             }
-
+                         
                             i++;
                         }
 
@@ -304,6 +333,7 @@
     </div>
 
 }
+
 
 <script src="~/Validation/Role/AddRole.js"></script>
 <script src="~/Validation/Role/ShowViewEditRole.js"></script>
