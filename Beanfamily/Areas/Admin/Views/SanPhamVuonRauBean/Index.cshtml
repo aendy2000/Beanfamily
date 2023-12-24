@@ -9,7 +9,7 @@
 
 <div class="pagetitle">
     <div class="row">
-        <div class="col-7">
+        <div class="col-md-7 col-12">
             <h1>Sản Phẩm Rau</h1>
             <nav>
                 <ol class="breadcrumb">
@@ -20,7 +20,7 @@
             </nav>
         </div>
 
-        <div class="col-5 text-end">
+        <div class="col-md-5 col-12 text-end">
             @if (Session["chophep-them"] != null)
             {
                 if (Convert.ToBoolean(Session["chophep-them"]) == true)
@@ -45,7 +45,7 @@
 
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Danh sách sản phẩn</h5>
+                    <h5 class="card-title">Danh sách sản phẩm</h5>
 
                     <!-- Table with stripped rows -->
                     <table id="lstSanPhamRauTable" class="table datatable striped" width="100%"> 
