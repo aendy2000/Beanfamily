@@ -105,7 +105,10 @@
                 dataType: 'html',
                 type: 'POST',
                 processData: false,
-                contentType: false
+                contentType: false,
+                error: function (ex) {
+                    console.log(ex);
+                },
             }).done(function (ketqua) {
                 if (ketqua == "SUCCESS") {
                     $('#btnluuthemMonAn').html('Lưu thông tin');

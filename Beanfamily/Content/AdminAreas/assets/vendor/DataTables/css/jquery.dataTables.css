@@ -454,6 +454,7 @@ table.dataTable td {
 .dataTables_wrapper {
   position: relative;
   clear: both;
+  margin-top: 10px;
 }
 .dataTables_wrapper .dataTables_length {
   float: left;
@@ -471,12 +472,12 @@ table.dataTable td {
   text-align: right;
 }
 .dataTables_wrapper .dataTables_filter input {
-  border: 1px solid #aaa;
-  border-radius: 5px;
-  padding: 5px;
-  background-color: transparent;
-  color: inherit;
-  margin-left: 3px;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    padding: 5px 5px 5px 10px;
+    background-color: transparent;
+    color: inherit;
+    margin-left: 3px;
 }
 .dataTables_wrapper .dataTables_info {
   clear: both;

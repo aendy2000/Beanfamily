@@ -2404,7 +2404,7 @@ textarea.form-control-lg {
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  border: var(--bs-border-width) solid var(--bs-border-color);
+  border: var(--bs-border-width) solid #b1b1b1;
   -webkit-print-color-adjust: exact;
   color-adjust: exact;
   print-color-adjust: exact;

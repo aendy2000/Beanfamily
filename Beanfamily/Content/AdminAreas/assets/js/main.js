@@ -10,6 +10,11 @@
 
     jQuery('.datatable').DataTable({
         scrollX: true,
+        order: [],
+        columnDefs: [{
+            'targets': [0],
+            'orderable': false,
+        }],
     });
 
     /**
