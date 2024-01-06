@@ -1,0 +1,32 @@
+﻿@model Beanfamily.Models.SanPhamRauNhaTrong
+@{
+    Layout = null;
+    var lstImage = string.IsNullOrEmpty(Model.hinhanh) ? null : Model.hinhanh.Split('#').ToList();
+    string video = string.IsNullOrEmpty(Model.video) ? "" : Model.video;
+}
+
+<div id="XemHinhAnhSanPhamModalPartial" class="modal-body">
+    <section class="gallery">
+        <div class="container">
+            <div class="grid row">
+                @if (!string.IsNullOrEmpty(video))
+                {
+                    <div class="col-md-4">
+                        <figure class="img-container">
+                            <video style="width: 100%; height:auto" autoplay src="@Url.Content(video)"></video>
+                        </figure>
+                    </div>
+                }
+
+                @foreach (var item in lstImage)
+                {
+                    <div class="col-md-4">
+                        <figure class="img-container">
+                            <img src="@Url.Content(item)" />
+                        </figure>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+</div>

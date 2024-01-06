@@ -47,64 +47,93 @@
     });
 
     //Lưu thêm món
-    $('#btnluusuaMonAn').on('click', function () {
-        $('#btnluusuaMonAn').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"> </span> Đang tải...');
-        $('#btnluusuaMonAn').prop('disabled', true);
+    $('#btnluusuaSanPham').on('click', function () {
+        $('#btnluusuaSanPham').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"> </span> Đang tải...');
+        $('#btnluusuaSanPham').prop('disabled', true);
 
-        var tenmon = $('#suatenmon').val().trim();
+        var ten = $('#suaten').val().trim();
         var gia = $('#suagia').val().trim().replace(/,/g, '');
+        var donvi = $('#suadonvi').val().trim();
+        var giatri = $('#suagiatri').val().trim();
         var danhmuc = $('#suadanhmuc :selected').val();
 
-        $("#suatenmon").removeClass('valid-was-validated');
+        $("#suaten").removeClass('valid-was-validated');
         $("#suagia").removeClass('valid-was-validated');
+        $("#suadonvi").removeClass('valid-was-validated');
+        $("#suagiatri").removeClass('valid-was-validated');
         $("#suadanhmuc").removeClass('valid-was-validated');
 
-        $('#invalid-suatenmon-feedback').prop('hidden', true);
+
+        $('#invalid-suaten-feedback').prop('hidden', true);
         $('#invalid-suagia-feedback').prop('hidden', true);
-        $('#invalid-danhmuc-feedback').prop('hidden', true);
+        $('#invalid-suadonvi-feedback').prop('hidden', true);
+        $('#invalid-suagiatri-feedback').prop('hidden', true);
+        $('#invalid-suadanhmuc-feedback').prop('hidden', true);
 
         var check = true;
         if (danhmuc.length < 1) {
             check = false;
-            $("#dsuaanhmuc").addClass('valid-was-validated');
-            $('#invalid-suadanhmuc-feedback').text("Vui lòng chọn danh mục món.").prop('hidden', false);
+            $("#suadanhmuc").addClass('valid-was-validated');
+            $('#invalid-suadanhmuc-feedback').text("Vui lòng chọn danh mục sản phẩm.").prop('hidden', false);
             $("#suadanhmuc").focus();
 
-            $('#btnluusuaMonAn').html('Lưu thông tin');
-            $('#btnluusuaMonAn').prop('disabled', false);
+            $('#btnluusuaSanPham').html('Lưu thông tin');
+            $('#btnluusuaSanPham').prop('disabled', false);
+        }
+
+        if (giatri.length < 1) {
+            check = false;
+            $("#suagiatri").addClass('valid-was-validated');
+            $('#invalid-suagiatri-feedback').text("Vui lòng nhập giá trị trên đơn vị tính.").prop('hidden', false);
+            $("#suagiatri").focus();
+
+            $('#btnluusuaSanPham').html('Lưu thông tin');
+            $('#btnluusuaSanPham').prop('disabled', false);
+        }
+
+        if (donvi.length < 1) {
+            check = false;
+            $("#suadonvi").addClass('valid-was-validated');
+            $('#invalid-suadonvi-feedback').text("Vui lòng nhập đơn vị tính.").prop('hidden', false);
+            $("#suadonvi").focus();
+
+            $('#btnluusuaSanPham').html('Lưu thông tin');
+            $('#btnluusuaSanPham').prop('disabled', false);
         }
 
         if (gia.length < 1) {
             check = false;
             $("#suagia").addClass('valid-was-validated');
-            $('#invalid-suagia-feedback').text("Vui lòng nhập giá món.").prop('hidden', false);
+            $('#invalid-suagia-feedback').text("Vui lòng nhập giá sản phẩm.").prop('hidden', false);
             $("#suagia").focus();
 
-            $('#btnluusuaMonAn').html('Lưu thông tin');
-            $('#btnluusuaMonAn').prop('disabled', false);
+            $('#btnluusuaSanPham').html('Lưu thông tin');
+            $('#btnluusuaSanPham').prop('disabled', false);
         }
 
-        if (tenmon.length < 1) {
+        if (ten.length < 1) {
             check = false;
-            $("#suatenmon").addClass('valid-was-validated');
-            $('#invalid-suaenmon-feedback').text("Vui lòng nhập tên món.").prop('hidden', false);
-            $("#suatenmon").focus();
+            $("#suaten").addClass('valid-was-validated');
+            $('#invalid-suaten-feedback').text("Vui lòng nhập tên món.").prop('hidden', false);
+            $("#suaten").focus();
 
-            $('#btnluusuaMonAn').html('Lưu thông tin');
-            $('#btnluusuaMonAn').prop('disabled', false);
+            $('#btnluusuaSanPham').html('Lưu thông tin');
+            $('#btnluusuaSanPham').prop('disabled', false);
         }
 
         if (check == true) {
             var formData = new FormData();
-            formData.append('id', $("#idmonsua").val());
+            formData.append('id', $("#suaidsanpham").val());
             var totalFiles = $("#suapro-image")[0].files.length;
             for (var i = 0; i < totalFiles; i++) {
                 var file = $("#suapro-image")[0].files[i];
                 formData.append('images', file);
             }
             formData.append('video', $("#suapro-video")[0].files[0]);
-            formData.append('tenmon', tenmon);
+            formData.append('ten', ten);
             formData.append('gia', gia);
+            formData.append('donvi', donvi);
+            formData.append('giatri', giatri);
             formData.append('danhmuc', danhmuc);
             formData.append('mota', $('#suamota').val().trim());
             formData.append('hienthi', $('#suahienthi').prop('checked'));
@@ -118,7 +147,7 @@
             formData.append('videoCu', $('#url-suapro-video').val());
 
             $.ajax({
-                url: $('#requestPath').val() + "admin/monanmenuhangngay/suamon",
+                url: $('#requestPath').val() + "admin/sanphamvuonraubean/suasanpham",
                 data: formData,
                 dataType: 'html',
                 type: 'POST',
@@ -126,40 +155,40 @@
                 contentType: false
             }).done(function (ketqua) {
                 if (ketqua == "SUCCESS") {
-                    $('#btnluusuaMonAn').html('Lưu thông tin');
-                    $('#btnluusuaMonAn').prop('disabled', false);
+                    $('#btnluusuaSanPham').html('Lưu thông tin');
+                    $('#btnluusuaSanPham').prop('disabled', false);
 
                     Swal.fire({
                         title: "Thành công!",
-                        text: "Đã cập nhật thông tin món.",
+                        text: "Đã cập nhật thông tin sản phẩm.",
                         icon: "success"
                     }).then(() => {
                         window.location.reload();
                     });
                 }
                 else if (ketqua == "DATONTAI") {
-                    $("#suatenmon").addClass('valid-was-validated');
-                    $('#invalid-suatenmon-feedback').text(tenmon + ' đã tồn tại trong menu này').prop('hidden', false);
-                    $("#suatenmon").focus();
+                    $("#suaten").addClass('valid-was-validated');
+                    $('#invalid-suaten-feedback').text(tenmon + ' đã tồn tại trong menu này').prop('hidden', false);
+                    $("#suaten").focus();
 
-                    $('#btnluusuaMonAn').html('Lưu thông tin');
-                    $('#btnluusuaMonAn').prop('disabled', false);
+                    $('#btnluusuaSanPham').html('Lưu thông tin');
+                    $('#btnluusuaSanPham').prop('disabled', false);
                 }
                 else if (ketqua == "KHONGTONTAI") {
-                    $('#btnluusuaMonAn').html('Lưu thông tin');
-                    $('#btnluusuaMonAn').prop('disabled', false);
+                    $('#btnluusuaSanPham').html('Lưu thông tin');
+                    $('#btnluusuaSanPham').prop('disabled', false);
 
                     Swal.fire({
                         title: "Thông báo",
-                        text: "Món này vừa mới được xóa bỏ.",
+                        text: "Sản phẩm này vừa mới được xóa bỏ.",
                         icon: "warning"
                     }).then(() => {
                         window.location.reload();
                     });
                 }
                 else {
-                    $('#btnluusuaMonAn').html('Lưu thông tin');
-                    $('#btnluusuaMonAn').prop('disabled', false);
+                    $('#btnluusuaSanPham').html('Lưu thông tin');
+                    $('#btnluusuaSanPham').prop('disabled', false);
 
                     Swal.fire({
                         title: "Đã xảy ra lỗi, vui lòng thử lại sau ít phút.",

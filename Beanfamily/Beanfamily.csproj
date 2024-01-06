@@ -139,9 +139,11 @@
     <Compile Include="Areas\Admin\Controllers\DmCap1MenuHangNgayController.cs" />
     <Compile Include="Areas\Admin\Controllers\DmCap1MenuTiecBanController.cs" />
     <Compile Include="Areas\Admin\Controllers\DmCap1VuonRauBeanController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HinhAnhBeanController.cs" />
     <Compile Include="Areas\Admin\Controllers\MonAnMenuBuffetController.cs" />
     <Compile Include="Areas\Admin\Controllers\MonAnMenuHangNgayController.cs" />
     <Compile Include="Areas\Admin\Controllers\MonAnMenuTiecBanController.cs" />
+    <Compile Include="Areas\Admin\Controllers\QuyTrinhTrongCayController.cs" />
     <Compile Include="Areas\Admin\Controllers\RoleController.cs" />
     <Compile Include="Areas\Admin\Controllers\SanPhamVuonRauBeanController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -2288,6 +2290,7 @@
     <Content Include="Content\assets\fonts\themify\SVG\zoom-out.svg" />
     <Content Include="Content\assets\fonts\themify\themify-icons.css" />
     <Content Include="Content\assets\images\about-img.png" />
+    <Content Include="Content\assets\images\arrowDown.png" />
     <Content Include="Content\assets\images\avatar-01.jpg" />
     <Content Include="Content\assets\images\avatar-02.jpg" />
     <Content Include="Content\assets\images\avatar-03.jpg" />
@@ -2464,6 +2467,7 @@
     <Content Include="Content\assets\images\slide1-01.jpg" />
     <Content Include="Content\assets\images\slide1-02.jpg" />
     <Content Include="Content\assets\images\slide1-03.jpg" />
+    <Content Include="Content\assets\images\uploadImage.png" />
     <Content Include="Content\assets\images\vuonrau.jpg" />
     <Content Include="Content\assets\includes\contact-form.php" />
     <Content Include="Content\assets\js\main.js" />
@@ -2824,6 +2828,10 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Views\SanPhamVuonRauBean\_OpenSuaSanPham.cshtml" />
+    <Content Include="Areas\Admin\Views\SanPhamVuonRauBean\_xemHinhAnhSanPham.cshtml" />
+    <Content Include="Areas\Admin\Views\HinhAnhBean\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\QuyTrinhTrongCay\Index.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -2861,6 +2869,12 @@
     <Content Include="Validation\Role\AddRole.js" />
     <Content Include="Validation\Dmc1MenuHangNgay\ThemDmc1MenuHangNgay.js" />
     <Content Include="Validation\Role\XoaHangLoat.js" />
+    <Content Include="Validation\SanPhamVuonRau\OpenModalSuaSanPham.js" />
+    <Content Include="Validation\SanPhamVuonRau\SuaSanPham.js" />
+    <Content Include="Validation\SanPhamVuonRau\ThemSanPham.js" />
+    <Content Include="Validation\SanPhamVuonRau\XemHinhAnh.js" />
+    <Content Include="Validation\SanPhamVuonRau\XoaHangLoat.js" />
+    <Content Include="Validation\SanPhamVuonRau\XoaSanPham.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

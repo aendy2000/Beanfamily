@@ -301,11 +301,12 @@
           <Property Name="hinhanh" Type="nvarchar(max)" />
           <Property Name="video" Type="nvarchar(max)" />
           <Property Name="tensanpham" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="soluong" Type="int" Nullable="false" />
+          <Property Name="giatritrendonvi" Type="int" Nullable="false" />
           <Property Name="gia" Type="money" Nullable="false" />
           <Property Name="mota" Type="nvarchar(max)" />
           <Property Name="luotxem" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="hienthi" Type="bit" Nullable="false" />
+          <Property Name="donvi" Type="nvarchar" MaxLength="200" Nullable="false" />
         </EntityType>
         <EntityType Name="SanPhamThucDonHangNgay">
           <Key>
@@ -1319,11 +1320,12 @@
           <Property Name="hinhanh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="video" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="tensanpham" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="soluong" Type="Int32" Nullable="false" />
+          <Property Name="giatritrendonvi" Type="Int32" Nullable="false" />
           <Property Name="gia" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="mota" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="luotxem" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="hienthi" Type="Boolean" Nullable="false" />
+          <Property Name="donvi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="DanhMucSanPhamRauNhaTrongCap1" Relationship="Self.FK_SanPhamRauNhaTrong_DanhMucSanPhamRauNhaTrongCap1" FromRole="SanPhamRauNhaTrong" ToRole="DanhMucSanPhamRauNhaTrongCap1" />
           <NavigationProperty Name="GioHang" Relationship="Self.FK_GioHang_SanPhamRauNhaTrong" FromRole="SanPhamRauNhaTrong" ToRole="GioHang" />
           <NavigationProperty Name="LichSuSuaDoiSanPhamRauNhaTrong" Relationship="Self.FK_LichSuSuaDoiSanPhamRauNhaTrong_SanPhamRauNhaTrong" FromRole="SanPhamRauNhaTrong" ToRole="LichSuSuaDoiSanPhamRauNhaTrong" />
@@ -2334,11 +2336,12 @@
                 <ScalarProperty Name="hinhanh" ColumnName="hinhanh" />
                 <ScalarProperty Name="video" ColumnName="video" />
                 <ScalarProperty Name="tensanpham" ColumnName="tensanpham" />
-                <ScalarProperty Name="soluong" ColumnName="soluong" />
+                <ScalarProperty Name="giatritrendonvi" ColumnName="giatritrendonvi" />
                 <ScalarProperty Name="gia" ColumnName="gia" />
                 <ScalarProperty Name="mota" ColumnName="mota" />
                 <ScalarProperty Name="luotxem" ColumnName="luotxem" />
                 <ScalarProperty Name="hienthi" ColumnName="hienthi" />
+                <ScalarProperty Name="donvi" ColumnName="donvi" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

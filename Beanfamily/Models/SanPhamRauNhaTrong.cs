@@ -27,11 +27,12 @@ namespace Beanfamily.Models
         public string hinhanh { get; set; }
         public string video { get; set; }
         public string tensanpham { get; set; }
-        public int soluong { get; set; }
+        public int giatritrendonvi { get; set; }
         public decimal gia { get; set; }
         public string mota { get; set; }
         public decimal luotxem { get; set; }
         public bool hienthi { get; set; }
+        public string donvi { get; set; }
     
         public virtual DanhMucSanPhamRauNhaTrongCap1 DanhMucSanPhamRauNhaTrongCap1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

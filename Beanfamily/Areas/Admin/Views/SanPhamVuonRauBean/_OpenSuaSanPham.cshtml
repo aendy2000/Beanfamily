@@ -1,33 +1,44 @@
-﻿@model Beanfamily.Models.SanPhamThucDonHangNgay
+﻿@model Beanfamily.Models.SanPhamRauNhaTrong
 @using Beanfamily.Models
 @{
-    ViewBag.Title = "Index";
     Layout = null;
     BeanfamilyEntities models = new BeanfamilyEntities();
-    var lstDmC1 = models.DanhMucThucDocHangNgayCap1.ToList();
+    var lstDmC1 = models.DanhMucSanPhamRauNhaTrongCap1.ToList();
 
     string lstImage = Model.hinhanh;
 }
 
-<div id="SuaMonModalPartial">
+<div id="SuaSanPhamModalPartial">
     <div class="modal-body">
         <div class="row m-2">
             <div class="col-sm-12 col-lg-12">
                 <div class="row mb-3">
-                    <label for="suatenmon" class="col-md-12 col-lg-2 col-form-label">Tên món <span class="text-danger">*</span></label>
+                    <label for="suatensanpham" class="col-md-12 col-lg-2 col-form-label">Tên <span class="text-danger">*</span></label>
                     <div class="col-md-12 col-lg-10">
-                        <input value="@Model.id" id="idmonsua" hidden />
-                        <input value="@Model.tensanpham" id="suatenmon" type="text" placeholder="Tên món" class="form-control">
-                        <label style="margin-left: 5px" id="invalid-suatenmon-feedback" class="text-danger" hidden></label>
+                        <input value="@Model.tensanpham" id="suaten" type="text" placeholder="Tên sản phẩm mới" class="form-control">
+                        <input value="@Model.id" hidden id="suaidsanpham" />
+                        <label style="margin-left: 5px" id="invalid-suaten-feedback" class="text-danger" hidden></label>
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <label for="suagia" class="col-md-12 col-lg-2 col-form-label">Giá món <span class="text-danger">*</span></label>
+                    <label for="suagia" class="col-md-12 col-lg-2 col-form-label">Giá <span class="text-danger">*</span></label>
                     <div class="col-md-12 col-lg-10">
-                        <input value="@Model.gia.ToString("0,0").Replace(".", ",")" id="suagia" type="text" data-type="currency" placeholder="Giá món" class="form-control">
+                        <input value="@Model.gia.ToString("0,0").Replace(".", ",")" id="suagia" type="text" data-type="currency" placeholder="Giá sản phẩm" class="form-control">
                         <label style="margin-left: 5px" id="invalid-suagia-feedback" class="text-danger" hidden></label>
                     </div>
                 </div>
+                <div class="row mb-3">
+                    <label for="suadonvi" class="col-md-12 col-lg-2 col-form-label">Đơn vị <span class="text-danger">*</span></label>
+                    <div class="col-md-12 col-lg-5">
+                        <input value="@Model.donvi" id="suadonvi" type="text" placeholder="Đơn vị tính của sản phẩm" class="form-control">
+                        <label style="margin-left: 5px" id="invalid-suadonvi-feedback" class="text-danger" hidden></label>
+                    </div>
+                    <div class="col-md-12 col-lg-5 text-nowrap">
+                        <input value="@Model.giatritrendonvi" id="suagiatri" type="text" data-type="numbers" placeholder="Giá trị trên đơn vị tính" class="form-control">
+                        <label style="margin-left: 5px" id="invalid-suagiatri-feedback" class="text-danger" hidden></label>
+                    </div>
+                </div>
+
                 <div class="row mb-3">
                     <label for="suadanhmuc" class="col-md-12 col-lg-2 col-form-label">Danh mục <span class="text-danger">*</span></label>
                     <div class="col-md-12 col-lg-10">
@@ -35,7 +46,7 @@
                             <option value="">Chọn danh mục cấp 1</option>
                             @foreach (var item in lstDmC1)
                             {
-                                if (item.id == Model.id_danhmucthucdonhangngaycap1)
+                                if (item.id == Model.id_danhmucsanphamraunhatrongcap1)
                                 {
                                     <option selected value="@item.id">@item.tendanhmuc</option>
                                 }
@@ -125,9 +136,9 @@
 
     <div class="modal-footer mt-3">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-        <button id="btnluusuaMonAn" type="button" class="btn btn-primary">Lưu thông tin</button>
+        <button id="btnluusuaSanPham" type="button" class="btn btn-primary">Lưu thông tin</button>
     </div>
-    <script src="~/Validation/MonAnMenuHangNgay/SuaMonAn.js"></script>
+    <script src="~/Validation/SanPhamVuonRau/SuaSanpham.js"></script>
     <script>
         $(document).ready(function () {
             //input money

@@ -54,7 +54,7 @@
             $("#tenmon").addClass('valid-was-validated');
             $('#invalid-tenmon-feedback').text("Vui lòng nhập tên món.").prop('hidden', false);
             $("#tenmon").focus();
-            $('#')
+
             $('#btnluuthemMonAn').html('Lưu thông tin');
             $('#btnluuthemMonAn').prop('disabled', false);
         }

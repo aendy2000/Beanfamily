@@ -400,8 +400,8 @@
                         @if (Session["vrb-qltc"] != null)
                         {
                             <li>
-                                <a href="components-accordion.html" class="@Session["active-vrb-qltc"].ToString().Split('#')[2]">
-                                    <i class="bi bi-circle"></i><span>Quy Trình Trồng Cây</span>
+                                <a href="@Url.Action("index", "quytrinhtrongcay")" class="@Session["active-vrb-qltc"].ToString().Split('#')[2]">
+                                    <i class="bi bi-circle"></i><span>Quy Trình Trồng</span>
                                 </a>
                             </li>
                         }
