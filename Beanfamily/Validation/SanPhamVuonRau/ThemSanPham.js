@@ -84,7 +84,7 @@
         if (donvi.length < 1) {
             check = false;
             $("#donvi").addClass('valid-was-validated');
-            $('#invalid-donvi-feedback').text("Vui lòng nhập đơn vị tính.").prop('hidden', false);
+            $('#invalid-donvi-feedback').text("Nhập đơn vị tính.").prop('hidden', false);
             $("#donvi").focus();
 
             $('#btnluuthemSanPham').html('Lưu thông tin');
@@ -104,7 +104,7 @@
         if (ten.length < 1) {
             check = false;
             $("#ten").addClass('valid-was-validated');
-            $('#invalid-ten-feedback').text("Vui lòng nhập tên món.").prop('hidden', false);
+            $('#invalid-ten-feedback').text("Vui lòng nhập tên sản phẩm.").prop('hidden', false);
             $("#ten").focus();
 
             $('#btnluuthemSanPham').html('Lưu thông tin');
@@ -139,28 +139,28 @@
                 },
             }).done(function (ketqua) {
                 if (ketqua == "SUCCESS") {
-                    $('#btnluuthemMonAn').html('Lưu thông tin');
-                    $('#btnluuthemMonAn').prop('disabled', false);
+                    $('#btnluuthemSanPham').html('Lưu thông tin');
+                    $('#btnluuthemSanPham').prop('disabled', false);
 
                     Swal.fire({
                         title: "Thành công!",
-                        text: "Đã thêm một món mới.",
+                        text: "Đã thêm một sản phẩm mới.",
                         icon: "success"
                     }).then(() => {
                         window.location.reload();
                     });
                 }
                 else if (ketqua == "DATONTAI") {
-                    $("#tenmon").addClass('valid-was-validated');
-                    $('#invalid-tenmon-feedback').text(tenmon + ' đã tồn tại trong menu này').prop('hidden', false);
-                    $("#tenmon").focus();
+                    $("#ten").addClass('valid-was-validated');
+                    $('#invalid-ten-feedback').text('Sản phẩm ' + ten + ' đã tồn tại.').prop('hidden', false);
+                    $("#ten").focus();
 
-                    $('#btnluuthemMonAn').html('Lưu thông tin');
-                    $('#btnluuthemMonAn').prop('disabled', false);
+                    $('#btnluuthemSanPham').html('Lưu thông tin');
+                    $('#btnluuthemSanPham').prop('disabled', false);
                 }
                 else {
-                    $('#btnluuthemMonAn').html('Lưu thông tin');
-                    $('#btnluuthemMonAn').prop('disabled', false);
+                    $('#btnluuthemSanPham').html('Lưu thông tin');
+                    $('#btnluuthemSanPham').prop('disabled', false);
 
                     Swal.fire({
                         title: "Đã xảy ra lỗi, vui lòng thử lại sau ít phút.",

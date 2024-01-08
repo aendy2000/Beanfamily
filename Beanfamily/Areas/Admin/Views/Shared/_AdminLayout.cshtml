@@ -419,7 +419,7 @@
                         @if (Session["chtl-dmc1"] != null)
                         {
                             <li>
-                                <a href="components-alerts.html" class="@Session["active-chtl-dmc1"].ToString().Split('#')[2]">
+                                <a href="@Url.Action("index", "dmcap1muasam")" class="@Session["active-chtl-dmc1"].ToString().Split('#')[2]">
                                     <i class="bi bi-circle"></i><span>Danh Mục Cấp 1</span>
                                 </a>
                             </li>
@@ -427,7 +427,7 @@
                         @if (Session["chtl-sp"] != null)
                         {
                             <li>
-                                <a href="components-accordion.html" class="@Session["active-chtl-sp"].ToString().Split('#')[2]">
+                                <a href="@Url.Action("index", "sanphammuasam")" class="@Session["active-chtl-sp"].ToString().Split('#')[2]">
                                     <i class="bi bi-circle"></i><span>Sản Phẩm</span>
                                 </a>
                             </li>

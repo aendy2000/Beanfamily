@@ -10,7 +10,7 @@
 <div class="pagetitle">
     <div class="row">
         <div class="col-md-7 col-12">
-            <h1>Quy Trình Trồng Cây</h1>
+            <h1>Quy Trình Trồng</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="@Url.Action("index", "dashboard")">Bảng Điều Khiển</a></li>
@@ -116,12 +116,11 @@
 
                                     </td>
                                     <td class="text-nowrap">
-                                        <button id="btnxemsp@(item.id)" name="@item.id" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Xem chi tiết"><i class="bi bi-info-circle"></i></button>
                                         @if (Session["chophep-sua"] != null)
                                         {
                                             if (Convert.ToBoolean(Session["chophep-sua"]) == true)
                                             {
-                                                <button id="btnsuasp@(item.id)" name="@item.id" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Cập nhật món"><i class="bi bi-pencil-square"></i></button>
+                                                <button id="btnsuasp@(item.id)" name="@item.id" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Cập nhật quy trình"><i class="bi bi-pencil-square"></i></button>
                                             }
                                         }
                                         @if (Session["chophep-xoa"] != null)
@@ -129,7 +128,7 @@
                                             if (Convert.ToBoolean(Session["chophep-xoa"]) == true)
                                             {
 
-                                                <button id="btnxoasp@(item.id)" name="@item.id" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Xóa món"><i class="bi bi-trash"></i></button>
+                                                <button id="btnxoasp@(item.id)" name="@item.id" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Xóa quy trình"><i class="bi bi-trash"></i></button>
 
                                             }
                                         }
@@ -154,43 +153,58 @@
             <div class="modal-dialog  modal-dialog-centered modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Thêm sản phẩm mới</h5>
+                        <h5 class="modal-title">Thêm quy trình trồng</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body m-2">
-                        <div id="danhsachcacbuoc" class="row">
-                            <div id="cumbuoc1" class="col-sm-12 col-lg-12">
+                        <div class="row mt-1">
+                            <div class="col-12">
+                                <input id="tenquytrinh" type="text" placeholder="Nhập tên quy trình..." class="form-control">
+                                <label style="margin-left: 5px" id="invalid-tenquytrinh-feedback" class="text-danger" hidden></label>
+                            </div>
+                        </div>
+                        <div class="row mb-4 mt-3">
+                            <div class="col-12">
+                                <div class="form-check form-switch form-control">
+                                    <input checked class="form-check-input" style="margin-left: -1.5em" type="checkbox" id="hienthi">
+                                    <label class="form-check-label" style="margin-left: 0.8em" for="hienthi"> Hiển thị sau khi tạo</label>
+                                </div>
+                                <label style="margin-left: 5px" id="invalid-hienthi-feedback" class="text-danger" hidden></label>
+                            </div>
+                            <div class="col-12">
+                                <div class="bg-success-light">
+                                    <h6 class="text-center mt-4 font-weight-bold">THÔNG TIN BƯỚC THỰC HIỆN</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="danhsachcacbuoc" class="row mt-4">
+                            <div id="cumbuoc1" name="1" class="col-sm-12 col-lg-12">
                                 <div class="mb-3 row">
                                     <div class="col-md-12 col-lg-4">
-                                        <div id="hienthihinhbuoc1" onclick="$('#hinhbuoc1').click()" style="height: 190px; border: 1px solid #dee2e6; border-radius: 15px; cursor: pointer; background-image: url('/Content/assets/images/uploadImage.png'); background-position: center; background-size: 65%; background-repeat: no-repeat; "></div>
+                                        <div data-bs-toggle="tooltip" data-bs-placement="top" title="Thêm hình ảnh" id="hienthihinhbuoc1" onclick="$('#hinhbuoc1').click()" style="height: 187px; border: 1px solid #dee2e6; border-radius: 15px; cursor: pointer; background-image: url('/Content/assets/images/uploadImage.png'); background-position: center; background-size: 65%; background-repeat: no-repeat; "></div>
                                         <input type="file" accept="image/*" hidden id="hinhbuoc1" name="1" />
                                     </div>
                                     <div class="col-md-12 col-lg-8">
                                         <div class="row">
                                             <div class="col-12 mb-3">
-                                                <input id="ten1" value="Bước 1" type="text" placeholder="Tên bước 1" class="form-control">
+                                                <input id="ten1" type="text" placeholder="Tên bước" class="form-control">
                                                 <label style="margin-left: 5px" id="invalid-ten1-feedback" class="text-danger" hidden></label>
                                             </div>
                                             <div class="col-12">
-                                                <textarea rows="5" id="mota1" placeholder="Mô tả bước 1" class="form-control"></textarea>
+                                                <textarea rows="5" id="mota1" placeholder="Mô tả bước" class="form-control"></textarea>
                                                 <label style="margin-left: 5px" id="invalid-mota1-feedback" class="text-danger" hidden></label>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            
+
                         </div>
                         <input value="1" hidden id="dembuoc" />
                         <div class="row" style="margin-top: 20px">
-                            <div class="col-md-12 col-lg-6">
-                                <button id="xoabuoc" style="width: 100%" class="btn btn-outline-danger btn-sm">
-                                    <i class="bi bi-dash-circle me-1"> </i> Xóa bước
-                                </button>
-                            </div>
-                            <div class="col-md-12 col-lg-6">
-                                <button id="thembuoc" style="width: 100%" class="btn btn-outline-primary btn-sm">
-                                    <i class="bi bi-plus-circle me-1"> </i> Thêm bước
+                            <div class="col-md-12 col-lg-12">
+                                <button id="thembuoc" style="width: 100%" class="btn btn-outline-primary">
+                                    <i class="bi bi-plus-circle me-1"> </i> Thêm bước 2
                                 </button>
                             </div>
                         </div>
@@ -203,60 +217,36 @@
                 </div>
             </div>
         </div>
+        <script src="~/Validation/QuyTrinhTrongCay/ThemMoi.js"></script>
+    }
+}
 
-        <script>
-            $('body').on('change', '[id^="hinhbuoc"]', function () {
-                var hinh = this;
-                var stt = $(this).attr('name');
-                if (hinh.files && hinh.files[0]) {
-                    var reader = new FileReader();
-                    reader.onload = function (ex) {
-                        document.getElementById('hienthihinhbuoc' + stt).style.backgroundImage = "url(" + ex.target.result + ")";
-                        document.getElementById('hienthihinhbuoc' + stt).style.backgroundSize = "cover";
-                    }
-                    reader.readAsDataURL(hinh.files[0]);
-                }
-                else {
-                    document.getElementById('hienthihinhbuoc' + stt).style.backgroundImage = "url('/Content/assets/images/uploadImage.png')";
-                    document.getElementById('hienthihinhbuoc' + stt).style.backgroundSize = "65%";
-                }
-            });
+@if (Session["chophep-xoa"] != null)
+{
+    if (Convert.ToBoolean(Session["chophep-xoa"]) == true)
+    {
+        <script src="~/Validation/QuyTrinhTrongCay/Xoa.js"></script>
+        <script src="~/Validation/QuyTrinhTrongCay/XoaHangLoat.js"></script>
+    }
+}
 
-            $('#thembuoc').on('click', function () {
-                var stt = Number($('#dembuoc').val());
-                var sttTang = Number(stt + 1); //+1
-                $('#dembuoc').val(sttTang); 
-                $('#danhsachcacbuoc').append(`
-                    <div id="cumbuoc` + sttTang + `" class="col-sm-12 col-lg-12 mt-3">
-                        <div style="width: 100%; height: 50px; background-image: url('/Content/assets/images/arrowDown.png'); background-position: center; background-size: contain; background-repeat: no-repeat; margin-top: -25px; margin-bottom: 15px; "></div>
-                        <div class="mb-3 row">
-                            <div class="col-md-12 col-lg-4">
-                                <div id="hienthihinhbuoc` + sttTang + `" onclick="$('#hinhbuoc` + sttTang + `').click()" style="height: 190px; border: 1px solid #dee2e6; border-radius: 15px; cursor: pointer; background-image: url('/Content/assets/images/uploadImage.png'); background-position: center; background-size: 65%; background-repeat: no-repeat; "></div>
-                                <input type="file" accept="image/*" hidden id="hinhbuoc` + sttTang + `" name="` + sttTang + `" />
-                            </div>
-                            <div class="col-md-12 col-lg-8">
-                                <div class="row">
-                                    <div class="col-12 mb-3">
-                                        <input value="Bước ` + sttTang + `" id="ten` + sttTang + `" type="text" placeholder="Tên bước ` + sttTang + `" class="form-control">
-                                        <label style="margin-left: 5px" id="invalid-ten` + sttTang + `-feedback" class="text-danger" hidden></label>
-                                    </div>
-                                    <div class="col-12">
-                                        <textarea rows="5" id="mota` + sttTang + `" placeholder="Mô tả bước ` + sttTang + `" class="form-control"></textarea>
-                                        <label style="margin-left: 5px" id="invalid-mota` + sttTang + `-feedback" class="text-danger" hidden></label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+@if (Session["chophep-sua"] != null)
+{
+    if (Convert.ToBoolean(Session["chophep-sua"]) == true)
+    {
+        <!-- Sửa sản phẩm -->
+        <div class="modal fade" id="SuaModal" tabindex="-1">
+            <div class="modal-dialog  modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 id="titleSua" class="modal-title"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                `);
-            });
-            $('#xoabuoc').on('click', function () {
-                var stt = Number($('#dembuoc').val());
-                if (stt > 1) { //2 bước trở lên
-                    $('#cumbuoc' + stt).remove();
-                    $('#dembuoc').val(Number(stt - 1)); //-1
-                }
-            });
-        </script>
+                    <div id="SuaModalPartial">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="~/Validation/QuyTrinhTrongCay/OpenModalSua.js"></script>
     }
 }

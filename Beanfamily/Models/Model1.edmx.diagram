@@ -4,20 +4,20 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="dd6c1da87ea04c4bad87b827c93b64fc" Name="Diagram1">
+      <Diagram DiagramId="96767a74fff248baac8b9b337d2431e1" Name="Diagram1">
         <EntityTypeShape EntityType="BeanfamilyModel.ApDungChucNangChoQuyenTaiKhoan" Width="1.5" PointX="3" PointY="11.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="BeanfamilyModel.ApDungDanhMucPhucVu" Width="1.5" PointX="11" PointY="15.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="BeanfamilyModel.CacBuocQuyTrinhTrongCay" Width="1.5" PointX="3" PointY="43.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BeanfamilyModel.ChiTietDonHangMuaSamVaMenuHangNgay" Width="1.5" PointX="11.25" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeanfamilyModel.ApDungDanhMucPhucVu" Width="1.5" PointX="9" PointY="25.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeanfamilyModel.CacBuocQuyTrinhTrongCay" Width="1.5" PointX="3" PointY="42.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeanfamilyModel.ChiTietDonHangMuaSamVaMenuHangNgay" Width="1.5" PointX="11.25" PointY="15.25" IsExpanded="true" />
         <EntityTypeShape EntityType="BeanfamilyModel.ChucNangHeThongBean" Width="1.5" PointX="0.75" PointY="10" IsExpanded="true" />
-        <EntityTypeShape EntityType="BeanfamilyModel.DanhMucMenuBuffetCap1" Width="1.5" PointX="0.75" PointY="29.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="BeanfamilyModel.DanhMucMenuTiecBanCap1" Width="1.5" PointX="3.75" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="BeanfamilyModel.DanhMucPhucVuMenuTiecBanVaMenuBuffet" Width="1.5" PointX="8.75" PointY="9.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="BeanfamilyModel.DanhMucSanPhamMuaSamCap1" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="BeanfamilyModel.DanhMucSanPhamRauNhaTrongCap1" Width="1.5" PointX="0.75" PointY="32.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="BeanfamilyModel.DanhMucThucDocHangNgayCap1" Width="1.5" PointX="3.75" PointY="25.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="BeanfamilyModel.DonHangMuaSamVaMenuHangNgay" Width="1.5" PointX="6" PointY="38.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="BeanfamilyModel.GioHang" Width="1.5" PointX="8.25" PointY="25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeanfamilyModel.DanhMucMenuBuffetCap1" Width="1.5" PointX="0.75" PointY="22.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeanfamilyModel.DanhMucMenuTiecBanCap1" Width="1.5" PointX="3.75" PointY="26.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeanfamilyModel.DanhMucPhucVuMenuTiecBanVaMenuBuffet" Width="1.5" PointX="6.75" PointY="30.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeanfamilyModel.DanhMucSanPhamMuaSamCap1" Width="1.5" PointX="0.75" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeanfamilyModel.DanhMucSanPhamRauNhaTrongCap1" Width="1.5" PointX="0.75" PointY="29.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeanfamilyModel.DanhMucThucDocHangNgayCap1" Width="1.5" PointX="3.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeanfamilyModel.DonHangMuaSamVaMenuHangNgay" Width="1.5" PointX="6" PointY="37.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeanfamilyModel.GioHang" Width="1.5" PointX="11.25" PointY="19.625" IsExpanded="true" />
         <EntityTypeShape EntityType="BeanfamilyModel.LichSuSuaDoiSanPhamMenuBuffet" Width="1.5" PointX="5.25" PointY="17.25" IsExpanded="true" />
         <EntityTypeShape EntityType="BeanfamilyModel.LichSuSuaDoiSanPhamMenuTiecBan" Width="1.5" PointX="8.25" PointY="17.25" IsExpanded="true" />
         <EntityTypeShape EntityType="BeanfamilyModel.LichSuSuaDoiSanPhamMuaSam" Width="1.5" PointX="5.25" PointY="13.25" IsExpanded="true" />
@@ -26,16 +26,17 @@
         <EntityTypeShape EntityType="BeanfamilyModel.MangXaHoi" Width="1.5" PointX="5.25" PointY="33.625" IsExpanded="true" />
         <EntityTypeShape EntityType="BeanfamilyModel.NoiDungSEO" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BeanfamilyModel.QuyenTaiKhoanBean" Width="1.5" PointX="0.75" PointY="14.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="BeanfamilyModel.QuyTrinhTrongCay" Width="1.5" PointX="0.75" PointY="35.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BeanfamilyModel.SanPhamMenuBuffet" Width="1.5" PointX="3" PointY="29.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="BeanfamilyModel.SanPhamMenuTiecBan" Width="1.5" PointX="6" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="BeanfamilyModel.SanPhamMuaSam" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="BeanfamilyModel.SanPhamRauNhaTrong" Width="1.5" PointX="3" PointY="33.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="BeanfamilyModel.SanPhamThucDonHangNgay" Width="1.5" PointX="6" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeanfamilyModel.QuyTrinhTrongCay" Width="1.5" PointX="0.75" PointY="32.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeanfamilyModel.SanPhamMenuBuffet" Width="1.5" PointX="3" PointY="22.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeanfamilyModel.SanPhamMenuTiecBan" Width="1.5" PointX="6" PointY="26.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeanfamilyModel.SanPhamMuaSam" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeanfamilyModel.SanPhamRauNhaTrong" Width="1.5" PointX="3" PointY="30.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeanfamilyModel.SanPhamThucDonHangNgay" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BeanfamilyModel.TaiKhoanBean" Width="1.5" PointX="3" PointY="15.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="BeanfamilyModel.TaiKhoanKhachHang" Width="1.5" PointX="3.75" PointY="38.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeanfamilyModel.TaiKhoanKhachHang" Width="1.5" PointX="3.75" PointY="37.625" IsExpanded="true" />
         <EntityTypeShape EntityType="BeanfamilyModel.TinhTrangDonHangMuaSamVaMenuHangNgay" Width="1.5" PointX="8.25" PointY="21.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="BeanfamilyModel.ThongTinChung" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeanfamilyModel.TonKhoSanPham" Width="1.5" PointX="5.25" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeanfamilyModel.ThongTinChung" Width="1.5" PointX="7.75" PointY="5.75" IsExpanded="true" />
         <AssociationConnector Association="BeanfamilyModel.FK_ApDungChucNangChoQuyenTaiKhoan_ChucNangHeThongBean" ManuallyRouted="false" />
         <AssociationConnector Association="BeanfamilyModel.FK_ApDungChucNangChoQuyenTaiKhoan_QuyenTaiKhoanBean" ManuallyRouted="false" />
         <AssociationConnector Association="BeanfamilyModel.FK_ApDungDanhMucPhucVu_DanhMucMenuBuffetCap1" ManuallyRouted="false" />
@@ -69,6 +70,7 @@
         <AssociationConnector Association="BeanfamilyModel.FK_MangXaHoi_TaiKhoanBean" ManuallyRouted="false" />
         <AssociationConnector Association="BeanfamilyModel.FK_TaiKhoanBean_QuyenTaiKhoanBean" ManuallyRouted="false" />
         <AssociationConnector Association="BeanfamilyModel.FK_SanPhamRauNhaTrong_QuyTrinhTrongCay" ManuallyRouted="false" />
+        <AssociationConnector Association="BeanfamilyModel.FK_TonKhoSanPham_SanPhamMuaSam" ManuallyRouted="false" />
         <AssociationConnector Association="BeanfamilyModel.FK_TinhTrangDonHangMuaSamVaMenuHangNgay_TaiKhoanBean" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>

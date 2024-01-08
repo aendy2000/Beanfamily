@@ -31,7 +31,7 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_quytrinhtrongcay" Type="int" Nullable="false" />
-          <Property Name="sobuoc" Type="int" Nullable="false" />
+          <Property Name="sobuoc" Type="nvarchar(max)" Nullable="false" />
           <Property Name="motabuoc" Type="nvarchar(max)" />
           <Property Name="hinhanh" Type="nvarchar(max)" />
           <Property Name="ngaytao" Type="datetime" Nullable="false" />
@@ -285,8 +285,6 @@
           <Property Name="hinhanh" Type="nvarchar(max)" />
           <Property Name="video" Type="nvarchar(max)" />
           <Property Name="tensanpham" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="soluong" Type="int" Nullable="false" />
-          <Property Name="gia" Type="money" Nullable="false" />
           <Property Name="mota" Type="nvarchar(max)" />
           <Property Name="luotxem" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="hienthi" Type="bit" Nullable="false" />
@@ -372,6 +370,16 @@
           <Property Name="noidung" Type="nvarchar(max)" Nullable="false" />
           <Property Name="thoigian" Type="datetime" Nullable="false" />
           <Property Name="hinhanh" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="TonKhoSanPham">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_sanphammuasam" Type="int" Nullable="false" />
+          <Property Name="tenloai" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="soluong" Type="int" Nullable="false" />
+          <Property Name="gia" Type="money" Nullable="false" />
         </EntityType>
         <EntityType Name="ThongTinChung">
           <Key>
@@ -802,6 +810,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TonKhoSanPham_SanPhamMuaSam">
+          <End Role="SanPhamMuaSam" Type="Self.SanPhamMuaSam" Multiplicity="1" />
+          <End Role="TonKhoSanPham" Type="Self.TonKhoSanPham" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SanPhamMuaSam">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TonKhoSanPham">
+              <PropertyRef Name="id_sanphammuasam" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="BeanfamilyModelStoreContainer">
           <EntitySet Name="ApDungChucNangChoQuyenTaiKhoan" EntityType="Self.ApDungChucNangChoQuyenTaiKhoan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ApDungDanhMucPhucVu" EntityType="Self.ApDungDanhMucPhucVu" Schema="dbo" store:Type="Tables" />
@@ -833,6 +853,7 @@
           <EntitySet Name="TaiKhoanBean" EntityType="Self.TaiKhoanBean" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TaiKhoanKhachHang" EntityType="Self.TaiKhoanKhachHang" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TinhTrangDonHangMuaSamVaMenuHangNgay" EntityType="Self.TinhTrangDonHangMuaSamVaMenuHangNgay" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TonKhoSanPham" EntityType="Self.TonKhoSanPham" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ThongTinChung" EntityType="Self.ThongTinChung" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_ApDungChucNangChoQuyenTaiKhoan_ChucNangHeThongBean" Association="Self.FK_ApDungChucNangChoQuyenTaiKhoan_ChucNangHeThongBean">
             <End Role="ChucNangHeThongBean" EntitySet="ChucNangHeThongBean" />
@@ -970,6 +991,10 @@
             <End Role="TaiKhoanBean" EntitySet="TaiKhoanBean" />
             <End Role="TinhTrangDonHangMuaSamVaMenuHangNgay" EntitySet="TinhTrangDonHangMuaSamVaMenuHangNgay" />
           </AssociationSet>
+          <AssociationSet Name="FK_TonKhoSanPham_SanPhamMuaSam" Association="Self.FK_TonKhoSanPham_SanPhamMuaSam">
+            <End Role="SanPhamMuaSam" EntitySet="SanPhamMuaSam" />
+            <End Role="TonKhoSanPham" EntitySet="TonKhoSanPham" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
@@ -1007,7 +1032,7 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_quytrinhtrongcay" Type="Int32" Nullable="false" />
-          <Property Name="sobuoc" Type="Int32" Nullable="false" />
+          <Property Name="sobuoc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="motabuoc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="hinhanh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ngaytao" Type="DateTime" Nullable="false" Precision="3" />
@@ -1300,8 +1325,6 @@
           <Property Name="hinhanh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="video" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="tensanpham" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="soluong" Type="Int32" Nullable="false" />
-          <Property Name="gia" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="mota" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="luotxem" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="hienthi" Type="Boolean" Nullable="false" />
@@ -1309,6 +1332,7 @@
           <NavigationProperty Name="DanhMucSanPhamMuaSamCap1" Relationship="Self.FK_SanPhamMuaSam_DanhMucSanPhamMuaSamCap1" FromRole="SanPhamMuaSam" ToRole="DanhMucSanPhamMuaSamCap1" />
           <NavigationProperty Name="GioHang" Relationship="Self.FK_GioHang_SanPhamMuaSam" FromRole="SanPhamMuaSam" ToRole="GioHang" />
           <NavigationProperty Name="LichSuSuaDoiSanPhamMuaSam" Relationship="Self.FK_LichSuSuaDoiSanPhamMuaSam_SanPhamMuaSam" FromRole="SanPhamMuaSam" ToRole="LichSuSuaDoiSanPhamMuaSam" />
+          <NavigationProperty Name="TonKhoSanPham" Relationship="Self.FK_TonKhoSanPham_SanPhamMuaSam" FromRole="SanPhamMuaSam" ToRole="TonKhoSanPham" />
         </EntityType>
         <EntityType Name="SanPhamRauNhaTrong">
           <Key>
@@ -1411,6 +1435,17 @@
           <Property Name="hinhanh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="DonHangMuaSamVaMenuHangNgay" Relationship="Self.FK_TinhTrangDonHangMuaSamVaMenuHangNgay_DonHangMuaSamVaMenuHangNgay" FromRole="TinhTrangDonHangMuaSamVaMenuHangNgay" ToRole="DonHangMuaSamVaMenuHangNgay" />
           <NavigationProperty Name="TaiKhoanBean" Relationship="Self.FK_TinhTrangDonHangMuaSamVaMenuHangNgay_TaiKhoanBean" FromRole="TinhTrangDonHangMuaSamVaMenuHangNgay" ToRole="TaiKhoanBean" />
+        </EntityType>
+        <EntityType Name="TonKhoSanPham">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_sanphammuasam" Type="Int32" Nullable="false" />
+          <Property Name="tenloai" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="soluong" Type="Int32" Nullable="false" />
+          <Property Name="gia" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="SanPhamMuaSam" Relationship="Self.FK_TonKhoSanPham_SanPhamMuaSam" FromRole="TonKhoSanPham" ToRole="SanPhamMuaSam" />
         </EntityType>
         <EntityType Name="ThongTinChung">
           <Key>
@@ -1829,6 +1864,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TonKhoSanPham_SanPhamMuaSam">
+          <End Role="SanPhamMuaSam" Type="Self.SanPhamMuaSam" Multiplicity="1" />
+          <End Role="TonKhoSanPham" Type="Self.TonKhoSanPham" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SanPhamMuaSam">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TonKhoSanPham">
+              <PropertyRef Name="id_sanphammuasam" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TinhTrangDonHangMuaSamVaMenuHangNgay_TaiKhoanBean">
           <End Role="TaiKhoanBean" Type="Self.TaiKhoanBean" Multiplicity="1" />
           <End Role="TinhTrangDonHangMuaSamVaMenuHangNgay" Type="Self.TinhTrangDonHangMuaSamVaMenuHangNgay" Multiplicity="*" />
@@ -1872,6 +1919,7 @@
           <EntitySet Name="TaiKhoanBean" EntityType="Self.TaiKhoanBean" />
           <EntitySet Name="TaiKhoanKhachHang" EntityType="Self.TaiKhoanKhachHang" />
           <EntitySet Name="TinhTrangDonHangMuaSamVaMenuHangNgay" EntityType="Self.TinhTrangDonHangMuaSamVaMenuHangNgay" />
+          <EntitySet Name="TonKhoSanPham" EntityType="Self.TonKhoSanPham" />
           <EntitySet Name="ThongTinChung" EntityType="Self.ThongTinChung" />
           <AssociationSet Name="FK_ApDungChucNangChoQuyenTaiKhoan_ChucNangHeThongBean" Association="Self.FK_ApDungChucNangChoQuyenTaiKhoan_ChucNangHeThongBean">
             <End Role="ChucNangHeThongBean" EntitySet="ChucNangHeThongBean" />
@@ -2004,6 +2052,10 @@
           <AssociationSet Name="FK_SanPhamRauNhaTrong_QuyTrinhTrongCay" Association="Self.FK_SanPhamRauNhaTrong_QuyTrinhTrongCay">
             <End Role="QuyTrinhTrongCay" EntitySet="QuyTrinhTrongCay" />
             <End Role="SanPhamRauNhaTrong" EntitySet="SanPhamRauNhaTrong" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TonKhoSanPham_SanPhamMuaSam" Association="Self.FK_TonKhoSanPham_SanPhamMuaSam">
+            <End Role="SanPhamMuaSam" EntitySet="SanPhamMuaSam" />
+            <End Role="TonKhoSanPham" EntitySet="TonKhoSanPham" />
           </AssociationSet>
           <AssociationSet Name="FK_TinhTrangDonHangMuaSamVaMenuHangNgay_TaiKhoanBean" Association="Self.FK_TinhTrangDonHangMuaSamVaMenuHangNgay_TaiKhoanBean">
             <End Role="TaiKhoanBean" EntitySet="TaiKhoanBean" />
@@ -2319,8 +2371,6 @@
                 <ScalarProperty Name="hinhanh" ColumnName="hinhanh" />
                 <ScalarProperty Name="video" ColumnName="video" />
                 <ScalarProperty Name="tensanpham" ColumnName="tensanpham" />
-                <ScalarProperty Name="soluong" ColumnName="soluong" />
-                <ScalarProperty Name="gia" ColumnName="gia" />
                 <ScalarProperty Name="mota" ColumnName="mota" />
                 <ScalarProperty Name="luotxem" ColumnName="luotxem" />
                 <ScalarProperty Name="hienthi" ColumnName="hienthi" />
@@ -2411,6 +2461,17 @@
                 <ScalarProperty Name="noidung" ColumnName="noidung" />
                 <ScalarProperty Name="thoigian" ColumnName="thoigian" />
                 <ScalarProperty Name="hinhanh" ColumnName="hinhanh" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TonKhoSanPham">
+            <EntityTypeMapping TypeName="BeanfamilyModel.TonKhoSanPham">
+              <MappingFragment StoreEntitySet="TonKhoSanPham">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_sanphammuasam" ColumnName="id_sanphammuasam" />
+                <ScalarProperty Name="tenloai" ColumnName="tenloai" />
+                <ScalarProperty Name="soluong" ColumnName="soluong" />
+                <ScalarProperty Name="gia" ColumnName="gia" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

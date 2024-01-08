@@ -143,8 +143,10 @@
     <Compile Include="Areas\Admin\Controllers\MonAnMenuBuffetController.cs" />
     <Compile Include="Areas\Admin\Controllers\MonAnMenuHangNgayController.cs" />
     <Compile Include="Areas\Admin\Controllers\MonAnMenuTiecBanController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DmCap1MuaSamController.cs" />
     <Compile Include="Areas\Admin\Controllers\QuyTrinhTrongCayController.cs" />
     <Compile Include="Areas\Admin\Controllers\RoleController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SanPhamMuaSamController.cs" />
     <Compile Include="Areas\Admin\Controllers\SanPhamVuonRauBeanController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -257,6 +259,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TinhTrangDonHangMuaSamVaMenuHangNgay.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TonKhoSanPham.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -2562,6 +2567,11 @@
     <Content Include="Validation\Dmc1MenuBuffet\XoaHangLoat.js" />
     <Content Include="Validation\Dmc1MenuHangNgay\XoaHangLoat.js" />
     <Content Include="Validation\Dmc1MenuTiecBan\XoaHangLoat.js" />
+    <Content Include="Validation\Dmc1MuaSam\SuaDmc1.js" />
+    <Content Include="Validation\Dmc1MuaSam\ThemDmc1.js" />
+    <Content Include="Validation\Dmc1MuaSam\XemSanPhamDmc1.js" />
+    <Content Include="Validation\Dmc1MuaSam\XoaDmc1.js" />
+    <Content Include="Validation\Dmc1MuaSam\XoaHangLoat.js" />
     <Content Include="Validation\Dmc1VuonRauBean\SuaDmc1.js" />
     <Content Include="Validation\Dmc1VuonRauBean\ThemDmc1.js" />
     <Content Include="Validation\Dmc1VuonRauBean\XemMonDmc1.js" />
@@ -2821,6 +2831,16 @@
     <Content Include="Areas\Admin\Views\DmCap1VuonRauBean\Index.cshtml" />
     <Content Include="Areas\Admin\Views\DmCap1VuonRauBean\_DanhSachMonVuonRauBean.cshtml" />
     <Content Include="Areas\Admin\Views\SanPhamVuonRauBean\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\SanPhamVuonRauBean\_OpenSuaSanPham.cshtml" />
+    <Content Include="Areas\Admin\Views\SanPhamVuonRauBean\_xemHinhAnhSanPham.cshtml" />
+    <Content Include="Areas\Admin\Views\HinhAnhBean\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\QuyTrinhTrongCay\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\QuyTrinhTrongCay\_OpenSua.cshtml" />
+    <Content Include="Areas\Admin\Views\DmCap1MuaSam\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\DmCap1MuaSam\_DanhSachSanPham.cshtml" />
+    <Content Include="Areas\Admin\Views\SanPhamMuaSam\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\SanPhamMuaSam\_OpenSuaSanPham.cshtml" />
+    <Content Include="Areas\Admin\Views\SanPhamMuaSam\_xemHinhAnhSanPham.cshtml" />
     <EntityDeploy Include="Models\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
@@ -2828,10 +2848,6 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
-    <Content Include="Areas\Admin\Views\SanPhamVuonRauBean\_OpenSuaSanPham.cshtml" />
-    <Content Include="Areas\Admin\Views\SanPhamVuonRauBean\_xemHinhAnhSanPham.cshtml" />
-    <Content Include="Areas\Admin\Views\HinhAnhBean\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\QuyTrinhTrongCay\Index.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -2863,12 +2879,23 @@
     <Content Include="Validation\MonAnMenuHangNgay\XemHinhAnh.js" />
     <Content Include="Validation\Profile\UpdateInformation.js" />
     <Content Include="Validation\AccountBean\AddAccount.js" />
+    <Content Include="Validation\QuyTrinhTrongCay\OpenModalSua.js" />
+    <Content Include="Validation\QuyTrinhTrongCay\Sua.js" />
+    <Content Include="Validation\QuyTrinhTrongCay\ThemMoi.js" />
+    <Content Include="Validation\QuyTrinhTrongCay\Xoa.js" />
+    <Content Include="Validation\QuyTrinhTrongCay\XoaHangLoat.js" />
     <Content Include="Validation\Role\EditRole.js" />
     <Content Include="Validation\Role\DeleteRole.js" />
     <Content Include="Validation\Role\ShowViewEditRole.js" />
     <Content Include="Validation\Role\AddRole.js" />
     <Content Include="Validation\Dmc1MenuHangNgay\ThemDmc1MenuHangNgay.js" />
     <Content Include="Validation\Role\XoaHangLoat.js" />
+    <Content Include="Validation\SanPhamMuaSam\OpenModalSuaSanPham.js" />
+    <Content Include="Validation\SanPhamMuaSam\SuaSanPham.js" />
+    <Content Include="Validation\SanPhamMuaSam\ThemSanPham.js" />
+    <Content Include="Validation\SanPhamMuaSam\XemHinhAnh.js" />
+    <Content Include="Validation\SanPhamMuaSam\XoaHangLoat.js" />
+    <Content Include="Validation\SanPhamMuaSam\XoaSanPham.js" />
     <Content Include="Validation\SanPhamVuonRau\OpenModalSuaSanPham.js" />
     <Content Include="Validation\SanPhamVuonRau\SuaSanPham.js" />
     <Content Include="Validation\SanPhamVuonRau\ThemSanPham.js" />

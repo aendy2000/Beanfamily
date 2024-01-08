@@ -84,14 +84,13 @@
                                         <input hidden id="inpHienthi@(item.id)" value="@item.hienthi.ToString().ToLower()" />
                                     </td>
                                     <td>
-
                                         @if (item.ApDungDanhMucPhucVu.Where(mtb => mtb.id_danhmucmenutiecbancap1 != null).Count() > 0)
                                         {
-                                            <ul style="padding-left: 1rem; margin-bottom: 0;">
+                                            <ul style="margin-left: -2rem; margin-bottom: 0; list-style-type: none;">
                                                 @foreach (var menutiecban in item.ApDungDanhMucPhucVu.Where(mtb => mtb.id_danhmucmenutiecbancap1 != null).ToList())
                                                 {
                                                     <li>
-                                                        @menutiecban.DanhMucMenuTiecBanCap1.tendanhmuc
+                                                        <span class="badge bg-primary">@menutiecban.DanhMucMenuTiecBanCap1.tendanhmuc</span>
                                                     </li>
                                                 }
                                             </ul>
@@ -104,11 +103,11 @@
                                     <td>
                                         @if (item.ApDungDanhMucPhucVu.Where(mtb => mtb.id_danhmucmenubuffetcap1 != null).Count() > 0)
                                         {
-                                            <ul style="padding-left: 1rem; margin-bottom: 0;">
+                                            <ul style="margin-left: -2rem; margin-bottom: 0; list-style-type: none;">
                                                 @foreach (var menutiecban in item.ApDungDanhMucPhucVu.Where(mtb => mtb.id_danhmucmenubuffetcap1 != null).ToList())
                                                 {
                                                     <li>
-                                                        @menutiecban.DanhMucMenuBuffetCap1.tendanhmuc
+                                                        <span class="badge bg-primary">@menutiecban.DanhMucMenuBuffetCap1.tendanhmuc</span>
                                                     </li>
                                                 }
                                             </ul>

@@ -67,7 +67,7 @@ namespace Beanfamily.Areas.Admin.Controllers
         {
             try
             {
-                var checkExist = model.SanPhamRauNhaTrong.FirstOrDefault(s => s.tensanpham.ToLower().Equals(ten.ToLower().Trim()) && s.id_danhmucsanphamraunhatrongcap1 == danhmuc);
+                var checkExist = model.SanPhamRauNhaTrong.FirstOrDefault(s => s.tensanpham.ToLower().Equals(ten.ToLower().Trim()));
                 if (checkExist != null)
                     return Content("DATONTAI");
 
@@ -87,7 +87,6 @@ namespace Beanfamily.Areas.Admin.Controllers
                 string path = "";
                 string pathDirectory = "";
                 string strListImages = "";
-
                 if (images != null)
                 {
                     foreach (var item in images)
@@ -182,7 +181,7 @@ namespace Beanfamily.Areas.Admin.Controllers
         {
             try
             {
-                var checkExist = model.SanPhamRauNhaTrong.FirstOrDefault(s => s.tensanpham.ToLower().Equals(ten.ToLower().Trim()) && s.id_danhmucsanphamraunhatrongcap1 == danhmuc && s.id != id);
+                var checkExist = model.SanPhamRauNhaTrong.FirstOrDefault(s => s.tensanpham.ToLower().Equals(ten.ToLower().Trim()) && s.id != id);
                 if (checkExist != null)
                     return Content("DATONTAI");
 

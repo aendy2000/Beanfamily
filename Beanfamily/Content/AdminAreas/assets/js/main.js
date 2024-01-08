@@ -310,13 +310,8 @@
      */
 
     //input money
-    $("input[data-type='currency']").on({
-        keyup: function () {
-            formatCurrency($(this));
-        },
-        blur: function () {
-            formatCurrency($(this), "blur");
-        }
+    $('body').on("keyup", "input[data-type='currency']", function () {
+        formatCurrency($(this));
     });
 
     function formatNumber(n) {
@@ -355,7 +350,7 @@
     }
 
     //Input number?
-    $("input[data-type='numbers']").keyup(function (e) {
+    $('body').on("keyup", "input[data-type='numbers']", function (e) {
         if (/\D/g.test(this.value)) {
             // Filter non-digits from input value.
             this.value = this.value.replace(/\D/g, '');

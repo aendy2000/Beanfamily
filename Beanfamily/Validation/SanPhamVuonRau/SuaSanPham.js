@@ -8,7 +8,7 @@
         let fileName = $(this).attr('name');
         if (fileName.indexOf("daylahinhcu") != -1) {
             var filenames = fileName.split('-')[1];
-            $('[id="suaidHinhAnh-hinhcu-' + filenames +'"]').replaceWith('');
+            $('[id="suaidHinhAnh-hinhcu-' + filenames + '"]').replaceWith('');
             $('[id="url-suaidHinhAnh-hinhcu-' + filenames + '"]').val('');
         }
         else {
@@ -94,7 +94,7 @@
         if (donvi.length < 1) {
             check = false;
             $("#suadonvi").addClass('valid-was-validated');
-            $('#invalid-suadonvi-feedback').text("Vui lòng nhập đơn vị tính.").prop('hidden', false);
+            $('#invalid-suadonvi-feedback').text("Nhập đơn vị tính.").prop('hidden', false);
             $("#suadonvi").focus();
 
             $('#btnluusuaSanPham').html('Lưu thông tin');
@@ -114,7 +114,7 @@
         if (ten.length < 1) {
             check = false;
             $("#suaten").addClass('valid-was-validated');
-            $('#invalid-suaten-feedback').text("Vui lòng nhập tên món.").prop('hidden', false);
+            $('#invalid-suaten-feedback').text("Vui lòng nhập tên sản phẩm.").prop('hidden', false);
             $("#suaten").focus();
 
             $('#btnluusuaSanPham').html('Lưu thông tin');
@@ -168,7 +168,7 @@
                 }
                 else if (ketqua == "DATONTAI") {
                     $("#suaten").addClass('valid-was-validated');
-                    $('#invalid-suaten-feedback').text(tenmon + ' đã tồn tại trong menu này').prop('hidden', false);
+                    $('#invalid-suaten-feedback').text('Sản phẩm ' + ten + ' đã tồn tại.').prop('hidden', false);
                     $("#suaten").focus();
 
                     $('#btnluusuaSanPham').html('Lưu thông tin');

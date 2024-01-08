@@ -16,7 +16,7 @@ namespace Beanfamily.Models
     {
         public int id { get; set; }
         public int id_quytrinhtrongcay { get; set; }
-        public int sobuoc { get; set; }
+        public string sobuoc { get; set; }
         public string motabuoc { get; set; }
         public string hinhanh { get; set; }
         public System.DateTime ngaytao { get; set; }

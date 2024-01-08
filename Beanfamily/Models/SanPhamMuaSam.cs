@@ -20,6 +20,7 @@ namespace Beanfamily.Models
             this.ChiTietDonHangMuaSamVaMenuHangNgay = new HashSet<ChiTietDonHangMuaSamVaMenuHangNgay>();
             this.GioHang = new HashSet<GioHang>();
             this.LichSuSuaDoiSanPhamMuaSam = new HashSet<LichSuSuaDoiSanPhamMuaSam>();
+            this.TonKhoSanPham = new HashSet<TonKhoSanPham>();
         }
     
         public int id { get; set; }
@@ -27,8 +28,6 @@ namespace Beanfamily.Models
         public string hinhanh { get; set; }
         public string video { get; set; }
         public string tensanpham { get; set; }
-        public int soluong { get; set; }
-        public decimal gia { get; set; }
         public string mota { get; set; }
         public decimal luotxem { get; set; }
         public bool hienthi { get; set; }
@@ -40,5 +39,7 @@ namespace Beanfamily.Models
         public virtual ICollection<GioHang> GioHang { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LichSuSuaDoiSanPhamMuaSam> LichSuSuaDoiSanPhamMuaSam { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TonKhoSanPham> TonKhoSanPham { get; set; }
     }
 }

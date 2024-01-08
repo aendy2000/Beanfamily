@@ -1,0 +1,304 @@
+﻿@model IEnumerable<Beanfamily.Models.SanPhamMuaSam>
+@using Beanfamily.Models
+@{
+    ViewBag.Title = "Sản Phẩm - Cửa Hàng Tiện Lợi";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    BeanfamilyEntities models = new BeanfamilyEntities();
+    var lstDmC1 = models.DanhMucSanPhamMuaSamCap1.ToList();
+}
+
+<div class="pagetitle">
+    <div class="row">
+        <div class="col-md-7 col-12">
+            <h1>Sản Phẩm</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="@Url.Action("index", "dashboard")">Bảng Điều Khiển</a></li>
+                    <li class="breadcrumb-item">Cửa Hàng Tiện Lợi</li>
+                    <li class="breadcrumb-item active">Sản Phẩm</li>
+                </ol>
+            </nav>
+        </div>
+
+        <div class="col-md-5 col-12 text-end">
+            @if (Session["chophep-them"] != null)
+            {
+                if (Convert.ToBoolean(Session["chophep-them"]) == true)
+                {
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ThemMoiModal"><i class="bi bi-plus-circle me-1"> </i> Thêm mới</button>
+                }
+            }
+            @if (Session["chophep-xoa"] != null)
+            {
+                if (Convert.ToBoolean(Session["chophep-xoa"]) == true)
+                {
+                    <button id="xoahangloat" class="btn btn-danger ms-1"><i class="bi bi-trash me-1"> </i> Xóa mục đã chọn</button>
+                }
+            }
+        </div>
+    </div>
+</div><!-- End Page Title -->
+
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="card">
+                <div class="card-body">
+                    <!-- Table with stripped rows -->
+                    <table id="lstDataTable" class="table datatable striped" width="100%">
+                        <thead>
+                            <tr class="text-nowrap">
+                                <th style="width: 10px">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input p-2" id="checkAlls" />
+                                        <label class="form-check-label" for="checkAlls"></label>
+                                    </div>
+                                </th>
+                                <th scope="col">Mã</th>
+                                <th scope="col">Danh mục</th>
+                                <th scope="col">Tên</th>
+                                <th scope="col">Tồn kho</th>
+                                <th scope="col">Lượt xem</th>
+                                <th scope="col">Trạng thái</th>
+                                <th scope="col">Hình ảnh</th>
+                                <th scope="col">#</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr style="vertical-align: middle">
+                                    <td>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input p-2" id="checkitem@(item.id)" name="@item.id" />
+                                            <label class="form-check-label" for="checkitem@(item.id)"></label>
+                                        </div>
+                                    </td>
+                                    <td scope="row">
+                                        SP@(item.id.ToString("D6"))
+                                        <input hidden id="inpMaSanPham@(item.id)" value="SP@(item.id.ToString("D6"))" />
+                                    </td>
+                                    <td>@item.DanhMucSanPhamMuaSamCap1.tendanhmuc</td>
+                                    <td data-bs-toggle="tooltip" dropzone="top" title="@item.mota">@item.tensanpham</td>
+                                    <td>
+                                        <ul style="margin-left: -2rem; margin-bottom: 0; list-style-type: none;">
+                                            @foreach (var tonkho in item.TonKhoSanPham)
+                                            {
+                                                <li>
+                                                    <span class="badge bg-primary">@(tonkho.tenloai); @(tonkho.gia.ToString("0,0"))đ; @(tonkho.soluong) SP</span>
+                                                </li>
+                                            }
+                                        </ul>
+                                    </td>
+                                    <td>@item.luotxem.ToString("0,0") Lượt</td>
+                                    <td>
+                                        @if (item.hienthi == true)
+                                        {
+                                            <span class="badge bg-success"><i class="bi bi-eye-fill me-1"></i> Hiển thị</span> }
+                                        else
+                                        {
+                                            <span class="badge bg-danger"><i class="bi bi-eye-slash-fill me-1"></i> Đã ẩn</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (string.IsNullOrEmpty(item.hinhanh))
+                                        {
+                                            <span class="badge bg-warning"><i class="bi bi-exclamation-octagon me-1"></i> Không có hình</span>
+                                        }
+                                        else
+                                        {
+                                            <button id="btnXemHinhAnhItem@(item.id)" data-bs-toggle="tooltip" data-bs-placement="top" title="Xem danh sách hình ảnh" name="@item.id" class="btn btn-sm btn-primary">
+                                                <i class="bi bi-image me-1"></i> xem @item.hinhanh.Split('#').Count() ảnh
+                                            </button>
+                                        }
+
+                                    </td>
+                                    <td class="text-nowrap">
+                                        @if (Session["chophep-sua"] != null)
+                                        {
+                                            if (Convert.ToBoolean(Session["chophep-sua"]) == true)
+                                            {
+                                                <button id="btnsuasp@(item.id)" name="@item.id" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Cập nhật món"><i class="bi bi-pencil-square"></i></button>
+                                            }
+                                        }
+                                        @if (Session["chophep-xoa"] != null)
+                                        {
+                                            if (Convert.ToBoolean(Session["chophep-xoa"]) == true)
+                                            {
+
+                                                <button id="btnxoasp@(item.id)" name="@item.id" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Xóa món"><i class="bi bi-trash"></i></button>
+
+                                            }
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+@if (Session["chophep-them"] != null)
+{
+    if (Convert.ToBoolean(Session["chophep-them"]) == true)
+    {
+        <!-- Thêm sản phẩm -->
+        <div class="modal fade" id="ThemMoiModal" tabindex="-1">
+            <div class="modal-dialog  modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Thêm sản phẩm mới</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row m-2">
+                            <div class="col-sm-12 col-lg-12">
+                                <div class="row mb-3">
+                                    <label for="tensanpham" class="col-md-12 col-lg-2 col-form-label">Tên <span class="text-danger">*</span></label>
+                                    <div class="col-md-12 col-lg-10">
+                                        <input id="ten" type="text" placeholder="Tên sản phẩm mới" class="form-control">
+                                        <label style="margin-left: 5px" id="invalid-ten-feedback" class="text-danger" hidden></label>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="danhmuc" class="col-md-12 col-lg-2 col-form-label">Danh mục <span class="text-danger">*</span></label>
+                                    <div class="col-md-12 col-lg-10">
+                                        <select id="danhmuc" class="form-select">
+                                            <option selected value="">Chọn danh mục cấp 1</option>
+                                            @foreach (var item in lstDmC1)
+                                            {
+                                                <option value="@item.id">@item.tendanhmuc</option>
+                                            }
+                                        </select>
+                                        <label style="margin-left: 5px" id="invalid-danhmuc-feedback" class="text-danger" hidden></label>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="hienthi" class="col-md-12 col-lg-2 col-form-label">Hiển thị</label>
+                                    <div class="col-md-12 col-lg-10">
+                                        <div class="form-check form-switch form-control">
+                                            <input checked class="form-check-input" style="margin-left: -1.5em" type="checkbox" id="hienthi">
+                                            <label class="form-check-label" style="margin-left: 0.8em" for="hienthi"> Hiển thị sau khi tạo</label>
+                                        </div>
+                                        <label style="margin-left: 5px" id="invalid-hienthi-feedback" class="text-danger" hidden></label>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="mota" class="col-md-12 col-lg-2 col-form-label">Mô tả</label>
+                                    <div class="col-md-12 col-lg-10">
+                                        <textarea rows="4" class="form-control" id="mota" placeholder="Mô tả món"></textarea>
+                                        <label style="margin-left: 5px" id="invalid-mota-feedback" class="text-danger" hidden></label>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="mota" class="col-md-12 col-lg-2 col-form-label">Hình ảnh</label>
+                                    <div class="col-md-12 col-lg-10">
+                                        <fieldset class="form-group">
+                                            <a class="btn btn-sm btn-primary mb-2" onclick="$('#pro-image').click()"><i class="bi bi-images me-1"></i> Tải lên hình ảnh</a> <small class="text-muted fst-italic">(Chọn nhiều hình ảnh).</small>
+                                            <input accept="image/jpeg, image/png" type="file" id="pro-image" name="pro-image[]" style="display: none;" class="form-control" multiple>
+                                        </fieldset>
+                                        <div class="preview-images-zone form-control">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="mota" class="col-md-12 col-lg-2 col-form-label mb-1">Video</label>
+                                    <div class="col-md-12 col-lg-10 mb-1">
+                                        <fieldset class="form-group">
+                                            <a class="btn btn-sm btn-primary mb-2" onclick="$('#pro-video').click()"><i class="bi bi-file-earmark-play-fill"></i> Tải lên video</a>
+                                            <a id="btn-xoa-video" class="btn btn-sm btn-danger mb-2" data-bs-toggle="tooltip" dropzone="top" title="Xóa video upload"><i class="bi bi-trash"></i></a> <small class="text-muted fst-italic">(Chọn 1 video).</small>
+
+                                            <input accept="video/*" type="file" id="pro-video" name="pro-video" style="display: none;" class="form-control">
+                                        </fieldset>
+                                        <video id="load-video" style="border-radius: 10px; border: 1px solid #ddd" class="video-list text-center form-control" type="video/mp4" width="100%" height="300px"></video>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="bg-success-light">
+                                            <h6 class="text-center mt-4 font-weight-bold">THIẾT LẬP TỒN KHO</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="danhsachcacloai">
+                                    <div id="cumloai1" name="1" class="col-12">
+                                        <div class="row mb-3">
+                                            <div class="col-md-12 col-lg-4">
+                                                <input id="loai1" type="text" placeholder="Loại (VD: 500ml, 2kg...)" class="form-control">
+                                                <label style="margin-left: 5px" id="invalid-loai1-feedback" class="text-danger" hidden></label>
+                                            </div>
+                                            <div class="col-md-12 col-lg-4">
+                                                <input id="gia1" type="text" data-type="currency" placeholder="Giá sản phẩm" class="form-control">
+                                                <label style="margin-left: 5px" id="invalid-gia1-feedback" class="text-danger" hidden></label>
+                                            </div>
+                                            <div class="col-md-12 col-lg-4">
+                                                <input id="soluong1" type="text" data-type="numbers" placeholder="Số lượng tồn kho" class="form-control">
+                                                <label style="margin-left: 5px" id="invalid-soluong1-feedback" class="text-danger" hidden></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input hidden value="1" id="demloai" />
+                                <div class="row mt-3">
+                                    <div class="col-12">
+                                        <button id="themloai" style="width: 100%" class="btn btn-outline-primary"><i class="bi bi-plus me-1"> </i> Thêm loại 2</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer mt-3">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                        <button id="btnluuthemSanPham" type="button" class="btn btn-primary">Lưu thông tin</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+<!-- Xem hình ảnh -->
+<div class="modal fade" id="XemHinhAnhSanPhamModal" tabindex="-1">
+    <div class="modal-dialog  modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="titleHinhAnhSanPham" class="modal-title"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div id="XemHinhAnhSanPhamModalPartial" class="modal-body">
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (Session["chophep-sua"] != null)
+{
+    if (Convert.ToBoolean(Session["chophep-sua"]) == true)
+    {
+        <!-- Sửa sản phẩm -->
+        <div class="modal fade" id="SuaSanPhamModal" tabindex="-1">
+            <div class="modal-dialog  modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 id="titleSuaSanPham" class="modal-title"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div id="SuaSanPhamModalPartial">
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+
+<script src="~/Scripts/jquery-ui.js"></script>
+<script src="~/Validation/SanPhamMuaSam/ThemSanPham.js"></script>
+<script src="~/Validation/SanPhamMuaSam/XemHinhAnh.js"></script>
+<script src="~/Validation/SanPhamMuaSam/XoaSanPham.js"></script>
+<script src="~/Validation/SanPhamMuaSam/OpenModalSuaSanPham.js"></script>
+<script src="~/Validation/SanPhamMuaSam/XoaHangLoat.js"></script>

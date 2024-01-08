@@ -1,0 +1,133 @@
+﻿@model Beanfamily.Models.QuyTrinhTrongCay
+@{
+    Layout = null;
+    int i = 0;
+}
+
+<div id="SuaModalPartial">
+    <div class="modal-body m-2">
+        <div class="row mt-1">
+            <div class="col-12">
+                <input value="@Model.id" id="suaidQuyTrinh" hidden />
+                <input value="@Model.tenquytrinhtrongcay" id="suatenquytrinh" type="text" placeholder="Nhập tên quy trình..." class="form-control">
+                <label style="margin-left: 5px" id="invalid-suatenquytrinh-feedback" class="text-danger" hidden></label>
+            </div>
+        </div>
+        <div class="row mb-4 mt-3">
+            <div class="col-12">
+                <div class="form-check form-switch form-control">
+                    @if (Model.hienthi == true)
+                    {
+                        <input checked class="form-check-input" style="margin-left: -1.5em" type="checkbox" id="suahienthi">
+                    }
+                    else
+                    {
+                        <input class="form-check-input" style="margin-left: -1.5em" type="checkbox" id="suahienthi">
+                    }
+                    <label class="form-check-label" style="margin-left: 0.8em" for="suahienthi"> Hiển thị sau khi tạo</label>
+                </div>
+                <label style="margin-left: 5px" id="invalid-suahienthi-feedback" class="text-danger" hidden></label>
+            </div>
+            <div class="col-12">
+                <div class="bg-success-light">
+                    <h6 class="text-center mt-4 font-weight-bold">THÔNG TIN BƯỚC THỰC HIỆN</h6>
+                </div>
+            </div>
+        </div>
+        <div id="suadanhsachcacbuoc" class="row mt-4">
+            @foreach (var item in Model.CacBuocQuyTrinhTrongCay.OrderBy(o => o.id))
+            {
+                i++;
+                if (i == 1)
+                {
+                    <div id="suacumbuoc@(i)" name="1" class="col-sm-12 col-lg-12">
+                        <div class="mb-3 row">
+                            <div class="col-md-12 col-lg-4">
+                                @if (string.IsNullOrEmpty(item.hinhanh))
+                                {
+                                    <div data-bs-toggle="tooltip" data-bs-placement="top" title="Thêm hình ảnh" id="suahienthihinhbuoc@(i)" onclick="$('#suahinhbuoc@(i)').click()" style="height: 187px; border: 1px solid #dee2e6; border-radius: 15px; cursor: pointer; background-image: url('/Content/assets/images/uploadImage.png'); background-position: center; background-size: 65%; background-repeat: no-repeat; "></div>
+                                    <input type="file" accept="image/*" hidden id="suahinhbuoc@(i)" name="@(i)" />
+                                    <input hidden id="suahinhcubuoc@(i)" value="" />
+                                }
+                                else
+                                {
+                                    <div data-bs-toggle="tooltip" data-bs-placement="top" title="Thêm hình ảnh" id="suahienthihinhbuoc@(i)" onclick="$('#suahinhbuoc@(i)').click()" style="height: 187px; border: 1px solid #dee2e6; border-radius: 15px; cursor: pointer; background-image: url('@item.hinhanh.Replace("~", "")'); background-position: center; background-size: cover; background-repeat: no-repeat; "></div>
+                                    <input type="file" accept="image/*" hidden id="suahinhbuoc@(i)" name="@(i)" />
+                                    <input hidden id="suahinhcubuoc@(i)" value="@item.hinhanh" />
+                                }
+                            </div>
+                            <div class="col-md-12 col-lg-8">
+                                <div class="row">
+                                    <div class="col-12 mb-3">
+                                        <input id="suaten@(i)" value="@item.sobuoc" type="text" placeholder="Tên bước" class="form-control">
+                                        <label style="margin-left: 5px" id="invalid-suaten@(i)-feedback" class="text-danger" hidden></label>
+                                    </div>
+                                    <div class="col-12">
+                                        <textarea rows="5" id="suamota@(i)" placeholder="Mô tả bước" class="form-control">@item.motabuoc</textarea>
+                                        <label style="margin-left: 5px" id="invalid-suamota@(i)-feedback" class="text-danger" hidden></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div id="suacumbuoc@(i)" name="@(i)" class="col-sm-12 col-lg-12 mt-3">
+                        <div style="width: 100%; height: 50px; background-image: url('/Content/assets/images/arrowDown.png'); background-position: center; background-size: contain; background-repeat: no-repeat; margin-top: -25px; margin-bottom: 15px; "></div>
+                        <div class="mb-3 row">
+                            <div class="col-md-12 col-lg-4">
+                                @if (string.IsNullOrEmpty(item.hinhanh))
+                                {
+                                    <div data-bs-toggle="tooltip" data-bs-placement="top" title="Thêm hình ảnh" id="suahienthihinhbuoc@(i)" onclick="$('#suahinhbuoc@(i)').click()" style="height: 190px; border: 1px solid #dee2e6; border-radius: 15px; cursor: pointer; background-image: url('/Content/assets/images/uploadImage.png'); background-position: center; background-size: 65%; background-repeat: no-repeat; "></div>
+                                    <input type="file" accept="image/*" hidden id="suahinhbuoc@(i)" name="@(i)" />
+                                    <input hidden id="suahinhcubuoc@(i)" value="@item.hinhanh" />
+                                }
+                                else
+                                {
+                                    <div data-bs-toggle="tooltip" data-bs-placement="top" title="Thêm hình ảnh" id="suahienthihinhbuoc@(i)" onclick="$('#suahinhbuoc@(i)').click()" style="height: 190px; border: 1px solid #dee2e6; border-radius: 15px; cursor: pointer; background-image: url('@item.hinhanh.Replace("~", "")'); background-position: center; background-size: cover; background-repeat: no-repeat; "></div>
+                                    <input type="file" accept="image/*" hidden id="suahinhbuoc@(i)" name="@(i)" />
+                                    <input hidden id="suahinhcubuoc@(i)" value="@item.hinhanh" />
+                                }
+                            </div>
+                            <div class="col-md-12 col-lg-7">
+                                <div class="row">
+                                    <div class="col-12 mb-3">
+                                        <input value="@item.sobuoc" id="suaten@(i)" type="text" placeholder="Tên bước" class="form-control">
+                                        <label style="margin-left: 5px" id="invalid-suaten@(i)-feedback" class="text-danger" hidden></label>
+                                    </div>
+                                    <div class="col-12">
+                                        <textarea rows="5" id="suamota@(i)" placeholder="Mô tả bước" class="form-control">@item.motabuoc</textarea>
+                                        <label style="margin-left: 5px" id="invalid-suamota@(i)-feedback" class="text-danger" hidden></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-lg-1">
+                                <button data-bs-toggle="tooltip" data-bs-placement="top" title="Xóa bước" id="suaxoabuoc@(i)" name="@(i)" style="width: 100%; height: 187px" class="btn btn-danger btn-sm">
+                                    <i class="bi bi-trash me-1"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            @{ 
+                i = i + 1;
+            }
+        </div>
+        <input value="@(i)" hidden id="suadembuoc" />
+        <div class="row" style="margin-top: 20px">
+            <div class="col-md-12 col-lg-12">
+                <button id="suathembuoc" style="width: 100%" class="btn btn-outline-primary">
+                    <i class="bi bi-plus-circle me-1"> </i> Thêm bước @(i)
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer mt-3">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+        <button id="btnluusuaSanPham" type="button" class="btn btn-primary">Lưu thông tin</button>
+    </div>
+    <script src="~/Validation/QuyTrinhTrongCay/Sua.js"></script>
+</div>
