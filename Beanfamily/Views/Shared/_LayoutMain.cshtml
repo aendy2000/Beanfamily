@@ -72,7 +72,7 @@
                         <nav class="menu">
                             <ul class="main_menu">
                                 <li>
-                                    <a href="@Url.Action("index", "home")">Trang Chủ</a>
+                                    <a class="active" href="@Url.Action("index", "home")">Trang Chủ</a>
                                 </li>
 
                                 <li>
@@ -128,8 +128,8 @@
 
         <!-- - -->
         <ul class="menu-sidebar p-t-95 p-b-70">
-            <li class="t-center m-b-13">
-                <a href="@Url.Action("index", "home")">Trang Chủ</a>
+            <li class="t-center m-b-13 ">
+                <a class="active" href="@Url.Action("index", "home")">Trang Chủ</a>
             </li>
 
             <li class="t-center m-b-13">
@@ -214,7 +214,7 @@
     <footer class="bg1">
         <div class="container p-t-40 p-b-70">
             <div class="row">
-                <div class="col-sm-6 col-md-4 p-t-50">
+                <div class="col-sm-6 col-md-6 p-t-50">
                     <!-- - -->
                     <h4 class="txt13 m-b-33">
                         Thông Tin Liên Hệ
@@ -253,9 +253,9 @@
                     </ul>
                 </div>
 
-                <div class="col-sm-6 col-md-4 p-t-50">
+                <!--<div class="col-sm-6 col-md-4 p-t-50">-->
                     <!-- - -->
-                    <h4 class="txt13 m-b-33">
+                    <!--<h4 class="txt13 m-b-33">
                         Bài viết mới
                     </h4>
 
@@ -298,12 +298,12 @@
                             21 Th2 2017
                         </span>
                     </div>
-                </div>
+                </div>-->
 
-                <div class="col-sm-6 col-md-4 p-t-50">
+                <div class="col-sm-6 col-md-6 p-t-50">
                     <!-- - -->
                     <h4 class="txt13 m-b-38">
-                        Hình Ảnh Nhà Hàng
+                        Hình Ảnh Nhà Hàng Bean
                     </h4>
 
                     <!-- Gallery footer -->
@@ -339,22 +339,6 @@
                         <a class="item-gallery-footer wrap-pic-w" href="~/Content/assets/images/photo-gallery-08.jpg" data-lightbox="gallery-footer">
                             <img src="~/Content/assets/images/photo-gallery-thumb-08.jpg" alt="GALLERY">
                         </a>
-
-                        <a class="item-gallery-footer wrap-pic-w" href="~/Content/assets/images/photo-gallery-09.jpg" data-lightbox="gallery-footer">
-                            <img src="~/Content/assets/images/photo-gallery-thumb-09.jpg" alt="GALLERY">
-                        </a>
-
-                        <a class="item-gallery-footer wrap-pic-w" href="~/Content/assets/images/photo-gallery-10.jpg" data-lightbox="gallery-footer">
-                            <img src="~/Content/assets/images/photo-gallery-thumb-10.jpg" alt="GALLERY">
-                        </a>
-
-                        <a class="item-gallery-footer wrap-pic-w" href="~/Content/assets/images/photo-gallery-11.jpg" data-lightbox="gallery-footer">
-                            <img src="~/Content/assets/images/photo-gallery-thumb-11.jpg" alt="GALLERY">
-                        </a>
-
-                        <a class="item-gallery-footer wrap-pic-w" href="~/Content/assets/images/photo-gallery-12.jpg" data-lightbox="gallery-footer">
-                            <img src="~/Content/assets/images/photo-gallery-thumb-12.jpg" alt="GALLERY">
-                        </a>
                     </div>
 
                 </div>
@@ -371,7 +355,7 @@
                     </div>
 
                     <div class="txt17 p-r-20 p-t-5 p-b-5">
-                        Copyright &copy; 2018 All rights reserved  |  This template is made with <i class="fa fa-heart"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        Copyright &copy; @DateTime.Now.Year  <a href="https://beanfamily.vn">Beanfamily.vn</a>  |  Design by <a href="https://www.aendy.net" target="_blank">Aendy.Net</a>
                     </div>
                 </div>
             </div>

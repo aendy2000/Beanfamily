@@ -581,7 +581,20 @@ input[type="date" i] {
     color: #fff;
 }
 
+.header-fixed .main_menu > li > .active {
+    color: #ffc687;
+}
+
 .main_menu > li:hover > a {
+    color: #ffc687;
+    text-decoration: none;
+    border-top: 1px solid #ffc687;
+    border-bottom: 1px solid #ffc687;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.main_menu > li > .active {
     color: #ffc687;
     text-decoration: none;
     border-top: 1px solid #ffc687;
