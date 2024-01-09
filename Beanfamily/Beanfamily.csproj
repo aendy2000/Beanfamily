@@ -2467,7 +2467,12 @@
     <Content Include="Content\assets\images\photo-gallery-thumb-19.jpg" />
     <Content Include="Content\assets\images\photo-gallery-thumb-20.jpg" />
     <Content Include="Content\assets\images\photo-gallery-thumb-21.jpg" />
+    <Content Include="Content\assets\images\product\muasam.gif" />
+    <Content Include="Content\assets\images\product\nhahang.gif" />
     <Content Include="Content\assets\images\product\png-rau-hung-lui-7521.png" />
+    <Content Include="Content\assets\images\product\sanphamdefault.jpg" />
+    <Content Include="Content\assets\images\product\vuonrau.gif" />
+    <Content Include="Content\assets\images\product\z4834791087337_dfdc737db5de4d38ad2cdb6544c4b33c.jpg" />
     <Content Include="Content\assets\images\shop.jpg" />
     <Content Include="Content\assets\images\slide1-01.jpg" />
     <Content Include="Content\assets\images\slide1-02.jpg" />

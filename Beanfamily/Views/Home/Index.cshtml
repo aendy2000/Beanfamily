@@ -1,7 +1,16 @@
-﻿
+﻿@using Beanfamily.Models;
 @{
+    BeanfamilyEntities models = new BeanfamilyEntities();
+    var sanphammoinhahang = Session["sanphammoi-nhahang"] as List<SanPhamThucDonHangNgay>;
+    var sanphammoivuonrau = Session["sanphammoi-vuonrau"] as List<SanPhamRauNhaTrong>;
+    var sanphammoimuasam = Session["sanphammoi-muasam"] as List<SanPhamMuaSam>;
+
+    var sanphamnoibatnhahang = Session["sanphamnoibat-nhahang"] as List<SanPhamThucDonHangNgay>;
+    var sanphamnoibatvuonrau = Session["sanphamnoibat-vuonrau"] as List<SanPhamRauNhaTrong>;
+    var sanphamnoibatmuasam = Session["sanphamnoibat-muasam"] as List<SanPhamMuaSam>;
+
     ViewBag.Title = "Trang Chủ";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
 }
 <!-- Slide1 -->
 <section class="section-slide">
@@ -96,8 +105,8 @@
             </div>
 
             <div class="col-md-6 p-b-30">
-                <div class="wrap-pic-welcome size2 bo-rad-10 hov-img-zoom m-l-r-auto" style="margin-top: 48px">
-                    <img src="~/Content/assets/images/our-story-01.jpg" alt="IMG-OUR">
+                <div class="wrap-pic-welcome size2 bo-rad-10 hov-img-zoom m-l-r-auto" style="margin-top: 13%">
+                    <img src="~/Content/assets/images/product/z4834791087337_dfdc737db5de4d38ad2cdb6544c4b33c.jpg" alt="IMG-OUR" />
                 </div>
             </div>
         </div>
@@ -123,7 +132,7 @@
                     <!-- Block1 -->
                     <div class="blo1">
                         <div class="wrap-pic-blo1 bo-rad-10 hov-img-zoom">
-                            <a href="~/Content/assets/#"><img src="~/Content/assets/images/Beans/DanhMucTrangChu/danhmucnhahang.jpg" alt="IMG-INTRO"></a>
+                            <a href="~/Content/assets/#"><img src="~/Content/assets/images/product/nhahang.gif" alt="IMG-INTRO"></a>
                         </div>
 
                         <div class="wrap-text-blo1 p-t-35">
@@ -149,7 +158,7 @@
                     <!-- Block1 -->
                     <div class="blo1">
                         <div class="wrap-pic-blo1 bo-rad-10 hov-img-zoom">
-                            <a href="~/Content/assets/#"><img src="~/Content/assets/images/Beans/DanhMucTrangChu/danhmucvuonrau.jpg" alt="IMG-INTRO"></a>
+                            <a href="~/Content/assets/#"><img src="~/Content/assets/images/product/vuonrau.gif" alt="IMG-INTRO"></a>
                         </div>
 
                         <div class="wrap-text-blo1 p-t-35">
@@ -175,7 +184,7 @@
                     <!-- Block1 -->
                     <div class="blo1">
                         <div class="wrap-pic-blo1 bo-rad-10 hov-img-zoom">
-                            <a href="~/Content/assets/#"><img src="~/Content/assets/images/intro-04.jpg" alt="IMG-INTRO"></a>
+                            <a href="~/Content/assets/#"><img src="~/Content/assets/images/product/muasam.gif" alt="IMG-INTRO"></a>
                         </div>
 
                         <div class="wrap-text-blo1 p-t-35">
@@ -238,134 +247,71 @@
             </div>
 
             <div class="col-md-6 p-b-30">
-                <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom" style="border: 1px solid; border-color: white; border-radius: 15px">
-                    <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
-                        <a href="#"><img src="~/Content/assets/images/lunch-01.jpg" alt="IMG-MENU"></a>
+                @foreach (var item in sanphammoinhahang)
+                {
+                    <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom" style="border: 1px solid; border-color: white; border-radius: 15px">
+                        <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
+                            <a href="#"><img src="@(item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
+                        </div>
+                        <div class="text-blo3 size21 flex-col-l-m">
+                            <a href="#" class="txt21 m-b-3">
+                                @item.tensanpham
+                            </a>
+
+                            <span class="txt23">
+                                @if (item.mota.Length > 45)
+                                {
+                                    <span>@item.mota.Substring(0, 44) + "..."</span>
+                                }
+                                else
+                                {
+                                    <span>@item.mota</span>
+                                }
+                            </span>
+
+                            <span class="txt22 m-t-20">
+                                @item.gia.ToString("0,0") đ
+                            </span>
+                        </div>
                     </div>
+                }
 
-                    <div class="text-blo3 size21 flex-col-l-m">
-                        <a href="#" class="txt21 m-b-3">
-                            Sed varius
-                        </a>
-
-                        <span class="txt23">
-                            Aenean pharetra tortor dui in pellentesque
-                        </span>
-
-                        <span class="txt22 m-t-20">
-                            45.000 đ
-                        </span>
-                    </div>
-                </div>
-
-                <!-- Block3 -->
-                <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom" style="border: 1px solid; border-color: white; border-radius: 15px">
-                    <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
-                        <a href="#"><img src="~/Content/assets/images/lunch-03.jpg" alt="IMG-MENU"></a>
-                    </div>
-
-                    <div class="text-blo3 size21 flex-col-l-m">
-                        <a href="#" class="txt21 m-b-3">
-                            tempus aliquet
-                        </a>
-
-                        <span class="txt23">
-                            Aenean condimentum ante erat
-                        </span>
-
-                        <span class="txt22 m-t-20">
-                            30.000 đ
-                        </span>
-                    </div>
-                </div>
-
-                <!-- Block3 -->
-                <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom" style="border: 1px solid; border-color: white; border-radius: 15px">
-                    <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
-                        <a href="#"><img src="~/Content/assets/images/lunch-05.jpg" alt="IMG-MENU"></a>
-                    </div>
-
-                    <div class="text-blo3 size21 flex-col-l-m">
-                        <a href="#" class="txt21 m-b-3">
-                            Duis massa
-                        </a>
-
-                        <span class="txt23">
-                            Proin lacinia nisl ut ultricies posuere nulla
-                        </span>
-
-                        <span class="txt22 m-t-20">
-                            Liên Hệ
-                        </span>
-                    </div>
-                </div>
             </div>
         </div>
         <br />
         <br />
         <div class="row">
             <div class="col-md-6 p-b-30">
-                <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom" style="border: 1px solid; border-color: white; border-radius: 15px">
-                    <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
-                        <a href="#"><img src="~/Content/assets/images/lunch-01.jpg" alt="IMG-MENU"></a>
+                @foreach (var item in sanphammoivuonrau)
+                {
+                    <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom" style="border: 1px solid; border-color: white; border-radius: 15px">
+                        <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
+                            <a href="#"><img src="@(item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
+                        </div>
+
+                        <div class="text-blo3 size21 flex-col-l-m">
+                            <a href="#" class="txt21 m-b-3">
+                                @item.tensanpham
+                            </a>
+
+                            <span class="txt23">
+                                @if (item.mota.Length > 45)
+                                {
+                                    <span>@item.mota.Substring(0, 44) + "..."</span>
+                                }
+                                else
+                                {
+                                    <span>@item.mota</span>
+                                }
+                            </span>
+
+
+                            <span class="txt22 m-t-20">
+                                @item.gia.ToString("0,0") đ
+                            </span>
+                        </div>
                     </div>
-
-                    <div class="text-blo3 size21 flex-col-l-m">
-                        <a href="#" class="txt21 m-b-3">
-                            Sed varius
-                        </a>
-
-                        <span class="txt23">
-                            Aenean pharetra tortor dui in pellentesque
-                        </span>
-
-                        <span class="txt22 m-t-20">
-                            29.000 đ
-                        </span>
-                    </div>
-                </div>
-
-                <!-- Block3 -->
-                <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom" style="border: 1px solid; border-color: white; border-radius: 15px">
-                    <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
-                        <a href="#"><img src="~/Content/assets/images/lunch-03.jpg" alt="IMG-MENU"></a>
-                    </div>
-
-                    <div class="text-blo3 size21 flex-col-l-m">
-                        <a href="#" class="txt21 m-b-3">
-                            tempus aliquet
-                        </a>
-
-                        <span class="txt23">
-                            Aenean condimentum ante erat
-                        </span>
-
-                        <span class="txt22 m-t-20">
-                            Liên Hệ
-                        </span>
-                    </div>
-                </div>
-
-                <!-- Block3 -->
-                <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom" style="border: 1px solid; border-color: white; border-radius: 15px">
-                    <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
-                        <a href="#"><img src="~/Content/assets/images/lunch-05.jpg" alt="IMG-MENU"></a>
-                    </div>
-
-                    <div class="text-blo3 size21 flex-col-l-m">
-                        <a href="#" class="txt21 m-b-3">
-                            Duis massa
-                        </a>
-
-                        <span class="txt23">
-                            Proin lacinia nisl ut ultricies posuere nulla
-                        </span>
-
-                        <span class="txt22 m-t-20">
-                            32.000
-                        </span>
-                    </div>
-                </div>
+                }
             </div>
             <div class="col-md-6 p-t-45 p-b-30">
                 <div class="wrap-text-welcome t-center">
@@ -406,67 +352,35 @@
             </div>
 
             <div class="col-md-6 p-b-30">
-                <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom" style="border: 1px solid; border-color: white; border-radius: 15px">
-                    <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
-                        <a href="#"><img src="~/Content/assets/images/lunch-01.jpg" alt="IMG-MENU"></a>
+                @foreach (var item in sanphammoimuasam)
+                {
+                    <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom" style="border: 1px solid; border-color: white; border-radius: 15px">
+                        <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
+                            <a href="#"><img src="@(item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
+                        </div>
+
+                        <div class="text-blo3 size21 flex-col-l-m">
+                            <a href="#" class="txt21 m-b-3">
+                                @item.tensanpham
+                            </a>
+
+                            <span class="txt23">
+                                @if (item.mota.Length > 45)
+                                {
+                                    <span>@item.mota.Substring(0, 44) + "..."</span>
+                                }
+                                else
+                                {
+                                    <span>@item.mota</span>
+                                }
+                            </span>
+
+                            <span class="txt22 m-t-20">
+                                @item.TonKhoSanPham.First().gia.ToString("0,0") đ
+                            </span>
+                        </div>
                     </div>
-
-                    <div class="text-blo3 size21 flex-col-l-m">
-                        <a href="#" class="txt21 m-b-3">
-                            Sed varius
-                        </a>
-
-                        <span class="txt23">
-                            Aenean pharetra tortor dui in pellentesque
-                        </span>
-
-                        <span class="txt22 m-t-20">
-                            48.000 đ
-                        </span>
-                    </div>
-                </div>
-
-                <!-- Block3 -->
-                <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom" style="border: 1px solid; border-color: white; border-radius: 15px">
-                    <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
-                        <a href="#"><img src="~/Content/assets/images/lunch-03.jpg" alt="IMG-MENU"></a>
-                    </div>
-
-                    <div class="text-blo3 size21 flex-col-l-m">
-                        <a href="#" class="txt21 m-b-3">
-                            tempus aliquet
-                        </a>
-
-                        <span class="txt23">
-                            Aenean condimentum ante erat
-                        </span>
-
-                        <span class="txt22 m-t-20">
-                            100.000 đ
-                        </span>
-                    </div>
-                </div>
-
-                <!-- Block3 -->
-                <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom" style="border: 1px solid; border-color: white; border-radius: 15px">
-                    <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
-                        <a href="#"><img src="~/Content/assets/images/lunch-05.jpg" alt="IMG-MENU"></a>
-                    </div>
-
-                    <div class="text-blo3 size21 flex-col-l-m">
-                        <a href="#" class="txt21 m-b-3">
-                            Duis massa
-                        </a>
-
-                        <span class="txt23">
-                            Proin lacinia nisl ut ultricies posuere nulla
-                        </span>
-
-                        <span class="txt22 m-t-20">
-                            50.000 đ
-                        </span>
-                    </div>
-                </div>
+                }
             </div>
         </div>
     </div>
@@ -508,134 +422,71 @@
             </div>
 
             <div class="col-md-6 p-b-30">
-                <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom-bgbrown" style="border: 1px solid; border-color: white; border-radius: 15px">
-                    <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
-                        <a href="#"><img src="~/Content/assets/images/lunch-01.jpg" alt="IMG-MENU"></a>
+                @foreach (var item in sanphamnoibatnhahang)
+                {
+                    <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom-bgbrown" style="border: 1px solid; border-color: white; border-radius: 15px">
+                        <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
+                            <a href="#"><img src="@(item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
+                        </div>
+
+                        <div class="text-blo3 size21 flex-col-l-m">
+                            <a href="#" class="txt21 m-b-3">
+                                @item.tensanpham
+                            </a>
+
+                            <span class="txt23">
+                                @if (item.mota.Length > 45)
+                                {
+                                    <span>@item.mota.Substring(0, 44) + "..."</span>
+                                }
+                                else
+                                {
+                                    <span>@item.mota</span>
+                                }
+                            </span>
+
+                            <span class="txt22 m-t-20">
+                                @item.gia.ToString("0,0") đ
+                            </span>
+                        </div>
                     </div>
+                }
 
-                    <div class="text-blo3 size21 flex-col-l-m">
-                        <a href="#" class="txt21 m-b-3">
-                            Sed varius
-                        </a>
-
-                        <span class="txt23">
-                            Aenean pharetra tortor dui in pellentesque
-                        </span>
-
-                        <span class="txt22 m-t-20">
-                            45.000 đ
-                        </span>
-                    </div>
-                </div>
-
-                <!-- Block3 -->
-                <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom-bgbrown" style="border: 1px solid; border-color: white; border-radius: 15px">
-                    <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
-                        <a href="#"><img src="~/Content/assets/images/lunch-03.jpg" alt="IMG-MENU"></a>
-                    </div>
-
-                    <div class="text-blo3 size21 flex-col-l-m">
-                        <a href="#" class="txt21 m-b-3">
-                            tempus aliquet
-                        </a>
-
-                        <span class="txt23">
-                            Aenean condimentum ante erat
-                        </span>
-
-                        <span class="txt22 m-t-20">
-                            30.000 đ
-                        </span>
-                    </div>
-                </div>
-
-                <!-- Block3 -->
-                <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom-bgbrown" style="border: 1px solid; border-color: white; border-radius: 15px">
-                    <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
-                        <a href="#"><img src="~/Content/assets/images/lunch-05.jpg" alt="IMG-MENU"></a>
-                    </div>
-
-                    <div class="text-blo3 size21 flex-col-l-m">
-                        <a href="#" class="txt21 m-b-3">
-                            Duis massa
-                        </a>
-
-                        <span class="txt23">
-                            Proin lacinia nisl ut ultricies posuere nulla
-                        </span>
-
-                        <span class="txt22 m-t-20">
-                            Liên Hệ
-                        </span>
-                    </div>
-                </div>
             </div>
         </div>
         <br />
         <br />
         <div class="row">
             <div class="col-md-6 p-b-30">
-                <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom-bgbrown" style="border: 1px solid; border-color: white; border-radius: 15px">
-                    <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
-                        <a href="#"><img src="~/Content/assets/images/lunch-01.jpg" alt="IMG-MENU"></a>
+                @foreach (var item in sanphamnoibatvuonrau)
+                {
+                    <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom-bgbrown" style="border: 1px solid; border-color: white; border-radius: 15px">
+                        <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
+                            <a href="#"><img src="@(item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
+                        </div>
+
+                        <div class="text-blo3 size21 flex-col-l-m">
+                            <a href="#" class="txt21 m-b-3">
+                                @item.tensanpham
+                            </a>
+
+                            <span class="txt23">
+                                @if (item.mota.Length > 45)
+                                {
+                                    <span>@item.mota.Substring(0, 44) + "..."</span>
+                                }
+                                else
+                                {
+                                    <span>@item.mota</span>
+                                }
+                            </span>
+
+                            <span class="txt22 m-t-20">
+                                @item.gia.ToString("0,0") đ
+                            </span>
+                        </div>
                     </div>
-
-                    <div class="text-blo3 size21 flex-col-l-m">
-                        <a href="#" class="txt21 m-b-3">
-                            Sed varius
-                        </a>
-
-                        <span class="txt23">
-                            Aenean pharetra tortor dui in pellentesque
-                        </span>
-
-                        <span class="txt22 m-t-20">
-                            29.000 đ
-                        </span>
-                    </div>
-                </div>
-
-                <!-- Block3 -->
-                <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom-bgbrown" style="border: 1px solid; border-color: white; border-radius: 15px">
-                    <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
-                        <a href="#"><img src="~/Content/assets/images/lunch-03.jpg" alt="IMG-MENU"></a>
-                    </div>
-
-                    <div class="text-blo3 size21 flex-col-l-m">
-                        <a href="#" class="txt21 m-b-3">
-                            tempus aliquet
-                        </a>
-
-                        <span class="txt23">
-                            Aenean condimentum ante erat
-                        </span>
-
-                        <span class="txt22 m-t-20">
-                            Liên Hệ
-                        </span>
-                    </div>
-                </div>
-
-                <!-- Block3 -->
-                <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom-bgbrown" style="border: 1px solid; border-color: white; border-radius: 15px">
-                    <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
-                        <a href="#"><img src="~/Content/assets/images/lunch-05.jpg" alt="IMG-MENU"></a>
-                    </div>
-
-                    <div class="text-blo3 size21 flex-col-l-m">
-                        <a href="#" class="txt21 m-b-3">
-                            Duis massa
-                        </a>
-
-                        <span class="txt23">
-                            Proin lacinia nisl ut ultricies posuere nulla
-                        </span>
-
-                        <span class="txt22 m-t-20">
-                            32.000
-                        </span>
-                    </div>
-                </div>
+                }
             </div>
             <div class="col-md-6 p-t-45 p-b-30">
                 <div class="wrap-text-welcome t-center">
@@ -676,67 +527,36 @@
             </div>
 
             <div class="col-md-6 p-b-30">
-                <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom-bgbrown" style="border: 1px solid; border-color: white; border-radius: 15px">
-                    <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
-                        <a href="#"><img src="~/Content/assets/images/lunch-01.jpg" alt="IMG-MENU"></a>
+                @foreach (var item in sanphamnoibatmuasam)
+                {
+                    <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom-bgbrown" style="border: 1px solid; border-color: white; border-radius: 15px">
+                        <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
+                            <a href="#"><img src="@(item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
+                        </div>
+
+                        <div class="text-blo3 size21 flex-col-l-m">
+                            <a href="#" class="txt21 m-b-3">
+                                @item.tensanpham
+                            </a>
+
+                            <span class="txt23">
+                                @if (item.mota.Length > 45)
+                                {
+                                    <span>@item.mota.Substring(0, 44) + "..."</span>
+                                }
+                                else
+                                {
+                                    <span>@item.mota</span>
+                                }
+                            </span>
+
+                            <span class="txt22 m-t-20">
+                                @item.TonKhoSanPham.First().gia.ToString("0,0") đ
+                            </span>
+                        </div>
                     </div>
+                }
 
-                    <div class="text-blo3 size21 flex-col-l-m">
-                        <a href="#" class="txt21 m-b-3">
-                            Sed varius
-                        </a>
-
-                        <span class="txt23">
-                            Aenean pharetra tortor dui in pellentesque
-                        </span>
-
-                        <span class="txt22 m-t-20">
-                            48.000 đ
-                        </span>
-                    </div>
-                </div>
-
-                <!-- Block3 -->
-                <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom-bgbrown" style="border: 1px solid; border-color: white; border-radius: 15px">
-                    <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
-                        <a href="#"><img src="~/Content/assets/images/lunch-03.jpg" alt="IMG-MENU"></a>
-                    </div>
-
-                    <div class="text-blo3 size21 flex-col-l-m">
-                        <a href="#" class="txt21 m-b-3">
-                            tempus aliquet
-                        </a>
-
-                        <span class="txt23">
-                            Aenean condimentum ante erat
-                        </span>
-
-                        <span class="txt22 m-t-20">
-                            100.000 đ
-                        </span>
-                    </div>
-                </div>
-
-                <!-- Block3 -->
-                <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom-bgbrown" style="border: 1px solid; border-color: white; border-radius: 15px">
-                    <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
-                        <a href="#"><img src="~/Content/assets/images/lunch-05.jpg" alt="IMG-MENU"></a>
-                    </div>
-
-                    <div class="text-blo3 size21 flex-col-l-m">
-                        <a href="#" class="txt21 m-b-3">
-                            Duis massa
-                        </a>
-
-                        <span class="txt23">
-                            Proin lacinia nisl ut ultricies posuere nulla
-                        </span>
-
-                        <span class="txt22 m-t-20">
-                            50.000 đ
-                        </span>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -1010,7 +830,7 @@
 <section class="section-booking bg1-pattern p-t-100 p-b-110">
     <div class="container">
         <div class="row">
-            <div class="col-lg-6 p-b-30">
+            <div class="col-lg-12 p-b-30">
                 <div class="t-center">
                     <span class="tit2 t-center">
                         Reservation
@@ -1039,7 +859,7 @@
                                 <input class="my-calendar bo-rad-10 sizefull txt10 p-l-20" type="text" name="date">
                                 <i class="btn-calendar fa fa-calendar ab-r-m hov-pointer m-r-18" aria-hidden="true"></i>
                             </div>
-                            
+
                             <span class="txt9">
                                 People
                             </span>
@@ -1131,12 +951,6 @@
                         </button>
                     </div>
                 </form>
-            </div>
-
-            <div class="col-lg-6 p-b-30 p-t-18">
-                <div class="wrap-pic-booking size2 bo-rad-10 hov-img-zoom m-l-r-auto" style="margin-top: 48px">
-                    <img src="~/Content/assets/images/booking-01.jpg" alt="IMG-OUR">
-                </div>
             </div>
         </div>
     </div>

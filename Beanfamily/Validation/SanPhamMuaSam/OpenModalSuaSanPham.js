@@ -5,7 +5,7 @@
         var id = $(this).attr('name').trim();
         formData.append('id', id);
         $.ajax({
-            url: $('#requestPath').val() + "admin/sanphamvuonraubean/opensuasanpham",
+            url: $('#requestPath').val() + "admin/sanphammuasam/opensuasanpham",
             data: formData,
             dataType: 'html',
             type: 'POST',

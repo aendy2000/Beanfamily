@@ -172,7 +172,7 @@ namespace Beanfamily.Areas.Admin.Controllers
         {
             try
             {
-                var mon = model.SanPhamRauNhaTrong.Find(id);
+                var mon = model.SanPhamMuaSam.Find(id);
                 if (mon == null)
                     return Content("KHONGTONTAI");
 
@@ -188,7 +188,7 @@ namespace Beanfamily.Areas.Admin.Controllers
         {
             try
             {
-                var mon = model.SanPhamRauNhaTrong.Find(id);
+                var mon = model.SanPhamMuaSam.Find(id);
                 if (mon == null)
                     return Content("KHONGTONTAI");
 
@@ -201,34 +201,31 @@ namespace Beanfamily.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult SuaSanPham(int id, List<HttpPostedFileBase> images, HttpPostedFileBase video, string ten, string gia, string donvi, int giatri, int danhmuc, string mota, bool hienthi, string imageCu, string videoCu)
+        public ActionResult SuaSanPham(int id, List<HttpPostedFileBase> images, HttpPostedFileBase video, string ten, int danhmuc, string mota, bool hienthi, string lstLoai, string lstSoLuong, string lstGia, string imageCu, string videoCu)
         {
             try
             {
-                var checkExist = model.SanPhamRauNhaTrong.FirstOrDefault(s => s.tensanpham.ToLower().Equals(ten.ToLower().Trim()) && s.id_danhmucsanphamraunhatrongcap1 == danhmuc && s.id != id);
+                var checkExist = model.SanPhamMuaSam.FirstOrDefault(s => s.tensanpham.ToLower().Equals(ten.ToLower().Trim()) && s.id != id);
                 if (checkExist != null)
                     return Content("DATONTAI");
 
-                var sanpham = model.SanPhamRauNhaTrong.Find(id);
+                var sanpham = model.SanPhamMuaSam.Find(id);
                 if (sanpham == null)
                     return Content("KHONGTONTAI");
 
                 sanpham.tensanpham = ten;
-                sanpham.id_danhmucsanphamraunhatrongcap1 = danhmuc;
-                sanpham.gia = Convert.ToDecimal(gia.Replace(",", ""));
-                sanpham.donvi = donvi;
-                sanpham.giatritrendonvi = giatri;
+                sanpham.id_danhmucmuasamcap1 = danhmuc;
                 sanpham.mota = mota;
                 sanpham.luotxem = 0;
                 sanpham.hienthi = hienthi;
+                model.TonKhoSanPham.RemoveRange(sanpham.TonKhoSanPham);
                 model.Entry(sanpham).State = EntityState.Modified;
                 model.SaveChanges();
 
-                int idMonAn = id;
+                int idSanPham = id;
                 string path = "";
                 string pathDirectory = "";
                 string strListImages = "";
-
                 if (images != null)
                 {
                     foreach (var item in images)
@@ -237,38 +234,38 @@ namespace Beanfamily.Areas.Admin.Controllers
                         {
                             if (item.ContentLength > 0)
                             {
-                                pathDirectory = Path.Combine(Server.MapPath("~/Content/AdminAreas/images/SanPhamVuonRau/SanPham_" + idMonAn));
+                                pathDirectory = Path.Combine(Server.MapPath("~/Content/AdminAreas/images/SanPhamMuaSam/SanPham_" + idSanPham));
                                 if (!Directory.Exists(pathDirectory))
                                 {
                                     Directory.CreateDirectory(pathDirectory);
                                 }
-                                path = Path.Combine(Server.MapPath("~/Content/AdminAreas/images/SanPhamVuonRau/SanPham_" + idMonAn), item.FileName);
+                                path = Path.Combine(Server.MapPath("~/Content/AdminAreas/images/SanPhamMuaSam/SanPham_" + idSanPham), item.FileName);
                                 item.SaveAs(path);
-                                strListImages += "~/Content/AdminAreas/images/SanPhamVuonRau/SanPham_" + idMonAn + "/" + item.FileName + "#";
+                                strListImages += "~/Content/AdminAreas/images/SanPhamMuaSam/SanPham_" + idSanPham + "/" + item.FileName + "#";
                             }
                         }
                     }
                 }
-
                 path = "";
                 string strListVideo = "";
                 if (video != null)
                 {
                     if (video.ContentLength > 0)
                     {
-                        pathDirectory = Path.Combine(Server.MapPath("~/Content/AdminAreas/images/SanPhamVuonRau/SanPham_" + idMonAn));
+                        pathDirectory = Path.Combine(Server.MapPath("~/Content/AdminAreas/images/SanPhamMuaSam/SanPham_" + idSanPham));
                         if (!Directory.Exists(pathDirectory))
                         {
                             Directory.CreateDirectory(pathDirectory);
                         }
-                        path = Path.Combine(Server.MapPath("~/Content/AdminAreas/images/SanPhamVuonRau/SanPham_" + idMonAn), video.FileName);
+                        path = Path.Combine(Server.MapPath("~/Content/AdminAreas/images/SanPhamMuaSam/SanPham_" + idSanPham), video.FileName);
                         video.SaveAs(path);
-                        strListVideo += "~/Content/AdminAreas/images/SanPhamVuonRau/SanPham_" + idMonAn + "/" + video.FileName;
+                        strListVideo += "~/Content/AdminAreas/images/SanPhamMuaSam/SanPham_" + idSanPham + "/" + video.FileName;
                     }
                 }
 
+
                 model = new BeanfamilyEntities();
-                var addImageVideoSanPham = model.SanPhamRauNhaTrong.Find(idMonAn);
+                var addImageVideoSanPham = model.SanPhamMuaSam.Find(idSanPham);
                 if (!string.IsNullOrEmpty(strListImages))
                     addImageVideoSanPham.hinhanh = strListImages.Substring(0, strListImages.Length - 1);
                 else
@@ -283,6 +280,33 @@ namespace Beanfamily.Areas.Admin.Controllers
                 model.SaveChanges();
 
 
+                if (lstLoai.IndexOf("#") != -1)
+                {
+                    var lstLoais = lstLoai.Split('#').ToList();
+                    var lstSoLuongs = lstSoLuong.Split('#').ToList();
+                    var lstGias = lstGia.Split('#').ToList();
+
+                    for (int i = 0; i < lstLoais.Count; i++)
+                    {
+                        TonKhoSanPham tonkho = new TonKhoSanPham();
+                        tonkho.id_sanphammuasam = idSanPham;
+                        tonkho.tenloai = lstLoais[i].Trim();
+                        tonkho.soluong = Int32.Parse(lstSoLuongs[i].Trim());
+                        tonkho.gia = Decimal.Parse(lstGias[i].Replace(",", "").Trim());
+                        model.TonKhoSanPham.Add(tonkho);
+                    }
+                    model.SaveChanges();
+                }
+                else
+                {
+                    TonKhoSanPham tonkho = new TonKhoSanPham();
+                    tonkho.id_sanphammuasam = idSanPham;
+                    tonkho.tenloai = lstLoai.Trim();
+                    tonkho.soluong = Int32.Parse(lstSoLuong.Trim());
+                    tonkho.gia = Decimal.Parse(lstGia.Replace(",", "").Trim());
+                    model.TonKhoSanPham.Add(tonkho);
+                    model.SaveChanges();
+                }
                 return Content("SUCCESS");
             }
             catch (Exception ex)

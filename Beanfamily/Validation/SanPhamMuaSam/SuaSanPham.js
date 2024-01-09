@@ -1,4 +1,50 @@
 ﻿$(document).ready(function () {
+    $('#suathemloai').on('click', function () {
+        var stt = Number($('#suademloai').val());
+        var sttTang = Number(stt + 1); //+1
+        $('#suademloai').val(sttTang);
+
+        $('#suadanhsachcacloai').append(`
+            <div id="suacumloai` + sttTang + `" name="` + sttTang + `" class="col-12">
+                <div class="row mb-3">
+                    <div class="col-md-12 col-lg-4">
+                        <input id="sualoai` + sttTang + `" type="text" placeholder="Loại (VD: 500ml, 2kg...)" class="form-control">
+                        <label style="margin-left: 5px" id="invalid-sualoai` + sttTang + `-feedback" class="text-danger" hidden></label>
+                    </div>
+                    <div class="col-md-12 col-lg-4">
+                        <input id="suagia` + sttTang + `" type="text" data-type="currency" placeholder="Giá sản phẩm" class="form-control">
+                        <label style="margin-left: 5px" id="invalid-suagia` + sttTang + `-feedback" class="text-danger" hidden></label>
+                    </div>
+                    <div class="col-md-12 col-lg-3">
+                        <input id="suasoluong` + sttTang + `" type="text" data-type="numbers" placeholder="Số lượng tồn kho" class="form-control">
+                        <label style="margin-left: 5px" id="invalid-suasoluong` + sttTang + `-feedback" class="text-danger" hidden></label>
+                    </div>
+                    <div class="col-md-12 col-lg-1">
+                        <button data-bs-toggle="tooltip" data-bs-placement="top" title="Xóa" id="suaxoaloai1` + sttTang + `" name="` + sttTang + `" style="width: 100%" class="btn btn-danger"><i class="bi bi-trash me-1"></i></button>
+                    </div>
+                </div>
+            </div>
+        `);
+
+        var totalLoai = ($('body').find('[id^="suacumloai"]').length + 1);
+        $('#suathemloai').html('<i class="bi bi-plus-circle me-1"> </i> Thêm loại ' + totalLoai);
+        $('body').find('[id="sualoai' + sttTang + '"]').focus();
+        $('#SuaSanPhamModal').animate({ scrollTop: $('#SuaSanPhamModal .modal-dialog').height() }, 500);
+
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+
+    });
+    $('body').on('click', '[id^="suaxoaloai"]', function () {
+        var id = $(this).attr('name');
+        if (id !== "1") { //2 bước trở lên
+            $('#suacumloai' + id).remove();
+            var totalLoai = ($('body').find('[id^="suacumloai"]').length + 1);
+            $('#suathemloai').html('<i class="bi bi-plus-circle me-1"> </i> Thêm loại ' + totalLoai);
+        }
+    });
 
     //Add hình ảnh tải lên
     document.getElementById('suapro-image').addEventListener('change', suareadImage, false);
@@ -7,7 +53,7 @@
     $('body').on('click', '[id^="suaxoa-hinhanhsp-"]', function (e) {
         let fileName = $(this).attr('name');
         if (fileName.indexOf("daylahinhcu") != -1) {
-            var filenames = fileName.split('-')[1];
+            var filenames = fileName.replace('daylahinhcu-', '');
             $('[id="suaidHinhAnh-hinhcu-' + filenames +'"]').replaceWith('');
             $('[id="url-suaidHinhAnh-hinhcu-' + filenames + '"]').val('');
         }
@@ -52,25 +98,66 @@
         $('#btnluusuaSanPham').prop('disabled', true);
 
         var ten = $('#suaten').val().trim();
-        var gia = $('#suagia').val().trim().replace(/,/g, '');
-        var donvi = $('#suadonvi').val().trim();
-        var giatri = $('#suagiatri').val().trim();
         var danhmuc = $('#suadanhmuc :selected').val();
 
         $("#suaten").removeClass('valid-was-validated');
-        $("#suagia").removeClass('valid-was-validated');
-        $("#suadonvi").removeClass('valid-was-validated');
-        $("#suagiatri").removeClass('valid-was-validated');
         $("#suadanhmuc").removeClass('valid-was-validated');
 
-
         $('#invalid-suaten-feedback').prop('hidden', true);
-        $('#invalid-suagia-feedback').prop('hidden', true);
-        $('#invalid-suadonvi-feedback').prop('hidden', true);
-        $('#invalid-suagiatri-feedback').prop('hidden', true);
         $('#invalid-suadanhmuc-feedback').prop('hidden', true);
 
         var check = true;
+        var lstLoai = "";
+        var lstSoLuong = "";
+        var lstGia = "";
+        $('body').find('[id^="suacumloai"]').each(function () {
+            var id = $(this).attr('name');
+            $('body').find('[id="sualoai' + id + '"]').removeClass('valid-was-validated');
+            $('body').find('[id="suasoluong' + id + '"]').removeClass('valid-was-validated');
+            $('body').find('[id="suagia' + id + '"]').removeClass('valid-was-validated');
+
+            $('body').find('[id="invalid-sualoai' + id + '-feedback"]').prop('hidden', true);
+            $('body').find('[id="invalid-suasoluong' + id + '-feedback"]').prop('hidden', true);
+            $('body').find('[id="invalid-suagia' + id + '-feedback"]').prop('hidden', true);
+
+            var loai = $('body').find('[id="sualoai' + id + '"]').val();
+            var soluong = $('body').find('[id="suasoluong' + id + '"]').val();
+            var gia = $('body').find('[id="suagia' + id + '"]').val();
+
+            if (gia.length < 1) {
+                check = false;
+                $('body').find('[id="suagia' + id + '"]').addClass('valid-was-validated');
+                $('body').find('[id="invalid-suagia' + id + '-feedback"]').text("Chưa nhập giá tiền.").prop('hidden', false);
+                $('body').find('[id="suagia' + id + '"]').focus();
+
+                $('#btnluusuaSanPham').html('Lưu thông tin');
+                $('#btnluusuaSanPham').prop('disabled', false);
+            }
+            else { lstGia += gia + "#"; }
+
+            if (soluong.length < 1) {
+                check = false;
+                $('body').find('[id="suasoluong' + id + '"]').addClass('valid-was-validated');
+                $('body').find('[id="invalid-suasoluong' + id + '-feedback"]').text("Chưa nhập số lượng.").prop('hidden', false);
+                $('body').find('[id="suasoluong' + id + '"]').focus();
+
+                $('#btnluusuaSanPham').html('Lưu thông tin');
+                $('#btnluusuaSanPham').prop('disabled', false);
+            }
+            else { lstSoLuong += soluong + "#"; }
+
+            if (loai.length < 1) {
+                check = false;
+                $('body').find('[id="sualoai' + id + '"]').addClass('valid-was-validated');
+                $('body').find('[id="invalid-sualoai' + id + '-feedback"]').text("Chưa nhập tên loại.").prop('hidden', false);
+                $('body').find('[id="sualoai' + id + '"]').focus();
+
+                $('#btnluusuaSanPham').html('Lưu thông tin');
+                $('#btnluusuaSanPham').prop('disabled', false);
+            }
+            else { lstLoai += loai + "#"; }
+        });
+
         if (danhmuc.length < 1) {
             check = false;
             $("#suadanhmuc").addClass('valid-was-validated');
@@ -81,40 +168,10 @@
             $('#btnluusuaSanPham').prop('disabled', false);
         }
 
-        if (giatri.length < 1) {
-            check = false;
-            $("#suagiatri").addClass('valid-was-validated');
-            $('#invalid-suagiatri-feedback').text("Vui lòng nhập giá trị trên đơn vị tính.").prop('hidden', false);
-            $("#suagiatri").focus();
-
-            $('#btnluusuaSanPham').html('Lưu thông tin');
-            $('#btnluusuaSanPham').prop('disabled', false);
-        }
-
-        if (donvi.length < 1) {
-            check = false;
-            $("#suadonvi").addClass('valid-was-validated');
-            $('#invalid-suadonvi-feedback').text("Nhập đơn vị tính.").prop('hidden', false);
-            $("#suadonvi").focus();
-
-            $('#btnluusuaSanPham').html('Lưu thông tin');
-            $('#btnluusuaSanPham').prop('disabled', false);
-        }
-
-        if (gia.length < 1) {
-            check = false;
-            $("#suagia").addClass('valid-was-validated');
-            $('#invalid-suagia-feedback').text("Vui lòng nhập giá sản phẩm.").prop('hidden', false);
-            $("#suagia").focus();
-
-            $('#btnluusuaSanPham').html('Lưu thông tin');
-            $('#btnluusuaSanPham').prop('disabled', false);
-        }
-
         if (ten.length < 1) {
             check = false;
             $("#suaten").addClass('valid-was-validated');
-            $('#invalid-suaten-feedback').text("Vui lòng nhập tên món.").prop('hidden', false);
+            $('#invalid-suaten-feedback').text("Vui lòng nhập tên sản phẩm.").prop('hidden', false);
             $("#suaten").focus();
 
             $('#btnluusuaSanPham').html('Lưu thông tin');
@@ -123,7 +180,7 @@
 
         if (check == true) {
             var formData = new FormData();
-            formData.append('id', $("#suaidsanpham").val());
+            formData.append('id', $("#idSanPham").val());
             var totalFiles = $("#suapro-image")[0].files.length;
             for (var i = 0; i < totalFiles; i++) {
                 var file = $("#suapro-image")[0].files[i];
@@ -131,12 +188,12 @@
             }
             formData.append('video', $("#suapro-video")[0].files[0]);
             formData.append('ten', ten);
-            formData.append('gia', gia);
-            formData.append('donvi', donvi);
-            formData.append('giatri', giatri);
             formData.append('danhmuc', danhmuc);
             formData.append('mota', $('#suamota').val().trim());
             formData.append('hienthi', $('#suahienthi').prop('checked'));
+            formData.append('lstLoai', lstLoai.substring(0, lstLoai.length - 1));
+            formData.append('lstSoLuong', lstSoLuong.substring(0, lstSoLuong.length - 1));
+            formData.append('lstGia', lstGia.substring(0, lstGia.length - 1));
 
             var imageCu = "";
             $('[id^="url-suaidHinhAnh-hinhcu-"]').each(function () {
@@ -147,7 +204,7 @@
             formData.append('videoCu', $('#url-suapro-video').val());
 
             $.ajax({
-                url: $('#requestPath').val() + "admin/sanphamvuonraubean/suasanpham",
+                url: $('#requestPath').val() + "admin/sanphammuasam/suasanpham",
                 data: formData,
                 dataType: 'html',
                 type: 'POST',
@@ -168,7 +225,7 @@
                 }
                 else if (ketqua == "DATONTAI") {
                     $("#suaten").addClass('valid-was-validated');
-                    $('#invalid-suaten-feedback').text(tenmon + ' đã tồn tại trong menu này').prop('hidden', false);
+                    $('#invalid-suaten-feedback').text('Sản phẩm ' + ten + ' đã tồn tại.').prop('hidden', false);
                     $("#suaten").focus();
 
                     $('#btnluusuaSanPham').html('Lưu thông tin');
@@ -199,6 +256,10 @@
                     });
                 }
             });
+        }
+        else {
+            $('#btnluuthemSanPham').html('Lưu thông tin');
+            $('#btnluuthemSanPham').prop('disabled', false);
         }
     });
 });

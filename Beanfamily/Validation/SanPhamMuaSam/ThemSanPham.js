@@ -229,6 +229,10 @@
                 }
             });
         }
+        else {
+            $('#btnluuthemSanPham').html('Lưu thông tin');
+            $('#btnluuthemSanPham').prop('disabled', false);
+        }
     });
 
 });

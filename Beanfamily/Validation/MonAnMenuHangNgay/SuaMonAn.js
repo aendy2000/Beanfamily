@@ -7,7 +7,7 @@
     $('body').on('click', '[id^="suaxoa-hinhanhsp-"]', function (e) {
         let fileName = $(this).attr('name');
         if (fileName.indexOf("daylahinhcu") != -1) {
-            var filenames = fileName.split('-')[1];
+            var filenames = fileName.replace('daylahinhcu-', '');
             $('[id="suaidHinhAnh-hinhcu-' + filenames +'"]').replaceWith('');
             $('[id="url-suaidHinhAnh-hinhcu-' + filenames + '"]').val('');
         }
