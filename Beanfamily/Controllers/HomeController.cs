@@ -39,7 +39,9 @@ namespace Beanfamily.Controllers
         }
         public ActionResult Shopping()
         {
-            return View("shopping");
+            var lstSanPham = model.SanPhamMuaSam.Where(s => s.hienthi == true).ToList();
+            Session["categories"] = model.DanhMucSanPhamMuaSamCap1.ToList();
+            return View("shopping", lstSanPham);
         }
         public ActionResult Contact()
         {

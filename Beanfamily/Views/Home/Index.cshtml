@@ -833,7 +833,7 @@
             <div class="col-lg-12 p-b-30">
                 <div class="t-center">
                     <span class="tit2 t-center">
-                        Reservation
+                        Liên Hệ
                     </span>
 
                     <h3 class="tit3 t-center m-b-35 m-t-15">
@@ -845,14 +845,14 @@
                     <div class="row">
                         <div class="col-md-6">
                             <span class="txt9">
-                                Name
+                                Họ và Tên <span class="text-danger">*</span>
                             </span>
 
                             <div class="wrap-inputname size12 bo-rad-10 m-t-3 m-b-23">
-                                <input class="bo-rad-10 sizefull txt10 p-l-20" type="text" name="name" placeholder="Name">
+                                <input class="bo-rad-10 sizefull txt10 p-l-20" type="text" name="name" placeholder="Nguyễn Văn A...">
                             </div>
                             <span class="txt9">
-                                Date
+                                Ngày tổ chức <span class="text-danger">*</span>
                             </span>
 
                             <div class="wrap-inputdate pos-relative txt10 size12 bo-rad-10 m-t-3 m-b-23">
@@ -861,25 +861,11 @@
                             </div>
 
                             <span class="txt9">
-                                People
+                                Số người <span class="text-danger">*</span>
                             </span>
 
                             <div class="wrap-inputpeople size12 bo-rad-10 m-t-3 m-b-23">
-                                @*Select2*@
-                                <select class="selection-1" name="people">
-                                    <option>1 person</option>
-                                    <option>2 people</option>
-                                    <option>3 people</option>
-                                    <option>4 people</option>
-                                    <option>5 people</option>
-                                    <option>6 people</option>
-                                    <option>7 people</option>
-                                    <option>8 people</option>
-                                    <option>9 people</option>
-                                    <option>10 people</option>
-                                    <option>11 people</option>
-                                    <option>12 people</option>
-                                </select>
+                                <input class="bo-rad-10 sizefull txt10 p-l-20" type="text" name="people"  placeholder="4 người...">
                             </div>
                         </div>
 
@@ -888,7 +874,7 @@
 
                             @*Phone*@
                             <span class="txt9">
-                                Phone
+                                Số điện thoại <span class="text-danger">*</span>
                             </span>
 
                             <div class="wrap-inputphone size12 bo-rad-10 m-t-3 m-b-23">
@@ -896,13 +882,17 @@
                             </div>
 
                             <span class="txt9">
-                                Time
+                                Giờ tổ chức <span class="text-danger">*</span>
                             </span>
 
                             <div class="wrap-inputtime size12 bo-rad-10 m-t-3 m-b-23">
                                 <select class="selection-1" name="time">
-                                    <option>9:00</option>
-                                    <option>9:30</option>
+                                    <option>07:00</option>
+                                    <option>07:30</option>
+                                    <option>08:00</option>
+                                    <option>09:30</option>
+                                    <option>09:00</option>
+                                    <option>09:30</option>
                                     <option>10:00</option>
                                     <option>10:30</option>
                                     <option>11:00</option>
@@ -920,16 +910,24 @@
                                     <option>17:00</option>
                                     <option>17:30</option>
                                     <option>18:00</option>
+                                    <option>18:30</option>
+                                    <option>19:00</option>
+                                    <option>19:30</option>
+                                    <option>20:00</option>
+                                    <option>20:30</option>
+                                    <option>21:00</option>
+                                    <option>21:30</option>
+                                    <option>22:00</option>
                                 </select>
                             </div>
 
                             @*Email*@
                             <span class="txt9">
-                                Email
+                                Địa chỉ Email <span class="text-danger">*</span>
                             </span>
 
                             <div class="wrap-inputemail size12 bo-rad-10 m-t-3 m-b-23">
-                                <input class="bo-rad-10 sizefull txt10 p-l-20" type="text" name="email" placeholder="Email">
+                                <input class="bo-rad-10 sizefull txt10 p-l-20" type="text" name="email" placeholder="emailcuaban@email.com">
                             </div>
 
                         </div>
@@ -937,9 +935,7 @@
                             <span class="txt9">
                                 Ghi chú
                             </span>
-
-
-                            <textarea class="bo-rad-10 size35 txt10 p-l-20 p-t-15 m-b-10 m-t-3" rows="4" name="ghichu" placeholder="Ghi chú"></textarea>
+                            <textarea class="bo-rad-10 size35 txt10 p-l-20 p-t-15 m-b-10 m-t-3" rows="4" name="ghichu" placeholder="Ghi chú thêm (nếu có)"></textarea>
 
                         </div>
                     </div>
@@ -947,7 +943,7 @@
                     <div class="wrap-btn-booking flex-c-m m-t-6">
                         @*Button3*@
                         <button type="submit" class="btn3 flex-c-m size13 txt11 trans-0-4">
-                            Đặt Bàn
+                            gửi thông tin
                         </button>
                     </div>
                 </form>
