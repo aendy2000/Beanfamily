@@ -216,7 +216,6 @@ namespace Beanfamily.Areas.Admin.Controllers
                 sanpham.tensanpham = ten;
                 sanpham.id_danhmucmuasamcap1 = danhmuc;
                 sanpham.mota = mota;
-                sanpham.luotxem = 0;
                 sanpham.hienthi = hienthi;
                 model.TonKhoSanPham.RemoveRange(sanpham.TonKhoSanPham);
                 model.Entry(sanpham).State = EntityState.Modified;

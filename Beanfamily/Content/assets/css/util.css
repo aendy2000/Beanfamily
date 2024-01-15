@@ -9161,6 +9161,10 @@
     background-color: black;
 }
 
+.bggreen {
+    background-color: #15352c;
+}
+
 .of-hidden {
     overflow: hidden;
 }
@@ -10514,6 +10518,10 @@ SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE
 
 .bo-rad-10 {
     border-radius: 10px;
+}
+
+.bo-rad-16 {
+    border-radius: 16px;
 }
 
 .bo-t-rad-2 {

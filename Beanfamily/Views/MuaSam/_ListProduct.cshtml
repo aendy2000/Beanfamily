@@ -1,0 +1,74 @@
+﻿@using PagedList.Mvc
+@using PagedList;
+@model IPagedList<Beanfamily.Models.SanPhamMuaSam>
+
+<div id="product_list" class="row">
+    <div hidden class="col-12 load_items" style="height: 200px; color: #fff; font-size: 18px; text-align: center">
+        <div style="margin-top: 75px">
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"> </span> Đang tải...
+        </div>
+    </div>
+    @if (Model.Count() < 1)
+    {
+        <div class="col-12 load_items" style="height: 200px; color: #fff; font-size: 18px; text-align: center">
+            <div style="margin-top: 75px">
+                Không có sản phẩm để hiển thị!
+            </div>
+        </div>
+    }
+    else
+    {
+        foreach (var item in Model)
+        {
+            <div class="col-md-4 col-sm-6 product_items">
+                <div class="product-grid mb-4">
+                    <div class="product-image">
+                        @if (string.IsNullOrEmpty(item.hinhanh))
+                        {
+                            <img class="pic-1" src="~/Content/assets/images/product/sanphamdefault.jpg" />
+                            <img class="pic-2" src="~/Content/assets/images/product/sanphamdefault.jpg" />
+                        }
+                        else
+                        {
+                            if (item.hinhanh.IndexOf('#') != -1)
+                            {
+                                <img class="pic-1" src="@Url.Content(item.hinhanh.Split('#')[0])" />
+                                <img class="pic-2" src="@Url.Content(item.hinhanh.Split('#')[1])" />
+                            }
+                            else
+                            {
+                                <img class="pic-1" src="@Url.Content(item.hinhanh)" />
+                                <img class="pic-2" src="@Url.Content(item.hinhanh)" />
+                            }
+                        }
+                        @*<span class="product-sale-label">Sale</span>*@
+                        <ul class="product-links">
+                            <li><a href="@Url.Action("productdetail", "muasam", new {id = item.id})"><i class="fa fa-info-circle" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-solid fa-cart-plus"></i></a></li>
+                            @*<li><a href="#"><i class="fa fa-random"></i></a></li>*@
+                        </ul>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="title"><a href="@Url.Action("productdetail", "muasam", new {id = item.id})">@item.tensanpham</a></h3>
+                        @if (item.TonKhoSanPham.Count > 1)
+                        {
+                            <div class="price">
+                                @item.TonKhoSanPham.OrderBy(o => o.gia).First().gia.ToString("0,0")đ
+                                - @item.TonKhoSanPham.OrderByDescending(o => o.gia).First().gia.ToString("0,0")đ
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="price">
+                                @item.TonKhoSanPham.First().gia.ToString("0,0")đ
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+        <div class="col-12" style="display: flex; justify-content: center; flex-direction:inherit">
+            @Html.PagedListPager(Model, pageNum => Url.Action("index", new { pageNum, PageSize = 24 }))
+        </div>
+    }
+</div>

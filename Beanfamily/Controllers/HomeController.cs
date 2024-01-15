@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Beanfamily.Models;
+using PagedList;
 
 namespace Beanfamily.Controllers
 {
@@ -37,12 +38,11 @@ namespace Beanfamily.Controllers
         {
             return View("garden");
         }
-        public ActionResult Shopping()
+        public ActionResult Shopping(int? pageNum, int? pageSize)
         {
-            var lstSanPham = model.SanPhamMuaSam.Where(s => s.hienthi == true).ToList();
-            Session["categories"] = model.DanhMucSanPhamMuaSamCap1.ToList();
-            return View("shopping", lstSanPham);
+            return RedirectToAction("index", "muasam");
         }
+
         public ActionResult Contact()
         {
             return View("contact");

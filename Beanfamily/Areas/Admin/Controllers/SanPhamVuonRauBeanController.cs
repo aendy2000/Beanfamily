@@ -195,7 +195,6 @@ namespace Beanfamily.Areas.Admin.Controllers
                 sanpham.donvi = donvi;
                 sanpham.giatritrendonvi = giatri;
                 sanpham.mota = mota;
-                sanpham.luotxem = 0;
                 sanpham.hienthi = hienthi;
                 model.Entry(sanpham).State = EntityState.Modified;
                 model.SaveChanges();

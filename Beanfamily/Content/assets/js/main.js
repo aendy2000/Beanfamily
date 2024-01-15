@@ -144,6 +144,14 @@
         
     });
 
+    //Input number?
+    $('body').on("keyup", "input[data-type='numbers']", function (e) {
+        if (/\D/g.test(this.value)) {
+            // Filter non-digits from input value.
+            this.value = this.value.replace(/\D/g, '');
+        }
+    });
+
     // init Isotope
     $(window).on('load', function () {
         var $grid = $topeContainer.each(function () {
