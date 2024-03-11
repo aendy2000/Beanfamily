@@ -9,7 +9,6 @@
         formData.append('idloaitonkho', loai);
         formData.append('soluong', soluong);
 
-
         $.ajax({
             url: $('body').find('[id="requestPath"]').val() + 'muasam/addtocart',
             data: formData,
@@ -18,7 +17,27 @@
             processData: false,
             contentType: false,
         }).done(function (data) {
-            if (data == "SUCCESS") {
+            if (data.indexOf("Chi tiết lỗi") != -1) {
+                Swal.fire({
+                    title: "Đã có lỗi xảy ra, vui lòng thử lại sau :(",
+                    text: data,
+                    icon: "error"
+                }).then(() => function () {
+                    location.reload();
+                });
+            }
+            else if (data == "KHONGTONTAI") {
+                Swal.fire({
+                    title: "Sản phẩm hết",
+                    text: "Sản phẩm hiện đã bán hết?",
+                    icon: "warning"
+                }).then(() => function () {
+                    location.reload();
+                });
+            }
+            else {
+                $('body').find('[id="cart-content-load"]').replaceWith(data);
+
                 const Toast = Swal.mixin({
                     toast: true,
                     position: "top-end",
@@ -35,26 +54,8 @@
                     title: "Đã thêm sản phẩm vào giỏ hàng!"
                 });
 
-                
+
                 $('body').find('[id="gioHangModal"]').modal('toggle');
-            }
-            else if (data == "KHONGTONTAI") {
-                Swal.fire({
-                    title: "Sản phẩm hết",
-                    text: "Sản phẩm hiện đã bán hết?",
-                    icon: "warning"
-                }).then(() => function () {
-                    location.reload();
-                });
-            }
-            else {
-                Swal.fire({
-                    title: "Đã có lỗi xảy ra, vui lòng thử lại sau :(",
-                    text: data,
-                    icon: "error"
-                }).then(() => function () {
-                    location.reload();
-                });
             }
         });
     });

@@ -274,6 +274,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ActionOnPage\GioHang\ChangeQuantity.js" />
     <Content Include="ActionOnPage\MuaSam\AddToCart.js" />
     <Content Include="ActionOnPage\MuaSam\loadPageShopping.js" />
     <Content Include="ActionOnPage\MuaSam\loadPageShoppingDetail.js" />
@@ -2885,13 +2886,6 @@
     <Content Include="Areas\Admin\Views\SanPhamMuaSam\Index.cshtml" />
     <Content Include="Areas\Admin\Views\SanPhamMuaSam\_OpenSuaSanPham.cshtml" />
     <Content Include="Areas\Admin\Views\SanPhamMuaSam\_xemHinhAnhSanPham.cshtml" />
-    <EntityDeploy Include="Models\Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Content>
     <Content Include="libman.json" />
     <Content Include="Content\assets\vendor\bootstrap5\css\bootstrap-grid.css.map" />
     <Content Include="Content\assets\vendor\bootstrap5\css\bootstrap-grid.min.css.map" />
@@ -2915,6 +2909,13 @@
     <Content Include="Content\assets\vendor\bootstrap5\js\bootstrap.esm.min.js.map" />
     <Content Include="Content\assets\vendor\bootstrap5\js\bootstrap.js.map" />
     <Content Include="Content\assets\vendor\bootstrap5\js\bootstrap.min.js.map" />
+    <EntityDeploy Include="Models\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -2987,6 +2988,7 @@
     <Content Include="Views\MuaSam\Index.cshtml" />
     <Content Include="Views\MuaSam\_ListProduct.cshtml" />
     <Content Include="Views\MuaSam\ProductDetail.cshtml" />
+    <Content Include="Views\MuaSam\_addCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

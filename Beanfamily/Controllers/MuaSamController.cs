@@ -101,11 +101,28 @@ namespace Beanfamily.Controllers
                 else
                 {
                     List<string> giohang = Session["giohang-muasam"] as List<string>;
-                    giohang.Add(idsp + "#" + idloaitonkho + "#" + soluong);
+                    var checks = false;
+                    foreach (string item in giohang)
+                    {
+                        int idPro = Int32.Parse(item.Split('#')[0]);
+                        if (idPro == idsp)
+                        {
+                            int idLoai = Int32.Parse(item.Split('#')[1]);
+                            if(idLoai == idloaitonkho)
+                            {
+                                checks = true;
+                                int soluongs = Int32.Parse(item.Split('#')[2]) + soluong;
+                                giohang = giohang.Select(g => g.Replace(item, idPro + "#" + idLoai + "#" + soluongs)).ToList();
+                            }
+                        }
+                    }
+
+                    if(checks == false)
+                        giohang.Add(idsp + "#" + idloaitonkho + "#" + soluong);
                     Session["giohang-muasam"] = giohang;
                 }
 
-                return Content("SUCCESS");
+                return PartialView("_addCart");
             }
             catch (Exception ex)
             {

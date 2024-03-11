@@ -247,35 +247,34 @@
             </div>
 
             <div class="col-md-6 p-b-30">
-                @foreach (var item in sanphammoinhahang)
-                {
-                    <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom" style="border: 1px solid; border-color: white; border-radius: 15px">
-                        <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
-                            <a href="#"><img src="@(item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
+                    @foreach (var item in sanphammoinhahang)
+                    {
+                        <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom" style="border: 1px solid; border-color: white; border-radius: 15px">
+                            <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
+                                <a href="#"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
+                            </div>
+                            <div class="text-blo3 size21 flex-col-l-m">
+                                <a href="#" class="txt21 m-b-3">
+                                    @item.tensanpham
+                                </a>
+
+                                <span class="txt23">
+                                    @if (item.mota.Length > 45)
+                                    {
+                                        <span>@item.mota.Substring(0, 44) + "..."</span>
+                                    }
+                                    else
+                                    {
+                                        <span>@item.mota</span>
+                                    }
+                                </span>
+
+                                <span class="txt22 m-t-20">
+                                    @item.gia.ToString("0,0") đ
+                                </span>
+                            </div>
                         </div>
-                        <div class="text-blo3 size21 flex-col-l-m">
-                            <a href="#" class="txt21 m-b-3">
-                                @item.tensanpham
-                            </a>
-
-                            <span class="txt23">
-                                @if (item.mota.Length > 45)
-                                {
-                                    <span>@item.mota.Substring(0, 44) + "..."</span>
-                                }
-                                else
-                                {
-                                    <span>@item.mota</span>
-                                }
-                            </span>
-
-                            <span class="txt22 m-t-20">
-                                @item.gia.ToString("0,0") đ
-                            </span>
-                        </div>
-                    </div>
-                }
-
+                    }
             </div>
         </div>
         <br />
@@ -286,7 +285,7 @@
                 {
                     <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom" style="border: 1px solid; border-color: white; border-radius: 15px">
                         <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
-                            <a href="#"><img src="@(item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
+                            <a href="#"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
                         </div>
 
                         <div class="text-blo3 size21 flex-col-l-m">
@@ -356,7 +355,7 @@
                 {
                     <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom" style="border: 1px solid; border-color: white; border-radius: 15px">
                         <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
-                            <a href="#"><img src="@(item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
+                            <a href="#"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
                         </div>
 
                         <div class="text-blo3 size21 flex-col-l-m">
@@ -426,7 +425,7 @@
                 {
                     <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom-bgbrown" style="border: 1px solid; border-color: white; border-radius: 15px">
                         <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
-                            <a href="#"><img src="@(item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
+                            <a href="#"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
                         </div>
 
                         <div class="text-blo3 size21 flex-col-l-m">
@@ -462,7 +461,7 @@
                 {
                     <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom-bgbrown" style="border: 1px solid; border-color: white; border-radius: 15px">
                         <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
-                            <a href="#"><img src="@(item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
+                            <a href="#"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
                         </div>
 
                         <div class="text-blo3 size21 flex-col-l-m">
@@ -531,7 +530,7 @@
                 {
                     <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom-bgbrown" style="border: 1px solid; border-color: white; border-radius: 15px">
                         <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
-                            <a href="#"><img src="@(item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
+                            <a href="#"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
                         </div>
 
                         <div class="text-blo3 size21 flex-col-l-m">
@@ -865,7 +864,7 @@
                             </span>
 
                             <div class="wrap-inputpeople size12 bo-rad-10 m-t-3 m-b-23">
-                                <input class="bo-rad-10 sizefull txt10 p-l-20" type="text" name="people"  placeholder="4 người...">
+                                <input class="bo-rad-10 sizefull txt10 p-l-20" type="text" name="people" placeholder="4 người...">
                             </div>
                         </div>
 
