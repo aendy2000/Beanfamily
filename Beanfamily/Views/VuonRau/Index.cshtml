@@ -1,18 +1,18 @@
 ﻿@using Beanfamily.Models;
 @using PagedList.Mvc;
 @using PagedList;
-@model IPagedList<Beanfamily.Models.SanPhamMuaSam>
+@model IPagedList<Beanfamily.Models.SanPhamRauNhaTrong>
 @{
     BeanfamilyEntities models = new BeanfamilyEntities();
-    var dm = Session["categories-muasam"] as List<DanhMucSanPhamMuaSamCap1>;
-    ViewBag.Title = "Shopping";
+    var dm = Session["categories-raunhatrong"] as List<DanhMucSanPhamRauNhaTrongCap1>;
+    ViewBag.Title = "Vườn Rau";
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
 }
 
 <!-- Title Page -->
 <section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15" style="background-image: url(/Content/assets/images/bg-title-page-01.jpg);">
     <h2 class="tit6 t-center">
-        Mua sắm
+        Rau Nhà Trồng
     </h2>
 </section>
 
@@ -24,7 +24,7 @@
                 <div id="categoried_card" class="card" style="border-top-left-radius: 16px; border-top-right-radius: 16px; border: 0; background: none; position: sticky; top: 120px; margin-bottom: 75px;">
                     <div style="border-top: 1px solid rgb(255 255 255); border-left: 1px solid rgb(255 255 255); border-right: 1px solid rgb(255 255 255); border-top-left-radius: 16px; border-top-right-radius: 16px " class="card-header bg-website font-weight-bold text-white text-uppercase"><i class="fa fa-list"> </i> Danh mục</div>
                     <ul style="border-bottom-left-radius: 16px; border-bottom-right-radius: 16px" class="list-group category_block">
-                        @if (Session["id-category-muasam"].ToString().Equals("tatca"))
+                        @if (Session["id-category-raunhatrong"].ToString().Equals("tatca"))
                         {
                             <li name="tatca" class="list-group-item active"><a>Tất cả</a></li>
                             foreach (var item in dm)
@@ -37,7 +37,7 @@
                             <li name="tatca" class="list-group-item"><a>Tất cả</a></li>
                             foreach (var item in dm)
                             {
-                                if (item.id == Int32.Parse(Session["id-category-muasam"].ToString()))
+                                if (item.id == Int32.Parse(Session["id-category-raunhatrong"].ToString()))
                                 {
                                     <li name="@item.id" class="list-group-item active"><a>@item.tendanhmuc</a></li>
                                 }
@@ -98,25 +98,17 @@
                                         }
                                         @*<span class="product-sale-label">Sale</span>*@
                                         <ul class="product-links">
-                                            <li><a href="@Url.Action("productdetail", "muasam", new {id = item.id})"><i class="fa fa-solid fa-expand" aria-hidden="true"></i></a></li>
+                                            <li><a href="@Url.Action("productdetail", "vuonrau", new {id = item.id})"><i class="fa fa-solid fa-expand" aria-hidden="true"></i></a></li>
                                             @*<li><a href="#"><i class="fa fa-random"></i></a></li>*@
                                         </ul>
                                     </div>
                                     <div class="product-content">
-                                        <h3 class="title"><a href="@Url.Action("productdetail", "muasam", new {id = item.id})">@item.tensanpham</a></h3>
-                                        @if (item.TonKhoSanPham.Count > 1)
-                                        {
-                                            <div class="price">
-                                                @item.TonKhoSanPham.OrderBy(o => o.gia).First().gia.ToString("0,0")đ
-                                                - @item.TonKhoSanPham.OrderByDescending(o => o.gia).First().gia.ToString("0,0")đ
-                                            </div>
-                                        }
-                                        else
-                                        {
-                                            <div class="price">
-                                                @item.TonKhoSanPham.First().gia.ToString("0,0")đ
-                                            </div>
-                                        }
+                                        <h3 class="title"><a href="@Url.Action("productdetail", "vuonrau", new {id = item.id})">@item.tensanpham</a></h3>
+
+                                        <div class="price">
+                                            @item.gia.ToString("0,0")đ / @item.donvi
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -130,6 +122,6 @@
         </div>
 
     </div>
-    <script src="~/ActionOnPage/MuaSam/loadPageShopping.js"></script>
-    <script src="~/ActionOnPage/MuaSam/sanPhamTheoDanhMuc.js"></script>
+    <script src="~/ActionOnPage/VuonRau/loadPageGarden.js"></script>
+    <script src="~/ActionOnPage/VuonRau/sanPhamTheoDanhMuc.js"></script>
 </section>

@@ -431,17 +431,21 @@
                                                                 @if (string.IsNullOrEmpty(pro.hinhanh))
                                                                 {
 
-                                                                    <img src="@Url.Content("~/Content/assets/images/product/sanphamdefault.jpg")"
-                                                                         class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
+                                                                    <a class="text-white" href="@Url.Action("productdetail", "muasam", new {id = idPro})">
+                                                                        <img src="@Url.Content("~/Content/assets/images/product/sanphamdefault.jpg")"
+                                                                             class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
+                                                                    </a>
                                                                 }
                                                                 else
                                                                 {
-                                                                    <img src="@Url.Content(pro.hinhanh.Split('#')[0])"
-                                                                         class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
+                                                            <a class="text-white" href="@Url.Action("productdetail", "muasam", new {id = idPro})">
+                                                                <img src="@Url.Content(pro.hinhanh.Split('#')[0])"
+                                                                     class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
+                                                            </a>
                                                                 }
                                                             </div>
                                                             <div class="ms-3">
-                                                                <h5>@pro.tensanpham</h5>
+                                                                <a class="text-white" href="@Url.Action("productdetail", "muasam", new {id = idPro})"><h5>@pro.tensanpham</h5></a>
                                                                 <p class="small mb-0">@(pro.TonKhoSanPham.FirstOrDefault(l => l.id == idLoaiPro) == null ? "Chọn phân loại hàng" : pro.TonKhoSanPham.FirstOrDefault(l => l.id == idLoaiPro).tenloai + ", " + pro.TonKhoSanPham.FirstOrDefault(l => l.id == idLoaiPro).gia.ToString("0,0") + "đ")</p>
                                                             </div>
                                                         </div>

@@ -34,9 +34,9 @@ namespace Beanfamily.Controllers
             return View("restaurant");
         }
 
-        public ActionResult Garden()
+        public ActionResult Garden(int? pageNum, int? pageSize)
         {
-            return View("garden");
+            return RedirectToAction("index", "vuonrau");
         }
         public ActionResult Shopping(int? pageNum, int? pageSize)
         {

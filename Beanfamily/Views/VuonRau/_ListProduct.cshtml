@@ -1,6 +1,6 @@
 ﻿@using PagedList.Mvc
 @using PagedList;
-@model IPagedList<Beanfamily.Models.SanPhamMuaSam>
+@model IPagedList<Beanfamily.Models.SanPhamRauNhaTrong>
 
 <div id="product_list" class="row">
     <div hidden class="col-12 load_items" style="height: 200px; color: #fff; font-size: 18px; text-align: center">
@@ -43,25 +43,17 @@
                         }
                         @*<span class="product-sale-label">Sale</span>*@
                         <ul class="product-links">
-                            <li><a href="@Url.Action("productdetail", "muasam", new {id = item.id})"><i class="fa fa-solid fa-expand" aria-hidden="true"></i></a></li>
+                            <li><a href="@Url.Action("productdetail", "vuonrau", new {id = item.id})"><i class="fa fa-solid fa-expand" aria-hidden="true"></i></a></li>
                             @*<li><a href="#"><i class="fa fa-random"></i></a></li>*@
                         </ul>
                     </div>
                     <div class="product-content">
-                        <h3 class="title"><a href="@Url.Action("productdetail", "muasam", new {id = item.id})">@item.tensanpham</a></h3>
-                        @if (item.TonKhoSanPham.Count > 1)
-                        {
-                            <div class="price">
-                                @item.TonKhoSanPham.OrderBy(o => o.gia).First().gia.ToString("0,0")đ
-                                - @item.TonKhoSanPham.OrderByDescending(o => o.gia).First().gia.ToString("0,0")đ
-                            </div>
-                        }
-                        else
-                        {
-                            <div class="price">
-                                @item.TonKhoSanPham.First().gia.ToString("0,0")đ
-                            </div>
-                        }
+                        <h3 class="title"><a href="@Url.Action("productdetail", "vuonrau", new {id = item.id})">@item.tensanpham</a></h3>
+
+                        <div class="price">
+                            @item.gia.ToString("0,0")đ / @item.donvi
+                        </div>
+
                     </div>
                 </div>
             </div>

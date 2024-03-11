@@ -156,6 +156,7 @@
     <Compile Include="Areas\Admin\Controllers\SanPhamVuonRauBeanController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MuaSamController.cs" />
+    <Compile Include="Controllers\VuonRauController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -275,6 +276,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ActionOnPage\GioHang\ChangeQuantity.js" />
+    <Content Include="ActionOnPage\VuonRau\AddToCart.js" />
+    <Content Include="ActionOnPage\VuonRau\loadPageGarden.js" />
+    <Content Include="ActionOnPage\VuonRau\loadPageGardenDetail.js" />
+    <Content Include="ActionOnPage\VuonRau\sanPhamTheoDanhMuc.js" />
     <Content Include="ActionOnPage\MuaSam\AddToCart.js" />
     <Content Include="ActionOnPage\MuaSam\loadPageShopping.js" />
     <Content Include="ActionOnPage\MuaSam\loadPageShoppingDetail.js" />
@@ -2989,6 +2994,10 @@
     <Content Include="Views\MuaSam\_ListProduct.cshtml" />
     <Content Include="Views\MuaSam\ProductDetail.cshtml" />
     <Content Include="Views\MuaSam\_addCart.cshtml" />
+    <Content Include="Views\VuonRau\_addCart.cshtml" />
+    <Content Include="Views\VuonRau\_ListProduct.cshtml" />
+    <Content Include="Views\VuonRau\Index.cshtml" />
+    <Content Include="Views\VuonRau\ProductDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

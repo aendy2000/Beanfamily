@@ -36,8 +36,9 @@
 
     var slFirst = Number($('body').find('[id="selectloai"] :selected').attr('tonkhosoluong'));
     var giaFirst = Number($('body').find('[id="selectloai"] :selected').attr('tonkhogia'));
+    var donvi = $('body').find('[id="selectloai"] :selected').attr('donvi');
 
-    $('body').find('[id="soluong-tonkho"]').text('Kho: ' + slFirst + ' sản phẩm');
+    $('body').find('[id="soluong-tonkho"]').text('Kho: ' + slFirst + ' ' + donvi);
     $('body').find('[id="gia-tonkho"]').text(giaFirst + 'đ');
 
     $('body').on('change', '[id="selectloai"]', function () {
@@ -47,7 +48,7 @@
         slFirst = Number(sl);
         giaFirst = Number(gia);
 
-        $('body').find('[id="soluong-tonkho"]').text('Kho: ' + sl + ' sản phẩm');
+        $('body').find('[id="soluong-tonkho"]').text('Kho: ' + sl + ' ' + donvi);
         $('body').find('[id="gia-tonkho"]').text(gia + 'đ');
 
         if (sl < 1) {
