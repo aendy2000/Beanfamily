@@ -404,14 +404,18 @@
                     <h5 class="modal-title text-center" id="gioHangModalLabel2">Giỏ Hàng Mua Sắm</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" style="padding-left: 0px; padding-right: 0px; padding-top: 10px; margin-bottom: -15px;">
                     <div class="container py-3 h-100">
                         <div class="row d-flex justify-content-center align-items-center h-100">
                             <div class="row">
                                 <div id="cart-content-load" class="col-lg-12">
                                     @if (giohang == null)
                                     {
-                                        <h3 style="text-align: center">Chưa có sản phẩm nào trong giỏ hàng</h3>
+                                        <h5 style="text-align: center; font-weight: bold">Chưa có sản phẩm nào trong giỏ hàng!</h5>
+                                    }
+                                    else if (giohang.Count < 1)
+                                    {
+                                        <h5 style="text-align: center; font-weight: bold">Chưa có sản phẩm nào trong giỏ hàng!</h5>
                                     }
                                     else
                                     {
@@ -425,8 +429,8 @@
 
                                             <div class="card mb-3 bo-rad-16 bggreen text-white">
                                                 <div class="card-body">
-                                                    <div class="d-flex justify-content-between">
-                                                        <div class="d-flex flex-row align-items-center">
+                                                    <div class="d-flex justify-content-between row">
+                                                        <div class="d-flex flex-row align-items-center col-md-6 col-sm-6 ms-2 me-2 mt-2 mb-2">
                                                             <div>
                                                                 @if (string.IsNullOrEmpty(pro.hinhanh))
                                                                 {
@@ -438,10 +442,10 @@
                                                                 }
                                                                 else
                                                                 {
-                                                            <a class="text-white" href="@Url.Action("productdetail", "muasam", new {id = idPro})">
-                                                                <img src="@Url.Content(pro.hinhanh.Split('#')[0])"
-                                                                     class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
-                                                            </a>
+                                                                    <a class="text-white" href="@Url.Action("productdetail", "muasam", new {id = idPro})">
+                                                                        <img src="@Url.Content(pro.hinhanh.Split('#')[0])"
+                                                                             class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
+                                                                    </a>
                                                                 }
                                                             </div>
                                                             <div class="ms-3">
@@ -449,25 +453,30 @@
                                                                 <p class="small mb-0">@(pro.TonKhoSanPham.FirstOrDefault(l => l.id == idLoaiPro) == null ? "Chọn phân loại hàng" : pro.TonKhoSanPham.FirstOrDefault(l => l.id == idLoaiPro).tenloai + ", " + pro.TonKhoSanPham.FirstOrDefault(l => l.id == idLoaiPro).gia.ToString("0,0") + "đ")</p>
                                                             </div>
                                                         </div>
-                                                        <div class="d-flex flex-row align-items-center">
-                                                            <div style="width: 230px;">
-                                                                <div class="input-group" style="width: 170px;">
-                                                                    <button class="text-white btn btn-white border border-secondary px-3" type="button" id="giamsoluonggiohang-@idPro-@idLoaiPro" name="@idPro-@idLoaiPro" data-mdb-ripple-color="dark">
-                                                                        <i class="fa fa-minus"></i>
-                                                                    </button>
-                                                                    <input value="@soluong" id="soluonggiohang-@idPro-@idLoaiPro" name="@idPro-@idLoaiPro" data-type='numbers' type="text" class="form-control text-center border border-secondary" placeholder="0" aria-label="Số lượng sản phẩm" aria-describedby="button-addon1" />
-                                                                    <button class="text-white btn btn-white border border-secondary px-3" type="button" id="tangsoluonggiohang-@idPro-@idLoaiPro" name="@idPro-@idLoaiPro" data-mdb-ripple-color="dark">
-                                                                        <i class="fa fa-plus"></i>
-                                                                    </button>
+                                                        <div class="d-flex flex-row align-items-center col-md-5 col-sm-5">
+                                                            <div class="row">
+                                                                <div class="ms-2 me-2 mt-2 mb-2 col-sm-12 col-md-6">
+                                                                    <div class="input-group">
+                                                                        <button class="text-white btn btn-white border border-secondary px-3" type="button" id="giamsoluonggiohang-@idPro-@idLoaiPro" name="@idPro-@idLoaiPro" data-mdb-ripple-color="dark">
+                                                                            <i class="fa fa-minus"></i>
+                                                                        </button>
+                                                                        <input tonkho="@Session["tonkhoconlai-muasam-" + idPro + idLoaiPro]" value="@soluong" id="soluonggiohang-@idPro-@idLoaiPro" name="@idPro-@idLoaiPro" data-type='numbers' type="text" class="form-control text-center border border-secondary" placeholder="0" aria-label="Số lượng sản phẩm" aria-describedby="button-addon1" />
+                                                                        <button class="text-white btn btn-white border border-secondary px-3" type="button" id="tangsoluonggiohang-@idPro-@idLoaiPro" name="@idPro-@idLoaiPro" data-mdb-ripple-color="dark">
+                                                                            <i class="fa fa-plus"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                    <p id="thongbaosoluong-@idPro-@idLoaiPro" style="margin-bottom: -5px" class="text-red small">@(Session["soluongmax-muasam-" + idPro + idLoaiPro] != null ? "Kho còn " + Session["soluongmax-muasam-" + idPro + idLoaiPro] + " sản phẩm!" : "")</p>
+                                                                </div>
+                                                                <div class="ms-2 me-2 mt-2 mb-2 col-sm-12 col-md-5 text-center">
+                                                                    <h5 id="giasanpham-@idPro-@idLoaiPro" dongia="@((pro.TonKhoSanPham.FirstOrDefault(l => l.id == idLoaiPro) == null ? "CHONPHANLOAI" : (pro.TonKhoSanPham.FirstOrDefault(l => l.id == idLoaiPro).gia).ToString("0")))"
+                                                                        class="mt-2">
+                                                                        @((pro.TonKhoSanPham.FirstOrDefault(l => l.id == idLoaiPro) == null ? "Chọn phân loại hàng" : (pro.TonKhoSanPham.FirstOrDefault(l => l.id == idLoaiPro).gia * soluong).ToString("0,0") + "đ"))
+                                                                    </h5>
                                                                 </div>
                                                             </div>
-                                                            <div style="width: 120px;">
-                                                                <h5 id="giasanpham-@idPro-@idLoaiPro" dongia="@((pro.TonKhoSanPham.FirstOrDefault(l => l.id == idLoaiPro) == null ? "CHONPHANLOAI" : (pro.TonKhoSanPham.FirstOrDefault(l => l.id == idLoaiPro).gia).ToString("0")))"
-                                                                    class="mb-0">
-                                                                    @((pro.TonKhoSanPham.FirstOrDefault(l => l.id == idLoaiPro) == null ? "Chọn phân loại hàng" : (pro.TonKhoSanPham.FirstOrDefault(l => l.id == idLoaiPro).gia * soluong).ToString("0,0") + "đ"))
-                                                                </h5>
-                                                            </div>
-                                                            <a href="#!" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
+                                                            <a id="xoasanphamgiohang-@idPro-@idLoaiPro" name="@idPro-@idLoaiPro" tensanpham="@pro.tensanpham, @(pro.TonKhoSanPham.FirstOrDefault(l => l.id == idLoaiPro) != null ? pro.TonKhoSanPham.FirstOrDefault(l => l.id == idLoaiPro).tenloai : "")"
+                                                               class="text-red" role="button" style="width: 30px; text-align: center; position: absolute; right: 5px; top: 5px;"><i class="fa fa-trash"></i></a>
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -518,8 +527,10 @@
     <!--===============================================================================================-->
     <script src="~/Content/assets/js/main.js"></script>
     <script src="~/Scripts/SweetAlert/sweetalert2.min.js"></script>
-    <script src="~/ActionOnPage/GioHang/ChangeQuantity.js"></script>
 
+    <!-- Cart -->
+    <script src="~/ActionOnPage/GioHang/ChangeQuantity.js"></script>
+    <script src="~/ActionOnPage/GioHang/DeletedProduct.js"></script>
 </body>
 </html>
 

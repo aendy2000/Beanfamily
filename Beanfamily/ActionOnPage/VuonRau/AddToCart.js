@@ -23,7 +23,7 @@
                     text: data,
                     icon: "error"
                 }).then(() => function () {
-                    location.reload();
+                    window.location.reload();
                 });
             }
             else if (data == "HETHANG") {
@@ -32,7 +32,7 @@
                     text: "Sản phẩm hiện đã bán hết?",
                     icon: "warning"
                 }).then(() => function () {
-                    location.reload();
+                    window.location.reload();
                 });
             }
             else if (data == "KHONGTONTAI") {
@@ -41,7 +41,7 @@
                     text: "Sản phẩm hiện đã bán hết?",
                     icon: "warning"
                 }).then(() => function () {
-                    location.reload();
+                    window.location.reload();
                 });
             }
             else {

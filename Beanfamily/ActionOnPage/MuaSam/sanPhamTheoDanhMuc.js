@@ -18,7 +18,7 @@
             contentType: false,
         }).done(function (data) {
             if (data == "empty") {
-                location.reload();
+                window.location.reload();
             }
             else {
                 $('body').find('[id="product_list"]').replaceWith(data);

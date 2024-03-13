@@ -276,6 +276,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ActionOnPage\GioHang\ChangeQuantity.js" />
+    <Content Include="ActionOnPage\GioHang\DeletedProduct.js" />
     <Content Include="ActionOnPage\VuonRau\AddToCart.js" />
     <Content Include="ActionOnPage\VuonRau\loadPageGarden.js" />
     <Content Include="ActionOnPage\VuonRau\loadPageGardenDetail.js" />

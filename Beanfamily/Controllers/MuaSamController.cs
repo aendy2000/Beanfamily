@@ -92,13 +92,27 @@ namespace Beanfamily.Controllers
                     return Content("KHONGTONTAI");
                 if (sp.TonKhoSanPham.FirstOrDefault(t => t.id == idloaitonkho) == null)
                     return Content("KHONGTONTAI");
-                if(sp.TonKhoSanPham.FirstOrDefault(t => t.id == idloaitonkho).soluong < 1)
+                if (sp.TonKhoSanPham.FirstOrDefault(t => t.id == idloaitonkho).soluong < 1)
                     return Content("HETHANG");
 
                 if (Session["giohang-muasam"] == null)
                 {
+                    int tonKhoConLai = model.SanPhamMuaSam.Find(idsp).TonKhoSanPham.FirstOrDefault(t => t.id == idloaitonkho).soluong;
                     List<string> giohang = new List<string>();
-                    giohang.Add(idsp + "#" + idloaitonkho + "#" + soluong);
+
+                    if (soluong > tonKhoConLai)
+                    {
+                        Session["soluongmax-muasam-" + idsp + idloaitonkho] = tonKhoConLai;
+                        Session["tonkhoconlai-muasam-" + idsp + idloaitonkho] = tonKhoConLai;
+                        giohang.Add(idsp + "#" + idloaitonkho + "#" + tonKhoConLai);
+                    }
+                    else
+                    {
+                        Session["soluongmax-muasam-" + idsp + idloaitonkho] = null;
+                        Session["tonkhoconlai-muasam-" + idsp + idloaitonkho] = tonKhoConLai;
+                        giohang.Add(idsp + "#" + idloaitonkho + "#" + soluong);
+                    }
+
                     Session["giohang-muasam"] = giohang;
                 }
                 else
@@ -115,13 +129,40 @@ namespace Beanfamily.Controllers
                             {
                                 checks = true;
                                 int soluongs = Int32.Parse(item.Split('#')[2]) + soluong;
-                                giohang = giohang.Select(g => g.Replace(item, idPro + "#" + idLoai + "#" + soluongs)).ToList();
+                                int tonKhoConLai = model.SanPhamMuaSam.Find(idsp).TonKhoSanPham.FirstOrDefault(t => t.id == idloaitonkho).soluong;
+                                if (soluongs > tonKhoConLai)
+                                {
+                                    Session["soluongmax-muasam-" + idsp + idloaitonkho] = tonKhoConLai;
+                                    Session["tonkhoconlai-muasam-" + idsp + idloaitonkho] = tonKhoConLai;
+                                    giohang = giohang.Select(g => g.Replace(item, idPro + "#" + idLoai + "#" + tonKhoConLai)).ToList();
+                                }
+                                else
+                                {
+                                    Session["soluongmax-muasam-" + idsp + idloaitonkho] = null;
+                                    Session["tonkhoconlai-muasam-" + idsp + idloaitonkho] = tonKhoConLai;
+                                    giohang = giohang.Select(g => g.Replace(item, idPro + "#" + idLoai + "#" + soluongs)).ToList();
+                                }
                             }
                         }
                     }
 
                     if (checks == false)
-                        giohang.Add(idsp + "#" + idloaitonkho + "#" + soluong);
+                    {
+                        int tonKhoConLai = model.SanPhamMuaSam.Find(idsp).TonKhoSanPham.FirstOrDefault(t => t.id == idloaitonkho).soluong;
+
+                        if (soluong > tonKhoConLai)
+                        {
+                            Session["soluongmax-muasam-" + idsp + idloaitonkho] = tonKhoConLai;
+                            Session["tonkhoconlai-muasam-" + idsp + idloaitonkho] = tonKhoConLai;
+                            giohang.Add(idsp + "#" + idloaitonkho + "#" + tonKhoConLai);
+                        }
+                        else
+                        {
+                            Session["soluongmax-muasam-" + idsp + idloaitonkho] = null;
+                            Session["tonkhoconlai-muasam-" + idsp + idloaitonkho] = tonKhoConLai;
+                            giohang.Add(idsp + "#" + idloaitonkho + "#" + soluong);
+                        }
+                    }
                     Session["giohang-muasam"] = giohang;
                 }
 
@@ -152,6 +193,9 @@ namespace Beanfamily.Controllers
                 if (sp.TonKhoSanPham.FirstOrDefault(t => t.id == idloaitonkho) == null)
                     return Content("KHONGTONTAI");
 
+                int tonKhoConLai = sp.TonKhoSanPham.FirstOrDefault(t => t.id == idloaitonkho).soluong;
+                if (tonKhoConLai < 1)
+                    return Content("HETHANG");
 
                 List<string> giohang = Session["giohang-muasam"] as List<string>;
                 foreach (string item in giohang)
@@ -162,14 +206,70 @@ namespace Beanfamily.Controllers
                         int idLoai = Int32.Parse(item.Split('#')[1]);
                         if (idLoai == idloaitonkho)
                         {
-                            int soluongs = soluong;
-                            giohang = giohang.Select(g => g.Replace(item, idPro + "#" + idLoai + "#" + soluongs)).ToList();
+                            if (soluong > tonKhoConLai)
+                            {
+                                Session["soluongmax-muasam-" + idsp + idloaitonkho] = tonKhoConLai;
+                                Session["tonkhoconlai-muasam-" + idsp + idloaitonkho] = tonKhoConLai;
+                                giohang = giohang.Select(g => g.Replace(item, idPro + "#" + idLoai + "#" + tonKhoConLai)).ToList();
+                                soluong = tonKhoConLai;
+                            }
+                            else
+                            {
+                                Session["soluongmax-muasam-" + idsp + idloaitonkho] = null;
+                                Session["tonkhoconlai-muasam-" + idsp + idloaitonkho] = soluong;
+                                giohang = giohang.Select(g => g.Replace(item, idPro + "#" + idLoai + "#" + soluong)).ToList();
+                            }
                         }
                     }
                 }
 
                 Session["giohang-muasam"] = giohang;
-                return Content("SUCCESS");
+                return Content("SUCCESS-" + soluong);
+            }
+            catch (Exception ex)
+            {
+                return Content("Chi tiết lỗi: " + ex.Message);
+            }
+
+        }
+
+        [HttpPost]
+        public ActionResult DeletedCart(string id)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(id))
+                {
+                    return Content("KHONGTONTAI");
+                }
+
+                int idsp = Int32.Parse(id.Split('-')[0]);
+                int idloaitonkho = Int32.Parse(id.Split('-')[1]);
+                var sp = model.SanPhamMuaSam.Find(idsp);
+                if (sp == null)
+                    return Content("KHONGTONTAI");
+                if (sp.TonKhoSanPham.FirstOrDefault(t => t.id == idloaitonkho) == null)
+                    return Content("KHONGTONTAI");
+
+                List<string> giohang = Session["giohang-muasam"] as List<string>;
+                int i = 0;
+                foreach (string item in giohang)
+                {
+                    int idPro = Int32.Parse(item.Split('#')[0]);
+                    if (idPro == idsp)
+                    {
+                        int idLoai = Int32.Parse(item.Split('#')[1]);
+                        if (idLoai == idloaitonkho)
+                        {
+                            giohang.RemoveAt(i);
+                            break;
+                        }
+                    }
+                    i++;
+                }
+
+                Session["giohang-muasam"] = giohang;
+                return PartialView("_addCart");
             }
             catch (Exception ex)
             {

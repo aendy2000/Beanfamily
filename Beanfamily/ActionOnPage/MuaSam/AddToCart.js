@@ -22,8 +22,8 @@
                     title: "Đã có lỗi xảy ra, vui lòng thử lại sau :(",
                     text: data,
                     icon: "error"
-                }).then(() => function () {
-                    location.reload();
+                }).then(() => {
+                    window.location.reload();
                 });
             }
             else if (data == "HETHANG") {
@@ -31,8 +31,8 @@
                     title: "Sản phẩm hết",
                     text: "Sản phẩm hiện đã bán hết?",
                     icon: "warning"
-                }).then(() => function () {
-                    location.reload();
+                }).then(() => {
+                    window.location.reload();
                 });
             }
             else if (data == "KHONGTONTAI") {
@@ -40,8 +40,8 @@
                     title: "Sản phẩm hết",
                     text: "Sản phẩm hiện đã bán hết?",
                     icon: "warning"
-                }).then(() => function () {
-                    location.reload();
+                }).then(() => {
+                    window.location.reload();
                 });
             }
             else {
@@ -51,7 +51,7 @@
                     toast: true,
                     position: "top-end",
                     showConfirmButton: false,
-                    timer: 2000,
+                    timer: 3000,
                     timerProgressBar: true,
                     didOpen: (toast) => {
                         toast.onmouseenter = Swal.stopTimer;
