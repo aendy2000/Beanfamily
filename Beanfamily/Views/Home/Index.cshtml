@@ -105,7 +105,7 @@
             </div>
 
             <div class="col-md-6 p-b-30">
-                <div class="wrap-pic-welcome size2 bo-rad-10 hov-img-zoom m-l-r-auto" style="margin-top: 13%">
+                <div class="wrap-pic-welcome size2 bo-rad-16 hov-img-zoom m-l-r-auto" style="margin-top: 13%">
                     <img src="~/Content/assets/images/product/z4834791087337_dfdc737db5de4d38ad2cdb6544c4b33c.jpg" alt="IMG-OUR" />
                 </div>
             </div>
@@ -131,7 +131,7 @@
                 <div class="col-md-4 p-t-30 t-center">
                     <!-- Block1 -->
                     <div class="blo1">
-                        <div class="wrap-pic-blo1 bo-rad-10 hov-img-zoom">
+                        <div class="wrap-pic-blo1 bo-rad-16 hov-img-zoom">
                             <a href="@Url.Action("index", "nhahang")"><img src="~/Content/assets/images/product/nhahang.gif" alt="IMG-INTRO"></a>
                         </div>
 
@@ -157,7 +157,7 @@
                 <div class="col-md-4 p-t-30 t-center">
                     <!-- Block1 -->
                     <div class="blo1">
-                        <div class="wrap-pic-blo1 bo-rad-10 hov-img-zoom">
+                        <div class="wrap-pic-blo1 bo-rad-16 hov-img-zoom">
                             <a href="@Url.Action("index", "vuonrau")"><img src="~/Content/assets/images/product/vuonrau.gif" alt="IMG-INTRO"></a>
                         </div>
 
@@ -183,7 +183,7 @@
                 <div class="col-md-4 p-t-30 t-center">
                     <!-- Block1 -->
                     <div class="blo1">
-                        <div class="wrap-pic-blo1 bo-rad-10 hov-img-zoom">
+                        <div class="wrap-pic-blo1 bo-rad-16 hov-img-zoom">
                             <a href="@Url.Action("index", "muasam")"><img src="~/Content/assets/images/product/muasam.gif" alt="IMG-INTRO"></a>
                         </div>
 
@@ -250,7 +250,7 @@
                     @foreach (var item in sanphammoinhahang)
                     {
                         <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom" style="border: 1px solid; border-color: white; border-radius: 15px">
-                            <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
+                            <div class="pic-blo3 size20 bo-rad-16 hov-img-zoom m-r-28">
                                 <a href="@Url.Action("productdetail", "menuhangngay", new { id = item.id })"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
                             </div>
                             <div class="text-blo3 size21 flex-col-l-m">
@@ -261,7 +261,7 @@
                                 <span class="txt23">
                                     @if (item.mota.Length > 45)
                                     {
-                                        <span>@item.mota.Substring(0, 44) + "..."</span>
+                                        <span>@item.mota.Substring(0, 44)...</span>
                                     }
                                     else
                                     {
@@ -284,7 +284,7 @@
                 @foreach (var item in sanphammoivuonrau)
                 {
                     <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom" style="border: 1px solid; border-color: white; border-radius: 15px">
-                        <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
+                        <div class="pic-blo3 size20 bo-rad-16 hov-img-zoom m-r-28">
                             <a href="@Url.Action("productdetail", "vuonrau", new { id = item.id })"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
                         </div>
 
@@ -296,7 +296,7 @@
                             <span class="txt23">
                                 @if (item.mota.Length > 45)
                                 {
-                                    <span>@item.mota.Substring(0, 44) + "..."</span>
+                                    <span>@item.mota.Substring(0, 44)...</span>
                                 }
                                 else
                                 {
@@ -354,7 +354,7 @@
                 @foreach (var item in sanphammoimuasam)
                 {
                     <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom" style="border: 1px solid; border-color: white; border-radius: 15px">
-                        <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
+                        <div class="pic-blo3 size20 bo-rad-16 hov-img-zoom m-r-28">
                             <a href="@Url.Action("productdetail", "muasam", new { id = item.id })"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
                         </div>
 
@@ -366,7 +366,7 @@
                             <span class="txt23">
                                 @if (item.mota.Length > 45)
                                 {
-                                    <span>@item.mota.Substring(0, 44) + "..."</span>
+                                    <span>@item.mota.Substring(0, 44)...</span>
                                 }
                                 else
                                 {
@@ -424,7 +424,7 @@
                 @foreach (var item in sanphamnoibatnhahang)
                 {
                     <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom-bgbrown" style="border: 1px solid; border-color: white; border-radius: 15px">
-                        <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
+                        <div class="pic-blo3 size20 bo-rad-16 hov-img-zoom m-r-28">
                             <a href="@Url.Action("productdetail", "menuhangngay", new { id = item.id })"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
                         </div>
 
@@ -436,7 +436,7 @@
                             <span class="txt23">
                                 @if (item.mota.Length > 45)
                                 {
-                                    <span>@item.mota.Substring(0, 44) + "..."</span>
+                                    <span>@item.mota.Substring(0, 44)...</span>
                                 }
                                 else
                                 {
@@ -460,7 +460,7 @@
                 @foreach (var item in sanphamnoibatvuonrau)
                 {
                     <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom-bgbrown" style="border: 1px solid; border-color: white; border-radius: 15px">
-                        <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
+                        <div class="pic-blo3 size20 bo-rad-16 hov-img-zoom m-r-28">
                             <a href="@Url.Action("productdetail", "vuonrau", new { id = item.id })"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
                         </div>
 
@@ -472,7 +472,7 @@
                             <span class="txt23">
                                 @if (item.mota.Length > 45)
                                 {
-                                    <span>@item.mota.Substring(0, 44) + "..."</span>
+                                    <span>@item.mota.Substring(0, 44)...</span>
                                 }
                                 else
                                 {
@@ -529,7 +529,7 @@
                 @foreach (var item in sanphamnoibatmuasam)
                 {
                     <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom-bgbrown" style="border: 1px solid; border-color: white; border-radius: 15px">
-                        <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
+                        <div class="pic-blo3 size20 bo-rad-16 hov-img-zoom m-r-28">
                             <a href="@Url.Action("productdetail", "muasam", new { id = item.id })"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
                         </div>
 
@@ -541,7 +541,7 @@
                             <span class="txt23">
                                 @if (item.mota.Length > 45)
                                 {
-                                    <span>@item.mota.Substring(0, 44) + "..."</span>
+                                    <span>@item.mota.Substring(0, 44)...</span>
                                 }
                                 else
                                 {
@@ -847,15 +847,15 @@
                                 Họ và Tên <span class="text-danger">*</span>
                             </span>
 
-                            <div class="wrap-inputname size12 bo-rad-10 m-t-3 m-b-23">
-                                <input class="bo-rad-10 sizefull txt10 p-l-20" type="text" name="name" placeholder="Nguyễn Văn A...">
+                            <div class="wrap-inputname size12 bo-rad-16 m-t-3 m-b-23">
+                                <input class="bo-rad-16 sizefull txt10 p-l-20" type="text" name="name" placeholder="Nguyễn Văn A...">
                             </div>
                             <span class="txt9">
                                 Ngày tổ chức <span class="text-danger">*</span>
                             </span>
 
-                            <div class="wrap-inputdate pos-relative txt10 size12 bo-rad-10 m-t-3 m-b-23">
-                                <input class="my-calendar bo-rad-10 sizefull txt10 p-l-20" type="text" name="date">
+                            <div class="wrap-inputdate pos-relative txt10 size12 bo-rad-16 m-t-3 m-b-23">
+                                <input class="my-calendar bo-rad-16 sizefull txt10 p-l-20" type="text" name="date">
                                 <i class="btn-calendar fa fa-calendar ab-r-m hov-pointer m-r-18" aria-hidden="true"></i>
                             </div>
 
@@ -863,8 +863,8 @@
                                 Số người <span class="text-danger">*</span>
                             </span>
 
-                            <div class="wrap-inputpeople size12 bo-rad-10 m-t-3 m-b-23">
-                                <input class="bo-rad-10 sizefull txt10 p-l-20" type="text" name="people" placeholder="4 người...">
+                            <div class="wrap-inputpeople size12 bo-rad-16 m-t-3 m-b-23">
+                                <input class="bo-rad-16 sizefull txt10 p-l-20" type="text" name="people" placeholder="4 người...">
                             </div>
                         </div>
 
@@ -876,15 +876,15 @@
                                 Số điện thoại <span class="text-danger">*</span>
                             </span>
 
-                            <div class="wrap-inputphone size12 bo-rad-10 m-t-3 m-b-23">
-                                <input class="bo-rad-10 sizefull txt10 p-l-20" type="text" name="phone" placeholder="Phone">
+                            <div class="wrap-inputphone size12 bo-rad-16 m-t-3 m-b-23">
+                                <input class="bo-rad-16 sizefull txt10 p-l-20" type="text" name="phone" placeholder="Phone">
                             </div>
 
                             <span class="txt9">
                                 Giờ tổ chức <span class="text-danger">*</span>
                             </span>
 
-                            <div class="wrap-inputtime size12 bo-rad-10 m-t-3 m-b-23">
+                            <div class="wrap-inputtime size12 bo-rad-16 m-t-3 m-b-23">
                                 <select class="selection-1" name="time">
                                     <option>07:00</option>
                                     <option>07:30</option>
@@ -925,8 +925,8 @@
                                 Địa chỉ Email <span class="text-danger">*</span>
                             </span>
 
-                            <div class="wrap-inputemail size12 bo-rad-10 m-t-3 m-b-23">
-                                <input class="bo-rad-10 sizefull txt10 p-l-20" type="text" name="email" placeholder="emailcuaban@email.com">
+                            <div class="wrap-inputemail size12 bo-rad-16 m-t-3 m-b-23">
+                                <input class="bo-rad-16 sizefull txt10 p-l-20" type="text" name="email" placeholder="emailcuaban@email.com">
                             </div>
 
                         </div>
@@ -934,7 +934,7 @@
                             <span class="txt9">
                                 Ghi chú
                             </span>
-                            <textarea class="bo-rad-10 size35 txt10 p-l-20 p-t-15 m-b-10 m-t-3" rows="4" name="ghichu" placeholder="Ghi chú thêm (nếu có)"></textarea>
+                            <textarea class="bo-rad-16 size35 txt10 p-l-20 p-t-15 m-b-10 m-t-3" rows="4" name="ghichu" placeholder="Ghi chú thêm (nếu có)"></textarea>
 
                         </div>
                     </div>
@@ -1090,7 +1090,7 @@
             <div class="col-md-4 p-t-30">-->
 <!-- Block1 -->
 <!--<div class="blo1">
-        <div class="wrap-pic-blo1 bo-rad-10 hov-img-zoom pos-relative">
+        <div class="wrap-pic-blo1 bo-rad-16 hov-img-zoom pos-relative">
             <a href="~/Content/assets/blog-detail.html"><img src="~/Content/assets/images/blog-01.jpg" alt="IMG-INTRO"></a>
 
             <div class="time-blog">
@@ -1120,7 +1120,7 @@
 <div class="col-md-4 p-t-30">-->
 <!-- Block1 -->
 <!--<div class="blo1">
-        <div class="wrap-pic-blo1 bo-rad-10 hov-img-zoom pos-relative">
+        <div class="wrap-pic-blo1 bo-rad-16 hov-img-zoom pos-relative">
             <a href="~/Content/assets/blog-detail.html"><img src="~/Content/assets/images/blog-02.jpg" alt="IMG-INTRO"></a>
 
             <div class="time-blog">
@@ -1150,7 +1150,7 @@
 <div class="col-md-4 p-t-30">-->
 <!-- Block1 -->
 <!--<div class="blo1">
-                    <div class="wrap-pic-blo1 bo-rad-10 hov-img-zoom pos-relative">
+                    <div class="wrap-pic-blo1 bo-rad-16 hov-img-zoom pos-relative">
                         <a href="~/Content/assets/blog-detail.html"><img src="~/Content/assets/images/blog-03.jpg" alt="IMG-INTRO"></a>
 
                         <div class="time-blog">

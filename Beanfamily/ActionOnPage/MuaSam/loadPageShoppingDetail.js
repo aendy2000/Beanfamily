@@ -12,21 +12,32 @@
         slidesToShow: 1,
         slidesToScroll: 1,
         fade: true,
-        dots: true,
+        dots: false,
         appendDots: $('body').find('.wrap-slick1-dots'),
         dotsClass: 'slick1-dots',
         infinite: true,
         autoplay: false,
         autoplaySpeed: 3000,
-        arrows: false,
-        appendArrows: $('body').find('.wrap-slick1'),
-        prevArrow: '<button class="wrap-slick1 arrow-slick1 prev-slick1"><i class="fa fa-angle-left" aria-hidden="true"></i></button>',
-        nextArrow: '<button class="wrap-slick1 arrow-slick1 next-slick1"><i class="fa fa-angle-right" aria-hidden="true"></i></button>',
+        arrows: true,
+        //appendArrows: $('body').find('.wrap-slick1'),
+        //prevArrow: '<button class="wrap-slick1 arrow-slick1 prev-slick1"><i class="fa fa-angle-left" aria-hidden="true"></i></button>',
+        //nextArrow: '<button class="wrap-slick1 arrow-slick1 next-slick1"><i class="fa fa-angle-right" aria-hidden="true"></i></button>',
         asNavFor: '.slider-nav'
     });
+
+    var soLuongHienThi = Number($('body').find('[id="totalImagePro"]').val());
+    if (soLuongHienThi <= 2) {
+        soLuongHienThi = 1;
+    }
+    else if (soLuongHienThi > 2) {
+        soLuongHienThi = (soLuongHienThi - 1);
+    }
+
     $('body').find('.slider-nav').slick({
-        slidesToShow: $('body').find('[id="totalImagePro"]').val(),
+        slidesToShow: soLuongHienThi,
         slidesToScroll: 1,
+        dots: false,
+        arrows: true,
         asNavFor: '.slider-for',
         focusOnSelect: true,
         arrows: false,

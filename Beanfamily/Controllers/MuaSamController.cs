@@ -216,7 +216,7 @@ namespace Beanfamily.Controllers
                             else
                             {
                                 Session["soluongmax-muasam-" + idsp + idloaitonkho] = null;
-                                Session["tonkhoconlai-muasam-" + idsp + idloaitonkho] = soluong;
+                                Session["tonkhoconlai-muasam-" + idsp + idloaitonkho] = tonKhoConLai;
                                 giohang = giohang.Select(g => g.Replace(item, idPro + "#" + idLoai + "#" + soluong)).ToList();
                             }
                         }
