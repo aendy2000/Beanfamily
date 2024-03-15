@@ -6,6 +6,7 @@
 
 <div id="SuaModalPartial">
     <div class="modal-body m-2">
+        <h5 class="text-center mb-4 text-bg-primary text-white" style="border-radius: 16px; height: 30px; display: flex; flex-direction: column; justify-content: center;">THÔNG TIN QUY TRÌNH</h5>
         <div class="row mt-1">
             <div class="col-12">
                 <input value="@Model.id" id="suaidQuyTrinh" hidden />
@@ -28,12 +29,10 @@
                 </div>
                 <label style="margin-left: 5px" id="invalid-suahienthi-feedback" class="text-danger" hidden></label>
             </div>
-            <div class="col-12">
-                <div class="bg-success-light">
-                    <h6 class="text-center mt-4 font-weight-bold">THÔNG TIN BƯỚC THỰC HIỆN</h6>
-                </div>
-            </div>
         </div>
+        <hr class="my-4" />
+        <h5 class="text-center mb-4 text-bg-primary text-white" style="border-radius: 16px; height: 30px; display: flex; flex-direction: column; justify-content: center;">THÔNG TIN BƯỚC THỰC HIỆN</h5>
+
         <div id="suadanhsachcacbuoc" class="row mt-4">
             @foreach (var item in Model.CacBuocQuyTrinhTrongCay.OrderBy(o => o.id))
             {
@@ -111,7 +110,7 @@
                     </div>
                 }
             }
-            @{ 
+            @{
                 i = i + 1;
             }
         </div>

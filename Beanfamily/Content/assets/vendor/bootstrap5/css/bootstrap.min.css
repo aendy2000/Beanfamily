@@ -7839,6 +7839,14 @@ textarea.form-control-lg {
     border-radius: .3rem !important
 }
 
+.rounded-5 {
+    border-radius: .5rem !important
+}
+
+.rounded-10 {
+    border-radius: 1rem !important
+}
+
 .rounded-circle {
     border-radius: 50% !important
 }

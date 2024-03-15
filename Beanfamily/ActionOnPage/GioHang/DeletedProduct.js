@@ -27,7 +27,7 @@
                     if (ketqua == "KHONGTONTAI") {
                         Swal.fire({
                             title: "Thông báo",
-                            text: "Sản phẩm" + name + " không tồn tại.",
+                            text: "Sản phẩm " + name + " không tồn tại.",
                             icon: "warning"
                         }).then(() => {
                             window.location.reload();

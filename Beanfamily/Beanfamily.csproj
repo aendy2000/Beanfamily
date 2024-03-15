@@ -3003,7 +3003,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Views\Profile\" />
     <Folder Include="Content\AdminAreas\images\taikhoanbean\" />
     <Folder Include="Content\assets\vendor\splide\" />
   </ItemGroup>

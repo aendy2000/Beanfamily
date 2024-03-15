@@ -201,7 +201,7 @@ namespace Beanfamily.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult SuaSanPham(int id, List<HttpPostedFileBase> images, HttpPostedFileBase video, string ten, int danhmuc, string mota, bool hienthi, string lstLoai, string lstSoLuong, string lstGia, string imageCu, string videoCu)
+        public ActionResult SuaSanPham(int id, List<HttpPostedFileBase> images, HttpPostedFileBase video, string ten, int danhmuc, string mota, bool hienthi, string lstIdLoai, string lstLoai, string lstSoLuong, string lstGia, string imageCu, string videoCu)
         {
             try
             {
@@ -217,7 +217,7 @@ namespace Beanfamily.Areas.Admin.Controllers
                 sanpham.id_danhmucmuasamcap1 = danhmuc;
                 sanpham.mota = mota;
                 sanpham.hienthi = hienthi;
-                model.TonKhoSanPham.RemoveRange(sanpham.TonKhoSanPham);
+
                 model.Entry(sanpham).State = EntityState.Modified;
                 model.SaveChanges();
 
@@ -281,30 +281,94 @@ namespace Beanfamily.Areas.Admin.Controllers
 
                 if (lstLoai.IndexOf("#") != -1)
                 {
+                    var lstIdLoais = lstIdLoai.Split('#').ToList();
                     var lstLoais = lstLoai.Split('#').ToList();
                     var lstSoLuongs = lstSoLuong.Split('#').ToList();
                     var lstGias = lstGia.Split('#').ToList();
 
+                    var lstTonKho = model.TonKhoSanPham.Where(t => t.id_sanphammuasam == idSanPham).ToList();
+
+                    if (lstTonKho.Count > 0)
+                    {
+                        foreach (var item in lstTonKho)
+                        {
+                            bool checkTonKho = false;
+                            int idTonKhoCanXoa = item.id;
+
+                            for (int i = 0; i < lstIdLoais.Count; i++)
+                            {
+                                if (!lstIdLoais[i].ToLower().Equals("new"))
+                                {
+                                    int idLoaiTonKho = Int32.Parse(lstIdLoais[i].Trim());
+                                    if (item.id == idLoaiTonKho)
+                                    {
+                                        checkTonKho = true;
+                                        break;
+                                    }
+                                }
+                            }
+
+                            if (checkTonKho == false) {
+                                var tonKhoDeleted = model.TonKhoSanPham.Find(idTonKhoCanXoa);
+                                model.TonKhoSanPham.Remove(tonKhoDeleted);
+                                model.SaveChanges();
+                            }
+                        }
+                    }
+
                     for (int i = 0; i < lstLoais.Count; i++)
                     {
-                        TonKhoSanPham tonkho = new TonKhoSanPham();
-                        tonkho.id_sanphammuasam = idSanPham;
-                        tonkho.tenloai = lstLoais[i].Trim();
-                        tonkho.soluong = Int32.Parse(lstSoLuongs[i].Trim());
-                        tonkho.gia = Decimal.Parse(lstGias[i].Replace(",", "").Trim());
-                        model.TonKhoSanPham.Add(tonkho);
+                        if (lstIdLoais[i].Trim().ToLower().Equals("new"))
+                        {
+                            TonKhoSanPham tonkho = new TonKhoSanPham();
+                            tonkho.id_sanphammuasam = idSanPham;
+                            tonkho.tenloai = lstLoais[i].Trim();
+                            tonkho.soluong = Int32.Parse(lstSoLuongs[i].Trim());
+                            tonkho.gia = Decimal.Parse(lstGias[i].Replace(",", "").Trim());
+                            model.TonKhoSanPham.Add(tonkho);
+                            model.SaveChanges();
+                        }
+                        else
+                        {
+                            int idLoaiTonKho = Int32.Parse(lstIdLoais[i].Trim());
+                            var modelLoaiSanPham = model.TonKhoSanPham.FirstOrDefault(t => t.id == idLoaiTonKho && t.id_sanphammuasam == idSanPham);
+
+                            modelLoaiSanPham.tenloai = lstLoais[i].Trim();
+                            modelLoaiSanPham.soluong = Int32.Parse(lstSoLuongs[i].Trim());
+                            modelLoaiSanPham.gia = Decimal.Parse(lstGias[i].Replace(",", "").Trim());
+                            model.Entry(modelLoaiSanPham).State = EntityState.Modified;
+                            model.SaveChanges();
+                        }
                     }
-                    model.SaveChanges();
                 }
                 else
                 {
-                    TonKhoSanPham tonkho = new TonKhoSanPham();
-                    tonkho.id_sanphammuasam = idSanPham;
-                    tonkho.tenloai = lstLoai.Trim();
-                    tonkho.soluong = Int32.Parse(lstSoLuong.Trim());
-                    tonkho.gia = Decimal.Parse(lstGia.Replace(",", "").Trim());
-                    model.TonKhoSanPham.Add(tonkho);
-                    model.SaveChanges();
+                    if (lstIdLoai.Trim().ToLower().Equals("new"))
+                    {
+                        model.TonKhoSanPham.RemoveRange(sanpham.TonKhoSanPham);
+                        model.Entry(sanpham).State = EntityState.Modified;
+                        model.SaveChanges();
+
+                        TonKhoSanPham tonkho = new TonKhoSanPham();
+                        tonkho.id_sanphammuasam = idSanPham;
+                        tonkho.tenloai = lstLoai.Trim();
+                        tonkho.soluong = Int32.Parse(lstSoLuong.Trim());
+                        tonkho.gia = Decimal.Parse(lstGia.Replace(",", "").Trim());
+                        model.TonKhoSanPham.Add(tonkho);
+                        model.SaveChanges();
+                    }
+                    else
+                    {
+                        int idLoaiTonKho = Int32.Parse(lstIdLoai.Trim());
+                        var modelLoaiSanPham = model.TonKhoSanPham.FirstOrDefault(t => t.id == idLoaiTonKho && t.id_sanphammuasam == idSanPham);
+
+                        modelLoaiSanPham.tenloai = lstLoai.Trim();
+                        modelLoaiSanPham.soluong = Int32.Parse(lstSoLuong.Trim());
+                        modelLoaiSanPham.gia = Decimal.Parse(lstGia.Replace(",", "").Trim());
+                        model.Entry(modelLoaiSanPham).State = EntityState.Modified;
+                        model.SaveChanges();
+
+                    }
                 }
                 return Content("SUCCESS");
             }

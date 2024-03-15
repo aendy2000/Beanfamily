@@ -11,6 +11,7 @@
 
 <div id="SuaSanPhamModalPartial">
     <div class="modal-body">
+        <h5 class="text-center mb-4 text-bg-primary text-white" style="border-radius: 16px; height: 30px; display: flex; flex-direction: column; justify-content: center;">THÔNG TIN SẢN PHẨM</h5>
         <div class="row m-2">
             <div class="col-sm-12 col-lg-12">
                 <div class="row mb-3">
@@ -111,6 +112,8 @@
                         }
                     </div>
                 </div>
+                <hr class="my-4" />
+                <h5 class="text-center mb-4 text-bg-primary text-white" style="border-radius: 16px; height: 30px; display: flex; flex-direction: column; justify-content: center;">MẶT HÀNG TỒN KHO</h5>
                 <div id="suadanhsachcacloai">
                     @foreach (var item in Model.TonKhoSanPham)
                     {
@@ -120,15 +123,15 @@
                             <div id="suacumloai1" name="1" class="col-12">
                                 <div class="row mb-3">
                                     <div class="col-md-12 col-lg-4">
-                                        <input value="@item.tenloai" id="sualoai1" type="text" placeholder="Loại (VD: 500ml, 2kg...)" class="form-control">
+                                        <input value="@item.tenloai" id="sualoai1" name="@item.id" type="text" placeholder="Loại (VD: 500ml, 2kg...)" class="form-control">
                                         <label style="margin-left: 5px" id="invalid-sualoai1-feedback" class="text-danger" hidden></label>
                                     </div>
                                     <div class="col-md-12 col-lg-4">
-                                        <input value="@item.gia.ToString("0,0").Replace(".",",")" id="suagia1" type="text" data-type="currency" placeholder="Giá sản phẩm" class="form-control">
+                                        <input value="@item.gia.ToString("0,0").Replace(".",",")" id="suagia1" name="@item.id" type="text" data-type="currency" placeholder="Giá sản phẩm" class="form-control">
                                         <label style="margin-left: 5px" id="invalid-suagia1-feedback" class="text-danger" hidden></label>
                                     </div>
                                     <div class="col-md-12 col-lg-4">
-                                        <input value="@item.soluong" id="suasoluong1" type="text" data-type="numbers" placeholder="Số lượng tồn kho" class="form-control">
+                                        <input value="@item.soluong" id="suasoluong1" name="@item.id" type="text" data-type="numbers" placeholder="Số lượng tồn kho" class="form-control">
                                         <label style="margin-left: 5px" id="invalid-suasoluong1-feedback" class="text-danger" hidden></label>
                                     </div>
                                 </div>
@@ -139,15 +142,15 @@
                             <div id="suacumloai@(i)" name="@(i)" class="col-12">
                                 <div class="row mb-3">
                                     <div class="col-md-12 col-lg-4">
-                                        <input value="@item.tenloai" id="sualoai@(i)" type="text" placeholder="Loại (VD: 500ml, 2kg...)" class="form-control">
+                                        <input value="@item.tenloai" id="sualoai@(i)" name="@item.id" type="text" placeholder="Loại (VD: 500ml, 2kg...)" class="form-control">
                                         <label style="margin-left: 5px" id="invalid-sualoai@(i)-feedback" class="text-danger" hidden></label>
                                     </div>
                                     <div class="col-md-12 col-lg-4">
-                                        <input value="@item.gia.ToString("0,0").Replace(".",",")" id="suagia@(i)" type="text" data-type="currency" placeholder="Giá sản phẩm" class="form-control">
+                                        <input value="@item.gia.ToString("0,0").Replace(".",",")" id="suagia@(i)" name="@item.id" type="text" data-type="currency" placeholder="Giá sản phẩm" class="form-control">
                                         <label style="margin-left: 5px" id="invalid-suagia@(i)-feedback" class="text-danger" hidden></label>
                                     </div>
                                     <div class="col-md-12 col-lg-3">
-                                        <input value="@item.soluong" id="suasoluong@(i)" type="text" data-type="numbers" placeholder="Số lượng tồn kho" class="form-control">
+                                        <input value="@item.soluong" id="suasoluong@(i)" name="@item.id" type="text" data-type="numbers" placeholder="Số lượng tồn kho" class="form-control">
                                         <label style="margin-left: 5px" id="invalid-suasoluong@(i)-feedback" class="text-danger" hidden></label>
                                     </div>
                                     <div class="col-md-12 col-lg-1">

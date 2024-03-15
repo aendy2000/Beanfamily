@@ -11,18 +11,14 @@
     $('body').find('.slider-for').slick({
         slidesToShow: 1,
         slidesToScroll: 1,
+        dots: true,
         fade: true,
-        dots: false,
-        appendDots: $('body').find('.wrap-slick1-dots'),
-        dotsClass: 'slick1-dots',
         infinite: true,
-        autoplay: false,
-        autoplaySpeed: 3000,
+        autoplay: true,
+        autoplaySpeed: 2500,
+        speed: 300,
         arrows: true,
-        //appendArrows: $('body').find('.wrap-slick1'),
-        //prevArrow: '<button class="wrap-slick1 arrow-slick1 prev-slick1"><i class="fa fa-angle-left" aria-hidden="true"></i></button>',
-        //nextArrow: '<button class="wrap-slick1 arrow-slick1 next-slick1"><i class="fa fa-angle-right" aria-hidden="true"></i></button>',
-        asNavFor: '.slider-nav'
+        asNavFor: '.slider-nav',
     });
 
     var soLuongHienThi = Number($('body').find('[id="totalImagePro"]').val());
@@ -36,13 +32,9 @@
     $('body').find('.slider-nav').slick({
         slidesToShow: soLuongHienThi,
         slidesToScroll: 1,
-        dots: false,
-        arrows: true,
+        arrows: false,
         asNavFor: '.slider-for',
         focusOnSelect: true,
-        arrows: false,
-        prevArrow: '<button class="arrow-slick1 prev-slick1"><i class="fa fa-angle-left" aria-hidden="true"></i></button>',
-        nextArrow: '<button class="arrow-slick1 next-slick1"><i class="fa fa-angle-right" aria-hidden="true"></i></button>',
     });
 
     var slFirst = Number($('body').find('[id="selectloai"] :selected').attr('tonkhosoluong'));

@@ -6,18 +6,18 @@
     int i = 1;
 }
 <div id="chinhsuaquyenpartial" class="modal-body">
+    <h5 class="text-center mb-4 text-bg-primary text-white" style="border-radius: 16px; height: 30px; display: flex; flex-direction: column; justify-content: center;">THÔNG TIN PHÂN QUYỀN</h5>
+
     <div class="row mb-4 mt-3">
         <div class="col-sm-12">
             <input hidden id="editid" value="@Model.id">
             <input id="editname" value="@Model.name" type="text" placeholder="Nhập tên quyền" class="form-control">
             <label style="margin-left: 5px" id="invalid-editname-feedback" class="text-danger" hidden></label>
         </div>
-        <div class="col-12">
-            <div class="bg-success-light">
-                <h6 class="text-center mt-4 font-weight-bold">CHỌN CHỨC NĂNG CHO PHÉP TRUY CẬP</h6>
-            </div>
-        </div>
     </div>
+    <hr class="my-4" />
+    <h5 class="text-center mb-4 text-bg-primary text-white" style="border-radius: 16px; height: 30px; display: flex; flex-direction: column; justify-content: center;">CHỨC NĂNG CHO PHÉP TRUY CẬP</h5>
+
     <ul class="list-group">
 
         @foreach (var item in lstFunc)

@@ -8,15 +8,15 @@
             <div id="suacumloai` + sttTang + `" name="` + sttTang + `" class="col-12">
                 <div class="row mb-3">
                     <div class="col-md-12 col-lg-4">
-                        <input id="sualoai` + sttTang + `" type="text" placeholder="Loại (VD: 500ml, 2kg...)" class="form-control">
+                        <input id="sualoai` + sttTang + `" name="new" type="text" placeholder="Loại (VD: 500ml, 2kg...)" class="form-control">
                         <label style="margin-left: 5px" id="invalid-sualoai` + sttTang + `-feedback" class="text-danger" hidden></label>
                     </div>
                     <div class="col-md-12 col-lg-4">
-                        <input id="suagia` + sttTang + `" type="text" data-type="currency" placeholder="Giá sản phẩm" class="form-control">
+                        <input id="suagia` + sttTang + `" name="new" type="text" data-type="currency" placeholder="Giá sản phẩm" class="form-control">
                         <label style="margin-left: 5px" id="invalid-suagia` + sttTang + `-feedback" class="text-danger" hidden></label>
                     </div>
                     <div class="col-md-12 col-lg-3">
-                        <input id="suasoluong` + sttTang + `" type="text" data-type="numbers" placeholder="Số lượng tồn kho" class="form-control">
+                        <input id="suasoluong` + sttTang + `" name="new" type="text" data-type="numbers" placeholder="Số lượng tồn kho" class="form-control">
                         <label style="margin-left: 5px" id="invalid-suasoluong` + sttTang + `-feedback" class="text-danger" hidden></label>
                     </div>
                     <div class="col-md-12 col-lg-1">
@@ -107,6 +107,7 @@
         $('#invalid-suadanhmuc-feedback').prop('hidden', true);
 
         var check = true;
+        var lstIdLoai = "";
         var lstLoai = "";
         var lstSoLuong = "";
         var lstGia = "";
@@ -120,20 +121,10 @@
             $('body').find('[id="invalid-suasoluong' + id + '-feedback"]').prop('hidden', true);
             $('body').find('[id="invalid-suagia' + id + '-feedback"]').prop('hidden', true);
 
-            var loai = $('body').find('[id="sualoai' + id + '"]').val();
+            lstIdLoai += $('body').find('[id="sualoai' + id + '"]').attr('name') + "#";
             var soluong = $('body').find('[id="suasoluong' + id + '"]').val();
             var gia = $('body').find('[id="suagia' + id + '"]').val();
-
-            if (gia.length < 1) {
-                check = false;
-                $('body').find('[id="suagia' + id + '"]').addClass('valid-was-validated');
-                $('body').find('[id="invalid-suagia' + id + '-feedback"]').text("Chưa nhập giá tiền.").prop('hidden', false);
-                $('body').find('[id="suagia' + id + '"]').focus();
-
-                $('#btnluusuaSanPham').html('Lưu thông tin');
-                $('#btnluusuaSanPham').prop('disabled', false);
-            }
-            else { lstGia += gia + "#"; }
+            var loai = $('body').find('[id="sualoai' + id + '"]').val();
 
             if (soluong.length < 1) {
                 check = false;
@@ -145,6 +136,17 @@
                 $('#btnluusuaSanPham').prop('disabled', false);
             }
             else { lstSoLuong += soluong + "#"; }
+
+            if (gia.length < 1) {
+                check = false;
+                $('body').find('[id="suagia' + id + '"]').addClass('valid-was-validated');
+                $('body').find('[id="invalid-suagia' + id + '-feedback"]').text("Chưa nhập giá tiền.").prop('hidden', false);
+                $('body').find('[id="suagia' + id + '"]').focus();
+
+                $('#btnluusuaSanPham').html('Lưu thông tin');
+                $('#btnluusuaSanPham').prop('disabled', false);
+            }
+            else { lstGia += gia + "#"; }
 
             if (loai.length < 1) {
                 check = false;
@@ -191,6 +193,7 @@
             formData.append('danhmuc', danhmuc);
             formData.append('mota', $('#suamota').val().trim());
             formData.append('hienthi', $('#suahienthi').prop('checked'));
+            formData.append('lstIdLoai', lstIdLoai.substring(0, lstIdLoai.length - 1));
             formData.append('lstLoai', lstLoai.substring(0, lstLoai.length - 1));
             formData.append('lstSoLuong', lstSoLuong.substring(0, lstSoLuong.length - 1));
             formData.append('lstGia', lstGia.substring(0, lstGia.length - 1));
