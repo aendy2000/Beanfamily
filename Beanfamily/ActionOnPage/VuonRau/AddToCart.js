@@ -1,16 +1,14 @@
 ﻿$(document).ready(function () {
     $('body').on('click', '[id="addToCart"]', function () {
         var sanpham = $('body').find('[id="idPro"]').val();
-        var loai = $('body').find('[id="selectloai"]').find('option:selected').val();
         var soluong = $('body').find('[id="soluong"]').val();
 
         var formData = new FormData();
         formData.append('idsp', sanpham);
-        formData.append('idloaitonkho', loai);
         formData.append('soluong', soluong);
 
         $.ajax({
-            url: $('body').find('[id="requestPath"]').val() + 'muasam/addtocart',
+            url: $('body').find('[id="requestPath"]').val() + 'vuonrau/addtocart',
             data: formData,
             dataType: 'html',
             type: 'POST',

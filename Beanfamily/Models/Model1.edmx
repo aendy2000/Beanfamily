@@ -299,7 +299,7 @@
           <Property Name="hinhanh" Type="nvarchar(max)" />
           <Property Name="video" Type="nvarchar(max)" />
           <Property Name="tensanpham" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="giatritrendonvi" Type="int" Nullable="false" />
+          <Property Name="giatritrendonvi" Type="decimal" Precision="12" Scale="2" Nullable="false" />
           <Property Name="gia" Type="money" Nullable="false" />
           <Property Name="mota" Type="nvarchar(max)" />
           <Property Name="luotxem" Type="decimal" Precision="18" Scale="0" Nullable="false" />
@@ -1344,7 +1344,7 @@
           <Property Name="hinhanh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="video" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="tensanpham" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="giatritrendonvi" Type="Int32" Nullable="false" />
+          <Property Name="giatritrendonvi" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
           <Property Name="gia" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="mota" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="luotxem" Type="Decimal" Precision="18" Scale="0" Nullable="false" />

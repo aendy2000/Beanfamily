@@ -34,13 +34,13 @@
         Sản phẩm
     </h2>
 </section>
-<input id="idPro" value="@Model.id" hidden/>
+<input id="idPro" value="@Model.id" hidden />
 <input id="totalImagePro" value="@dem" hidden />
 <section class="section-ourmenu bg2-pattern p-t-60 p-b-40">
     <div class="container">
         <div class="row gx-5">
-            <aside class="col-lg-6 ">
-                <div class="slider-for gallery-product">
+            <aside class="col-lg-6">
+                <div class="slider-for gallery-product m-3">
                     @if (!string.IsNullOrEmpty(Model.video))
                     {
                         <div class="slickSlider">
@@ -87,52 +87,53 @@
                         }
                     }
                 </div>
-                <div class="d-flex justify-content-center mb-3 slider-nav">
+                <div style="width: 100%" class="d-flex justify-content-center">
+                    <div class="d-flex justify-content-center mb-3 slider-nav" style="width: @((dem > 1) ? (dem * 100) - 100 : (dem * 100))px">
 
-                    @if (!string.IsNullOrEmpty(Model.video))
-                    {
-                        <div class="slickSlider">
-                            <a style="border-radius:10px" data-fslightbox="mygalley" class="mx-1 rounded-2 item-thumb" data-type="image">
-                                <img style="border-radius:10px" width="80" height="80" class="rounded-2" src="@Url.Content("~/Content/assets/images/videodefault.jpg")" />
-                            </a>
-                        </div>
-                    }
-                    @if (string.IsNullOrEmpty(Model.hinhanh))
-                    {
-                        <div class="slickSlider">
-
-                            <a style="border-radius:10px" data-fslightbox="mygalley" class="mx-1 rounded-2 item-thumb" data-type="image">
-                                <img style="border-radius:10px" width="80" height="80" class="rounded-2" src="@Url.Content("~/Content/assets/images/product/sanphamdefault.jpg")" />
-                            </a>
-                        </div>
-                    }
-                    else
-                    {
-                        if (Model.hinhanh.IndexOf("#") != -1)
-                        {
-                            foreach (var item in Model.hinhanh.Split('#').ToList())
-                            {
-                                <div class="slickSlider">
-
-                                    <a style="border-radius:10px" data-fslightbox="mygalley" class="mx-1 rounded-2 item-thumb" data-type="image">
-                                        <img style="border-radius:10px" width="80" height="80" class="rounded-2" src="@Url.Content(item)" />
-                                    </a>
-                                </div>
-                            }
-
-                        }
-                        else
+                        @if (!string.IsNullOrEmpty(Model.video))
                         {
                             <div class="slickSlider">
-
-                                <a style="border-radius:10px" data-fslightbox="mygalley" class="mx-1 rounded-2 item-thumb" data-type="image">
-                                    <img style="border-radius:10px" width="80" height="80" class="rounded-2" src="@Url.Content(Model.hinhanh)" />
+                                <a style="border-radius:10px" data-fslightbox="mygalley" class="mx-1 rounded-5 item-thumb" data-type="image">
+                                    <img style="object-fit: cover; " width="80" height="80" class="rounded-5" src="@Url.Content("~/Content/assets/images/videodefault.jpg")" />
                                 </a>
                             </div>
                         }
-                    }
-                </div>
-                <!-- thumbs-wrap.// -->
+                        @if (string.IsNullOrEmpty(Model.hinhanh))
+                        {
+                            <div class="slickSlider">
+
+                                <a style="border-radius:10px" data-fslightbox="mygalley" class="mx-1 rounded-5 item-thumb" data-type="image">
+                                    <img style="object-fit: cover;" width="80" height="80" class="rounded-5" src="@Url.Content("~/Content/assets/images/product/sanphamdefault.jpg")" />
+                                </a>
+                            </div>
+                        }
+                        else
+                        {
+                            if (Model.hinhanh.IndexOf("#") != -1)
+                            {
+                                foreach (var item in Model.hinhanh.Split('#').ToList())
+                                {
+                                    <div class="slickSlider">
+
+                                        <a style="border-radius:10px" data-fslightbox="mygalley" class="mx-1 rounded-5 item-thumb" data-type="image">
+                                            <img style="object-fit: cover" width="80" height="80" class="rounded-5" src="@Url.Content(item)" />
+                                        </a>
+                                    </div>
+                                }
+
+                            }
+                            else
+                            {
+                                <div class="slickSlider">
+
+                                    <a style="border-radius:10px" data-fslightbox="mygalley" class="mx-1 rounded-5 item-thumb" data-type="image">
+                                        <img style="object-fit: cover" width="80" height="80" class="rounded-5" src="@Url.Content(Model.hinhanh)" />
+                                    </a>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div> <!-- thumbs-wrap.// -->
                 <!-- gallery-wrap .end// -->
             </aside>
             <main class="col-lg-6">
@@ -153,7 +154,14 @@
                         </div>
                     </div>
                     <div class="mb-1">
-                        <span id="trangthaihang" class="text-success">Còn hàng</span>
+                        @if (Model.giatritrendonvi < 1)
+                        {
+                            <span id="trangthaihang" class="text-danger">Hết hàng</span>
+                        }
+                        else
+                        {
+                            <span id="trangthaihang" class="text-success">Còn hàng</span>
+                        }
                     </div>
                     <div class="mb-2">
                         <span class="text-muted">@Model.luotxem.ToString("0,0") lượt xem</span>
@@ -164,23 +172,38 @@
                     </p>
 
                     <div class="mb-3">
-                        <span class="text-white">Giá: <span id="gia-tonkho" class="text-warning font-weight-bold">@Model.gia</span></span>
+                        <span class="text-white">Giá: <span id="gia-tonkho" class="text-warning font-weight-bold">@Model.gia.ToString("0,0")đ / @Model.donvi</span></span>
                     </div>
                     <div class="row mb-3 text-white">
-                        <div class="col-md-4 col-6 mb-3">
-                            <label class="mb-2 d-block">Kho: @Model.giatritrendonvi @Model.donvi</label>
+                        <div class="col-md-12 col-sm-12 mb-3">
+                            <label class="mb-2 d-block">Tồn kho: @Model.giatritrendonvi.ToString("0.00").Replace(",00", String.Empty) @Model.donvi</label>
                         </div>
                         <!-- col.// -->
-                        <div class="col-md-4 col-6 mb-3">
-                            <label name="" class="mb-2 d-block">Số lượng:</label>
+                        <div class="col-md-6 col-sm-12 mb-3">
+                            <label id="tonkhothucte" tonkhosoluong="@Model.giatritrendonvi" class="mb-2 d-block">Số lượng (@Model.donvi):</label>
                             <div class="input-group mb-3" style="width: 100%;">
-                                <button class="text-white btn btn-white border border-secondary px-3" type="button" id="button-minus-product" data-mdb-ripple-color="dark">
-                                    <i class="fa fa-minus"></i>
-                                </button>
-                                <input value="1" id="soluong" data-type='numbers' type="text" class="form-control text-center border border-secondary" placeholder="0" aria-label="Example text with button addon" aria-describedby="button-addon1" />
-                                <button class="text-white btn btn-white border border-secondary px-3" type="button" id="button-addon-product" data-mdb-ripple-color="dark">
-                                    <i class="fa fa-plus"></i>
-                                </button>
+
+                                @if (Model.giatritrendonvi < 1)
+                                {
+                                    <button disabled class="text-white btn btn-white border border-secondary px-3" type="button" id="button-minus-product" data-mdb-ripple-color="dark">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                    <input disabled value="0" id="soluong" data-type='currency' type="text" class="form-control text-center border border-secondary" placeholder="0" aria-label="Example text with button addon" aria-describedby="button-addon1" />
+                                    <button disabled class="text-white btn btn-white border border-secondary px-3" type="button" id="button-addon-product" data-mdb-ripple-color="dark">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
+                                }
+                                else
+                                {
+                                    <button class="text-white btn btn-white border border-secondary px-3" type="button" id="button-minus-product" data-mdb-ripple-color="dark">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                    <input value="1" id="soluong" data-type='currency' type="text" class="form-control text-center border border-secondary" placeholder="0" aria-label="Example text with button addon" aria-describedby="button-addon1" />
+                                    <button class="text-white btn btn-white border border-secondary px-3" type="button" id="button-addon-product" data-mdb-ripple-color="dark">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
+                                }
+
                             </div>
                         </div>
                         <!-- col.// -->
@@ -188,9 +211,27 @@
 
                         </div>-->
                     </div>
-                    <button id="addToCart" style="max-width:100%; min-width:40%; cursor: pointer;" class="btn1 flex-c-m size1 txt3 trans-0-4">
-                        <i class="fa fa-cart-plus" style="margin-right: 6px" aria-hidden="true"></i> THÊM VÀO GIỎ
-                    </button>
+                    @if (Model.giatritrendonvi < 1)
+                    {
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <button disabled id="addToCart" style="max-width:100%; min-width:40%; cursor: pointer;" class="btn1 flex-c-m size1 txt3 trans-0-4">
+                                    <i class="fa fa-cart-plus" style="margin-right: 6px" aria-hidden="true"></i> THÊM VÀO GIỎ
+                                </button>
+                            </div>
+                        </div>
+
+                    }
+                    else
+                    {
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <button id="addToCart" style="width:100%; cursor: pointer;" class="btn1 flex-c-m size1 txt3 trans-0-4">
+                                    <i class="fa fa-cart-plus" style="margin-right: 6px" aria-hidden="true"></i> THÊM VÀO GIỎ
+                                </button>
+                            </div>
+                        </div>
+                    }
                 </div>
             </main>
         </div>

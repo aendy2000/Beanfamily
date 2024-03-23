@@ -1,4 +1,8 @@
 ﻿$(document).ready(function () {
+    function formatNumber(n) {
+        return n.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    }
+
     $('body').find('.main_menu').find('a').each(function () {
         var tagA = $(this);
         if (tagA.attr('class') == "active") {
@@ -11,83 +15,100 @@
     $('body').find('.slider-for').slick({
         slidesToShow: 1,
         slidesToScroll: 1,
-        fade: true,
         dots: true,
-        appendDots: $('body').find('.wrap-slick1-dots'),
-        dotsClass: 'slick1-dots',
+        fade: true,
         infinite: true,
-        autoplay: false,
-        autoplaySpeed: 3000,
-        arrows: false,
-        appendArrows: $('body').find('.wrap-slick1'),
-        prevArrow: '<button class="wrap-slick1 arrow-slick1 prev-slick1"><i class="fa fa-angle-left" aria-hidden="true"></i></button>',
-        nextArrow: '<button class="wrap-slick1 arrow-slick1 next-slick1"><i class="fa fa-angle-right" aria-hidden="true"></i></button>',
-        asNavFor: '.slider-nav'
+        autoplay: true,
+        autoplaySpeed: 2500,
+        speed: 300,
+        arrows: true,
+        asNavFor: '.slider-nav',
     });
+
+    var soLuongHienThi = Number($('body').find('[id="totalImagePro"]').val());
+    if (soLuongHienThi <= 2) {
+        soLuongHienThi = 1;
+    }
+    else if (soLuongHienThi > 2) {
+        soLuongHienThi = (soLuongHienThi - 1);
+    }
+
     $('body').find('.slider-nav').slick({
-        slidesToShow: $('body').find('[id="totalImagePro"]').val(),
+        slidesToShow: soLuongHienThi,
         slidesToScroll: 1,
+        arrows: false,
         asNavFor: '.slider-for',
         focusOnSelect: true,
-        arrows: false,
-        prevArrow: '<button class="arrow-slick1 prev-slick1"><i class="fa fa-angle-left" aria-hidden="true"></i></button>',
-        nextArrow: '<button class="arrow-slick1 next-slick1"><i class="fa fa-angle-right" aria-hidden="true"></i></button>',
     });
 
-    var slFirst = Number($('body').find('[id="selectloai"] :selected').attr('tonkhosoluong'));
-    var giaFirst = Number($('body').find('[id="selectloai"] :selected').attr('tonkhogia'));
-    var donvi = $('body').find('[id="selectloai"] :selected').attr('donvi');
-
-    $('body').find('[id="soluong-tonkho"]').text('Kho: ' + slFirst + ' ' + donvi);
-    $('body').find('[id="gia-tonkho"]').text(giaFirst + 'đ');
-
-    $('body').on('change', '[id="selectloai"]', function () {
-        var sl = $(this).find('option:selected').attr('tonkhosoluong');
-        var gia = $(this).find('option:selected').attr('tonkhogia');
-
-        slFirst = Number(sl);
-        giaFirst = Number(gia);
-
-        $('body').find('[id="soluong-tonkho"]').text('Kho: ' + sl + ' ' + donvi);
-        $('body').find('[id="gia-tonkho"]').text(gia + 'đ');
-
-        if (sl < 1) {
-            $('body').find('[id="soluong"]').val(0).prop('disabled', true);
-            $('body').find('[id="button-addon-product"]').prop('disabled', true);
-            $('body').find('[id="button-minus-product"]').prop('disabled', true);
-            
-            $('body').find('[id="trangthaihang"]').attr('class', 'text-danger').text('Hết hàng');
-            $('body').find('[id="addToCart"]').prop('disabled', true);
-
-        }
-        else {
-            $('body').find('[id="soluong"]').val(1).prop('disabled', false);
-            $('body').find('[id="button-addon-product"]').prop('disabled', false);
-            $('body').find('[id="button-minus-product"]').prop('disabled', false);
-
-            $('body').find('[id="trangthaihang"]').attr('class', 'text-success').text('Còn hàng');
-            $('body').find('[id="addToCart"]').prop('disabled', false);
-        }
-    });
+    var slFirst = Number($('body').find('[id="tonkhothucte"]').attr('tonkhosoluong').replace(/,/g, '.'));
 
     $('body').on('click', '[id="button-addon-product"]', function () {
-        var inpSL = Number($('body').find('[id="soluong"]').val());
-        if (inpSL < 1) {
-            $('body').find('[id="soluong"]').val(1);
+        var inpSL = Number($('body').find('[id="soluong"]').val().replace(/,/g, ""));
+
+        if (inpSL <= 0) {
+            $('body').find('[id="soluong"]').val("0.1");
         }
-        else if (slFirst >= 100 && inpSL > 100) {
-            $('body').find('[id="soluong"]').val(100);
-        }
-        else if (slFirst < 100 && inpSL > slFirst) {
+        else if (inpSL > slFirst) {
             $('body').find('[id="soluong"]').val(slFirst);
+            var input_val = $('body').find('[id="soluong"]').val();
+
+            if (input_val === "") { return; }
+            var original_len = input_val.length;
+
+            var caret_pos = input.prop("selectionStart");
+
+            if (input_val.indexOf(".") >= 0) {
+
+                var decimal_pos = input_val.indexOf(".");
+
+                var left_side = input_val.substring(0, decimal_pos);
+                var right_side = input_val.substring(decimal_pos);
+
+                left_side = formatNumber(left_side);
+                right_side = formatNumber(right_side);
+
+                right_side = right_side.substring(0, 2);
+                input_val = left_side + "." + right_side;
+
+            } else {
+                input_val = formatNumber(input_val);
+                input_val = input_val;
+            }
+            input.val(input_val);
         }
-        else if (inpSL < 100 && inpSL < slFirst) {
+        else if (inpSL < slFirst) {
             $('body').find('[id="soluong"]').val(inpSL + 1);
+            var input_val = $('body').find('[id="soluong"]').val();
+
+            if (input_val === "") { return; }
+            var original_len = input_val.length;
+
+            var caret_pos = $('body').find('[id="soluong"]').prop("selectionStart");
+
+            if (input_val.indexOf(".") >= 0) {
+
+                var decimal_pos = input_val.indexOf(".");
+
+                var left_side = input_val.substring(0, decimal_pos);
+                var right_side = input_val.substring(decimal_pos);
+
+                left_side = formatNumber(left_side);
+                right_side = formatNumber(right_side);
+
+                right_side = right_side.substring(0, 2);
+                input_val = left_side + "." + right_side;
+
+            } else {
+                input_val = formatNumber(input_val);
+                input_val = input_val;
+            }
+            $('body').find('[id="soluong"]').val(input_val);
         }
         
     });
     $('body').on('click', '[id="button-minus-product"]', function () {
-        var inpSL = Number($('body').find('[id="soluong"]').val());
+        var inpSL = Number($('body').find('[id="soluong"]').val().replace(/,/g, ""));
         if (inpSL > 1 && inpSL <= slFirst) {
             $('body').find('[id="soluong"]').val(inpSL - 1);
         }
@@ -99,36 +120,31 @@
     $('body').on('input', '[id="soluong"]', function () {
         var inpSL = $(this).val();
         if (inpSL.length > 0) {
+            inpSL = inpSL.replace(/,/g, "");
             inpSL = Number(inpSL);
-            if (inpSL < 1) {
-                $(this).val('1');
+            if (inpSL <= 0) {
+                $(this).val('0.1');
             }
-            else if (slFirst >= 100 && inpSL > 100) {
-                $('body').find('[id="soluong"]').val(100);
-            }
-            else if (slFirst < 100 && inpSL > slFirst) {
+            else if (inpSL > slFirst) {
                 $('body').find('[id="soluong"]').val(slFirst);
             }
         }
     });
     $('body').on('keydown', '[id="soluong"]', function (e) {
         if (e.keyCode == '38') { //up
-            var inpSL = Number($('body').find('[id="soluong"]').val());
-            if (inpSL < 1) {
-                $('body').find('[id="soluong"]').val(1);
+            var inpSL = Number($('body').find('[id="soluong"]').val().replace(/,/g, ""));
+            if (inpSL <= 0) {
+                $('body').find('[id="soluong"]').val("0.1");
             }
-            else if (slFirst >= 100 && inpSL > 100) {
-                $('body').find('[id="soluong"]').val(100);
-            }
-            else if (slFirst < 100 && inpSL > slFirst) {
-                $('body').find('[id="soluong"]').val(slFirst);
-            }
-            else if (inpSL < 100 && inpSL < slFirst) {
+            else if (inpSL < slFirst) {
                 $('body').find('[id="soluong"]').val(inpSL + 1);
+            }
+            else if (inpSL >= slFirst) {
+                $('body').find('[id="soluong"]').val(slFirst);
             }
         }
         else if (e.keyCode == '40') { //down
-            var inpSL = Number($('body').find('[id="soluong"]').val());
+            var inpSL = Number($('body').find('[id="soluong"]').val().replace(/,/g, ""));
             if (inpSL > 1 && inpSL <= slFirst) {
                 $('body').find('[id="soluong"]').val(inpSL - 1);
             }
@@ -140,7 +156,7 @@
 
     $('body').on('focusout', '[id="soluong"]', function () {
         if ($(this).val().trim().length < 1) {
-            $('body').find('[id="soluong"]').val('1');
+            $('body').find('[id="soluong"]').val('0.1');
         }
     });
 

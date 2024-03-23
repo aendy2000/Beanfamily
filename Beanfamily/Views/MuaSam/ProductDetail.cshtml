@@ -20,9 +20,9 @@
         }
     }
 
-    if (dem > 5)
+    if (dem > 6)
     {
-        dem = 5;
+        dem = 6;
     }
 
 }
@@ -87,50 +87,52 @@
                         }
                     }
                 </div>
-                <div class="d-flex justify-content-center mb-3 slider-nav">
+                <div style="width: 100%" class="d-flex justify-content-center">
+                    <div class="d-flex justify-content-center mb-3 slider-nav" style="width: @((dem > 1) ? (dem * 100) - 100 : (dem * 100))px">
 
-                    @if (!string.IsNullOrEmpty(Model.video))
-                    {
-                        <div class="slickSlider">
-                            <a style="border-radius:10px" data-fslightbox="mygalley" class="mx-1 rounded-5 item-thumb" data-type="image">
-                                <img style="object-fit: cover; " width="80" height="80" class="rounded-5" src="@Url.Content("~/Content/assets/images/videodefault.jpg")" />
-                            </a>
-                        </div>
-                    }
-                    @if (string.IsNullOrEmpty(Model.hinhanh))
-                    {
-                        <div class="slickSlider">
-
-                            <a style="border-radius:10px" data-fslightbox="mygalley" class="mx-1 rounded-5 item-thumb" data-type="image">
-                                <img style="object-fit: cover;" width="80" height="80" class="rounded-5" src="@Url.Content("~/Content/assets/images/product/sanphamdefault.jpg")" />
-                            </a>
-                        </div>
-                    }
-                    else
-                    {
-                        if (Model.hinhanh.IndexOf("#") != -1)
+                        @if (!string.IsNullOrEmpty(Model.video))
                         {
-                            foreach (var item in Model.hinhanh.Split('#').ToList())
-                            {
-                                <div class="slickSlider">
-
-                                    <a style="border-radius:10px" data-fslightbox="mygalley" class="mx-1 rounded-5 item-thumb" data-type="image">
-                                        <img style="object-fit: cover" width="80" height="80" class="rounded-5" src="@Url.Content(item)" />
-                                    </a>
-                                </div>
-                            }
-
+                            <div class="slickSlider">
+                                <a style="border-radius:10px" data-fslightbox="mygalley" class="mx-1 rounded-5 item-thumb" data-type="image">
+                                    <img style="object-fit: cover; " width="80" height="80" class="rounded-5" src="@Url.Content("~/Content/assets/images/videodefault.jpg")" />
+                                </a>
+                            </div>
                         }
-                        else
+                        @if (string.IsNullOrEmpty(Model.hinhanh))
                         {
                             <div class="slickSlider">
 
                                 <a style="border-radius:10px" data-fslightbox="mygalley" class="mx-1 rounded-5 item-thumb" data-type="image">
-                                    <img style="object-fit: cover" width="80" height="80" class="rounded-5" src="@Url.Content(Model.hinhanh)" />
+                                    <img style="object-fit: cover;" width="80" height="80" class="rounded-5" src="@Url.Content("~/Content/assets/images/product/sanphamdefault.jpg")" />
                                 </a>
                             </div>
                         }
-                    }
+                        else
+                        {
+                            if (Model.hinhanh.IndexOf("#") != -1)
+                            {
+                                foreach (var item in Model.hinhanh.Split('#').ToList())
+                                {
+                                    <div class="slickSlider">
+
+                                        <a style="border-radius:10px" data-fslightbox="mygalley" class="mx-1 rounded-5 item-thumb" data-type="image">
+                                            <img style="object-fit: cover" width="80" height="80" class="rounded-5" src="@Url.Content(item)" />
+                                        </a>
+                                    </div>
+                                }
+
+                            }
+                            else
+                            {
+                                <div class="slickSlider">
+
+                                    <a style="border-radius:10px" data-fslightbox="mygalley" class="mx-1 rounded-5 item-thumb" data-type="image">
+                                        <img style="object-fit: cover" width="80" height="80" class="rounded-5" src="@Url.Content(Model.hinhanh)" />
+                                    </a>
+                                </div>
+                            }
+                        }
+                    </div>
                 </div>
                 <!-- thumbs-wrap.// -->
                 <!-- gallery-wrap .end// -->

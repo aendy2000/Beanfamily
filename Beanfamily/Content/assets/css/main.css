@@ -1315,8 +1315,8 @@ body {
 }
 
 .modal {
-    padding: 0px !important;
-    z-index: 1160;
+/*    padding: 0px !important;
+*/    z-index: 1160;
     overflow-x: hidden;
     overflow-y: auto !important;
     background: #00000080;

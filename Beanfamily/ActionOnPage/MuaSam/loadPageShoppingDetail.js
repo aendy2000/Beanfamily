@@ -37,8 +37,8 @@
         focusOnSelect: true,
     });
 
-    var slFirst = Number($('body').find('[id="selectloai"] :selected').attr('tonkhosoluong'));
-    var giaFirst = Number($('body').find('[id="selectloai"] :selected').attr('tonkhogia'));
+    var slFirst = $('body').find('[id="selectloai"] :selected').attr('tonkhosoluong');
+    var giaFirst = $('body').find('[id="selectloai"] :selected').attr('tonkhogia');
 
     $('body').find('[id="soluong-tonkho"]').text('Kho: ' + slFirst + ' sản phẩm');
     $('body').find('[id="gia-tonkho"]').text(giaFirst + 'đ');

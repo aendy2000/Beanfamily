@@ -27,7 +27,7 @@
                         @if (Session["id-category-muasam"].ToString().Equals("tatca"))
                         {
                             <li name="tatca" class="list-group-item active"><a>Tất cả</a></li>
-                            foreach (var item in dm)
+                            foreach (var item in dm.OrderBy(o => o.sothutu))
                             {
                                 <li name="@item.id" class="list-group-item"><a>@item.tendanhmuc</a></li>
                             }
@@ -35,7 +35,7 @@
                         else
                         {
                             <li name="tatca" class="list-group-item"><a>Tất cả</a></li>
-                            foreach (var item in dm)
+                            foreach (var item in dm.OrderBy(o => o.sothutu))
                             {
                                 if (item.id == Int32.Parse(Session["id-category-muasam"].ToString()))
                                 {

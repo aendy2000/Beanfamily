@@ -81,5 +81,110 @@ namespace Beanfamily.Controllers
             model = new BeanfamilyEntities();
             return View("productdetail", sp);
         }
+
+        [HttpPost]
+        public ActionResult AddToCart(int idsp, string soluong)
+        {
+            try
+            {
+                var sp = model.SanPhamRauNhaTrong.Find(idsp);
+                if (sp == null)
+                    return Content("KHONGTONTAI");
+
+                decimal soluongs = Convert.ToDecimal(soluong.Replace(",", "").Replace(".", ","));
+                if (Session["giohang-vuonrau"] == null)
+                {
+                    if (sp.giatritrendonvi <= 0)
+                        return Content("HETHANG");
+
+                    decimal tonKhoConLai = model.SanPhamRauNhaTrong.Find(idsp).giatritrendonvi;
+                    List<string> giohang = new List<string>();
+
+                    if (soluongs > tonKhoConLai)
+                    {
+                        Session["soluongmax-vuonrau-" + idsp] = tonKhoConLai;
+                        Session["tonkhoconlai-vuonrau-" + idsp] = tonKhoConLai;
+                        giohang.Add(idsp + "#" + tonKhoConLai.ToString("0.00"));
+                    }
+                    else
+                    {
+                        Session["soluongmax-vuonrau-" + idsp] = null;
+                        Session["tonkhoconlai-vuonrau-" + idsp] = tonKhoConLai;
+                        giohang.Add(idsp + "#" + soluong);
+                    }
+
+                    Session["giohang-vuonrau"] = giohang;
+                }
+                else
+                {
+                    List<string> giohang = Session["giohang-vuonrau"] as List<string>;
+
+
+                    var checks = false;
+                    foreach (string item in giohang)
+                    {
+                        int idPro = Int32.Parse(item.Split('#')[0]);
+                        if (idPro == idsp)
+                        {
+                            checks = true;
+
+                            decimal soluongs2 = Convert.ToDecimal(item.Split('#')[2]) + soluongs;
+                            decimal tonKhoConLai = model.SanPhamRauNhaTrong.Find(idsp).giatritrendonvi;
+                            if (sp.giatritrendonvi <= 0)
+                            {
+                                Session["soluongmax-vuonrau-" + idsp] = 0;
+                                Session["tonkhoconlai-vuonrau-" + idsp] = 0;
+                                giohang = giohang.Select(g => g.Replace(item, idPro + "#" + 0.00)).ToList();
+
+                                Session["giohang-vuonrau"] = giohang;
+                                return Content("HETHANG");
+                            }
+                            else
+                            {
+                                if (soluongs2 > tonKhoConLai)
+                                {
+                                    Session["soluongmax-vuonrau-" + idsp] = tonKhoConLai;
+                                    Session["tonkhoconlai-vuonrau-" + idsp] = tonKhoConLai;
+                                    giohang = giohang.Select(g => g.Replace(item, idPro + "#" + tonKhoConLai.ToString("0.00"))).ToList();
+                                }
+                                else
+                                {
+                                    Session["soluongmax-vuonrau-" + idsp] = null;
+                                    Session["tonkhoconlai-vuonrau-" + idsp] = tonKhoConLai;
+                                    giohang = giohang.Select(g => g.Replace(item, idPro + "#" + soluongs.ToString("0.00"))).ToList();
+                                }
+                            }
+                        }
+                    }
+
+                    if (checks == false)
+                    {
+                        decimal tonKhoConLai = model.SanPhamRauNhaTrong.Find(idsp).giatritrendonvi;
+
+                        if (soluongs > tonKhoConLai)
+                        {
+                            Session["soluongmax-vuonrau-" + idsp] = tonKhoConLai;
+                            Session["tonkhoconlai-vuonrau-" + idsp] = tonKhoConLai;
+                            giohang.Add(idsp + "#" + tonKhoConLai.ToString("0.00"));
+                        }
+                        else
+                        {
+                            Session["soluongmax-vuonrau-" + idsp] = null;
+                            Session["tonkhoconlai-vuonrau-" + idsp] = tonKhoConLai;
+                            giohang.Add(idsp + "#" + soluong);
+                        }
+                    }
+                    Session["giohang-vuonrau"] = giohang;
+                }
+
+                return PartialView("_addCart");
+            }
+            catch (Exception ex)
+            {
+                return Content("Chi tiết lỗi: " + ex.Message);
+            }
+
+        }
+
     }
 }

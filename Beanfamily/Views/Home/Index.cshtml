@@ -13,10 +13,10 @@
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
 }
 <!-- Slide1 -->
-<section class="section-slide">
+<section class="section-slide" style=" height: 100%;">
     <div class="wrap-slick1">
         <div class="slick1">
-            <div class="item-slick1 item1-slick1" style="background-image: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7) ), url(/Content/assets/images/slide1-01.jpg); ">
+            <div class="item-slick1 item1-slick1" style="background-image: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7) ), url(/Content/assets/images/slide1-01.jpg); margin: 0">
                 <div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
                     <span class="caption1-slide1 txt1 t-center animated visible-false m-b-15" data-appear="fadeInDown">
                         Nhà hàng chay
@@ -35,7 +35,7 @@
                 </div>
             </div>
 
-            <div class="item-slick1 item2-slick1" style="background-image: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7) ), url(/Content/assets/images/master-slides-02.jpg); background-color: rgba(0, 0, 0, 0.5); ">
+            <div class="item-slick1 item2-slick1" style="background-image: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7) ), url(/Content/assets/images/master-slides-02.jpg); background-color: rgba(0, 0, 0, 0.5); margin: 0 ">
                 <div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
                     <span class="caption1-slide1 txt1 t-center animated visible-false m-b-15" data-appear="fadeInDown">
                         Nhà hàng chay
@@ -54,7 +54,7 @@
                 </div>
             </div>
 
-            <div class="item-slick1 item3-slick1" style="background-image: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7) ), url(/Content/assets/images/master-slides-01.jpg); ">
+            <div class="item-slick1 item3-slick1" style="background-image: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7) ), url(/Content/assets/images/master-slides-01.jpg); margin: 0 ">
                 <div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
                     <span class="caption1-slide1 txt1 t-center animated visible-false m-b-15" data-appear="fadeInDown">
                         Nhà hàng chay
@@ -223,8 +223,8 @@
                 Sản Phẩm Mới
             </h3>
         </div>
-        <br />
         <hr class="my-3" style="background-color: darkgray" />
+        <br />
         <br />
         <br />
         <div @*style="border: 1px solid; border-color: darkgray; border-radius: 15px; margin-bottom: 50px"*@ class="row">
@@ -247,36 +247,38 @@
             </div>
 
             <div class="col-md-6 p-b-30">
-                    @foreach (var item in sanphammoinhahang)
-                    {
-                        <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom" style="border: 1px solid; border-color: white; border-radius: 15px">
-                            <div class="pic-blo3 size20 bo-rad-16 hov-img-zoom m-r-28">
-                                <a href="@Url.Action("productdetail", "menuhangngay", new { id = item.id })"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
-                            </div>
-                            <div class="text-blo3 size21 flex-col-l-m">
-                                <a href="@Url.Action("productdetail", "menuhangngay", new { id = item.id })" class="txt21 m-b-3">
-                                    @item.tensanpham
-                                </a>
-
-                                <span class="txt23">
-                                    @if (item.mota.Length > 45)
-                                    {
-                                        <span>@item.mota.Substring(0, 44)...</span>
-                                    }
-                                    else
-                                    {
-                                        <span>@item.mota</span>
-                                    }
-                                </span>
-
-                                <span class="txt22 m-t-20">
-                                    @item.gia.ToString("0,0") đ
-                                </span>
-                            </div>
+                @foreach (var item in sanphammoinhahang)
+                {
+                    <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom" style="border: 1px solid; border-color: white; border-radius: 15px">
+                        <div class="pic-blo3 size20 bo-rad-16 hov-img-zoom m-r-28">
+                            <a href="@Url.Action("productdetail", "menuhangngay", new { id = item.id })"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
                         </div>
-                    }
+                        <div class="text-blo3 size21 flex-col-l-m">
+                            <a href="@Url.Action("productdetail", "menuhangngay", new { id = item.id })" class="txt21 m-b-3">
+                                @item.tensanpham
+                            </a>
+
+                            <span class="txt23">
+                                @if (item.mota.Length > 45)
+                                {
+                                    <span>@item.mota.Substring(0, 44)...</span>
+                                }
+                                else
+                                {
+                                    <span>@item.mota</span>
+                                }
+                            </span>
+
+                            <span class="txt22 m-t-20">
+                                @item.gia.ToString("0,0") đ
+                            </span>
+                        </div>
+                    </div>
+                }
             </div>
         </div>
+        <hr class="my-3" style="background-color: darkgray">
+
         <br />
         <br />
         <div class="row">
@@ -329,6 +331,8 @@
                 </div>
             </div>
         </div>
+        <hr class="my-3" style="background-color: darkgray">
+
         <br />
         <br />
         <div class="row">
@@ -397,8 +401,9 @@
                 Sản Phẩm Nỗi bật
             </h3>
         </div>
-        <br />
         <hr class="my-3" style="background-color: darkgray" />
+
+        <br />
         <br />
         <br />
         <div @*style="border: 1px solid; border-color: darkgray; border-radius: 15px; margin-bottom: 50px"*@ class="row">
@@ -453,6 +458,8 @@
 
             </div>
         </div>
+        <hr class="my-3" style="background-color: darkgray">
+
         <br />
         <br />
         <div class="row">
@@ -504,6 +511,7 @@
                 </div>
             </div>
         </div>
+        <hr class="my-3" style="background-color: darkgray">
         <br />
         <br />
         <div class="row">
@@ -840,7 +848,7 @@
                     </h3>
                 </div>
 
-                <form class="wrap-form-booking">
+                <div class="wrap-form-booking">
                     <div class="row">
                         <div class="col-md-6">
                             <span class="txt9">
@@ -945,7 +953,7 @@
                             gửi thông tin
                         </button>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>

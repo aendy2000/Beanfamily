@@ -27,7 +27,7 @@ namespace Beanfamily.Models
         public string hinhanh { get; set; }
         public string video { get; set; }
         public string tensanpham { get; set; }
-        public int giatritrendonvi { get; set; }
+        public decimal giatritrendonvi { get; set; }
         public decimal gia { get; set; }
         public string mota { get; set; }
         public decimal luotxem { get; set; }
