@@ -31,7 +31,7 @@ namespace Beanfamily.Controllers
 
         public ActionResult Restaurant()
         {
-            return View("restaurant");
+            return RedirectToAction("index", "nhahangbean");
         }
 
         public ActionResult Garden(int? pageNum, int? pageSize)
