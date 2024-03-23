@@ -61,24 +61,24 @@
                                     <div class="row">
                                         <div class="ms-2 me-2 mt-2 mb-2 col-sm-12 col-md-6">
                                             <div class="input-group">
-                                                <button class="text-white btn btn-white border border-secondary px-3" type="button" id="giamsoluonggiohang-@idPro-@idLoaiPro" name="@idPro-@idLoaiPro" data-mdb-ripple-color="dark">
+                                                <button class="text-white btn btn-white border border-secondary px-3" type="button" id="giamsoluonggiohangmuasam-@idPro-@idLoaiPro" name="@idPro-@idLoaiPro" data-mdb-ripple-color="dark">
                                                     <i class="fa fa-minus"></i>
                                                 </button>
-                                                <input tonkho="@Session["tonkhoconlai-muasam-" + idPro + idLoaiPro]" value="@soluong" id="soluonggiohang-@idPro-@idLoaiPro" name="@idPro-@idLoaiPro" data-type='numbers' type="text" class="form-control text-center border border-secondary" placeholder="0" aria-label="Số lượng sản phẩm" aria-describedby="button-addon1" />
-                                                <button class="text-white btn btn-white border border-secondary px-3" type="button" id="tangsoluonggiohang-@idPro-@idLoaiPro" name="@idPro-@idLoaiPro" data-mdb-ripple-color="dark">
+                                                <input tonkho="@Session["tonkhoconlai-muasam-" + idPro + idLoaiPro]" value="@soluong" id="soluonggiohangmuasam-@idPro-@idLoaiPro" name="@idPro-@idLoaiPro" data-type='numbers' type="text" class="form-control text-center border border-secondary" placeholder="0" aria-label="Số lượng sản phẩm" aria-describedby="button-addon1" />
+                                                <button class="text-white btn btn-white border border-secondary px-3" type="button" id="tangsoluonggiohangmuasam-@idPro-@idLoaiPro" name="@idPro-@idLoaiPro" data-mdb-ripple-color="dark">
                                                     <i class="fa fa-plus"></i>
                                                 </button>
                                             </div>
-                                            <p id="thongbaosoluong-@idPro-@idLoaiPro" style="margin-bottom: -5px" class="text-red small">@(Session["soluongmax-muasam-" + idPro + idLoaiPro] != null ? "Kho còn " + Session["soluongmax-muasam-" + idPro + idLoaiPro] + " sản phẩm!" : "")</p>
+                                            <p id="thongbaosoluongmuasam-@idPro-@idLoaiPro" style="margin-bottom: -5px" class="text-red small">@(Session["soluongmax-muasam-" + idPro + idLoaiPro] != null ? "Kho còn " + Session["soluongmax-muasam-" + idPro + idLoaiPro] + " sản phẩm!" : "")</p>
                                         </div>
                                         <div class="ms-2 me-2 mt-2 mb-2 col-sm-12 col-md-5 text-center">
-                                            <h5 id="giasanpham-@idPro-@idLoaiPro" dongia="@((pro.TonKhoSanPham.FirstOrDefault(l => l.id == idLoaiPro) == null ? "CHONPHANLOAI" : (pro.TonKhoSanPham.FirstOrDefault(l => l.id == idLoaiPro).gia).ToString("0")))"
+                                            <h5 id="giasanphammuasam-@idPro-@idLoaiPro" dongia="@((pro.TonKhoSanPham.FirstOrDefault(l => l.id == idLoaiPro) == null ? "CHONPHANLOAI" : (pro.TonKhoSanPham.FirstOrDefault(l => l.id == idLoaiPro).gia).ToString("0")))"
                                                 class="mt-2">
                                                 @((pro.TonKhoSanPham.FirstOrDefault(l => l.id == idLoaiPro) == null ? "Chọn phân loại hàng" : (pro.TonKhoSanPham.FirstOrDefault(l => l.id == idLoaiPro).gia * soluong).ToString("0,0") + "đ"))
                                             </h5>
                                         </div>
                                     </div>
-                                    <a id="xoasanphamgiohang-@idPro-@idLoaiPro" name="@idPro-@idLoaiPro" tensanpham="@pro.tensanpham, @(pro.TonKhoSanPham.FirstOrDefault(l => l.id == idLoaiPro) != null ? pro.TonKhoSanPham.FirstOrDefault(l => l.id == idLoaiPro).tenloai : "")"
+                                    <a id="xoasanphamgiohangmuasam-@idPro-@idLoaiPro" name="@idPro-@idLoaiPro" tensanpham="@pro.tensanpham, @(pro.TonKhoSanPham.FirstOrDefault(l => l.id == idLoaiPro) != null ? pro.TonKhoSanPham.FirstOrDefault(l => l.id == idLoaiPro).tenloai : "")"
                                        class="text-red" role="button" style="width: 30px; text-align: center; position: absolute; right: 5px; top: 5px;"><i class="fa fa-trash"></i></a>
 
                                 </div>
@@ -88,10 +88,15 @@
                 }
             }
         }
+        if (giohangmuassam != null && giohangvuonrau != null)
+        {
+            if (giohangmuassam.Count > 0 && giohangvuonrau.Count > 0)
+            {
+                <hr class="my-4" style="background-color: darkgray" />
+            }
+        }
         if (giohangvuonrau != null && giohangvuonrau.Count > 0)
         {
-            <hr class="my-4" style="background-color: darkgray" />
-
             <h5 class="text-center mb-4 text-white" style="background: #5e443b !important; border-radius: 16px; height: 30px; display: flex; flex-direction: column; justify-content: center;">SẢN PHẨM RAU NHÀ TRỒNG</h5>
 
             foreach (var item in giohangvuonrau)
@@ -129,31 +134,31 @@
                                     </div>
                                     <div class="ms-3">
                                         <a class="text-white" href="@Url.Action("productdetail", "vuonrau", new { id = idPro })"><h5>@pro.tensanpham</h5></a>
-                                        <p class="small mb-0">@pro.giatritrendonvi.ToString("0.00").Replace(",00", String.Empty) @pro.donvi, @pro.gia.ToString("0,0")đ / @pro.donvi</p>
+                                        <p class="small mb-0">@pro.gia.ToString("0,0")đ / @pro.donvi</p>
                                     </div>
                                 </div>
                                 <div class="d-flex flex-row align-items-center col-md-5 col-sm-5">
                                     <div class="row">
                                         <div class="ms-2 me-2 mt-2 mb-2 col-sm-12 col-md-6">
                                             <div class="input-group">
-                                                <button class="text-white btn btn-white border border-secondary px-3" type="button" id="giamsoluonggiohang-@idPro" name="@idPro" data-mdb-ripple-color="dark">
+                                                <button class="text-white btn btn-white border border-secondary px-3" type="button" id="giamsoluonggiohangvuonrau-@idPro" name="@idPro" data-mdb-ripple-color="dark">
                                                     <i class="fa fa-minus"></i>
                                                 </button>
-                                                <input tonkho="@Session["tonkhoconlai-vuonrau-" + idPro]" value="@soluong.ToString("0.00").Replace(",", ".")" id="soluonggiohang-@idPro" name="@idPro" data-type='currency' type="text" class="form-control text-center border border-secondary" placeholder="0" aria-label="Số lượng sản phẩm" aria-describedby="button-addon1" />
-                                                <button class="text-white btn btn-white border border-secondary px-3" type="button" id="tangsoluonggiohang-@idPro" name="@idPro" data-mdb-ripple-color="dark">
+                                                <input tonkho="@Session["tonkhoconlai-vuonrau-" + idPro]" donvi="@pro.donvi" value="@soluong.ToString("0.00").Replace(",", ".")" id="soluonggiohangvuonrau-@idPro" name="@idPro" data-type='currency' type="text" class="form-control text-center border border-secondary" placeholder="0" aria-label="Số lượng sản phẩm" aria-describedby="button-addon1" />
+                                                <button class="text-white btn btn-white border border-secondary px-3" type="button" id="tangsoluonggiohangvuonrau-@idPro" name="@idPro" data-mdb-ripple-color="dark">
                                                     <i class="fa fa-plus"></i>
                                                 </button>
                                             </div>
-                                            <p id="thongbaosoluong-@idPro" style="margin-bottom: -5px" class="text-red small">@(Session["soluongmax-muasam-" + idPro] != null ? "Kho còn " + Session["soluongmax-muasam-" + idPro] + " sản phẩm!" : "")</p>
+                                            <p id="thongbaosoluongvuonrau-@idPro" style="margin-bottom: -5px" class="text-red small">@(Session["soluongmax-muasam-" + idPro] != null ? "Kho còn " + Session["soluongmax-muasam-" + idPro] + " sản phẩm!" : "")</p>
                                         </div>
                                         <div class="ms-2 me-2 mt-2 mb-2 col-sm-12 col-md-5 text-center">
-                                            <h5 id="giasanpham-@idPro" dongia="@pro.gia.ToString("0")"
+                                            <h5 id="giasanphamvuonrau-@idPro" dongia="@pro.gia.ToString("0")"
                                                 class="mt-2">
                                                 @((pro.gia * soluong).ToString("0,0") + "đ")
                                             </h5>
                                         </div>
                                     </div>
-                                    <a id="xoasanphamgiohang-@idPro" name="@idPro" tensanpham="@pro.tensanpham"
+                                    <a id="xoasanphamgiohangvuonrau-@idPro" name="@idPro" tensanpham="@pro.tensanpham"
                                        class="text-red" role="button" style="width: 30px; text-align: center; position: absolute; right: 5px; top: 5px;"><i class="fa fa-trash"></i></a>
 
                                 </div>

@@ -180,7 +180,7 @@
                         </div>
                         <!-- col.// -->
                         <div class="col-md-6 col-sm-12 mb-3">
-                            <label id="tonkhothucte" tonkhosoluong="@Model.giatritrendonvi" class="mb-2 d-block">Số lượng (@Model.donvi):</label>
+                            <label id="tonkhothucte" tonkhosoluong="@Model.giatritrendonvi.ToString("0.00").Replace(",00", String.Empty)" class="mb-2 d-block">Số lượng (@Model.donvi):</label>
                             <div class="input-group mb-3" style="width: 100%;">
 
                                 @if (Model.giatritrendonvi < 1)
