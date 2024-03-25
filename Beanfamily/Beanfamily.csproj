@@ -278,6 +278,7 @@
   <ItemGroup>
     <Content Include="ActionOnPage\GioHang\ChangeQuantity.js" />
     <Content Include="ActionOnPage\GioHang\DeletedProduct.js" />
+    <Content Include="ActionOnPage\NhaHang\loadPageNhaHang.js" />
     <Content Include="ActionOnPage\VuonRau\AddToCart.js" />
     <Content Include="ActionOnPage\VuonRau\loadPageGarden.js" />
     <Content Include="ActionOnPage\VuonRau\loadPageGardenDetail.js" />
@@ -286,6 +287,9 @@
     <Content Include="ActionOnPage\MuaSam\loadPageShopping.js" />
     <Content Include="ActionOnPage\MuaSam\loadPageShoppingDetail.js" />
     <Content Include="ActionOnPage\MuaSam\sanPhamTheoDanhMuc.js" />
+    <Content Include="Content\assets\images\Beans\DanhMucNhaHang\menubuffet.jpg" />
+    <Content Include="Content\assets\images\Beans\DanhMucNhaHang\menuhangngay.jpg" />
+    <Content Include="Content\assets\images\Beans\DanhMucNhaHang\menutiecban.jpg" />
     <Content Include="Content\assets\images\Beans\NhaHang\z4834603318946_a0d89e7e2746ad2c653822e65bd95411.jpg" />
     <Content Include="Content\assets\images\Beans\NhaHang\z4834603323199_715e0839b6a46d19ea1a79928d0470f5.jpg" />
     <Content Include="Content\assets\images\Beans\NhaHang\z4834603328083_97f59aeeb4f64f92726eba33db2de938.jpg" />

@@ -4,7 +4,7 @@
         if (tagA.attr('class') == "active") {
             tagA.attr('class', '');
         }
-        if (tagA.text() == "Vườn rau") {
+        if (tagA.text().toLowerCase() == "vườn rau") {
             tagA.addClass('active');
         }
     });
