@@ -10696,34 +10696,33 @@ EFFECT   EFFECT   EFFECT   EFFECT   EFFECT   EFFECT  EFFECT
 .bg1-pattern {
     background-attachment: fixed;
     background-color: #122E26;
-    background-image: url(/Content/assets/images/logo/hoa-tiet-chims.png);
+    background-image: url(/Content/assets/images/logo/Bamboo3.png);
     background-position: bottom center;
     background-size: cover;
 }
     .bg1-pattern .section-child-bg1 {
-        background-image: linear-gradient(180deg, #122e2690 40%, #122E26 100%);
+        background-image: linear-gradient(180deg, #122e26b3 40%, #122E26 100%);
     }
 
 .bg2-pattern {
     background-attachment: fixed;
     background-color: #5e443b;
-    background-image: url(/Content/assets/images/logo/hoa-tiet-chims.png);
+    background-image: url(/Content/assets/images/logo/Bamboo3.png);
     background-position: bottom center;
     background-size: cover;
 }
 
     .bg2-pattern .section-child-bg2 {
-        background-image: linear-gradient(180deg, #5e443b90 40%, #5e443b 100%);
+        background-image: linear-gradient(180deg, #5e443bb3 40%, #5e443b 100%);
     }
 
 .bg1-bottom {
     background-color: #000000;
-    background-image: url(/Content/assets/images/logo/hoa-tiet-chims.png);
-    background-position: bottom center;
+    background-image: url(/Content/assets/images/logo/Bamboo3.png);
     background-size: contain;
 }
     .bg1-bottom .bottom-child-bg1 {
-        background-image: linear-gradient(180deg, #16161690 40%, #000000 100%);
+        background-image: linear-gradient(180deg, #161616b3 40%, #000000 100%);
     }
 
 .gio-mo-cua {

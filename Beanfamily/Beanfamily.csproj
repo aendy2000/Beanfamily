@@ -298,6 +298,9 @@
     <Content Include="Content\assets\images\Beans\NhaHang\z4834791075626_1488c6046d57199e4f43784f3e737876.jpg" />
     <Content Include="Content\assets\images\Beans\NhaHang\z4834791078437_d255e83a28d193e347e6205096502cbf.jpg" />
     <Content Include="Content\assets\images\Beans\NhaHang\z4834791087337_dfdc737db5de4d38ad2cdb6544c4b33c.jpg" />
+    <Content Include="Content\assets\images\logo\Bamboo.png" />
+    <Content Include="Content\assets\images\logo\Bamboo2.png" />
+    <Content Include="Content\assets\images\logo\Bamboo3.png" />
     <Content Include="Content\assets\images\logo\hoa-tiet-chims.png" />
     <Content Include="Content\assets\images\videodefault.jpg" />
     <Content Include="Content\AdminAreas\assets\css\style.css" />
