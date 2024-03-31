@@ -9153,6 +9153,14 @@
 /*[  ]
 -----------------------------------------------------------
 */
+.bg-bg1 {
+    background-color: #122E26 !important;
+}
+
+.bg-bg2 {
+    background-color: #5e443b !important;
+}
+
 .bgwhite {
     background-color: white;
 }
@@ -10686,20 +10694,42 @@ EFFECT   EFFECT   EFFECT   EFFECT   EFFECT   EFFECT  EFFECT
 -----------------------------------------------------------
 */
 .bg1-pattern {
-    background: #15352c;
-    background-repeat: repeat;
+    background-attachment: fixed;
+    background-color: #122E26;
+    background-image: url(/Content/assets/images/logo/hoa-tiet-chims.png);
+    background-position: bottom center;
+    background-size: cover;
 }
+    .bg1-pattern .section-child-bg1 {
+        background-image: linear-gradient(180deg, #122e2690 40%, #122E26 100%);
+    }
 
 .bg2-pattern {
-    background: #15352c;
-    background-repeat: repeat;
+    background-attachment: fixed;
+    background-color: #5e443b;
+    background-image: url(/Content/assets/images/logo/hoa-tiet-chims.png);
+    background-position: bottom center;
+    background-size: cover;
 }
 
-.bg3-pattern {
-    background: #15352c;
-    background-repeat: repeat;
-}
+    .bg2-pattern .section-child-bg2 {
+        background-image: linear-gradient(180deg, #5e443b90 40%, #5e443b 100%);
+    }
 
+.bg1-bottom {
+    background-color: #000000;
+    background-image: url(/Content/assets/images/logo/hoa-tiet-chims.png);
+    background-position: bottom center;
+    background-size: contain;
+}
+    .bg1-bottom .bottom-child-bg1 {
+        background-image: linear-gradient(180deg, #16161690 40%, #000000 100%);
+    }
+
+.gio-mo-cua {
+    position: inherit; 
+    top: 150px
+}
 
 /*[ Hover ]
 -----------------------------------------------------------
@@ -10794,6 +10824,11 @@ RESPONSIVE  RESPONSIVE  RESPONSIVE  RESPONSIVE   RESPONSIVE
         align-items: center;
         justify-content: center;
     }
+
+    .gio-mo-cua {
+        position: inherit;
+        top: 110px
+    }
 }
 
 
@@ -10801,6 +10836,11 @@ RESPONSIVE  RESPONSIVE  RESPONSIVE  RESPONSIVE   RESPONSIVE
 -----------------------------------------------------------
 */
 @media (max-width: 768px) {
+    .gio-mo-cua {
+        position: inherit;
+        top: 100px
+    }
+
     .w-full-md {
         width: 100%
     }
@@ -10824,6 +10864,7 @@ RESPONSIVE  RESPONSIVE  RESPONSIVE  RESPONSIVE   RESPONSIVE
     .bo-none-md {
         border: none;
     }
+
     .hov-img-zoom {
         display: block;
         overflow: hidden;
@@ -10866,7 +10907,6 @@ RESPONSIVE  RESPONSIVE  RESPONSIVE  RESPONSIVE   RESPONSIVE
         flex-direction: column;
         -ms-align-items: flex-start;
         align-items: flex-start;
-
     }
 
     .flex-col-c-sm {
@@ -10883,6 +10923,7 @@ RESPONSIVE  RESPONSIVE  RESPONSIVE  RESPONSIVE   RESPONSIVE
         -ms-align-items: center;
         align-items: center;
     }
+
     .hov-img-zoom {
         display: block;
         overflow: hidden;

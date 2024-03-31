@@ -359,6 +359,27 @@
           <Property Name="ngaysuadoi" Type="datetime" Nullable="false" />
           <Property Name="hinhdaidien" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="ThongTinChung">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="diachi" Type="nvarchar(max)" />
+          <Property Name="email" Type="nvarchar(max)" />
+          <Property Name="hotline" Type="nvarchar(max)" />
+          <Property Name="zalo" Type="nvarchar(max)" />
+          <Property Name="website" Type="nvarchar(max)" />
+          <Property Name="coppyright" Type="nvarchar(max)" />
+          <Property Name="fanpage" Type="nvarchar(max)" />
+          <Property Name="toadogooglemap" Type="nvarchar(max)" />
+          <Property Name="linkchiduong" Type="nvarchar(max)" />
+          <Property Name="toadogooglemapiframe" Type="nvarchar(max)" />
+          <Property Name="googleanalyst" Type="nvarchar(max)" />
+          <Property Name="googlewebmastertool" Type="nvarchar(max)" />
+          <Property Name="headjs" Type="nvarchar(max)" />
+          <Property Name="bodyjs" Type="nvarchar(max)" />
+          <Property Name="tieude" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="TinhTrangDonHangMuaSamVaMenuHangNgay">
           <Key>
             <PropertyRef Name="id" />
@@ -380,27 +401,6 @@
           <Property Name="tenloai" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="soluong" Type="int" Nullable="false" />
           <Property Name="gia" Type="money" Nullable="false" />
-        </EntityType>
-        <EntityType Name="ThongTinChung">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="diachi" Type="nvarchar(max)" />
-          <Property Name="email" Type="nvarchar(max)" />
-          <Property Name="hotline" Type="nvarchar(max)" />
-          <Property Name="zalo" Type="nvarchar(max)" />
-          <Property Name="website" Type="nvarchar(max)" />
-          <Property Name="coppyright" Type="nvarchar(max)" />
-          <Property Name="fanpage" Type="nvarchar(max)" />
-          <Property Name="toadogooglemap" Type="nvarchar(max)" />
-          <Property Name="linkchiduong" Type="nvarchar(max)" />
-          <Property Name="toadogooglemapiframe" Type="nvarchar(max)" />
-          <Property Name="googleanalyst" Type="nvarchar(max)" />
-          <Property Name="googlewebmastertool" Type="nvarchar(max)" />
-          <Property Name="headjs" Type="nvarchar(max)" />
-          <Property Name="bodyjs" Type="nvarchar(max)" />
-          <Property Name="tieude" Type="nvarchar(max)" />
         </EntityType>
         <Association Name="FK_ApDungChucNangChoQuyenTaiKhoan_ChucNangHeThongBean">
           <End Role="ChucNangHeThongBean" Type="Self.ChucNangHeThongBean" Multiplicity="1" />
@@ -852,9 +852,9 @@
           <EntitySet Name="SanPhamThucDonHangNgay" EntityType="Self.SanPhamThucDonHangNgay" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TaiKhoanBean" EntityType="Self.TaiKhoanBean" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TaiKhoanKhachHang" EntityType="Self.TaiKhoanKhachHang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ThongTinChung" EntityType="Self.ThongTinChung" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TinhTrangDonHangMuaSamVaMenuHangNgay" EntityType="Self.TinhTrangDonHangMuaSamVaMenuHangNgay" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TonKhoSanPham" EntityType="Self.TonKhoSanPham" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ThongTinChung" EntityType="Self.ThongTinChung" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_ApDungChucNangChoQuyenTaiKhoan_ChucNangHeThongBean" Association="Self.FK_ApDungChucNangChoQuyenTaiKhoan_ChucNangHeThongBean">
             <End Role="ChucNangHeThongBean" EntitySet="ChucNangHeThongBean" />
             <End Role="ApDungChucNangChoQuyenTaiKhoan" EntitySet="ApDungChucNangChoQuyenTaiKhoan" />
@@ -1422,6 +1422,27 @@
           <NavigationProperty Name="DonHangMuaSamVaMenuHangNgay" Relationship="Self.FK_DonHangMuaSamVaMenuHangNgay_TaiKhoanKhachHang" FromRole="TaiKhoanKhachHang" ToRole="DonHangMuaSamVaMenuHangNgay" />
           <NavigationProperty Name="GioHang" Relationship="Self.FK_GioHang_TaiKhoanKhachHang" FromRole="TaiKhoanKhachHang" ToRole="GioHang" />
         </EntityType>
+        <EntityType Name="ThongTinChung">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="diachi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="hotline" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="zalo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="website" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="coppyright" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fanpage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="toadogooglemap" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="linkchiduong" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="toadogooglemapiframe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="googleanalyst" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="googlewebmastertool" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="headjs" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="bodyjs" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="tieude" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="TinhTrangDonHangMuaSamVaMenuHangNgay">
           <Key>
             <PropertyRef Name="id" />
@@ -1446,27 +1467,6 @@
           <Property Name="soluong" Type="Int32" Nullable="false" />
           <Property Name="gia" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <NavigationProperty Name="SanPhamMuaSam" Relationship="Self.FK_TonKhoSanPham_SanPhamMuaSam" FromRole="TonKhoSanPham" ToRole="SanPhamMuaSam" />
-        </EntityType>
-        <EntityType Name="ThongTinChung">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="diachi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="hotline" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="zalo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="website" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="coppyright" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="fanpage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="toadogooglemap" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="linkchiduong" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="toadogooglemapiframe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="googleanalyst" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="googlewebmastertool" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="headjs" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="bodyjs" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="tieude" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_ApDungChucNangChoQuyenTaiKhoan_ChucNangHeThongBean">
           <End Role="ChucNangHeThongBean" Type="Self.ChucNangHeThongBean" Multiplicity="1" />
@@ -1918,9 +1918,9 @@
           <EntitySet Name="SanPhamThucDonHangNgay" EntityType="Self.SanPhamThucDonHangNgay" />
           <EntitySet Name="TaiKhoanBean" EntityType="Self.TaiKhoanBean" />
           <EntitySet Name="TaiKhoanKhachHang" EntityType="Self.TaiKhoanKhachHang" />
+          <EntitySet Name="ThongTinChung" EntityType="Self.ThongTinChung" />
           <EntitySet Name="TinhTrangDonHangMuaSamVaMenuHangNgay" EntityType="Self.TinhTrangDonHangMuaSamVaMenuHangNgay" />
           <EntitySet Name="TonKhoSanPham" EntityType="Self.TonKhoSanPham" />
-          <EntitySet Name="ThongTinChung" EntityType="Self.ThongTinChung" />
           <AssociationSet Name="FK_ApDungChucNangChoQuyenTaiKhoan_ChucNangHeThongBean" Association="Self.FK_ApDungChucNangChoQuyenTaiKhoan_ChucNangHeThongBean">
             <End Role="ChucNangHeThongBean" EntitySet="ChucNangHeThongBean" />
             <End Role="ApDungChucNangChoQuyenTaiKhoan" EntitySet="ApDungChucNangChoQuyenTaiKhoan" />
@@ -2451,6 +2451,28 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ThongTinChung">
+            <EntityTypeMapping TypeName="BeanfamilyModel.ThongTinChung">
+              <MappingFragment StoreEntitySet="ThongTinChung">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="diachi" ColumnName="diachi" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="hotline" ColumnName="hotline" />
+                <ScalarProperty Name="zalo" ColumnName="zalo" />
+                <ScalarProperty Name="website" ColumnName="website" />
+                <ScalarProperty Name="coppyright" ColumnName="coppyright" />
+                <ScalarProperty Name="fanpage" ColumnName="fanpage" />
+                <ScalarProperty Name="toadogooglemap" ColumnName="toadogooglemap" />
+                <ScalarProperty Name="linkchiduong" ColumnName="linkchiduong" />
+                <ScalarProperty Name="toadogooglemapiframe" ColumnName="toadogooglemapiframe" />
+                <ScalarProperty Name="googleanalyst" ColumnName="googleanalyst" />
+                <ScalarProperty Name="googlewebmastertool" ColumnName="googlewebmastertool" />
+                <ScalarProperty Name="headjs" ColumnName="headjs" />
+                <ScalarProperty Name="bodyjs" ColumnName="bodyjs" />
+                <ScalarProperty Name="tieude" ColumnName="tieude" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="TinhTrangDonHangMuaSamVaMenuHangNgay">
             <EntityTypeMapping TypeName="BeanfamilyModel.TinhTrangDonHangMuaSamVaMenuHangNgay">
               <MappingFragment StoreEntitySet="TinhTrangDonHangMuaSamVaMenuHangNgay">
@@ -2472,28 +2494,6 @@
                 <ScalarProperty Name="tenloai" ColumnName="tenloai" />
                 <ScalarProperty Name="soluong" ColumnName="soluong" />
                 <ScalarProperty Name="gia" ColumnName="gia" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ThongTinChung">
-            <EntityTypeMapping TypeName="BeanfamilyModel.ThongTinChung">
-              <MappingFragment StoreEntitySet="ThongTinChung">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="diachi" ColumnName="diachi" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="hotline" ColumnName="hotline" />
-                <ScalarProperty Name="zalo" ColumnName="zalo" />
-                <ScalarProperty Name="website" ColumnName="website" />
-                <ScalarProperty Name="coppyright" ColumnName="coppyright" />
-                <ScalarProperty Name="fanpage" ColumnName="fanpage" />
-                <ScalarProperty Name="toadogooglemap" ColumnName="toadogooglemap" />
-                <ScalarProperty Name="linkchiduong" ColumnName="linkchiduong" />
-                <ScalarProperty Name="toadogooglemapiframe" ColumnName="toadogooglemapiframe" />
-                <ScalarProperty Name="googleanalyst" ColumnName="googleanalyst" />
-                <ScalarProperty Name="googlewebmastertool" ColumnName="googlewebmastertool" />
-                <ScalarProperty Name="headjs" ColumnName="headjs" />
-                <ScalarProperty Name="bodyjs" ColumnName="bodyjs" />
-                <ScalarProperty Name="tieude" ColumnName="tieude" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
