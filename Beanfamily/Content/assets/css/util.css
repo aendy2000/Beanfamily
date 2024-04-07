@@ -10726,8 +10726,10 @@ EFFECT   EFFECT   EFFECT   EFFECT   EFFECT   EFFECT  EFFECT
     }
 
 .gio-mo-cua {
-    position: inherit; 
-    top: 150px
+    height: 90px !important;
+    position: relative;
+    top: 150px;
+    margin-bottom: -90px;
 }
 
 /*[ Hover ]
@@ -10825,7 +10827,7 @@ RESPONSIVE  RESPONSIVE  RESPONSIVE  RESPONSIVE   RESPONSIVE
     }
 
     .gio-mo-cua {
-        position: inherit;
+        position: relative;
         top: 110px
     }
 }
@@ -10836,7 +10838,7 @@ RESPONSIVE  RESPONSIVE  RESPONSIVE  RESPONSIVE   RESPONSIVE
 */
 @media (max-width: 768px) {
     .gio-mo-cua {
-        position: inherit;
+        position: relative;
         top: 100px
     }
 

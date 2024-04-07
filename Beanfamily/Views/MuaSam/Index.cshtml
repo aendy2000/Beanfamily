@@ -17,118 +17,120 @@
 </section>
 
 <!-- Our menu -->
-<section class="section-ourmenu bg2-pattern p-t-60 p-b-40">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-0 col-md-3 categories_product">
-                <div id="categoried_card" class="card" style="border-top-left-radius: 16px; border-top-right-radius: 16px; border: 0; background: none; position: sticky; top: 120px; margin-bottom: 75px;">
-                    <div style="border-top: 1px solid rgb(255 255 255); border-left: 1px solid rgb(255 255 255); border-right: 1px solid rgb(255 255 255); border-top-left-radius: 16px; border-top-right-radius: 16px " class="card-header bg-website font-weight-bold text-white text-uppercase"><i class="fa fa-list"> </i> Danh mục</div>
-                    <ul style="border-bottom-left-radius: 16px; border-bottom-right-radius: 16px" class="list-group category_block">
-                        @if (Session["id-category-muasam"].ToString().Equals("tatca"))
-                        {
-                            <li name="tatca" class="list-group-item active"><a>Tất cả</a></li>
-                            foreach (var item in dm.OrderBy(o => o.sothutu))
+<section class="section-ourmenu bg2-pattern">
+    <div class="section-child-bg2">
+        <div class="container  p-t-60 p-b-40">
+            <div class="row">
+                <div class="col-sm-0 col-md-3 categories_product">
+                    <div id="categoried_card" class="card" style="border-top-left-radius: 16px; border-top-right-radius: 16px; border: 0; background: none; position: sticky; top: 120px; margin-bottom: 75px;">
+                        <div style="border-top: 1px solid rgb(255 255 255); border-left: 1px solid rgb(255 255 255); border-right: 1px solid rgb(255 255 255); border-top-left-radius: 16px; border-top-right-radius: 16px " class="card-header bg-website font-weight-bold text-white text-uppercase"><i class="fa fa-list"> </i> Danh mục</div>
+                        <ul style="border-bottom-left-radius: 16px; border-bottom-right-radius: 16px" class="list-group category_block">
+                            @if (Session["id-category-muasam"].ToString().Equals("tatca"))
                             {
-                                <li name="@item.id" class="list-group-item"><a>@item.tendanhmuc</a></li>
-                            }
-                        }
-                        else
-                        {
-                            <li name="tatca" class="list-group-item"><a>Tất cả</a></li>
-                            foreach (var item in dm.OrderBy(o => o.sothutu))
-                            {
-                                if (item.id == Int32.Parse(Session["id-category-muasam"].ToString()))
-                                {
-                                    <li name="@item.id" class="list-group-item active"><a>@item.tendanhmuc</a></li>
-                                }
-                                else
+                                <li name="tatca" class="list-group-item active"><a>Tất cả</a></li>
+                                foreach (var item in dm.OrderBy(o => o.sothutu))
                                 {
                                     <li name="@item.id" class="list-group-item"><a>@item.tendanhmuc</a></li>
-
                                 }
                             }
-                        }
-                    </ul>
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-9">
-                <div class="row" style="padding: 0 14px 0 14px">
-                    <div class="col-sm-12 col-md-12 mb-4 bg-website text-center text-white text-uppercase" style="border: 1px solid rgb(255 255 255); border-radius: 15px; padding: 14.5px;">
-                        <h6 style="font-size:18px; font-weight: bold">Sản Phẩm</h6>
+                            else
+                            {
+                                <li name="tatca" class="list-group-item"><a>Tất cả</a></li>
+                                foreach (var item in dm.OrderBy(o => o.sothutu))
+                                {
+                                    if (item.id == Int32.Parse(Session["id-category-muasam"].ToString()))
+                                    {
+                                        <li name="@item.id" class="list-group-item active"><a>@item.tendanhmuc</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li name="@item.id" class="list-group-item"><a>@item.tendanhmuc</a></li>
+
+                                    }
+                                }
+                            }
+                        </ul>
                     </div>
                 </div>
-                <div id="product_list" class="row">
-                    <div hidden class="col-12 load_items" style="height: 200px; color: #fff; font-size: 18px; text-align: center">
-                        <div style="margin-top: 75px">
-                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"> </span> Đang tải...
+                <div class="col-sm-12 col-md-9">
+                    <div class="row" style="padding: 0 14px 0 14px">
+                        <div class="col-sm-12 col-md-12 mb-4 bg-website text-center text-white text-uppercase" style="border: 1px solid rgb(255 255 255); border-radius: 15px; padding: 14.5px;">
+                            <h6 style="font-size:18px; font-weight: bold">Sản Phẩm</h6>
                         </div>
                     </div>
-                    @if (Model.Count() < 1)
-                    {
-                        <div class="col-12 load_items" style="height: 200px; color: #fff; font-size: 18px; text-align: center">
+                    <div id="product_list" class="row">
+                        <div hidden class="col-12 load_items" style="height: 200px; color: #fff; font-size: 18px; text-align: center">
                             <div style="margin-top: 75px">
-                                Không có sản phẩm để hiển thị!
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"> </span> Đang tải...
                             </div>
                         </div>
-                    }
-                    else
-                    {
-                        foreach (var item in Model)
+                        @if (Model.Count() < 1)
                         {
-                            <div class="col-md-4 col-sm-6 product_items">
-                                <div class="product-grid mb-4">
-                                    <div class="product-image">
-                                        @if (string.IsNullOrEmpty(item.hinhanh))
-                                        {
-                                            <img class="pic-1" src="~/Content/assets/images/product/sanphamdefault.jpg" />
-                                            <img class="pic-2" src="~/Content/assets/images/product/sanphamdefault.jpg" />
-                                        }
-                                        else
-                                        {
-                                            if (item.hinhanh.IndexOf('#') != -1)
-                                            {
-                                                <img class="pic-1" src="@Url.Content(item.hinhanh.Split('#')[0])" />
-                                                <img class="pic-2" src="@Url.Content(item.hinhanh.Split('#')[1])" />
-                                            }
-                                            else
-                                            {
-                                                <img class="pic-1" src="@Url.Content(item.hinhanh)" />
-                                                <img class="pic-2" src="@Url.Content(item.hinhanh)" />
-                                            }
-                                        }
-                                        @*<span class="product-sale-label">Sale</span>*@
-                                        <ul class="product-links">
-                                            <li><a href="@Url.Action("productdetail", "muasam", new {id = item.id})"><i class="fa fa-solid fa-expand" aria-hidden="true"></i></a></li>
-                                            @*<li><a href="#"><i class="fa fa-random"></i></a></li>*@
-                                        </ul>
-                                    </div>
-                                    <div class="product-content">
-                                        <h3 class="title"><a href="@Url.Action("productdetail", "muasam", new {id = item.id})">@item.tensanpham</a></h3>
-                                        @if (item.TonKhoSanPham.Count > 1)
-                                        {
-                                            <div class="price">
-                                                @item.TonKhoSanPham.OrderBy(o => o.gia).First().gia.ToString("0,0")đ
-                                                - @item.TonKhoSanPham.OrderByDescending(o => o.gia).First().gia.ToString("0,0")đ
-                                            </div>
-                                        }
-                                        else
-                                        {
-                                            <div class="price">
-                                                @item.TonKhoSanPham.First().gia.ToString("0,0")đ
-                                            </div>
-                                        }
-                                    </div>
+                            <div class="col-12 load_items" style="height: 200px; color: #fff; font-size: 18px; text-align: center">
+                                <div style="margin-top: 75px">
+                                    Không có sản phẩm để hiển thị!
                                 </div>
                             </div>
                         }
-                    }
-                    <div class="col-12" style="display: flex; justify-content: center; flex-direction:inherit">
-                        @Html.PagedListPager(Model, pageNum => Url.Action("index", new { pageNum, PageSize = 24 }))
+                        else
+                        {
+                            foreach (var item in Model)
+                            {
+                                <div class="col-md-4 col-sm-6 product_items">
+                                    <div class="product-grid mb-4">
+                                        <div class="product-image">
+                                            @if (string.IsNullOrEmpty(item.hinhanh))
+                                            {
+                                                <img class="pic-1" src="~/Content/assets/images/product/sanphamdefault.jpg" />
+                                                <img class="pic-2" src="~/Content/assets/images/product/sanphamdefault.jpg" />
+                                            }
+                                            else
+                                            {
+                                                if (item.hinhanh.IndexOf('#') != -1)
+                                                {
+                                                    <img class="pic-1" src="@Url.Content(item.hinhanh.Split('#')[0])" />
+                                                    <img class="pic-2" src="@Url.Content(item.hinhanh.Split('#')[1])" />
+                                                }
+                                                else
+                                                {
+                                                    <img class="pic-1" src="@Url.Content(item.hinhanh)" />
+                                                    <img class="pic-2" src="@Url.Content(item.hinhanh)" />
+                                                }
+                                            }
+                                            @*<span class="product-sale-label">Sale</span>*@
+                                            <ul class="product-links">
+                                                <li><a href="@Url.Action("productdetail", "muasam", new {id = item.id})"><i class="fa fa-solid fa-expand" aria-hidden="true"></i></a></li>
+                                                @*<li><a href="#"><i class="fa fa-random"></i></a></li>*@
+                                            </ul>
+                                        </div>
+                                        <div class="product-content">
+                                            <h3 class="title"><a href="@Url.Action("productdetail", "muasam", new {id = item.id})">@item.tensanpham</a></h3>
+                                            @if (item.TonKhoSanPham.Count > 1)
+                                            {
+                                                <div class="price">
+                                                    @item.TonKhoSanPham.OrderBy(o => o.gia).First().gia.ToString("0,0")đ
+                                                    - @item.TonKhoSanPham.OrderByDescending(o => o.gia).First().gia.ToString("0,0")đ
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="price">
+                                                    @item.TonKhoSanPham.First().gia.ToString("0,0")đ
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                        <div class="col-12" style="display: flex; justify-content: center; flex-direction:inherit">
+                            @Html.PagedListPager(Model, pageNum => Url.Action("index", new { pageNum, PageSize = 24 }))
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
+        </div>
     </div>
     <script src="~/ActionOnPage/MuaSam/loadPageShopping.js"></script>
     <script src="~/ActionOnPage/MuaSam/sanPhamTheoDanhMuc.js"></script>

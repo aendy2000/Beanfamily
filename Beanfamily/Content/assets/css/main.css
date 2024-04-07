@@ -869,7 +869,7 @@ input[type="date" i] {
     color: white;
     position: absolute;
     background-color: black;
-    opacity: 0;
+    opacity: 0.5;
     top: 50%;
     -webkit-transform: translateY(-50%);
     -moz-transform: translateY(-50%);
@@ -1001,6 +1001,7 @@ input[type="date" i] {
 .btn1 {
     background: white;
     border-radius: 10px;
+    text-align: center;
 }
 
     .btn1:hover {
@@ -1014,6 +1015,7 @@ input[type="date" i] {
 .btn3 {
     background: #111111;
     border-radius: 10px;
+    text-align: center;
 }
 
     .btn3:hover {
@@ -1029,6 +1031,7 @@ input[type="date" i] {
     background-color: white;
     border-radius: 10px;
     opacity: 0.9;
+    text-align: center;
 }
 
     .btn2:hover {
@@ -1315,8 +1318,8 @@ body {
 }
 
 .modal {
-/*    padding: 0px !important;
-*/    z-index: 1160;
+    /*    padding: 0px !important;
+*/ z-index: 1160;
     overflow-x: hidden;
     overflow-y: auto !important;
     background: #00000080;
@@ -1859,9 +1862,11 @@ body {
     .product-grid {
         margin: 6px 0 30px;
     }
+
     .hinhanhbean-list {
         justify-content: center;
     }
+
     .product-grid {
         background-color: #5e443b;
         font-family: 'Montserrat', sans-serif;
@@ -1962,9 +1967,11 @@ body {
     .categories_product {
         display: none;
     }
+
     .product-grid {
         margin: 6px 0 30px;
     }
+
     .product-grid {
         background-color: #5e443b;
         font-family: 'Montserrat', sans-serif;
@@ -2022,7 +2029,7 @@ body {
     }
 
 
-    /* CHI TIET SAN PHAM */
+/* CHI TIET SAN PHAM */
 .icon-hover:hover {
     border-color: #3b71ca !important;
     color: #3b71ca !important;

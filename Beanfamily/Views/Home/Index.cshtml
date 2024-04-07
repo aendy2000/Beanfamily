@@ -52,7 +52,7 @@
                 </div>
             </div>
 
-            <div class="item-slick1 item2-slick1" style="background-image: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7) ), url(/Content/assets/images/master-slides-02.jpg); background-color: rgba(0, 0, 0, 0.5); margin: 0 ">
+            <div class="item-slick1 item2-slick1" style="background-image: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7) ), url(/Content/assets/images/master-slides-03.jpg); background-color: rgba(0, 0, 0, 0.5); margin: 0 ">
                 <div class="gio-mo-cua">
                     <div class="container">
                         <h4 class="txt13 m-b-15">
@@ -88,7 +88,7 @@
                 </div>
             </div>
 
-            <div class="item-slick1 item3-slick1" style="background-image: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7) ), url(/Content/assets/images/master-slides-01.jpg); margin: 0 ">
+            <div class="item-slick1 item3-slick1" style="background-image: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7) ), url(/Content/assets/images/master-slides-04.jpg); margin: 0 ">
                 <div class="gio-mo-cua">
                     <div class="container">
                         <h4 class="txt13 m-b-15">
@@ -307,8 +307,8 @@
                 <div class="col-md-6 p-b-30">
                     @foreach (var item in sanphammoinhahang)
                     {
-                        <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom bg-bg1" style="border: 1px solid; border-color: white; border-radius: 15px">
-                            <div class="pic-blo3 size20 bo-rad-16 hov-img-zoom m-r-28">
+                        <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom bg-bg1" style="border: 1px solid; border-color: white;">
+                            <div class="pic-blo3 size20 hov-img-zoom m-r-28">
                                 <a href="@Url.Action("productdetail", "menuhangngay", new { id = item.id })"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
                             </div>
                             <div class="text-blo3 size21 flex-col-l-m">
@@ -343,8 +343,8 @@
                 <div class="col-md-6 p-b-30">
                     @foreach (var item in sanphammoivuonrau)
                     {
-                        <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom bg-bg1" style="border: 1px solid; border-color: white; border-radius: 15px">
-                            <div class="pic-blo3 size20 bo-rad-16 hov-img-zoom m-r-28">
+                        <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom bg-bg1" style="border: 1px solid; border-color: white;">
+                            <div class="pic-blo3 size20 hov-img-zoom m-r-28">
                                 <a href="@Url.Action("productdetail", "vuonrau", new { id = item.id })"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
                             </div>
 
@@ -394,7 +394,7 @@
             <br />
             <br />
             <div class="row">
-                <div class="col-md-6 p-t-45 p-b-30">
+                <div class="col-md-6 p-t-45 p-b-30" style="float: right">
                     <div class="wrap-text-welcome t-center">
 
                         <h5 class="tit6 t-center m-b-35 m-t-5">
@@ -412,11 +412,11 @@
                     </div>
                 </div>
 
-                <div class="col-md-6 p-b-30">
+                <div class="col-md-6 p-b-30"  style="float: left">
                     @foreach (var item in sanphammoimuasam)
                     {
-                        <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom  bg-bg1" style="border: 1px solid; border-color: white; border-radius: 15px">
-                            <div class="pic-blo3 size20 bo-rad-16 hov-img-zoom m-r-28">
+                        <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom  bg-bg1" style="border: 1px solid; border-color: white;">
+                            <div class="pic-blo3 size20 hov-img-zoom m-r-28">
                                 <a href="@Url.Action("productdetail", "muasam", new { id = item.id })"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
                             </div>
 
@@ -488,8 +488,8 @@
                 <div class="col-md-6 p-b-30">
                     @foreach (var item in sanphamnoibatnhahang)
                     {
-                        <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom-bgbrown  bg-bg2" style="border: 1px solid; border-color: white; border-radius: 15px">
-                            <div class="pic-blo3 size20 bo-rad-16 hov-img-zoom m-r-28">
+                        <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom-bgbrown  bg-bg2" style="border: 1px solid; border-color: white;">
+                            <div class="pic-blo3 size20 hov-img-zoom m-r-28">
                                 <a href="@Url.Action("productdetail", "menuhangngay", new { id = item.id })"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
                             </div>
 
@@ -526,8 +526,8 @@
                 <div class="col-md-6 p-b-30">
                     @foreach (var item in sanphamnoibatvuonrau)
                     {
-                        <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom-bgbrown  bg-bg2" style="border: 1px solid; border-color: white; border-radius: 15px">
-                            <div class="pic-blo3 size20 bo-rad-16 hov-img-zoom m-r-28">
+                        <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom-bgbrown  bg-bg2" style="border: 1px solid; border-color: white;">
+                            <div class="pic-blo3 size20 hov-img-zoom m-r-28">
                                 <a href="@Url.Action("productdetail", "vuonrau", new { id = item.id })"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
                             </div>
 
@@ -596,8 +596,8 @@
                 <div class="col-md-6 p-b-30">
                     @foreach (var item in sanphamnoibatmuasam)
                     {
-                        <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom-bgbrown bg-bg2" style="border: 1px solid; border-color: white; border-radius: 15px">
-                            <div class="pic-blo3 size20 bo-rad-16 hov-img-zoom m-r-28">
+                        <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom-bgbrown bg-bg2" style="border: 1px solid; border-color: white;">
+                            <div class="pic-blo3 size20 hov-img-zoom m-r-28">
                                 <a href="@Url.Action("productdetail", "muasam", new { id = item.id })"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
                             </div>
 

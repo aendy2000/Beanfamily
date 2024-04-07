@@ -36,75 +36,29 @@
 </section>
 <input id="idPro" value="@Model.id" hidden />
 <input id="totalImagePro" value="@dem" hidden />
-<section class="section-ourmenu bg2-pattern p-t-60 p-b-40">
-    <div class="container">
-        <div class="row gx-5">
-            <aside class="col-lg-6">
-                <div class="slider-for gallery-product m-3">
-                    @if (!string.IsNullOrEmpty(Model.video))
-                    {
-                        <div class="slickSlider">
-                            <div style="border-radius:16px" class="border bg-white rounded-4 mb-3 d-flex justify-content-center">
-                                <video controls src="@Url.Content(Model.video)" type="video/mp4" class="rounded-4" style="border-radius:16px; max-width: 100%; max-height: 450px; margin: auto;" autoplay muted>
-                                </video>
-                            </div>
-                        </div>
-                    }
-                    @if (string.IsNullOrEmpty(Model.hinhanh))
-                    {
-                        <div class="slickSlider">
-                            <div style="border-radius:16px" class=" border rounded-4 mb-3 d-flex justify-content-center">
-                                <a style="border-radius:16px" data-fslightbox="mygalley" class="rounded-4" data-type="image" href="@Url.Content("~/Content/assets/images/product/sanphamdefault.jpg")" data-lightbox="gallery-product">
-                                    <img style="border-radius: 16px; max-width: 100%; max-height: 100vh; margin: auto;" class="rounded-4 fit" src="@Url.Content("~/Content/assets/images/product/sanphamdefault.jpg")" />
-                                </a>
-                            </div>
-                        </div>
-                    }
-                    else
-                    {
-                        if (Model.hinhanh.IndexOf("#") != -1)
-                        {
-                            foreach (var item in Model.hinhanh.Split('#').ToList())
-                            {
-                                <div class="slickSlider">
-                                    <div style="border-radius:16px" class=" border rounded-4 mb-3 d-flex justify-content-center">
-                                        <a style="border-radius:16px" data-fslightbox="mygalley" class="rounded-4" data-type="image" href="@Url.Content(item)" data-lightbox="gallery-product">
-                                            <img style="border-radius: 16px; max-width: 100%; max-height: 100vh; margin: auto;" class="rounded-4 fit" src="@Url.Content(item)" />
-                                        </a>
-                                    </div>
-                                </div>
-                            }
-                        }
-                        else
-                        {
-                            <div class="slickSlider">
-                                <div style="border-radius:16px" class="border rounded-4 mb-3 d-flex justify-content-center">
-                                    <a style="border-radius:16px" data-fslightbox="mygalley" class="rounded-4" data-type="image" href="@Url.Content(Model.hinhanh)" data-lightbox="gallery-product">
-                                        <img style="border-radius: 16px; max-width: 100%; max-height: 100vh; margin: auto;" class="rounded-4 fit" src="@Url.Content(Model.hinhanh)" />
-                                    </a>
-                                </div>
-                            </div>
-                        }
-                    }
-                </div>
-                <div style="width: 100%" class="d-flex justify-content-center">
-                    <div class="d-flex justify-content-center mb-3 slider-nav" style="width: @((dem > 1) ? (dem * 100) - 100 : (dem * 100))px">
-
+<section class="section-ourmenu bg2-pattern">
+    <div class="section-child-bg2">
+        <div class="container p-t-60 p-b-40">
+            <div class="row gx-5">
+                <aside class="col-lg-6">
+                    <div class="slider-for gallery-product m-3">
                         @if (!string.IsNullOrEmpty(Model.video))
                         {
                             <div class="slickSlider">
-                                <a style="border-radius:10px" data-fslightbox="mygalley" class="mx-1 rounded-5 item-thumb" data-type="image">
-                                    <img style="object-fit: cover; " width="80" height="80" class="rounded-5" src="@Url.Content("~/Content/assets/images/videodefault.jpg")" />
-                                </a>
+                                <div style="border-radius:16px" class="border bg-white rounded-4 mb-3 d-flex justify-content-center">
+                                    <video controls src="@Url.Content(Model.video)" type="video/mp4" class="rounded-4" style="border-radius:16px; max-width: 100%; max-height: 450px; margin: auto;" autoplay muted>
+                                    </video>
+                                </div>
                             </div>
                         }
                         @if (string.IsNullOrEmpty(Model.hinhanh))
                         {
                             <div class="slickSlider">
-
-                                <a style="border-radius:10px" data-fslightbox="mygalley" class="mx-1 rounded-5 item-thumb" data-type="image">
-                                    <img style="object-fit: cover;" width="80" height="80" class="rounded-5" src="@Url.Content("~/Content/assets/images/product/sanphamdefault.jpg")" />
-                                </a>
+                                <div style="border-radius:16px" class=" border rounded-4 mb-3 d-flex justify-content-center">
+                                    <a style="border-radius:16px" data-fslightbox="mygalley" class="rounded-4" data-type="image" href="@Url.Content("~/Content/assets/images/product/sanphamdefault.jpg")" data-lightbox="gallery-product">
+                                        <img style="border-radius: 16px; max-width: 100%; max-height: 100vh; margin: auto;" class="rounded-4 fit" src="@Url.Content("~/Content/assets/images/product/sanphamdefault.jpg")" />
+                                    </a>
+                                </div>
                             </div>
                         }
                         else
@@ -114,155 +68,203 @@
                                 foreach (var item in Model.hinhanh.Split('#').ToList())
                                 {
                                     <div class="slickSlider">
-
-                                        <a style="border-radius:10px" data-fslightbox="mygalley" class="mx-1 rounded-5 item-thumb" data-type="image">
-                                            <img style="object-fit: cover" width="80" height="80" class="rounded-5" src="@Url.Content(item)" />
-                                        </a>
+                                        <div style="border-radius:16px" class=" border rounded-4 mb-3 d-flex justify-content-center">
+                                            <a style="border-radius:16px" data-fslightbox="mygalley" class="rounded-4" data-type="image" href="@Url.Content(item)" data-lightbox="gallery-product">
+                                                <img style="border-radius: 16px; max-width: 100%; max-height: 100vh; margin: auto;" class="rounded-4 fit" src="@Url.Content(item)" />
+                                            </a>
+                                        </div>
                                     </div>
                                 }
-
                             }
                             else
                             {
                                 <div class="slickSlider">
-
-                                    <a style="border-radius:10px" data-fslightbox="mygalley" class="mx-1 rounded-5 item-thumb" data-type="image">
-                                        <img style="object-fit: cover" width="80" height="80" class="rounded-5" src="@Url.Content(Model.hinhanh)" />
-                                    </a>
+                                    <div style="border-radius:16px" class="border rounded-4 mb-3 d-flex justify-content-center">
+                                        <a style="border-radius:16px" data-fslightbox="mygalley" class="rounded-4" data-type="image" href="@Url.Content(Model.hinhanh)" data-lightbox="gallery-product">
+                                            <img style="border-radius: 16px; max-width: 100%; max-height: 100vh; margin: auto;" class="rounded-4 fit" src="@Url.Content(Model.hinhanh)" />
+                                        </a>
+                                    </div>
                                 </div>
                             }
                         }
                     </div>
-                </div>
-                <!-- thumbs-wrap.// -->
-                <!-- gallery-wrap .end// -->
-            </aside>
-            <main class="col-lg-6">
-                <div class="ps-lg-3">
-                    <h4 class="title text-white font-weight-bold">
-                        @Model.tensanpham
-                    </h4>
-                    <div class="d-flex flex-row my-3">
-                        <div class="text-warning me-2">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star-half-alt"></i>
-                            <span class="ms-1">
-                                4.5
-                            </span>
-                        </div>
-                    </div>
-                    <div class="mb-1">
-                        @if (Model.TonKhoSanPham.OrderByDescending(o => o.soluong).First().soluong < 1)
-                        {
-                            <span id="trangthaihang" class="text-danger">Hết hàng</span>
-                        }
-                        else
-                        {
-                            <span id="trangthaihang" class="text-success">Còn hàng</span>
-                        }
-                    </div>
-                    <div class="mb-2">
-                        <span class="text-muted">@Model.luotxem.ToString("0,0") lượt xem</span>
-                    </div>
+                    <div style="width: 100%" class="d-flex justify-content-center">
+                        <div class="d-flex justify-content-center mb-3 slider-nav" style="width: @((dem > 1) ? (dem * 100) - 100 : (dem * 100))px">
 
-                    <p class="mb-3 text-white" style="word-wrap: break-word">
-                        Mô tả: @Model.mota
-                    </p>
+                            @if (!string.IsNullOrEmpty(Model.video))
+                            {
+                                <div class="slickSlider">
+                                    <a style="border-radius:10px" data-fslightbox="mygalley" class="mx-1 rounded-5 item-thumb" data-type="image">
+                                        <img style="object-fit: cover; " width="80" height="80" class="rounded-5" src="@Url.Content("~/Content/assets/images/videodefault.jpg")" />
+                                    </a>
+                                </div>
+                            }
+                            @if (string.IsNullOrEmpty(Model.hinhanh))
+                            {
+                                <div class="slickSlider">
 
-                    <div class="mb-3">
-                        <span class="text-white">Giá: <span id="gia-tonkho" class="text-warning font-weight-bold"></span></span>
-                    </div>
-                    <div class="row mb-3 text-white">
-                        <div class="col-md-6 col-sm-12 mb-3">
-                            <label class="mb-2 d-block">Loại:</label>
-                            <select id="selectloai" class="form-select border border-secondary" style="height: 35px; width: 100%">
-                                @foreach (var item in Model.TonKhoSanPham.Where(l => l.soluong > 0))
+                                    <a style="border-radius:10px" data-fslightbox="mygalley" class="mx-1 rounded-5 item-thumb" data-type="image">
+                                        <img style="object-fit: cover;" width="80" height="80" class="rounded-5" src="@Url.Content("~/Content/assets/images/product/sanphamdefault.jpg")" />
+                                    </a>
+                                </div>
+                            }
+                            else
+                            {
+                                if (Model.hinhanh.IndexOf("#") != -1)
                                 {
-                                    i++;
-                                    if (i == 1)
+                                    foreach (var item in Model.hinhanh.Split('#').ToList())
                                     {
-                                        <option tonkhogia="@item.gia.ToString("0,0")" tonkhosoluong="@item.soluong" selected value="@item.id">@item.tenloai</option>
-                                    }
-                                    else
-                                    {
-                                        <option tonkhogia="@item.gia.ToString("0,0")" tonkhosoluong="@item.soluong" value="@item.id">@item.tenloai</option>
-                                    }
-                                }
+                                        <div class="slickSlider">
 
-                                @foreach (var item in Model.TonKhoSanPham.Where(l => l.soluong < 1))
-                                {
-                                    i++;
-                                    if (i == 1)
-                                    {
-                                        <option tonkhogia="@item.gia.ToString("0,0")" tonkhosoluong="@item.soluong" selected value="@item.id">@item.tenloai (Hết hàng)</option>
+                                            <a style="border-radius:10px" data-fslightbox="mygalley" class="mx-1 rounded-5 item-thumb" data-type="image">
+                                                <img style="object-fit: cover" width="80" height="80" class="rounded-5" src="@Url.Content(item)" />
+                                            </a>
+                                        </div>
                                     }
-                                    else
-                                    {
-                                        <option tonkhogia="@item.gia.ToString("0,0")" tonkhosoluong="@item.soluong" value="@item.id">@item.tenloai (Hết hàng)</option>
-                                    }
-                                }
-                            </select>
-                            <label id="soluong-tonkho" class="mt-1 mb-1 d-block text-muted">Kho: </label>
-                        </div>
-                        <!-- col.// -->
-                        <div class="col-md-6 col-sm-12 mb-3">
-                            <label name="" class="mb-2 d-block">Số lượng:</label>
-                            <div class="input-group mb-3" style="width: 100%;">
 
-                                @if (Model.TonKhoSanPham.OrderByDescending(o => o.soluong).First().soluong < 1)
-                                {
-                                    <button disabled class="text-white btn btn-white border border-secondary px-3" type="button" id="button-minus-product" data-mdb-ripple-color="dark">
-                                        <i class="fa fa-minus"></i>
-                                    </button>
-                                    <input disabled value="0" id="soluong" data-type='numbers' type="text" class="form-control text-center border border-secondary" placeholder="0" aria-label="Example text with button addon" aria-describedby="button-addon1" />
-                                    <button disabled class="text-white btn btn-white border border-secondary px-3" type="button" id="button-addon-product" data-mdb-ripple-color="dark">
-                                        <i class="fa fa-plus"></i>
-                                    </button>
                                 }
                                 else
                                 {
-                                    <button class="text-white btn btn-white border border-secondary px-3" type="button" id="button-minus-product" data-mdb-ripple-color="dark">
-                                        <i class="fa fa-minus"></i>
-                                    </button>
-                                    <input value="1" id="soluong" data-type='numbers' type="text" class="form-control text-center border border-secondary" placeholder="0" aria-label="Example text with button addon" aria-describedby="button-addon1" />
-                                    <button class="text-white btn btn-white border border-secondary px-3" type="button" id="button-addon-product" data-mdb-ripple-color="dark">
-                                        <i class="fa fa-plus"></i>
-                                    </button>
-                                }
+                                    <div class="slickSlider">
 
+                                        <a style="border-radius:10px" data-fslightbox="mygalley" class="mx-1 rounded-5 item-thumb" data-type="image">
+                                            <img style="object-fit: cover" width="80" height="80" class="rounded-5" src="@Url.Content(Model.hinhanh)" />
+                                        </a>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                    <!-- thumbs-wrap.// -->
+                    <!-- gallery-wrap .end// -->
+                </aside>
+                <main class="col-lg-6">
+                    <div class="ps-lg-3">
+                        <h4 class="title text-white font-weight-bold">
+                            @Model.tensanpham
+                        </h4>
+                        <div class="d-flex flex-row my-3">
+                            <div class="text-warning me-2">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-half-alt"></i>
+                                <span class="ms-1">
+                                    4.5
+                                </span>
                             </div>
                         </div>
-                        <!-- col.// -->
-                        <!--<div class="col-md-6 col-6">
+                        <div class="mb-1">
+                            @if (Model.TonKhoSanPham.OrderByDescending(o => o.soluong).First().soluong < 1)
+                            {
+                                <span id="trangthaihang" class="text-danger">Hết hàng</span>
+                            }
+                            else
+                            {
+                                <span id="trangthaihang" class="text-success">Còn hàng</span>
+                            }
+                        </div>
+                        <div class="mb-2">
+                            <span class="text-muted">@Model.luotxem.ToString("0,0") lượt xem</span>
+                        </div>
+
+                        <p class="mb-3 text-white" style="word-wrap: break-word">
+                            Mô tả: @Model.mota
+                        </p>
+
+                        <div class="mb-3">
+                            <span class="text-white">Giá: <span id="gia-tonkho" class="text-warning font-weight-bold"></span></span>
+                        </div>
+                        <div class="row mb-3 text-white">
+                            <div class="col-md-6 col-sm-12 mb-3">
+                                <label class="mb-2 d-block">Loại:</label>
+                                <select id="selectloai" class="form-select border border-secondary" style="height: 35px; width: 100%">
+                                    @foreach (var item in Model.TonKhoSanPham.Where(l => l.soluong > 0))
+                                    {
+                                        i++;
+                                        if (i == 1)
+                                        {
+                                            <option tonkhogia="@item.gia.ToString("0,0")" tonkhosoluong="@item.soluong" selected value="@item.id">@item.tenloai</option>
+                                        }
+                                        else
+                                        {
+                                            <option tonkhogia="@item.gia.ToString("0,0")" tonkhosoluong="@item.soluong" value="@item.id">@item.tenloai</option>
+                                        }
+                                    }
+
+                                    @foreach (var item in Model.TonKhoSanPham.Where(l => l.soluong < 1))
+                                    {
+                                        i++;
+                                        if (i == 1)
+                                        {
+                                            <option tonkhogia="@item.gia.ToString("0,0")" tonkhosoluong="@item.soluong" selected value="@item.id">@item.tenloai (Hết hàng)</option>
+                                        }
+                                        else
+                                        {
+                                            <option tonkhogia="@item.gia.ToString("0,0")" tonkhosoluong="@item.soluong" value="@item.id">@item.tenloai (Hết hàng)</option>
+                                        }
+                                    }
+                                </select>
+                                <label id="soluong-tonkho" class="mt-1 mb-1 d-block text-muted">Kho: </label>
+                            </div>
+                            <!-- col.// -->
+                            <div class="col-md-6 col-sm-12 mb-3">
+                                <label name="" class="mb-2 d-block">Số lượng:</label>
+                                <div class="input-group mb-3" style="width: 100%;">
+
+                                    @if (Model.TonKhoSanPham.OrderByDescending(o => o.soluong).First().soluong < 1)
+                                    {
+                                        <button disabled class="text-white btn btn-white border border-secondary px-3" type="button" id="button-minus-product" data-mdb-ripple-color="dark">
+                                            <i class="fa fa-minus"></i>
+                                        </button>
+                                        <input disabled value="0" id="soluong" data-type='numbers' type="text" class="form-control text-center border border-secondary" placeholder="0" aria-label="Example text with button addon" aria-describedby="button-addon1" />
+                                        <button disabled class="text-white btn btn-white border border-secondary px-3" type="button" id="button-addon-product" data-mdb-ripple-color="dark">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    }
+                                    else
+                                    {
+                                        <button class="text-white btn btn-white border border-secondary px-3" type="button" id="button-minus-product" data-mdb-ripple-color="dark">
+                                            <i class="fa fa-minus"></i>
+                                        </button>
+                                        <input value="1" id="soluong" data-type='numbers' type="text" class="form-control text-center border border-secondary" placeholder="0" aria-label="Example text with button addon" aria-describedby="button-addon1" />
+                                        <button class="text-white btn btn-white border border-secondary px-3" type="button" id="button-addon-product" data-mdb-ripple-color="dark">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    }
+
+                                </div>
+                            </div>
+                            <!-- col.// -->
+                            <!--<div class="col-md-6 col-6">
 
                         </div>-->
-                    </div>
-                    @if (Model.TonKhoSanPham.OrderByDescending(o => o.soluong).First().soluong < 1)
-                    {
-                        <div class="row">
-                            <div class="col-md-6 col-sm-12">
-                                <button disabled id="addToCart" style="max-width:100%; min-width:40%; cursor: pointer;" class="btn1 flex-c-m size1 txt3 trans-0-4">
-                                    <i class="fa fa-cart-plus" style="margin-right: 6px" aria-hidden="true"></i> THÊM VÀO GIỎ
-                                </button>
-                            </div>
                         </div>
+                        @if (Model.TonKhoSanPham.OrderByDescending(o => o.soluong).First().soluong < 1)
+                        {
+                            <div class="row">
+                                <div class="col-md-6 col-sm-12">
+                                    <button disabled id="addToCart" style="max-width:100%; min-width:40%; cursor: pointer;" class="btn1 flex-c-m size1 txt3 trans-0-4">
+                                        <i class="fa fa-cart-plus" style="margin-right: 6px" aria-hidden="true"></i> THÊM VÀO GIỎ
+                                    </button>
+                                </div>
+                            </div>
 
-                    }
-                    else
-                    {
-                        <div class="row">
-                            <div class="col-md-6 col-sm-12">
-                                <button id="addToCart" style="width:100%; cursor: pointer;" class="btn1 flex-c-m size1 txt3 trans-0-4">
-                                    <i class="fa fa-cart-plus" style="margin-right: 6px" aria-hidden="true"></i> THÊM VÀO GIỎ
-                                </button>
+                        }
+                        else
+                        {
+                            <div class="row">
+                                <div class="col-md-6 col-sm-12">
+                                    <button id="addToCart" style="width:100%; cursor: pointer;" class="btn1 flex-c-m size1 txt3 trans-0-4">
+                                        <i class="fa fa-cart-plus" style="margin-right: 6px" aria-hidden="true"></i> THÊM VÀO GIỎ
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                    }
-                </div>
-            </main>
+                        }
+                    </div>
+                </main>
+            </div>
         </div>
     </div>
 </section>
