@@ -746,7 +746,7 @@ input[type="date" i] {
 */
 .sidebar {
     position: fixed;
-    z-index: 1200;
+    z-index: 9999;
     width: 390px;
     height: 100%;
     overflow: auto;
@@ -2038,3 +2038,99 @@ body {
     .icon-hover:hover i {
         color: #3b71ca !important;
     }
+
+
+    /* STICKY ICON */
+
+.sticky-icon {
+    z-index: 9998;
+    position: fixed;
+    justify-content: center;
+    top: 50%; 
+    right: -2px;
+    width: 190px;
+    display: flex;
+    flex-direction: column;
+    transform: translate(138px, -50%);
+}
+
+    .sticky-icon a {
+        border-radius: 50px 0px 0px 50px;
+        text-align: left;
+        margin: 2px;
+        text-decoration: none;
+        padding: 10px;
+        font-size: 16px;
+        font-family: 'Oswald', sans-serif;
+        transition: all 0.3s;
+    }
+
+        .sticky-icon a:hover {
+            color: #FFF;
+            transform: translate(-138px,0px);
+        }
+
+            .sticky-icon a:hover img {
+                transform: rotate(360deg);
+            }
+
+    .Facebook {
+        background-color: #3b5998;
+        color: #FFF;
+    }
+
+.Messenger {
+    background: radial-gradient(circle at 30% 107%, #fd5949 0%, #d6249f 30%, #285aeb 90%);
+    color: #FFF;
+}
+
+.Zalo {
+    background-color: #0A68FE;
+    color: #FFF;
+}
+
+.Instagram {
+    background: radial-gradient(circle at 30% 107%, #fd5949 0%, #d6249f 30%, #285aeb 90%);
+    color: #FFF;
+}
+
+.TikTok {
+    background: #212529;
+    color: #FFF;
+}
+
+.Phone {
+    background-color: #00ca94;
+    color: #FFF;
+}
+
+.Email {
+    background-color: #b3261e;
+    color: #FFF;
+}
+
+.sticky-icon a img {
+    background-color: #FFF;
+    height: 30px;
+    width: 30px;
+    color: #000;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 50%;
+    outline: 2px solid #fff;
+    margin-right: 20px;
+    transition: all 0.6s;
+}
+
+
+/* button left right*/
+
+.fa-angle-left, .fa-angle-right {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+@media (max-width: 767px) {
+    .sticky-icon {
+        display: none;
+    }
+}

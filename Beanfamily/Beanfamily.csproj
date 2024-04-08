@@ -157,6 +157,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MuaSamController.cs" />
     <Compile Include="Controllers\NhaHangBeanController.cs" />
+    <Compile Include="Controllers\ThucDonHangNgayController.cs" />
     <Compile Include="Controllers\VuonRauController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -279,6 +280,10 @@
     <Content Include="ActionOnPage\GioHang\ChangeQuantity.js" />
     <Content Include="ActionOnPage\GioHang\DeletedProduct.js" />
     <Content Include="ActionOnPage\NhaHang\loadPageNhaHang.js" />
+    <Content Include="ActionOnPage\ThucDonHangNgay\AddToCart.js" />
+    <Content Include="ActionOnPage\ThucDonHangNgay\loadPageThucDonHangNgayDetail.js" />
+    <Content Include="ActionOnPage\ThucDonHangNgay\loadPageThucDonHangNgay.js" />
+    <Content Include="ActionOnPage\ThucDonHangNgay\sanPhamTheoDanhMuc.js" />
     <Content Include="ActionOnPage\VuonRau\AddToCart.js" />
     <Content Include="ActionOnPage\VuonRau\loadPageGarden.js" />
     <Content Include="ActionOnPage\VuonRau\loadPageGardenDetail.js" />
@@ -298,9 +303,17 @@
     <Content Include="Content\assets\images\Beans\NhaHang\z4834791075626_1488c6046d57199e4f43784f3e737876.jpg" />
     <Content Include="Content\assets\images\Beans\NhaHang\z4834791078437_d255e83a28d193e347e6205096502cbf.jpg" />
     <Content Include="Content\assets\images\Beans\NhaHang\z4834791087337_dfdc737db5de4d38ad2cdb6544c4b33c.jpg" />
+    <Content Include="Content\assets\images\icons\fb.png" />
+    <Content Include="Content\assets\images\icons\ig.png" />
+    <Content Include="Content\assets\images\icons\mail.png" />
+    <Content Include="Content\assets\images\icons\mess.png" />
+    <Content Include="Content\assets\images\icons\phone.png" />
+    <Content Include="Content\assets\images\icons\ttok.png" />
+    <Content Include="Content\assets\images\icons\zalo.png" />
     <Content Include="Content\assets\images\logo\Bamboo.png" />
     <Content Include="Content\assets\images\logo\Bamboo2.png" />
     <Content Include="Content\assets\images\logo\Bamboo3.png" />
+    <Content Include="Content\assets\images\logo\Bamboo4.png" />
     <Content Include="Content\assets\images\logo\hoa-tiet-chims.png" />
     <Content Include="Content\assets\images\videodefault.jpg" />
     <Content Include="Content\AdminAreas\assets\css\style.css" />
@@ -2885,6 +2898,9 @@
     <Content Include="Views\VuonRau\Index.cshtml" />
     <Content Include="Views\VuonRau\ProductDetail.cshtml" />
     <Content Include="Views\NhaHangBean\Index.cshtml" />
+    <Content Include="Views\ThucDonHangNgay\Index.cshtml" />
+    <Content Include="Views\ThucDonHangNgay\_ListProduct.cshtml" />
+    <Content Include="Views\ThucDonHangNgay\ProductDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,20 +1,20 @@
 ﻿@using Beanfamily.Models;
 @using PagedList.Mvc;
 @using PagedList;
-@model IPagedList<Beanfamily.Models.SanPhamRauNhaTrong>
+@model IPagedList<Beanfamily.Models.SanPhamThucDonHangNgay>
 @{
     BeanfamilyEntities models = new BeanfamilyEntities();
-    var dm = Session["categories-raunhatrong"] as List<DanhMucSanPhamRauNhaTrongCap1>;
-    ViewBag.Title = "Vườn Rau";
+    var dm = Session["categories-thucdonhangngay"] as List<DanhMucThucDocHangNgayCap1>;
+    ViewBag.Title = "Menu Hằng Ngày";
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
 }
 
 <!-- Title Page -->
-<section style="background-repeat: no-repeat; background-position: center 0; background-size: cover; background-image: url(/Content/assets/images/backgroud.png);">
-    <div class="flex-c-m" style="background-image: linear-gradient(180deg, #000000ad 40%, #000000d6 100%); width: 100%; min-height: 545px; padding-left: 15px; padding-right: 15px; background-repeat: no-repeat; background-position: center 0; background-size: cover; ">
+<section  style="background-repeat: no-repeat; background-position: center 0; background-size: cover; background-image: url(/Content/assets/images/backgroud.png);">
+    <div class="flex-c-m" style="background-image: linear-gradient(180deg, #000000ad 40%, #000000d6 100%); width: 100%; min-height: 545px; padding-left: 15px; padding-right: 15px; background-repeat: no-repeat; background-position: center 0; background-size: cover; " >
         <div>
             <h2 class="tit6 t-center">
-                Rau Nhà Trồng
+                Menu Hằng Ngày
             </h2>
         </div>
     </div>
@@ -23,16 +23,16 @@
 <!-- Our menu -->
 <section class="section-ourmenu bg1-pattern">
     <div class="section-child-bg1">
-        <div class="container p-t-60 p-b-40">
+        <div class="container  p-t-60 p-b-40">
             <div class="row">
                 <div class="col-sm-0 col-md-3 categories_product">
                     <div id="categoried_card" class="card" style="border-top-left-radius: 16px; border-top-right-radius: 16px; border: 0; background: none; position: sticky; top: 120px; margin-bottom: 75px;">
                         <div style="border-top: 1px solid rgb(255 255 255); border-left: 1px solid rgb(255 255 255); border-right: 1px solid rgb(255 255 255); border-top-left-radius: 16px; border-top-right-radius: 16px " class="card-header bg-website font-weight-bold text-white text-uppercase"><i class="fa fa-list"> </i> Danh mục</div>
                         <ul style="border-bottom-left-radius: 16px; border-bottom-right-radius: 16px" class="list-group category_block">
-                            @if (Session["id-category-raunhatrong"].ToString().Equals("tatca"))
+                            @if (Session["id-category-thucdonhangngay"].ToString().Equals("tatca"))
                             {
                                 <li name="tatca" class="list-group-item active"><a>Tất cả</a></li>
-                                foreach (var item in dm)
+                                foreach (var item in dm.OrderBy(o => o.sothutu))
                                 {
                                     <li name="@item.id" class="list-group-item"><a>@item.tendanhmuc</a></li>
                                 }
@@ -40,9 +40,9 @@
                             else
                             {
                                 <li name="tatca" class="list-group-item"><a>Tất cả</a></li>
-                                foreach (var item in dm)
+                                foreach (var item in dm.OrderBy(o => o.sothutu))
                                 {
-                                    if (item.id == Int32.Parse(Session["id-category-raunhatrong"].ToString()))
+                                    if (item.id == Int32.Parse(Session["id-category-thucdonhangngay"].ToString()))
                                     {
                                         <li name="@item.id" class="list-group-item active"><a>@item.tendanhmuc</a></li>
                                     }
@@ -103,16 +103,15 @@
                                             }
                                             @*<span class="product-sale-label">Sale</span>*@
                                             <ul class="product-links">
-                                                <li><a href="@Url.Action("productdetail", "vuonrau", new {id = item.id})"><i class="fa fa-solid fa-expand" aria-hidden="true"></i></a></li>
+                                                <li><a href="@Url.Action("productdetail", "thucdonhangngay", new {id = item.id})"><i class="fa fa-solid fa-expand" aria-hidden="true"></i></a></li>
                                                 @*<li><a href="#"><i class="fa fa-random"></i></a></li>*@
                                             </ul>
                                         </div>
                                         <div class="product-content">
-                                            <h3 class="title"><a href="@Url.Action("productdetail", "vuonrau", new {id = item.id})">@item.tensanpham</a></h3>
-
-                                            <div class="price">
-                                                @item.gia.ToString("0,0")đ / @item.donvi
-                                            </div>
+                                            <h3 class="title"><a href="@Url.Action("productdetail", "thucdonhangngay", new {id = item.id})">@item.tensanpham</a></h3>
+                                                <div class="price">
+                                                    @item.gia.ToString("0,0")đ
+                                                </div>
 
                                         </div>
                                     </div>
@@ -128,6 +127,6 @@
 
         </div>
     </div>
-    <script src="~/ActionOnPage/VuonRau/loadPageGarden.js"></script>
-    <script src="~/ActionOnPage/VuonRau/sanPhamTheoDanhMuc.js"></script>
+    <script src="~/ActionOnPage/ThucDonHangNgay/loadPageThucDonHangNgay.js"></script>
+    <script src="~/ActionOnPage/ThucDonHangNgay/sanPhamTheoDanhMuc.js"></script>
 </section>

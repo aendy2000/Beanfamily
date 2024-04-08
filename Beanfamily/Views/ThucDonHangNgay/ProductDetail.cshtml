@@ -1,4 +1,4 @@
-﻿@model Beanfamily.Models.SanPhamMuaSam
+﻿@model Beanfamily.Models.SanPhamThucDonHangNgay
 @{
     ViewBag.Title = "Chi tiết sản phẩm";
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
@@ -160,7 +160,7 @@
                             </div>
                         </div>
                         <div class="mb-1">
-                            @if (Model.TonKhoSanPham.OrderByDescending(o => o.soluong).First().soluong < 1)
+                            @if (Model.conhang == false)
                             {
                                 <span id="trangthaihang" class="text-danger">Hết hàng</span>
                             }
@@ -178,51 +178,20 @@
                         </p>
 
                         <div class="mb-3">
-                            <span class="text-white">Giá: <span id="gia-tonkho" class="text-warning font-weight-bold"></span></span>
+                            <span class="text-white">Giá: <span class="text-warning font-weight-bold">@Model.gia.ToString("0,0")đ</span></span>
                         </div>
                         <div class="row mb-3 text-white">
-                            <div class="col-md-6 col-sm-12 mb-3">
-                                <label class="mb-2 d-block">Loại:</label>
-                                <select id="selectloai" class="form-select border border-secondary" style="height: 35px; width: 100%">
-                                    @foreach (var item in Model.TonKhoSanPham.Where(l => l.soluong > 0))
-                                    {
-                                        i++;
-                                        if (i == 1)
-                                        {
-                                            <option tonkhogia="@item.gia.ToString("0,0")" tonkhosoluong="@item.soluong" selected value="@item.id">@item.tenloai</option>
-                                        }
-                                        else
-                                        {
-                                            <option tonkhogia="@item.gia.ToString("0,0")" tonkhosoluong="@item.soluong" value="@item.id">@item.tenloai</option>
-                                        }
-                                    }
-
-                                    @foreach (var item in Model.TonKhoSanPham.Where(l => l.soluong < 1))
-                                    {
-                                        i++;
-                                        if (i == 1)
-                                        {
-                                            <option tonkhogia="@item.gia.ToString("0,0")" tonkhosoluong="@item.soluong" selected value="@item.id">@item.tenloai (Hết hàng)</option>
-                                        }
-                                        else
-                                        {
-                                            <option tonkhogia="@item.gia.ToString("0,0")" tonkhosoluong="@item.soluong" value="@item.id">@item.tenloai (Hết hàng)</option>
-                                        }
-                                    }
-                                </select>
-                                <label id="soluong-tonkho" class="mt-1 mb-1 d-block text-muted">Kho: </label>
-                            </div>
                             <!-- col.// -->
                             <div class="col-md-6 col-sm-12 mb-3">
-                                <label name="" class="mb-2 d-block">Số lượng:</label>
+                                <label class="mb-2 d-block">Số lượng:</label>
                                 <div class="input-group mb-3" style="width: 100%;">
 
-                                    @if (Model.TonKhoSanPham.OrderByDescending(o => o.soluong).First().soluong < 1)
+                                    @if (Model.conhang == false)
                                     {
                                         <button disabled class="text-white btn btn-white border border-secondary px-3" type="button" id="button-minus-product" data-mdb-ripple-color="dark">
                                             <i class="fa fa-minus"></i>
                                         </button>
-                                        <input disabled value="0" id="soluong" data-type='numbers' type="text" class="form-control text-center border border-secondary" placeholder="0" aria-label="Example text with button addon" aria-describedby="button-addon1" />
+                                        <input disabled value="0" id="soluong" data-type='currency' type="text" class="form-control text-center border border-secondary" placeholder="0" aria-label="Example text with button addon" aria-describedby="button-addon1" />
                                         <button disabled class="text-white btn btn-white border border-secondary px-3" type="button" id="button-addon-product" data-mdb-ripple-color="dark">
                                             <i class="fa fa-plus"></i>
                                         </button>
@@ -232,7 +201,7 @@
                                         <button class="text-white btn btn-white border border-secondary px-3" type="button" id="button-minus-product" data-mdb-ripple-color="dark">
                                             <i class="fa fa-minus"></i>
                                         </button>
-                                        <input value="1" id="soluong" data-type='numbers' type="text" class="form-control text-center border border-secondary" placeholder="0" aria-label="Example text with button addon" aria-describedby="button-addon1" />
+                                        <input value="1" id="soluong" data-type='currency' type="text" class="form-control text-center border border-secondary" placeholder="0" aria-label="Example text with button addon" aria-describedby="button-addon1" />
                                         <button class="text-white btn btn-white border border-secondary px-3" type="button" id="button-addon-product" data-mdb-ripple-color="dark">
                                             <i class="fa fa-plus"></i>
                                         </button>
@@ -240,12 +209,8 @@
 
                                 </div>
                             </div>
-                            <!-- col.// -->
-                            <!--<div class="col-md-6 col-6">
-
-                        </div>-->
                         </div>
-                        @if (Model.TonKhoSanPham.OrderByDescending(o => o.soluong).First().soluong < 1)
+                        @if (Model.conhang == false)
                         {
                             <div class="row">
                                 <div class="col-md-6 col-sm-12">
@@ -272,5 +237,5 @@
         </div>
     </div>
 </section>
-<script src="~/ActionOnPage/MuaSam/loadPageShoppingDetail.js"></script>
-<script src="~/ActionOnPage/MuaSam/AddToCart.js"></script>
+<script src="~/ActionOnPage/ThucDonHangNgay/loadPageThucDonHangNgayDetail.js"></script>
+<script src="~/ActionOnPage/ThucDonHangNgay/AddToCart.js"></script>

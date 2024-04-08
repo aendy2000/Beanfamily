@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BeanfamilyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="BeanfamilyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ApDungChucNangChoQuyenTaiKhoan">
           <Key>
             <PropertyRef Name="id" />
@@ -319,6 +319,7 @@
           <Property Name="mota" Type="nvarchar(max)" />
           <Property Name="luotxem" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="hienthi" Type="bit" Nullable="false" />
+          <Property Name="conhang" Type="bit" />
         </EntityType>
         <EntityType Name="TaiKhoanBean">
           <Key>
@@ -359,27 +360,6 @@
           <Property Name="ngaysuadoi" Type="datetime" Nullable="false" />
           <Property Name="hinhdaidien" Type="nvarchar(max)" />
         </EntityType>
-        <EntityType Name="ThongTinChung">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="diachi" Type="nvarchar(max)" />
-          <Property Name="email" Type="nvarchar(max)" />
-          <Property Name="hotline" Type="nvarchar(max)" />
-          <Property Name="zalo" Type="nvarchar(max)" />
-          <Property Name="website" Type="nvarchar(max)" />
-          <Property Name="coppyright" Type="nvarchar(max)" />
-          <Property Name="fanpage" Type="nvarchar(max)" />
-          <Property Name="toadogooglemap" Type="nvarchar(max)" />
-          <Property Name="linkchiduong" Type="nvarchar(max)" />
-          <Property Name="toadogooglemapiframe" Type="nvarchar(max)" />
-          <Property Name="googleanalyst" Type="nvarchar(max)" />
-          <Property Name="googlewebmastertool" Type="nvarchar(max)" />
-          <Property Name="headjs" Type="nvarchar(max)" />
-          <Property Name="bodyjs" Type="nvarchar(max)" />
-          <Property Name="tieude" Type="nvarchar(max)" />
-        </EntityType>
         <EntityType Name="TinhTrangDonHangMuaSamVaMenuHangNgay">
           <Key>
             <PropertyRef Name="id" />
@@ -401,6 +381,27 @@
           <Property Name="tenloai" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="soluong" Type="int" Nullable="false" />
           <Property Name="gia" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ThongTinChung">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="diachi" Type="nvarchar(max)" />
+          <Property Name="email" Type="nvarchar(max)" />
+          <Property Name="hotline" Type="nvarchar(max)" />
+          <Property Name="zalo" Type="nvarchar(max)" />
+          <Property Name="website" Type="nvarchar(max)" />
+          <Property Name="coppyright" Type="nvarchar(max)" />
+          <Property Name="fanpage" Type="nvarchar(max)" />
+          <Property Name="toadogooglemap" Type="nvarchar(max)" />
+          <Property Name="linkchiduong" Type="nvarchar(max)" />
+          <Property Name="toadogooglemapiframe" Type="nvarchar(max)" />
+          <Property Name="googleanalyst" Type="nvarchar(max)" />
+          <Property Name="googlewebmastertool" Type="nvarchar(max)" />
+          <Property Name="headjs" Type="nvarchar(max)" />
+          <Property Name="bodyjs" Type="nvarchar(max)" />
+          <Property Name="tieude" Type="nvarchar(max)" />
         </EntityType>
         <Association Name="FK_ApDungChucNangChoQuyenTaiKhoan_ChucNangHeThongBean">
           <End Role="ChucNangHeThongBean" Type="Self.ChucNangHeThongBean" Multiplicity="1" />
@@ -852,9 +853,9 @@
           <EntitySet Name="SanPhamThucDonHangNgay" EntityType="Self.SanPhamThucDonHangNgay" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TaiKhoanBean" EntityType="Self.TaiKhoanBean" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TaiKhoanKhachHang" EntityType="Self.TaiKhoanKhachHang" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ThongTinChung" EntityType="Self.ThongTinChung" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TinhTrangDonHangMuaSamVaMenuHangNgay" EntityType="Self.TinhTrangDonHangMuaSamVaMenuHangNgay" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TonKhoSanPham" EntityType="Self.TonKhoSanPham" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ThongTinChung" EntityType="Self.ThongTinChung" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_ApDungChucNangChoQuyenTaiKhoan_ChucNangHeThongBean" Association="Self.FK_ApDungChucNangChoQuyenTaiKhoan_ChucNangHeThongBean">
             <End Role="ChucNangHeThongBean" EntitySet="ChucNangHeThongBean" />
             <End Role="ApDungChucNangChoQuyenTaiKhoan" EntitySet="ApDungChucNangChoQuyenTaiKhoan" />
@@ -996,8 +997,7 @@
             <End Role="TonKhoSanPham" EntitySet="TonKhoSanPham" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BeanfamilyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1372,6 +1372,7 @@
           <NavigationProperty Name="DanhMucThucDocHangNgayCap1" Relationship="Self.FK_SanPhamThucDonHangNgay_SanPhamThucDonHangNgay1" FromRole="SanPhamThucDonHangNgay" ToRole="DanhMucThucDocHangNgayCap1" />
           <NavigationProperty Name="GioHang" Relationship="Self.FK_GioHang_SanPhamThucDonHangNgay" FromRole="SanPhamThucDonHangNgay" ToRole="GioHang" />
           <NavigationProperty Name="LichSuSuaDoiSanPhamThucDonHangNgay" Relationship="Self.FK_LichSuSuaDoiSanPhamThucDonHangNgay_SanPhamThucDonHangNgay" FromRole="SanPhamThucDonHangNgay" ToRole="LichSuSuaDoiSanPhamThucDonHangNgay" />
+          <Property Name="conhang" Type="Boolean" />
         </EntityType>
         <EntityType Name="TaiKhoanBean">
           <Key>
@@ -2398,6 +2399,7 @@
           <EntitySetMapping Name="SanPhamThucDonHangNgay">
             <EntityTypeMapping TypeName="BeanfamilyModel.SanPhamThucDonHangNgay">
               <MappingFragment StoreEntitySet="SanPhamThucDonHangNgay">
+                <ScalarProperty Name="conhang" ColumnName="conhang" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_danhmucthucdonhangngaycap1" ColumnName="id_danhmucthucdonhangngaycap1" />
                 <ScalarProperty Name="hinhanh" ColumnName="hinhanh" />

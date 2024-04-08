@@ -31,6 +31,7 @@ namespace Beanfamily.Models
         public string mota { get; set; }
         public decimal luotxem { get; set; }
         public bool hienthi { get; set; }
+        public Nullable<bool> conhang { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietDonHangMuaSamVaMenuHangNgay> ChiTietDonHangMuaSamVaMenuHangNgay { get; set; }

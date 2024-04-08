@@ -4,7 +4,7 @@
         if (tagA.attr('class') == "active") {
             tagA.attr('class', '');
         }
-        if (tagA.text() == "Mua sắm") {
+        if (tagA.text().toLowerCase() == "mua sắm") {
             tagA.addClass('active');
         }
     });
