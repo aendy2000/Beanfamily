@@ -46,13 +46,13 @@
         var donvi = $('#donvi').val().trim();
         var giatri = $('#giatri').val().trim();
         var danhmuc = $('#danhmuc :selected').val();
+        var quytrinhtrong = $('#quytrinhtrong :selected').val();
 
         $("#ten").removeClass('valid-was-validated');
         $("#gia").removeClass('valid-was-validated');
         $("#donvi").removeClass('valid-was-validated');
         $("#giatri").removeClass('valid-was-validated');
         $("#danhmuc").removeClass('valid-was-validated');
-
 
         $('#invalid-ten-feedback').prop('hidden', true);
         $('#invalid-gia-feedback').prop('hidden', true);
@@ -124,6 +124,7 @@
             formData.append('donvi', donvi);
             formData.append('giatri', giatri);
             formData.append('danhmuc', danhmuc);
+            formData.append('quytrinhtrong', quytrinhtrong);
             formData.append('mota', $('#mota').val().trim());
             formData.append('hienthi', $('#hienthi').prop('checked'));
 

@@ -269,22 +269,19 @@
 
 <!-- Sản phẩm mới -->
 <section class="section-ourmenu bg1-pattern">
+    <div class="header-intro parallax100 t-center p-t-135 p-b-158" style="background-image: url(/Content/assets/images/bg-event-04.jpg); ">
+        <span class="tit2 p-l-15 p-r-15">
+            Khám phá
+        </span>
+
+        <h3 class="tit4 t-center p-l-15 p-r-15 p-t-3">
+            Sản Phẩm Mới
+        </h3>
+    </div>
+
     <div class="section-child-bg1">
 
         <div class="container p-t-115 p-b-120">
-            <div class="title-section-ourmenu t-center m-b-22">
-                <span class="tit2 t-center">
-                    Khám phá
-                </span>
-
-                <h3 class="tit5 t-center m-t-2" style="color: white; margin-top: 20px;">
-                    Sản Phẩm Mới
-                </h3>
-            </div>
-            <hr class="my-3" style="background-color: darkgray" />
-            <br />
-            <br />
-            <br />
             <div @*style="border: 1px solid; border-color: darkgray; border-radius: 15px; margin-bottom: 50px"*@ class="row">
                 <div class="col-md-6 p-t-45 p-b-30">
                     <div class="wrap-text-welcome t-center">
@@ -307,12 +304,12 @@
                 <div class="col-md-6 p-b-30">
                     @foreach (var item in sanphammoinhahang)
                     {
-                        <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom bg-bg1" style="border: 1px solid; border-color: white;">
+                        <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom bg-bg1" style="border: 1px solid; border-color: white;" onclick="location.href = '@(Url.Action("productdetail", "thucdonhangngay", new { id = item.id }))'">
                             <div class="pic-blo3 size20 hov-img-zoom m-r-28">
-                                <a href="@Url.Action("productdetail", "menuhangngay", new { id = item.id })"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
+                                <a href="@Url.Action("productdetail", "thucdonhangngay", new { id = item.id })"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
                             </div>
                             <div class="text-blo3 size21 flex-col-l-m">
-                                <a href="@Url.Action("productdetail", "menuhangngay", new { id = item.id })" class="txt21 m-b-3">
+                                <a href="@Url.Action("productdetail", "thucdonhangngay", new { id = item.id })" class="txt21 m-b-3">
                                     @item.tensanpham
                                 </a>
 
@@ -343,7 +340,7 @@
                 <div class="col-md-6 p-b-30">
                     @foreach (var item in sanphammoivuonrau)
                     {
-                        <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom bg-bg1" style="border: 1px solid; border-color: white;">
+                        <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom bg-bg1" style="border: 1px solid; border-color: white;" onclick="location.href = '@(Url.Action("productdetail", "vuonrau", new { id = item.id }))'">
                             <div class="pic-blo3 size20 hov-img-zoom m-r-28">
                                 <a href="@Url.Action("productdetail", "vuonrau", new { id = item.id })"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
                             </div>
@@ -412,10 +409,10 @@
                     </div>
                 </div>
 
-                <div class="col-md-6 p-b-30"  style="float: left">
+                <div class="col-md-6 p-b-30" style="float: left">
                     @foreach (var item in sanphammoimuasam)
                     {
-                        <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom  bg-bg1" style="border: 1px solid; border-color: white;">
+                        <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom  bg-bg1" style="border: 1px solid; border-color: white;" onclick="location.href = '@(Url.Action("productdetail", "muasam", new { id = item.id }))'">
                             <div class="pic-blo3 size20 hov-img-zoom m-r-28">
                                 <a href="@Url.Action("productdetail", "muasam", new { id = item.id })"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
                             </div>
@@ -450,22 +447,18 @@
 
 <!-- Sản phẩm nỗi bật -->
 <section class="section-ourmenu bg2-pattern">
+    <div class="header-intro parallax100 t-center p-t-135 p-b-158" style="background-image: url(/Content/assets/images/master-slides-03.jpg); ">
+        <span class="tit2 p-l-15 p-r-15">
+            Khám phá
+        </span>
+
+        <h3 class="tit4 t-center p-l-15 p-r-15 p-t-3">
+            Sản Phẩm Nỗi Bật
+        </h3>
+    </div>
+
     <div class="section-child-bg2">
         <div class="container  p-t-115 p-b-120">
-            <div class="title-section-ourmenu t-center m-b-22">
-                <span class="tit2 t-center">
-                    Khám phá
-                </span>
-
-                <h3 class="tit5 t-center m-t-2" style="color: white; margin-top: 20px;">
-                    Sản Phẩm Nỗi bật
-                </h3>
-            </div>
-            <hr class="my-3" style="background-color: darkgray" />
-
-            <br />
-            <br />
-            <br />
             <div @*style="border: 1px solid; border-color: darkgray; border-radius: 15px; margin-bottom: 50px"*@ class="row">
                 <div class="col-md-6 p-t-45 p-b-30">
                     <div class="wrap-text-welcome t-center">
@@ -488,13 +481,13 @@
                 <div class="col-md-6 p-b-30">
                     @foreach (var item in sanphamnoibatnhahang)
                     {
-                        <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom-bgbrown  bg-bg2" style="border: 1px solid; border-color: white;">
+                        <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom-bgbrown  bg-bg2" style="border: 1px solid; border-color: white;" onclick="location.href = '@(Url.Action("productdetail", "thucdonhangngay", new { id = item.id }))'">
                             <div class="pic-blo3 size20 hov-img-zoom m-r-28">
-                                <a href="@Url.Action("productdetail", "menuhangngay", new { id = item.id })"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
+                                <a href="@Url.Action("productdetail", "thucdonhangngay", new { id = item.id })"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
                             </div>
 
                             <div class="text-blo3 size21 flex-col-l-m">
-                                <a href="@Url.Action("productdetail", "menuhangngay", new { id = item.id })" class="txt21 m-b-3">
+                                <a href="@Url.Action("productdetail", "thucdonhangngay", new { id = item.id })" class="txt21 m-b-3">
                                     @item.tensanpham
                                 </a>
 
@@ -526,7 +519,7 @@
                 <div class="col-md-6 p-b-30">
                     @foreach (var item in sanphamnoibatvuonrau)
                     {
-                        <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom-bgbrown  bg-bg2" style="border: 1px solid; border-color: white;">
+                        <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom-bgbrown  bg-bg2" style="border: 1px solid; border-color: white;" onclick="location.href = '@(Url.Action("productdetail", "vuonrau", new { id = item.id }))'">
                             <div class="pic-blo3 size20 hov-img-zoom m-r-28">
                                 <a href="@Url.Action("productdetail", "vuonrau", new { id = item.id })"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
                             </div>
@@ -596,7 +589,7 @@
                 <div class="col-md-6 p-b-30">
                     @foreach (var item in sanphamnoibatmuasam)
                     {
-                        <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom-bgbrown bg-bg2" style="border: 1px solid; border-color: white;">
+                        <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom-bgbrown bg-bg2" style="border: 1px solid; border-color: white;" onclick="location.href = '@(Url.Action("productdetail", "muasam", new { id = item.id }))'">
                             <div class="pic-blo3 size20 hov-img-zoom m-r-28">
                                 <a href="@Url.Action("productdetail", "muasam", new { id = item.id })"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
                             </div>

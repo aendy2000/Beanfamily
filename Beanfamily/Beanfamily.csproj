@@ -2349,7 +2349,6 @@
     <Content Include="Content\assets\images\Beans\DanhMucTrangChu\danhmucvuonrau.jpg" />
     <Content Include="Content\assets\images\bg-01.jpg" />
     <Content Include="Content\assets\images\bg-event-01.jpg" />
-    <Content Include="Content\assets\images\bg-event-02.jpg" />
     <Content Include="Content\assets\images\bg-event-03.jpg" />
     <Content Include="Content\assets\images\bg-event-04.jpg" />
     <Content Include="Content\assets\images\bg-intro-01.jpg" />
@@ -2358,14 +2357,12 @@
     <Content Include="Content\assets\images\bg-intro-04.jpg" />
     <Content Include="Content\assets\images\bg-intro-05.jpg" />
     <Content Include="Content\assets\images\bg-title-page-01.jpg" />
-    <Content Include="Content\assets\images\bg-title-page-02.jpg" />
     <Content Include="Content\assets\images\bg-title-page-03.jpg" />
     <Content Include="Content\assets\images\commingsoon.png" />
     <Content Include="Content\assets\images\header-menu-01.jpg" />
     <Content Include="Content\assets\images\header-menu-02.jpg" />
     <Content Include="Content\assets\images\heading-page-01.jpg" />
     <Content Include="Content\assets\images\heading-page-02.jpg" />
-    <Content Include="Content\assets\images\heading-page-03.jpg" />
     <Content Include="Content\assets\images\heading-page-04.jpg" />
     <Content Include="Content\assets\images\icons\clock-icon.png" />
     <Content Include="Content\assets\images\icons\favicon.png" />

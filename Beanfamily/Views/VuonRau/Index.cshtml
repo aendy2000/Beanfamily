@@ -101,7 +101,10 @@
                                                     <img class="pic-2" src="@Url.Content(item.hinhanh)" />
                                                 }
                                             }
-                                            @*<span class="product-sale-label">Sale</span>*@
+                                            @if (item.giatritrendonvi <= 0)
+                                            {
+                                                <span style="outline: 2px solid #fff !important" class="product-sale-label">Hết hàng</span>
+                                            }
                                             <ul class="product-links">
                                                 <li><a href="@Url.Action("productdetail", "vuonrau", new {id = item.id})"><i class="fa fa-solid fa-expand" aria-hidden="true"></i></a></li>
                                                 @*<li><a href="#"><i class="fa fa-random"></i></a></li>*@

@@ -159,7 +159,7 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="mb-1">
+                        <div class="mb-2">
                             @if (Model.TonKhoSanPham.OrderByDescending(o => o.soluong).First().soluong < 1)
                             {
                                 <span id="trangthaihang" class="text-danger">Hết hàng</span>
@@ -170,18 +170,18 @@
                             }
                         </div>
                         <div class="mb-2">
-                            <span class="text-muted">@Model.luotxem.ToString("0,0") lượt xem</span>
+                            <span class="text-white">@Model.luotxem.ToString("0,0") lượt xem</span>
                         </div>
 
-                        <p class="mb-3 text-white" style="word-wrap: break-word">
+                        <p class="mb-2 text-white" style="word-wrap: break-word">
                             Mô tả: @Model.mota
                         </p>
 
                         <div class="mb-3">
                             <span class="text-white">Giá: <span id="gia-tonkho" class="text-warning font-weight-bold"></span></span>
                         </div>
-                        <div class="row mb-3 text-white">
-                            <div class="col-md-6 col-sm-12 mb-3">
+                        <div class="row mb-2 text-white">
+                            <div class="col-md-6 col-sm-12">
                                 <label class="mb-2 d-block">Loại:</label>
                                 <select id="selectloai" class="form-select border border-secondary" style="height: 35px; width: 100%">
                                     @foreach (var item in Model.TonKhoSanPham.Where(l => l.soluong > 0))
@@ -210,12 +210,12 @@
                                         }
                                     }
                                 </select>
-                                <label id="soluong-tonkho" class="mt-1 mb-1 d-block text-muted">Kho: </label>
+                                <label id="soluong-tonkho" class="mt-1 mb-1 d-block text-white">Kho: </label>
                             </div>
                             <!-- col.// -->
-                            <div class="col-md-6 col-sm-12 mb-3">
+                            <div class="col-md-6 col-sm-12 mb-2">
                                 <label name="" class="mb-2 d-block">Số lượng:</label>
-                                <div class="input-group mb-3" style="width: 100%;">
+                                <div class="input-group mb-2" style="width: 100%;">
 
                                     @if (Model.TonKhoSanPham.OrderByDescending(o => o.soluong).First().soluong < 1)
                                     {

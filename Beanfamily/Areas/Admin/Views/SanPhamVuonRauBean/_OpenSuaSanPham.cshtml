@@ -4,7 +4,7 @@
     Layout = null;
     BeanfamilyEntities models = new BeanfamilyEntities();
     var lstDmC1 = models.DanhMucSanPhamRauNhaTrongCap1.ToList();
-
+    var lstQtt = models.QuyTrinhTrongCay.ToList();
     string lstImage = Model.hinhanh;
 }
 
@@ -60,6 +60,26 @@
                             }
                         </select>
                         <label style="margin-left: 5px" id="invalid-suadanhmuc-feedback" class="text-danger" hidden></label>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="suaquytrinhtrong" class="col-md-12 col-lg-2 col-form-label">Quy trình trồng</label>
+                    <div class="col-md-12 col-lg-10">
+                        <select id="suaquytrinhtrong" class="form-select">
+                            <option value="">Chọn quy trình (nếu có)</option>
+                            @foreach (var item in lstQtt)
+                            {
+                                if (Model.id_quytrinhtrongcay == item.id)
+                                {
+                                    <option selected value="@item.id">@item.tenquytrinhtrongcay</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.id">@item.tenquytrinhtrongcay</option>
+                                }
+                            }
+                        </select>
+                        <label style="margin-left: 5px" id="invalid-suaquytrinhtrong-feedback" class="text-danger" hidden></label>
                     </div>
                 </div>
                 <div class="row mb-3">

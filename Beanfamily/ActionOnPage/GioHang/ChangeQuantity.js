@@ -1834,10 +1834,9 @@
         if ($('[id="giasanphamthucdonhangngay-' + id + '"]').attr('dongia') != "CHONPHANLOAI") {
 
             var inpSL = Number($('body').find('[id="soluonggiohangthucdonhangngay-' + id + '"]').val().replace(/,/g, ""));
-            var tonKhoConLai = Number($('body').find('[id="soluonggiohangthucdonhangngay-' + id + '"]').attr('tonkho'));
             $('body').find('[id="thongbaosoluongthucdonhangngay-' + id + '"]').text('');
 
-            if (inpSL > 1 && inpSL <= tonKhoConLai) {
+            if (inpSL > 1) {
 
                 $('body').find('[id="soluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', true);
                 $('body').find('[id="tangsoluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', true);
@@ -1891,34 +1890,6 @@
                             });
                         }
                         else if (data.indexOf('SUCCESS') != -1) {
-                            var tonkhohientai = Number(data.split('-')[1]);
-                            if (soluong > tonkhohientai) {
-                                var rechinhsuagia = Number(Number(dongia) * Number(tonkhohientai)) + "";
-                                if (rechinhsuagia === "") { return; }
-
-                                if (rechinhsuagia.indexOf(".") != -1) {
-
-                                    var redecimal_pos = rechinhsuagia.indexOf(".");
-
-                                    var releft_side = rechinhsuagia.substring(0, redecimal_pos);
-                                    var reright_side = rechinhsuagia.substring(redecimal_pos);
-
-                                    releft_side = releft_side.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-                                    reright_side = reright_side.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-
-                                    reright_side = reright_side.substring(0, 2);
-                                    rechinhsuagia = releft_side + "." + right_side;
-
-                                } else {
-                                    rechinhsuagia = rechinhsuagia.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-                                    rechinhsuagia = rechinhsuagia;
-                                }
-
-                                $('body').find('[id="giasanphamthucdonhangngay-' + id + '"]').text(rechinhsuagia + "đ");
-                                $('body').find('[id="soluonggiohangthucdonhangngay-' + id + '"]').val(tonkhohientai);
-                                $('body').find('[id="thongbaosoluongthucdonhangngay-' + id + '"]').text('Kho còn ' + tonkhohientai + " " + donvi + '!');
-                            }
-
                             $('body').find('[id="soluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', false);
                             $('body').find('[id="tangsoluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', false);
                             $('body').find('[id="giamsoluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', false);
@@ -1926,31 +1897,29 @@
                         else if (data == "HETHANG") {
                             $('body').find('[id="giasanphamthucdonhangngay-' + id + '"]').text("0đ");
                             $('body').find('[id="soluonggiohangthucdonhangngay-' + id + '"]').val(0);
-                            $('body').find('[id="thongbaosoluongthucdonhangngay-' + id + '"]').text('Kho còn 0 ' + donvi + '!');
+                            $('body').find('[id="thongbaosoluongthucdonhangngay-' + id + '"]').text('Tạm hết hàng!');
                         }
                     });
                 }
             }
-            else if (inpSL <= 0.1) {
-                $('body').find('[id="thongbaosoluongthucdonhangngay-' + id + '"]').text('Mua tối thiểu\n0.1 ' + donvi + '!');
+            else if (inpSL <= 1) {
+                $('body').find('[id="thongbaosoluongthucdonhangngay-' + id + '"]').text('Mua tối thiểu 1 sản phẩm!');
             }
             else {
-                $('body').find('[id="thongbaosoluongthucdonhangngay-' + id + '"]').text('Kho còn ' + tonKhoConLai + " " + donvi + '!');
+                $('body').find('[id="thongbaosoluongthucdonhangngay-' + id + '"]').text('Tạm hết hàng!');
             }
         }
     });
     $('body').on('keydown', '[id^="soluonggiohangthucdonhangngay-"]', function (e) {
         var id = $(this).attr('name');
-        var donvi = $('body').find('[id="soluonggiohangthucdonhangngay-' + id + '"]').attr('donvi');
 
         if (e.keyCode == '38') { //up
             if ($('[id="giasanphamthucdonhangngay-' + id + '"]').attr('dongia') != "CHONPHANLOAI") {
 
                 var inpSL = Number($('body').find('[id^="soluonggiohangthucdonhangngay-' + id + '"]').val().replace(/,/g, ""));
-                var tonKhoConLai = Number($('body').find('[id="soluonggiohangthucdonhangngay-' + id + '"]').attr('tonkho'));
                 $('body').find('[id="thongbaosoluongthucdonhangngay-' + id + '"]').text('');
 
-                if (tonKhoConLai >= (inpSL + 1) && inpSL < 100) {
+                if (inpSL < 100) {
 
                     $('body').find('[id="soluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', true);
                     $('body').find('[id="tangsoluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', true);
@@ -2004,34 +1973,6 @@
                                 });
                             }
                             else if (data.indexOf('SUCCESS') != -1) {
-                                var tonkhohientai = Number(data.split('-')[1]);
-                                if (soluong > tonkhohientai) {
-                                    var rechinhsuagia = Number(Number(dongia) * Number(tonkhohientai)) + "";
-                                    if (rechinhsuagia === "") { return; }
-
-                                    if (rechinhsuagia.indexOf(".") != -1) {
-
-                                        var redecimal_pos = rechinhsuagia.indexOf(".");
-
-                                        var releft_side = rechinhsuagia.substring(0, redecimal_pos);
-                                        var reright_side = rechinhsuagia.substring(redecimal_pos);
-
-                                        releft_side = releft_side.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-                                        reright_side = reright_side.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-
-                                        reright_side = reright_side.substring(0, 2);
-                                        rechinhsuagia = releft_side + "." + right_side;
-
-                                    } else {
-                                        rechinhsuagia = rechinhsuagia.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-                                        rechinhsuagia = rechinhsuagia;
-                                    }
-
-                                    $('body').find('[id="giasanphamthucdonhangngay-' + id + '"]').text(rechinhsuagia + "đ");
-                                    $('body').find('[id="soluonggiohangthucdonhangngay-' + id + '"]').val(tonkhohientai);
-                                    $('body').find('[id="thongbaosoluongthucdonhangngay-' + id + '"]').text('Kho còn ' + tonkhohientai + " " + donvi + '!');
-                                }
-
                                 $('body').find('[id="soluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', false);
                                 $('body').find('[id="tangsoluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', false);
                                 $('body').find('[id="giamsoluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', false);
@@ -2041,26 +1982,25 @@
                             else if (data == "HETHANG") {
                                 $('body').find('[id="giasanphamthucdonhangngay-' + id + '"]').text("0đ");
                                 $('body').find('[id="soluonggiohangthucdonhangngay-' + id + '"]').val(0);
-                                $('body').find('[id="thongbaosoluongthucdonhangngay-' + id + '"]').text('Kho còn 0 ' + donvi + '!');
+                                $('body').find('[id="thongbaosoluongthucdonhangngay-' + id + '"]').text('Tạm hết hàng!');
                             }
                         });
                     }
                 }
                 else if (inpSL >= 100) {
-                    $('body').find('[id="thongbaosoluongthucdonhangngay-' + id + '"]').text('Mua tối đa\n100 ' + donvi + '!');
+                    $('body').find('[id="thongbaosoluongthucdonhangngay-' + id + '"]').text('Mua tối đa\n100 sản phẩm!');
                 }
                 else {
-                    $('body').find('[id="thongbaosoluongthucdonhangngay-' + id + '"]').text('Kho còn ' + tonKhoConLai + " " + donvi + '!');
+                    $('body').find('[id="thongbaosoluongthucdonhangngay-' + id + '"]').text('Tạm hết hàng!');
                 }
             }
         }
         else if (e.keyCode == '40') { //down
             if ($('[id="giasanphamthucdonhangngay-' + id + '"]').attr('dongia') != "CHONPHANLOAI") {
                 var inpSL = Number($('body').find('[id^="soluonggiohangthucdonhangngay-' + id + '"]').val().replace(/,/g, ""));
-                var tonKhoConLai = Number($('body').find('[id="soluonggiohangthucdonhangngay-' + id + '"]').attr('tonkho'));
                 $('body').find('[id="thongbaosoluongthucdonhangngay-' + id + '"]').text('');
 
-                if (inpSL > 1 && inpSL <= tonKhoConLai) {
+                if (inpSL > 1) {
 
                     $('body').find('[id="soluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', true);
                     $('body').find('[id="tangsoluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', true);
@@ -2114,34 +2054,6 @@
                                 });
                             }
                             else if (data.indexOf('SUCCESS') != -1) {
-                                var tonkhohientai = Number(data.split('-')[1]);
-                                if (soluong > tonkhohientai) {
-                                    var rechinhsuagia = Number(Number(dongia) * Number(tonkhohientai)) + "";
-                                    if (rechinhsuagia === "") { return; }
-
-                                    if (rechinhsuagia.indexOf(".") != -1) {
-
-                                        var redecimal_pos = rechinhsuagia.indexOf(".");
-
-                                        var releft_side = rechinhsuagia.substring(0, redecimal_pos);
-                                        var reright_side = rechinhsuagia.substring(redecimal_pos);
-
-                                        releft_side = releft_side.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-                                        reright_side = reright_side.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-
-                                        reright_side = reright_side.substring(0, 2);
-                                        rechinhsuagia = releft_side + "." + right_side;
-
-                                    } else {
-                                        rechinhsuagia = rechinhsuagia.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-                                        rechinhsuagia = rechinhsuagia;
-                                    }
-
-                                    $('body').find('[id="giasanphamthucdonhangngay-' + id + '"]').text(rechinhsuagia + "đ");
-                                    $('body').find('[id="soluonggiohangthucdonhangngay-' + id + '"]').val(tonkhohientai);
-                                    $('body').find('[id="thongbaosoluongthucdonhangngay-' + id + '"]').text('Kho còn ' + tonkhohientai + " " + donvi + '!');
-                                }
-
                                 $('body').find('[id="soluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', false);
                                 $('body').find('[id="tangsoluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', false);
                                 $('body').find('[id="giamsoluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', false);
@@ -2151,16 +2063,16 @@
                             else if (data == "HETHANG") {
                                 $('body').find('[id="giasanphamthucdonhangngay-' + id + '"]').text("0đ");
                                 $('body').find('[id="soluonggiohangthucdonhangngay-' + id + '"]').val(0);
-                                $('body').find('[id="thongbaosoluongthucdonhangngay-' + id + '"]').text('Kho còn 0 ' + donvi + '!');
+                                $('body').find('[id="thongbaosoluongthucdonhangngay-' + id + '"]').text('Tạm hết hàng!');
                             }
                         });
                     }
                 }
                 else if (inpSL <= 1) {
-                    $('body').find('[id="thongbaosoluongthucdonhangngay-' + id + '"]').text('Mua tối thiểu\n1 ' + donvi + '!');
+                    $('body').find('[id="thongbaosoluongthucdonhangngay-' + id + '"]').text('Mua tối thiểu\n1 sản phẩm!');
                 }
                 else {
-                    $('body').find('[id="thongbaosoluongthucdonhangngay-' + id + '"]').text('Kho còn ' + tonkhohientai + " " + donvi + '!');
+                    $('body').find('[id="thongbaosoluongthucdonhangngay-' + id + '"]').text('Tạm hết hàng!');
                 }
             }
         }
@@ -2170,11 +2082,9 @@
     });
     $('body').on('focusout', '[id^="soluonggiohangthucdonhangngay-"]', function () {
         var id = $(this).attr('name');
-        var donvi = $('body').find('[id="soluonggiohangthucdonhangngay-' + id + '"]').attr('donvi');
 
         if ($('[id="giasanphamthucdonhangngay-' + id + '"]').attr('dongia') != "CHONPHANLOAI") {
             var inpSL = $(this).val().trim().replace(/,/g, "");
-            var tonKhoConLai = Number($('body').find('[id="soluonggiohangthucdonhangngay-' + id + '"]').attr('tonkho'));
             $('body').find('[id="thongbaosoluongthucdonhangngay-' + id + '"]').text('');
 
             if (inpSL.length < 1) {
@@ -2183,7 +2093,7 @@
                 $('body').find('[id="giamsoluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', true);
 
                 $('body').find('[id="soluonggiohangthucdonhangngay-' + id + '"]').val('1');
-                $('body').find('[id="thongbaosoluongthucdonhangngay-' + id + '"]').text('Mua tối thiểu\n1 ' + donvi + '!');
+                $('body').find('[id="thongbaosoluongthucdonhangngay-' + id + '"]').text('Mua tối thiểu\n1 sản phẩm!');
 
                 var dongia = $('body').find('[id="giasanphamthucdonhangngay-' + id + '"]').attr('dongia');
                 if (dongia != "CHONPHANLOAI") {
@@ -2218,34 +2128,7 @@
                             });
                         }
                         else if (data.indexOf('SUCCESS') != -1) {
-                            var tonkhohientai = Number(data.split('-')[1]);
-                            if (1 > tonkhohientai) {
-                                var rechinhsuagia = Number(Number(dongia) * Number(tonkhohientai)) + "";
-                                if (rechinhsuagia === "") { return; }
-
-                                if (rechinhsuagia.indexOf(".") != -1) {
-
-                                    var redecimal_pos = rechinhsuagia.indexOf(".");
-
-                                    var releft_side = rechinhsuagia.substring(0, redecimal_pos);
-                                    var reright_side = rechinhsuagia.substring(redecimal_pos);
-
-                                    releft_side = releft_side.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-                                    reright_side = reright_side.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-
-                                    reright_side = reright_side.substring(0, 2);
-                                    rechinhsuagia = releft_side + "." + right_side;
-
-                                } else {
-                                    rechinhsuagia = rechinhsuagia.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-                                    rechinhsuagia = rechinhsuagia;
-                                }
-
-                                $('body').find('[id="giasanphamthucdonhangngay-' + id + '"]').text(rechinhsuagia + "đ");
-                                $('body').find('[id="soluonggiohangthucdonhangngay-' + id + '"]').val(tonkhohientai);
-                                $('body').find('[id="thongbaosoluongthucdonhangngay-' + id + '"]').text('Kho còn ' + tonkhohientai + " " + donvi + '!');
-                            }
-
+                            
                             $('body').find('[id="soluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', false);
                             $('body').find('[id="tangsoluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', false);
                             $('body').find('[id="giamsoluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', false);
@@ -2254,7 +2137,7 @@
                         else if (data == "HETHANG") {
                             $('body').find('[id="giasanphamthucdonhangngay-' + id + '"]').text("0đ");
                             $('body').find('[id="soluonggiohangthucdonhangngay-' + id + '"]').val(0);
-                            $('body').find('[id="thongbaosoluongthucdonhangngay-' + id + '"]').text('Kho còn 0 ' + donvi + '!');
+                            $('body').find('[id="thongbaosoluongthucdonhangngay-' + id + '"]').text('Tạm hết hàng!');
                         }
                     });
                 }
@@ -2266,7 +2149,7 @@
                     $('body').find('[id="giamsoluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', true);
 
                     $('body').find('[id="soluonggiohangthucdonhangngay-' + id + '"]').val('1');
-                    $('body').find('[id="thongbaosoluongthucdonhangngay-' + id + '"]').text('Mua tối thiểu\n1 ' + donvi + '!');
+                    $('body').find('[id="thongbaosoluongthucdonhangngay-' + id + '"]').text('Mua tối thiểu\n1 sản phẩm!');
 
                     var dongia = $('body').find('[id="giasanphamthucdonhangngay-' + id + '"]').attr('dongia');
                     if (dongia != "CHONPHANLOAI") {
@@ -2301,34 +2184,7 @@
                                 });
                             }
                             else if (data.indexOf('SUCCESS') != -1) {
-                                var tonkhohientai = Number(data.split('-')[1]);
-                                if (1 > tonkhohientai) {
-                                    var rechinhsuagia = Number(Number(dongia) * Number(tonkhohientai)) + "";
-                                    if (rechinhsuagia === "") { return; }
-
-                                    if (rechinhsuagia.indexOf(".") != -1) {
-
-                                        var redecimal_pos = rechinhsuagia.indexOf(".");
-
-                                        var releft_side = rechinhsuagia.substring(0, redecimal_pos);
-                                        var reright_side = rechinhsuagia.substring(redecimal_pos);
-
-                                        releft_side = releft_side.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-                                        reright_side = reright_side.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-
-                                        reright_side = reright_side.substring(0, 2);
-                                        rechinhsuagia = releft_side + "." + right_side;
-
-                                    } else {
-                                        rechinhsuagia = rechinhsuagia.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-                                        rechinhsuagia = rechinhsuagia;
-                                    }
-
-                                    $('body').find('[id="giasanphamthucdonhangngay-' + id + '"]').text(rechinhsuagia + "đ");
-                                    $('body').find('[id="soluonggiohangthucdonhangngay-' + id + '"]').val(tonkhohientai);
-                                    $('body').find('[id="thongbaosoluongthucdonhangngay-' + id + '"]').text('Kho còn ' + tonkhohientai + " " + donvi + '!');
-                                }
-
+                                
                                 $('body').find('[id="soluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', false);
                                 $('body').find('[id="tangsoluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', false);
                                 $('body').find('[id="giamsoluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', false);
@@ -2337,100 +2193,18 @@
                             else if (data == "HETHANG") {
                                 $('body').find('[id="giasanphamthucdonhangngay-' + id + '"]').text("0đ");
                                 $('body').find('[id="soluonggiohangthucdonhangngay-' + id + '"]').val(0);
-                                $('body').find('[id="thongbaosoluongthucdonhangngay-' + id + '"]').text('Kho còn 0 ' + donvi + '!');
+                                $('body').find('[id="thongbaosoluongthucdonhangngay-' + id + '"]').text('Tạm hết hàng!');
                             }
                         });
                     }
                 }
-                else if (tonKhoConLai < 100 && Number(inpSL) > tonKhoConLai) {
-                    $('body').find('[id="soluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', true);
-                    $('body').find('[id="tangsoluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', true);
-                    $('body').find('[id="giamsoluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', true);
-
-                    $('body').find('[id="soluonggiohangthucdonhangngay-' + id + '"]').val(tonKhoConLai);
-                    $('body').find('[id="thongbaosoluongthucdonhangngay-' + id + '"]').text('Kho còn ' + tonkhohientai + " " + donvi + '!');
-
-                    var dongia = $('body').find('[id="giasanphamthucdonhangngay-' + id + '"]').attr('dongia');
-                    if (dongia != "CHONPHANLOAI") {
-                        var chinhsuagia = Number(Number(dongia) * Number(tonKhoConLai)) + "";
-                        if (chinhsuagia === "") { return; }
-
-                        chinhsuagia = chinhsuagia.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-                        chinhsuagia = chinhsuagia;
-                        $('body').find('[id="giasanphamthucdonhangngay-' + id + '"]').text(chinhsuagia + "đ");
-                        $('body').find('[id="soluonggiohangthucdonhangngay-' + id + '"]').val(tonKhoConLai);
-
-
-                        var formData = new FormData();
-                        formData.append('soluong', 100);
-                        formData.append('id', id);
-
-                        $.ajax({
-                            url: $('body').find('[id="requestPath"]').val() + 'thucdonhangngay/updatecart',
-                            data: formData,
-                            dataType: 'html',
-                            type: 'POST',
-                            processData: false,
-                            contentType: false,
-                        }).done(function (data) {
-                            if (data.indexOf("Chi tiết lỗi") != -1) {
-                                Swal.fire({
-                                    title: "Đã có lỗi xảy ra, vui lòng thử lại sau :(",
-                                    text: data,
-                                    icon: "error"
-                                }).then(() => {
-                                    window.location.reload();
-                                });
-                            }
-                            else if (data.indexOf('SUCCESS') != -1) {
-                                var tonkhohientai = Number(data.split('-')[1]);
-                                if (tonKhoConLai > tonkhohientai) {
-                                    var rechinhsuagia = Number(Number(dongia) * Number(tonkhohientai)) + "";
-                                    if (rechinhsuagia === "") { return; }
-
-                                    if (rechinhsuagia.indexOf(".") != -1) {
-
-                                        var redecimal_pos = rechinhsuagia.indexOf(".");
-
-                                        var releft_side = rechinhsuagia.substring(0, redecimal_pos);
-                                        var reright_side = rechinhsuagia.substring(redecimal_pos);
-
-                                        releft_side = releft_side.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-                                        reright_side = reright_side.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-
-                                        reright_side = reright_side.substring(0, 2);
-                                        rechinhsuagia = releft_side + "." + right_side;
-
-                                    } else {
-                                        rechinhsuagia = rechinhsuagia.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-                                        rechinhsuagia = rechinhsuagia;
-                                    }
-
-                                    $('body').find('[id="giasanphamthucdonhangngay-' + id + '"]').text(rechinhsuagia + "đ");
-                                    $('body').find('[id="soluonggiohangthucdonhangngay-' + id + '"]').val(tonkhohientai);
-                                    $('body').find('[id="thongbaosoluongthucdonhangngay-' + id + '"]').text('Kho còn ' + tonkhohientai + " " + donvi + '!');
-                                }
-
-                                $('body').find('[id="soluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', false);
-                                $('body').find('[id="tangsoluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', false);
-                                $('body').find('[id="giamsoluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', false);
-
-                            }
-                            else if (data == "HETHANG") {
-                                $('body').find('[id="giasanphamthucdonhangngay-' + id + '"]').text("0đ");
-                                $('body').find('[id="soluonggiohangthucdonhangngay-' + id + '"]').val(0);
-                                $('body').find('[id="thongbaosoluongthucdonhangngay-' + id + '"]').text('Kho còn 0 ' + donvi + '!');
-                            }
-                        });
-                    }
-                }
-                else if (Number(inpSL) > 100 && tonKhoConLai >= 100) {
+                else if (Number(inpSL) > 100) {
                     $('body').find('[id="soluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', true);
                     $('body').find('[id="tangsoluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', true);
                     $('body').find('[id="giamsoluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', true);
 
                     $('body').find('[id="soluonggiohangthucdonhangngay-' + id + '"]').val('100');
-                    $('body').find('[id="thongbaosoluongthucdonhangngay-' + id + '"]').text('Mua tối đa\n100 ' + donvi + '!');
+                    $('body').find('[id="thongbaosoluongthucdonhangngay-' + id + '"]').text('Mua tối đa\n100 sản phẩm!');
 
                     var dongia = $('body').find('[id="giasanphamthucdonhangngay-' + id + '"]').attr('dongia');
                     if (dongia != "CHONPHANLOAI") {
@@ -2465,34 +2239,7 @@
                                 });
                             }
                             else if (data.indexOf('SUCCESS') != -1) {
-                                var tonkhohientai = Number(data.split('-')[1]);
-                                if (100 > tonkhohientai) {
-                                    var rechinhsuagia = Number(Number(dongia) * Number(tonkhohientai)) + "";
-                                    if (rechinhsuagia === "") { return; }
-
-                                    if (rechinhsuagia.indexOf(".") != -1) {
-
-                                        var redecimal_pos = rechinhsuagia.indexOf(".");
-
-                                        var releft_side = rechinhsuagia.substring(0, redecimal_pos);
-                                        var reright_side = rechinhsuagia.substring(redecimal_pos);
-
-                                        releft_side = releft_side.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-                                        reright_side = reright_side.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-
-                                        reright_side = reright_side.substring(0, 2);
-                                        rechinhsuagia = releft_side + "." + right_side;
-
-                                    } else {
-                                        rechinhsuagia = rechinhsuagia.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-                                        rechinhsuagia = rechinhsuagia;
-                                    }
-
-                                    $('body').find('[id="giasanphamthucdonhangngay-' + id + '"]').text(rechinhsuagia + "đ");
-                                    $('body').find('[id="soluonggiohangthucdonhangngay-' + id + '"]').val(tonkhohientai);
-                                    $('body').find('[id="thongbaosoluongthucdonhangngay-' + id + '"]').text('Kho còn ' + tonkhohientai + " " + donvi + '!');
-                                }
-
+                                
                                 $('body').find('[id="soluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', false);
                                 $('body').find('[id="tangsoluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', false);
                                 $('body').find('[id="giamsoluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', false);
@@ -2501,7 +2248,7 @@
                             else if (data == "HETHANG") {
                                 $('body').find('[id="giasanphamthucdonhangngay-' + id + '"]').text("0đ");
                                 $('body').find('[id="soluonggiohangthucdonhangngay-' + id + '"]').val(0);
-                                $('body').find('[id="thongbaosoluongthucdonhangngay-' + id + '"]').text('Kho còn 0 ' + donvi + '!');
+                                $('body').find('[id="thongbaosoluongthucdonhangngay-' + id + '"]').text('Tạm hết hàng!');
                             }
                         });
                     }
@@ -2546,34 +2293,6 @@
                                 });
                             }
                             else if (data.indexOf('SUCCESS') != -1) {
-                                var tonkhohientai = Number(data.split('-')[1]);
-                                if (inpSL > tonkhohientai) {
-                                    var rechinhsuagia = Number(Number(dongia) * Number(tonkhohientai)) + "";
-                                    if (rechinhsuagia === "") { return; }
-
-                                    if (rechinhsuagia.indexOf(".") != -1) {
-
-                                        var redecimal_pos = rechinhsuagia.indexOf(".");
-
-                                        var releft_side = rechinhsuagia.substring(0, redecimal_pos);
-                                        var reright_side = rechinhsuagia.substring(redecimal_pos);
-
-                                        releft_side = releft_side.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-                                        reright_side = reright_side.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-
-                                        reright_side = reright_side.substring(0, 2);
-                                        rechinhsuagia = releft_side + "." + right_side;
-
-                                    } else {
-                                        rechinhsuagia = rechinhsuagia.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-                                        rechinhsuagia = rechinhsuagia;
-                                    }
-
-                                    $('body').find('[id="giasanphamthucdonhangngay-' + id + '"]').text(rechinhsuagia + "đ");
-                                    $('body').find('[id="soluonggiohangthucdonhangngay-' + id + '"]').val(tonkhohientai);
-                                    $('body').find('[id="thongbaosoluongthucdonhangngay-' + id + '"]').text('Kho còn ' + tonkhohientai + " " + donvi + '!');
-                                }
-
                                 $('body').find('[id="soluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', false);
                                 $('body').find('[id="tangsoluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', false);
                                 $('body').find('[id="giamsoluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', false);
@@ -2582,7 +2301,7 @@
                             else if (data == "HETHANG") {
                                 $('body').find('[id="giasanphamthucdonhangngay-' + id + '"]').text("0đ");
                                 $('body').find('[id="soluonggiohangthucdonhangngay-' + id + '"]').val(0);
-                                $('body').find('[id="thongbaosoluongthucdonhangngay-' + id + '"]').text('Kho còn 0 ' + donvi + '!');
+                                $('body').find('[id="thongbaosoluongthucdonhangngay-' + id + '"]').text('Tạm hết hàng!');
                             }
                         });
                     }

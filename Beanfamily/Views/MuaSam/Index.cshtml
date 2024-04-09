@@ -10,8 +10,8 @@
 }
 
 <!-- Title Page -->
-<section  style="background-repeat: no-repeat; background-position: center 0; background-size: cover; background-image: url(/Content/assets/images/backgroud.png);">
-    <div class="flex-c-m" style="background-image: linear-gradient(180deg, #000000ad 40%, #000000d6 100%); width: 100%; min-height: 545px; padding-left: 15px; padding-right: 15px; background-repeat: no-repeat; background-position: center 0; background-size: cover; " >
+<section style="background-repeat: no-repeat; background-position: center 0; background-size: cover; background-image: url(/Content/assets/images/backgroud.png);">
+    <div class="flex-c-m" style="background-image: linear-gradient(180deg, #000000ad 40%, #000000d6 100%); width: 100%; min-height: 545px; padding-left: 15px; padding-right: 15px; background-repeat: no-repeat; background-position: center 0; background-size: cover; ">
         <div>
             <h2 class="tit6 t-center">
                 Mua sắm
@@ -101,7 +101,10 @@
                                                     <img class="pic-2" src="@Url.Content(item.hinhanh)" />
                                                 }
                                             }
-                                            @*<span class="product-sale-label">Sale</span>*@
+                                            @if (item.TonKhoSanPham.OrderByDescending(o => o.soluong).First().soluong < 1)
+                                            {
+                                                <span style="outline: 2px solid #fff !important" class="product-sale-label">Hết hàng</span>
+                                            }
                                             <ul class="product-links">
                                                 <li><a href="@Url.Action("productdetail", "muasam", new {id = item.id})"><i class="fa fa-solid fa-expand" aria-hidden="true"></i></a></li>
                                                 @*<li><a href="#"><i class="fa fa-random"></i></a></li>*@

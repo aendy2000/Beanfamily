@@ -5,6 +5,7 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
     BeanfamilyEntities models = new BeanfamilyEntities();
     var lstDmC1 = models.DanhMucSanPhamRauNhaTrongCap1.ToList();
+    var lstQtt = models.QuyTrinhTrongCay.ToList();
 }
 
 <div class="pagetitle">
@@ -193,6 +194,20 @@
                                         <label style="margin-left: 5px" id="invalid-danhmuc-feedback" class="text-danger" hidden></label>
                                     </div>
                                 </div>
+                                <div class="row mb-3">
+                                    <label for="quytrinhtrong" class="col-md-12 col-lg-2 col-form-label">Quy trình trồng</label>
+                                    <div class="col-md-12 col-lg-10">
+                                        <select id="quytrinhtrong" class="form-select">
+                                            <option selected value="">Chọn quy trình (nếu có)</option>
+                                            @foreach (var item in lstQtt)
+                                            {
+                                                <option value="@item.id">@item.tenquytrinhtrongcay</option>
+                                            }
+                                        </select>
+                                        <label style="margin-left: 5px" id="invalid-quytrinhtrong-feedback" class="text-danger" hidden></label>
+                                    </div>
+                                </div>
+
                                 <div class="row mb-3">
                                     <label for="hienthi" class="col-md-12 col-lg-2 col-form-label">Hiển thị</label>
                                     <div class="col-md-12 col-lg-10">

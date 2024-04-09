@@ -159,7 +159,7 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="mb-1">
+                        <div class="mb-2">
                             @if (Model.conhang == false)
                             {
                                 <span id="trangthaihang" class="text-danger">Hết hàng</span>
@@ -170,21 +170,21 @@
                             }
                         </div>
                         <div class="mb-2">
-                            <span class="text-muted">@Model.luotxem.ToString("0,0") lượt xem</span>
+                            <span class="text-white">@Model.luotxem.ToString("0,0") lượt xem</span>
                         </div>
 
-                        <p class="mb-3 text-white" style="word-wrap: break-word">
+                        <p class="mb-2 text-white" style="word-wrap: break-word">
                             Mô tả: @Model.mota
                         </p>
 
                         <div class="mb-3">
                             <span class="text-white">Giá: <span class="text-warning font-weight-bold">@Model.gia.ToString("0,0")đ</span></span>
                         </div>
-                        <div class="row mb-3 text-white">
+                        <div class="row mb-2 text-white">
                             <!-- col.// -->
-                            <div class="col-md-6 col-sm-12 mb-3">
+                            <div class="col-md-6 col-sm-12 mb-2">
                                 <label class="mb-2 d-block">Số lượng:</label>
-                                <div class="input-group mb-3" style="width: 100%;">
+                                <div class="input-group" style="width: 100%;">
 
                                     @if (Model.conhang == false)
                                     {

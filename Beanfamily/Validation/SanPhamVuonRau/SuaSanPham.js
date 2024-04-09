@@ -56,6 +56,8 @@
         var donvi = $('#suadonvi').val().trim();
         var giatri = $('#suagiatri').val().trim();
         var danhmuc = $('#suadanhmuc :selected').val();
+        var quytrinhtrong = $('#suaquytrinhtrong :selected').val();
+
 
         $("#suaten").removeClass('valid-was-validated');
         $("#suagia").removeClass('valid-was-validated');
@@ -135,6 +137,7 @@
             formData.append('donvi', donvi);
             formData.append('giatri', giatri);
             formData.append('danhmuc', danhmuc);
+            formData.append('quytrinhtrong', quytrinhtrong);
             formData.append('mota', $('#suamota').val().trim());
             formData.append('hienthi', $('#suahienthi').prop('checked'));
 

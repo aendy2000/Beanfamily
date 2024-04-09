@@ -146,20 +146,21 @@
                         <h4 class="title text-white font-weight-bold">
                             @Model.tensanpham
                         </h4>
+
                         <div class="d-flex flex-row my-3">
                             <div class="text-warning me-2">
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
-                                <i class="fa fa-star-half-alt"></i>
+                                <i class="fa fa-star-half"></i>
                                 <span class="ms-1">
                                     4.5
                                 </span>
                             </div>
                         </div>
-                        <div class="mb-1">
-                            @if (Model.giatritrendonvi < 1)
+                        <div class="mb-2">
+                            @if (Model.giatritrendonvi <= 0)
                             {
                                 <span id="trangthaihang" class="text-danger">Hết hàng</span>
                             }
@@ -169,26 +170,37 @@
                             }
                         </div>
                         <div class="mb-2">
-                            <span class="text-muted">@Model.luotxem.ToString("0,0") lượt xem</span>
+                            <span class="text-white">@Model.luotxem.ToString("0,0") lượt xem</span>
                         </div>
 
-                        <p class="mb-3 text-white" style="word-wrap: break-word">
+                        <p class="mb-2 text-white" style="word-wrap: break-word">
                             Mô tả: @Model.mota
                         </p>
 
-                        <div class="mb-3">
+                        @if (Model.QuyTrinhTrongCay != null)
+                        {
+                            <div class="row mb-2">
+                                <div class="col-md-6 col-sm-12">
+                                    <a href="@Url.Action("quytrinhtrong", "vuonrau", new {id = Model.id_quytrinhtrongcay})" style="width:100%; cursor: pointer;" class="btn3 flex-c-m size1 txt3 trans-0-4">
+                                        <i class="fa fa-pagelines" style="margin-right: 6px" aria-hidden="true"></i>Xem Quy Trình Trồng
+                                    </a>
+                                </div>
+                            </div>
+                        }
+
+                        <div class="mb-2">
                             <span class="text-white">Giá: <span id="gia-tonkho" class="text-warning font-weight-bold">@Model.gia.ToString("0,0")đ / @Model.donvi</span></span>
                         </div>
-                        <div class="row mb-3 text-white">
+                        <div class="row mb-2 text-white">
                             <div class="col-md-12 col-sm-12 mb-3">
-                                <label class="mb-2 d-block">Tồn kho: @Model.giatritrendonvi.ToString("0.00").Replace(",00", String.Empty) @Model.donvi</label>
+                                <label class="d-block">Tồn kho: @Model.giatritrendonvi.ToString("0.00").Replace(",00", String.Empty) @Model.donvi</label>
                             </div>
                             <!-- col.// -->
-                            <div class="col-md-6 col-sm-12 mb-3">
+                            <div class="col-md-6 col-sm-12 mb-2">
                                 <label id="tonkhothucte" tonkhosoluong="@Model.giatritrendonvi.ToString("0.00").Replace(",00", String.Empty)" class="mb-2 d-block">Số lượng (@Model.donvi):</label>
-                                <div class="input-group mb-3" style="width: 100%;">
+                                <div class="input-group" style="width: 100%;">
 
-                                    @if (Model.giatritrendonvi < 1)
+                                    @if (Model.giatritrendonvi <= 0)
                                     {
                                         <button disabled class="text-white btn btn-white border border-secondary px-3" type="button" id="button-minus-product" data-mdb-ripple-color="dark">
                                             <i class="fa fa-minus"></i>
@@ -214,9 +226,9 @@
                             <!-- col.// -->
                             <!--<div class="col-md-6 col-6">
 
-                            </div>-->
+        </div>-->
                         </div>
-                        @if (Model.giatritrendonvi < 1)
+                        @if (Model.giatritrendonvi <= 0)
                         {
                             <div class="row">
                                 <div class="col-md-6 col-sm-12">

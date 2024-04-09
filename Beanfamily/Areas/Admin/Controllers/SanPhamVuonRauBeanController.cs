@@ -63,7 +63,7 @@ namespace Beanfamily.Areas.Admin.Controllers
             return View("index", sanpham);
         }
         [HttpPost]
-        public ActionResult ThemSanPham(List<HttpPostedFileBase> images, HttpPostedFileBase video, string ten, string gia, string donvi, string giatri, int danhmuc, string mota, bool hienthi)
+        public ActionResult ThemSanPham(List<HttpPostedFileBase> images, HttpPostedFileBase video, string ten, string gia, string donvi, string giatri, int danhmuc, string quytrinhtrong, string mota, bool hienthi)
         {
             try
             {
@@ -74,6 +74,8 @@ namespace Beanfamily.Areas.Admin.Controllers
                 SanPhamRauNhaTrong sanpham = new SanPhamRauNhaTrong();
                 sanpham.tensanpham = ten;
                 sanpham.id_danhmucsanphamraunhatrongcap1 = danhmuc;
+                if (!string.IsNullOrEmpty(quytrinhtrong))
+                    sanpham.id_quytrinhtrongcay = Int32.Parse(quytrinhtrong);
                 sanpham.gia = Convert.ToDecimal(gia.Replace(",", ""));
                 sanpham.donvi = donvi;
                 sanpham.giatritrendonvi = Convert.ToDecimal(giatri.Replace(",", "").Replace(".", ","));
@@ -177,7 +179,7 @@ namespace Beanfamily.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult SuaSanPham(int id, List<HttpPostedFileBase> images, HttpPostedFileBase video, string ten, string gia, string donvi, string giatri, int danhmuc, string mota, bool hienthi, string imageCu, string videoCu)
+        public ActionResult SuaSanPham(int id, List<HttpPostedFileBase> images, HttpPostedFileBase video, string ten, string gia, string donvi, string giatri, int danhmuc, string quytrinhtrong, string mota, bool hienthi, string imageCu, string videoCu)
         {
             try
             {
@@ -191,6 +193,8 @@ namespace Beanfamily.Areas.Admin.Controllers
 
                 sanpham.tensanpham = ten;
                 sanpham.id_danhmucsanphamraunhatrongcap1 = danhmuc;
+                if (!string.IsNullOrEmpty(quytrinhtrong))
+                    sanpham.id_quytrinhtrongcay = Int32.Parse(quytrinhtrong);
                 sanpham.gia = Convert.ToDecimal(gia.Replace(",", ""));
                 sanpham.donvi = donvi;
                 sanpham.giatritrendonvi = Convert.ToDecimal(giatri.Replace(",", "").Replace(".", ","));
