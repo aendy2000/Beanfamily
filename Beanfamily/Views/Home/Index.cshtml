@@ -337,53 +337,56 @@
             <br />
             <br />
             <div class="row">
-                <div class="col-md-6 p-b-30">
-                    @foreach (var item in sanphammoivuonrau)
-                    {
-                        <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom bg-bg1" style="border: 1px solid; border-color: white;" onclick="location.href = '@(Url.Action("productdetail", "vuonrau", new { id = item.id }))'">
-                            <div class="pic-blo3 size20 hov-img-zoom m-r-28">
-                                <a href="@Url.Action("productdetail", "vuonrau", new { id = item.id })"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
-                            </div>
+                <div class="col-12">
+                    <div class="p-t-45 p-b-30 change-position-map-right">
+                        <div class="wrap-text-welcome t-center">
+                            <h5 class="tit6 t-center m-b-35 m-t-5">
+                                Vườn Rau
+                            </h5>
 
-                            <div class="text-blo3 size21 flex-col-l-m">
-                                <a href="@Url.Action("productdetail", "vuonrau", new { id = item.id })" class="txt21 m-b-3">
-                                    @item.tensanpham
-                                </a>
+                            <p class="t-center m-b-22 size3 m-l-r-auto">
+                                Beanfamily - Gia Đình Đậu là một trong những nhà hàng món chay ngon nổi tiếng tại Bình Dương với các món ăn thuần rau củ quả tươi nhiên được chế biến bởi các đầu bếp đầy đam mê và sáng tạo. Beanfamily là địa điểm thân thuộc cho các buổi sinh nhật, gặp mặt gia đình, bạn bè, đồng nghiệp... cùng tận hưởng không gian thanh nhiên tĩnh nhẹ rất khác biệt, Không gian tĩnh lặng, bài trí độc đáo, món ăn thanh nhẹ, nhân viên thân thiện, tất cả hòa quyện nơi đây tạo nên một nét riêng.
+                            </p>
 
-                                <span class="txt23">
-                                    @if (item.mota.Length > 45)
-                                    {
-                                        <span>@item.mota.Substring(0, 44)...</span>
-                                    }
-                                    else
-                                    {
-                                        <span>@item.mota</span>
-                                    }
-                                </span>
-
-
-                                <span class="txt22 m-t-20">
-                                    @item.gia.ToString("0,0") đ
-                                </span>
-                            </div>
+                            <a href="@Url.Action("index", "vuonrau")" class="txt4">
+                                Xem thêm
+                                <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
+                            </a>
                         </div>
-                    }
-                </div>
-                <div class="col-md-6 p-t-45 p-b-30">
-                    <div class="wrap-text-welcome t-center">
-                        <h5 class="tit6 t-center m-b-35 m-t-5">
-                            Vườn Rau
-                        </h5>
-
-                        <p class="t-center m-b-22 size3 m-l-r-auto">
-                            Beanfamily - Gia Đình Đậu là một trong những nhà hàng món chay ngon nổi tiếng tại Bình Dương với các món ăn thuần rau củ quả tươi nhiên được chế biến bởi các đầu bếp đầy đam mê và sáng tạo. Beanfamily là địa điểm thân thuộc cho các buổi sinh nhật, gặp mặt gia đình, bạn bè, đồng nghiệp... cùng tận hưởng không gian thanh nhiên tĩnh nhẹ rất khác biệt, Không gian tĩnh lặng, bài trí độc đáo, món ăn thanh nhẹ, nhân viên thân thiện, tất cả hòa quyện nơi đây tạo nên một nét riêng.
-                        </p>
-
-                        <a href="@Url.Action("index", "vuonrau")" class="txt4">
-                            Xem thêm
-                            <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
-                        </a>
                     </div>
+                    <div class="p-b-30 change-position-map-left">
+                        @foreach (var item in sanphammoivuonrau)
+                        {
+                            <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom bg-bg1" style="border: 1px solid; border-color: white;" onclick="location.href = '@(Url.Action("productdetail", "vuonrau", new { id = item.id }))'">
+                                <div class="pic-blo3 size20 hov-img-zoom m-r-28">
+                                    <a href="@Url.Action("productdetail", "vuonrau", new { id = item.id })"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
+                                </div>
+
+                                <div class="text-blo3 size21 flex-col-l-m">
+                                    <a href="@Url.Action("productdetail", "vuonrau", new { id = item.id })" class="txt21 m-b-3">
+                                        @item.tensanpham
+                                    </a>
+
+                                    <span class="txt23">
+                                        @if (item.mota.Length > 45)
+                                        {
+                                            <span>@item.mota.Substring(0, 44)...</span>
+                                        }
+                                        else
+                                        {
+                                            <span>@item.mota</span>
+                                        }
+                                    </span>
+
+
+                                    <span class="txt22 m-t-20">
+                                        @item.gia.ToString("0,0") đ
+                                    </span>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
                 </div>
             </div>
             <hr class="my-3" style="background-color: darkgray">
@@ -516,51 +519,53 @@
             <br />
             <br />
             <div class="row">
-                <div class="col-md-6 p-b-30">
-                    @foreach (var item in sanphamnoibatvuonrau)
-                    {
-                        <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom-bgbrown  bg-bg2" style="border: 1px solid; border-color: white;" onclick="location.href = '@(Url.Action("productdetail", "vuonrau", new { id = item.id }))'">
-                            <div class="pic-blo3 size20 hov-img-zoom m-r-28">
-                                <a href="@Url.Action("productdetail", "vuonrau", new { id = item.id })"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
-                            </div>
+                <div class="col-12">
+                    <div class="p-t-45 p-b-30 change-position-map-right">
+                        <div class="wrap-text-welcome t-center">
+                            <h5 class="tit6 t-center m-b-35 m-t-5">
+                                Vườn Rau
+                            </h5>
 
-                            <div class="text-blo3 size21 flex-col-l-m">
-                                <a href="@Url.Action("productdetail", "vuonrau", new { id = item.id })" class="txt21 m-b-3">
-                                    @item.tensanpham
-                                </a>
+                            <p class="t-center m-b-22 size3 m-l-r-auto">
+                                Beanfamily - Gia Đình Đậu là một trong những nhà hàng món chay ngon nổi tiếng tại Bình Dương với các món ăn thuần rau củ quả tươi nhiên được chế biến bởi các đầu bếp đầy đam mê và sáng tạo. Beanfamily là địa điểm thân thuộc cho các buổi sinh nhật, gặp mặt gia đình, bạn bè, đồng nghiệp... cùng tận hưởng không gian thanh nhiên tĩnh nhẹ rất khác biệt, Không gian tĩnh lặng, bài trí độc đáo, món ăn thanh nhẹ, nhân viên thân thiện, tất cả hòa quyện nơi đây tạo nên một nét riêng.
+                            </p>
 
-                                <span class="txt23">
-                                    @if (item.mota.Length > 45)
-                                    {
-                                        <span>@item.mota.Substring(0, 44)...</span>
-                                    }
-                                    else
-                                    {
-                                        <span>@item.mota</span>
-                                    }
-                                </span>
-
-                                <span class="txt22 m-t-20">
-                                    @item.gia.ToString("0,0") đ
-                                </span>
-                            </div>
+                            <a href="@Url.Action("index", "vuonrau")" class="txt4">
+                                Xem thêm
+                                <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
+                            </a>
                         </div>
-                    }
-                </div>
-                <div class="col-md-6 p-t-45 p-b-30">
-                    <div class="wrap-text-welcome t-center">
-                        <h5 class="tit6 t-center m-b-35 m-t-5">
-                            Vườn Rau
-                        </h5>
+                    </div>
+                    <div class="p-b-30 change-position-map-left">
+                        @foreach (var item in sanphamnoibatvuonrau)
+                        {
+                            <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom-bgbrown  bg-bg2" style="border: 1px solid; border-color: white;" onclick="location.href = '@(Url.Action("productdetail", "vuonrau", new { id = item.id }))'">
+                                <div class="pic-blo3 size20 hov-img-zoom m-r-28">
+                                    <a href="@Url.Action("productdetail", "vuonrau", new { id = item.id })"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
+                                </div>
 
-                        <p class="t-center m-b-22 size3 m-l-r-auto">
-                            Beanfamily - Gia Đình Đậu là một trong những nhà hàng món chay ngon nổi tiếng tại Bình Dương với các món ăn thuần rau củ quả tươi nhiên được chế biến bởi các đầu bếp đầy đam mê và sáng tạo. Beanfamily là địa điểm thân thuộc cho các buổi sinh nhật, gặp mặt gia đình, bạn bè, đồng nghiệp... cùng tận hưởng không gian thanh nhiên tĩnh nhẹ rất khác biệt, Không gian tĩnh lặng, bài trí độc đáo, món ăn thanh nhẹ, nhân viên thân thiện, tất cả hòa quyện nơi đây tạo nên một nét riêng.
-                        </p>
+                                <div class="text-blo3 size21 flex-col-l-m">
+                                    <a href="@Url.Action("productdetail", "vuonrau", new { id = item.id })" class="txt21 m-b-3">
+                                        @item.tensanpham
+                                    </a>
 
-                        <a href="@Url.Action("index", "vuonrau")" class="txt4">
-                            Xem thêm
-                            <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
-                        </a>
+                                    <span class="txt23">
+                                        @if (item.mota.Length > 45)
+                                        {
+                                            <span>@item.mota.Substring(0, 44)...</span>
+                                        }
+                                        else
+                                        {
+                                            <span>@item.mota</span>
+                                        }
+                                    </span>
+
+                                    <span class="txt22 m-t-20">
+                                        @item.gia.ToString("0,0") đ
+                                    </span>
+                                </div>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>

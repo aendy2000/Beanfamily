@@ -300,5 +300,25 @@ namespace Beanfamily.Controllers
             }
 
         }
+
+        public ActionResult quytrinhtrong(int id)
+        {
+            try
+            {
+                model = new BeanfamilyEntities();
+                var rau = model.SanPhamRauNhaTrong.Find(id);
+                if (rau == null)
+                    return Content("KHONGTONTAI");
+
+                if (rau.QuyTrinhTrongCay == null)
+                    return Content("KHONGTONTAIQUYTRINH");
+
+                return View("quytrinhtrong", model.QuyTrinhTrongCay.Find(rau.id_quytrinhtrongcay));
+            }
+            catch (Exception ex)
+            {
+                return Content("Chi tiết lỗi: " + ex.Message);
+            }
+        }
     }
 }

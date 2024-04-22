@@ -2898,6 +2898,7 @@
     <Content Include="Views\ThucDonHangNgay\Index.cshtml" />
     <Content Include="Views\ThucDonHangNgay\_ListProduct.cshtml" />
     <Content Include="Views\ThucDonHangNgay\ProductDetail.cshtml" />
+    <Content Include="Views\VuonRau\quytrinhtrong.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

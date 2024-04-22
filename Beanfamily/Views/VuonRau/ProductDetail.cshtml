@@ -179,13 +179,16 @@
 
                         @if (Model.QuyTrinhTrongCay != null)
                         {
-                            <div class="row mb-2">
-                                <div class="col-md-6 col-sm-12">
-                                    <a href="@Url.Action("quytrinhtrong", "vuonrau", new {id = Model.id_quytrinhtrongcay})" style="width:100%; cursor: pointer;" class="btn3 flex-c-m size1 txt3 trans-0-4">
-                                        <i class="fa fa-pagelines" style="margin-right: 6px" aria-hidden="true"></i>Xem Quy Trình Trồng
-                                    </a>
+                            if (Model.QuyTrinhTrongCay.hienthi == true)
+                            {
+                                <div class="row mb-2">
+                                    <div class="col-md-6 col-sm-12">
+                                        <a href="@Url.Action("quytrinhtrong", "vuonrau", new {id = Model.id})" style="width:100%; cursor: pointer;" class="btn3 flex-c-m size1 txt3 trans-0-4">
+                                            <i class="fa fa-pagelines" style="margin-right: 6px" aria-hidden="true"></i>Xem Quy Trình Trồng
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
+                            }
                         }
 
                         <div class="mb-2">
@@ -226,7 +229,7 @@
                             <!-- col.// -->
                             <!--<div class="col-md-6 col-6">
 
-        </div>-->
+                            </div>-->
                         </div>
                         @if (Model.giatritrendonvi <= 0)
                         {

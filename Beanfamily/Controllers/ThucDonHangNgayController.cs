@@ -102,13 +102,24 @@ namespace Beanfamily.Controllers
                 else
                 {
                     List<string> giohang = Session["giohang-thucdonhangngay"] as List<string>;
-                    foreach (string item in giohang)
+                    if (giohang.Count < 1)
                     {
-                        int idPro = Int32.Parse(item.Split('#')[0]);
-                        if (idPro == idsp)
+                        if (sp.conhang == false)
+                            return Content("HETHANG");
+
+                        giohang = new List<string>();
+                        giohang.Add(idsp + "#" + soluong);
+                    }
+                    else
+                    {
+                        foreach (string item in giohang)
                         {
-                            int soluongs2 = Convert.ToInt32(item.Split('#')[1]) + soluong;
-                            giohang = giohang.Select(g => g.Replace(item, idPro + "#" + soluongs2)).ToList();
+                            int idPro = Int32.Parse(item.Split('#')[0]);
+                            if (idPro == idsp)
+                            {
+                                int soluongs2 = Convert.ToInt32(item.Split('#')[1]) + soluong;
+                                giohang = giohang.Select(g => g.Replace(item, idPro + "#" + soluongs2)).ToList();
+                            }
                         }
                     }
                     Session["giohang-thucdonhangngay"] = giohang;
