@@ -313,7 +313,13 @@ namespace Beanfamily.Controllers
                 if (rau.QuyTrinhTrongCay == null)
                     return Content("KHONGTONTAIQUYTRINH");
 
-                return View("quytrinhtrong", model.QuyTrinhTrongCay.Find(rau.id_quytrinhtrongcay));
+                var quytrinh = model.QuyTrinhTrongCay.Find(rau.id_quytrinhtrongcay);
+                quytrinh.luotxem++;
+
+                model.Entry(quytrinh).State = System.Data.Entity.EntityState.Modified;
+                model.SaveChanges();
+
+                return View("quytrinhtrong", quytrinh);
             }
             catch (Exception ex)
             {

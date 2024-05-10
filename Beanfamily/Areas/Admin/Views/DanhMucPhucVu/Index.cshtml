@@ -54,6 +54,7 @@
                                 <th scope="col">Mã</th>
                                 <th scope="col">STT</th>
                                 <th scope="col">Tên danh mục</th>
+                                <th scope="col">Giá</th>
                                 <th scope="col">Menu Tiệc Bàn</th>
                                 <th scope="col">Menu Buffet</th>
                                 <th scope="col">Trạng thái</th>
@@ -80,17 +81,21 @@
                                         @item.tendanhmuc
                                         <input hidden id="inpMadanhmuc@(item.id)" value="DM@(item.id.ToString("D6"))" />
                                         <input hidden id="inpTendanhmuc@(item.id)" value="@item.tendanhmuc" />
+                                        <input hidden id="inpGiadanhmuc@(item.id)" value="@(item.gia.ToString("0,0").Equals("00") ? "0" : item.gia.ToString("0,0").Replace(".", ","))" />
                                         <input hidden id="inpSothutu@(item.id)" value="@item.sothutu" />
                                         <input hidden id="inpHienthi@(item.id)" value="@item.hienthi.ToString().ToLower()" />
                                     </td>
                                     <td>
+                                        @(item.gia.ToString("0,0").Equals("00") ? "0" : item.gia.ToString("0,0")) đ
+                                    </td>
+                                    <td>
                                         @if (item.ApDungDanhMucPhucVu.Where(mtb => mtb.id_danhmucmenutiecbancap1 != null).Count() > 0)
                                         {
-                                            <ul style="margin-left: -2rem; margin-bottom: 0; list-style-type: none;">
+                                            <ul style="margin-left: -2rem; margin-bottom: 0;">
                                                 @foreach (var menutiecban in item.ApDungDanhMucPhucVu.Where(mtb => mtb.id_danhmucmenutiecbancap1 != null).ToList())
                                                 {
                                                     <li>
-                                                        <span class="badge bg-primary">@menutiecban.DanhMucMenuTiecBanCap1.tendanhmuc</span>
+                                                        @menutiecban.DanhMucMenuTiecBanCap1.tendanhmuc
                                                     </li>
                                                 }
                                             </ul>
@@ -103,11 +108,11 @@
                                     <td>
                                         @if (item.ApDungDanhMucPhucVu.Where(mtb => mtb.id_danhmucmenubuffetcap1 != null).Count() > 0)
                                         {
-                                            <ul style="margin-left: -2rem; margin-bottom: 0; list-style-type: none;">
+                                            <ul style="margin-left: -2rem; margin-bottom: 0;">
                                                 @foreach (var menutiecban in item.ApDungDanhMucPhucVu.Where(mtb => mtb.id_danhmucmenubuffetcap1 != null).ToList())
                                                 {
                                                     <li>
-                                                        <span class="badge bg-primary">@menutiecban.DanhMucMenuBuffetCap1.tendanhmuc</span>
+                                                        @menutiecban.DanhMucMenuBuffetCap1.tendanhmuc
                                                     </li>
                                                 }
                                             </ul>
@@ -179,6 +184,14 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
+                                    <label for="gia" class="col-md-3 col-lg-3 col-form-label">Giá (VND) <span class="text-danger">*</span></label>
+                                    <div class="col-md-9 col-lg-9">
+                                        <input id="gia" type="text" data-type="currency" placeholder="Giá dịch vụ" class="form-control">
+                                        <label style="margin-left: 5px" id="invalid-gia-feedback" class="text-danger" hidden></label>
+
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
                                     <label for="sothutu" class="col-md-3 col-lg-3 col-form-label">Số thứ tự</label>
                                     <div class="col-md-9 col-lg-9">
                                         <input id="sothutu" type="text" data-type='numbers' placeholder="Số thứ tự" class="form-control">
@@ -231,6 +244,14 @@
                                         <input hidden id="suastriddanhmuc">
                                         <input id="suatendanhmuc" type="text" placeholder="Tên danh mục cấp 1" class="form-control">
                                         <label style="margin-left: 5px" id="invalid-suatendanhmuc-feedback" class="text-danger" hidden></label>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="suagia" class="col-md-3 col-lg-3 col-form-label">Giá (VND) <span class="text-danger">*</span></label>
+                                    <div class="col-md-9 col-lg-9">
+                                        <input id="suagia" type="text" data-type="currency" placeholder="Giá dịch vụ" class="form-control">
+                                        <label style="margin-left: 5px" id="invalid-suagia-feedback" class="text-danger" hidden></label>
+
                                     </div>
                                 </div>
                                 <div class="row mb-3">

@@ -37,6 +37,16 @@
                 $('#SuaModalPartial').replaceWith(ketqua);
                 $('#titleSua').text('Chỉnh sửa quy trình "' + $('#inpMaQuyTrinh' + id).val() + '"');
                 $('#SuaModal').modal('toggle');
+
+                var videoOption = $('body').find('[id="optionVideo"]').val();
+                setTimeout(function () {
+                    if (videoOption == "addurl") {
+                        var widthVideos = $('body').find('[id="suashow-video"]').width();
+                        var heiVideo = (widthVideos / 16) * 9 + 2;
+                        $('body').find('[id="suaload-video-url"]').attr('height', heiVideo);
+                    }
+                }, 500);
+                
             }
         });
     });

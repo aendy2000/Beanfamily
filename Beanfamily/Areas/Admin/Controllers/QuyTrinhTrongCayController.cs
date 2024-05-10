@@ -63,7 +63,7 @@ namespace Beanfamily.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult ThemQuyTrinh(List<HttpPostedFileBase> images, string tenquytrinh, bool hienthi, string lstTenBuoc, string lstMotaBuoc, string lstCoHinh)
+        public ActionResult ThemQuyTrinh(List<HttpPostedFileBase> images, bool addurlvideo, string urlVideo, HttpPostedFileBase video, string tenquytrinh, bool hienthi, string lstTenBuoc, string lstMotaBuoc, string lstCoHinh)
         {
             try
             {
@@ -77,8 +77,45 @@ namespace Beanfamily.Areas.Admin.Controllers
                 quytrinh.ngaysuadoi = DateTime.Now;
                 quytrinh.luotxem = 0;
                 quytrinh.hienthi = hienthi;
+
                 model.QuyTrinhTrongCay.Add(quytrinh);
                 model.SaveChanges();
+
+                int id = quytrinh.id;
+                string path = "";
+                string pathDirectory = "";
+                string strVideo = "";
+                if (addurlvideo == true)
+                {
+                    strVideo = urlVideo;
+                }
+                else
+                {
+                    if (video != null)
+                    {
+                        if (video.ContentLength > 0)
+                        {
+                            pathDirectory = Path.Combine(Server.MapPath("~/Content/AdminAreas/images/QuyTrinhTrong/QuyTrinh_" + id));
+                            if (!Directory.Exists(pathDirectory))
+                            {
+                                Directory.CreateDirectory(pathDirectory);
+                            }
+                            path = Path.Combine(Server.MapPath("~/Content/AdminAreas/images/QuyTrinhTrong/QuyTrinh_" + id), video.FileName);
+                            video.SaveAs(path);
+                            strVideo += "~/Content/AdminAreas/images/QuyTrinhTrong/QuyTrinh_" + id + "/" + video.FileName;
+                        }
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(strVideo))
+                {
+                    model = new BeanfamilyEntities();
+                    var videoQuyTrinh = model.QuyTrinhTrongCay.Find(id);
+                    videoQuyTrinh.video = strVideo;
+
+                    model.Entry(videoQuyTrinh).State = EntityState.Modified;
+                    model.SaveChanges();
+                }
 
                 int idQuyTrinh = quytrinh.id;
                 if (lstTenBuoc.IndexOf("#") != -1)
@@ -91,8 +128,8 @@ namespace Beanfamily.Areas.Admin.Controllers
                     for (int i = 0; i < lstTenBuocs.Count; i++)
                     {
                         string strListImages = "";
-                        string path = "";
-                        string pathDirectory = "";
+                        path = "";
+                        pathDirectory = "";
 
                         CacBuocQuyTrinhTrongCay buoc = new CacBuocQuyTrinhTrongCay();
                         buoc.id_quytrinhtrongcay = idQuyTrinh;
@@ -127,8 +164,8 @@ namespace Beanfamily.Areas.Admin.Controllers
                 else
                 {
                     string strListImages = "";
-                    string path = "";
-                    string pathDirectory = "";
+                    path = "";
+                    pathDirectory = "";
 
                     CacBuocQuyTrinhTrongCay buoc = new CacBuocQuyTrinhTrongCay();
                     buoc.id_quytrinhtrongcay = idQuyTrinh;
@@ -185,7 +222,7 @@ namespace Beanfamily.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult SuaQuyTrinh(List<HttpPostedFileBase> images, int id, string tenquytrinh, bool hienthi, string lstTenBuoc, string lstMotaBuoc, string lstCoHinh)
+        public ActionResult SuaQuyTrinh(List<HttpPostedFileBase> images, bool addurlvideo, string urlVideo, HttpPostedFileBase video, int id, string tenquytrinh, bool hienthi, string lstTenBuoc, string lstMotaBuoc, string lstCoHinh, string videoCu)
         {
             try
             {
@@ -197,6 +234,55 @@ namespace Beanfamily.Areas.Admin.Controllers
                 if (quytrinh == null)
                     return Content("KHONGTONTAI");
 
+                string path = "";
+                string pathDirectory = "";
+                string strVideo = "";
+                if (addurlvideo == true) //Thêm video ngoài
+                {
+                    if (string.IsNullOrEmpty(urlVideo))
+                    {
+                        if (!string.IsNullOrEmpty(videoCu) && videoCu.IndexOf("~/Content") == -1)
+                        {
+                            strVideo = videoCu;
+                        }
+                    }
+                    else
+                    {
+                        strVideo = urlVideo;
+                    }
+                }
+                else // Tải lên video
+                {
+                    if (video != null)
+                    {
+                        if (video.ContentLength > 0)
+                        {
+                            pathDirectory = Path.Combine(Server.MapPath("~/Content/AdminAreas/images/QuyTrinhTrong/QuyTrinh_" + id));
+                            if (!Directory.Exists(pathDirectory))
+                            {
+                                Directory.CreateDirectory(pathDirectory);
+                            }
+                            path = Path.Combine(Server.MapPath("~/Content/AdminAreas/images/QuyTrinhTrong/QuyTrinh_" + id), video.FileName);
+                            video.SaveAs(path);
+                            strVideo += "~/Content/AdminAreas/images/QuyTrinhTrong/QuyTrinh_" + id + "/" + video.FileName;
+                        }
+                        else
+                        {
+                            if (!string.IsNullOrEmpty(videoCu) && videoCu.IndexOf("~/Content") != -1)
+                            {
+                                strVideo = videoCu;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (!string.IsNullOrEmpty(videoCu) && videoCu.IndexOf("~/Content") != -1)
+                        {
+                            strVideo = videoCu;
+                        }
+                    }
+                }
+                quytrinh.video = strVideo;
                 quytrinh.tenquytrinhtrongcay = tenquytrinh;
                 quytrinh.ngaysuadoi = DateTime.Now;
                 quytrinh.hienthi = hienthi;
@@ -215,8 +301,8 @@ namespace Beanfamily.Areas.Admin.Controllers
                     for (int i = 0; i < lstTenBuocs.Count; i++)
                     {
                         string strListImages = "";
-                        string path = "";
-                        string pathDirectory = "";
+                        path = "";
+                        pathDirectory = "";
 
                         CacBuocQuyTrinhTrongCay buoc = new CacBuocQuyTrinhTrongCay();
                         buoc.id_quytrinhtrongcay = idQuyTrinh;
@@ -255,8 +341,8 @@ namespace Beanfamily.Areas.Admin.Controllers
                 else
                 {
                     string strListImages = "";
-                    string path = "";
-                    string pathDirectory = "";
+                    path = "";
+                    pathDirectory = "";
 
                     CacBuocQuyTrinhTrongCay buoc = new CacBuocQuyTrinhTrongCay();
                     buoc.id_quytrinhtrongcay = idQuyTrinh;

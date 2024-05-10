@@ -67,7 +67,7 @@ namespace Beanfamily.Areas.Admin.Controllers
         {
             try
             {
-                var checkExist = model.SanPhamMenuTiecBan.FirstOrDefault(s => s.tensanpham.ToLower().Equals(tenmon.ToLower().Trim()) && s.id_danhmucmenutiecbancap1 == danhmuc);
+                var checkExist = model.SanPhamMenuTiecBan.FirstOrDefault(s => s.tensanpham.ToLower().Equals(tenmon.ToLower().Trim()));
                 if (checkExist != null)
                     return Content("DATONTAI");
 
@@ -139,7 +139,7 @@ namespace Beanfamily.Areas.Admin.Controllers
         {
             try
             {
-                var checkExist = model.SanPhamMenuTiecBan.FirstOrDefault(s => s.tensanpham.ToLower().Equals(tenmon.ToLower().Trim()) && s.id_danhmucmenutiecbancap1 == danhmuc && s.id != id);
+                var checkExist = model.SanPhamMenuTiecBan.FirstOrDefault(s => s.tensanpham.ToLower().Equals(tenmon.ToLower().Trim()) && s.id != id);
                 if (checkExist != null)
                     return Content("DATONTAI");
 
@@ -156,6 +156,7 @@ namespace Beanfamily.Areas.Admin.Controllers
                     monan.sothutu = Int32.Parse(sothutu);
 
                 monan.hienthi = hienthi;
+
                 string path = "";
                 string pathDirectory = "";
                 string strImages = "";
@@ -201,7 +202,7 @@ namespace Beanfamily.Areas.Admin.Controllers
                 model.SanPhamMenuTiecBan.Remove(mon);
                 model.SaveChanges();
 
-                return Content("SUCCESS");
+                return Content("SUCCESS"); 
             }
             catch (Exception ex)
             {

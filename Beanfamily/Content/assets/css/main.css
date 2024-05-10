@@ -2149,6 +2149,7 @@ body {
     .change-position-map-left {
         float: none;
         width: 100%;
+        padding: 0;
     }
 
     .sticky-icon {

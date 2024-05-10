@@ -12,13 +12,33 @@
             <h2 class="tit6 t-center">
                 @Model.tenquytrinhtrongcay
             </h2>
+            <h6 class="t-center text-white">
+                @Model.ngaytao.ToString("dd") Thg @Model.ngaytao.ToString("MM, yyyy")  -  @Model.luotxem lượt xem
+            </h6>
         </div>
     </div>
 </section>
 <section class="section-ourmenu bg1-pattern">
     <div class="section-child-bg1">
-        <div class="container  p-t-115 p-b-120">
-            @*@if(string.isNullOrEmpty(Model.video)) { }*@
+        <div class="container p-t-60 p-b-120">
+            @if (!string.IsNullOrEmpty(Model.video))
+            {
+                <div class="row">
+                    <div class="col-12 bo-rad-16">
+                        @if (Model.video.IndexOf("~/Content") != -1)
+                        {
+                            <video class="bo-rad-16" width="100%" height="100%" controls>
+                                <source src="@Model.video" type="video/mp4">
+                            </video>
+                        }
+                        else
+                        {
+                            <iframe src="@(Model.video.Replace("watch?v=", "embed/") + "?autoplay=1")" id="load-video" class="bo-rad-16" controls width="100%" height="100%" allow="autoplay"></iframe>
+                        }
+                    </div>
+                </div>
+                <hr class="my-5 bg-secondary" />
+            }
 
             @foreach (var item in Model.CacBuocQuyTrinhTrongCay)
             {
@@ -56,7 +76,7 @@
                 else
                 {
                     <div @*style="border: 1px solid; border-color: darkgray; border-radius: 15px; margin-bottom: 50px"*@ class="row">
-                        <div class="col-md-6 p-b-30" style=" display: flex; flex-direction: column; justify-content: center;">
+                        <div class="col-md-6 col-sm-12 p-b-30" style=" display: flex; flex-direction: column; justify-content: center;">
                             <div class="wrap-text-welcome">
 
                                 <h5 class="tit6 t-center m-b-35 m-t-5">
@@ -81,3 +101,15 @@
 
     </div>
 </section>
+<script src="~/ActionOnPage/VuonRau/loadPageGarden.js"></script>
+@if (!string.IsNullOrEmpty(Model.video) && Model.video.IndexOf("~/Content") == -1)
+{
+    <script>
+        setTimeout(function () {
+            var widthVideos = $('body').find('[id="load-video"]').width();
+            var heiVideo = (widthVideos / 16) * 9 + 2;
+            $('body').find('[id="load-video"]').attr('height', heiVideo);
+        }, 500);
+    </script>
+}
+

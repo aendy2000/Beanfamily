@@ -23,6 +23,7 @@ namespace Beanfamily.Models
     
         public int id { get; set; }
         public string tenquytrinhtrongcay { get; set; }
+        public string video { get; set; }
         public System.DateTime ngaytao { get; set; }
         public System.DateTime ngaysuadoi { get; set; }
         public decimal luotxem { get; set; }

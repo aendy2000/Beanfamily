@@ -199,7 +199,7 @@ namespace Beanfamily.Areas.Admin.Controllers
                 if (dm == null)
                     return Content("KHONGTONTAI");
 
-                var mon = model.SanPhamMenuTiecBan.Where(m => m.id_danhmucmenutiecbancap1 == id).ToList();
+                var mon = model.SanPhamMenuTiecBan.ToList();
                 return PartialView("_DanhSachMonTiecBan", mon);
             }
             catch (Exception ex)

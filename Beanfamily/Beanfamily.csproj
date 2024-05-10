@@ -155,6 +155,7 @@
     <Compile Include="Areas\Admin\Controllers\SanPhamMuaSamController.cs" />
     <Compile Include="Areas\Admin\Controllers\SanPhamVuonRauBeanController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MenuTiecBanController.cs" />
     <Compile Include="Controllers\MuaSamController.cs" />
     <Compile Include="Controllers\NhaHangBeanController.cs" />
     <Compile Include="Controllers\ThucDonHangNgayController.cs" />
@@ -279,6 +280,9 @@
   <ItemGroup>
     <Content Include="ActionOnPage\GioHang\ChangeQuantity.js" />
     <Content Include="ActionOnPage\GioHang\DeletedProduct.js" />
+    <Content Include="ActionOnPage\MenuTiecBan\ActionOnView.js" />
+    <Content Include="ActionOnPage\MenuTiecBan\DatBan.js" />
+    <Content Include="ActionOnPage\MenuTiecBan\loadPageMenuTiecBan.js" />
     <Content Include="ActionOnPage\NhaHang\loadPageNhaHang.js" />
     <Content Include="ActionOnPage\ThucDonHangNgay\AddToCart.js" />
     <Content Include="ActionOnPage\ThucDonHangNgay\loadPageThucDonHangNgayDetail.js" />
@@ -2899,6 +2903,7 @@
     <Content Include="Views\ThucDonHangNgay\_ListProduct.cshtml" />
     <Content Include="Views\ThucDonHangNgay\ProductDetail.cshtml" />
     <Content Include="Views\VuonRau\quytrinhtrong.cshtml" />
+    <Content Include="Views\MenuTiecBan\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

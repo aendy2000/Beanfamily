@@ -1,0 +1,93 @@
+﻿@model IEnumerable<Beanfamily.Models.DanhMucMenuTiecBanCap1>
+@{
+    ViewBag.Title = "Menu Tiệc Bàn";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+
+
+<!-- Title Page -->
+<section style="background-repeat: no-repeat; background-position: center 0; background-size: cover; background-image: url(/Content/assets/images/backgroud.png);">
+    <div class="flex-c-m" style="background-image: linear-gradient(180deg, #000000ad 40%, #000000d6 100%); width: 100%; min-height: 545px; padding-left: 15px; padding-right: 15px; background-repeat: no-repeat; background-position: center 0; background-size: cover; ">
+        <div>
+            <h2 class="tit6 t-center">
+                Menu Tiệc Bàn
+            </h2>
+        </div>
+    </div>
+</section>
+<section class="section-ourmenu bg1-pattern">
+    <div class="section-child-bg1">
+        <div class="container p-b-40">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row bg-bg2" style="width: 100%; height: 80px; border-radius: 0px 0px 16px 16px; border: 1px solid #ffc687; margin: 0 !important">
+                        <div class="col-md-6 col-sm-12" style="display: flex; flex-direction: column; align-items: start; justify-content: center;">
+                            <h5 id="tongDaChon" price="0" style="float: left" class="text-white me-3 ms-3">
+                                Tổng: 0
+                            </h5>
+                        </div>
+                        <div class="col-md-6 col-sm-12" style="display: flex; flex-direction: column; align-items: end; justify-content: center;">
+                            <a class="btn1 flex-c-m size1 txt3 trans-0-4  me-3 ms-3" style="float: right" role="button">
+                                Đặt Bàn Ngay
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row p-t-60">
+                @foreach (var item in Model)
+                {
+                    if (item.hienthi == true && item.SanPhamMenuTiecBan.Count > 0)
+                    {
+                        <div class="col-md-4 col-sm-12 mb-5 mt-4">
+                            <div class="bo-rad-16 bg-white p-1" style="height: 100%; width: 100%; border: 2px solid #ffc687; position: relative">
+                                <div style=" display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                                    <div class="bg-bg2 text-white bo-rad-16 border-1" style="padding: 10px 20px 10px 20px;height: auto; min-width: 180px; display: flex; justify-content: center; align-items: center; position: absolute; border: 2px solid #ffc687">
+                                        <div>
+                                            <h5 class="t-center">@item.tendanhmuc</h5>
+                                            <h6 class="t-center mt-1">@((item.SanPhamMenuTiecBan.Sum(t => t.gia)).ToString("0,0").Equals("00") ? "0 đ" : item.SanPhamMenuTiecBan.Sum(t => t.gia).ToString("0,0") + " đ")</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row m-2" style="margin-top: 55px !important; margin-bottom: 70px !important">
+                                    <div class="col-11 p-0">
+                                        <label style="cursor: pointer" id="label-monantiecban-@item.id-all" for="monantiecban-@item.id-all">
+                                            <u>Tất cả</u>
+                                        </label>
+
+                                    </div>
+                                    <div class="col-1">
+                                        <input price="@(item.SanPhamMenuTiecBan.Sum(s => s.gia).ToString("0").Equals("0") ? "0" : item.SanPhamMenuTiecBan.Sum(s => s.gia).ToString("0"))" id="monantiecban-@item.id-all" type="checkbox" style="height: 20px; width: 20px; margin-left: -5px; accent-color: #12634c " />
+                                    </div>
+                                    @foreach (var items in item.SanPhamMenuTiecBan)
+                                    {
+                                        <div class="col-11 p-0">
+                                            <label style="cursor: pointer" id="label-monantiecban-@item.id-@items.id" for="monantiecban-@item.id-@items.id">
+                                                @items.tensanpham | @(items.gia.ToString("0,0").Equals("00") ? "0" : items.gia.ToString("0,0"))
+                                            </label>
+
+                                        </div>
+                                        <div class="col-1">
+                                            <input price="@items.gia.ToString("0")" id="monantiecban-@item.id-@items.id" type="checkbox" style="height: 20px; width: 20px; margin-left: -5px; accent-color: #12634c " />
+                                        </div>
+                                    }
+                                </div>
+
+                                <div style="height: 70px; position: absolute; bottom: 0px; width: 100%;">
+                                    <hr class="my-3" />
+                                    <div style="display: flex; flex-direction:column ; justify-content: center; align-items: center;">
+                                        <h6 id="total-@item.id" style="font-weight: bold; color: #C49A6C;" price="0" class="t-center">Đã chọn: 0</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</section>
+<script src="~/ActionOnPage/MenuTiecBan/loadPageMenuTiecBan.js"></script>
+<script src="~/ActionOnPage/MenuTiecBan/ActionOnView.js"></script>
+<script src="~/ActionOnPage/MenuTiecBan/DatBan.js"></script>
+

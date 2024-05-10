@@ -193,7 +193,7 @@ namespace Beanfamily.Areas.Admin.Controllers
 
                 sanpham.tensanpham = ten;
                 sanpham.id_danhmucsanphamraunhatrongcap1 = danhmuc;
-                if (!string.IsNullOrEmpty(quytrinhtrong))
+                if (!string.IsNullOrEmpty(quytrinhtrong)) 
                     sanpham.id_quytrinhtrongcay = Int32.Parse(quytrinhtrong);
                 sanpham.gia = Convert.ToDecimal(gia.Replace(",", ""));
                 sanpham.donvi = donvi;
@@ -227,7 +227,7 @@ namespace Beanfamily.Areas.Admin.Controllers
                             }
                         }
                     }
-                }
+                }   
 
                 path = "";
                 string strListVideo = "";

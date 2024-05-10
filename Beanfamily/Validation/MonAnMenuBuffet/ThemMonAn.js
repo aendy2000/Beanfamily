@@ -35,7 +35,7 @@
             $('#btnluuthemMonAn').html('Lưu thông tin');
             $('#btnluuthemMonAn').prop('disabled', false);
         }
-       
+
         if (tenmon.length < 1) {
             check = false;
             $("#tenmon").addClass('valid-was-validated');

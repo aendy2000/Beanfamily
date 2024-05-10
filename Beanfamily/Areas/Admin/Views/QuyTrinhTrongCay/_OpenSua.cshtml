@@ -30,6 +30,107 @@
                 <label style="margin-left: 5px" id="invalid-suahienthi-feedback" class="text-danger" hidden></label>
             </div>
         </div>
+        <div class="row mb-3">
+            <div class="col-12">
+                <div class="form-check form-control form-switch">
+                    @if (!string.IsNullOrEmpty(Model.video) && Model.video.IndexOf("~/Content") != -1)
+                    {
+                        <input checked class="form-check-input" style="margin-left: -1.5em" type="checkbox" id="suacheckurlvideo">
+                    }
+                    else
+                    {
+                        <input class="form-check-input" style="margin-left: -1.5em" type="checkbox" id="suacheckurlvideo">
+                    }
+                    <label class="form-check-label" style="margin-left: 0.8em" for="suacheckurlvideo">Nhập URL/Tải lên video <small class="fst-italic text-danger">(không bắt buộc)</small></label>
+                </div>
+                <label style="margin-left: 5px" id="invalid-suacheckurlvideo-feedback" class="text-danger" hidden></label>
+            </div>
+        </div>
+        <input hidden id="url-suapro-video" value="@Model.video" />
+        <input hidden id="optionVideo" value="@(string.IsNullOrEmpty(Model.video) ? "" : Model.video.IndexOf("~/Content") != -1 ? "" : "addurl")" />
+        @if (!string.IsNullOrEmpty(Model.video))
+        {
+            if (Model.video.IndexOf("~/Content") != -1)
+            {
+                <div class="row mb-3">
+
+                    <div hidden id="suahienthi-addurlvideo" class="col-12">
+                        <input id="suaurlvideo" type="text" placeholder="Nhập url video..." class="form-control">
+                        <label style="margin-left: 5px" id="invalid-suaurlvideo-feedback" class="text-danger" hidden></label>
+                    </div>
+                    <div id="suahienthi-uploadvideo" class="col-md-12 mb-1">
+
+                        <fieldset class="form-group">
+                            <a class="btn btn-sm btn-primary mb-2" onclick="$('#suapro-video').click()"><i class="bi bi-file-earmark-play-fill"></i> Tải lên video</a>
+                            <a id="suabtn-xoa-video" class="btn btn-sm btn-danger mb-2" data-bs-toggle="tooltip" dropzone="top" title="Xóa video upload"><i class="bi bi-trash"></i></a> <small class="text-muted fst-italic">(Chọn 1 video).</small>
+
+                            <input accept="video/*" type="file" id="suapro-video" name="suapro-video" style="display: none;" class="form-control">
+                        </fieldset>
+                        <video id="suaload-video" style="border-radius: 10px; border: 1px solid #ddd" class="video-list text-center form-control" autoplay="autoplay" type="video/mp4" width="100%" height="100%" src="@Url.Content(Model.video)" controls></video>
+                    </div>
+                </div>
+
+                <div hidden id="suashow-video" class="row mb-3">
+                    <div class="col-md-12 mb-1">
+                        <video id="suaload-video-url" class="video-list text-center form-control" style="border-radius: 10px; border: 1px solid #ddd; padding: 0 !important" controls width="100%" height="100%"></video>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="row mb-3">
+
+                    <div id="suahienthi-addurlvideo" class="col-12">
+                        <input id="suaurlvideo" value="@Model.video" type="text" placeholder="Nhập url video..." class="form-control">
+                        <label style="margin-left: 5px" id="invalid-suaurlvideo-feedback" class="text-danger" hidden></label>
+                    </div>
+                    <div hidden id="suahienthi-uploadvideo" class="col-md-12 mb-1">
+
+                        <fieldset class="form-group">
+                            <a class="btn btn-sm btn-primary mb-2" onclick="$('#suapro-video').click()"><i class="bi bi-file-earmark-play-fill"></i> Tải lên video</a>
+                            <a id="suabtn-xoa-video" class="btn btn-sm btn-danger mb-2" data-bs-toggle="tooltip" dropzone="top" title="Xóa video upload"><i class="bi bi-trash"></i></a> <small class="text-muted fst-italic">(Chọn 1 video).</small>
+
+                            <input accept="video/*" type="file" id="suapro-video" name="suapro-video" style="display: none;" class="form-control">
+                        </fieldset>
+                        <video id="suaload-video" style="border-radius: 10px; border: 1px solid #ddd" class="video-list text-center form-control" type="video/mp4" width="100%" height="300px"></video>
+                    </div>
+                </div>
+
+                <div id="suashow-video" class="row mb-3">
+                    <div class="col-md-12 mb-1">
+                        <div class="col-md-12 mb-1">
+                            <iframe src="@(Model.video.Replace("watch?v=", "embed/") + "?autoplay=1")" id="suaload-video-url" style="border-radius: 10px; border: 1px solid #ddd; padding: 0 !important" class="video-list text-center form-control" controls width="100%" height="100%" allow="autoplay"></iframe>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="row mb-3">
+
+                <div id="suahienthi-addurlvideo" class="col-12">
+                    <input id="suaurlvideo" type="text" placeholder="Nhập url video..." class="form-control">
+                    <label style="margin-left: 5px" id="invalid-suaurlvideo-feedback" class="text-danger" hidden></label>
+                </div>
+                <div hidden id="suahienthi-uploadvideo" class="col-md-12 mb-1">
+
+                    <fieldset class="form-group">
+                        <a class="btn btn-sm btn-primary mb-2" onclick="$('#suapro-video').click()"><i class="bi bi-file-earmark-play-fill"></i> Tải lên video</a>
+                        <a id="suabtn-xoa-video" class="btn btn-sm btn-danger mb-2" data-bs-toggle="tooltip" dropzone="top" title="Xóa video upload"><i class="bi bi-trash"></i></a> <small class="text-muted fst-italic">(Chọn 1 video).</small>
+
+                        <input accept="video/*" type="file" id="suapro-video" name="suapro-video" style="display: none;" class="form-control">
+                    </fieldset>
+                    <video id="suaload-video" style="border-radius: 10px; border: 1px solid #ddd" class="video-list text-center form-control" type="video/mp4" width="100%" height="300px"></video>
+                </div>
+            </div>
+
+            <div hidden id="suashow-video" class="row mb-3">
+                <div class="col-md-12 mb-1">
+                    <video id="suaload-video-url" class="video-list text-center form-control" style="border-radius: 10px; border: 1px solid #ddd; padding: 0 !important" controls width="100%" height="100%"></video>
+                </div>
+            </div>
+        }
         <hr class="my-4" />
         <h5 class="text-center mb-4 text-bg-primary text-white" style="border-radius: 16px; height: 30px; display: flex; flex-direction: column; justify-content: center;">THÔNG TIN BƯỚC THỰC HIỆN</h5>
 

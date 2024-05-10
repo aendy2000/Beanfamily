@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Beanfamily.Models.QuyTrinhTrongCay>
 @using Beanfamily.Models
 @{
-    ViewBag.Title = "Sản Phẩm - Vườn Rau Bean";
+    ViewBag.Title = "Quy Trình Trồng - Vườn Rau Bean";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
     BeanfamilyEntities models = new BeanfamilyEntities();
     var lstSp1 = models.SanPhamRauNhaTrong.ToList();
@@ -158,14 +158,13 @@
                     </div>
                     <div class="modal-body m-2">
                         <h5 class="text-center mb-4 text-bg-primary text-white" style="border-radius: 16px; height: 30px; display: flex; flex-direction: column; justify-content: center;">THÔNG TIN QUY TRÌNH</h5>
-
                         <div class="row mt-1">
                             <div class="col-12">
                                 <input id="tenquytrinh" type="text" placeholder="Nhập tên quy trình..." class="form-control">
                                 <label style="margin-left: 5px" id="invalid-tenquytrinh-feedback" class="text-danger" hidden></label>
                             </div>
                         </div>
-                        <div class="row mb-4 mt-3">
+                        <div class="row mb-3 mt-3">
                             <div class="col-12">
                                 <div class="form-check form-switch form-control">
                                     <input checked class="form-check-input" style="margin-left: -1.5em" type="checkbox" id="hienthi">
@@ -174,7 +173,36 @@
                                 <label style="margin-left: 5px" id="invalid-hienthi-feedback" class="text-danger" hidden></label>
                             </div>
                         </div>
-                        <hr class="my-4"/>
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                <div class="form-check form-control form-switch">
+                                    <input class="form-check-input" style="margin-left: -1.5em" type="checkbox" id="checkurlvideo">
+                                    <label class="form-check-label" style="margin-left: 0.8em" for="checkurlvideo">Nhập URL/Tải lên video <small class="fst-italic text-danger">(không bắt buộc)</small></label>
+                                </div>
+                                <label style="margin-left: 5px" id="invalid-checkurlvideo-feedback" class="text-danger" hidden></label>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div id="hienthi-addurlvideo" class="col-12">
+                                <input id="urlvideo" type="text" placeholder="Nhập url video..." class="form-control">
+                                <label style="margin-left: 5px" id="invalid-urlvideo-feedback" class="text-danger" hidden></label>
+                            </div>
+                            <div hidden id="hienthi-uploadvideo" class="col-md-12 mb-1">
+                                <fieldset class="form-group">
+                                    <a class="btn btn-sm btn-primary mb-2" onclick="$('#pro-video').click()"><i class="bi bi-file-earmark-play-fill"></i> Tải lên video</a>
+                                    <a id="btn-xoa-video" class="btn btn-sm btn-danger mb-2" data-bs-toggle="tooltip" dropzone="top" title="Xóa video upload"><i class="bi bi-trash"></i></a> <small class="text-muted fst-italic">(Chọn 1 video).</small>
+
+                                    <input accept="video/*" type="file" id="pro-video" name="pro-video" style="display: none;" class="form-control">
+                                </fieldset>
+                                <video id="load-video" style="border-radius: 10px; border: 1px solid #ddd" class="video-list text-center form-control" type="video/mp4" width="100%" height="300px"></video>
+                            </div>
+                        </div>
+                        <div hidden id="show-video" class="row mb-3">
+                            <div class="col-md-12 mb-1">
+                                <video id="load-video-url" class="video-list text-center form-control" style="border-radius: 10px; border: 1px solid #ddd; padding: 0 !important" controls width="100%" height="100%"></video>
+                            </div>
+                        </div>
+                        <hr class="my-4" />
                         <h5 class="text-center mb-4 text-bg-primary text-white" style="border-radius: 16px; height: 30px; display: flex; flex-direction: column; justify-content: center;">THÔNG TIN BƯỚC THỰC HIỆN</h5>
                         <div id="danhsachcacbuoc" class="row mt-4">
 
@@ -250,3 +278,6 @@
         <script src="~/Validation/QuyTrinhTrongCay/OpenModalSua.js"></script>
     }
 }
+
+<script src="https://cdn.jsdelivr.net/gh/thelevicole/youtube-to-html5-loader@4.0.1/dist/YouTubeToHtml5.js"></script>
+<script>new YouTubeToHtml5();</script>

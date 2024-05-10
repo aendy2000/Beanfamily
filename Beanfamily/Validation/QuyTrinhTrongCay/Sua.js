@@ -1,4 +1,60 @@
 ﻿$(document).ready(function () {
+    //Add video tải lên
+    $('#suapro-video').on('input', function (e) {
+        const file = e.target.files[0];
+        const url = URL.createObjectURL(file);
+
+        const li = `<video id="suaload-video" autoplay="autoplay" style="border-radius: 10px" controls="text-center video-list form-control controls" src=" ${url} " type="video/mp4" width="100%" height="300px"></video>`;
+        $('#suaload-video').replaceWith(li);
+        $('#url-suapro-video').val('');
+    });
+
+    //Xóa video tải lên
+    $('#suabtn-xoa-video').on('click', function () {
+        $('#suapro-video').val("");
+        $('#suaload-video').replaceWith('<video id="suaload-video" style="border-radius: 10px; border: 1px solid #ddd" class="video-list text-center form-control"  type="video/mp4" width="100%" height="300px"></video>');
+        $('#url-suapro-video').val('');
+    });
+
+    $('body').find('[id="suacheckurlvideo"]').on('change', function () {
+        var checks = $(this).prop('checked');
+
+        if (checks == true) {
+            $('body').find('[id="suahienthi-addurlvideo"]').prop('hidden', true);
+            $('body').find('[id="suashow-video"]').prop('hidden', true);
+            $('body').find('[id="suahienthi-uploadvideo"]').prop('hidden', false);
+        }
+        else {
+            $('body').find('[id="suahienthi-addurlvideo"]').prop('hidden', false);
+            if ($('body').find('[id="suaurlvideo"]').val().trim().length > 0) {
+                $('body').find('[id="suashow-video"]').prop('hidden', false);
+            }
+            else {
+                $('body').find('[id="suashow-video"]').prop('hidden', true);
+            }
+            $('body').find('[id="suahienthi-uploadvideo"]').prop('hidden', true);
+        }
+    });
+
+    $('body').find('[id="suaurlvideo"]').on('input', function () {
+        $('#url-suapro-video').val('');
+        var result = $(this).val().trim();
+        if (result.length > 0) {
+            $('body').find('[id="suashow-video"]').prop('hidden', false);
+            result = result.replace('watch?v=', 'embed/');
+            var widthVideos = $('body').find('[id="suaload-video-url"]').width();
+            var heiVideo = (widthVideos / 16) * 9 + 2;
+
+            $('body').find('[id="suashow-video"]').html(`<div class="col-md-12 mb-1"><iframe src="` + result + `?autoplay=1" id="suaload-video-url" style="border-radius: 10px; border: 1px solid #ddd; padding: 0 !important" class="video-list text-center form-control" controls width="100%" height="` + heiVideo + `">`
+                + `</iframe></div>`);
+        }
+        else {
+            $('body').find('[id="suashow-video"]').prop('hidden', true);
+            $('body').find('[id="suashow-video"]').html(`<div class="col-md-12 mb-1"><video id="suaload-video-url" style="border-radius: 10px; border: 1px solid #ddd; padding: 0 !important" class="video-list text-center form-control" controls width="100%" height="100%" autoplay>`
+                + `</video></div>`);
+        }
+    });
+
     $('body').on('change', '[id^="suahinhbuoc"]', function () {
         var hinh = this;
         var stt = $(this).attr('name');
@@ -148,12 +204,25 @@
                     lstCoHinh += $('#suahinhcubuoc' + id).val() + "#";
                 }
             }
+
+            if ($('#suacheckurlvideo').prop('checked') == true) {
+                formData.append('addurlvideo', false);
+                formData.append('urlVideo', '');
+                formData.append('video', $("#suapro-video")[0].files[0]);
+            }
+            else {
+                formData.append('addurlvideo', true);
+                formData.append('urlVideo', $('body').find('[id="suaurlvideo"]').val());
+                formData.append('video', null);
+            }
+
             formData.append('id', idQuyTrinh);
             formData.append('tenquytrinh', tenquytrinh);
             formData.append('hienthi', $('#hienthi').prop('checked'));
             formData.append('lstTenBuoc', lstTen.substring(0, lstTen.length - 1));
             formData.append('lstMotaBuoc', lstMota.substring(0, lstMota.length - 1));
             formData.append('lstCoHinh', lstCoHinh.substring(0, lstCoHinh.length - 1));
+            formData.append('videoCu', $('#url-suapro-video').val());
 
             $.ajax({
                 url: $('#requestPath').val() + "admin/quytrinhtrongcay/suaquytrinh",

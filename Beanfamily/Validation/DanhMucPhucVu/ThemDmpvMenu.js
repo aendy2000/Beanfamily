@@ -4,13 +4,26 @@
         $('#btnluuthemDmpv').prop('disabled', true);
 
         var tendanhmuc = $('#tendanhmuc').val().trim();
+        var gia = $('#gia').val().trim();
         var sothutu = $('#sothutu').val().trim();
 
         $("#tendanhmuc").removeClass('valid-was-validated');
+        $("#gia").removeClass('valid-was-validated');
 
         $('#invalid-tendanhmuc-feedback').prop('hidden', true);
+        $('#invalid-gia-feedback').prop('hidden', true);
 
         var check = true;
+
+        if (gia.length < 1) {
+            check = false;
+            $("#gia").addClass('valid-was-validated');
+            $('#invalid-gia-feedback').text("Vui lòng nhập giá dịch vụ.").prop('hidden', false);
+            $("#gia").focus();
+
+            $('#btnluuthemDmpv').html('Lưu thông tin');
+            $('#btnluuthemDmpv').prop('disabled', false);
+        }
 
         if (tendanhmuc.length < 1) {
             check = false;
@@ -26,6 +39,7 @@
         if (check == true) {
             var formData = new FormData();
             formData.append('tendanhmuc', tendanhmuc);
+            formData.append('gia', gia);
             formData.append('hienthi', $('#hienthi').prop('checked'));
             formData.append('sothutu', sothutu);
 

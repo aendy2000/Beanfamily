@@ -14,6 +14,7 @@ namespace Beanfamily.Controllers
         // GET: MuaSam
         public ActionResult Index(int? pageNum, int? pageSize)
         {
+            Session["title-url"] = "san-pham-mua-sam";
             var lstSanPham = model.SanPhamMuaSam.Where(s => s.hienthi == true).OrderBy(o => o.tensanpham).ToList();
             Session["categories-muasam"] = model.DanhMucSanPhamMuaSamCap1.Where(s => s.hienthi == true).OrderBy(o => o.tendanhmuc).ToList();
 
@@ -71,9 +72,12 @@ namespace Beanfamily.Controllers
 
         public ActionResult ProductDetail(int id)
         {
+
             var sp = model.SanPhamMuaSam.Find(id);
             if (sp == null)
                 return RedirectToAction("index");
+
+            Session["title-url"] = "san-pham-" + sp.tensanpham.ToLower().Replace(" ", "-");
 
             sp.luotxem = sp.luotxem + 1;
             model.Entry(sp).State = System.Data.Entity.EntityState.Modified;

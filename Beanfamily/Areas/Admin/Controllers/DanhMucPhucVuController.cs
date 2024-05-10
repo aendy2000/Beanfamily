@@ -62,7 +62,7 @@ namespace Beanfamily.Areas.Admin.Controllers
             return View("index", dm);
         }
         [HttpPost]
-        public ActionResult ThemDm(string tendanhmuc, bool hienthi, string sothutu)
+        public ActionResult ThemDm(string tendanhmuc, string gia, bool hienthi, string sothutu)
         {
             try
             {
@@ -72,6 +72,7 @@ namespace Beanfamily.Areas.Admin.Controllers
 
                 DanhMucPhucVuMenuTiecBanVaMenuBuffet dm = new DanhMucPhucVuMenuTiecBanVaMenuBuffet();
                 dm.tendanhmuc = tendanhmuc;
+                dm.gia = Convert.ToDecimal(gia.Replace(",", ""));
                 dm.hienthi = hienthi;
                 if (!string.IsNullOrEmpty(sothutu))
                     dm.sothutu = Int32.Parse(sothutu);
@@ -91,7 +92,7 @@ namespace Beanfamily.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult SuaDm(int id, string tendanhmuc, bool hienthi, string sothutu)
+        public ActionResult SuaDm(int id, string tendanhmuc, string gia, bool hienthi, string sothutu)
         {
             try
             {
@@ -104,6 +105,7 @@ namespace Beanfamily.Areas.Admin.Controllers
                     return Content("KHONGTONTAI");
 
                 dm.tendanhmuc = tendanhmuc;
+                dm.gia = Convert.ToDecimal(gia.Replace(",", ""));
                 dm.hienthi = hienthi;
                 if (!string.IsNullOrEmpty(sothutu))
                     dm.sothutu = Int32.Parse(sothutu);
