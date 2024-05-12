@@ -1,0 +1,157 @@
+﻿@model IEnumerable<Beanfamily.Models.SanPhamMenuTiecBan>
+@using Beanfamily.Models
+@{
+    BeanfamilyEntities models = new BeanfamilyEntities();
+    var Dmpv = models.DanhMucPhucVuMenuTiecBanVaMenuBuffet.ToList();
+}
+<div id="contentDatBan" class="col-lg-12">
+    <h5 class="text-center mb-3 text-white" style="background: #5e443b !important; border-radius: 16px 16px 0 0; height: 50px; display: flex; flex-direction: column; justify-content: center; ">Thông Tin Món & Phí Dịch Vụ</h5>
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3 col-sm-12">
+                <ul style=" list-style-position: outside !important;" class=" ms-3">
+                    <li style="list-style-type: disc !important;">
+                        @item.tensanpham | @(item.gia.ToString("0,0").Equals("00") ? "0" : item.gia.ToString("0,0")) đ
+                    </li>
+                </ul>
+            </div>
+        }
+    </div>
+    <hr class="my-3" />
+    <div class="row">
+        @foreach (var item in Dmpv)
+        {
+            <div class="col-md-3 col-sm-12">
+                <ul style=" list-style-position: outside !important;" class=" ms-3">
+                    <li style="list-style-type: disc !important;">
+                        @item.tendanhmuc | @(item.gia.ToString("0,0").Equals("00") ? "0" : item.gia.ToString("0,0")) đ
+                    </li>
+                </ul>
+            </div>
+        }
+    </div>
+    <hr class="my-3" />
+    <h6 style="font-weight: bold; color: #C49A6C;" class="t-center mb-3"><label style="color: #000 !important">@Model.Count() món:</label> @(Model.Sum(s => s.gia).ToString("0,0").Equals("00") ? "0" : Model.Sum(s => s.gia).ToString("0,0")) đ <label style="color: #000 !important"> | Phục vụ:</label> @(Dmpv.Sum(s => s.gia).ToString("0,0").Equals("00") ? "0" : Dmpv.Sum(s => s.gia).ToString("0,0")) đ <label style="color: #000 !important"> | Tổng:</label> @((Model.Sum(s => s.gia) + Dmpv.Sum(s => s.gia)).ToString("0,0").Equals("00") ? "0" : (Model.Sum(s => s.gia) + Dmpv.Sum(s => s.gia)).ToString("0,0")) đ</h6>
+    <h5 class="text-center mb-3 text-white" style="background: #5e443b !important; border-radius: 16px 16px 0 0; height: 50px; display: flex; flex-direction: column; justify-content: center; ">Thông Tin Đặt Bàn</h5>
+    <div class="row">
+        <div class="col-md-6">
+            <span class="txt9" style="color: #333 !important">
+                Họ và Tên <span class="text-danger">*</span>
+            </span>
+
+            <div class="wrap-inputname size12 bo-rad-10 m-t-3 m-b-23">
+                <input style="border: 1px solid #333 !important" class="bo-rad-10 sizefull txt10 p-l-20" type="text" name="name" placeholder="Nguyễn Văn A...">
+            </div>
+            <span class="txt9" style="color: #333 !important">
+                Ngày tổ chức <span class="text-danger">*</span>
+            </span>
+
+            <div class="wrap-inputdate pos-relative txt10 size12 bo-rad-10 m-t-3 m-b-23">
+                <input style="border: 1px solid #333 !important" class="my-calendar bo-rad-10 sizefull txt10 p-l-20" type="text" name="date">
+                <i class="btn-calendar fa fa-calendar ab-r-m hov-pointer m-r-18" aria-hidden="true"></i>
+            </div>
+
+            <span class="txt9" style="color: #333 !important">
+                Số người <span class="text-danger">*</span>
+            </span>
+
+            <div class="wrap-inputpeople size12 bo-rad-10 m-t-3 m-b-23">
+                <input style="border: 1px solid #333 !important" class="bo-rad-10 sizefull txt10 p-l-20" type="text" name="people" placeholder="4 người...">
+            </div>
+        </div>
+
+        <div class="col-md-6">
+
+
+            @*Phone*@
+            <span class="txt9" style="color: #333 !important">
+                Số điện thoại <span class="text-danger">*</span>
+            </span>
+
+            <div class="wrap-inputphone size12 bo-rad-10 m-t-3 m-b-23">
+                <input style="border: 1px solid #333 !important" class="bo-rad-10 sizefull txt10 p-l-20 border-1" type="text" name="phone" placeholder="Phone">
+            </div>
+
+            <span class="txt9" style="color: #333 !important">
+                Giờ tổ chức <span class="text-danger">*</span>
+            </span>
+
+            <div class="wrap-inputtime size12 bo-rad-10 m-t-3 m-b-23">
+                <select class="selection-1" name="time">
+                    <option>07:00</option>
+                    <option>07:30</option>
+                    <option>08:00</option>
+                    <option>09:30</option>
+                    <option>09:00</option>
+                    <option>09:30</option>
+                    <option>10:00</option>
+                    <option>10:30</option>
+                    <option>11:00</option>
+                    <option>11:30</option>
+                    <option>12:00</option>
+                    <option>12:30</option>
+                    <option>13:00</option>
+                    <option>13:30</option>
+                    <option>14:00</option>
+                    <option>14:30</option>
+                    <option>15:00</option>
+                    <option>15:30</option>
+                    <option>16:00</option>
+                    <option>16:30</option>
+                    <option>17:00</option>
+                    <option>17:30</option>
+                    <option>18:00</option>
+                    <option>18:30</option>
+                    <option>19:00</option>
+                    <option>19:30</option>
+                    <option>20:00</option>
+                    <option>20:30</option>
+                    <option>21:00</option>
+                    <option>21:30</option>
+                    <option>22:00</option>
+                </select>
+            </div>
+
+            @*Email*@
+            <span class="txt9" style="color: #333 !important">
+                Địa chỉ Email <span class="text-danger">*</span>
+            </span>
+
+            <div class="wrap-inputemail size12 bo-rad-10 m-t-3 m-b-23">
+                <input style="border: 1px solid #333 !important" class="bo-rad-10 sizefull txt10 p-l-20" type="text" name="email" placeholder="emailcuaban@email.com">
+            </div>
+
+        </div>
+        <div class="col-md-12">
+            <span class="txt9" style="color: #333 !important">
+                Ghi chú
+            </span>
+            <textarea class="bo-rad-10 size35 txt10 p-l-20 p-t-15 m-b-10 m-t-3" rows="4" name="ghichu" placeholder="Ghi chú thêm (nếu có)"></textarea>
+
+        </div>
+    </div>
+    <script>
+        /*[ Select ]
+        ===========================================================*/
+        $(".selection-1").select2({
+            minimumResultsForSearch: 20,
+            dropdownParent: $('body').find('[id="dropDownSelect1"]')
+        });
+
+        $('.select2').child(function () {
+            $(this).css('border-radius', '10px');
+            $(this).css('border', '1px solid #333 !important');
+        });
+
+        /*[ Daterangepicker ]
+        ===========================================================*/
+        $('.my-calendar').daterangepicker({
+            "singleDatePicker": true,
+            "showDropdowns": true,
+            locale: {
+                format: 'DD/MM/YYYY'
+            },
+        });
+    </script>
+</div>

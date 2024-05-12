@@ -18,16 +18,16 @@
 <section class="section-ourmenu bg1-pattern">
     <div class="section-child-bg1">
         <div class="container p-b-40">
-            <div class="row">
+            <div style="position: sticky; top: 100px; z-index: 999" class="row">
                 <div class="col-12">
-                    <div class="row bg-bg2" style="width: 100%; height: 80px; border-radius: 0px 0px 16px 16px; border: 1px solid #ffc687; margin: 0 !important">
+                    <div class="row bg-bg2" style="width: 100%; height: 80px; border-radius: 0px 0px 16px 16px; border: 1px solid #ffc687; margin: 0 !important; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
                         <div class="col-md-6 col-sm-12" style="display: flex; flex-direction: column; align-items: start; justify-content: center;">
                             <h5 id="tongDaChon" price="0" style="float: left" class="text-white me-3 ms-3">
                                 Tổng: 0
                             </h5>
                         </div>
                         <div class="col-md-6 col-sm-12" style="display: flex; flex-direction: column; align-items: end; justify-content: center;">
-                            <a class="btn1 flex-c-m size1 txt3 trans-0-4  me-3 ms-3" style="float: right" role="button">
+                            <a id="btnDatBanTiec" class="btn1 flex-c-m size1 txt3 trans-0-4  me-3 ms-3" style="float: right" role="button">
                                 Đặt Bàn Ngay
                             </a>
                         </div>
@@ -54,7 +54,6 @@
                                         <label style="cursor: pointer" id="label-monantiecban-@item.id-all" for="monantiecban-@item.id-all">
                                             <u>Tất cả</u>
                                         </label>
-
                                     </div>
                                     <div class="col-1">
                                         <input price="@(item.SanPhamMenuTiecBan.Sum(s => s.gia).ToString("0").Equals("0") ? "0" : item.SanPhamMenuTiecBan.Sum(s => s.gia).ToString("0"))" id="monantiecban-@item.id-all" type="checkbox" style="height: 20px; width: 20px; margin-left: -5px; accent-color: #12634c " />
@@ -87,6 +86,30 @@
         </div>
     </div>
 </section>
+
+<div class="modal fade" id="datBanTiecModal" style="height: 97%;" aria-hidden="true" aria-labelledby="datBanTiecModalLabel" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+        <div style="border-radius:16px;" class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" style="font-weight:bold" id="datBanTiecModalLabel">Thông Tin Đặt Bàn</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div style=" padding-bottom: 0 !important;" class="container py-3 h-100">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="row">
+                        <div id="contentDatBan" class="col-lg-12">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn3 flex-c-m size1 txt11 trans-0-4">Đặt hàng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="~/ActionOnPage/MenuTiecBan/loadPageMenuTiecBan.js"></script>
 <script src="~/ActionOnPage/MenuTiecBan/ActionOnView.js"></script>
 <script src="~/ActionOnPage/MenuTiecBan/DatBan.js"></script>

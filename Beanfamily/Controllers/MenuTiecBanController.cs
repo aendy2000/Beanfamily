@@ -19,5 +19,26 @@ namespace Beanfamily.Controllers
             var lstSanPham = model.DanhMucMenuTiecBanCap1.Where(s => s.hienthi == true).OrderBy(o => o.tendanhmuc).ToList();
             return View("index", lstSanPham);
         }
+
+        [HttpPost]
+        public ActionResult DatBan(string lstId)
+        {
+            try
+            {
+                var LstIdPro = lstId.Split('-');
+                List<SanPhamMenuTiecBan> lstSp = new List<SanPhamMenuTiecBan>();
+                foreach (var item in LstIdPro)
+                {
+                    var pro = model.SanPhamMenuTiecBan.Find(Int32.Parse(item));
+                    lstSp.Add(pro);
+                }
+
+                return PartialView("_DatBanModal", lstSp);
+            }
+            catch (Exception Ex)
+            {
+                return Content("Chi tiết lỗi: " + Ex.Message);
+            }
+        }
     }
 }

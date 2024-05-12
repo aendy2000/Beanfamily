@@ -2904,6 +2904,7 @@
     <Content Include="Views\ThucDonHangNgay\ProductDetail.cshtml" />
     <Content Include="Views\VuonRau\quytrinhtrong.cshtml" />
     <Content Include="Views\MenuTiecBan\Index.cshtml" />
+    <Content Include="Views\MenuTiecBan\_DatBanModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

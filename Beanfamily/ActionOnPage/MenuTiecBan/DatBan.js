@@ -1,26 +1,22 @@
 ﻿$(document).ready(function () {
     //Đặt bàn
-    $('[id^="btnDatBan-"]').on('click', function () {
+    $('#btnDatBanTiec').on('click', function () {
         var btn = $(this);
         btn.html('<span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"> </span> Đang tải...');
         btn.css('pointer-events', 'none');
 
-        var idMenu = $(this).attr('name');
-        var lstId = "";
-        $('[id^="monantiecban-' + idMenu + '-"]').each(function () {
-            var idPro = $(this).attr('id').split('-')[2];
-            if (idPro !== "all") {
-                if ($(this).prop('checked')) {
-                    lstId += idPro + "-";
-                }
+        var lstId = ""; //Định dạng: id Món 1 - id Món 2
+        $('[id^="monantiecban-"]').each(function () {
+            var inpfr = $(this);
+            if (inpfr.attr('id').split('-')[2] !== "all" && inpfr.prop('checked')) {
+                lstId += inpfr.attr('id').split('-')[2] + "-";
             }
         });
 
-        var check = true;
         if (lstId.length < 1) {
             check = false;
             btn.css('pointer-events', 'auto');
-            btn.html("Đặt Bàn");
+            btn.html("ĐẶT BÀN NGAY");
             Swal.fire({
                 title: "Chưa chọn món!",
                 text: "Vui lòng chọn ít nhất 1 món trong Menu!",
@@ -29,6 +25,34 @@
         }
         else {
             lstId = lstId.substring(0, lstId.length - 1);
+            var formData = new FormData();
+            formData.append('lstId', lstId);
+
+            $.ajax({
+                url: $('#requestPath').val() + "menutiecban/datban",
+                data: formData,
+                dataType: 'html',
+                type: 'POST',
+                processData: false,
+                contentType: false
+            }).done(function (ketqua) {
+                btn.html('ĐẶT BÀN NGAY');
+                btn.css('pointer-events', 'all');
+
+                if (ketqua.indexOf("Chi tiết lỗi:") != -1) {
+                    Swal.fire({
+                        title: "Đã xảy ra lỗi, vui lòng thử lại sau ít phút.",
+                        text: ketqua,
+                        icon: "error"
+                    }).then(() => {
+                        window.location.reload();
+                    });
+                }
+                else {
+                    $('body').find('[id="contentDatBan"]').replaceWith(ketqua);
+                    $('body').find('[id="datBanTiecModal"]').modal("toggle");
+                }
+            });
         }
     });
 });

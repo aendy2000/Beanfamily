@@ -148,7 +148,6 @@
         }
         return input_val;
     }
-
     function formatNumber(n) {
         return n.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",")
     }
