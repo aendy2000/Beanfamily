@@ -63,7 +63,7 @@ namespace Beanfamily.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult ThemMon(List<HttpPostedFileBase> images, HttpPostedFileBase video, string tenmon, string gia, int danhmuc, string mota, bool hienthi)
+        public ActionResult ThemMon(List<HttpPostedFileBase> images, HttpPostedFileBase video, string tenmon, string gia, int danhmuc, string mota, bool trangthai, bool hienthi)
         {
             try
             {
@@ -77,6 +77,7 @@ namespace Beanfamily.Areas.Admin.Controllers
                 monan.gia = Convert.ToDecimal(gia.Replace(",", ""));
                 monan.mota = mota;
                 monan.luotxem = 0;
+                monan.conhang = trangthai;
                 monan.hienthi = hienthi;
                 model.SanPhamThucDonHangNgay.Add(monan);
                 model.SaveChanges();
@@ -198,7 +199,7 @@ namespace Beanfamily.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult SuaMon(int id, List<HttpPostedFileBase> images, HttpPostedFileBase video, string tenmon, string gia, int danhmuc, string mota, bool hienthi, string imageCu, string videoCu)
+        public ActionResult SuaMon(int id, List<HttpPostedFileBase> images, HttpPostedFileBase video, string tenmon, string gia, int danhmuc, string mota, bool trangthai, bool hienthi, string imageCu, string videoCu)
         {
             try
             {
@@ -214,6 +215,7 @@ namespace Beanfamily.Areas.Admin.Controllers
                 monan.id_danhmucthucdonhangngaycap1 = danhmuc;
                 monan.gia = Convert.ToDecimal(gia.Replace(",", ""));
                 monan.mota = mota;
+                monan.conhang = trangthai;
                 monan.hienthi = hienthi;
                 model.Entry(monan).State = EntityState.Modified;
                 model.SaveChanges();

@@ -97,6 +97,7 @@
             formData.append('gia', gia);
             formData.append('danhmuc', danhmuc);
             formData.append('mota', $('#mota').val().trim());
+            formData.append('trangthai', $('#trangthai').prop('checked'));
             formData.append('hienthi', $('#hienthi').prop('checked'));
 
             $.ajax({

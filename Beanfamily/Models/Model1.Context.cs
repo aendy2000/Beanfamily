@@ -26,7 +26,6 @@ namespace Beanfamily.Models
         }
     
         public virtual DbSet<ApDungChucNangChoQuyenTaiKhoan> ApDungChucNangChoQuyenTaiKhoan { get; set; }
-        public virtual DbSet<ApDungDanhMucPhucVu> ApDungDanhMucPhucVu { get; set; }
         public virtual DbSet<CacBuocQuyTrinhTrongCay> CacBuocQuyTrinhTrongCay { get; set; }
         public virtual DbSet<ChiTietDonHangMuaSamVaMenuHangNgay> ChiTietDonHangMuaSamVaMenuHangNgay { get; set; }
         public virtual DbSet<ChucNangHeThongBean> ChucNangHeThongBean { get; set; }
@@ -36,13 +35,18 @@ namespace Beanfamily.Models
         public virtual DbSet<DanhMucSanPhamMuaSamCap1> DanhMucSanPhamMuaSamCap1 { get; set; }
         public virtual DbSet<DanhMucSanPhamRauNhaTrongCap1> DanhMucSanPhamRauNhaTrongCap1 { get; set; }
         public virtual DbSet<DanhMucThucDocHangNgayCap1> DanhMucThucDocHangNgayCap1 { get; set; }
+        public virtual DbSet<DonHangDanhMucPhucVu> DonHangDanhMucPhucVu { get; set; }
+        public virtual DbSet<DonHangMenuTiecBan> DonHangMenuTiecBan { get; set; }
         public virtual DbSet<DonHangMuaSamVaMenuHangNgay> DonHangMuaSamVaMenuHangNgay { get; set; }
+        public virtual DbSet<DonHangSanPhamMenuTiecBan> DonHangSanPhamMenuTiecBan { get; set; }
         public virtual DbSet<GioHang> GioHang { get; set; }
+        public virtual DbSet<LichSuDonHangMenuTiecBan> LichSuDonHangMenuTiecBan { get; set; }
         public virtual DbSet<LichSuSuaDoiSanPhamMenuBuffet> LichSuSuaDoiSanPhamMenuBuffet { get; set; }
         public virtual DbSet<LichSuSuaDoiSanPhamMenuTiecBan> LichSuSuaDoiSanPhamMenuTiecBan { get; set; }
         public virtual DbSet<LichSuSuaDoiSanPhamMuaSam> LichSuSuaDoiSanPhamMuaSam { get; set; }
         public virtual DbSet<LichSuSuaDoiSanPhamRauNhaTrong> LichSuSuaDoiSanPhamRauNhaTrong { get; set; }
         public virtual DbSet<LichSuSuaDoiSanPhamThucDonHangNgay> LichSuSuaDoiSanPhamThucDonHangNgay { get; set; }
+        public virtual DbSet<LichSuThanhToanDonHangMenuTiecBan> LichSuThanhToanDonHangMenuTiecBan { get; set; }
         public virtual DbSet<MangXaHoi> MangXaHoi { get; set; }
         public virtual DbSet<NoiDungSEO> NoiDungSEO { get; set; }
         public virtual DbSet<QuyenTaiKhoanBean> QuyenTaiKhoanBean { get; set; }

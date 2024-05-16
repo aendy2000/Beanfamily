@@ -17,11 +17,13 @@ namespace Beanfamily.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TaiKhoanBean()
         {
+            this.LichSuDonHangMenuTiecBan = new HashSet<LichSuDonHangMenuTiecBan>();
             this.LichSuSuaDoiSanPhamMenuBuffet = new HashSet<LichSuSuaDoiSanPhamMenuBuffet>();
             this.LichSuSuaDoiSanPhamMenuTiecBan = new HashSet<LichSuSuaDoiSanPhamMenuTiecBan>();
             this.LichSuSuaDoiSanPhamMuaSam = new HashSet<LichSuSuaDoiSanPhamMuaSam>();
             this.LichSuSuaDoiSanPhamRauNhaTrong = new HashSet<LichSuSuaDoiSanPhamRauNhaTrong>();
             this.LichSuSuaDoiSanPhamThucDonHangNgay = new HashSet<LichSuSuaDoiSanPhamThucDonHangNgay>();
+            this.LichSuThanhToanDonHangMenuTiecBan = new HashSet<LichSuThanhToanDonHangMenuTiecBan>();
             this.MangXaHoi = new HashSet<MangXaHoi>();
             this.TinhTrangDonHangMuaSamVaMenuHangNgay = new HashSet<TinhTrangDonHangMuaSamVaMenuHangNgay>();
         }
@@ -45,6 +47,8 @@ namespace Beanfamily.Models
         public string hinhdaidien { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LichSuDonHangMenuTiecBan> LichSuDonHangMenuTiecBan { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LichSuSuaDoiSanPhamMenuBuffet> LichSuSuaDoiSanPhamMenuBuffet { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LichSuSuaDoiSanPhamMenuTiecBan> LichSuSuaDoiSanPhamMenuTiecBan { get; set; }
@@ -54,6 +58,8 @@ namespace Beanfamily.Models
         public virtual ICollection<LichSuSuaDoiSanPhamRauNhaTrong> LichSuSuaDoiSanPhamRauNhaTrong { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LichSuSuaDoiSanPhamThucDonHangNgay> LichSuSuaDoiSanPhamThucDonHangNgay { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LichSuThanhToanDonHangMenuTiecBan> LichSuThanhToanDonHangMenuTiecBan { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MangXaHoi> MangXaHoi { get; set; }
         public virtual QuyenTaiKhoanBean QuyenTaiKhoanBean { get; set; }

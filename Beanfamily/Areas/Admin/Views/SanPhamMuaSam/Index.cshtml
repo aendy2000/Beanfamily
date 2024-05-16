@@ -87,7 +87,14 @@
                                             @foreach (var tonkho in item.TonKhoSanPham)
                                             {
                                                 <li>
-                                                    <span class="badge bg-primary">@(tonkho.tenloai); @(tonkho.gia.ToString("0,0"))đ; @(tonkho.soluong) SP</span>
+                                                    @if (tonkho.soluong > 0)
+                                                    {
+                                                        <span class="badge bg-primary">@(tonkho.tenloai); @(tonkho.gia.ToString("0,0"))đ; @(tonkho.soluong) SP</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="badge bg-danger">@(tonkho.tenloai); @(tonkho.gia.ToString("0,0"))đ; @(tonkho.soluong) SP</span>
+                                                    }
                                                 </li>
                                             }
                                         </ul>

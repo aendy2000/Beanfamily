@@ -59,7 +59,6 @@
                                 <th scope="col">Tên danh mục</th>
                                 <th scope="col">Ngày tạo</th>
                                 <th scope="col">Số món</th>
-                                <th scope="col">Phục vụ</th>
                                 <th scope="col">Trạng thái</th>
                                 <th scope="col">#</th>
 
@@ -68,11 +67,6 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                                string lstIdDmpv = "";
-                                foreach (var idDmpv in item.ApDungDanhMucPhucVu.ToList())
-                                {
-                                    lstIdDmpv += idDmpv.id_danhmucphucvu + "-";
-                                }
                                 <tr style="vertical-align: middle">
                                     <td>
                                         <div class="form-check">
@@ -89,7 +83,6 @@
                                         @item.tendanhmuc
                                         <input hidden id="inpMadanhmuc@(item.id)" value="DM@(item.id.ToString("D6"))" />
                                         <input hidden id="inpTendanhmuc@(item.id)" value="@item.tendanhmuc" />
-                                        <input hidden id="inpDmpv@(item.id)" value="@(string.IsNullOrEmpty(lstIdDmpv) ? "" : lstIdDmpv.Substring(0, lstIdDmpv.Length - 1))" />
                                         <input hidden id="inpSothutu@(item.id)" value="@item.sothutu" />
                                         <input hidden id="inpHienthi@(item.id)" value="@item.hienthi.ToString().ToLower()" />
                                     </td>
@@ -102,23 +95,6 @@
                                         else
                                         {
                                             <button id="danhsachmonan@(item.id)" name="@item.id" data-bs-toggle="tooltip" data-bs-placement="top" title="Xem danh sách món" tool class="btn btn-sm btn-primary"><i class="bi bi-info-circle me-1"></i> xem @item.SanPhamMenuBuffet.Count() món</button>
-                                        }
-                                    </td>
-                                    <td>
-                                        @if (item.ApDungDanhMucPhucVu.Count < 1)
-                                        {
-                                            <span class="badge bg-warning"><i class="bi bi-exclamation-octagon me-1"></i> Không kèm</span>
-                                        }
-                                        else
-                                        {
-                                            <ul style="padding-left: 1rem; margin-bottom: 0;">
-                                                @foreach (var menutiecban in item.ApDungDanhMucPhucVu.ToList())
-                                                {
-                                                    <li>
-                                                        @menutiecban.DanhMucPhucVuMenuTiecBanVaMenuBuffet.tendanhmuc
-                                                    </li>
-                                                }
-                                            </ul>
                                         }
                                     </td>
                                     <td>
@@ -184,20 +160,6 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="danhmucphucvu" class="col-md-3 col-lg-3 col-form-label">Phục vụ kèm</label>
-                                    <div class="col-md-9 col-lg-9">
-                                        <div class=" form-control">
-                                            @foreach (var itemDmpv in dmpv)
-                                            {
-                                                <div class="form-check form-switch">
-                                                    <input class="form-check-input" type="checkbox" name="@itemDmpv.id" id="iddmpv@(itemDmpv.id)">
-                                                    <label class="form-check-label" for="iddmpv@(itemDmpv.id)">@itemDmpv.tendanhmuc</label>
-                                                </div>
-                                            }
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
                                     <label for="sothutu" class="col-md-3 col-lg-3 col-form-label">Số thứ tự</label>
                                     <div class="col-md-9 col-lg-9">
                                         <input id="sothutu" type="text" data-type='numbers' placeholder="Số thứ tự" class="form-control">
@@ -252,20 +214,6 @@
                                         <input hidden id="suastriddanhmuc">
                                         <input id="suatendanhmuc" type="text" placeholder="Tên danh mục cấp 1" class="form-control">
                                         <label style="margin-left: 5px" id="invalid-suatendanhmuc-feedback" class="text-danger" hidden></label>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label for="suadanhmucphucvu" class="col-md-3 col-lg-3 col-form-label">Phục vụ kèm</label>
-                                    <div class="col-md-9 col-lg-9">
-                                        <div class=" form-control">
-                                            @foreach (var itemDmpv in dmpv)
-                                            {
-                                                <div class="form-check form-switch">
-                                                    <input class="form-check-input" type="checkbox" name="@itemDmpv.id" id="suaiddmpv@(itemDmpv.id)">
-                                                    <label class="form-check-label" for="suaiddmpv@(itemDmpv.id)">@itemDmpv.tendanhmuc</label>
-                                                </div>
-                                            }
-                                        </div>
                                     </div>
                                 </div>
                                 <div class="row mb-3">

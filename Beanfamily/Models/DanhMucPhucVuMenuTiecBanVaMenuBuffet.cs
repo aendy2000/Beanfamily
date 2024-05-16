@@ -17,18 +17,21 @@ namespace Beanfamily.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public DanhMucPhucVuMenuTiecBanVaMenuBuffet()
         {
-            this.ApDungDanhMucPhucVu = new HashSet<ApDungDanhMucPhucVu>();
+            this.DonHangDanhMucPhucVu = new HashSet<DonHangDanhMucPhucVu>();
         }
     
         public int id { get; set; }
         public int sothutu { get; set; }
         public string tendanhmuc { get; set; }
         public decimal gia { get; set; }
+        public bool giatheosoban { get; set; }
         public System.DateTime ngaytao { get; set; }
         public System.DateTime ngaysuadoi { get; set; }
         public bool hienthi { get; set; }
+        public bool apdungmenutiecban { get; set; }
+        public bool apdungmenubuffet { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ApDungDanhMucPhucVu> ApDungDanhMucPhucVu { get; set; }
+        public virtual ICollection<DonHangDanhMucPhucVu> DonHangDanhMucPhucVu { get; set; }
     }
 }

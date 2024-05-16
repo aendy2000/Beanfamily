@@ -167,9 +167,6 @@
     <Compile Include="Models\ApDungChucNangChoQuyenTaiKhoan.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ApDungDanhMucPhucVu.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\CacBuocQuyTrinhTrongCay.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -197,10 +194,22 @@
     <Compile Include="Models\DanhMucThucDocHangNgayCap1.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DonHangDanhMucPhucVu.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DonHangMenuTiecBan.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DonHangMuaSamVaMenuHangNgay.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DonHangSanPhamMenuTiecBan.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\GioHang.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LichSuDonHangMenuTiecBan.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LichSuSuaDoiSanPhamMenuBuffet.cs">
@@ -216,6 +225,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LichSuSuaDoiSanPhamThucDonHangNgay.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LichSuThanhToanDonHangMenuTiecBan.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MangXaHoi.cs">
@@ -283,6 +295,7 @@
     <Content Include="ActionOnPage\MenuTiecBan\ActionOnView.js" />
     <Content Include="ActionOnPage\MenuTiecBan\DatBan.js" />
     <Content Include="ActionOnPage\MenuTiecBan\loadPageMenuTiecBan.js" />
+    <Content Include="ActionOnPage\MenuTiecBan\SubmitFormDatBan.js" />
     <Content Include="ActionOnPage\NhaHang\loadPageNhaHang.js" />
     <Content Include="ActionOnPage\ThucDonHangNgay\AddToCart.js" />
     <Content Include="ActionOnPage\ThucDonHangNgay\loadPageThucDonHangNgayDetail.js" />

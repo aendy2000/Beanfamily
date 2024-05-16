@@ -12,18 +12,6 @@
             $('#suahienthi').prop("checked", false);
         }
 
-
-        $('[id^="suaiddmpv"]').each(function () {
-            $(this).prop('checked', false);
-        });
-        var dmPv = $('#inpDmpv' + id).val();
-        if (dmPv.length > 0) {
-            var lstDmpv = dmPv.split("-");
-            for (var i = 0; i < lstDmpv.length; i++) {
-                $('#suaiddmpv' + lstDmpv[i]).prop('checked', true);
-            }
-        }
-
         $('#suastriddanhmuc').val($('#inpMadanhmuc' + id).val());
         $('#SuaDmMtbModal').modal('toggle');
     });

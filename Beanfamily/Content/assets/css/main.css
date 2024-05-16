@@ -367,15 +367,27 @@ input[type="date" i] {
 
     /*[ Select ]
 ===========================================================*/
-    .select2-container .select2-selection--single {
-        display: flex;
-        align-items: center;
-        background-color: white;
-        border: 0px solid transparent;
-        border-radius: 10px !important;
-        height: 46px;
-        outline: none;
-    }
+
+
+.select2-container .select2-selection--single {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border: 0px solid transparent;
+    border-radius: 10px !important;
+    height: 46px;
+    outline: none;
+}
+
+#selectThoiGianDatBan .select2-container--default .selection .select2-selection--single {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border: 1px solid #333 !important;
+    border-radius: 10px !important;
+    height: 46px;
+    outline: none;
+}
 
 .select2-container--focus {
     border-radius: 10px;
@@ -438,6 +450,14 @@ input[type="date" i] {
 ===========================================================*/
 .select2-dropdown {
     border: none !important;
+    border-radius: 10px !important;
+    overflow: hidden;
+    box-shadow: 0px 3px 25px rgba(0,0,0,0.1);
+    margin-top: 7px;
+}
+
+#datBanTiecModal .select2-container--default .select2-dropdown {
+    border: 1px solid #333 !important;
     border-radius: 10px !important;
     overflow: hidden;
     box-shadow: 0px 3px 25px rgba(0,0,0,0.1);

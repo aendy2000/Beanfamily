@@ -83,31 +83,6 @@ namespace Beanfamily.Areas.Admin.Controllers
                 model.DanhMucMenuTiecBanCap1.Add(dm);
                 model.SaveChanges();
 
-                if (!string.IsNullOrEmpty(idPv))
-                {
-                    int idDm = dm.id;
-                    model = new BeanfamilyEntities();
-
-                    if (idPv.IndexOf("-") != -1)
-                    {
-                        foreach (var item in idPv.Split('-').ToList())
-                        {
-                            var apdungPv = new ApDungDanhMucPhucVu();
-                            apdungPv.id_danhmucmenutiecbancap1 = idDm;
-                            apdungPv.id_danhmucphucvu = Int32.Parse(item);
-                            model.ApDungDanhMucPhucVu.Add(apdungPv);
-                        }
-                    }
-                    else
-                    {
-                        var apdungPv = new ApDungDanhMucPhucVu();
-                        apdungPv.id_danhmucmenutiecbancap1 = idDm;
-                        apdungPv.id_danhmucphucvu = Int32.Parse(idPv);
-                        model.ApDungDanhMucPhucVu.Add(apdungPv);
-                    }
-                    model.SaveChanges();
-                }
-
                 return Content("SUCCESS");
             }
             catch (Exception ex)
@@ -137,28 +112,6 @@ namespace Beanfamily.Areas.Admin.Controllers
                     dm.sothutu = 0;
                 dm.ngaysuadoi = DateTime.Now;
 
-                model.ApDungDanhMucPhucVu.RemoveRange(dm.ApDungDanhMucPhucVu);
-                if (!string.IsNullOrEmpty(idPv))
-                {
-                    if (idPv.IndexOf("-") != -1)
-                    {
-                        foreach (var item in idPv.Split('-').ToList())
-                        {
-                            var apdungPv = new ApDungDanhMucPhucVu();
-                            apdungPv.id_danhmucmenutiecbancap1 = id;
-                            apdungPv.id_danhmucphucvu = Int32.Parse(item);
-                            model.ApDungDanhMucPhucVu.Add(apdungPv);
-                        }
-                    }
-                    else
-                    {
-                        var apdungPv = new ApDungDanhMucPhucVu();
-                        apdungPv.id_danhmucmenutiecbancap1 = id;
-                        apdungPv.id_danhmucphucvu = Int32.Parse(idPv);
-                        model.ApDungDanhMucPhucVu.Add(apdungPv);
-                    }
-                }
-
                 model.Entry(dm).State = EntityState.Modified;
                 model.SaveChanges();
                 return Content("SUCCESS");
@@ -178,7 +131,6 @@ namespace Beanfamily.Areas.Admin.Controllers
                 if (dm == null)
                     return Content("KHONGTONTAI");
 
-                model.ApDungDanhMucPhucVu.RemoveRange(dm.ApDungDanhMucPhucVu);
                 model.DanhMucMenuTiecBanCap1.Remove(dm);
                 model.SaveChanges();
 
@@ -219,7 +171,6 @@ namespace Beanfamily.Areas.Admin.Controllers
                     {
                         int id = Int32.Parse(item);
                         var dm = model.DanhMucMenuTiecBanCap1.Find(id);
-                        model.ApDungDanhMucPhucVu.RemoveRange(dm.ApDungDanhMucPhucVu);
                         model.DanhMucMenuTiecBanCap1.Remove(dm);
                         model.SaveChanges();
                     }
@@ -228,7 +179,6 @@ namespace Beanfamily.Areas.Admin.Controllers
                 {
                     int id = Int32.Parse(lstId);
                     var dm = model.DanhMucMenuTiecBanCap1.Find(id);
-                    model.ApDungDanhMucPhucVu.RemoveRange(dm.ApDungDanhMucPhucVu);
                     model.DanhMucMenuTiecBanCap1.Remove(dm);
                     model.SaveChanges();
                 }

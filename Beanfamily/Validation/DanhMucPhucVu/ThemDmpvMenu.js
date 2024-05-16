@@ -35,11 +35,15 @@
             $('#btnluuthemDmpv').prop('disabled', false);
         }
 
-
         if (check == true) {
             var formData = new FormData();
             formData.append('tendanhmuc', tendanhmuc);
             formData.append('gia', gia);
+            formData.append('giatheosoban', $('body').find('[id="giatheosoban"]').prop('checked'));
+
+            formData.append('tiecban', $('body').find('[id="menutiecban"]').prop('checked'));
+            formData.append('buffet', $('body').find('[id="menubuffet"]').prop('checked'));
+
             formData.append('hienthi', $('#hienthi').prop('checked'));
             formData.append('sothutu', sothutu);
 

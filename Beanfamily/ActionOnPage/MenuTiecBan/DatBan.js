@@ -16,7 +16,7 @@
         if (lstId.length < 1) {
             check = false;
             btn.css('pointer-events', 'auto');
-            btn.html("ĐẶT BÀN NGAY");
+            btn.html("ĐẶT BÀN");
             Swal.fire({
                 title: "Chưa chọn món!",
                 text: "Vui lòng chọn ít nhất 1 món trong Menu!",
@@ -36,7 +36,7 @@
                 processData: false,
                 contentType: false
             }).done(function (ketqua) {
-                btn.html('ĐẶT BÀN NGAY');
+                btn.html('ĐẶT BÀN');
                 btn.css('pointer-events', 'all');
 
                 if (ketqua.indexOf("Chi tiết lỗi:") != -1) {

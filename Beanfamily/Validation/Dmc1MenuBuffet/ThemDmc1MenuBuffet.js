@@ -29,17 +29,6 @@
             formData.append('hienthi', $('#hienthi').prop('checked'));
             formData.append('sothutu', sothutu);
 
-            var lstIdPv = "";
-            $('[id^="iddmpv"]').each(function () {
-                $(this).attr('name');
-                if ($(this).prop('checked')) lstIdPv += $(this).attr('name') + "-";
-            });
-
-            if (lstIdPv.length < 1)
-                formData.append('idPv', lstIdPv);
-            else 
-                formData.append('idPv', lstIdPv.substring(0, lstIdPv.length - 1));
-
             $.ajax({
                 url: $('#requestPath').val() + "admin/dmcap1menubuffet/themdm",
                 data: formData,

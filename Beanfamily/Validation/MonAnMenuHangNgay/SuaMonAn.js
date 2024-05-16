@@ -107,6 +107,7 @@
             formData.append('gia', gia);
             formData.append('danhmuc', danhmuc);
             formData.append('mota', $('#suamota').val().trim());
+            formData.append('trangthai', $('#trangthai').prop('checked'));
             formData.append('hienthi', $('#suahienthi').prop('checked'));
 
             var imageCu = "";

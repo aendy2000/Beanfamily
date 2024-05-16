@@ -57,12 +57,13 @@
                                     </div>
                                 </th>
                                 <th scope="col">Mã</th>
+                                <th scope="col">Trạng thái</th>
                                 <th scope="col">Danh mục</th>
                                 <th scope="col">Tên</th>
                                 <th scope="col">Giá</th>
                                 <th scope="col">Tồn kho</th>
                                 <th scope="col">Lượt xem</th>
-                                <th scope="col">Trạng thái</th>
+                                <th scope="col">Hiển thị</th>
                                 <th scope="col">Hình ảnh</th>
                                 <th scope="col">#</th>
 
@@ -81,6 +82,15 @@
                                     <td scope="row">
                                         SP@(item.id.ToString("D6"))
                                         <input hidden id="inpMaSanPham@(item.id)" value="SP@(item.id.ToString("D6"))" />
+                                    </td>
+                                    <td>
+                                        @if (item.giatritrendonvi > 0)
+                                        {
+                                            <span class="badge bg-success">Còn hàng</span> }
+                                        else
+                                        {
+                                            <span class="badge bg-danger">Hết hàng</span>
+                                        }
                                     </td>
                                     <td>@item.DanhMucSanPhamRauNhaTrongCap1.tendanhmuc</td>
                                     <td data-bs-toggle="tooltip" dropzone="top" title="@item.mota">@item.tensanpham</td>

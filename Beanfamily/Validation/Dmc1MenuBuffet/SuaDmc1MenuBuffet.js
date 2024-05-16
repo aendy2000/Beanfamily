@@ -12,18 +12,6 @@
             $('#suahienthi').prop("checked", false);
         }
 
-
-        $('[id^="suaiddmpv"]').each(function () {
-            $(this).prop('checked', false);
-        });
-        var dmPv = $('#inpDmpv' + id).val();
-        if (dmPv.length > 0) {
-            var lstDmpv = dmPv.split("-");
-            for (var i = 0; i < lstDmpv.length; i++) {
-                $('#suaiddmpv' + lstDmpv[i]).prop('checked', true);
-            }
-        }
-
         $('#suastriddanhmuc').val($('#inpMadanhmuc' + id).val());
         $('#SuaDmMtbModal').modal('toggle');
     });
@@ -58,17 +46,6 @@
             formData.append('tendanhmuc', tendanhmuc);
             formData.append('hienthi', $('#suahienthi').prop('checked'));
             formData.append('sothutu', sothutu);
-
-            var lstIdPv = "";
-            $('[id^="suaiddmpv"]').each(function () {
-                $(this).attr('name');
-                if ($(this).prop('checked')) lstIdPv += $(this).attr('name') + "-";
-            });
-
-            if (lstIdPv.length < 1)
-                formData.append('idPv', lstIdPv);
-            else
-                formData.append('idPv', lstIdPv.substring(0, lstIdPv.length - 1));
 
             $.ajax({
                 url: $('#requestPath').val() + "admin/dmcap1menubuffet/suadm",

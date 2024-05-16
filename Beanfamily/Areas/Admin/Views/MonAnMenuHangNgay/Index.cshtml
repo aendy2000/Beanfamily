@@ -55,11 +55,12 @@
                                     </div>
                                 </th>
                                 <th scope="col">Mã</th>
+                                <th scope="col">Trạng thái</th>
                                 <th scope="col">Danh mục</th>
                                 <th scope="col">Tên món</th>
                                 <th scope="col">Giá</th>
                                 <th scope="col">Lượt xem</th>
-                                <th scope="col">Trạng thái</th>
+                                <th scope="col">Hiển thị</th>
                                 <th scope="col">Hình ảnh</th>
                                 <th scope="col">#</th>
 
@@ -79,10 +80,20 @@
                                         SP@(item.id.ToString("D6"))
                                         <input hidden id="inpMamonan@(item.id)" value="SP@(item.id.ToString("D6"))" />
                                     </td>
+                                    <td>
+                                        @if (item.conhang == true)
+                                        {
+                                            <span class="badge bg-success">Còn hàng</span> }
+                                        else
+                                        {
+                                            <span class="badge bg-danger">Hết hàng</span>
+                                        }
+                                    </td>
                                     <td>@item.DanhMucThucDocHangNgayCap1.tendanhmuc</td>
                                     <td data-bs-toggle="tooltip" dropzone="top" title="@item.mota">@item.tensanpham</td>
                                     <td>@item.gia.ToString("0,0") đ</td>
                                     <td>@item.luotxem.ToString("0,0") Lượt</td>
+
                                     <td>
                                         @if (item.hienthi == true)
                                         {
@@ -106,7 +117,7 @@
 
                                     </td>
                                     <td class="text-nowrap">
-                                                <button class="btn btn-sm btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Xem món"><i class="bi bi-eye"></i></button>
+                                        <button class="btn btn-sm btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Xem món"><i class="bi bi-eye"></i></button>
                                         @if (Session["chophep-sua"] != null)
                                         {
                                             if (Convert.ToBoolean(Session["chophep-sua"]) == true)
@@ -178,6 +189,16 @@
                                             }
                                         </select>
                                         <label style="margin-left: 5px" id="invalid-danhmuc-feedback" class="text-danger" hidden></label>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="trangthai" class="col-md-12 col-lg-2 col-form-label">Trạng thái</label>
+                                    <div class="col-md-12 col-lg-10">
+                                        <div class="form-check form-switch form-control">
+                                            <input checked class="form-check-input" style="margin-left: -1.5em" type="checkbox" id="trangthai">
+                                            <label class="form-check-label" style="margin-left: 0.8em" for="trangthai"> Còn hàng</label>
+                                        </div>
+                                        <label style="margin-left: 5px" id="invalid-trangthai-feedback" class="text-danger" hidden></label>
                                     </div>
                                 </div>
                                 <div class="row mb-3">

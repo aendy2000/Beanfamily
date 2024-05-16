@@ -55,8 +55,7 @@
                                 <th scope="col">STT</th>
                                 <th scope="col">Tên danh mục</th>
                                 <th scope="col">Giá</th>
-                                <th scope="col">Menu Tiệc Bàn</th>
-                                <th scope="col">Menu Buffet</th>
+                                <th scope="col">Áp dụng</th>
                                 <th scope="col">Trạng thái</th>
                                 <th scope="col">#</th>
 
@@ -68,11 +67,8 @@
                                 <tr style="vertical-align: middle">
                                     <td>
                                         <div class="form-check">
-                                            @if (item.ApDungDanhMucPhucVu.Count < 1)
-                                            {
-                                                <input type="checkbox" class="form-check-input p-2" id="checkitem@(item.id)" name="@item.id" />
-                                                <label class="form-check-label" for="checkitem@(item.id)"></label>
-                                            }
+                                            <input type="checkbox" class="form-check-input p-2" id="checkitem@(item.id)" name="@item.id" />
+                                            <label class="form-check-label" for="checkitem@(item.id)"></label>
                                         </div>
                                     </td>
                                     <td scope="row">DM@(item.id.ToString("D6"))</td>
@@ -82,45 +78,37 @@
                                         <input hidden id="inpMadanhmuc@(item.id)" value="DM@(item.id.ToString("D6"))" />
                                         <input hidden id="inpTendanhmuc@(item.id)" value="@item.tendanhmuc" />
                                         <input hidden id="inpGiadanhmuc@(item.id)" value="@(item.gia.ToString("0,0").Equals("00") ? "0" : item.gia.ToString("0,0").Replace(".", ","))" />
+                                        <input hidden id="inpGiatheosoban@(item.id)" value="@item.giatheosoban.ToString().ToLower()" />
+                                        <input hidden id="inpMenutiecban@(item.id)" value="@item.apdungmenutiecban.ToString().ToLower()" />
+                                        <input hidden id="inpMenubuffet@(item.id)" value="@item.apdungmenubuffet.ToString().ToLower()" />
                                         <input hidden id="inpSothutu@(item.id)" value="@item.sothutu" />
                                         <input hidden id="inpHienthi@(item.id)" value="@item.hienthi.ToString().ToLower()" />
                                     </td>
                                     <td>
-                                        @(item.gia.ToString("0,0").Equals("00") ? "0" : item.gia.ToString("0,0")) đ
-                                    </td>
-                                    <td>
-                                        @if (item.ApDungDanhMucPhucVu.Where(mtb => mtb.id_danhmucmenutiecbancap1 != null).Count() > 0)
+                                        @(item.gia.ToString("0,0").Equals("00") ? "0" : item.gia.ToString("0,0")) đ @if (item.giatheosoban == true)
                                         {
-                                            <ul style="margin-left: -2rem; margin-bottom: 0;">
-                                                @foreach (var menutiecban in item.ApDungDanhMucPhucVu.Where(mtb => mtb.id_danhmucmenutiecbancap1 != null).ToList())
-                                                {
-                                                    <li>
-                                                        @menutiecban.DanhMucMenuTiecBanCap1.tendanhmuc
-                                                    </li>
-                                                }
-                                            </ul>
+                                            <span>(Tính theo số bàn)</span>
                                         }
                                         else
                                         {
-                                            <span class="badge bg-warning"><i class="bi bi-exclamation-octagon me-1"></i> Chưa áp dụng</span>
+                                            <span>(Phí cố định)</span>
                                         }
                                     </td>
                                     <td>
-                                        @if (item.ApDungDanhMucPhucVu.Where(mtb => mtb.id_danhmucmenubuffetcap1 != null).Count() > 0)
-                                        {
-                                            <ul style="margin-left: -2rem; margin-bottom: 0;">
-                                                @foreach (var menutiecban in item.ApDungDanhMucPhucVu.Where(mtb => mtb.id_danhmucmenubuffetcap1 != null).ToList())
-                                                {
-                                                    <li>
-                                                        @menutiecban.DanhMucMenuBuffetCap1.tendanhmuc
-                                                    </li>
-                                                }
-                                            </ul>
-                                        }
-                                        else
-                                        {
-                                            <span class="badge bg-warning"><i class="bi bi-exclamation-octagon me-1"></i> Chưa áp dụng</span>
-                                        }
+                                        <ul style="margin-left: -2rem; margin-bottom: 0;">
+                                            @if (item.apdungmenutiecban == true)
+                                            {
+                                                <li>
+                                                    Menu Tiệc Bàn
+                                                </li>
+                                            }
+                                            @if (item.apdungmenubuffet == true)
+                                            {
+                                                <li>
+                                                    Menu Buffet
+                                                </li>
+                                            }
+                                        </ul>
                                     </td>
                                     <td>
                                         @if (item.hienthi == true)
@@ -143,10 +131,7 @@
                                         {
                                             if (Convert.ToBoolean(Session["chophep-xoa"]) == true)
                                             {
-                                                if (item.ApDungDanhMucPhucVu.Count < 1)
-                                                {
-                                                    <button id="btnxoadm@(item.id)" name="@item.id" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Xóa danh mục"><i class="bi bi-trash"></i></button>
-                                                }
+                                                <button id="btnxoadm@(item.id)" name="@item.id" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Xóa danh mục"><i class="bi bi-trash"></i></button>
                                             }
                                         }
                                     </td>
@@ -188,7 +173,33 @@
                                     <div class="col-md-9 col-lg-9">
                                         <input id="gia" type="text" data-type="currency" placeholder="Giá dịch vụ" class="form-control">
                                         <label style="margin-left: 5px" id="invalid-gia-feedback" class="text-danger" hidden></label>
-
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="giatheosoban" class="col-md-3 col-lg-3 col-form-label">Loại giá</label>
+                                    <div class="col-md-9 col-lg-9">
+                                        <div class="form-check form-switch form-control">
+                                            <input checked class="form-check-input" style="margin-left: -1.5em" type="checkbox" id="giatheosoban">
+                                            <label class="form-check-label" style="margin-left: 0.8em" for="giatheosoban"> Giá theo số lượng bàn</label>
+                                        </div>
+                                        <label style="margin-left: 5px" id="invalid-giatheosoban-feedback" class="text-danger" hidden></label>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="menutiecban" class="col-md-3 col-lg-3 col-form-label">Áo dụng</label>
+                                    <div class="col-md-5 col-sm-9">
+                                        <div class="form-check form-switch form-control">
+                                            <input checked class="form-check-input" style="margin-left: -1.5em" type="checkbox" id="menutiecban">
+                                            <label class="form-check-label" style="margin-left: 0.8em" for="menutiecban"> Menu Tiệc Bàn</label>
+                                        </div>
+                                        <label style="margin-left: 5px" id="invalid-menutiecban-feedback" class="text-danger" hidden></label>
+                                    </div>
+                                    <div class="col-md-4 col-sm-9">
+                                        <div class="form-check form-switch form-control">
+                                            <input checked class="form-check-input" style="margin-left: -1.5em" type="checkbox" id="menubuffet">
+                                            <label class="form-check-label" style="margin-left: 0.8em" for="menubuffet">Menu Buffet</label>
+                                        </div>
+                                        <label style="margin-left: 5px" id="invalid-menubuffet-feedback" class="text-danger" hidden></label>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -198,7 +209,7 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="sothutu" class="col-md-3 col-lg-3 col-form-label">Hiển thị</label>
+                                    <label for="hienthi" class="col-md-3 col-lg-3 col-form-label">Hiển thị</label>
                                     <div class="col-md-9 col-lg-9">
                                         <div class="form-check form-switch form-control">
                                             <input checked class="form-check-input" style="margin-left: -1.5em" type="checkbox" id="hienthi">
@@ -251,7 +262,33 @@
                                     <div class="col-md-9 col-lg-9">
                                         <input id="suagia" type="text" data-type="currency" placeholder="Giá dịch vụ" class="form-control">
                                         <label style="margin-left: 5px" id="invalid-suagia-feedback" class="text-danger" hidden></label>
-
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="suagiatheosoban" class="col-md-3 col-lg-3 col-form-label">Loại giá</label>
+                                    <div class="col-md-9 col-lg-9">
+                                        <div class="form-check form-switch form-control">
+                                            <input checked class="form-check-input" style="margin-left: -1.5em" type="checkbox" id="suagiatheosoban">
+                                            <label class="form-check-label" style="margin-left: 0.8em" for="suagiatheosoban"> Giá theo số lượng bàn</label>
+                                        </div>
+                                        <label style="margin-left: 5px" id="invalid-suagiatheosoban-feedback" class="text-danger" hidden></label>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="suamenutiecban" class="col-md-3 col-lg-3 col-form-label">Áp dụng</label>
+                                    <div class="col-md-5 col-sm-9">
+                                        <div class="form-check form-switch form-control">
+                                            <input checked class="form-check-input" style="margin-left: -1.5em" type="checkbox" id="suamenutiecban">
+                                            <label class="form-check-label" style="margin-left: 0.8em" for="suamenutiecban">Menu Tiệc Bàn</label>
+                                        </div>
+                                        <label style="margin-left: 5px" id="invalid-suamenutiecban-feedback" class="text-danger" hidden></label>
+                                    </div>
+                                    <div class="col-md-4 col-sm-9">
+                                        <div class="form-check form-switch form-control">
+                                            <input checked class="form-check-input" style="margin-left: -1.5em" type="checkbox" id="suamenubuffet">
+                                            <label class="form-check-label" style="margin-left: 0.8em" for="suamenubuffet">Menu Buffet</label>
+                                        </div>
+                                        <label style="margin-left: 5px" id="invalid-suamenubuffet-feedback" class="text-danger" hidden></label>
                                     </div>
                                 </div>
                                 <div class="row mb-3">

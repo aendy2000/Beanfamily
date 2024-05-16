@@ -13,6 +13,27 @@
             $('#suahienthi').prop("checked", false);
         }
 
+        if ($("#inpGiatheosoban" + id).val() == "true") {
+            $('#suagiatheosoban').prop("checked", true);
+        }
+        else {
+            $('#suagiatheosoban').prop("checked", false);
+        }
+
+        if ($("#inpMenutiecban" + id).val() == "true") {
+            $('#suamenutiecban').prop("checked", true);
+        }
+        else {
+            $('#suamenutiecban').prop("checked", false);
+        }
+
+        if ($("#inpMenubuffet" + id).val() == "true") {
+            $('#suamenubuffet').prop("checked", true);
+        }
+        else {
+            $('#suamenubuffet').prop("checked", false);
+        }
+
         $('#suastriddanhmuc').val($('#inpMadanhmuc' + id).val());
         $('#SuaDmMtbModal').modal('toggle');
     });
@@ -59,6 +80,11 @@
             formData.append('id', $('#suaiddanhmuc').val());
             formData.append('tendanhmuc', tendanhmuc);
             formData.append('gia', gia);
+            formData.append('giatheosoban', $('body').find('[id="suagiatheosoban"]').prop('checked'));
+
+            formData.append('tiecban', $('body').find('[id="suamenutiecban"]').prop('checked'));
+            formData.append('buffet', $('body').find('[id="suamenubuffet"]').prop('checked'));
+
             formData.append('hienthi', $('#suahienthi').prop('checked'));
             formData.append('sothutu', sothutu);
 

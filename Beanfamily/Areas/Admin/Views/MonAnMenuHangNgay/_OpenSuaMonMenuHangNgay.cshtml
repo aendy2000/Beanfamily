@@ -51,6 +51,23 @@
                     </div>
                 </div>
                 <div class="row mb-3">
+                    <label for="suatrangthai" class="col-md-12 col-lg-2 col-form-label">Trạng thái</label>
+                    <div class="col-md-12 col-lg-10">
+                        <div class="form-check form-switch form-control">
+                            @if (Model.conhang == true)
+                            {
+                                <input checked class="form-check-input" style="margin-left: -1.5em" type="checkbox" id="suatrangthai">
+                            }
+                            else
+                            {
+                                <input class="form-check-input" style="margin-left: -1.5em" type="checkbox" id="suatrangthai">
+                            }
+                            <label class="form-check-label" style="margin-left: 0.8em" for="suatrangthai"> Còn hàng</label>
+                        </div>
+                        <label style="margin-left: 5px" id="invalid-suatrangthai-feedback" class="text-danger" hidden></label>
+                    </div>
+                </div>
+                <div class="row mb-3">
                     <label for="suahienthi" class="col-md-12 col-lg-2 col-form-label">Hiển thị</label>
                     <div class="col-md-12 col-lg-10">
                         <div class="form-check form-switch form-control">
