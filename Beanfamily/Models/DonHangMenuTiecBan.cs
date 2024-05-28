@@ -17,13 +17,14 @@ namespace Beanfamily.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public DonHangMenuTiecBan()
         {
-            this.DonHangDanhMucPhucVu = new HashSet<DonHangDanhMucPhucVu>();
+            this.DonHangDanhMucPhucVuMenuTiecBan = new HashSet<DonHangDanhMucPhucVuMenuTiecBan>();
             this.DonHangSanPhamMenuTiecBan = new HashSet<DonHangSanPhamMenuTiecBan>();
             this.LichSuDonHangMenuTiecBan = new HashSet<LichSuDonHangMenuTiecBan>();
             this.LichSuThanhToanDonHangMenuTiecBan = new HashSet<LichSuThanhToanDonHangMenuTiecBan>();
         }
     
         public int id { get; set; }
+        public string madonhang { get; set; }
         public System.DateTime ngaytao { get; set; }
         public string trangthai { get; set; }
         public int soban { get; set; }
@@ -34,10 +35,9 @@ namespace Beanfamily.Models
         public string giobatdau { get; set; }
         public string ghichukhachhang { get; set; }
         public string ghichuquantrivien { get; set; }
-        public string madonhang { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DonHangDanhMucPhucVu> DonHangDanhMucPhucVu { get; set; }
+        public virtual ICollection<DonHangDanhMucPhucVuMenuTiecBan> DonHangDanhMucPhucVuMenuTiecBan { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DonHangSanPhamMenuTiecBan> DonHangSanPhamMenuTiecBan { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

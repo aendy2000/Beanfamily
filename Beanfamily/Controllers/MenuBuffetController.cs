@@ -12,13 +12,13 @@ using PagedList;
 
 namespace Beanfamily.Controllers
 {
-    public class MenuTiecBanController : Controller
+    public class MenuBuffetController : Controller
     {
         BeanfamilyEntities model = new BeanfamilyEntities();
-        // GET: MenuTiecBan
+        // GET: MenuBuffet
         public ActionResult Index()
         {
-            var lstSanPham = model.DanhMucMenuTiecBanCap1.Where(s => s.hienthi == true).OrderBy(o => o.tendanhmuc).ToList();
+            var lstSanPham = model.DanhMucMenuBuffetCap1.Where(s => s.hienthi == true).OrderBy(o => o.tendanhmuc).ToList();
             return View("index", lstSanPham);
         }
 
@@ -28,15 +28,15 @@ namespace Beanfamily.Controllers
             try
             {
                 var LstIdPro = lstId.Split('-');
-                List<SanPhamMenuTiecBan> lstSp = new List<SanPhamMenuTiecBan>();
+                List<SanPhamMenuBuffet> lstSp = new List<SanPhamMenuBuffet>();
                 foreach (var item in LstIdPro)
                 {
-                    var pro = model.SanPhamMenuTiecBan.Find(Int32.Parse(item));
+                    var pro = model.SanPhamMenuBuffet.Find(Int32.Parse(item));
                     lstSp.Add(pro);
                 }
 
-                Session["lst-sanpham-datban-tiecban"] = lstSp;
-                Session["lst-sanpham-datban-dmpv"] = model.DanhMucPhucVuMenuTiecBanVaMenuBuffet.Where(w => w.apdungmenutiecban == true).ToList();
+                Session["lst-sanpham-datban-buffet"] = lstSp;
+                Session["lst-sanpham-datban-buffet-dmpv"] = model.DanhMucPhucVuMenuTiecBanVaMenuBuffet.Where(w => w.apdungmenubuffet == true).ToList();
 
                 return PartialView("_DatBanModal", lstSp);
             }
@@ -45,7 +45,6 @@ namespace Beanfamily.Controllers
                 return Content("Chi tiết lỗi: " + Ex.Message);
             }
         }
-
 
         [HttpPost]
         public ActionResult GuiFormDatBan(int soban, string hovaten, string sodienthoai, string email, string ngaytochuc, string giotochuc, string ghichu)

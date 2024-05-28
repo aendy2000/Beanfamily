@@ -112,14 +112,21 @@ namespace Beanfamily.Controllers
                     }
                     else
                     {
+                        var checks = false;
                         foreach (string item in giohang)
                         {
                             int idPro = Int32.Parse(item.Split('#')[0]);
                             if (idPro == idsp)
                             {
+                                checks = true;
                                 int soluongs2 = Convert.ToInt32(item.Split('#')[1]) + soluong;
                                 giohang = giohang.Select(g => g.Replace(item, idPro + "#" + soluongs2)).ToList();
+                                break;
                             }
+                        }
+                        if (checks == false)
+                        {
+                            giohang.Add(idsp + "#" + soluong);
                         }
                     }
                     Session["giohang-thucdonhangngay"] = giohang;

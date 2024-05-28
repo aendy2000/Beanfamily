@@ -61,6 +61,13 @@ namespace Beanfamily
                 defaults: new { controller = "MenuTiecBan", action = "Index", id = UrlParameter.Optional }
             );
 
+            //Menu Buffet
+            routes.MapRoute(
+                name: "Menu Buffet",
+                url: "menu-buffet",
+                defaults: new { controller = "MenuBuffet", action = "Index", id = UrlParameter.Optional }
+            );
+
             //Vườn rau
             routes.MapRoute(
                 name: "Quy Trình Trồng",

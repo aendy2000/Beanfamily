@@ -85,7 +85,7 @@
 
                     Swal.fire({
                         title: "Thành công!",
-                        text: "Đã thêm một món mới.",
+                        text: "Đã cập nhật thông tin món.",
                         icon: "success"
                     }).then(() => {
                         window.location.reload();

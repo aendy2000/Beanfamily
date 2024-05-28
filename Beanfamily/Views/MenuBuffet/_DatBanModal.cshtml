@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Beanfamily.Models.SanPhamMenuTiecBan>
+﻿@model IEnumerable<Beanfamily.Models.SanPhamMenuBuffet>
 @using Beanfamily.Models
 @{
     BeanfamilyEntities models = new BeanfamilyEntities();
@@ -17,11 +17,11 @@
                             <div style="height: 40px; width: 40px; float: left">
                                 <img style="float: left; height: 40px; width: 40px;object-fit: cover; border-radius: 50% " src="@Url.Content(item.hinhanh)">
                             </div>
-                            <label style="margin-top: 10px; margin-left: 10px">@item.tensanpham | @(item.gia.ToString("0,0").Equals("00") ? "0" : item.gia.ToString("0,0")) đ</label>
+                            <label style="margin-top: 10px; margin-left: 10px">@item.tensanpham</label>
                         }
                         else
                         {
-                            <label>@item.tensanpham | @(item.gia.ToString("0,0").Equals("00") ? "0" : item.gia.ToString("0,0")) đ</label>
+                            <label>@item.tensanpham</label>
                         }
                     </li>
                 </ul>
@@ -46,10 +46,10 @@
     <h5 class="text-center mb-3 text-white" style="background: #5e443b !important; border-radius: 16px 16px 0 0; height: 50px; display: flex; flex-direction: column; justify-content: center; ">Thông Tin Chi Phí</h5>
     <div class="row">
         <div class="col-md-5">
-            <h6 style="font-weight: normal; color: #333333;" class="t-center mb-3 float-end">Giá @Model.Count() món:</h6>
+            <h6 style="font-weight: normal; color: #333333;" class="t-center mb-3 float-end">Giá bữa tiệc:</h6>
         </div>
         <div class="col-md-7">
-            <h6 id="tamtinhgiamon" price="@Model.Sum(s => s.gia).ToString("0")" style="font-weight: normal; color: #C49A6C;" class="t-center mb-3 float-start">@(Model.Sum(s => s.gia).ToString("0,0").Equals("00") ? "0" : Model.Sum(s => s.gia).ToString("0,0")) x 0 bàn = 0 đ</h6>
+            <h6 id="tamtinhgiamon" price="0" style="font-weight: normal; color: #C49A6C;" class="t-center mb-3 float-start">SẼ ĐƯỢC BÁO SAU KHI ĐẶT BÀN</h6>
         </div>
 
         @foreach (var item in Dmpv)
@@ -78,7 +78,7 @@
             <h6 id="tamtinhtong" style="font-weight: bold; color: #333333;" class="t-center mb-3 float-end">Tổng:</h6>
         </div>
         <div class="col-md-7">
-            <h6 price="@((Dmpv.Where(w => w.giatheosoban == true).Sum(s => s.gia) + Model.Sum(s => s.gia)).ToString("0"))" priceStatic="@(Dmpv.Where(w => w.giatheosoban == false).Sum(s => s.gia).ToString("0"))" id="tongtamtinh" style="font-weight: bold; color: #C49A6C;" class="t-center mb-3 float-start">@((Dmpv.Where(w => w.giatheosoban == false).Sum(s => s.gia).ToString("0,0")).Equals("00") ? "0" : Dmpv.Where(w => w.giatheosoban == false).Sum(s => s.gia).ToString("0,0")) đ <small style="font-weight: normal">(tạm tính)</small></h6>
+            <h6 price="@(Dmpv.Where(w => w.giatheosoban == true).Sum(s => s.gia).ToString("0"))" priceStatic="@(Dmpv.Where(w => w.giatheosoban == false).Sum(s => s.gia).ToString("0"))" id="tongtamtinh" style="font-weight: bold; color: #C49A6C;" class="t-center mb-3 float-start">@((Dmpv.Where(w => w.giatheosoban == false).Sum(s => s.gia).ToString("0,0")).Equals("00") ? "0" : Dmpv.Where(w => w.giatheosoban == false).Sum(s => s.gia).ToString("0,0")) đ + Giá bữa tiệc <small style="font-weight: normal">(tạm tính)</small></h6>
         </div>
 
     </div>
@@ -182,5 +182,5 @@
             <textarea class="bo-rad-10 size35 txt10 p-l-20 p-t-15 m-b-10 m-t-3" rows="4" id="ghichu" name="ghichu" placeholder="Ghi chú thêm (nếu có)"></textarea>
         </div>
     </div>
-    <script src="~/ActionOnPage/MenuTiecBan/SubmitFormDatBan.js"></script>
+    <script src="~/ActionOnPage/MenuBuffet/SubmitFormDatBan.js"></script>
 </div>

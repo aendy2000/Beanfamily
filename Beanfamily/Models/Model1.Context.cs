@@ -35,7 +35,7 @@ namespace Beanfamily.Models
         public virtual DbSet<DanhMucSanPhamMuaSamCap1> DanhMucSanPhamMuaSamCap1 { get; set; }
         public virtual DbSet<DanhMucSanPhamRauNhaTrongCap1> DanhMucSanPhamRauNhaTrongCap1 { get; set; }
         public virtual DbSet<DanhMucThucDocHangNgayCap1> DanhMucThucDocHangNgayCap1 { get; set; }
-        public virtual DbSet<DonHangDanhMucPhucVu> DonHangDanhMucPhucVu { get; set; }
+        public virtual DbSet<DonHangDanhMucPhucVuMenuTiecBan> DonHangDanhMucPhucVuMenuTiecBan { get; set; }
         public virtual DbSet<DonHangMenuTiecBan> DonHangMenuTiecBan { get; set; }
         public virtual DbSet<DonHangMuaSamVaMenuHangNgay> DonHangMuaSamVaMenuHangNgay { get; set; }
         public virtual DbSet<DonHangSanPhamMenuTiecBan> DonHangSanPhamMenuTiecBan { get; set; }

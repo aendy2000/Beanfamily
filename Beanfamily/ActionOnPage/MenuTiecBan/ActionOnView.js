@@ -19,7 +19,7 @@
 
                 var converts = formatCurrencys(price);
                 $('#total-' + idMenu).attr('price', price);
-                $('#total-' + idMenu).text("đã chọn: " + (Number(dem) - 1) + " món - " + converts + " đ");
+                $('#total-' + idMenu).text("Đã chọn: " + (Number(dem) - 1) + " món - " + converts + " đ");
             }
             else {
                 var idMenu = id.split('-')[1];
