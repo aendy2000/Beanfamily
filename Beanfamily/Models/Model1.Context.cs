@@ -35,17 +35,22 @@ namespace Beanfamily.Models
         public virtual DbSet<DanhMucSanPhamMuaSamCap1> DanhMucSanPhamMuaSamCap1 { get; set; }
         public virtual DbSet<DanhMucSanPhamRauNhaTrongCap1> DanhMucSanPhamRauNhaTrongCap1 { get; set; }
         public virtual DbSet<DanhMucThucDocHangNgayCap1> DanhMucThucDocHangNgayCap1 { get; set; }
+        public virtual DbSet<DonHangDanhMucPhucVuMenuBuffet> DonHangDanhMucPhucVuMenuBuffet { get; set; }
         public virtual DbSet<DonHangDanhMucPhucVuMenuTiecBan> DonHangDanhMucPhucVuMenuTiecBan { get; set; }
+        public virtual DbSet<DonHangMenuBuffet> DonHangMenuBuffet { get; set; }
         public virtual DbSet<DonHangMenuTiecBan> DonHangMenuTiecBan { get; set; }
         public virtual DbSet<DonHangMuaSamVaMenuHangNgay> DonHangMuaSamVaMenuHangNgay { get; set; }
+        public virtual DbSet<DonHangSanPhamMenuBuffet> DonHangSanPhamMenuBuffet { get; set; }
         public virtual DbSet<DonHangSanPhamMenuTiecBan> DonHangSanPhamMenuTiecBan { get; set; }
         public virtual DbSet<GioHang> GioHang { get; set; }
+        public virtual DbSet<LichSuDonHangMenuBuffet> LichSuDonHangMenuBuffet { get; set; }
         public virtual DbSet<LichSuDonHangMenuTiecBan> LichSuDonHangMenuTiecBan { get; set; }
         public virtual DbSet<LichSuSuaDoiSanPhamMenuBuffet> LichSuSuaDoiSanPhamMenuBuffet { get; set; }
         public virtual DbSet<LichSuSuaDoiSanPhamMenuTiecBan> LichSuSuaDoiSanPhamMenuTiecBan { get; set; }
         public virtual DbSet<LichSuSuaDoiSanPhamMuaSam> LichSuSuaDoiSanPhamMuaSam { get; set; }
         public virtual DbSet<LichSuSuaDoiSanPhamRauNhaTrong> LichSuSuaDoiSanPhamRauNhaTrong { get; set; }
         public virtual DbSet<LichSuSuaDoiSanPhamThucDonHangNgay> LichSuSuaDoiSanPhamThucDonHangNgay { get; set; }
+        public virtual DbSet<LichSuThanhToanDonHangMenuBuffet> LichSuThanhToanDonHangMenuBuffet { get; set; }
         public virtual DbSet<LichSuThanhToanDonHangMenuTiecBan> LichSuThanhToanDonHangMenuTiecBan { get; set; }
         public virtual DbSet<MangXaHoi> MangXaHoi { get; set; }
         public virtual DbSet<NoiDungSEO> NoiDungSEO { get; set; }
@@ -58,6 +63,8 @@ namespace Beanfamily.Models
         public virtual DbSet<SanPhamThucDonHangNgay> SanPhamThucDonHangNgay { get; set; }
         public virtual DbSet<TaiKhoanBean> TaiKhoanBean { get; set; }
         public virtual DbSet<TaiKhoanKhachHang> TaiKhoanKhachHang { get; set; }
+        public virtual DbSet<TinhTrangDonHangMenuBuffet> TinhTrangDonHangMenuBuffet { get; set; }
+        public virtual DbSet<TinhTrangDonHangMenuTiecBan> TinhTrangDonHangMenuTiecBan { get; set; }
         public virtual DbSet<TinhTrangDonHangMuaSamVaMenuHangNgay> TinhTrangDonHangMuaSamVaMenuHangNgay { get; set; }
         public virtual DbSet<TonKhoSanPham> TonKhoSanPham { get; set; }
         public virtual DbSet<ThongTinChung> ThongTinChung { get; set; }

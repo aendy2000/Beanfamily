@@ -54,7 +54,6 @@ namespace Beanfamily.Controllers
             {
                 DonHangMenuTiecBan donhang = new DonHangMenuTiecBan();
                 donhang.ngaytao = DateTime.Now;
-                donhang.trangthai = "new";
                 donhang.soban = soban;
                 donhang.hoten = hovaten;
                 donhang.sdt = sodienthoai;
@@ -118,6 +117,22 @@ namespace Beanfamily.Controllers
                     model.DonHangSanPhamMenuTiecBan.AddRange(lstDhSP);
                     model.SaveChanges();
                 }
+
+                LichSuDonHangMenuTiecBan lsdh = new LichSuDonHangMenuTiecBan();
+                lsdh.id_donhangmenutiecban = idDH;
+                lsdh.tieude = "Tạo Đơn Đặt Bàn";
+                lsdh.noidung = hovaten + " - " + sodienthoai + " đã tạo đơn đặt bàn " + madonhang;
+                lsdh.thoigian = DateTime.Now;
+                model.LichSuDonHangMenuTiecBan.Add(lsdh);
+                model.SaveChanges();
+
+                TinhTrangDonHangMenuTiecBan ttdh = new TinhTrangDonHangMenuTiecBan();
+                ttdh.id_donhangmenutiecban = idDH;
+                ttdh.tieude = "Chờ duyệt";
+                ttdh.noidung = "Đang đợi duyệt đơn hàng";
+                ttdh.thoigian = DateTime.Now;
+                model.TinhTrangDonHangMenuTiecBan.Add(ttdh);
+                model.SaveChanges();
 
                 return Content("SUCCESS-" + madonhang);
             }

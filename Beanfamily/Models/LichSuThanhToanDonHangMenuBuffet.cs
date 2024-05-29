@@ -12,16 +12,20 @@ namespace Beanfamily.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class LichSuDonHangMenuTiecBan
+    public partial class LichSuThanhToanDonHangMenuBuffet
     {
         public int id { get; set; }
-        public int id_donhangmenutiecban { get; set; }
+        public string madonhang { get; set; }
+        public int id_donhangmenubuffet { get; set; }
+        public int id_taikhoanbean { get; set; }
+        public decimal sotien { get; set; }
+        public System.DateTime thoigian { get; set; }
         public string tieude { get; set; }
         public string noidung { get; set; }
-        public System.DateTime thoigian { get; set; }
-        public Nullable<int> id_taikhoanbean { get; set; }
+        public string tenkhachhang { get; set; }
+        public string sdtkhachhang { get; set; }
     
-        public virtual DonHangMenuTiecBan DonHangMenuTiecBan { get; set; }
+        public virtual DonHangMenuBuffet DonHangMenuBuffet { get; set; }
         public virtual TaiKhoanBean TaiKhoanBean { get; set; }
     }
 }

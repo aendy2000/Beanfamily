@@ -12,20 +12,21 @@ namespace Beanfamily.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class DonHangMenuTiecBan
+    public partial class DonHangMenuBuffet
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public DonHangMenuTiecBan()
+        public DonHangMenuBuffet()
         {
-            this.DonHangDanhMucPhucVuMenuTiecBan = new HashSet<DonHangDanhMucPhucVuMenuTiecBan>();
-            this.DonHangSanPhamMenuTiecBan = new HashSet<DonHangSanPhamMenuTiecBan>();
-            this.LichSuDonHangMenuTiecBan = new HashSet<LichSuDonHangMenuTiecBan>();
-            this.LichSuThanhToanDonHangMenuTiecBan = new HashSet<LichSuThanhToanDonHangMenuTiecBan>();
-            this.TinhTrangDonHangMenuTiecBan = new HashSet<TinhTrangDonHangMenuTiecBan>();
+            this.DonHangDanhMucPhucVuMenuBuffet = new HashSet<DonHangDanhMucPhucVuMenuBuffet>();
+            this.DonHangSanPhamMenuBuffet = new HashSet<DonHangSanPhamMenuBuffet>();
+            this.LichSuDonHangMenuBuffet = new HashSet<LichSuDonHangMenuBuffet>();
+            this.LichSuThanhToanDonHangMenuBuffet = new HashSet<LichSuThanhToanDonHangMenuBuffet>();
+            this.TinhTrangDonHangMenuBuffet = new HashSet<TinhTrangDonHangMenuBuffet>();
         }
     
         public int id { get; set; }
         public string madonhang { get; set; }
+        public decimal giamon { get; set; }
         public System.DateTime ngaytao { get; set; }
         public int soban { get; set; }
         public string hoten { get; set; }
@@ -37,14 +38,14 @@ namespace Beanfamily.Models
         public string ghichuquantrivien { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DonHangDanhMucPhucVuMenuTiecBan> DonHangDanhMucPhucVuMenuTiecBan { get; set; }
+        public virtual ICollection<DonHangDanhMucPhucVuMenuBuffet> DonHangDanhMucPhucVuMenuBuffet { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DonHangSanPhamMenuTiecBan> DonHangSanPhamMenuTiecBan { get; set; }
+        public virtual ICollection<DonHangSanPhamMenuBuffet> DonHangSanPhamMenuBuffet { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LichSuDonHangMenuTiecBan> LichSuDonHangMenuTiecBan { get; set; }
+        public virtual ICollection<LichSuDonHangMenuBuffet> LichSuDonHangMenuBuffet { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LichSuThanhToanDonHangMenuTiecBan> LichSuThanhToanDonHangMenuTiecBan { get; set; }
+        public virtual ICollection<LichSuThanhToanDonHangMenuBuffet> LichSuThanhToanDonHangMenuBuffet { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TinhTrangDonHangMenuTiecBan> TinhTrangDonHangMenuTiecBan { get; set; }
+        public virtual ICollection<TinhTrangDonHangMenuBuffet> TinhTrangDonHangMenuBuffet { get; set; }
     }
 }

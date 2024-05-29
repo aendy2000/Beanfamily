@@ -51,13 +51,13 @@ namespace Beanfamily.Controllers
         {
             try
             {
-                DonHangMenuTiecBan donhang = new DonHangMenuTiecBan();
+                DonHangMenuBuffet donhang = new DonHangMenuBuffet();
                 donhang.ngaytao = DateTime.Now;
-                donhang.trangthai = "new";
                 donhang.soban = soban;
                 donhang.hoten = hovaten;
                 donhang.sdt = sodienthoai;
                 donhang.email = email;
+                donhang.giamon = 0;
 
                 var ngaystart = Convert.ToDateTime(ngaytochuc.ToString().Split('/')[2] + "-" + ngaytochuc.ToString().Split('/')[1] + "-" + ngaytochuc.ToString().Split('/')[0]);
                 var currentDate = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd"));
@@ -68,7 +68,7 @@ namespace Beanfamily.Controllers
                 donhang.giobatdau = giotochuc;
                 donhang.ghichukhachhang = ghichu;
 
-                model.DonHangMenuTiecBan.Add(donhang);
+                model.DonHangMenuBuffet.Add(donhang);
                 model.SaveChanges();
 
                 int idDH = donhang.id;
@@ -79,11 +79,11 @@ namespace Beanfamily.Controllers
                 model.SaveChanges();
 
                 var lstDmpv = Session["lst-sanpham-datban-dmpv"] as List<DanhMucPhucVuMenuTiecBanVaMenuBuffet>;
-                List<DonHangDanhMucPhucVuMenuTiecBan> lstDmPvDH = new List<DonHangDanhMucPhucVuMenuTiecBan>();
+                List<DonHangDanhMucPhucVuMenuBuffet> lstDmPvDH = new List<DonHangDanhMucPhucVuMenuBuffet>();
                 foreach (var item in lstDmpv)
                 {
-                    DonHangDanhMucPhucVuMenuTiecBan dmPvDH = new DonHangDanhMucPhucVuMenuTiecBan();
-                    dmPvDH.id_donhangmenutiecban = idDH;
+                    DonHangDanhMucPhucVuMenuBuffet dmPvDH = new DonHangDanhMucPhucVuMenuBuffet();
+                    dmPvDH.id_donhangmenubuffet = idDH;
                     dmPvDH.id_danhmucphucvu = item.id;
                     dmPvDH.tendanhmuc = item.tendanhmuc;
                     dmPvDH.gia = item.gia;
@@ -96,27 +96,42 @@ namespace Beanfamily.Controllers
                 }
                 if (lstDmPvDH.Count > 0)
                 {
-                    model.DonHangDanhMucPhucVuMenuTiecBan.AddRange(lstDmPvDH);
+                    model.DonHangDanhMucPhucVuMenuBuffet.AddRange(lstDmPvDH);
                     model.SaveChanges();
                 }
 
-                var lstSp = Session["lst-sanpham-datban-tiecban"] as List<SanPhamMenuTiecBan>;
-                List<DonHangSanPhamMenuTiecBan> lstDhSP = new List<DonHangSanPhamMenuTiecBan>();
+                var lstSp = Session["lst-sanpham-datban-tiecban"] as List<SanPhamMenuBuffet>;
+                List<DonHangSanPhamMenuBuffet> lstDhSP = new List<DonHangSanPhamMenuBuffet>();
                 foreach (var item in lstSp)
                 {
-                    DonHangSanPhamMenuTiecBan dhSP = new DonHangSanPhamMenuTiecBan();
-                    dhSP.id_donhangmenutiecban = idDH;
-                    dhSP.id_sanphammenutiecban = item.id;
+                    DonHangSanPhamMenuBuffet dhSP = new DonHangSanPhamMenuBuffet();
+                    dhSP.id_donhangmenubuffet = idDH;
+                    dhSP.id_sanphammenubuffet = item.id;
                     dhSP.hinhanh = item.hinhanh;
                     dhSP.tensanpham = item.tensanpham;
-                    dhSP.gia = item.gia;
                     lstDhSP.Add(dhSP);
                 }
                 if (lstDhSP.Count > 0)
                 {
-                    model.DonHangSanPhamMenuTiecBan.AddRange(lstDhSP);
+                    model.DonHangSanPhamMenuBuffet.AddRange(lstDhSP);
                     model.SaveChanges();
                 }
+
+                LichSuDonHangMenuBuffet lsdh = new LichSuDonHangMenuBuffet();
+                lsdh.id_donhangmenubuffet = idDH;
+                lsdh.tieude = "Tạo Đơn Đặt Bàn";
+                lsdh.noidung = hovaten + " - " + sodienthoai + " đã tạo đơn đặt bàn " + madonhang;
+                lsdh.thoigian = DateTime.Now;
+                model.LichSuDonHangMenuBuffet.Add(lsdh);
+                model.SaveChanges();
+
+                TinhTrangDonHangMenuBuffet ttdh = new TinhTrangDonHangMenuBuffet();
+                ttdh.id_donhangmenubuffet = idDH;
+                ttdh.tieude = "Chờ duyệt";
+                ttdh.noidung = "Đang đợi duyệt đơn hàng";
+                ttdh.thoigian = DateTime.Now;
+                model.TinhTrangDonHangMenuBuffet.Add(ttdh);
+                model.SaveChanges();
 
                 return Content("SUCCESS-" + madonhang);
             }
