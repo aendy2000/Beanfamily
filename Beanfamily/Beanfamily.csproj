@@ -335,6 +335,9 @@
     <Content Include="ActionOnPage\MuaSam\loadPageShopping.js" />
     <Content Include="ActionOnPage\MuaSam\loadPageShoppingDetail.js" />
     <Content Include="ActionOnPage\MuaSam\sanPhamTheoDanhMuc.js" />
+    <Content Include="Content\About\Home.css" />
+    <Content Include="Content\About\nicepage.css" />
+    <Content Include="Content\About\nicepage.js" />
     <Content Include="Content\assets\images\Beans\DanhMucNhaHang\menubuffet.jpg" />
     <Content Include="Content\assets\images\Beans\DanhMucNhaHang\menuhangngay.jpg" />
     <Content Include="Content\assets\images\Beans\DanhMucNhaHang\menutiecban.jpg" />

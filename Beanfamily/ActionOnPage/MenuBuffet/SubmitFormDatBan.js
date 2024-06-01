@@ -161,7 +161,7 @@
     ===========================================================*/
     $('body').find(".selection-1").select2({
         minimumResultsForSearch: 20,
-        dropdownParent: $('body').find('[id="datBanTiecModal"]')
+        dropdownParent: $('body').find('[id="datBanBuffetModal"]')
     });
 
     /*[ Daterangepicker ]

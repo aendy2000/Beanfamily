@@ -72,13 +72,13 @@ namespace Beanfamily.Controllers
                 model.SaveChanges();
 
                 int idDH = donhang.id;
-                string madonhang = "MTB" + idDH + DateTime.Now.ToString("mmHHddMMyyyy");
+                string madonhang = "MBF" + idDH + DateTime.Now.ToString("mmHHddMMyyyy");
 
                 donhang.madonhang = madonhang;
                 model.Entry(donhang).State = System.Data.Entity.EntityState.Modified;
                 model.SaveChanges();
 
-                var lstDmpv = Session["lst-sanpham-datban-dmpv"] as List<DanhMucPhucVuMenuTiecBanVaMenuBuffet>;
+                var lstDmpv = Session["lst-sanpham-datban-buffet-dmpv"] as List<DanhMucPhucVuMenuTiecBanVaMenuBuffet>;
                 List<DonHangDanhMucPhucVuMenuBuffet> lstDmPvDH = new List<DonHangDanhMucPhucVuMenuBuffet>();
                 foreach (var item in lstDmpv)
                 {
@@ -100,7 +100,7 @@ namespace Beanfamily.Controllers
                     model.SaveChanges();
                 }
 
-                var lstSp = Session["lst-sanpham-datban-tiecban"] as List<SanPhamMenuBuffet>;
+                var lstSp = Session["lst-sanpham-datban-buffet"] as List<SanPhamMenuBuffet>;
                 List<DonHangSanPhamMenuBuffet> lstDhSP = new List<DonHangSanPhamMenuBuffet>();
                 foreach (var item in lstSp)
                 {
