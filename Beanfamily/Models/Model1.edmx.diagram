@@ -4,10 +4,10 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a2ef712962b94be2a8d6813a529d8c7c" Name="Diagram1">
+      <Diagram DiagramId="910d0aa34c4c4e6c995e59bbfee0fd35" Name="Diagram1">
         <EntityTypeShape EntityType="BeanfamilyModel.ApDungChucNangChoQuyenTaiKhoan" Width="1.5" PointX="3" PointY="22.875" IsExpanded="true" />
         <EntityTypeShape EntityType="BeanfamilyModel.CacBuocQuyTrinhTrongCay" Width="1.5" PointX="6" PointY="56.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BeanfamilyModel.ChiTietDonHangMuaSamVaMenuHangNgay" Width="1.5" PointX="14.25" PointY="21.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeanfamilyModel.ChiTietDonHangVuonRauMuaSamVaMenuHangNgay" Width="1.5" PointX="14.25" PointY="21.125" IsExpanded="true" />
         <EntityTypeShape EntityType="BeanfamilyModel.ChucNangHeThongBean" Width="1.5" PointX="0.75" PointY="22" IsExpanded="true" />
         <EntityTypeShape EntityType="BeanfamilyModel.DanhMucMenuBuffetCap1" Width="1.5" PointX="0.75" PointY="35.25" IsExpanded="true" />
         <EntityTypeShape EntityType="BeanfamilyModel.DanhMucMenuTiecBanCap1" Width="1.5" PointX="0.75" PointY="45.25" IsExpanded="true" />
@@ -19,10 +19,12 @@
         <EntityTypeShape EntityType="BeanfamilyModel.DonHangDanhMucPhucVuMenuTiecBan" Width="1.5" PointX="8.25" PointY="45.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BeanfamilyModel.DonHangMenuBuffet" Width="1.5" PointX="3" PointY="17.25" IsExpanded="true" />
         <EntityTypeShape EntityType="BeanfamilyModel.DonHangMenuTiecBan" Width="1.5" PointX="6" PointY="45.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="BeanfamilyModel.DonHangMuaSamVaMenuHangNgay" Width="1.5" PointX="6" PointY="12.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="BeanfamilyModel.DonHangSanPhamMenuBuffet" Width="1.5" PointX="11.25" PointY="21.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeanfamilyModel.DonHangSanPhamMenuBuffet" Width="1.5" PointX="5.25" PointY="17.375" IsExpanded="true" />
         <EntityTypeShape EntityType="BeanfamilyModel.DonHangSanPhamMenuTiecBan" Width="1.5" PointX="11.25" PointY="46" IsExpanded="true" />
-        <EntityTypeShape EntityType="BeanfamilyModel.GioHang" Width="1.5" PointX="14.25" PointY="29.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeanfamilyModel.DonHangVuonRauMuaSamVaMenuHangNgay" Width="1.5" PointX="6" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeanfamilyModel.GioHangMuaSam" Width="1.5" PointX="11.25" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeanfamilyModel.GioHangThucDonHangNgay" Width="1.5" PointX="11.25" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeanfamilyModel.GioHangVuonRauBean" Width="1.5" PointX="8.25" PointY="36.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BeanfamilyModel.LichSuDonHangMenuBuffet" Width="1.5" PointX="5.25" PointY="29.125" IsExpanded="true" />
         <EntityTypeShape EntityType="BeanfamilyModel.LichSuDonHangMenuTiecBan" Width="1.5" PointX="8.25" PointY="29.125" IsExpanded="true" />
         <EntityTypeShape EntityType="BeanfamilyModel.LichSuSuaDoiSanPhamMenuBuffet" Width="1.5" PointX="5.25" PointY="25.125" IsExpanded="true" />
@@ -42,18 +44,18 @@
         <EntityTypeShape EntityType="BeanfamilyModel.SanPhamRauNhaTrong" Width="1.5" PointX="6" PointY="51.375" IsExpanded="true" />
         <EntityTypeShape EntityType="BeanfamilyModel.SanPhamThucDonHangNgay" Width="1.5" PointX="9" PointY="7.625" IsExpanded="true" />
         <EntityTypeShape EntityType="BeanfamilyModel.TaiKhoanBean" Width="1.5" PointX="3" PointY="27" IsExpanded="true" />
-        <EntityTypeShape EntityType="BeanfamilyModel.TaiKhoanKhachHang" Width="1.5" PointX="3.75" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeanfamilyModel.TaiKhoanKhachHang" Width="1.5" PointX="3.75" PointY="12.375" IsExpanded="true" />
         <EntityTypeShape EntityType="BeanfamilyModel.TinhTrangDonHangMenuBuffet" Width="1.5" PointX="5.25" PointY="21.125" IsExpanded="true" />
         <EntityTypeShape EntityType="BeanfamilyModel.TinhTrangDonHangMenuTiecBan" Width="1.5" PointX="5.25" PointY="37.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="BeanfamilyModel.TinhTrangDonHangMuaSamVaMenuHangNgay" Width="1.5" PointX="8.25" PointY="21.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="BeanfamilyModel.TonKhoSanPham" Width="1.5" PointX="8.25" PointY="37.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeanfamilyModel.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay" Width="1.5" PointX="8.25" PointY="21.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeanfamilyModel.TonKhoSanPham" Width="1.5" PointX="9" PointY="17.125" IsExpanded="true" />
         <EntityTypeShape EntityType="BeanfamilyModel.ThongTinChung" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="BeanfamilyModel.FK_ApDungChucNangChoQuyenTaiKhoan_ChucNangHeThongBean" ManuallyRouted="false" />
         <AssociationConnector Association="BeanfamilyModel.FK_ApDungChucNangChoQuyenTaiKhoan_QuyenTaiKhoanBean" ManuallyRouted="false" />
         <AssociationConnector Association="BeanfamilyModel.FK_CacBuocQuyTrinhTrongCay_QuyTrinhTrongCay" ManuallyRouted="false" />
-        <AssociationConnector Association="BeanfamilyModel.FK_ChiTietDonHangMuaSamVaMenuHangNgay_DonHangMuaSamVaMenuHangNgay" ManuallyRouted="false" />
-        <AssociationConnector Association="BeanfamilyModel.FK_ChiTietDonHangMuaSamVaMenuHangNgay_SanPhamMuaSam" ManuallyRouted="false" />
-        <AssociationConnector Association="BeanfamilyModel.FK_ChiTietDonHangMuaSamVaMenuHangNgay_SanPhamThucDonHangNgay" ManuallyRouted="false" />
+        <AssociationConnector Association="BeanfamilyModel.FK_ChiTietDonHangVuonRauMuaSamVaMenuHangNgay_DonHangVuonRauMuaSamVaMenuHangNgay" ManuallyRouted="false" />
+        <AssociationConnector Association="BeanfamilyModel.FK_ChiTietDonHangVuonRauMuaSamVaMenuHangNgay_SanPhamMuaSam" ManuallyRouted="false" />
+        <AssociationConnector Association="BeanfamilyModel.FK_ChiTietDonHangVuonRauMuaSamVaMenuHangNgay_SanPhamThucDonHangNgay" ManuallyRouted="false" />
         <AssociationConnector Association="BeanfamilyModel.FK_SanPhamMenuBuffet_DanhMucMenuBuffetCap1" ManuallyRouted="false" />
         <AssociationConnector Association="BeanfamilyModel.FK_SanPhamMenuTiecBan_DanhMucMenuTiecBanCap1" ManuallyRouted="false" />
         <AssociationConnector Association="BeanfamilyModel.FK_DonHangDanhMucPhucVuMenuBuffet_DanhMucPhucVuMenuTiecBanVaMenuBuffet" ManuallyRouted="false" />
@@ -71,14 +73,17 @@
         <AssociationConnector Association="BeanfamilyModel.FK_LichSuDonHangMenuTiecBan_DonHangMenuTiecBan" ManuallyRouted="false" />
         <AssociationConnector Association="BeanfamilyModel.FK_LichSuThanhToanDonHangMenuTiecBan_DonHangMenuTiecBan" ManuallyRouted="false" />
         <AssociationConnector Association="BeanfamilyModel.FK_TinhTrangDonHangMenuTiecBan_DonHangMenuTiecBan" ManuallyRouted="false" />
-        <AssociationConnector Association="BeanfamilyModel.FK_DonHangMuaSamVaMenuHangNgay_TaiKhoanKhachHang" ManuallyRouted="false" />
-        <AssociationConnector Association="BeanfamilyModel.FK_TinhTrangDonHangMuaSamVaMenuHangNgay_DonHangMuaSamVaMenuHangNgay" ManuallyRouted="false" />
         <AssociationConnector Association="BeanfamilyModel.FK_DonHangSanPhamMenuBuffet_SanPhamMenuBuffet" ManuallyRouted="false" />
         <AssociationConnector Association="BeanfamilyModel.FK_DonHangSanPhamMenuTiecBan_SanPhamMenuTiecBan" ManuallyRouted="false" />
-        <AssociationConnector Association="BeanfamilyModel.FK_GioHang_SanPhamMuaSam" ManuallyRouted="false" />
-        <AssociationConnector Association="BeanfamilyModel.FK_GioHang_SanPhamRauNhaTrong" ManuallyRouted="false" />
-        <AssociationConnector Association="BeanfamilyModel.FK_GioHang_SanPhamThucDonHangNgay" ManuallyRouted="false" />
-        <AssociationConnector Association="BeanfamilyModel.FK_GioHang_TaiKhoanKhachHang" ManuallyRouted="false" />
+        <AssociationConnector Association="BeanfamilyModel.FK_DonHangVuonRauMuaSamVaMenuHangNgay_TaiKhoanKhachHang" ManuallyRouted="false" />
+        <AssociationConnector Association="BeanfamilyModel.FK_TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay_DonHangVuonRauMuaSamVaMenuHangNgay" ManuallyRouted="false" />
+        <AssociationConnector Association="BeanfamilyModel.FK_GioHangMuaSam_SanPhamMuaSam" ManuallyRouted="false" />
+        <AssociationConnector Association="BeanfamilyModel.FK_GioHangMuaSam_TaiKhoanKhachHang" ManuallyRouted="false" />
+        <AssociationConnector Association="BeanfamilyModel.FK_GioHangMuaSam_TonKhoSanPham" ManuallyRouted="false" />
+        <AssociationConnector Association="BeanfamilyModel.FK_GioHangThucDonHangNgay_SanPhamThucDonHangNgay" ManuallyRouted="false" />
+        <AssociationConnector Association="BeanfamilyModel.FK_GioHangThucDonHangNgay_TaiKhoanKhachHang" ManuallyRouted="false" />
+        <AssociationConnector Association="BeanfamilyModel.FK_GioHangVuonRauBean_SanPhamRauNhaTrong" ManuallyRouted="false" />
+        <AssociationConnector Association="BeanfamilyModel.FK_GioHangVuonRauBean_TaiKhoanKhachHang" ManuallyRouted="false" />
         <AssociationConnector Association="BeanfamilyModel.FK_LichSuDonHangMenuBuffet_TaiKhoanBean" ManuallyRouted="false" />
         <AssociationConnector Association="BeanfamilyModel.FK_LichSuDonHangMenuTiecBan_TaiKhoanBean" ManuallyRouted="false" />
         <AssociationConnector Association="BeanfamilyModel.FK_LichSuSuaDoiSanPhamMenuBuffet_SanPhamMenuBuffet" ManuallyRouted="false" />
@@ -99,7 +104,7 @@
         <AssociationConnector Association="BeanfamilyModel.FK_TonKhoSanPham_SanPhamMuaSam" ManuallyRouted="false" />
         <AssociationConnector Association="BeanfamilyModel.FK_TinhTrangDonHangMenuBuffet_TaiKhoanBean" ManuallyRouted="false" />
         <AssociationConnector Association="BeanfamilyModel.FK_TinhTrangDonHangMenuTiecBan_TaiKhoanBean" ManuallyRouted="false" />
-        <AssociationConnector Association="BeanfamilyModel.FK_TinhTrangDonHangMuaSamVaMenuHangNgay_TaiKhoanBean" ManuallyRouted="false" />
+        <AssociationConnector Association="BeanfamilyModel.FK_TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay_TaiKhoanBean" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

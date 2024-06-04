@@ -1084,8 +1084,8 @@
                     });
                 }
             }
-            else if (inpSL <= 0.1) {
-                $('body').find('[id="thongbaosoluongvuonrau-' + id + '"]').text('Mua tối thiểu\n0.1 ' + donvi + '!');
+            else if (inpSL <= 1) {
+                $('body').find('[id="thongbaosoluongvuonrau-' + id + '"]').text('Mua tối thiểu\n1 ' + donvi + '!');
             }
             else {
                 $('body').find('[id="thongbaosoluongvuonrau-' + id + '"]').text('Kho còn ' + tonKhoConLai + " " + donvi + '!');
@@ -1501,7 +1501,7 @@
                     $('body').find('[id="giamsoluonggiohangvuonrau-' + id + '"]').prop('disabled', true);
 
                     $('body').find('[id="soluonggiohangvuonrau-' + id + '"]').val(tonKhoConLai);
-                    $('body').find('[id="thongbaosoluongvuonrau-' + id + '"]').text('Kho còn ' + tonkhohientai + " " + donvi + '!');
+                    $('body').find('[id="thongbaosoluongvuonrau-' + id + '"]').text('Kho còn ' + tonKhoConLai + " " + donvi + '!');
 
                     var dongia = $('body').find('[id="giasanphamvuonrau-' + id + '"]').attr('dongia');
                     if (dongia != "CHONPHANLOAI") {

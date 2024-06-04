@@ -29,7 +29,7 @@ namespace Beanfamily.Models
             this.MangXaHoi = new HashSet<MangXaHoi>();
             this.TinhTrangDonHangMenuBuffet = new HashSet<TinhTrangDonHangMenuBuffet>();
             this.TinhTrangDonHangMenuTiecBan = new HashSet<TinhTrangDonHangMenuTiecBan>();
-            this.TinhTrangDonHangMuaSamVaMenuHangNgay = new HashSet<TinhTrangDonHangMuaSamVaMenuHangNgay>();
+            this.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay = new HashSet<TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay>();
         }
     
         public int id { get; set; }
@@ -76,6 +76,6 @@ namespace Beanfamily.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TinhTrangDonHangMenuTiecBan> TinhTrangDonHangMenuTiecBan { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TinhTrangDonHangMuaSamVaMenuHangNgay> TinhTrangDonHangMuaSamVaMenuHangNgay { get; set; }
+        public virtual ICollection<TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay> TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay { get; set; }
     }
 }

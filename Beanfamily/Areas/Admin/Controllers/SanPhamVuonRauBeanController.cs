@@ -78,7 +78,7 @@ namespace Beanfamily.Areas.Admin.Controllers
                     sanpham.id_quytrinhtrongcay = Int32.Parse(quytrinhtrong);
                 sanpham.gia = Convert.ToDecimal(gia.Replace(",", ""));
                 sanpham.donvi = donvi;
-                sanpham.giatritrendonvi = Convert.ToDecimal(giatri.Replace(",", "").Replace(".", ","));
+                sanpham.giatritrendonvi = Convert.ToInt32(giatri);
                 sanpham.mota = mota;
                 sanpham.luotxem = 0;
                 sanpham.hienthi = hienthi;
@@ -197,7 +197,7 @@ namespace Beanfamily.Areas.Admin.Controllers
                     sanpham.id_quytrinhtrongcay = Int32.Parse(quytrinhtrong);
                 sanpham.gia = Convert.ToDecimal(gia.Replace(",", ""));
                 sanpham.donvi = donvi;
-                sanpham.giatritrendonvi = Convert.ToDecimal(giatri.Replace(",", "").Replace(".", ","));
+                sanpham.giatritrendonvi = Convert.ToInt32(giatri);
                 sanpham.mota = mota;
                 sanpham.hienthi = hienthi;
                 model.Entry(sanpham).State = EntityState.Modified;

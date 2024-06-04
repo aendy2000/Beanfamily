@@ -145,6 +145,7 @@
     <Compile Include="Areas\Admin\Controllers\DmCap1MenuHangNgayController.cs" />
     <Compile Include="Areas\Admin\Controllers\DmCap1MenuTiecBanController.cs" />
     <Compile Include="Areas\Admin\Controllers\DmCap1VuonRauBeanController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DonDatHangController.cs" />
     <Compile Include="Areas\Admin\Controllers\HinhAnhBeanController.cs" />
     <Compile Include="Areas\Admin\Controllers\MonAnMenuBuffetController.cs" />
     <Compile Include="Areas\Admin\Controllers\MonAnMenuHangNgayController.cs" />
@@ -171,7 +172,7 @@
     <Compile Include="Models\CacBuocQuyTrinhTrongCay.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ChiTietDonHangMuaSamVaMenuHangNgay.cs">
+    <Compile Include="Models\ChiTietDonHangVuonRauMuaSamVaMenuHangNgay.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ChucNangHeThongBean.cs">
@@ -207,16 +208,22 @@
     <Compile Include="Models\DonHangMenuTiecBan.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DonHangMuaSamVaMenuHangNgay.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\DonHangSanPhamMenuBuffet.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DonHangSanPhamMenuTiecBan.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\GioHang.cs">
+    <Compile Include="Models\DonHangVuonRauMuaSamVaMenuHangNgay.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GioHangMuaSam.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GioHangThucDonHangNgay.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GioHangVuonRauBean.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LichSuDonHangMenuBuffet.cs">
@@ -303,7 +310,7 @@
     <Compile Include="Models\TinhTrangDonHangMenuTiecBan.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TinhTrangDonHangMuaSamVaMenuHangNgay.cs">
+    <Compile Include="Models\TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TonKhoSanPham.cs">
@@ -314,6 +321,8 @@
   <ItemGroup>
     <Content Include="ActionOnPage\GioHang\ChangeQuantity.js" />
     <Content Include="ActionOnPage\GioHang\DeletedProduct.js" />
+    <Content Include="ActionOnPage\GioHang\DatHang.js" />
+    <Content Include="ActionOnPage\GioiThieu\loadPageNhaHang.js" />
     <Content Include="ActionOnPage\MenuBuffet\ActionOnView.js" />
     <Content Include="ActionOnPage\MenuBuffet\DatBan.js" />
     <Content Include="ActionOnPage\MenuBuffet\loadPageMenuBuffet.js" />
@@ -349,6 +358,9 @@
     <Content Include="Content\assets\images\Beans\NhaHang\z4834791075626_1488c6046d57199e4f43784f3e737876.jpg" />
     <Content Include="Content\assets\images\Beans\NhaHang\z4834791078437_d255e83a28d193e347e6205096502cbf.jpg" />
     <Content Include="Content\assets\images\Beans\NhaHang\z4834791087337_dfdc737db5de4d38ad2cdb6544c4b33c.jpg" />
+    <Content Include="Content\assets\images\GioiThieu\1.jpg" />
+    <Content Include="Content\assets\images\GioiThieu\2.jpg" />
+    <Content Include="Content\assets\images\GioiThieu\3.jpg" />
     <Content Include="Content\assets\images\icons\fb.png" />
     <Content Include="Content\assets\images\icons\ig.png" />
     <Content Include="Content\assets\images\icons\mail.png" />
@@ -2952,6 +2964,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Views\DonDatHang\" />
     <Folder Include="Content\AdminAreas\images\taikhoanbean\" />
     <Folder Include="Content\assets\vendor\splide\" />
   </ItemGroup>

@@ -12,10 +12,10 @@ namespace Beanfamily.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ChiTietDonHangMuaSamVaMenuHangNgay
+    public partial class ChiTietDonHangVuonRauMuaSamVaMenuHangNgay
     {
         public int id { get; set; }
-        public int id_donhangmuasamvamenuhangngay { get; set; }
+        public int id_donhangvuonraumuasamvamenuhangngay { get; set; }
         public Nullable<int> id_sanphammuasam { get; set; }
         public Nullable<int> id_sanphamthucdonhangngay { get; set; }
         public string hinhanh { get; set; }
@@ -25,7 +25,7 @@ namespace Beanfamily.Models
         public int soluong { get; set; }
         public string ghichu { get; set; }
     
-        public virtual DonHangMuaSamVaMenuHangNgay DonHangMuaSamVaMenuHangNgay { get; set; }
+        public virtual DonHangVuonRauMuaSamVaMenuHangNgay DonHangVuonRauMuaSamVaMenuHangNgay { get; set; }
         public virtual SanPhamMuaSam SanPhamMuaSam { get; set; }
         public virtual SanPhamThucDonHangNgay SanPhamThucDonHangNgay { get; set; }
     }

@@ -12,17 +12,17 @@ namespace Beanfamily.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class DonHangMuaSamVaMenuHangNgay
+    public partial class DonHangVuonRauMuaSamVaMenuHangNgay
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public DonHangMuaSamVaMenuHangNgay()
+        public DonHangVuonRauMuaSamVaMenuHangNgay()
         {
-            this.ChiTietDonHangMuaSamVaMenuHangNgay = new HashSet<ChiTietDonHangMuaSamVaMenuHangNgay>();
-            this.TinhTrangDonHangMuaSamVaMenuHangNgay = new HashSet<TinhTrangDonHangMuaSamVaMenuHangNgay>();
+            this.ChiTietDonHangVuonRauMuaSamVaMenuHangNgay = new HashSet<ChiTietDonHangVuonRauMuaSamVaMenuHangNgay>();
+            this.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay = new HashSet<TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay>();
         }
     
         public int id { get; set; }
-        public int id_taikhoankhkachhang { get; set; }
+        public Nullable<int> id_taikhoankhkachhang { get; set; }
         public string hoten { get; set; }
         public string dienthoai { get; set; }
         public string email { get; set; }
@@ -34,9 +34,9 @@ namespace Beanfamily.Models
         public string yeucaukhac { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ChiTietDonHangMuaSamVaMenuHangNgay> ChiTietDonHangMuaSamVaMenuHangNgay { get; set; }
+        public virtual ICollection<ChiTietDonHangVuonRauMuaSamVaMenuHangNgay> ChiTietDonHangVuonRauMuaSamVaMenuHangNgay { get; set; }
         public virtual TaiKhoanKhachHang TaiKhoanKhachHang { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TinhTrangDonHangMuaSamVaMenuHangNgay> TinhTrangDonHangMuaSamVaMenuHangNgay { get; set; }
+        public virtual ICollection<TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay> TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay { get; set; }
     }
 }

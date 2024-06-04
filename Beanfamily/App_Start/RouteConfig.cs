@@ -85,6 +85,13 @@ namespace Beanfamily
                 defaults: new { controller = "VuonRau", action = "Index", id = UrlParameter.Optional }
             );
 
+            //Giới thiệu
+            routes.MapRoute(
+                name: "Giới Thiệu",
+                url: "gioi-thieu",
+                defaults: new { controller = "Home", action = "About", id = UrlParameter.Optional }
+            );
+
             //Default
             routes.MapRoute(
                 name: "Trang Chủ",

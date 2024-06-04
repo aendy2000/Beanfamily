@@ -17,8 +17,10 @@ namespace Beanfamily.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TaiKhoanKhachHang()
         {
-            this.DonHangMuaSamVaMenuHangNgay = new HashSet<DonHangMuaSamVaMenuHangNgay>();
-            this.GioHang = new HashSet<GioHang>();
+            this.DonHangVuonRauMuaSamVaMenuHangNgay = new HashSet<DonHangVuonRauMuaSamVaMenuHangNgay>();
+            this.GioHangMuaSam = new HashSet<GioHangMuaSam>();
+            this.GioHangThucDonHangNgay = new HashSet<GioHangThucDonHangNgay>();
+            this.GioHangVuonRauBean = new HashSet<GioHangVuonRauBean>();
         }
     
         public int id { get; set; }
@@ -35,8 +37,12 @@ namespace Beanfamily.Models
         public string hinhdaidien { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DonHangMuaSamVaMenuHangNgay> DonHangMuaSamVaMenuHangNgay { get; set; }
+        public virtual ICollection<DonHangVuonRauMuaSamVaMenuHangNgay> DonHangVuonRauMuaSamVaMenuHangNgay { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GioHang> GioHang { get; set; }
+        public virtual ICollection<GioHangMuaSam> GioHangMuaSam { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GioHangThucDonHangNgay> GioHangThucDonHangNgay { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GioHangVuonRauBean> GioHangVuonRauBean { get; set; }
     }
 }

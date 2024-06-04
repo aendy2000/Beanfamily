@@ -12,22 +12,17 @@ namespace Beanfamily.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class TonKhoSanPham
+    public partial class GioHangMuaSam
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TonKhoSanPham()
-        {
-            this.GioHangMuaSam = new HashSet<GioHangMuaSam>();
-        }
-    
         public int id { get; set; }
-        public int id_sanphammuasam { get; set; }
-        public string tenloai { get; set; }
+        public int id_sanpham { get; set; }
+        public int id_loaitonkho { get; set; }
+        public int id_taikhoankhachhang { get; set; }
         public int soluong { get; set; }
-        public decimal gia { get; set; }
+        public System.DateTime addDate { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GioHangMuaSam> GioHangMuaSam { get; set; }
         public virtual SanPhamMuaSam SanPhamMuaSam { get; set; }
+        public virtual TaiKhoanKhachHang TaiKhoanKhachHang { get; set; }
+        public virtual TonKhoSanPham TonKhoSanPham { get; set; }
     }
 }

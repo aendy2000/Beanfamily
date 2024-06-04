@@ -12,17 +12,14 @@ namespace Beanfamily.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class GioHang
+    public partial class GioHangThucDonHangNgay
     {
         public int id { get; set; }
         public int id_taikhoankhachhang { get; set; }
-        public Nullable<int> id_sanphamraunhatrong { get; set; }
-        public Nullable<int> id_sanphamthucdonhangngay { get; set; }
-        public Nullable<int> id_sanphammuasam { get; set; }
+        public int id_sanpham { get; set; }
         public int soluong { get; set; }
+        public System.DateTime addDate { get; set; }
     
-        public virtual SanPhamMuaSam SanPhamMuaSam { get; set; }
-        public virtual SanPhamRauNhaTrong SanPhamRauNhaTrong { get; set; }
         public virtual SanPhamThucDonHangNgay SanPhamThucDonHangNgay { get; set; }
         public virtual TaiKhoanKhachHang TaiKhoanKhachHang { get; set; }
     }
