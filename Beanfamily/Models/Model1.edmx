@@ -500,11 +500,10 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="username" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="password" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="hovaten" Type="nvarchar" MaxLength="200" />
-          <Property Name="sodienthoai" Type="nvarchar" MaxLength="12" />
-          <Property Name="email" Type="nvarchar" MaxLength="200" />
+          <Property Name="hovaten" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="sodienthoai" Type="nvarchar" MaxLength="12" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="ngaysinh" Type="nvarchar" MaxLength="10" />
           <Property Name="gioitinh" Type="nvarchar" MaxLength="10" />
           <Property Name="diachi" Type="nvarchar(max)" />
@@ -2104,11 +2103,10 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="username" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="password" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="hovaten" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="sodienthoai" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
-          <Property Name="email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="hovaten" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sodienthoai" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ngaysinh" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="gioitinh" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="diachi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -3661,7 +3659,6 @@
             <EntityTypeMapping TypeName="BeanfamilyModel.TaiKhoanKhachHang">
               <MappingFragment StoreEntitySet="TaiKhoanKhachHang">
                 <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="username" ColumnName="username" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="hovaten" ColumnName="hovaten" />
                 <ScalarProperty Name="sodienthoai" ColumnName="sodienthoai" />

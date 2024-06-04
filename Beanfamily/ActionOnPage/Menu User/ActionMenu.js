@@ -1,0 +1,198 @@
+﻿$(document).ready(function () {
+
+    $('body').find('[id="user-dangky"]').on('click', function () {
+        $('body').find('[id="userDangNhapModal"]').modal('toggle');
+        $('body').find('[id="userDangKyModal"]').modal('toggle');
+    });
+
+    $('body').find('[id="user-dangnhaps"]').on('click', function () {
+        $('body').find('[id="userDangNhapModal"]').modal('toggle');
+        $('body').find('[id="userDangKyModal"]').modal('toggle');
+    });
+
+    $('body').find('[id="user-dangnhap"]').on('click', function () {
+        $('body').find('[id="userDangNhapModal"]').modal('toggle');
+    });
+
+    $('body').find('[id="submit-user-dangnhap"]').on('click', function () {
+        var btn = $(this);
+        btn.html('<span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"> </span> Đang tải...');
+        btn.css('pointer-events', 'none');
+
+        var sdt = $('body').find('[id="sodienthoai-dangnhap"]').val().trim();
+        var mk = $('body').find('[id="matkhau-dangnhap"]').val();
+
+        $('body').find('[id="validate-sodienthoai-dangnhap"]').prop('hidden', true);
+        $('body').find('[id="validate-matkhau-dangnhap"]').prop('hidden', true);
+
+        var check = true;
+        if (sdt.length < 1) {
+            check = false;
+            $('body').find('[id="validate-sodienthoai-dangnhap"]').text('Số điện thoại không được bỏ trống.').prop('hidden', false);
+            btn.css('pointer-events', 'auto');
+            btn.html("ĐĂNG NHẬP");
+        }
+
+        if (mk.length < 1) {
+            check = false;
+            $('body').find('[id="validate-matkhau-dangnhap"]').text('Mật khẩu đăng nhập không được bỏ trống.').prop('hidden', false);
+            btn.css('pointer-events', 'auto');
+            btn.html("ĐĂNG NHẬP");
+        }
+
+        if (check == true) {
+            var formData = new FormData();
+            formData.append('sodienthoai', sdt);
+            formData.append('matkhau', mk);
+
+            $.ajax({
+                url: $('body').find('[id="requestPath"]').val() + 'home/DangNhap',
+                data: formData,
+                dataType: 'html',
+                type: 'POST',
+                processData: false,
+                contentType: false,
+            }).done(function (ketqua) {
+                if (ketqua == "INVALID") {
+                    btn.css('pointer-events', 'auto');
+                    btn.html("ĐĂNG NHẬP");
+                    $('body').find('[id="validate-matkhau-dangnhap"]').text('Tài khoản hoặc mật khẩu không chính xác.').prop('hidden', false);
+                }
+                else if (ketqua == "SUCCESS") {
+                    btn.css('pointer-events', 'auto');
+                    btn.html("ĐĂNG NHẬP");
+                    window.location.href = $('#requestPath').val() + "home/index";
+                }
+                else {
+                    btn.css('pointer-events', 'auto');
+                    btn.html("ĐĂNG NHẬP");
+                    Swal.fire({
+                        title: "Đã xảy ra lỗi, vui lòng thử lại sau.",
+                        text: ketqua,
+                        icon: "error"
+                    }).then(() => {
+                        window.location.reload();
+                    });
+                }
+            });
+        }
+    });
+
+    //Đăng ký
+    $('body').find('[id="submit-user-dangky"]').on('click', function () {
+        var btn = $(this);
+        btn.html('<span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"> </span> Đang tải...');
+        btn.css('pointer-events', 'none');
+        var testMail = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+
+
+        var hoten = $('body').find('[id="hoten-dangky"]').val().trim();
+        var email = $('body').find('[id="email-dangky"]').val().trim();
+        var sdt = $('body').find('[id="sodienthoai-dangky"]').val().trim();
+        var mk = $('body').find('[id="matkhau-dangky"]').val();
+
+        $('body').find('[id="validate-hoten-dangky"]').prop('hidden', true);
+        $('body').find('[id="validate-email-dangky"]').prop('hidden', true);
+        $('body').find('[id="validate-sodienthoai-dangky"]').prop('hidden', true);
+        $('body').find('[id="validate-matkhau-dangky"]').prop('hidden', true);
+
+        var check = true;
+        if (sdt.length < 1) {
+            check = false;
+            $('body').find('[id="validate-sodienthoai-dangky"]').text('Số điện thoại không được bỏ trống.').prop('hidden', false);
+            btn.css('pointer-events', 'auto');
+            btn.html("ĐĂNG KÝ");
+        }
+        else if (sdt.length != 10) {
+            check = false;
+            $('body').find('[id="validate-sodienthoai-dangky"]').text('Số điện thoại chưa đúng.').prop('hidden', false);
+            btn.css('pointer-events', 'auto');
+            btn.html("ĐĂNG KÝ");
+        }
+
+        if (mk.length < 1) {
+            check = false;
+            $('body').find('[id="validate-matkhau-dangky"]').text('Mật khẩu đăng nhập không được bỏ trống.').prop('hidden', false);
+            btn.css('pointer-events', 'auto');
+            btn.html("ĐĂNG KÝ");
+        }
+        else if (mk.length < 8) {
+            check = false;
+            $('body').find('[id="validate-matkhau-dangky"]').text('Mật khẩu tối thiểu 8 ký tự.').prop('hidden', false);
+            btn.css('pointer-events', 'auto');
+            btn.html("ĐĂNG KÝ");
+        }
+
+        if (email.length < 1) {
+            check = false;
+            $('body').find('[id="validate-email-dangky"]').text('Email không được bỏ trống.').prop('hidden', false);
+            btn.css('pointer-events', 'auto');
+            btn.html("ĐĂNG KÝ");
+        }
+        else if (testMail.test(email) == false) {
+            check = false;
+            $('body').find('[id="validate-email-dangky"]').text('Email chưa đúng định dạng.').prop('hidden', false);
+            btn.css('pointer-events', 'auto');
+            btn.html("ĐĂNG KÝ");
+        }
+
+        if (hoten.length < 1) {
+            check = false;
+            $('body').find('[id="validate-hoten-dangky"]').text('Họ & Tên không được bỏ trống.').prop('hidden', false);
+            btn.css('pointer-events', 'auto');
+            btn.html("ĐĂNG KÝ");
+        }
+
+        if (check == true) {
+            var formData = new FormData();
+            formData.append('sodienthoai', sdt);
+            formData.append('matkhau', mk);
+            formData.append('email', email);
+            formData.append('hoten', hoten);
+
+            $.ajax({
+                url: $('body').find('[id="requestPath"]').val() + 'home/DangKy',
+                data: formData,
+                dataType: 'html',
+                type: 'POST',
+                processData: false,
+                contentType: false,
+            }).done(function (ketqua) {
+                if (ketqua == "EMAILEXIST") {
+                    btn.css('pointer-events', 'auto');
+                    btn.html("ĐĂNG KÝ");
+                    $('body').find('[id="validate-email-dangky"]').text('Email đã được sử dụng.').prop('hidden', false);
+                }
+                else if (ketqua == "SDTEXIST") {
+                    btn.css('pointer-events', 'auto');
+                    btn.html("ĐĂNG KÝ");
+                    $('body').find('[id="validate-sodienthoai-dangky"]').text('Số điện thoại đã được sử dụng.').prop('hidden', false);
+                }
+                else if (ketqua == "SUCCESS") {
+                    btn.css('pointer-events', 'auto');
+                    btn.html("ĐĂNG KÝ");
+
+                    Swal.fire({
+                        title: "Đăng Ký Thành Công",
+                        text: "Đã đăng ký tài khoản, hãy đăng nhập lại.",
+                        icon: "success"
+                    }).then(() => {
+                        $('body').find('[id="userDangNhapModal"]').modal('toggle');
+                        $('body').find('[id="userDangKyModal"]').modal('toggle');
+                    });
+                }
+                else {
+                    btn.css('pointer-events', 'auto');
+                    btn.html("ĐĂNG KÝ");
+                    Swal.fire({
+                        title: "Đã xảy ra lỗi, vui lòng thử lại sau.",
+                        text: ketqua,
+                        icon: "error"
+                    }).then(() => {
+                        window.location.reload();
+                    });
+                }
+            });
+        }
+    });
+});

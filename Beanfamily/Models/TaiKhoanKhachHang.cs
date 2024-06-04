@@ -24,7 +24,6 @@ namespace Beanfamily.Models
         }
     
         public int id { get; set; }
-        public string username { get; set; }
         public string password { get; set; }
         public string hovaten { get; set; }
         public string sodienthoai { get; set; }

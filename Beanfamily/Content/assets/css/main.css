@@ -369,15 +369,15 @@ input[type="date" i] {
 ===========================================================*/
 
 
-.select2-container .select2-selection--single {
-    display: flex;
-    align-items: center;
-    background-color: white;
-    border: 0px solid transparent;
-    border-radius: 10px !important;
-    height: 46px;
-    outline: none;
-}
+    .select2-container .select2-selection--single {
+        display: flex;
+        align-items: center;
+        background-color: white;
+        border: 0px solid transparent;
+        border-radius: 10px !important;
+        height: 46px;
+        outline: none;
+    }
 
 #selectThoiGianDatBan .select2-container--default .selection .select2-selection--single {
     display: flex;
@@ -2060,13 +2060,13 @@ body {
     }
 
 
-    /* STICKY ICON */
+/* STICKY ICON */
 
 .sticky-icon {
     z-index: 9998;
     position: fixed;
     justify-content: center;
-    top: 50%; 
+    top: 50%;
     right: -2px;
     width: 190px;
     display: flex;
@@ -2094,10 +2094,10 @@ body {
                 transform: rotate(360deg);
             }
 
-    .Facebook {
-        background-color: #3b5998;
-        color: #FFF;
-    }
+.Facebook {
+    background-color: #3b5998;
+    color: #FFF;
+}
 
 .Messenger {
     background: radial-gradient(circle at 30% 107%, #fd5949 0%, #d6249f 30%, #285aeb 90%);
@@ -2176,3 +2176,39 @@ body {
         display: none;
     }
 }
+
+
+.dropdown-user {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content-user {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    white-space: nowrap;
+    width: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    right: 0;
+    border: 1px solid #fff;
+}
+
+    .dropdown-content-user li {
+        font-size: 12px;
+        padding: 14px 16px;
+        color: #333;
+    }
+
+        .dropdown-content-user li:hover {
+            background-color: #122E26;
+            color: #fff;
+        }
+
+.dropdown-user:hover .dropdown-content-user {
+    display: block;
+}
+
+
+

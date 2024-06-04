@@ -42,10 +42,54 @@ namespace Beanfamily.Controllers
         {
             return RedirectToAction("index", "muasam");
         }
-
-        public ActionResult Contact()
+        public ActionResult DangNhap(string sodienthoai, string matkhau)
         {
-            return View("contact");
+            try
+            {
+                var taikhoan = model.TaiKhoanKhachHang.FirstOrDefault(t => t.sodienthoai.Equals(sodienthoai) && t.password.Equals(matkhau));
+                if (taikhoan == null)
+                {
+                    return Content("INVALID");
+                }
+                else
+                {
+                    return Content("SUCCESS");
+                }
+            }
+            catch (Exception ex)
+            {
+                return Content("Chi tiết lỗi: " + ex.Message);
+            }
+        }
+        public ActionResult DangKy(string sodienthoai, string matkhau, string email, string hoten)
+        {
+            try
+            {
+                var checkMail = model.TaiKhoanKhachHang.FirstOrDefault(e => e.email.ToLower().Equals(email.ToLower()));
+                if (checkMail != null)
+                    return Content("EMAILEXIST");
+
+                var checkPhone = model.TaiKhoanKhachHang.FirstOrDefault(e => e.sodienthoai.ToLower().Equals(sodienthoai.ToLower()));
+                if (checkMail != null)
+                    return Content("SDTEXIST");
+
+                var taikhoan = new TaiKhoanKhachHang();
+                taikhoan.hovaten = hoten;
+                taikhoan.sodienthoai = sodienthoai;
+                taikhoan.email = email;
+                taikhoan.password = matkhau;
+                taikhoan.ngaytao = DateTime.Now;
+                taikhoan.ngaysuadoi = DateTime.Now;
+
+                model.TaiKhoanKhachHang.Add(taikhoan);
+                model.SaveChanges();
+
+                return Content("SUCCESS");
+            }
+            catch (Exception Ex)
+            {
+                return Content("Chi tiết lỗi: " + Ex.Message);
+            }
         }
     }
 }
