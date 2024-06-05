@@ -324,6 +324,8 @@
     <Content Include="ActionOnPage\GioHang\DatHang.js" />
     <Content Include="ActionOnPage\GioiThieu\loadPageNhaHang.js" />
     <Content Include="ActionOnPage\Menu User\ActionMenu.js" />
+    <Content Include="ActionOnPage\Menu User\DatLaiMatKhau.js" />
+    <Content Include="ActionOnPage\Menu User\GuiMaXacNhanQuenMatKhau.js" />
     <Content Include="ActionOnPage\MenuBuffet\ActionOnView.js" />
     <Content Include="ActionOnPage\MenuBuffet\DatBan.js" />
     <Content Include="ActionOnPage\MenuBuffet\loadPageMenuBuffet.js" />
@@ -2962,6 +2964,8 @@
     <Content Include="Views\MenuBuffet\_DatBanModal.cshtml" />
     <Content Include="Views\MenuBuffet\Index.cshtml" />
     <Content Include="Views\Home\UserLogin.cshtml" />
+    <Content Include="Views\Home\_NhapMaXacNhan.cshtml" />
+    <Content Include="Views\Home\_DatLaiMatKhau.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

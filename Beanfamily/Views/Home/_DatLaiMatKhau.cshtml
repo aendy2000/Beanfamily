@@ -1,0 +1,29 @@
+﻿<div id="contentQuenMatKhau" class="row ms-2 me-2">
+    <div class="col-12">
+        <span class="txt9 text-dark">
+            Mật khẩu <span class="text-danger">*</span>
+        </span>
+
+        <div class="wrap-inputphone size12 bo-rad-16 m-t-3 m-b-10">
+            <input usermail="@Session["email-xacnhan"]" id="matkhau-datlaimatkhau" style="background: #122E26; color: #fff !important" class="bo-rad-16 sizefull txt10 p-l-20" type="password" name="password" placeholder="Nhập mật khẩu mới">
+        </div>
+        <p hidden id="validate-matkhau-datlaimatkhau" style="margin-top: -10px; margin-bottom: 10px" class="text-danger"></p>
+
+    </div>
+
+    <div class="col-12">
+        <span class="txt9 text-dark">
+            Nhập lại mật khẩu <span class="text-danger">*</span>
+        </span>
+
+        <div class="wrap-inputphone size12 bo-rad-16 m-t-3 m-b-10">
+            <input id="nhaplaimatkhau-datlaimatkhau" style="background: #122E26; color: #fff !important" class="bo-rad-16 sizefull txt10 p-l-20" type="password" name="password" placeholder="Nhập lại mật khẩu mới">
+        </div>
+        <p hidden id="validate-nhaplaimatkhau-datlaimatkhau" style="margin-top: -10px; margin-bottom: 10px" class="text-danger"></p>
+
+    </div>
+    <div class="col-12 mt-4 mb-2" style="display: flex; flex-direction: column; justify-content: center; align-items: center; flex-direction: column">
+        <button id="submit-user-datlaimatkhau" type="button" class="btn btn-primary mb-4">Xác nhận</button>
+    </div>
+    <script src="~/ActionOnPage/Menu User/DatLaiMatKhau.js"></script>
+</div>

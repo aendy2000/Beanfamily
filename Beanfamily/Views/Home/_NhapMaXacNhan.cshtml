@@ -1,0 +1,19 @@
+﻿<div id="contentQuenMatKhau" class="row ms-2 me-2">
+    <div class="col-12 mb-4">
+        <span>Đã gửi 1 mã xác nhận gồm 6 chữ số đến email: <b>@Session["email-xacnhan"]</b>. mã xác nhận sẽ hết hạn sau 10 phút.</span>
+    </div>
+    <div class="col-12">
+        <div class="wrap-inputphone size12 bo-rad-16 m-t-3 m-b-10">
+            <input data-type="numbers" diachiemail="@Session["email-xacnhan"]" id="guima-quenmatkhau" style="background: #122E26; color: #fff !important" class="bo-rad-16 sizefull txt10 p-l-20" type="text" placeholder="Nhập mã xác nhận">
+        </div>
+        <p hidden id="validate-guima-quenmatkhau" style="margin-top: -10px; margin-bottom: 10px" class="text-danger"></p>
+        <p hidden id="validate-guilaima-quenmatkhau" style="margin-top: -10px; margin-bottom: 10px" class="text-success"></p>
+
+    </div>
+
+    <div class="col-12 mt-4 mb-2" style="display: flex; flex-direction: column; justify-content: center; align-items: center; flex-direction: row">
+        <button id="guilaima-quenmatkhau" type="button" class="btn btn-secondary mb-4 me-2">Gửi lại mã</button>
+        <button id="submit-ma-quenmatkhau" type="button" class="btn btn-primary mb-4">Xác nhận</button>
+    </div>
+    <script src="~/ActionOnPage/Menu User/GuiMaXacNhanQuenMatKhau.js"></script>
+</div>

@@ -508,8 +508,10 @@
           <Property Name="gioitinh" Type="nvarchar" MaxLength="10" />
           <Property Name="diachi" Type="nvarchar(max)" />
           <Property Name="ngaytao" Type="datetime" Nullable="false" />
-          <Property Name="ngaysuadoi" Type="datetime" Nullable="false" />
-          <Property Name="hinhdaidien" Type="nvarchar(max)" />
+          <Property Name="dangnhaplancuoi" Type="datetime" Nullable="false" />
+          <Property Name="taikhoankhoa" Type="bit" Nullable="false" />
+          <Property Name="maxacnhan" Type="nvarchar" MaxLength="6" />
+          <Property Name="thoihanma" Type="datetime" />
         </EntityType>
         <EntityType Name="TinhTrangDonHangMenuBuffet">
           <Key>
@@ -2111,8 +2113,10 @@
           <Property Name="gioitinh" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="diachi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ngaytao" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ngaysuadoi" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="hinhdaidien" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="dangnhaplancuoi" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="taikhoankhoa" Type="Boolean" Nullable="false" />
+          <Property Name="maxacnhan" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+          <Property Name="thoihanma" Type="DateTime" Precision="3" />
           <NavigationProperty Name="DonHangVuonRauMuaSamVaMenuHangNgay" Relationship="Self.FK_DonHangVuonRauMuaSamVaMenuHangNgay_TaiKhoanKhachHang" FromRole="TaiKhoanKhachHang" ToRole="DonHangVuonRauMuaSamVaMenuHangNgay" />
           <NavigationProperty Name="GioHangMuaSam" Relationship="Self.FK_GioHangMuaSam_TaiKhoanKhachHang" FromRole="TaiKhoanKhachHang" ToRole="GioHangMuaSam" />
           <NavigationProperty Name="GioHangThucDonHangNgay" Relationship="Self.FK_GioHangThucDonHangNgay_TaiKhoanKhachHang" FromRole="TaiKhoanKhachHang" ToRole="GioHangThucDonHangNgay" />
@@ -3667,8 +3671,10 @@
                 <ScalarProperty Name="gioitinh" ColumnName="gioitinh" />
                 <ScalarProperty Name="diachi" ColumnName="diachi" />
                 <ScalarProperty Name="ngaytao" ColumnName="ngaytao" />
-                <ScalarProperty Name="ngaysuadoi" ColumnName="ngaysuadoi" />
-                <ScalarProperty Name="hinhdaidien" ColumnName="hinhdaidien" />
+                <ScalarProperty Name="dangnhaplancuoi" ColumnName="dangnhaplancuoi" />
+                <ScalarProperty Name="taikhoankhoa" ColumnName="taikhoankhoa" />
+                <ScalarProperty Name="maxacnhan" ColumnName="maxacnhan" />
+                <ScalarProperty Name="thoihanma" ColumnName="thoihanma" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

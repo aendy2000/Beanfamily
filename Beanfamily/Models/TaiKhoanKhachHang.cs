@@ -32,8 +32,10 @@ namespace Beanfamily.Models
         public string gioitinh { get; set; }
         public string diachi { get; set; }
         public System.DateTime ngaytao { get; set; }
-        public System.DateTime ngaysuadoi { get; set; }
-        public string hinhdaidien { get; set; }
+        public System.DateTime dangnhaplancuoi { get; set; }
+        public bool taikhoankhoa { get; set; }
+        public string maxacnhan { get; set; }
+        public Nullable<System.DateTime> thoihanma { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DonHangVuonRauMuaSamVaMenuHangNgay> DonHangVuonRauMuaSamVaMenuHangNgay { get; set; }
