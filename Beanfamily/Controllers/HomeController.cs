@@ -57,7 +57,7 @@ namespace Beanfamily.Controllers
                 }
                 else
                 {
-                    if (taikhoan.taikhoankhoa == false)
+                    if (taikhoan.taikhoankhoa == true)
                     {
                         return Content("LOCKED");
                     }
@@ -67,9 +67,89 @@ namespace Beanfamily.Controllers
                         model.Entry(taikhoan).State = EntityState.Modified;
                         model.SaveChanges();
 
+                        int idtk = taikhoan.id;
+                        if (taikhoan.GioHangThucDonHangNgay.Count < 1 && taikhoan.GioHangMuaSam.Count < 1 && taikhoan.GioHangVuonRauBean.Count < 1)
+                        {
+                            var giohangmuasam = Session["giohang-muasam"] as List<string>;
+                            if (giohangmuasam != null)
+                            {
+                                foreach (var item in giohangmuasam)
+                                {
+                                    string idsp = item.Split('#')[0];
+                                    string idloai = item.Split('#')[1];
+                                    string soluong = item.Split('#')[2];
+
+                                    GioHangMuaSam ghmuasam = new GioHangMuaSam();
+                                    ghmuasam.id_sanpham = Int32.Parse(idsp);
+                                    ghmuasam.id_loaitonkho = Int32.Parse(idloai);
+                                    ghmuasam.id_taikhoankhachhang = idtk;
+                                    ghmuasam.soluong = Int32.Parse(soluong);
+                                    ghmuasam.addDate = DateTime.Now;
+
+                                    model.GioHangMuaSam.Add(ghmuasam);
+                                    model.SaveChanges();
+                                }
+                            }
+
+                            var giohangthucdonhangngay = Session["giohang-thucdonhangngay"] as List<string>;
+                            if (giohangthucdonhangngay != null)
+                            {
+                                foreach (var item in giohangthucdonhangngay)
+                                {
+                                    string idsp = item.Split('#')[0];
+                                    string soluong = item.Split('#')[1];
+
+                                    GioHangThucDonHangNgay ghtdhn = new GioHangThucDonHangNgay();
+                                    ghtdhn.id_sanpham = Int32.Parse(idsp);
+                                    ghtdhn.id_taikhoankhachhang = idtk;
+                                    ghtdhn.soluong = Int32.Parse(soluong);
+                                    ghtdhn.addDate = DateTime.Now;
+
+                                    model.GioHangThucDonHangNgay.Add(ghtdhn);
+                                    model.SaveChanges();
+                                }
+                            }
+
+                            var giohangvuonrau = Session["giohang-vuonrau"] as List<string>;
+                            if (giohangvuonrau != null)
+                            {
+                                foreach (var item in giohangvuonrau)
+                                {
+                                    string idsp = item.Split('#')[0];
+                                    string soluong = item.Split('#')[1];
+
+                                    GioHangVuonRauBean ghvr = new GioHangVuonRauBean();
+                                    ghvr.id_sanpham = Int32.Parse(idsp);
+                                    ghvr.id_taikhoankhachhang = idtk;
+                                    ghvr.soluong = Int32.Parse(soluong);
+                                    ghvr.addDate = DateTime.Now;
+
+                                    model.GioHangVuonRauBean.Add(ghvr);
+                                    model.SaveChanges();
+                                }
+                            }
+                        }
+                        else
+                        {
+                            var giohangmuasams = new List<string>();
+                            foreach (var item in taikhoan.GioHangMuaSam.ToList())
+                                giohangmuasams.Add(item.id_sanpham + "#" + item.id_loaitonkho + "#" + item.soluong);
+                            Session["giohang-muasam"] = giohangmuasams;
+
+                            var giohangthucdonhangngays = new List<string>();
+                            foreach (var item in taikhoan.GioHangThucDonHangNgay.ToList())
+                                giohangthucdonhangngays.Add(item.id_sanpham + "#" + item.soluong);
+                            Session["giohang-thucdonhangngay"] = giohangthucdonhangngays;
+
+                            var giohangvuonraus = new List<string>();
+                            foreach (var item in taikhoan.GioHangVuonRauBean.ToList())
+                                giohangvuonraus.Add(item.id_sanpham + "#" + item.soluong);
+                            Session["giohang-vuonrau"] = giohangvuonraus;
+                        }
+
                         Session["user-data"] = taikhoan;
                         Session["user-dangnhap"] = true;
-                        return Content("SUCCESS");
+                        return PartialView("_addCart");
                     }
                 }
             }
@@ -84,7 +164,12 @@ namespace Beanfamily.Controllers
             try
             {
                 Session["user-dangnhap"] = null;
-                return Content("SUCCESS");
+
+                Session["giohang-muasam"] = null;
+                Session["giohang-thucdonhangngay"] = null;
+                Session["giohang-vuonrau"] = null;
+
+                return PartialView("_addCart");
             }
             catch (Exception ex)
             {
@@ -116,6 +201,67 @@ namespace Beanfamily.Controllers
 
                 model.TaiKhoanKhachHang.Add(taikhoan);
                 model.SaveChanges();
+
+                int idtk = taikhoan.id;
+
+                var giohangmuasam = Session["giohang-muasam"] as List<string>;
+                if (giohangmuasam != null)
+                {
+                    foreach (var item in giohangmuasam)
+                    {
+                        string idsp = item.Split('#')[0];
+                        string idloai = item.Split('#')[1];
+                        string soluong = item.Split('#')[2];
+
+                        GioHangMuaSam ghmuasam = new GioHangMuaSam();
+                        ghmuasam.id_sanpham = Int32.Parse(idsp);
+                        ghmuasam.id_loaitonkho = Int32.Parse(idloai);
+                        ghmuasam.id_taikhoankhachhang = idtk;
+                        ghmuasam.soluong = Int32.Parse(soluong);
+                        ghmuasam.addDate = DateTime.Now;
+
+                        model.GioHangMuaSam.Add(ghmuasam);
+                        model.SaveChanges();
+                    }
+                }
+
+                var giohangthucdonhangngay = Session["giohang-thucdonhangngay"] as List<string>;
+                if (giohangthucdonhangngay != null)
+                {
+                    foreach (var item in giohangthucdonhangngay)
+                    {
+                        string idsp = item.Split('#')[0];
+                        string soluong = item.Split('#')[1];
+
+                        GioHangThucDonHangNgay ghtdhn = new GioHangThucDonHangNgay();
+                        ghtdhn.id_sanpham = Int32.Parse(idsp);
+                        ghtdhn.id_taikhoankhachhang = idtk;
+                        ghtdhn.soluong = Int32.Parse(soluong);
+                        ghtdhn.addDate = DateTime.Now;
+
+                        model.GioHangThucDonHangNgay.Add(ghtdhn);
+                        model.SaveChanges();
+                    }
+                }
+
+                var giohangvuonrau = Session["giohang-vuonrau"] as List<string>;
+                if (giohangvuonrau != null)
+                {
+                    foreach (var item in giohangvuonrau)
+                    {
+                        string idsp = item.Split('#')[0];
+                        string soluong = item.Split('#')[1];
+
+                        GioHangVuonRauBean ghvr = new GioHangVuonRauBean();
+                        ghvr.id_sanpham = Int32.Parse(idsp);
+                        ghvr.id_taikhoankhachhang = idtk;
+                        ghvr.soluong = Int32.Parse(soluong);
+                        ghvr.addDate = DateTime.Now;
+
+                        model.GioHangVuonRauBean.Add(ghvr);
+                        model.SaveChanges();
+                    }
+                }
 
                 return Content("SUCCESS");
             }
@@ -163,8 +309,21 @@ namespace Beanfamily.Controllers
 
                 var curma = tk.maxacnhan;
                 if (!curma.Equals(ma))
-                    return Content("INVALID");
+                {
+                    if (tk.thoihanma.Value.Subtract(DateTime.Now).TotalMinutes <= 0)
+                    {
+                        tk.maxacnhan = null;
+                        tk.thoihanma = null;
+                        model.Entry(tk).State = EntityState.Modified;
+                        model.SaveChanges();
 
+                        return Content("TIMEOUT");
+                    }
+                    else
+                    {
+                        return Content("INVALID");
+                    }
+                }
                 return PartialView("_DatLaiMatKhau");
             }
             catch (Exception Ex)
@@ -212,6 +371,29 @@ namespace Beanfamily.Controllers
 
                     return Content("SUCCESS");
                 }
+            }
+            catch (Exception Ex)
+            {
+                return Content("Chi tiết lỗi: " + Ex.Message);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult DatLaiMatKhau(string pass, string email)
+        {
+            try
+            {
+                var tk = model.TaiKhoanKhachHang.FirstOrDefault(t => t.email.ToLower().Equals(email.ToLower()));
+                if (tk == null)
+                    return Content("INVALID");
+
+                tk.password = pass;
+                tk.maxacnhan = null;
+                tk.thoihanma = null;
+                model.Entry(tk).State = EntityState.Modified;
+                model.SaveChanges();
+
+                return Content("SUCCESS");
             }
             catch (Exception Ex)
             {

@@ -48,6 +48,11 @@
                     btn.html("Xác nhận");
                     $('body').find('[id="validate-guima-quenmatkhau"]').text('Mã xác nhận không đúng.').prop('hidden', false);
                 }
+                else if (ketqua == "TIMEOUT") {
+                    btn.css('pointer-events', 'auto');
+                    btn.html("Xác nhận");
+                    $('body').find('[id="validate-guima-quenmatkhau"]').text('Mã xác nhận đã hết hạn.').prop('hidden', false);
+                }
                 else if (ketqua.indexOf("Chi tiết lỗi") != -1) {
                     btn.css('pointer-events', 'auto');
                     btn.html("Xác nhận");

@@ -83,7 +83,7 @@ namespace Beanfamily.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddToCart(int idsp, string soluong)
+        public ActionResult AddToCart(int idsp, int soluong)
         {
             try
             {
@@ -105,6 +105,19 @@ namespace Beanfamily.Controllers
                         Session["soluongmax-vuonrau-" + idsp] = tonKhoConLai;
                         Session["tonkhoconlai-vuonrau-" + idsp] = tonKhoConLai;
                         giohang.Add(idsp + "#" + tonKhoConLai);
+
+                        var tk = Session["user-data"] as TaiKhoanKhachHang;
+                        if (Session["user-dangnhap"] != null)
+                        {
+                            var giohangs = new GioHangVuonRauBean();
+                            giohangs.id_taikhoankhachhang = tk.id;
+                            giohangs.id_sanpham = idsp;
+                            giohangs.soluong = tonKhoConLai;
+                            giohangs.addDate = DateTime.Now;
+
+                            model.GioHangVuonRauBean.Add(giohangs);
+                            model.SaveChanges();
+                        }
                     }
                     else
                     {
@@ -112,6 +125,19 @@ namespace Beanfamily.Controllers
                         Session["tonkhoconlai-vuonrau-" + idsp] = tonKhoConLai;
 
                         giohang.Add(idsp + "#" + soluong);
+
+                        var tk = Session["user-data"] as TaiKhoanKhachHang;
+                        if (Session["user-dangnhap"] != null)
+                        {
+                            var giohangs = new GioHangVuonRauBean();
+                            giohangs.id_taikhoankhachhang = tk.id;
+                            giohangs.id_sanpham = idsp;
+                            giohangs.soluong = soluong;
+                            giohangs.addDate = DateTime.Now;
+
+                            model.GioHangVuonRauBean.Add(giohangs);
+                            model.SaveChanges();
+                        }
                     }
 
                     Session["giohang-vuonrau"] = giohang;
@@ -137,6 +163,16 @@ namespace Beanfamily.Controllers
                                 Session["tonkhoconlai-vuonrau-" + idsp] = 0;
                                 giohang = giohang.Select(g => g.Replace(item, idPro + "#" + 0)).ToList();
 
+                                var tk = Session["user-data"] as TaiKhoanKhachHang;
+                                if (Session["user-dangnhap"] != null)
+                                {
+                                    var giohangs = model.GioHangVuonRauBean.FirstOrDefault(g => g.id_taikhoankhachhang == tk.id && g.id_sanpham == idPro);
+                                    giohangs.soluong = 0;
+
+                                    model.Entry(giohangs).State = System.Data.Entity.EntityState.Modified;
+                                    model.SaveChanges();
+                                }
+
                                 Session["giohang-vuonrau"] = giohang;
                                 return Content("HETHANG");
                             }
@@ -147,12 +183,32 @@ namespace Beanfamily.Controllers
                                     Session["soluongmax-vuonrau-" + idsp] = tonKhoConLai;
                                     Session["tonkhoconlai-vuonrau-" + idsp] = tonKhoConLai;
                                     giohang = giohang.Select(g => g.Replace(item, idPro + "#" + tonKhoConLai)).ToList();
+
+                                    var tk = Session["user-data"] as TaiKhoanKhachHang;
+                                    if (Session["user-dangnhap"] != null)
+                                    {
+                                        var giohangs = model.GioHangVuonRauBean.FirstOrDefault(g => g.id_taikhoankhachhang == tk.id && g.id_sanpham == idPro);
+                                        giohangs.soluong = tonKhoConLai;
+
+                                        model.Entry(giohangs).State = System.Data.Entity.EntityState.Modified;
+                                        model.SaveChanges();
+                                    }
                                 }
                                 else
                                 {
                                     Session["soluongmax-vuonrau-" + idsp] = null;
                                     Session["tonkhoconlai-vuonrau-" + idsp] = tonKhoConLai;
                                     giohang = giohang.Select(g => g.Replace(item, idPro + "#" + soluongs2)).ToList();
+
+                                    var tk = Session["user-data"] as TaiKhoanKhachHang;
+                                    if (Session["user-dangnhap"] != null)
+                                    {
+                                        var giohangs = model.GioHangVuonRauBean.FirstOrDefault(g => g.id_taikhoankhachhang == tk.id && g.id_sanpham == idPro);
+                                        giohangs.soluong = soluongs2;
+
+                                        model.Entry(giohangs).State = System.Data.Entity.EntityState.Modified;
+                                        model.SaveChanges();
+                                    }
                                 }
                             }
                         }
@@ -167,12 +223,38 @@ namespace Beanfamily.Controllers
                             Session["soluongmax-vuonrau-" + idsp] = tonKhoConLai;
                             Session["tonkhoconlai-vuonrau-" + idsp] = tonKhoConLai;
                             giohang.Add(idsp + "#" + tonKhoConLai);
+
+                            var tk = Session["user-data"] as TaiKhoanKhachHang;
+                            if (Session["user-dangnhap"] != null)
+                            {
+                                var giohangs = new GioHangVuonRauBean();
+                                giohangs.id_taikhoankhachhang = tk.id;
+                                giohangs.id_sanpham = idsp;
+                                giohangs.soluong = tonKhoConLai;
+                                giohangs.addDate = DateTime.Now;
+
+                                model.GioHangVuonRauBean.Add(giohangs);
+                                model.SaveChanges();
+                            }
                         }
                         else
                         {
                             Session["soluongmax-vuonrau-" + idsp] = null;
                             Session["tonkhoconlai-vuonrau-" + idsp] = tonKhoConLai;
                             giohang.Add(idsp + "#" + soluong);
+
+                            var tk = Session["user-data"] as TaiKhoanKhachHang;
+                            if (Session["user-dangnhap"] != null)
+                            {
+                                var giohangs = new GioHangVuonRauBean();
+                                giohangs.id_taikhoankhachhang = tk.id;
+                                giohangs.id_sanpham = idsp;
+                                giohangs.soluong = soluong;
+                                giohangs.addDate = DateTime.Now;
+
+                                model.GioHangVuonRauBean.Add(giohangs);
+                                model.SaveChanges();
+                            }
                         }
                     }
                     Session["giohang-vuonrau"] = giohang;
@@ -189,7 +271,7 @@ namespace Beanfamily.Controllers
 
 
         [HttpPost]
-        public ActionResult UpdateCart(string id, string soluong)
+        public ActionResult UpdateCart(string id, int soluong)
         {
             try
             {
@@ -199,7 +281,7 @@ namespace Beanfamily.Controllers
                 }
 
                 int idsp = Int32.Parse(id);
-                int soluongs = Convert.ToInt32(soluong);
+                int soluongs = soluong;
                 List<string> giohang = Session["giohang-vuonrau"] as List<string>;
 
                 var sp = model.SanPhamRauNhaTrong.Find(idsp);
@@ -211,6 +293,14 @@ namespace Beanfamily.Controllers
                             giohang.RemoveAt(i);
                     }
                     Session["giohang-vuonrau"] = giohang;
+
+                    var tk = Session["user-data"] as TaiKhoanKhachHang;
+                    if (Session["user-dangnhap"] != null)
+                    {
+                        model.GioHangVuonRauBean.RemoveRange(tk.GioHangVuonRauBean.Where(t => t.id_sanpham == idsp).ToList());
+                        model.SaveChanges();
+                    }
+
                     return Content("KHONGTONTAI");
                 }
 
@@ -226,6 +316,16 @@ namespace Beanfamily.Controllers
                             Session["tonkhoconlai-vuonrau-" + idsp] = 0;
                             giohang = giohang.Select(g => g.Replace(item, idPro + "#" + 0)).ToList();
                             soluongs = 0;
+
+                            var tk = Session["user-data"] as TaiKhoanKhachHang;
+                            if (Session["user-dangnhap"] != null)
+                            {
+                                var giohangs = model.GioHangVuonRauBean.FirstOrDefault(g => g.id_taikhoankhachhang == tk.id && g.id_sanpham == idPro);
+                                giohangs.soluong = 0;
+
+                                model.Entry(giohangs).State = System.Data.Entity.EntityState.Modified;
+                                model.SaveChanges();
+                            }
                         }
                     }
                     Session["giohang-vuonrau"] = giohang;
@@ -243,18 +343,38 @@ namespace Beanfamily.Controllers
                             Session["tonkhoconlai-vuonrau-" + idsp] = tonKhoConLai;
                             giohang = giohang.Select(g => g.Replace(item, idPro + "#" + tonKhoConLai)).ToList();
                             soluongs = tonKhoConLai;
+
+                            var tk = Session["user-data"] as TaiKhoanKhachHang;
+                            if (Session["user-dangnhap"] != null)
+                            {
+                                var giohangs = model.GioHangVuonRauBean.FirstOrDefault(g => g.id_taikhoankhachhang == tk.id && g.id_sanpham == idPro);
+                                giohangs.soluong = tonKhoConLai;
+
+                                model.Entry(giohangs).State = System.Data.Entity.EntityState.Modified;
+                                model.SaveChanges();
+                            }
                         }
                         else
                         {
                             Session["soluongmax-vuonrau-" + idsp] = null;
                             Session["tonkhoconlai-vuonrau-" + idsp] = tonKhoConLai;
                             giohang = giohang.Select(g => g.Replace(item, idPro + "#" + soluong)).ToList();
+
+                            var tk = Session["user-data"] as TaiKhoanKhachHang;
+                            if (Session["user-dangnhap"] != null)
+                            {
+                                var giohangs = model.GioHangVuonRauBean.FirstOrDefault(g => g.id_taikhoankhachhang == tk.id && g.id_sanpham == idPro);
+                                giohangs.soluong = soluong;
+
+                                model.Entry(giohangs).State = System.Data.Entity.EntityState.Modified;
+                                model.SaveChanges();
+                            }
                         }
                     }
                 }
 
                 Session["giohang-vuonrau"] = giohang;
-                return Content("SUCCESS-" + soluong);
+                return Content("SUCCESS-" + soluongs);
             }
             catch (Exception ex)
             {
@@ -286,6 +406,15 @@ namespace Beanfamily.Controllers
                     if (idPro == idsp)
                     {
                         giohang.RemoveAt(i);
+
+                        var tk = Session["user-data"] as TaiKhoanKhachHang;
+                        if (Session["user-dangnhap"] != null)
+                        {
+                            var spgiohang = model.GioHangVuonRauBean.FirstOrDefault(g => g.id_sanpham == idPro && g.id_taikhoankhachhang == tk.id);
+                            model.GioHangVuonRauBean.Remove(spgiohang);
+                            model.SaveChanges();
+                        }
+
                         break;
                     }
                     i++;
@@ -298,7 +427,6 @@ namespace Beanfamily.Controllers
             {
                 return Content("Chi tiết lỗi: " + ex.Message);
             }
-
         }
 
         public ActionResult quytrinhtrong(int id)

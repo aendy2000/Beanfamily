@@ -3,8 +3,6 @@
         var sanpham = $('body').find('[id="idPro"]').val();
         var soluong = $('body').find('[id="soluong"]').val();
 
-        alert(sanpham + " - " + soluong);
-
         var formData = new FormData();
         formData.append('idsp', sanpham);
         formData.append('soluong', soluong);

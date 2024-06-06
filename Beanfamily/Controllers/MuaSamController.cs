@@ -110,12 +110,40 @@ namespace Beanfamily.Controllers
                         Session["soluongmax-muasam-" + idsp + idloaitonkho] = tonKhoConLai;
                         Session["tonkhoconlai-muasam-" + idsp + idloaitonkho] = tonKhoConLai;
                         giohang.Add(idsp + "#" + idloaitonkho + "#" + tonKhoConLai);
+
+                        var tk = Session["user-data"] as TaiKhoanKhachHang;
+                        if (Session["user-dangnhap"] != null)
+                        {
+                            var giohangs = new GioHangMuaSam();
+                            giohangs.id_taikhoankhachhang = tk.id;
+                            giohangs.id_sanpham = idsp;
+                            giohangs.id_loaitonkho = idloaitonkho;
+                            giohangs.soluong = tonKhoConLai;
+                            giohangs.addDate = DateTime.Now;
+
+                            model.GioHangMuaSam.Add(giohangs);
+                            model.SaveChanges();
+                        }
                     }
                     else
                     {
                         Session["soluongmax-muasam-" + idsp + idloaitonkho] = null;
                         Session["tonkhoconlai-muasam-" + idsp + idloaitonkho] = tonKhoConLai;
                         giohang.Add(idsp + "#" + idloaitonkho + "#" + soluong);
+
+                        var tk = Session["user-data"] as TaiKhoanKhachHang;
+                        if (Session["user-dangnhap"] != null)
+                        {
+                            var giohangs = new GioHangMuaSam();
+                            giohangs.id_taikhoankhachhang = tk.id;
+                            giohangs.id_sanpham = idsp;
+                            giohangs.id_loaitonkho = idloaitonkho;
+                            giohangs.soluong = soluong;
+                            giohangs.addDate = DateTime.Now;
+
+                            model.GioHangMuaSam.Add(giohangs);
+                            model.SaveChanges();
+                        }
                     }
 
                     Session["giohang-muasam"] = giohang;
@@ -124,7 +152,6 @@ namespace Beanfamily.Controllers
                 {
                     List<string> giohang = Session["giohang-muasam"] as List<string>;
 
-                    
                     var checks = false;
                     foreach (string item in giohang)
                     {
@@ -144,6 +171,16 @@ namespace Beanfamily.Controllers
                                     Session["tonkhoconlai-muasam-" + idsp + idloaitonkho] = 0;
                                     giohang = giohang.Select(g => g.Replace(item, idPro + "#" + idLoai + "#" + 0)).ToList();
 
+                                    var tk = Session["user-data"] as TaiKhoanKhachHang;
+                                    if (Session["user-dangnhap"] != null)
+                                    {
+                                        var giohangs = model.GioHangMuaSam.FirstOrDefault(g => g.id_taikhoankhachhang == tk.id && g.id_sanpham == idPro && g.id_loaitonkho == idLoai);
+                                        giohangs.soluong = 0;
+
+                                        model.Entry(giohangs).State = System.Data.Entity.EntityState.Modified;
+                                        model.SaveChanges();
+                                    }
+
                                     Session["giohang-muasam"] = giohang;
                                     return Content("HETHANG");
                                 }
@@ -154,12 +191,32 @@ namespace Beanfamily.Controllers
                                         Session["soluongmax-muasam-" + idsp + idloaitonkho] = tonKhoConLai;
                                         Session["tonkhoconlai-muasam-" + idsp + idloaitonkho] = tonKhoConLai;
                                         giohang = giohang.Select(g => g.Replace(item, idPro + "#" + idLoai + "#" + tonKhoConLai)).ToList();
+
+                                        var tk = Session["user-data"] as TaiKhoanKhachHang;
+                                        if (Session["user-dangnhap"] != null)
+                                        {
+                                            var giohangs = model.GioHangMuaSam.FirstOrDefault(g => g.id_taikhoankhachhang == tk.id && g.id_sanpham == idPro && g.id_loaitonkho == idLoai);
+                                            giohangs.soluong = tonKhoConLai;
+
+                                            model.Entry(giohangs).State = System.Data.Entity.EntityState.Modified;
+                                            model.SaveChanges();
+                                        }
                                     }
                                     else
                                     {
                                         Session["soluongmax-muasam-" + idsp + idloaitonkho] = null;
                                         Session["tonkhoconlai-muasam-" + idsp + idloaitonkho] = tonKhoConLai;
                                         giohang = giohang.Select(g => g.Replace(item, idPro + "#" + idLoai + "#" + soluongs)).ToList();
+
+                                        var tk = Session["user-data"] as TaiKhoanKhachHang;
+                                        if (Session["user-dangnhap"] != null)
+                                        {
+                                            var giohangs = model.GioHangMuaSam.FirstOrDefault(g => g.id_taikhoankhachhang == tk.id && g.id_sanpham == idPro && g.id_loaitonkho == idLoai);
+                                            giohangs.soluong = soluongs;
+
+                                            model.Entry(giohangs).State = System.Data.Entity.EntityState.Modified;
+                                            model.SaveChanges();
+                                        }
                                     }
                                 }
                             }
@@ -175,12 +232,40 @@ namespace Beanfamily.Controllers
                             Session["soluongmax-muasam-" + idsp + idloaitonkho] = tonKhoConLai;
                             Session["tonkhoconlai-muasam-" + idsp + idloaitonkho] = tonKhoConLai;
                             giohang.Add(idsp + "#" + idloaitonkho + "#" + tonKhoConLai);
+
+                            var tk = Session["user-data"] as TaiKhoanKhachHang;
+                            if (Session["user-dangnhap"] != null)
+                            {
+                                var giohangs = new GioHangMuaSam();
+                                giohangs.id_taikhoankhachhang = tk.id;
+                                giohangs.id_sanpham = idsp;
+                                giohangs.id_loaitonkho = idloaitonkho;
+                                giohangs.soluong = tonKhoConLai;
+                                giohangs.addDate = DateTime.Now;
+
+                                model.GioHangMuaSam.Add(giohangs);
+                                model.SaveChanges();
+                            }
                         }
                         else
                         {
                             Session["soluongmax-muasam-" + idsp + idloaitonkho] = null;
                             Session["tonkhoconlai-muasam-" + idsp + idloaitonkho] = tonKhoConLai;
                             giohang.Add(idsp + "#" + idloaitonkho + "#" + soluong);
+
+                            var tk = Session["user-data"] as TaiKhoanKhachHang;
+                            if (Session["user-dangnhap"] != null)
+                            {
+                                var giohangs = new GioHangMuaSam();
+                                giohangs.id_taikhoankhachhang = tk.id;
+                                giohangs.id_sanpham = idsp;
+                                giohangs.id_loaitonkho = idloaitonkho;
+                                giohangs.soluong = soluong;
+                                giohangs.addDate = DateTime.Now;
+
+                                model.GioHangMuaSam.Add(giohangs);
+                                model.SaveChanges();
+                            }
                         }
                     }
                     Session["giohang-muasam"] = giohang;
@@ -218,6 +303,14 @@ namespace Beanfamily.Controllers
                         if (giohang[i].IndexOf(idsp + "#") != -1)
                             giohang.RemoveAt(i);
                     }
+
+                    var tk = Session["user-data"] as TaiKhoanKhachHang;
+                    if (Session["user-dangnhap"] != null)
+                    {
+                        model.GioHangMuaSam.RemoveRange(tk.GioHangMuaSam.Where(t => t.id_sanpham == idsp).ToList());
+                        model.SaveChanges();
+                    }
+
                     Session["giohang-muasam"] = giohang;
                     return Content("KHONGTONTAI");
                 }
@@ -225,6 +318,18 @@ namespace Beanfamily.Controllers
                 {
                     int indexing = giohang.FindIndex(t => t.StartsWith(idsp + "#" + idloaitonkho + "#"));
                     giohang.RemoveAt(indexing);
+
+                    var tk = Session["user-data"] as TaiKhoanKhachHang;
+                    if (Session["user-dangnhap"] != null)
+                    {
+                        var spgh = model.GioHangMuaSam.FirstOrDefault(s => s.id_sanpham == idsp && s.id_taikhoankhachhang == tk.id && s.id_loaitonkho == idloaitonkho);
+                        if (spgh != null)
+                        {
+                            model.GioHangMuaSam.Remove(spgh);
+                            model.SaveChanges();
+                        }
+                    }
+
                     Session["giohang-muasam"] = giohang;
                     return Content("KHONGTONTAI");
                 }
@@ -244,6 +349,16 @@ namespace Beanfamily.Controllers
                                 Session["tonkhoconlai-muasam-" + idsp + idloaitonkho] = 0;
                                 giohang = giohang.Select(g => g.Replace(item, idPro + "#" + idLoai + "#" + 0)).ToList();
                                 soluong = 0;
+
+                                var tk = Session["user-data"] as TaiKhoanKhachHang;
+                                if (Session["user-dangnhap"] != null)
+                                {
+                                    var giohangs = model.GioHangMuaSam.FirstOrDefault(g => g.id_taikhoankhachhang == tk.id && g.id_sanpham == idPro && g.id_loaitonkho == idLoai);
+                                    giohangs.soluong = 0;
+
+                                    model.Entry(giohangs).State = System.Data.Entity.EntityState.Modified;
+                                    model.SaveChanges();
+                                }
                             }
                         }
                     }
@@ -265,12 +380,32 @@ namespace Beanfamily.Controllers
                                 Session["tonkhoconlai-muasam-" + idsp + idloaitonkho] = tonKhoConLai;
                                 giohang = giohang.Select(g => g.Replace(item, idPro + "#" + idLoai + "#" + tonKhoConLai)).ToList();
                                 soluong = tonKhoConLai;
+
+                                var tk = Session["user-data"] as TaiKhoanKhachHang;
+                                if (Session["user-dangnhap"] != null)
+                                {
+                                    var giohangs = model.GioHangMuaSam.FirstOrDefault(g => g.id_taikhoankhachhang == tk.id && g.id_sanpham == idPro && g.id_loaitonkho == idLoai);
+                                    giohangs.soluong = tonKhoConLai;
+
+                                    model.Entry(giohangs).State = System.Data.Entity.EntityState.Modified;
+                                    model.SaveChanges();
+                                }
                             }
                             else
                             {
                                 Session["soluongmax-muasam-" + idsp + idloaitonkho] = null;
                                 Session["tonkhoconlai-muasam-" + idsp + idloaitonkho] = tonKhoConLai;
                                 giohang = giohang.Select(g => g.Replace(item, idPro + "#" + idLoai + "#" + soluong)).ToList();
+
+                                var tk = Session["user-data"] as TaiKhoanKhachHang;
+                                if (Session["user-dangnhap"] != null)
+                                {
+                                    var giohangs = model.GioHangMuaSam.FirstOrDefault(g => g.id_taikhoankhachhang == tk.id && g.id_sanpham == idPro && g.id_loaitonkho == idLoai);
+                                    giohangs.soluong = soluong;
+
+                                    model.Entry(giohangs).State = System.Data.Entity.EntityState.Modified;
+                                    model.SaveChanges();
+                                }
                             }
                         }
                     }
@@ -315,6 +450,14 @@ namespace Beanfamily.Controllers
                         if (idLoai == idloaitonkho)
                         {
                             giohang.RemoveAt(i);
+
+                            var tk = Session["user-data"] as TaiKhoanKhachHang;
+                            if (Session["user-dangnhap"] != null)
+                            {
+                                var spgiohang = model.GioHangMuaSam.FirstOrDefault(g => g.id_sanpham == idPro && g.id_taikhoankhachhang == tk.id && g.id_loaitonkho == idLoai);
+                                model.GioHangMuaSam.Remove(spgiohang);
+                                model.SaveChanges();
+                            }
                             break;
                         }
                     }

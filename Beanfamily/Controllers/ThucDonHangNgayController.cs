@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.DynamicData;
 using System.Web.Mvc;
 using Beanfamily.Models;
 using PagedList;
@@ -98,6 +99,19 @@ namespace Beanfamily.Controllers
                     List<string> giohang = new List<string>();
                     giohang.Add(idsp + "#" + soluong);
                     Session["giohang-thucdonhangngay"] = giohang;
+
+                    var tk = Session["user-data"] as TaiKhoanKhachHang;
+                    if (Session["user-dangnhap"] != null)
+                    {
+                        var giohangs = new GioHangThucDonHangNgay();
+                        giohangs.id_taikhoankhachhang = tk.id;
+                        giohangs.id_sanpham = idsp;
+                        giohangs.soluong = soluong;
+                        giohangs.addDate = DateTime.Now;
+
+                        model.GioHangThucDonHangNgay.Add(giohangs);
+                        model.SaveChanges();
+                    }
                 }
                 else
                 {
@@ -109,6 +123,19 @@ namespace Beanfamily.Controllers
 
                         giohang = new List<string>();
                         giohang.Add(idsp + "#" + soluong);
+
+                        var tk = Session["user-data"] as TaiKhoanKhachHang;
+                        if (Session["user-dangnhap"] != null)
+                        {
+                            var giohangs = new GioHangThucDonHangNgay();
+                            giohangs.id_taikhoankhachhang = tk.id;
+                            giohangs.id_sanpham = idsp;
+                            giohangs.soluong = soluong;
+                            giohangs.addDate = DateTime.Now;
+
+                            model.GioHangThucDonHangNgay.Add(giohangs);
+                            model.SaveChanges();
+                        }
                     }
                     else
                     {
@@ -121,12 +148,37 @@ namespace Beanfamily.Controllers
                                 checks = true;
                                 int soluongs2 = Convert.ToInt32(item.Split('#')[1]) + soluong;
                                 giohang = giohang.Select(g => g.Replace(item, idPro + "#" + soluongs2)).ToList();
+                                soluong = soluongs2;
+                                
+                                var tk = Session["user-data"] as TaiKhoanKhachHang;
+                                if (Session["user-dangnhap"] != null)
+                                {
+                                    var giohangs = model.GioHangThucDonHangNgay.FirstOrDefault(g => g.id_taikhoankhachhang == tk.id && g.id_sanpham == idPro);
+                                    giohangs.soluong = soluongs2;
+
+                                    model.Entry(giohangs).State = System.Data.Entity.EntityState.Modified;
+                                    model.SaveChanges();
+                                }
+
                                 break;
                             }
                         }
                         if (checks == false)
                         {
                             giohang.Add(idsp + "#" + soluong);
+
+                            var tk = Session["user-data"] as TaiKhoanKhachHang;
+                            if (Session["user-dangnhap"] != null)
+                            {
+                                var giohangs = new GioHangThucDonHangNgay();
+                                giohangs.id_taikhoankhachhang = tk.id;
+                                giohangs.id_sanpham = idsp;
+                                giohangs.soluong = soluong;
+                                giohangs.addDate = DateTime.Now;
+
+                                model.GioHangThucDonHangNgay.Add(giohangs);
+                                model.SaveChanges();
+                            }
                         }
                     }
                     Session["giohang-thucdonhangngay"] = giohang;
@@ -152,7 +204,7 @@ namespace Beanfamily.Controllers
                 }
 
                 int idsp = Int32.Parse(id);
-                decimal soluongs = Convert.ToDecimal(soluong.Replace(",", "").Replace(".", ","));
+                int soluongs = Convert.ToInt32(soluong);
                 List<string> giohang = Session["giohang-thucdonhangngay"] as List<string>;
 
                 var sp = model.SanPhamThucDonHangNgay.Find(idsp);
@@ -163,6 +215,14 @@ namespace Beanfamily.Controllers
                         if (giohang[i].IndexOf(idsp + "#") != -1)
                             giohang.RemoveAt(i);
                     }
+
+                    var tk = Session["user-data"] as TaiKhoanKhachHang;
+                    if (Session["user-dangnhap"] != null)
+                    {
+                        model.GioHangThucDonHangNgay.RemoveRange(tk.GioHangThucDonHangNgay.Where(t => t.id_sanpham == idsp).ToList());
+                        model.SaveChanges();
+                    }
+
                     Session["giohang-thucdonhangngay"] = giohang;
                     return Content("KHONGTONTAI");
                 }
@@ -175,7 +235,19 @@ namespace Beanfamily.Controllers
                         if (idPro == idsp)
                         {
                             giohang = giohang.Select(g => g.Replace(item, idPro + "#" + 0)).ToList();
-                            soluongs = 0;
+
+                            var tk = Session["user-data"] as TaiKhoanKhachHang;
+                            if (Session["user-dangnhap"] != null)
+                            {
+                                var giohangs = model.GioHangThucDonHangNgay.FirstOrDefault(t => t.id_sanpham == idPro && t.id_taikhoankhachhang == tk.id);
+
+                                if (giohangs != null)
+                                {
+                                    giohangs.soluong = 0;
+                                    model.Entry(giohangs).State = System.Data.Entity.EntityState.Modified;
+                                    model.SaveChanges();
+                                }
+                            }
                         }
                     }
                     Session["giohang-thucdonhangngay"] = giohang;
@@ -188,6 +260,19 @@ namespace Beanfamily.Controllers
                     if (idPro == idsp)
                     {
                         giohang = giohang.Select(g => g.Replace(item, idPro + "#" + soluong)).ToList();
+
+                        var tk = Session["user-data"] as TaiKhoanKhachHang;
+                        if (Session["user-dangnhap"] != null)
+                        {
+                            var giohangs = model.GioHangThucDonHangNgay.FirstOrDefault(t => t.id_sanpham == idPro && t.id_taikhoankhachhang == tk.id);
+
+                            if (giohangs != null)
+                            {
+                                giohangs.soluong = Int32.Parse(soluong);
+                                model.Entry(giohangs).State = System.Data.Entity.EntityState.Modified;
+                                model.SaveChanges();
+                            }
+                        }
                     }
                 }
 
@@ -222,6 +307,15 @@ namespace Beanfamily.Controllers
                     if (idPro == idsp)
                     {
                         giohang.RemoveAt(i);
+
+                        var tk = Session["user-data"] as TaiKhoanKhachHang;
+                        if (Session["user-dangnhap"] != null)
+                        {
+                            var spgiohang = model.GioHangThucDonHangNgay.FirstOrDefault(g => g.id_sanpham == idPro && g.id_taikhoankhachhang == tk.id);
+                            model.GioHangThucDonHangNgay.Remove(spgiohang);
+                            model.SaveChanges();
+                        }
+
                         break;
                     }
                     i++;

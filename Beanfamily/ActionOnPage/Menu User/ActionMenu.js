@@ -74,20 +74,7 @@
                     btn.html("ĐĂNG NHẬP");
                     $('body').find('[id="validate-sodienthoai-dangnhap"]').text('Tài khoản của bạn đã bị khóa.').prop('hidden', false);
                 }
-                else if (ketqua == "SUCCESS") {
-                    btn.css('pointer-events', 'auto');
-                    btn.html("ĐĂNG NHẬP");
-                    $('body').find('[id="userDangNhapModal"]').modal('toggle');
-
-                    Swal.fire({
-                        title: "Đăng Nhập Thành Công",
-                        icon: "success"
-                    }).then(() => {
-                        window.location.href = $('#requestPath').val() + "home/index";
-
-                    });
-                }
-                else {
+                else if (ketqua.indexOf("Chi tiết lỗi:") !== -1) {
                     btn.css('pointer-events', 'auto');
                     btn.html("ĐĂNG NHẬP");
                     Swal.fire({
@@ -96,6 +83,21 @@
                         icon: "error"
                     }).then(() => {
                         window.location.reload();
+                    });
+                }
+                else {
+                    btn.css('pointer-events', 'auto');
+                    btn.html("ĐĂNG NHẬP");
+                    $('body').find('[id="userDangNhapModal"]').modal('toggle');
+
+                    $('body').find('[id="cart-content-load"]').replaceWith(ketqua);
+
+                    Swal.fire({
+                        title: "Đăng Nhập Thành Công",
+                        icon: "success"
+                    }).then(() => {
+                        window.location.href = $('#requestPath').val() + "home/index";
+
                     });
                 }
             });
@@ -237,19 +239,21 @@
                     processData: false,
                     contentType: false,
                 }).done(function (ketqua) {
-                    if (ketqua == "SUCCESS") {
+                    if (ketqua.indexOf("Chi tiết lỗi:") !== -1) {
                         Swal.fire({
-                            title: "Đã Đăng Xuất",
-                            icon: "success"
+                            title: "Đã xảy ra lỗi, vui lòng thử lại sau.",
+                            text: ketqua,
+                            icon: "error"
                         }).then(() => {
                             window.location.reload();
                         });
                     }
                     else {
+                        $('body').find('[id="cart-content-load"]').replaceWith(ketqua);
+
                         Swal.fire({
-                            title: "Đã xảy ra lỗi, vui lòng thử lại sau.",
-                            text: ketqua,
-                            icon: "error"
+                            title: "Đã Đăng Xuất",
+                            icon: "success"
                         }).then(() => {
                             window.location.reload();
                         });
