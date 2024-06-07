@@ -323,6 +323,7 @@
     <Content Include="ActionOnPage\GioHang\DeletedProduct.js" />
     <Content Include="ActionOnPage\GioHang\DatHang.js" />
     <Content Include="ActionOnPage\GioiThieu\loadPageNhaHang.js" />
+    <Content Include="ActionOnPage\Menu User\UpdateInfo.js" />
     <Content Include="ActionOnPage\Menu User\ActionMenu.js" />
     <Content Include="ActionOnPage\Menu User\DatLaiMatKhau.js" />
     <Content Include="ActionOnPage\Menu User\GuiMaXacNhanQuenMatKhau.js" />

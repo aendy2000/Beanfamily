@@ -400,5 +400,34 @@ namespace Beanfamily.Controllers
                 return Content("Chi tiết lỗi: " + Ex.Message);
             }
         }
+        [HttpPost]
+        public ActionResult UpdateInfo(int id, string hoten, string sodienthoai, string email, string ngaysinh, string gioitinh, string diachi)
+        {
+            try
+            {
+                var tk = model.TaiKhoanKhachHang.Find(id);
+                if (tk == null)
+                    return Content("NOTEXIST");
+
+                tk.hovaten = hoten;
+                tk.sodienthoai = sodienthoai;
+                tk.email = email;
+                tk.ngaysinh = ngaysinh;
+                tk.gioitinh = gioitinh;
+                tk.diachi = diachi;
+
+                model.Entry(tk).State= EntityState.Modified;
+                model.SaveChanges();
+
+                Session["user-data"] = tk;
+
+                return Content("SUCCESS");
+            }
+            catch (Exception Ex)
+            {
+                return Content("Chi tiết lỗi: " + Ex.Message);
+            }
+        }
+
     }
 }

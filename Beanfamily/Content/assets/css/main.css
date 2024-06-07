@@ -379,6 +379,10 @@ input[type="date" i] {
         outline: none;
     }
 
+.selection-info-user-parent .select2-container .select2-selection--single {
+    background-color: #122E26 !important;
+}
+
 #selectThoiGianDatBan .select2-container--default .selection .select2-selection--single {
     display: flex;
     align-items: center;
@@ -439,7 +443,10 @@ input[type="date" i] {
     padding-left: 20px !important;
 }
 
-.select2-selection__arrow {
+.selection-info-user-parent .select2-selection__rendered {
+    color: #fff !important;
+}
+    .select2-selection__arrow {
     top: 50% !important;
     transform: translateY(-50%) !important;
     right: 12px !important;
