@@ -19,6 +19,8 @@
             <h6 class="t-center text-white mt-2">
                 <a class="text-white text-decoration-underline" href="@Url.Action("index", "home")">TRANG CHỦ</a>
                 <label class="ms-2 me-2">/</label>
+                <a class="text-white text-decoration-underline" href="@Url.Action("index", "nhahangbean")">NHÀ HÀNG</a>
+                <label class="ms-2 me-2">/</label>
                 <a>MENU HẰNG NGÀY</a>
             </h6>
         </div>
@@ -54,7 +56,6 @@
                                     else
                                     {
                                         <li name="@item.id" class="list-group-item"><a>@item.tendanhmuc</a></li>
-
                                     }
                                 }
                             }

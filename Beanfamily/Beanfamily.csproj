@@ -155,6 +155,7 @@
     <Compile Include="Areas\Admin\Controllers\RoleController.cs" />
     <Compile Include="Areas\Admin\Controllers\SanPhamMuaSamController.cs" />
     <Compile Include="Areas\Admin\Controllers\SanPhamVuonRauBeanController.cs" />
+    <Compile Include="Controllers\DatHangController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MenuBuffetController.cs" />
     <Compile Include="Controllers\MenuTiecBanController.cs" />
@@ -336,6 +337,7 @@
     <Content Include="ActionOnPage\MenuTiecBan\loadPageMenuTiecBan.js" />
     <Content Include="ActionOnPage\MenuTiecBan\SubmitFormDatBan.js" />
     <Content Include="ActionOnPage\NhaHang\loadPageNhaHang.js" />
+    <Content Include="ActionOnPage\TemplateMail\index.html" />
     <Content Include="ActionOnPage\ThucDonHangNgay\AddToCart.js" />
     <Content Include="ActionOnPage\ThucDonHangNgay\loadPageThucDonHangNgayDetail.js" />
     <Content Include="ActionOnPage\ThucDonHangNgay\loadPageThucDonHangNgay.js" />
@@ -2967,6 +2969,7 @@
     <Content Include="Views\Home\UserLogin.cshtml" />
     <Content Include="Views\Home\_NhapMaXacNhan.cshtml" />
     <Content Include="Views\Home\_DatLaiMatKhau.cshtml" />
+    <Content Include="Views\DatHang\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

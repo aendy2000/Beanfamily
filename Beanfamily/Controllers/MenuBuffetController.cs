@@ -9,6 +9,11 @@ using System.Web.Mvc;
 using Beanfamily.Models;
 using Microsoft.SqlServer.Server;
 using PagedList;
+using System.Net.Mail;
+using System.Net;
+using System.Web.Services.Description;
+using System.Xml.Linq;
+using System.IO;
 
 namespace Beanfamily.Controllers
 {
@@ -132,6 +137,38 @@ namespace Beanfamily.Controllers
                 ttdh.thoigian = DateTime.Now;
                 model.TinhTrangDonHangMenuBuffet.Add(ttdh);
                 model.SaveChanges();
+
+                string bodyMail = string.Empty;
+                using (StreamReader reader = new StreamReader(Server.MapPath("~/ActionOnPage/TemplateMail/index.html")))
+                {
+                    bodyMail = reader.ReadToEnd();
+                }
+
+                bodyMail = bodyMail.Replace("{HoVaTen}", hovaten);
+                bodyMail = bodyMail.Replace("{SoDienThoai}", sodienthoai);
+                bodyMail = bodyMail.Replace("{SoBan}", soban.ToString());
+                bodyMail = bodyMail.Replace("{MaDonHang}", madonhang); 
+                bodyMail = bodyMail.Replace("{LoaiDon}", "Menu Buffet");
+
+                using (MailMessage mailMessage = new MailMessage("beanfamilyshop@gmail.com", "dv.tuan3010@gmail.com"))
+                {
+                    mailMessage.Subject = "ĐƠN ĐẶT BÀN MENU BUFFET MỚI";
+                    mailMessage.IsBodyHtml = true;
+                    //mailMessage.Body = "<b>" + hovaten + " | " + sodienthoai + "</b> đã đặt " + soban + " bàn Menu Buffet.<br/><br/>Mã đơn: <b>" + madonhang + "</b>.<br/><br/>Hãy nhanh chóng liên hệ lại với <b>" + hovaten + "</b> để xác nhận đơn đặt bàn!";
+                    mailMessage.Body = bodyMail;
+
+                    using (SmtpClient smtp = new SmtpClient())
+                    {
+                        smtp.Host = "smtp.gmail.com";
+                        smtp.EnableSsl = true;
+                        NetworkCredential cred = new NetworkCredential("beanfamilyshop@gmail.com", "qwyxakxwvxtspdhr");
+                        smtp.UseDefaultCredentials = true;
+                        smtp.Credentials = cred;
+                        smtp.Port = 587;
+
+                        smtp.Send(mailMessage);
+                    }
+                }
 
                 return Content("SUCCESS-" + madonhang);
             }

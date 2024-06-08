@@ -393,6 +393,10 @@ input[type="date" i] {
     outline: none;
 }
 
+.selection-datban-parent .select2-container .select2-selection--single {
+    background-color: #122E26 !important;
+}
+
 .select2-container--focus {
     border-radius: 10px;
     box-shadow: 0 0 0px 2px #C49A6C;
@@ -446,6 +450,11 @@ input[type="date" i] {
 .selection-info-user-parent .select2-selection__rendered {
     color: #fff !important;
 }
+
+.selection-datban-parent .select2-selection__rendered {
+    color: #fff !important;
+}
+
     .select2-selection__arrow {
     top: 50% !important;
     transform: translateY(-50%) !important;
@@ -455,6 +464,18 @@ input[type="date" i] {
 
 /*[ dropdown option ]
 ===========================================================*/
+
+.blogioithieu {
+    transition: all .3s;
+}
+
+    .blogioithieu:hover {
+        background: #122E26;
+    }
+
+/*[ block 1 ]
+===========================================================*/
+
 .select2-dropdown {
     border: none !important;
     border-radius: 10px !important;

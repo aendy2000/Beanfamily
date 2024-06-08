@@ -8,10 +8,19 @@
     Layout = null;
 }
 
-<div id="cart-content-load" class="col-lg-12">
+<div id="cart-content-load" class="col-lg-12 bgwhite mb-3" style="padding: 0; border-radius: 18px; border: 2px solid #FFC687;">
     @if ((giohangmuassam == null || giohangmuassam.Count < 1) && (giohangvuonrau == null || giohangvuonrau.Count < 1) && (giohangthucdonhangngay == null || giohangthucdonhangngay.Count < 1))
     {
-        <h5 style="text-align: center; font-weight: bold">Chưa có sản phẩm nào trong giỏ hàng!</h5>
+        <div class="mb-3 bo-rad-16 text-white ms-3 me-3">
+            <div class="card-body">
+                <div class="d-flex justify-content-between row">
+                    <div style="width: 100%" class="d-flex flex-col align-items-center justify-content-center col-md-6 col-sm-6 ms-2 me-2 mt-2 mb-2">
+                        <h5 style="text-align: center; font-weight: bold; color: #333" class="mb-4 mt-4">Chưa có sản phẩm nào trong giỏ hàng!</h5>
+                        <a href="@Url.Action("index", "home")" style="width: auto; padding: 10px" class="btn3 flex-c-m size1 txt11 trans-0-4 mb-3">TIẾP TỤC MUA SẮM</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     }
     else
     {
@@ -32,8 +41,7 @@
                 }
                 else
                 {
-
-                    <div class="card mb-3 bo-rad-16 bggreen text-white">
+                    <div class="card mb-3 bo-rad-16 bggreen text-white  ms-3 me-3">
                         <div class="card-body">
                             <div class="d-flex justify-content-between row">
                                 <div class="d-flex flex-row align-items-center col-md-6 col-sm-6 ms-2 me-2 mt-2 mb-2">
@@ -65,12 +73,12 @@
                                                 <button class="text-white btn btn-white border border-secondary px-3" type="button" id="giamsoluonggiohangmuasam-@idPro-@idLoaiPro" name="@idPro-@idLoaiPro" data-mdb-ripple-color="dark">
                                                     <i class="fa fa-minus"></i>
                                                 </button>
-                                                <input tonkho="@Session["tonkhoconlai-muasam-" + idPro + idLoaiPro]" value="@soluong" id="soluonggiohangmuasam-@idPro-@idLoaiPro" name="@idPro-@idLoaiPro" data-type='numbers' type="text" class="form-control text-center border border-secondary" placeholder="0" aria-label="Số lượng sản phẩm" aria-describedby="button-addon1" />
+                                                <input tonkho="@Session["tonkhoconlai-muasam-" + idPro + "-" + idLoaiPro]" value="@soluong" id="soluonggiohangmuasam-@idPro-@idLoaiPro" name="@idPro-@idLoaiPro" data-type='numbers' type="text" class="form-control text-center border border-secondary" placeholder="0" aria-label="Số lượng sản phẩm" aria-describedby="button-addon1" />
                                                 <button class="text-white btn btn-white border border-secondary px-3" type="button" id="tangsoluonggiohangmuasam-@idPro-@idLoaiPro" name="@idPro-@idLoaiPro" data-mdb-ripple-color="dark">
                                                     <i class="fa fa-plus"></i>
                                                 </button>
                                             </div>
-                                            <p id="thongbaosoluongmuasam-@idPro-@idLoaiPro" style="margin-bottom: -5px" class="text-red small">@(Session["soluongmax-muasam-" + idPro + idLoaiPro] != null ? "Kho còn " + Session["soluongmax-muasam-" + idPro + idLoaiPro] + " sản phẩm!" : "")</p>
+                                            <p id="thongbaosoluongmuasam-@idPro-@idLoaiPro" style="margin-bottom: -5px" class="text-red small">@(Session["soluongmax-muasam-" + idPro + "-" + idLoaiPro] != null ? "Kho còn " + Session["soluongmax-muasam-" + idPro + "-" + idLoaiPro] + " sản phẩm!" : "")</p>
                                         </div>
                                         <div class="ms-2 me-2 mt-2 mb-2 col-sm-12 col-md-5 text-center">
                                             <h5 id="giasanphammuasam-@idPro-@idLoaiPro" dongia="@((pro.TonKhoSanPham.FirstOrDefault(l => l.id == idLoaiPro) == null ? "CHONPHANLOAI" : (pro.TonKhoSanPham.FirstOrDefault(l => l.id == idLoaiPro).gia).ToString("0")))"
@@ -106,12 +114,28 @@
 
         if (giohangvuonrau != null && giohangvuonrau.Count > 0)
         {
-            <h5 class="text-center mb-3 text-white" style="background: #5e443b !important; border-radius: 16px 16px 0 0; height: 50px; display: flex; flex-direction: column; justify-content: center;">SẢN PHẨM RAU NHÀ TRỒNG</h5>
+            if (giohangmuassam != null && giohangvuonrau != null)
+            {
+                if (giohangmuassam.Count > 0 && giohangvuonrau.Count > 0)
+                {
+                    <h5 class="text-center mb-3 text-white" style="background: #5e443b !important; height: 50px; display: flex; flex-direction: column; justify-content: center;">SẢN PHẨM RAU NHÀ TRỒNG</h5>
+                }
+                else
+                {
+                    <h5 class="text-center mb-3 text-white" style="background: #5e443b !important; border-radius: 16px 16px 0 0; height: 50px; display: flex; flex-direction: column; justify-content: center;">SẢN PHẨM RAU NHÀ TRỒNG</h5>
+                }
+            }
+            else
+            {
+                <h5 class="text-center mb-3 text-white" style="background: #5e443b !important; border-radius: 16px 16px 0 0; height: 50px; display: flex; flex-direction: column; justify-content: center;">SẢN PHẨM RAU NHÀ TRỒNG</h5>
+            }
+
+            @*<h5 class="text-center mb-3 text-white" style="background: #5e443b !important; border-radius: 16px 16px 0 0; height: 50px; display: flex; flex-direction: column; justify-content: center;">SẢN PHẨM RAU NHÀ TRỒNG</h5>*@
 
             foreach (var item in giohangvuonrau)
             {
                 int idPro = Int32.Parse(item.Split('#')[0]);
-                decimal soluong = Convert.ToDecimal(item.Split('#')[1].Replace(".", ","));
+                int soluong = Int32.Parse(item.Split('#')[1]);
 
                 var pro = models.SanPhamRauNhaTrong.Find(idPro);
                 if (pro == null)
@@ -120,8 +144,7 @@
                 }
                 else
                 {
-
-                    <div class="card mb-3 bo-rad-16 bggreen text-white">
+                    <div class="card mb-3 bo-rad-16 bggreen text-white ms-3 me-3">
                         <div class="card-body">
                             <div class="d-flex justify-content-between row">
                                 <div class="d-flex flex-row align-items-center col-md-6 col-sm-6 ms-2 me-2 mt-2 mb-2">
@@ -185,14 +208,29 @@
                 <hr class="my-4" style="background-color: darkgray" />
             }
         }
+
         if (giohangthucdonhangngay != null && giohangthucdonhangngay.Count > 0)
         {
-            <h5 class="text-center mb-3 text-white" style="background: #5e443b !important; border-radius: 16px 16px 0 0; height: 50px; display: flex; flex-direction: column; justify-content: center;">THỰC ĐƠN HẰNG NGÀY</h5>
+            if (giohangvuonrau != null && giohangthucdonhangngay != null)
+            {
+                if (giohangvuonrau.Count > 0 && giohangthucdonhangngay.Count > 0)
+                {
+                    <h5 class="text-center mb-3 text-white" style="background: #5e443b !important; height: 50px; display: flex; flex-direction: column; justify-content: center;">THỰC ĐƠN HẰNG NGÀY</h5>
+                }
+                else
+                {
+                    <h5 class="text-center mb-3 text-white" style="background: #5e443b !important; border-radius: 16px 16px 0 0; height: 50px; display: flex; flex-direction: column; justify-content: center;">THỰC ĐƠN HẰNG NGÀY</h5>
+                }
+            }
+            else
+            {
+                <h5 class="text-center mb-3 text-white" style="background: #5e443b !important; border-radius: 16px 16px 0 0; height: 50px; display: flex; flex-direction: column; justify-content: center;">THỰC ĐƠN HẰNG NGÀY</h5>
+            }
 
             foreach (var item in giohangthucdonhangngay)
             {
                 int idPro = Int32.Parse(item.Split('#')[0]);
-                decimal soluong = Convert.ToDecimal(item.Split('#')[1].Replace(".", ","));
+                int soluong = Int32.Parse(item.Split('#')[1]);
 
                 var pro = models.SanPhamThucDonHangNgay.Find(idPro);
                 if (pro == null)
@@ -202,7 +240,7 @@
                 else
                 {
 
-                    <div class="card mb-3 bo-rad-16 bggreen text-white">
+                    <div class="card mb-3 bo-rad-16 bggreen text-white ms-3 me-3">
                         <div class="card-body">
                             <div class="d-flex justify-content-between row">
                                 <div class="d-flex flex-row align-items-center col-md-6 col-sm-6 ms-2 me-2 mt-2 mb-2">

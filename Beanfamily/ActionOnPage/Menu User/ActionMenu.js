@@ -92,16 +92,15 @@
                 else {
                     btn.css('pointer-events', 'auto');
                     btn.html("ĐĂNG NHẬP");
-                    $('body').find('[id="userDangNhapModal"]').modal('toggle');
-
                     $('body').find('[id="cart-content-load"]').replaceWith(ketqua);
+
+                    $('body').find('[id="userDangNhapModal"]').modal('toggle');
 
                     Swal.fire({
                         title: "Đăng Nhập Thành Công",
                         icon: "success"
                     }).then(() => {
-                        window.location.href = $('#requestPath').val() + "home/index";
-
+                        window.location.reload();
                     });
                 }
             });

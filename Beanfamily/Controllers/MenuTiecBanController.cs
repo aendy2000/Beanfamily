@@ -9,6 +9,9 @@ using System.Web.Mvc;
 using Beanfamily.Models;
 using Microsoft.SqlServer.Server;
 using PagedList;
+using System.Net.Mail;
+using System.Net;
+using System.IO;
 
 namespace Beanfamily.Controllers
 {
@@ -133,6 +136,37 @@ namespace Beanfamily.Controllers
                 ttdh.thoigian = DateTime.Now;
                 model.TinhTrangDonHangMenuTiecBan.Add(ttdh);
                 model.SaveChanges();
+
+                string bodyMail = string.Empty;
+                using (StreamReader reader = new StreamReader(Server.MapPath("~/ActionOnPage/TemplateMail/index.html")))
+                {
+                    bodyMail = reader.ReadToEnd();
+                }
+
+                bodyMail = bodyMail.Replace("{HoVaTen}", hovaten);
+                bodyMail = bodyMail.Replace("{SoDienThoai}", sodienthoai);
+                bodyMail = bodyMail.Replace("{SoBan}", soban.ToString());
+                bodyMail = bodyMail.Replace("{MaDonHang}", madonhang);
+                bodyMail = bodyMail.Replace("{LoaiDon}", "Menu Tiệc Bàn");
+
+                using (MailMessage mailMessage = new MailMessage("beanfamilyshop@gmail.com", "dv.tuan3010@gmail.com"))
+                {
+                    mailMessage.Subject = "ĐƠN ĐẶT BÀN MENU TIỆC MỚI";
+                    mailMessage.IsBodyHtml = true;
+                    mailMessage.Body = bodyMail;
+
+                    using (SmtpClient smtp = new SmtpClient())
+                    {
+                        smtp.Host = "smtp.gmail.com";
+                        smtp.EnableSsl = true;
+                        NetworkCredential cred = new NetworkCredential("beanfamilyshop@gmail.com", "qwyxakxwvxtspdhr");
+                        smtp.UseDefaultCredentials = true;
+                        smtp.Credentials = cred;
+                        smtp.Port = 587;
+
+                        smtp.Send(mailMessage);
+                    }
+                }
 
                 return Content("SUCCESS-" + madonhang);
             }

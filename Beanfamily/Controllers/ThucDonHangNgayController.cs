@@ -147,9 +147,11 @@ namespace Beanfamily.Controllers
                             {
                                 checks = true;
                                 int soluongs2 = Convert.ToInt32(item.Split('#')[1]) + soluong;
+                                if (soluongs2 > 100)
+                                    soluongs2 = 100;
                                 giohang = giohang.Select(g => g.Replace(item, idPro + "#" + soluongs2)).ToList();
                                 soluong = soluongs2;
-                                
+
                                 var tk = Session["user-data"] as TaiKhoanKhachHang;
                                 if (Session["user-dangnhap"] != null)
                                 {
