@@ -1,0 +1,143 @@
+﻿@using Beanfamily.Models
+@{
+    BeanfamilyEntities models = new BeanfamilyEntities();
+    List<string> giohangmuassam = Session["giohang-muasam"] as List<string>;
+    List<string> giohangvuonrau = Session["giohang-vuonrau"] as List<string>;
+    List<string> giohangthucdonhangngay = Session["giohang-thucdonhangngay"] as List<string>;
+
+    TaiKhoanKhachHang tkkh = Session["user-data"] as TaiKhoanKhachHang;
+
+    int SPMuaSam = (giohangmuassam != null ? giohangmuassam.Count : 0);
+    int SPVuonRau = (giohangvuonrau != null ? giohangvuonrau.Count : 0);
+    int SPMNHN = (giohangthucdonhangngay != null ? giohangthucdonhangngay.Count : 0);
+
+    int sosanpham = SPMuaSam + SPVuonRau + SPMNHN;
+
+    decimal tongMuaSam = 0;
+    if (giohangmuassam != null)
+    {
+        foreach (var item in giohangmuassam)
+        {
+            int idLoai = Int32.Parse(item.Split('#')[1]);
+            int soLuong = Int32.Parse(item.Split('#')[2]);
+
+            tongMuaSam += models.TonKhoSanPham.Find(idLoai).gia * soLuong;
+        }
+    }
+
+    decimal tongVuonRau = 0;
+    if (giohangvuonrau != null)
+    {
+        foreach (var item in giohangvuonrau)
+        {
+            int idSP = Int32.Parse(item.Split('#')[0]);
+            int soLuong = Int32.Parse(item.Split('#')[1]);
+
+            tongVuonRau += models.SanPhamRauNhaTrong.Find(idSP).gia * soLuong;
+        }
+    }
+
+    decimal tongMenuHangNgay = 0;
+    if (giohangthucdonhangngay != null)
+    {
+        foreach (var item in giohangthucdonhangngay)
+        {
+            int idSP = Int32.Parse(item.Split('#')[0]);
+            int soLuong = Int32.Parse(item.Split('#')[1]);
+
+            tongMenuHangNgay += models.SanPhamThucDonHangNgay.Find(idSP).gia * soLuong;
+        }
+    }
+    decimal tongTien = tongMuaSam + tongVuonRau + tongMenuHangNgay;
+    string strTongTien = "";
+    if (tongTien > 0)
+    {
+        strTongTien = tongTien.ToString("0,0") + " đ";
+    }
+    else
+    {
+        strTongTien = "0";
+    }
+}
+<div id="content-chitiet-giohang">
+    <div class="row">
+        <div class="col-12">
+            <h5 class="text-center mb-3 text-white" style="background: #5e443b !important; border-radius: 16px 16px 0 0; height: 50px; display: flex; flex-direction: column; justify-content: center;">CHI TIẾT</h5>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-md-6">
+            <div style="margin: 0 15px; font-weight: bold">Sản phẩm: </div>
+        </div>
+        <div class="col-md-6" style="text-align: right;">
+            <div style="margin: 0 15px; font-weight: bold">@sosanpham</div>
+        </div>
+        <div class="col-md-12">
+            <div style="border-left: 1px solid darkgray; margin: 0 4px 0 15px; font-size: 13px" class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        @if (SPMuaSam > 0)
+                        {
+                            <div class="col-md-8" style="padding: 0 0 0 10px">Mua sắm:</div>
+                            <div class="col-md-4" style="text-align: right; padding: 0 10px 0 0">@SPMuaSam</div>
+                        }
+                        @if (SPVuonRau > 0)
+                        {
+                            <div class="col-md-8" style="padding: 0 0 0 10px">Rau nhà trồng:</div>
+                            <div class="col-md-4" style="text-align: right; padding: 0 10px 0 0">@SPVuonRau</div>
+                        }
+                        @if (SPMNHN > 0)
+                        {
+                            <div class="col-md-8" style="padding: 0 0 0 10px">T.Đơn hằng ngày:</div>
+                            <div class="col-md-4" style="text-align: right; padding: 0 10px 0 0">@SPMNHN</div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col-md-12 mb-3 mt-3">
+            <div style="border-top: 1px solid darkgray; margin: 0"></div>
+        </div>
+        <div class="col-md-6">
+            <div style="margin: 0 15px; font-weight: bold">Tổng: </div>
+        </div>
+        <div class="col-md-6" style="text-align: right;">
+            <div style="margin: 0 15px; font-weight: bold">@strTongTien</div>
+        </div>
+        <div class="col-md-12">
+            <div style="border-left: 1px solid darkgray; margin: 0 4px 0 15px; font-size: 13px" class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        @if (tongMuaSam > 0)
+                        {
+                            <div class="col-md-8" style="padding: 0 0 0 10px">Mua sắm:</div>
+                            <div class="col-md-4" style="text-align: right; padding: 0 10px 0 0;">@tongMuaSam.ToString("0,0") đ</div>
+                        }
+                        @if (tongVuonRau > 0)
+                        {
+                            <div class="col-md-8" style="padding: 0 0 0 10px">Rau nhà trồng:</div>
+                            <div class="col-md-4" style="text-align: right; padding: 0 10px 0 0;">@tongVuonRau.ToString("0,0") đ</div>
+                        }
+                        @if (tongMenuHangNgay > 0)
+                        {
+                            <div class="col-md-8" style="padding: 0 0 0 10px">T.Đơn hằng ngày:</div>
+                            <div class="col-md-4" style="text-align: right; padding: 0 10px 0 0;">@tongMenuHangNgay.ToString("0,0") đ</div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-12 mt-3">
+            <div style="border-top: 1px solid darkgray; margin: 0"></div>
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <a href="@Url.Action("tienhanhdathang", "dathang")" style="margin: 0 20px;width: auto; padding: 10px" class="btn3 flex-c-m size1 txt11 trans-0-4">ĐẶT HÀNG</a>
+        </div>
+    </div>
+</div>

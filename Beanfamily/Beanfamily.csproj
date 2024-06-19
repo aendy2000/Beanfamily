@@ -2970,6 +2970,8 @@
     <Content Include="Views\Home\_NhapMaXacNhan.cshtml" />
     <Content Include="Views\Home\_DatLaiMatKhau.cshtml" />
     <Content Include="Views\DatHang\Index.cshtml" />
+    <Content Include="Views\DatHang\_UpdateInfoCart.cshtml" />
+    <Content Include="Views\DatHang\TienHanhDatHang.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

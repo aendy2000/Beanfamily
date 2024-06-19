@@ -62,6 +62,7 @@
                             icon: "success",
                             title: 'Sản phẩm "' + name + '" đã được xóa khỏi giỏ hàng.',
                         });
+                        UpdateThongTinCart();
                     }
                 });
             }
@@ -131,6 +132,7 @@
                             icon: "success",
                             title: 'Sản phẩm "' + name + '" đã được xóa khỏi giỏ hàng.',
                         });
+                        UpdateThongTinCart();
                     }
                 });
             }
@@ -200,10 +202,27 @@
                             icon: "success",
                             title: 'Sản phẩm "' + name + '" đã được xóa khỏi giỏ hàng.',
                         });
+
+                        UpdateThongTinCart();
                     }
                 });
             }
         });
 
     });
+
+    function UpdateThongTinCart() {
+        var tt = $('body').find('[id="content-chitiet-giohang"]');
+        if (tt !== null && tt.length > 0) {
+            $.ajax({
+                url: $('body').find('[id="requestPath"]').val() + 'dathang/UpdateInfoCart',
+                dataType: 'html',
+                type: 'GET',
+                processData: false,
+                contentType: false
+            }).done(function (ketqua) {
+                $('body').find('[id="content-chitiet-giohang"]').replaceWith(ketqua);
+            });
+        }
+    }
 });

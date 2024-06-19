@@ -93,6 +93,7 @@
                             $('body').find('[id="soluonggiohangmuasam-' + id + '"]').prop('disabled', false);
                             $('body').find('[id="tangsoluonggiohangmuasam-' + id + '"]').prop('disabled', false);
                             $('body').find('[id="giamsoluonggiohangmuasam-' + id + '"]').prop('disabled', false);
+                            UpdateThongTinCart();
                         }
                         else if (data == "HETHANG") {
                             $('body').find('[id="giasanphammuasam-' + id + '"]').text("0đ");
@@ -203,6 +204,7 @@
                             $('body').find('[id="soluonggiohangmuasam-' + id + '"]').prop('disabled', false);
                             $('body').find('[id="tangsoluonggiohangmuasam-' + id + '"]').prop('disabled', false);
                             $('body').find('[id="giamsoluonggiohangmuasam-' + id + '"]').prop('disabled', false);
+                            UpdateThongTinCart();
                         }
                         else if (data == "HETHANG") {
                             $('body').find('[id="giasanphammuasam-' + id + '"]').text("0đ");
@@ -315,6 +317,7 @@
                                 $('body').find('[id="tangsoluonggiohangmuasam-' + id + '"]').prop('disabled', false);
                                 $('body').find('[id="giamsoluonggiohangmuasam-' + id + '"]').prop('disabled', false);
                                 $('body').find('[id^="soluonggiohangmuasam-' + id + '"]').focus();
+                                UpdateThongTinCart();
 
                             }
                             else if (data == "HETHANG") {
@@ -425,6 +428,7 @@
                                 $('body').find('[id="tangsoluonggiohangvuonrau-' + id + '"]').prop('disabled', false);
                                 $('body').find('[id="giamsoluonggiohangvuonrau-' + id + '"]').prop('disabled', false);
                                 $('body').find('[id^="soluonggiohangvuonrau-' + id + '"]').focus();
+                                UpdateThongTinCart();
 
                             }
                             else if (data == "HETHANG") {
@@ -526,7 +530,7 @@
                             $('body').find('[id="soluonggiohangmuasam-' + id + '"]').prop('disabled', false);
                             $('body').find('[id="tangsoluonggiohangmuasam-' + id + '"]').prop('disabled', false);
                             $('body').find('[id="giamsoluonggiohangmuasam-' + id + '"]').prop('disabled', false);
-
+                            UpdateThongTinCart();
                         }
                         else if (data == "HETHANG") {
                             $('body').find('[id="giasanphammuasam-' + id + '"]').text("0đ");
@@ -609,6 +613,7 @@
                                 $('body').find('[id="soluonggiohangmuasam-' + id + '"]').prop('disabled', false);
                                 $('body').find('[id="tangsoluonggiohangmuasam-' + id + '"]').prop('disabled', false);
                                 $('body').find('[id="giamsoluonggiohangmuasam-' + id + '"]').prop('disabled', false);
+                                UpdateThongTinCart();
 
                             }
                             else if (data == "HETHANG") {
@@ -691,6 +696,7 @@
                                 $('body').find('[id="soluonggiohangmuasam-' + id + '"]').prop('disabled', false);
                                 $('body').find('[id="tangsoluonggiohangmuasam-' + id + '"]').prop('disabled', false);
                                 $('body').find('[id="giamsoluonggiohangmuasam-' + id + '"]').prop('disabled', false);
+                                UpdateThongTinCart();
 
                             }
                             else if (data == "HETHANG") {
@@ -773,6 +779,7 @@
                                 $('body').find('[id="soluonggiohangmuasam-' + id + '"]').prop('disabled', false);
                                 $('body').find('[id="tangsoluonggiohangmuasam-' + id + '"]').prop('disabled', false);
                                 $('body').find('[id="giamsoluonggiohangmuasam-' + id + '"]').prop('disabled', false);
+                                UpdateThongTinCart();
 
                             }
                             else if (data == "HETHANG") {
@@ -854,6 +861,7 @@
                                 $('body').find('[id="soluonggiohangmuasam-' + id + '"]').prop('disabled', false);
                                 $('body').find('[id="tangsoluonggiohangmuasam-' + id + '"]').prop('disabled', false);
                                 $('body').find('[id="giamsoluonggiohangmuasam-' + id + '"]').prop('disabled', false);
+                                UpdateThongTinCart();
 
                             }
                             else if (data == "HETHANG") {
@@ -964,6 +972,7 @@
                             $('body').find('[id="soluonggiohangvuonrau-' + id + '"]').prop('disabled', false);
                             $('body').find('[id="tangsoluonggiohangvuonrau-' + id + '"]').prop('disabled', false);
                             $('body').find('[id="giamsoluonggiohangvuonrau-' + id + '"]').prop('disabled', false);
+                            UpdateThongTinCart();
                         }
                         else if (data == "HETHANG") {
                             $('body').find('[id="giasanphamvuonrau-' + id + '"]').text("0đ");
@@ -1075,6 +1084,7 @@
                             $('body').find('[id="soluonggiohangvuonrau-' + id + '"]').prop('disabled', false);
                             $('body').find('[id="tangsoluonggiohangvuonrau-' + id + '"]').prop('disabled', false);
                             $('body').find('[id="giamsoluonggiohangvuonrau-' + id + '"]').prop('disabled', false);
+                            UpdateThongTinCart();
                         }
                         else if (data == "HETHANG") {
                             $('body').find('[id="giasanphamvuonrau-' + id + '"]').text("0đ");
@@ -1189,6 +1199,7 @@
                                 $('body').find('[id="tangsoluonggiohangvuonrau-' + id + '"]').prop('disabled', false);
                                 $('body').find('[id="giamsoluonggiohangvuonrau-' + id + '"]').prop('disabled', false);
                                 $('body').find('[id^="soluonggiohangvuonrau-' + id + '"]').focus();
+                                UpdateThongTinCart();
 
                             }
                             else if (data == "HETHANG") {
@@ -1299,6 +1310,7 @@
                                 $('body').find('[id="tangsoluonggiohangvuonrau-' + id + '"]').prop('disabled', false);
                                 $('body').find('[id="giamsoluonggiohangvuonrau-' + id + '"]').prop('disabled', false);
                                 $('body').find('[id^="soluonggiohangvuonrau-' + id + '"]').focus();
+                                UpdateThongTinCart();
 
                             }
                             else if (data == "HETHANG") {
@@ -1402,6 +1414,7 @@
                             $('body').find('[id="soluonggiohangvuonrau-' + id + '"]').prop('disabled', false);
                             $('body').find('[id="tangsoluonggiohangvuonrau-' + id + '"]').prop('disabled', false);
                             $('body').find('[id="giamsoluonggiohangvuonrau-' + id + '"]').prop('disabled', false);
+                            UpdateThongTinCart();
 
                         }
                         else if (data == "HETHANG") {
@@ -1485,6 +1498,7 @@
                                 $('body').find('[id="soluonggiohangvuonrau-' + id + '"]').prop('disabled', false);
                                 $('body').find('[id="tangsoluonggiohangvuonrau-' + id + '"]').prop('disabled', false);
                                 $('body').find('[id="giamsoluonggiohangvuonrau-' + id + '"]').prop('disabled', false);
+                                UpdateThongTinCart();
 
                             }
                             else if (data == "HETHANG") {
@@ -1567,6 +1581,7 @@
                                 $('body').find('[id="soluonggiohangvuonrau-' + id + '"]').prop('disabled', false);
                                 $('body').find('[id="tangsoluonggiohangvuonrau-' + id + '"]').prop('disabled', false);
                                 $('body').find('[id="giamsoluonggiohangvuonrau-' + id + '"]').prop('disabled', false);
+                                UpdateThongTinCart();
 
                             }
                             else if (data == "HETHANG") {
@@ -1649,6 +1664,7 @@
                                 $('body').find('[id="soluonggiohangvuonrau-' + id + '"]').prop('disabled', false);
                                 $('body').find('[id="tangsoluonggiohangvuonrau-' + id + '"]').prop('disabled', false);
                                 $('body').find('[id="giamsoluonggiohangvuonrau-' + id + '"]').prop('disabled', false);
+                                UpdateThongTinCart();
 
                             }
                             else if (data == "HETHANG") {
@@ -1730,6 +1746,7 @@
                                 $('body').find('[id="soluonggiohangvuonrau-' + id + '"]').prop('disabled', false);
                                 $('body').find('[id="tangsoluonggiohangvuonrau-' + id + '"]').prop('disabled', false);
                                 $('body').find('[id="giamsoluonggiohangvuonrau-' + id + '"]').prop('disabled', false);
+                                UpdateThongTinCart();
 
                             }
                             else if (data == "HETHANG") {
@@ -1812,6 +1829,8 @@
                             $('body').find('[id="soluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', false);
                             $('body').find('[id="tangsoluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', false);
                             $('body').find('[id="giamsoluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', false);
+                            UpdateThongTinCart();
+
                         }
                         else if (data == "HETHANG") {
                             $('body').find('[id="giasanphamthucdonhangngay-' + id + '"]').text("0đ");
@@ -1893,6 +1912,7 @@
                             $('body').find('[id="soluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', false);
                             $('body').find('[id="tangsoluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', false);
                             $('body').find('[id="giamsoluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', false);
+                            UpdateThongTinCart();
                         }
                         else if (data == "HETHANG") {
                             $('body').find('[id="giasanphamthucdonhangngay-' + id + '"]').text("0đ");
@@ -1977,6 +1997,7 @@
                                 $('body').find('[id="tangsoluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', false);
                                 $('body').find('[id="giamsoluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', false);
                                 $('body').find('[id^="soluonggiohangthucdonhangngay-' + id + '"]').focus();
+                                UpdateThongTinCart();
 
                             }
                             else if (data == "HETHANG") {
@@ -2058,6 +2079,7 @@
                                 $('body').find('[id="tangsoluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', false);
                                 $('body').find('[id="giamsoluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', false);
                                 $('body').find('[id^="soluonggiohangthucdonhangngay-' + id + '"]').focus();
+                                UpdateThongTinCart();
 
                             }
                             else if (data == "HETHANG") {
@@ -2128,10 +2150,11 @@
                             });
                         }
                         else if (data.indexOf('SUCCESS') != -1) {
-                            
+
                             $('body').find('[id="soluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', false);
                             $('body').find('[id="tangsoluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', false);
                             $('body').find('[id="giamsoluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', false);
+                            UpdateThongTinCart();
 
                         }
                         else if (data == "HETHANG") {
@@ -2184,10 +2207,11 @@
                                 });
                             }
                             else if (data.indexOf('SUCCESS') != -1) {
-                                
+
                                 $('body').find('[id="soluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', false);
                                 $('body').find('[id="tangsoluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', false);
                                 $('body').find('[id="giamsoluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', false);
+                                UpdateThongTinCart();
 
                             }
                             else if (data == "HETHANG") {
@@ -2239,10 +2263,11 @@
                                 });
                             }
                             else if (data.indexOf('SUCCESS') != -1) {
-                                
+
                                 $('body').find('[id="soluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', false);
                                 $('body').find('[id="tangsoluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', false);
                                 $('body').find('[id="giamsoluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', false);
+                                UpdateThongTinCart();
 
                             }
                             else if (data == "HETHANG") {
@@ -2296,6 +2321,7 @@
                                 $('body').find('[id="soluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', false);
                                 $('body').find('[id="tangsoluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', false);
                                 $('body').find('[id="giamsoluonggiohangthucdonhangngay-' + id + '"]').prop('disabled', false);
+                                UpdateThongTinCart();
 
                             }
                             else if (data == "HETHANG") {
@@ -2309,4 +2335,19 @@
             }
         }
     });
+
+    function UpdateThongTinCart() {
+        var tt = $('body').find('[id="content-chitiet-giohang"]');
+        if (tt !== null && tt.length > 0) {
+            $.ajax({
+                url: $('body').find('[id="requestPath"]').val() + 'dathang/UpdateInfoCart',
+                dataType: 'html',
+                type: 'GET',
+                processData: false,
+                contentType: false
+            }).done(function (ketqua) {
+                $('body').find('[id="content-chitiet-giohang"]').replaceWith(ketqua);
+            });
+        }
+    }
 });

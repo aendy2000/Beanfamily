@@ -1,6 +1,5 @@
 ﻿$(document).ready(function () {
-    $('body').find('[id="fullgiohangBtn"]').on('click', function () {
+    $('body').find('[id="tienhanhdathangBtn"]').on('click', function () {
 
     });
-
 });
