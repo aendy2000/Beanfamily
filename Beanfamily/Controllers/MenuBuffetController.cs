@@ -144,15 +144,16 @@ namespace Beanfamily.Controllers
                     bodyMail = reader.ReadToEnd();
                 }
 
+                bodyMail = bodyMail.Replace("{TitleMenu}", "MENU BUFFET");
                 bodyMail = bodyMail.Replace("{HoVaTen}", hovaten);
                 bodyMail = bodyMail.Replace("{SoDienThoai}", sodienthoai);
                 bodyMail = bodyMail.Replace("{SoBan}", soban.ToString());
                 bodyMail = bodyMail.Replace("{MaDonHang}", madonhang); 
                 bodyMail = bodyMail.Replace("{LoaiDon}", "Menu Buffet");
 
-                using (MailMessage mailMessage = new MailMessage("beanfamilyshop@gmail.com", "dv.tuan3010@gmail.com"))
+                using (MailMessage mailMessage = new MailMessage("beanfamilyshop@gmail.com", "duongle15012000@gmail.com"))
                 {
-                    mailMessage.Subject = "ĐƠN ĐẶT BÀN MENU BUFFET MỚI";
+                    mailMessage.Subject = "[BEANFAMILY] ĐƠN ĐẶT BÀN MENU BUFFET MỚI";
                     mailMessage.IsBodyHtml = true;
                     //mailMessage.Body = "<b>" + hovaten + " | " + sodienthoai + "</b> đã đặt " + soban + " bàn Menu Buffet.<br/><br/>Mã đơn: <b>" + madonhang + "</b>.<br/><br/>Hãy nhanh chóng liên hệ lại với <b>" + hovaten + "</b> để xác nhận đơn đặt bàn!";
                     mailMessage.Body = bodyMail;

@@ -70,7 +70,7 @@
             <div style="margin: 0 15px; font-weight: bold">Sản phẩm: </div>
         </div>
         <div class="col-md-6" style="text-align: right;">
-            <div style="margin: 0 15px; font-weight: bold">@sosanpham</div>
+            <div style="margin: 0 15px 0 0; font-weight: bold">@sosanpham</div>
         </div>
         <div class="col-md-12">
             <div style="border-left: 1px solid darkgray; margin: 0 4px 0 15px; font-size: 13px" class="row">
@@ -78,18 +78,18 @@
                     <div class="row">
                         @if (SPMuaSam > 0)
                         {
-                            <div class="col-md-8" style="padding: 0 0 0 10px">Mua sắm:</div>
-                            <div class="col-md-4" style="text-align: right; padding: 0 10px 0 0">@SPMuaSam</div>
+                            <div class="col-md-7" style="padding: 0 0 0 10px">Mua sắm:</div>
+                            <div class="col-md-5" style="text-align: right; padding: 0 10px 0 0">@SPMuaSam</div>
                         }
                         @if (SPVuonRau > 0)
                         {
-                            <div class="col-md-8" style="padding: 0 0 0 10px">Rau nhà trồng:</div>
-                            <div class="col-md-4" style="text-align: right; padding: 0 10px 0 0">@SPVuonRau</div>
+                            <div class="col-md-7" style="padding: 0 0 0 10px">Rau nhà trồng:</div>
+                            <div class="col-md-5" style="text-align: right; padding: 0 10px 0 0">@SPVuonRau</div>
                         }
                         @if (SPMNHN > 0)
                         {
-                            <div class="col-md-8" style="padding: 0 0 0 10px">T.Đơn hằng ngày:</div>
-                            <div class="col-md-4" style="text-align: right; padding: 0 10px 0 0">@SPMNHN</div>
+                            <div class="col-md-7" style="padding: 0 0 0 10px">T.Đơn hằng ngày:</div>
+                            <div class="col-md-5" style="text-align: right; padding: 0 10px 0 0">@SPMNHN</div>
                         }
                     </div>
                 </div>
@@ -105,7 +105,7 @@
             <div style="margin: 0 15px; font-weight: bold">Tổng: </div>
         </div>
         <div class="col-md-6" style="text-align: right;">
-            <div style="margin: 0 15px; font-weight: bold">@strTongTien</div>
+            <div style="margin: 0 15px 0 0; font-weight: bold">@strTongTien</div>
         </div>
         <div class="col-md-12">
             <div style="border-left: 1px solid darkgray; margin: 0 4px 0 15px; font-size: 13px" class="row">
@@ -113,18 +113,18 @@
                     <div class="row">
                         @if (tongMuaSam > 0)
                         {
-                            <div class="col-md-8" style="padding: 0 0 0 10px">Mua sắm:</div>
-                            <div class="col-md-4" style="text-align: right; padding: 0 10px 0 0;">@tongMuaSam.ToString("0,0") đ</div>
+                            <div class="col-md-7" style="padding: 0 0 0 10px">Mua sắm:</div>
+                            <div class="col-md-5" style="text-align: right; padding: 0 10px 0 0;">@tongMuaSam.ToString("0,0") đ</div>
                         }
                         @if (tongVuonRau > 0)
                         {
-                            <div class="col-md-8" style="padding: 0 0 0 10px">Rau nhà trồng:</div>
-                            <div class="col-md-4" style="text-align: right; padding: 0 10px 0 0;">@tongVuonRau.ToString("0,0") đ</div>
+                            <div class="col-md-7" style="padding: 0 0 0 10px">Rau nhà trồng:</div>
+                            <div class="col-md-5" style="text-align: right; padding: 0 10px 0 0;">@tongVuonRau.ToString("0,0") đ</div>
                         }
                         @if (tongMenuHangNgay > 0)
                         {
-                            <div class="col-md-8" style="padding: 0 0 0 10px">T.Đơn hằng ngày:</div>
-                            <div class="col-md-4" style="text-align: right; padding: 0 10px 0 0;">@tongMenuHangNgay.ToString("0,0") đ</div>
+                            <div class="col-md-7" style="padding: 0 0 0 10px">T.Đơn hằng ngày:</div>
+                            <div class="col-md-5" style="text-align: right; padding: 0 10px 0 0;">@tongMenuHangNgay.ToString("0,0") đ</div>
                         }
                     </div>
                 </div>

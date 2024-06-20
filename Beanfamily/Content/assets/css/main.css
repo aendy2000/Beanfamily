@@ -2238,5 +2238,18 @@ body {
     display: block;
 }
 
+.input-radio {
+    appearance: none;
+    background-clip: content-box;
+    border-radius: 50%;
+    border: 3px solid #12634c !important;
+    background-color: white !important;
+}
+
+    .input-radio:checked {
+        background-color: #12634c !important;
+        padding: 3px !important;
+        border: 3px solid #12634c !important;
+    }
 
 

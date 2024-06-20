@@ -7,6 +7,10 @@ using Beanfamily.Models;
 using System.Data.Entity;
 using PagedList;
 using System.Web.Helpers;
+using System.IO;
+using System.Net.Mail;
+using System.Net;
+using System.Web.Razor.Parser.SyntaxTree;
 
 namespace Beanfamily.Controllers
 {
@@ -315,12 +319,43 @@ namespace Beanfamily.Controllers
 
                 Random generator = new Random();
                 String ma = generator.Next(0, 1000000).ToString("D6");
+                var thoihanma = DateTime.Now.AddMinutes(10);
+
                 tk.maxacnhan = ma;
-                tk.thoihanma = DateTime.Now.AddMinutes(10);
+                tk.thoihanma = thoihanma;
                 model.Entry(tk).State = EntityState.Modified;
                 model.SaveChanges();
 
                 Session["email-xacnhan"] = email;
+
+                string bodyMail = string.Empty;
+                using (StreamReader reader = new StreamReader(Server.MapPath("~/ActionOnPage/TemplateMail/MailGuiMaXacNhan.html")))
+                {
+                    bodyMail = reader.ReadToEnd();
+                }
+
+                bodyMail = bodyMail.Replace("{MaKhoiPhuc}", ma);
+                bodyMail = bodyMail.Replace("{ThoiHanMa}", thoihanma.ToString("HH:mm:ss") + " ngày " + thoihanma.ToString("dd/MM/yyyy"));
+
+                using (MailMessage mailMessage = new MailMessage("beanfamilyshop@gmail.com", email))
+                {
+                    mailMessage.Subject = "[BEANFAMILY] MÃ KHÔI PHỤC TÀI KHOẢN";
+                    mailMessage.IsBodyHtml = true;
+                    mailMessage.Body = bodyMail;
+
+                    using (SmtpClient smtp = new SmtpClient())
+                    {
+                        smtp.Host = "smtp.gmail.com";
+                        smtp.EnableSsl = true;
+                        NetworkCredential cred = new NetworkCredential("beanfamilyshop@gmail.com", "qwyxakxwvxtspdhr");
+                        smtp.UseDefaultCredentials = true;
+                        smtp.Credentials = cred;
+                        smtp.Port = 587;
+
+                        smtp.Send(mailMessage);
+                    }
+                }
+
                 return PartialView("_NhapMaXacNhan");
             }
             catch (Exception Ex)

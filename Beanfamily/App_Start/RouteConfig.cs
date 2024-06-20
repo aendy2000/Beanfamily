@@ -23,6 +23,18 @@ namespace Beanfamily
             string temp = strTitleUrl.Normalize(NormalizationForm.FormD);
             strTitleUrl = regex.Replace(temp, String.Empty).Replace('\u0111', 'd').Replace('\u0110', 'D').Replace(" ", "-").ToLower();
 
+            //Giỏ hàng
+            routes.MapRoute(
+                name: "Tiến Hành Đặt Hàng",
+                url: "tien-hanh-dat-hang",
+                defaults: new { controller = "DatHang", action = "TienHanhDatHang", id = UrlParameter.Optional }
+            );
+            routes.MapRoute(
+                name: "Giỏ Hàng",
+                url: "gio-hang",
+                defaults: new { controller = "DatHang", action = "Index", id = UrlParameter.Optional }
+            );
+
             //Mua sắm
             routes.MapRoute(
                 name: "Sản Phẩm Mua Sắm",
