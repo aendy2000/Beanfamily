@@ -456,7 +456,7 @@
         if ($('[id="giasanphammuasam-' + id + '"]').attr('dongia') != "CHONPHANLOAI") {
             var inpSL = $(this).val().trim();
             var tonKhoConLai = Number($('body').find('[id="soluonggiohangmuasam-' + id + '"]').attr('tonkho'));
-            $('body').find('[id="thongbaosoluongmuasammuasam-' + id + '"]').text('');
+            $('body').find('[id="thongbaosoluongMuaSam-' + id + '"]').text('');
 
             if (inpSL.length < 1) {
                 $('body').find('[id="soluonggiohangmuasam-' + id + '"]').prop('disabled', true);

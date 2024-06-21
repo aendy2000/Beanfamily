@@ -41,7 +41,7 @@
                                 <img class="pic-2" src="@Url.Content(item.hinhanh)" />
                             }
                         }
-                        @if (item.TonKhoSanPham.OrderByDescending(o => o.soluong).First().soluong < 1)
+                        @if (item.TonKhoSanPhamMuaSam.OrderByDescending(o => o.soluong).First().soluong < 1)
                         {
                             <span style="outline: 2px solid #fff !important" class="product-sale-label">Hết hàng</span>
                         }                       
@@ -52,17 +52,17 @@
                     </div>
                     <div class="product-content">
                         <h3 class="title"><a href="@Url.Action("productdetail", "muasam", new {id = item.id})">@item.tensanpham</a></h3>
-                        @if (item.TonKhoSanPham.Count > 1)
+                        @if (item.TonKhoSanPhamMuaSam.Count > 1)
                         {
                             <div class="price">
-                                @item.TonKhoSanPham.OrderBy(o => o.gia).First().gia.ToString("0,0")đ
-                                - @item.TonKhoSanPham.OrderByDescending(o => o.gia).First().gia.ToString("0,0")đ
+                                @item.TonKhoSanPhamMuaSam.OrderBy(o => o.gia).First().gia.ToString("0,0")đ
+                                - @item.TonKhoSanPhamMuaSam.OrderByDescending(o => o.gia).First().gia.ToString("0,0")đ
                             </div>
                         }
                         else
                         {
                             <div class="price">
-                                @item.TonKhoSanPham.First().gia.ToString("0,0")đ
+                                @item.TonKhoSanPhamMuaSam.First().gia.ToString("0,0")đ
                             </div>
                         }
                     </div>

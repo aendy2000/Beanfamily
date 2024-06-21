@@ -65,5 +65,47 @@ namespace Beanfamily.Controllers
             else
                 return View("tienhanhdathang");
         }
+
+        [HttpPost]
+        public ActionResult XacNhanDatHang(string hoten, string sodienthoai, string email,
+            string ghichu, string diachi, string tinh, string quanhuyen,
+            string phuongxa, string pttt, bool giaotannoi)
+        {
+            try
+            {
+                TaiKhoanKhachHang tkkh = Session["user-data"] as TaiKhoanKhachHang;
+                int? idtk;
+                if (tkkh == null)
+                    idtk = null;
+                else 
+                    idtk = tkkh.id;
+
+                var donhang = new DonHangVuonRauMuaSamVaMenuHangNgay();
+                donhang.id_taikhoankhkachhang = idtk;
+                donhang.hoten = hoten;
+                donhang.dienthoai = sodienthoai;
+                donhang.email = email;
+                donhang.ghichu = ghichu;
+                donhang.diachi = diachi;
+                donhang.tinh = tinh;
+                donhang.quanhuyen = quanhuyen;
+                donhang.phuongxa = phuongxa;
+                donhang.ngaydat = DateTime.Now;
+                donhang.hinhthucthanhtoan = pttt;
+                donhang.giaohangtannoi = giaotannoi;
+                
+                model.DonHangVuonRauMuaSamVaMenuHangNgay.Add(donhang);
+                model.SaveChanges();
+
+                int idDonHang = donhang.id;
+
+
+                return Content("SUCCESS");
+            }
+            catch (Exception ex)
+            {
+                return Content("Chi tiết lỗi: " + ex.Message);
+            }
+        }
     }
 }

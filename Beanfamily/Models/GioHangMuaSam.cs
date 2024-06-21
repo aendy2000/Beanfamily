@@ -23,6 +23,6 @@ namespace Beanfamily.Models
     
         public virtual SanPhamMuaSam SanPhamMuaSam { get; set; }
         public virtual TaiKhoanKhachHang TaiKhoanKhachHang { get; set; }
-        public virtual TonKhoSanPham TonKhoSanPham { get; set; }
+        public virtual TonKhoSanPhamMuaSam TonKhoSanPhamMuaSam { get; set; }
     }
 }

@@ -115,7 +115,7 @@
                 <hr class="my-4" />
                 <h5 class="text-center mb-4 text-bg-primary text-white" style="border-radius: 16px; height: 30px; display: flex; flex-direction: column; justify-content: center;">MẶT HÀNG TỒN KHO</h5>
                 <div id="suadanhsachcacloai">
-                    @foreach (var item in Model.TonKhoSanPham)
+                    @foreach (var item in Model.TonKhoSanPhamMuaSam)
                     {
                         i++;
                         if (i == 1)
@@ -161,10 +161,10 @@
                         }
                     }
                 </div>
-                <input hidden value="@Model.TonKhoSanPham.Count" id="suademloai" />
+                <input hidden value="@Model.TonKhoSanPhamMuaSam.Count" id="suademloai" />
                 <div class="row mt-3">
                     <div class="col-12">
-                        <button id="suathemloai" style="width: 100%" class="btn btn-outline-primary"><i class="bi bi-plus me-1"> </i> Thêm loại @(Model.TonKhoSanPham.Count + 1)</button>
+                        <button id="suathemloai" style="width: 100%" class="btn btn-outline-primary"><i class="bi bi-plus me-1"> </i> Thêm loại @(Model.TonKhoSanPhamMuaSam.Count + 1)</button>
                     </div>
                 </div>
             </div>

@@ -84,10 +84,10 @@ namespace Beanfamily.Controllers
                 model.SaveChanges();
 
                 var lstDmpv = Session["lst-sanpham-datban-buffet-dmpv"] as List<DanhMucPhucVuMenuTiecBanVaMenuBuffet>;
-                List<DonHangDanhMucPhucVuMenuBuffet> lstDmPvDH = new List<DonHangDanhMucPhucVuMenuBuffet>();
+                List<ChiTietDonHangDanhMucPhucVuMenuBuffet> lstDmPvDH = new List<ChiTietDonHangDanhMucPhucVuMenuBuffet>();
                 foreach (var item in lstDmpv)
                 {
-                    DonHangDanhMucPhucVuMenuBuffet dmPvDH = new DonHangDanhMucPhucVuMenuBuffet();
+                    ChiTietDonHangDanhMucPhucVuMenuBuffet dmPvDH = new ChiTietDonHangDanhMucPhucVuMenuBuffet();
                     dmPvDH.id_donhangmenubuffet = idDH;
                     dmPvDH.id_danhmucphucvu = item.id;
                     dmPvDH.tendanhmuc = item.tendanhmuc;
@@ -101,15 +101,15 @@ namespace Beanfamily.Controllers
                 }
                 if (lstDmPvDH.Count > 0)
                 {
-                    model.DonHangDanhMucPhucVuMenuBuffet.AddRange(lstDmPvDH);
+                    model.ChiTietDonHangDanhMucPhucVuMenuBuffet.AddRange(lstDmPvDH);
                     model.SaveChanges();
                 }
 
                 var lstSp = Session["lst-sanpham-datban-buffet"] as List<SanPhamMenuBuffet>;
-                List<DonHangSanPhamMenuBuffet> lstDhSP = new List<DonHangSanPhamMenuBuffet>();
+                List<ChiTietDonHangSanPhamMenuBuffet> lstDhSP = new List<ChiTietDonHangSanPhamMenuBuffet>();
                 foreach (var item in lstSp)
                 {
-                    DonHangSanPhamMenuBuffet dhSP = new DonHangSanPhamMenuBuffet();
+                    ChiTietDonHangSanPhamMenuBuffet dhSP = new ChiTietDonHangSanPhamMenuBuffet();
                     dhSP.id_donhangmenubuffet = idDH;
                     dhSP.id_sanphammenubuffet = item.id;
                     dhSP.hinhanh = item.hinhanh;
@@ -118,17 +118,9 @@ namespace Beanfamily.Controllers
                 }
                 if (lstDhSP.Count > 0)
                 {
-                    model.DonHangSanPhamMenuBuffet.AddRange(lstDhSP);
+                    model.ChiTietDonHangSanPhamMenuBuffet.AddRange(lstDhSP);
                     model.SaveChanges();
                 }
-
-                LichSuDonHangMenuBuffet lsdh = new LichSuDonHangMenuBuffet();
-                lsdh.id_donhangmenubuffet = idDH;
-                lsdh.tieude = "Tạo Đơn Đặt Bàn";
-                lsdh.noidung = hovaten + " - " + sodienthoai + " đã tạo đơn đặt bàn " + madonhang;
-                lsdh.thoigian = DateTime.Now;
-                model.LichSuDonHangMenuBuffet.Add(lsdh);
-                model.SaveChanges();
 
                 TinhTrangDonHangMenuBuffet ttdh = new TinhTrangDonHangMenuBuffet();
                 ttdh.id_donhangmenubuffet = idDH;

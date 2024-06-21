@@ -141,23 +141,23 @@ namespace Beanfamily.Areas.Admin.Controllers
 
                     for (int i = 0; i < lstLoais.Count; i++)
                     {
-                        TonKhoSanPham tonkho = new TonKhoSanPham();
+                        TonKhoSanPhamMuaSam tonkho = new TonKhoSanPhamMuaSam();
                         tonkho.id_sanphammuasam = idSanPham;
                         tonkho.tenloai = lstLoais[i].Trim();
                         tonkho.soluong = Int32.Parse(lstSoLuongs[i].Trim());
                         tonkho.gia = Decimal.Parse(lstGias[i].Replace(",", "").Trim());
-                        model.TonKhoSanPham.Add(tonkho);
+                        model.TonKhoSanPhamMuaSam.Add(tonkho);
                     }
                     model.SaveChanges();
                 }
                 else
                 {
-                    TonKhoSanPham tonkho = new TonKhoSanPham();
+                    TonKhoSanPhamMuaSam tonkho = new TonKhoSanPhamMuaSam();
                     tonkho.id_sanphammuasam = idSanPham;
                     tonkho.tenloai = lstLoai.Trim();
                     tonkho.soluong = Int32.Parse(lstSoLuong.Trim());
                     tonkho.gia = Decimal.Parse(lstGia.Replace(",", "").Trim());
-                    model.TonKhoSanPham.Add(tonkho);
+                    model.TonKhoSanPhamMuaSam.Add(tonkho);
                     model.SaveChanges();
                 }
                 return Content("SUCCESS");
@@ -286,7 +286,7 @@ namespace Beanfamily.Areas.Admin.Controllers
                     var lstSoLuongs = lstSoLuong.Split('#').ToList();
                     var lstGias = lstGia.Split('#').ToList();
 
-                    var lstTonKho = model.TonKhoSanPham.Where(t => t.id_sanphammuasam == idSanPham).ToList();
+                    var lstTonKho = model.TonKhoSanPhamMuaSam.Where(t => t.id_sanphammuasam == idSanPham).ToList();
 
                     if (lstTonKho.Count > 0)
                     {
@@ -309,8 +309,8 @@ namespace Beanfamily.Areas.Admin.Controllers
                             }
 
                             if (checkTonKho == false) {
-                                var tonKhoDeleted = model.TonKhoSanPham.Find(idTonKhoCanXoa);
-                                model.TonKhoSanPham.Remove(tonKhoDeleted);
+                                var tonKhoDeleted = model.TonKhoSanPhamMuaSam.Find(idTonKhoCanXoa);
+                                model.TonKhoSanPhamMuaSam.Remove(tonKhoDeleted);
                                 model.SaveChanges();
                             }
                         }
@@ -320,18 +320,18 @@ namespace Beanfamily.Areas.Admin.Controllers
                     {
                         if (lstIdLoais[i].Trim().ToLower().Equals("new"))
                         {
-                            TonKhoSanPham tonkho = new TonKhoSanPham();
+                            TonKhoSanPhamMuaSam tonkho = new TonKhoSanPhamMuaSam();
                             tonkho.id_sanphammuasam = idSanPham;
                             tonkho.tenloai = lstLoais[i].Trim();
                             tonkho.soluong = Int32.Parse(lstSoLuongs[i].Trim());
                             tonkho.gia = Decimal.Parse(lstGias[i].Replace(",", "").Trim());
-                            model.TonKhoSanPham.Add(tonkho);
+                            model.TonKhoSanPhamMuaSam.Add(tonkho);
                             model.SaveChanges();
                         }
                         else
                         {
                             int idLoaiTonKho = Int32.Parse(lstIdLoais[i].Trim());
-                            var modelLoaiSanPham = model.TonKhoSanPham.FirstOrDefault(t => t.id == idLoaiTonKho && t.id_sanphammuasam == idSanPham);
+                            var modelLoaiSanPham = model.TonKhoSanPhamMuaSam.FirstOrDefault(t => t.id == idLoaiTonKho && t.id_sanphammuasam == idSanPham);
 
                             modelLoaiSanPham.tenloai = lstLoais[i].Trim();
                             modelLoaiSanPham.soluong = Int32.Parse(lstSoLuongs[i].Trim());
@@ -345,22 +345,22 @@ namespace Beanfamily.Areas.Admin.Controllers
                 {
                     if (lstIdLoai.Trim().ToLower().Equals("new"))
                     {
-                        model.TonKhoSanPham.RemoveRange(sanpham.TonKhoSanPham);
+                        model.TonKhoSanPhamMuaSam.RemoveRange(sanpham.TonKhoSanPhamMuaSam);
                         model.Entry(sanpham).State = EntityState.Modified;
                         model.SaveChanges();
 
-                        TonKhoSanPham tonkho = new TonKhoSanPham();
+                        TonKhoSanPhamMuaSam tonkho = new TonKhoSanPhamMuaSam();
                         tonkho.id_sanphammuasam = idSanPham;
                         tonkho.tenloai = lstLoai.Trim();
                         tonkho.soluong = Int32.Parse(lstSoLuong.Trim());
                         tonkho.gia = Decimal.Parse(lstGia.Replace(",", "").Trim());
-                        model.TonKhoSanPham.Add(tonkho);
+                        model.TonKhoSanPhamMuaSam.Add(tonkho);
                         model.SaveChanges();
                     }
                     else
                     {
                         int idLoaiTonKho = Int32.Parse(lstIdLoai.Trim());
-                        var modelLoaiSanPham = model.TonKhoSanPham.FirstOrDefault(t => t.id == idLoaiTonKho && t.id_sanphammuasam == idSanPham);
+                        var modelLoaiSanPham = model.TonKhoSanPhamMuaSam.FirstOrDefault(t => t.id == idLoaiTonKho && t.id_sanphammuasam == idSanPham);
 
                         modelLoaiSanPham.tenloai = lstLoai.Trim();
                         modelLoaiSanPham.soluong = Int32.Parse(lstSoLuong.Trim());
@@ -385,7 +385,7 @@ namespace Beanfamily.Areas.Admin.Controllers
                 var sanpham = model.SanPhamMuaSam.Find(id);
                 if (sanpham == null)
                     return Content("KHONGTONTAI");
-                model.TonKhoSanPham.RemoveRange(sanpham.TonKhoSanPham);
+                model.TonKhoSanPhamMuaSam.RemoveRange(sanpham.TonKhoSanPhamMuaSam);
                 model.SanPhamMuaSam.Remove(sanpham);
                 model.SaveChanges();
 
@@ -407,7 +407,7 @@ namespace Beanfamily.Areas.Admin.Controllers
                     {
                         int id = Int32.Parse(item);
                         var dm = model.SanPhamMuaSam.Find(id);
-                        model.TonKhoSanPham.RemoveRange(dm.TonKhoSanPham);
+                        model.TonKhoSanPhamMuaSam.RemoveRange(dm.TonKhoSanPhamMuaSam);
                         model.SanPhamMuaSam.Remove(dm);
                         model.SaveChanges();
                     }
@@ -416,7 +416,7 @@ namespace Beanfamily.Areas.Admin.Controllers
                 {
                     int id = Int32.Parse(lstId);
                     var dm = model.SanPhamMuaSam.Find(id);
-                    model.TonKhoSanPham.RemoveRange(dm.TonKhoSanPham);
+                    model.TonKhoSanPhamMuaSam.RemoveRange(dm.TonKhoSanPhamMuaSam);
                     model.SanPhamMuaSam.Remove(dm);
                     model.SaveChanges();
                 }

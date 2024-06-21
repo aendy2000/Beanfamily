@@ -82,10 +82,10 @@ namespace Beanfamily.Controllers
                 model.SaveChanges();
 
                 var lstDmpv = Session["lst-sanpham-datban-dmpv"] as List<DanhMucPhucVuMenuTiecBanVaMenuBuffet>;
-                List<DonHangDanhMucPhucVuMenuTiecBan> lstDmPvDH = new List<DonHangDanhMucPhucVuMenuTiecBan>();
+                List<ChiTietDonHangDanhMucPhucVuMenuTiecBan> lstDmPvDH = new List<ChiTietDonHangDanhMucPhucVuMenuTiecBan>();
                 foreach (var item in lstDmpv)
                 {
-                    DonHangDanhMucPhucVuMenuTiecBan dmPvDH = new DonHangDanhMucPhucVuMenuTiecBan();
+                    ChiTietDonHangDanhMucPhucVuMenuTiecBan dmPvDH = new ChiTietDonHangDanhMucPhucVuMenuTiecBan();
                     dmPvDH.id_donhangmenutiecban = idDH;
                     dmPvDH.id_danhmucphucvu = item.id;
                     dmPvDH.tendanhmuc = item.tendanhmuc;
@@ -99,15 +99,15 @@ namespace Beanfamily.Controllers
                 }
                 if (lstDmPvDH.Count > 0)
                 {
-                    model.DonHangDanhMucPhucVuMenuTiecBan.AddRange(lstDmPvDH);
+                    model.ChiTietDonHangDanhMucPhucVuMenuTiecBan.AddRange(lstDmPvDH);
                     model.SaveChanges();
                 }
 
                 var lstSp = Session["lst-sanpham-datban-tiecban"] as List<SanPhamMenuTiecBan>;
-                List<DonHangSanPhamMenuTiecBan> lstDhSP = new List<DonHangSanPhamMenuTiecBan>();
+                List<ChiTietDonHangSanPhamMenuTiecBan> lstDhSP = new List<ChiTietDonHangSanPhamMenuTiecBan>();
                 foreach (var item in lstSp)
                 {
-                    DonHangSanPhamMenuTiecBan dhSP = new DonHangSanPhamMenuTiecBan();
+                    ChiTietDonHangSanPhamMenuTiecBan dhSP = new ChiTietDonHangSanPhamMenuTiecBan();
                     dhSP.id_donhangmenutiecban = idDH;
                     dhSP.id_sanphammenutiecban = item.id;
                     dhSP.hinhanh = item.hinhanh;
@@ -117,17 +117,9 @@ namespace Beanfamily.Controllers
                 }
                 if (lstDhSP.Count > 0)
                 {
-                    model.DonHangSanPhamMenuTiecBan.AddRange(lstDhSP);
+                    model.ChiTietDonHangSanPhamMenuTiecBan.AddRange(lstDhSP);
                     model.SaveChanges();
                 }
-
-                LichSuDonHangMenuTiecBan lsdh = new LichSuDonHangMenuTiecBan();
-                lsdh.id_donhangmenutiecban = idDH;
-                lsdh.tieude = "Tạo Đơn Đặt Bàn";
-                lsdh.noidung = hovaten + " - " + sodienthoai + " đã tạo đơn đặt bàn " + madonhang;
-                lsdh.thoigian = DateTime.Now;
-                model.LichSuDonHangMenuTiecBan.Add(lsdh);
-                model.SaveChanges();
 
                 TinhTrangDonHangMenuTiecBan ttdh = new TinhTrangDonHangMenuTiecBan();
                 ttdh.id_donhangmenutiecban = idDH;

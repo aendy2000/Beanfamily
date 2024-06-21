@@ -17,8 +17,7 @@ namespace Beanfamily.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SanPhamMenuTiecBan()
         {
-            this.DonHangSanPhamMenuTiecBan = new HashSet<DonHangSanPhamMenuTiecBan>();
-            this.LichSuSuaDoiSanPhamMenuTiecBan = new HashSet<LichSuSuaDoiSanPhamMenuTiecBan>();
+            this.ChiTietDonHangSanPhamMenuTiecBan = new HashSet<ChiTietDonHangSanPhamMenuTiecBan>();
         }
     
         public int id { get; set; }
@@ -29,10 +28,8 @@ namespace Beanfamily.Models
         public decimal gia { get; set; }
         public bool hienthi { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ChiTietDonHangSanPhamMenuTiecBan> ChiTietDonHangSanPhamMenuTiecBan { get; set; }
         public virtual DanhMucMenuTiecBanCap1 DanhMucMenuTiecBanCap1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DonHangSanPhamMenuTiecBan> DonHangSanPhamMenuTiecBan { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LichSuSuaDoiSanPhamMenuTiecBan> LichSuSuaDoiSanPhamMenuTiecBan { get; set; }
     }
 }

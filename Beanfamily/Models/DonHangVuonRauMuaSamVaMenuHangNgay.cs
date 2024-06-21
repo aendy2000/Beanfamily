@@ -17,25 +17,38 @@ namespace Beanfamily.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public DonHangVuonRauMuaSamVaMenuHangNgay()
         {
-            this.ChiTietDonHangVuonRauMuaSamVaMenuHangNgay = new HashSet<ChiTietDonHangVuonRauMuaSamVaMenuHangNgay>();
+            this.ChiTietDonHangSanPhamMuaSam = new HashSet<ChiTietDonHangSanPhamMuaSam>();
+            this.ChiTietDonHangSanPhamRauNhaTrong = new HashSet<ChiTietDonHangSanPhamRauNhaTrong>();
+            this.ChiTietDonHangSanPhamThucDonHangNgay = new HashSet<ChiTietDonHangSanPhamThucDonHangNgay>();
+            this.LichSuThanhToanDonHangTongHop = new HashSet<LichSuThanhToanDonHangTongHop>();
             this.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay = new HashSet<TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay>();
         }
     
         public int id { get; set; }
+        public string madonhang { get; set; }
         public Nullable<int> id_taikhoankhkachhang { get; set; }
         public string hoten { get; set; }
         public string dienthoai { get; set; }
         public string email { get; set; }
+        public string ghichu { get; set; }
         public string diachi { get; set; }
+        public string tinh { get; set; }
+        public string quanhuyen { get; set; }
+        public string phuongxa { get; set; }
         public System.DateTime ngaydat { get; set; }
         public string hinhthucthanhtoan { get; set; }
-        public string tinhtrangdonhang { get; set; }
-        public string ghichu { get; set; }
+        public bool giaohangtannoi { get; set; }
         public string yeucaukhac { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ChiTietDonHangVuonRauMuaSamVaMenuHangNgay> ChiTietDonHangVuonRauMuaSamVaMenuHangNgay { get; set; }
+        public virtual ICollection<ChiTietDonHangSanPhamMuaSam> ChiTietDonHangSanPhamMuaSam { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ChiTietDonHangSanPhamRauNhaTrong> ChiTietDonHangSanPhamRauNhaTrong { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ChiTietDonHangSanPhamThucDonHangNgay> ChiTietDonHangSanPhamThucDonHangNgay { get; set; }
         public virtual TaiKhoanKhachHang TaiKhoanKhachHang { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LichSuThanhToanDonHangTongHop> LichSuThanhToanDonHangTongHop { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay> TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay { get; set; }
     }

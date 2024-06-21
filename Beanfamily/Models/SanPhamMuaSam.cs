@@ -17,10 +17,9 @@ namespace Beanfamily.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SanPhamMuaSam()
         {
-            this.ChiTietDonHangVuonRauMuaSamVaMenuHangNgay = new HashSet<ChiTietDonHangVuonRauMuaSamVaMenuHangNgay>();
+            this.ChiTietDonHangSanPhamMuaSam = new HashSet<ChiTietDonHangSanPhamMuaSam>();
             this.GioHangMuaSam = new HashSet<GioHangMuaSam>();
-            this.LichSuSuaDoiSanPhamMuaSam = new HashSet<LichSuSuaDoiSanPhamMuaSam>();
-            this.TonKhoSanPham = new HashSet<TonKhoSanPham>();
+            this.TonKhoSanPhamMuaSam = new HashSet<TonKhoSanPhamMuaSam>();
         }
     
         public int id { get; set; }
@@ -33,13 +32,11 @@ namespace Beanfamily.Models
         public bool hienthi { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ChiTietDonHangVuonRauMuaSamVaMenuHangNgay> ChiTietDonHangVuonRauMuaSamVaMenuHangNgay { get; set; }
+        public virtual ICollection<ChiTietDonHangSanPhamMuaSam> ChiTietDonHangSanPhamMuaSam { get; set; }
         public virtual DanhMucSanPhamMuaSamCap1 DanhMucSanPhamMuaSamCap1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GioHangMuaSam> GioHangMuaSam { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LichSuSuaDoiSanPhamMuaSam> LichSuSuaDoiSanPhamMuaSam { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TonKhoSanPham> TonKhoSanPham { get; set; }
+        public virtual ICollection<TonKhoSanPhamMuaSam> TonKhoSanPhamMuaSam { get; set; }
     }
 }

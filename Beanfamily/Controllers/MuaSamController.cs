@@ -94,15 +94,15 @@ namespace Beanfamily.Controllers
                 var sp = model.SanPhamMuaSam.Find(idsp);
                 if (sp == null)
                     return Content("KHONGTONTAI");
-                if (sp.TonKhoSanPham.FirstOrDefault(t => t.id == idloaitonkho) == null)
+                if (sp.TonKhoSanPhamMuaSam.FirstOrDefault(t => t.id == idloaitonkho) == null)
                     return Content("KHONGTONTAI");
 
                 if (Session["giohang-muasam"] == null)
                 {
-                    if (sp.TonKhoSanPham.FirstOrDefault(t => t.id == idloaitonkho).soluong < 1)
+                    if (sp.TonKhoSanPhamMuaSam.FirstOrDefault(t => t.id == idloaitonkho).soluong < 1)
                         return Content("HETHANG");
 
-                    int tonKhoConLai = model.SanPhamMuaSam.Find(idsp).TonKhoSanPham.FirstOrDefault(t => t.id == idloaitonkho).soluong;
+                    int tonKhoConLai = model.SanPhamMuaSam.Find(idsp).TonKhoSanPhamMuaSam.FirstOrDefault(t => t.id == idloaitonkho).soluong;
                     List<string> giohang = new List<string>();
 
                     if (soluong > tonKhoConLai)
@@ -164,8 +164,8 @@ namespace Beanfamily.Controllers
                                 checks = true;
 
                                 int soluongs = Int32.Parse(item.Split('#')[2]) + soluong;
-                                int tonKhoConLai = model.SanPhamMuaSam.Find(idsp).TonKhoSanPham.FirstOrDefault(t => t.id == idloaitonkho).soluong;
-                                if (sp.TonKhoSanPham.FirstOrDefault(t => t.id == idloaitonkho).soluong < 1)
+                                int tonKhoConLai = model.SanPhamMuaSam.Find(idsp).TonKhoSanPhamMuaSam.FirstOrDefault(t => t.id == idloaitonkho).soluong;
+                                if (sp.TonKhoSanPhamMuaSam.FirstOrDefault(t => t.id == idloaitonkho).soluong < 1)
                                 {
                                     Session["soluongmax-muasam-" + idsp + "-" + idloaitonkho] = 0;
                                     Session["tonkhoconlai-muasam-" + idsp + "-" + idloaitonkho] = 0;
@@ -266,7 +266,7 @@ namespace Beanfamily.Controllers
 
                     if (checks == false)
                     {
-                        int tonKhoConLai = model.SanPhamMuaSam.Find(idsp).TonKhoSanPham.FirstOrDefault(t => t.id == idloaitonkho).soluong;
+                        int tonKhoConLai = model.SanPhamMuaSam.Find(idsp).TonKhoSanPhamMuaSam.FirstOrDefault(t => t.id == idloaitonkho).soluong;
 
                         if (soluong > tonKhoConLai)
                         {
@@ -355,7 +355,7 @@ namespace Beanfamily.Controllers
                     Session["giohang-muasam"] = giohang;
                     return Content("KHONGTONTAI");
                 }
-                if (sp.TonKhoSanPham.FirstOrDefault(t => t.id == idloaitonkho) == null)
+                if (sp.TonKhoSanPhamMuaSam.FirstOrDefault(t => t.id == idloaitonkho) == null)
                 {
                     int indexing = giohang.FindIndex(t => t.StartsWith(idsp + "#" + idloaitonkho + "#"));
                     giohang.RemoveAt(indexing);
@@ -375,7 +375,7 @@ namespace Beanfamily.Controllers
                     return Content("KHONGTONTAI");
                 }
 
-                int tonKhoConLai = sp.TonKhoSanPham.FirstOrDefault(t => t.id == idloaitonkho).soluong;
+                int tonKhoConLai = sp.TonKhoSanPhamMuaSam.FirstOrDefault(t => t.id == idloaitonkho).soluong;
                 if (tonKhoConLai < 1)
                 {
                     foreach (string item in giohang)
@@ -478,7 +478,7 @@ namespace Beanfamily.Controllers
                 var sp = model.SanPhamMuaSam.Find(idsp);
                 if (sp == null)
                     return Content("KHONGTONTAI");
-                if (sp.TonKhoSanPham.FirstOrDefault(t => t.id == idloaitonkho) == null)
+                if (sp.TonKhoSanPhamMuaSam.FirstOrDefault(t => t.id == idloaitonkho) == null)
                     return Content("KHONGTONTAI");
 
                 int i = 0;

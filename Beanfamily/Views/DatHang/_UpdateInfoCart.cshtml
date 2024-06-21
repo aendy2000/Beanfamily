@@ -21,7 +21,7 @@
             int idLoai = Int32.Parse(item.Split('#')[1]);
             int soLuong = Int32.Parse(item.Split('#')[2]);
 
-            tongMuaSam += models.TonKhoSanPham.Find(idLoai).gia * soLuong;
+            tongMuaSam += models.TonKhoSanPhamMuaSam.Find(idLoai).gia * soLuong;
         }
     }
 

@@ -167,7 +167,7 @@
                             </div>
                         </div>
                         <div class="mb-2">
-                            @if (Model.TonKhoSanPham.OrderByDescending(o => o.soluong).First().soluong < 1)
+                            @if (Model.TonKhoSanPhamMuaSam.OrderByDescending(o => o.soluong).First().soluong < 1)
                             {
                                 <span id="trangthaihang" class="text-danger">Hết hàng</span>
                             }
@@ -191,7 +191,7 @@
                             <div class="col-md-6 col-sm-12">
                                 <label class="mb-2 d-block">Loại:</label>
                                 <select id="selectloai" class="form-select border border-secondary" style="height: 35px; width: 100%">
-                                    @foreach (var item in Model.TonKhoSanPham.Where(l => l.soluong > 0))
+                                    @foreach (var item in Model.TonKhoSanPhamMuaSam.Where(l => l.soluong > 0))
                                     {
                                         i++;
                                         if (i == 1)
@@ -204,7 +204,7 @@
                                         }
                                     }
 
-                                    @foreach (var item in Model.TonKhoSanPham.Where(l => l.soluong < 1))
+                                    @foreach (var item in Model.TonKhoSanPhamMuaSam.Where(l => l.soluong < 1))
                                     {
                                         i++;
                                         if (i == 1)
@@ -224,7 +224,7 @@
                                 <label name="" class="mb-2 d-block">Số lượng:</label>
                                 <div class="input-group mb-2" style="width: 100%;">
 
-                                    @if (Model.TonKhoSanPham.OrderByDescending(o => o.soluong).First().soluong < 1)
+                                    @if (Model.TonKhoSanPhamMuaSam.OrderByDescending(o => o.soluong).First().soluong < 1)
                                     {
                                         <button disabled class="text-white btn btn-white border border-secondary px-3" type="button" id="button-minus-product" data-mdb-ripple-color="dark">
                                             <i class="fa fa-minus"></i>
@@ -252,7 +252,7 @@
 
                         </div>-->
                         </div>
-                        @if (Model.TonKhoSanPham.OrderByDescending(o => o.soluong).First().soluong < 1)
+                        @if (Model.TonKhoSanPhamMuaSam.OrderByDescending(o => o.soluong).First().soluong < 1)
                         {
                             <div class="row">
                                 <div class="col-md-6 col-sm-12">

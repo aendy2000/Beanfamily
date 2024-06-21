@@ -83,7 +83,7 @@ namespace Beanfamily.Controllers
                                     int idloai = Int32.Parse(item.Split('#')[1]);
                                     int soluong = Int32.Parse(item.Split('#')[2]);
 
-                                    int tonKhoConLai = model.TonKhoSanPham.FirstOrDefault(t => t.id == idloai).soluong;
+                                    int tonKhoConLai = model.TonKhoSanPhamMuaSam.FirstOrDefault(t => t.id == idloai).soluong;
                                     Session["soluongmax-muasam-" + idsp + "-" + idloai] = null;
                                     Session["tonkhoconlai-muasam-" + idsp + "-" + idloai] = tonKhoConLai;
 
@@ -146,7 +146,7 @@ namespace Beanfamily.Controllers
                             var giohangmuasams = new List<string>();
                             foreach (var item in taikhoan.GioHangMuaSam.ToList())
                             {
-                                int tonKhoConLai = model.TonKhoSanPham.FirstOrDefault(t => t.id == item.id_loaitonkho).soluong;
+                                int tonKhoConLai = model.TonKhoSanPhamMuaSam.FirstOrDefault(t => t.id == item.id_loaitonkho).soluong;
                                 Session["soluongmax-muasam-" + item.id_sanpham + "-" + item.id_loaitonkho] = null;
                                 Session["tonkhoconlai-muasam-" + item.id_sanpham + "-" + item.id_loaitonkho] = tonKhoConLai;
                                 int soluong = item.soluong;
@@ -241,7 +241,7 @@ namespace Beanfamily.Controllers
                         int idloai = Int32.Parse(item.Split('#')[1]);
                         int soluong = Int32.Parse(item.Split('#')[2]);
 
-                        int tonKhoConLai = model.TonKhoSanPham.FirstOrDefault(t => t.id == idloai).soluong;
+                        int tonKhoConLai = model.TonKhoSanPhamMuaSam.FirstOrDefault(t => t.id == idloai).soluong;
                         Session["soluongmax-muasam-" + idsp + "-" + idloai] = null;
                         Session["tonkhoconlai-muasam-" + idsp + "-" + idloai] = tonKhoConLai;
 

@@ -17,10 +17,9 @@ namespace Beanfamily.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public DonHangMenuBuffet()
         {
-            this.DonHangDanhMucPhucVuMenuBuffet = new HashSet<DonHangDanhMucPhucVuMenuBuffet>();
-            this.DonHangSanPhamMenuBuffet = new HashSet<DonHangSanPhamMenuBuffet>();
-            this.LichSuDonHangMenuBuffet = new HashSet<LichSuDonHangMenuBuffet>();
-            this.LichSuThanhToanDonHangMenuBuffet = new HashSet<LichSuThanhToanDonHangMenuBuffet>();
+            this.ChiTietDonHangDanhMucPhucVuMenuBuffet = new HashSet<ChiTietDonHangDanhMucPhucVuMenuBuffet>();
+            this.ChiTietDonHangSanPhamMenuBuffet = new HashSet<ChiTietDonHangSanPhamMenuBuffet>();
+            this.LichSuThanhToanDonHangTongHop = new HashSet<LichSuThanhToanDonHangTongHop>();
             this.TinhTrangDonHangMenuBuffet = new HashSet<TinhTrangDonHangMenuBuffet>();
         }
     
@@ -38,13 +37,11 @@ namespace Beanfamily.Models
         public string ghichuquantrivien { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DonHangDanhMucPhucVuMenuBuffet> DonHangDanhMucPhucVuMenuBuffet { get; set; }
+        public virtual ICollection<ChiTietDonHangDanhMucPhucVuMenuBuffet> ChiTietDonHangDanhMucPhucVuMenuBuffet { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DonHangSanPhamMenuBuffet> DonHangSanPhamMenuBuffet { get; set; }
+        public virtual ICollection<ChiTietDonHangSanPhamMenuBuffet> ChiTietDonHangSanPhamMenuBuffet { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LichSuDonHangMenuBuffet> LichSuDonHangMenuBuffet { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LichSuThanhToanDonHangMenuBuffet> LichSuThanhToanDonHangMenuBuffet { get; set; }
+        public virtual ICollection<LichSuThanhToanDonHangTongHop> LichSuThanhToanDonHangTongHop { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TinhTrangDonHangMenuBuffet> TinhTrangDonHangMenuBuffet { get; set; }
     }

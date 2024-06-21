@@ -12,7 +12,7 @@ namespace Beanfamily.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class DonHangDanhMucPhucVuMenuTiecBan
+    public partial class ChiTietDonHangDanhMucPhucVuMenuTiecBan
     {
         public int id { get; set; }
         public int id_donhangmenutiecban { get; set; }
