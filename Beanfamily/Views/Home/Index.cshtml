@@ -602,7 +602,7 @@
                 <div class="col-md-6 p-b-30">
                     @foreach (var item in sanphamnoibatmuasam)
                     {
-                        <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom-bgbrown bg-bg2" style="border: 1px solid; border-color: white;" onclick="location.href = '@(Url.Action("productdetail", "muasam", new { id = item.id }))'">
+                        <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom-bgbrown bg-bg2" style="border: 1px solid white;" onclick="location.href = '@(Url.Action("productdetail", "muasam", new { id = item.id }))'">
                             <div class="pic-blo3 size20 hov-img-zoom m-r-28">
                                 <a href="@Url.Action("productdetail", "muasam", new { id = item.id })"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
                             </div>
@@ -902,7 +902,7 @@
     </div>
 </section>-->
 @*Booking*@
-<section class="section-booking bg1-pattern">
+<!--<section class="section-booking bg1-pattern">
     <div class="section-child-bg1">
         <div class="container  p-t-100 p-b-110">
             <div class="row">
@@ -946,11 +946,11 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-6">-->
 
 
                                 @*Phone*@
-                                <span class="txt9">
+                                <!--<span class="txt9">
                                     Số điện thoại <span class="text-danger">*</span>
                                 </span>
 
@@ -996,10 +996,10 @@
                                         <option>21:30</option>
                                         <option>22:00</option>
                                     </select>
-                                </div>
+                                </div>-->
 
                                 @*Email*@
-                                <span class="txt9">
+                                <!--<span class="txt9">
                                     Địa chỉ Email <span class="text-danger">*</span>
                                 </span>
 
@@ -1017,9 +1017,9 @@
                             </div>
                         </div>
 
-                        <div class="wrap-btn-booking flex-c-m m-t-6">
+                        <div class="wrap-btn-booking flex-c-m m-t-6">-->
                             @*Button3*@
-                            <button type="submit" class="btn1 flex-c-m size1 txt3 trans-0-4">
+                            <!--<button type="submit" class="btn1 flex-c-m size1 txt3 trans-0-4">
                                 gửi thông tin
                             </button>
                         </div>
@@ -1029,7 +1029,7 @@
         </div>
 
     </div>
-</section>
+</section>-->
 
 <!-- Review -->
 <!--<section class="section-review bg-brown p-t-115">-->

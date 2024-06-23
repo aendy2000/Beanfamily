@@ -75,6 +75,7 @@ namespace Beanfamily.Controllers
             string ghichu, string diachi, string tinh, string quanhuyen,
             string phuongxa, string pttt, bool giaotannoi)
         {
+            int idTemp = 0;
             try
             {
                 TaiKhoanKhachHang tkkh = Session["user-data"] as TaiKhoanKhachHang;
@@ -105,6 +106,7 @@ namespace Beanfamily.Controllers
                 model.SaveChanges();
 
                 int idDH = donhang.id;
+                idTemp = donhang.id;
                 string madonhang = "DH" + idDH + DateTime.Now.ToString("mmHHddMMyyyy");
 
                 donhang.madonhang = madonhang;
@@ -113,135 +115,145 @@ namespace Beanfamily.Controllers
 
                 var lstSpMuaSam = Session["giohang-muasam"] as List<string>;
                 List<ChiTietDonHangSanPhamMuaSam> lstSpDonHangMuaSam = new List<ChiTietDonHangSanPhamMuaSam>();
-                foreach (var item in lstSpMuaSam)
+
+                if (lstSpMuaSam != null)
                 {
-                    int idsp = Int32.Parse(item.Split('#')[0]);
-                    int idloaitonkho = Int32.Parse(item.Split('#')[1]);
-                    int soluong = Int32.Parse(item.Split('#')[2]);
-
-                    var spmuasam = model.SanPhamMuaSam.Find(idsp);
-                    var tonkho = spmuasam.TonKhoSanPhamMuaSam.FirstOrDefault(t => t.id == idloaitonkho);
-                    if (spmuasam == null)
+                    foreach (var item in lstSpMuaSam)
                     {
-                        model.DonHangVuonRauMuaSamVaMenuHangNgay.Remove(donhang);
-                        model.SaveChanges();
-                        UpdateCart();
-                        return Content("NOTEXIST");
-                    }
-                    if (tonkho == null)
-                    {
-                        model.DonHangVuonRauMuaSamVaMenuHangNgay.Remove(donhang);
-                        model.SaveChanges();
-                        UpdateCart();
-                        return Content("NOTEXIST");
-                    }
-                    if (tonkho.soluong < soluong)
-                    {
-                        model.DonHangVuonRauMuaSamVaMenuHangNgay.Remove(donhang);
-                        model.SaveChanges();
-                        UpdateCart();
-                        return Content("VUOTSOLUONG");
-                    }
+                        int idsp = Int32.Parse(item.Split('#')[0]);
+                        int idloaitonkho = Int32.Parse(item.Split('#')[1]);
+                        int soluong = Int32.Parse(item.Split('#')[2]);
 
-                    int soluongton = tonkho.soluong;
-                    tonkho.soluong = soluongton - soluong;
-                    model.Entry(tonkho).State = EntityState.Modified;
-                    model.SaveChanges();
+                        var spmuasam = model.SanPhamMuaSam.Find(idsp);
+                        var tonkho = spmuasam.TonKhoSanPhamMuaSam.FirstOrDefault(t => t.id == idloaitonkho);
+                        if (spmuasam == null)
+                        {
+                            model.DonHangVuonRauMuaSamVaMenuHangNgay.Remove(donhang);
+                            model.SaveChanges();
+                            UpdateCart();
+                            return Content("NOTEXIST");
+                        }
+                        if (tonkho == null)
+                        {
+                            model.DonHangVuonRauMuaSamVaMenuHangNgay.Remove(donhang);
+                            model.SaveChanges();
+                            UpdateCart();
+                            return Content("NOTEXIST");
+                        }
+                        if (tonkho.soluong < soluong)
+                        {
+                            model.DonHangVuonRauMuaSamVaMenuHangNgay.Remove(donhang);
+                            model.SaveChanges();
+                            UpdateCart();
+                            return Content("VUOTSOLUONG");
+                        }
 
-                    ChiTietDonHangSanPhamMuaSam dhSP = new ChiTietDonHangSanPhamMuaSam();
-                    dhSP.id_donhangvuonraumuasamvamenuhangngay = idDH;
-                    dhSP.id_sanphammuasam = idsp;
-                    dhSP.hinhanh = spmuasam.hinhanh;
-                    dhSP.video = spmuasam.video;
-                    dhSP.tensanpham = spmuasam.tensanpham;
-                    dhSP.mota = spmuasam.mota;
-                    dhSP.tenloaitonkho = tonkho.tenloai;
-                    dhSP.gia = tonkho.gia;
-                    dhSP.soluongmua = soluong;
+                        int soluongton = tonkho.soluong;
+                        tonkho.soluong = soluongton - soluong;
+                        model.Entry(tonkho).State = EntityState.Modified;
+                        model.SaveChanges();
 
-                    lstSpDonHangMuaSam.Add(dhSP);
+                        ChiTietDonHangSanPhamMuaSam dhSP = new ChiTietDonHangSanPhamMuaSam();
+                        dhSP.id_donhangvuonraumuasamvamenuhangngay = idDH;
+                        dhSP.id_sanphammuasam = idsp;
+                        dhSP.hinhanh = spmuasam.hinhanh;
+                        dhSP.video = spmuasam.video;
+                        dhSP.tensanpham = spmuasam.tensanpham;
+                        dhSP.mota = spmuasam.mota;
+                        dhSP.tenloaitonkho = tonkho.tenloai;
+                        dhSP.gia = tonkho.gia;
+                        dhSP.soluongmua = soluong;
+
+                        lstSpDonHangMuaSam.Add(dhSP);
+                    }
                 }
-
                 //Vườn rau
                 var lstSpVuonRau = Session["giohang-vuonrau"] as List<string>;
                 List<ChiTietDonHangSanPhamRauNhaTrong> lstSpDonHangVuonRau = new List<ChiTietDonHangSanPhamRauNhaTrong>();
-                foreach (var item in lstSpVuonRau)
+
+                if (lstSpVuonRau != null)
                 {
-                    int idsp = Int32.Parse(item.Split('#')[0]);
-                    int soluong = Int32.Parse(item.Split('#')[1]);
-
-                    var spvuonrau = model.SanPhamRauNhaTrong.Find(idsp);
-                    if (spvuonrau == null)
+                    foreach (var item in lstSpVuonRau)
                     {
-                        model.DonHangVuonRauMuaSamVaMenuHangNgay.Remove(donhang);
+                        int idsp = Int32.Parse(item.Split('#')[0]);
+                        int soluong = Int32.Parse(item.Split('#')[1]);
+
+                        var spvuonrau = model.SanPhamRauNhaTrong.Find(idsp);
+                        if (spvuonrau == null)
+                        {
+                            model.DonHangVuonRauMuaSamVaMenuHangNgay.Remove(donhang);
+                            model.SaveChanges();
+                            UpdateCart();
+                            return Content("NOTEXIST");
+                        }
+                        if (spvuonrau.giatritrendonvi < soluong)
+                        {
+                            model.DonHangVuonRauMuaSamVaMenuHangNgay.Remove(donhang);
+                            model.SaveChanges();
+                            UpdateCart();
+                            return Content("VUOTSOLUONG");
+                        }
+
+                        int soluongton = spvuonrau.giatritrendonvi;
+                        spvuonrau.giatritrendonvi = soluongton - soluong;
+                        model.Entry(spvuonrau).State = EntityState.Modified;
                         model.SaveChanges();
-                        UpdateCart();
-                        return Content("NOTEXIST");
+
+                        ChiTietDonHangSanPhamRauNhaTrong dhSP = new ChiTietDonHangSanPhamRauNhaTrong();
+                        dhSP.id_donhangvuonraumuasamvamenuhangngay = idDH;
+                        dhSP.id_sanphamraunhatrong = idsp;
+                        dhSP.hinhanh = spvuonrau.hinhanh;
+                        dhSP.video = spvuonrau.video;
+                        dhSP.tensanpham = spvuonrau.tensanpham;
+                        dhSP.donvi = spvuonrau.donvi;
+                        dhSP.giatritrendonvi = spvuonrau.giatritrendonvi;
+                        dhSP.gia = spvuonrau.gia;
+                        dhSP.mota = spvuonrau.mota;
+                        dhSP.soluongmua = soluong;
+
+                        lstSpDonHangVuonRau.Add(dhSP);
                     }
-                    if (spvuonrau.giatritrendonvi < soluong)
-                    {
-                        model.DonHangVuonRauMuaSamVaMenuHangNgay.Remove(donhang);
-                        model.SaveChanges();
-                        UpdateCart();
-                        return Content("VUOTSOLUONG");
-                    }
-
-                    int soluongton = spvuonrau.giatritrendonvi;
-                    spvuonrau.giatritrendonvi = soluongton - soluong;
-                    model.Entry(spvuonrau).State = EntityState.Modified;
-                    model.SaveChanges();
-
-                    ChiTietDonHangSanPhamRauNhaTrong dhSP = new ChiTietDonHangSanPhamRauNhaTrong();
-                    dhSP.id_donhangvuonraumuasamvamenuhangngay = idDH;
-                    dhSP.id_sanphamraunhatrong = idsp;
-                    dhSP.hinhanh = spvuonrau.hinhanh;
-                    dhSP.video = spvuonrau.video;
-                    dhSP.tensanpham = spvuonrau.tensanpham;
-                    dhSP.donvi = spvuonrau.donvi;
-                    dhSP.giatritrendonvi = spvuonrau.giatritrendonvi;
-                    dhSP.gia = spvuonrau.gia;
-                    dhSP.mota = spvuonrau.mota;
-                    dhSP.soluongmua = soluong;
-
-                    lstSpDonHangVuonRau.Add(dhSP);
                 }
-
                 //Vườn tdhn
                 var lstSpTDHN = Session["giohang-thucdonhangngay"] as List<string>;
                 List<ChiTietDonHangSanPhamThucDonHangNgay> lstSpDonHangTDHN = new List<ChiTietDonHangSanPhamThucDonHangNgay>();
-                foreach (var item in lstSpTDHN)
+
+                if (lstSpTDHN != null)
                 {
-                    int idsp = Int32.Parse(item.Split('#')[0]);
-                    int soluong = Int32.Parse(item.Split('#')[1]);
-
-                    var sptdhn = model.SanPhamThucDonHangNgay.Find(idsp);
-                    if (sptdhn == null)
+                    foreach (var item in lstSpTDHN)
                     {
-                        model.DonHangVuonRauMuaSamVaMenuHangNgay.Remove(donhang);
-                        model.SaveChanges();
-                        UpdateCart();
-                        return Content("NOTEXIST");
+                        int idsp = Int32.Parse(item.Split('#')[0]);
+                        int soluong = Int32.Parse(item.Split('#')[1]);
+
+                        var sptdhn = model.SanPhamThucDonHangNgay.Find(idsp);
+                        if (sptdhn == null)
+                        {
+                            model.DonHangVuonRauMuaSamVaMenuHangNgay.Remove(donhang);
+                            model.SaveChanges();
+                            UpdateCart();
+                            return Content("NOTEXIST");
+                        }
+
+                        if (sptdhn.conhang == false)
+                        {
+                            model.DonHangVuonRauMuaSamVaMenuHangNgay.Remove(donhang);
+                            model.SaveChanges();
+                            UpdateCart();
+                            return Content("VUOTSOLUONG");
+                        }
+
+                        ChiTietDonHangSanPhamThucDonHangNgay dhSP = new ChiTietDonHangSanPhamThucDonHangNgay();
+                        dhSP.id_donhangvuonraumuasamvamenuhangngay = idDH;
+                        dhSP.id_sanphamthucdonhangngay = idsp;
+                        dhSP.hinhanh = sptdhn.hinhanh;
+                        dhSP.video = sptdhn.video;
+                        dhSP.tensanpham = sptdhn.tensanpham;
+                        dhSP.gia = sptdhn.gia;
+                        dhSP.mota = sptdhn.mota;
+                        dhSP.soluongmua = soluong;
+
+                        lstSpDonHangTDHN.Add(dhSP);
                     }
-
-                    if (sptdhn.conhang == false)
-                    {
-                        model.DonHangVuonRauMuaSamVaMenuHangNgay.Remove(donhang);
-                        model.SaveChanges();
-                        UpdateCart();
-                        return Content("VUOTSOLUONG");
-                    }
-
-                    ChiTietDonHangSanPhamThucDonHangNgay dhSP = new ChiTietDonHangSanPhamThucDonHangNgay();
-                    dhSP.id_donhangvuonraumuasamvamenuhangngay = idDH;
-                    dhSP.id_sanphamthucdonhangngay = idsp;
-                    dhSP.hinhanh = sptdhn.hinhanh;
-                    dhSP.video = sptdhn.video;
-                    dhSP.tensanpham = sptdhn.tensanpham;
-                    dhSP.gia = sptdhn.gia;
-                    dhSP.mota = sptdhn.mota;
-                    dhSP.soluongmua = soluong;
-
-                    lstSpDonHangTDHN.Add(dhSP);
                 }
 
                 if (lstSpDonHangMuaSam.Count > 0)
@@ -304,28 +316,54 @@ namespace Beanfamily.Controllers
                 Session["giohang-vuonrau"] = null;
                 Session["giohang-thucdonhangngay"] = null;
 
-                var giohangmuasamlst = model.GioHangMuaSam.Where(g => g.id_taikhoankhachhang == tkkh.id).ToList();
-                if (tkkh.GioHangMuaSam.Count > 0)
-                    model.GioHangMuaSam.RemoveRange(giohangmuasamlst);
+                if (idtk != null)
+                {
+                    var giohangmuasamlst = model.GioHangMuaSam.Where(g => g.id_taikhoankhachhang == tkkh.id).ToList();
+                    if (tkkh.GioHangMuaSam.Count > 0)
+                        model.GioHangMuaSam.RemoveRange(giohangmuasamlst);
 
-                var giohangvuonraulst = model.GioHangVuonRauBean.Where(g => g.id_taikhoankhachhang == tkkh.id).ToList();
-                if (tkkh.GioHangVuonRauBean.Count > 0)
-                    model.GioHangVuonRauBean.RemoveRange(giohangvuonraulst);
+                    var giohangvuonraulst = model.GioHangVuonRauBean.Where(g => g.id_taikhoankhachhang == tkkh.id).ToList();
+                    if (tkkh.GioHangVuonRauBean.Count > 0)
+                        model.GioHangVuonRauBean.RemoveRange(giohangvuonraulst);
 
-                var giohangtdhnlst = model.GioHangThucDonHangNgay.Where(g => g.id_taikhoankhachhang == tkkh.id).ToList();
-                if (tkkh.GioHangThucDonHangNgay.Count > 0)
-                    model.GioHangThucDonHangNgay.RemoveRange(giohangtdhnlst);
+                    var giohangtdhnlst = model.GioHangThucDonHangNgay.Where(g => g.id_taikhoankhachhang == tkkh.id).ToList();
+                    if (tkkh.GioHangThucDonHangNgay.Count > 0)
+                        model.GioHangThucDonHangNgay.RemoveRange(giohangtdhnlst);
 
-                model.SaveChanges();
-
+                    model.SaveChanges();
+                }
                 return Content("SUCCESS-" + madonhang);
             }
             catch (Exception ex)
             {
+                if (idTemp != 0)
+                {
+                    var spMuaSam = model.ChiTietDonHangSanPhamMuaSam.Where(w => w.id_donhangvuonraumuasamvamenuhangngay == idTemp).ToList();
+                    if (spMuaSam.Count > 0)
+                        model.ChiTietDonHangSanPhamMuaSam.RemoveRange(spMuaSam);
+
+                    var spVuonRau = model.ChiTietDonHangSanPhamRauNhaTrong.Where(w => w.id_donhangvuonraumuasamvamenuhangngay == idTemp).ToList();
+                    if (spVuonRau.Count > 0)
+                        model.ChiTietDonHangSanPhamRauNhaTrong.RemoveRange(spVuonRau);
+
+                    var spTDHN = model.ChiTietDonHangSanPhamThucDonHangNgay.Where(w => w.id_donhangvuonraumuasamvamenuhangngay == idTemp).ToList();
+                    if (spTDHN.Count > 0)
+                        model.ChiTietDonHangSanPhamThucDonHangNgay.RemoveRange(spTDHN);
+
+                    var tinhtrangdonhang = model.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.FirstOrDefault(t => t.id_donhangvuonraumuasamvathucdonhangngay == idTemp);
+                    if (tinhtrangdonhang != null)
+                        model.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.Remove(tinhtrangdonhang);
+
+                    model.SaveChanges();
+                    var dh = model.DonHangVuonRauMuaSamVaMenuHangNgay.Find(idTemp);
+                    if (dh != null)
+                        model.DonHangVuonRauMuaSamVaMenuHangNgay.Remove(dh);
+                    model.SaveChanges();
+                }
+
                 return Content("Chi tiết lỗi: " + ex.Message);
             }
         }
-
         public void UpdateCart()
         {
             // Mua sắm

@@ -325,4 +325,8 @@
             });
         }
     });
+
+    $('body').find('[id="user-tracuudonhang"]').on('click', function () {
+        window.location = $('#requestPath').val() + "tra-cuu-don-hang";
+    });
 });

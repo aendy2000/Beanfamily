@@ -455,7 +455,7 @@ input[type="date" i] {
     color: #fff !important;
 }
 
-    .select2-selection__arrow {
+.select2-selection__arrow {
     top: 50% !important;
     transform: translateY(-50%) !important;
     right: 12px !important;
@@ -1725,7 +1725,7 @@ body {
     text-align: center;
     height: 300px;
     border-radius: 16px;
-    border: 1px solid rgb(255 255 255);
+    border: 2px solid #ffc687;
 }
 
     .product-grid .product-image {
@@ -1921,7 +1921,7 @@ body {
         text-align: center;
         height: 350px;
         border-radius: 16px;
-        border: 1px solid rgb(255 255 255);
+        border: 2px solid #ffc687;
     }
 
         .product-grid .product-image {
@@ -1940,16 +1940,16 @@ body {
     background-color: #2b5a4c;
     border-top: 1px solid rgba(0,0,0,.125);
     border-bottom: 1px solid rgba(0,0,0,.125);
-    border-left: 1px solid rgb(255 255 255);
-    border-right: 1px solid rgb(255 255 255);
+    border-left: 2px solid #ffc687;
+    border-right: 2px solid #ffc687;
 }
 
 .category_block li:last-child:hover {
     background-color: #2b5a4c;
     border-top: 1px solid rgba(0,0,0,.125);
-    border-bottom: 1px solid rgb(255 255 255);
-    border-left: 1px solid rgb(255 255 255);
-    border-right: 1px solid rgb(255 255 255);
+    border-bottom: 2px solid #ffc687;
+    border-left: 2px solid #ffc687;
+    border-right: 2px solid #ffc687;
 }
 
 .category_block li:hover a {
@@ -1964,16 +1964,16 @@ body {
     background-color: #15352c;
     border-top: 1px solid rgba(0,0,0,.125);
     border-bottom: 1px solid rgba(0,0,0,.125);
-    border-left: 1px solid rgb(255 255 255);
-    border-right: 1px solid rgb(255 255 255);
+    border-left: 2px solid #ffc687;
+    border-right: 2px solid #ffc687;
 }
 
     .category_block .active:last-child {
         background-color: #15352c;
         border-top: 1px solid rgba(0,0,0,.125);
-        border-bottom: 1px solid rgb(255 255 255);
-        border-left: 1px solid rgb(255 255 255);
-        border-right: 1px solid rgb(255 255 255);
+        border-bottom: 2px solid #ffc687;
+        border-left: 2px solid #ffc687;
+        border-right: 2px solid #ffc687;
     }
 
     .category_block .active:hover {
@@ -1986,11 +1986,16 @@ body {
 
 .category_block li {
     cursor: pointer;
+    border-left: 2px solid #ffc678;
+    border-right: 2px solid #ffc678;
 }
 
 .category_block > li:last-child {
     border-bottom-left-radius: 16px;
     border-bottom-right-radius: 16px;
+    border-left: 2px solid #ffc678;
+    border-right: 2px solid #ffc678;
+    border-bottom: 2px solid #ffc678;
 }
 
 .bg-website {
@@ -2026,7 +2031,7 @@ body {
         text-align: center;
         height: 350px;
         border-radius: 16px;
-        border: 1px solid rgb(255 255 255);
+        border: 2px solid #ffc687;
     }
 
         .product-grid .product-image {
@@ -2051,19 +2056,19 @@ body {
     .pagination li.active {
         background: #5e443b;
         color: #fff;
-        border: 1px solid #fff;
+        border: 2px solid #ffc678;
     }
 
         .pagination li.active:hover {
             background: #5e443b;
             color: #fff;
-            border: 1px solid #fff;
+            border: 2px solid #ffc678;
         }
 
     .pagination li:hover {
         background: #73584e;
         color: #fff;
-        border: 1px solid #fff;
+        border: 2px solid #ffc678;
     }
 
     .pagination li a {
@@ -2220,7 +2225,7 @@ body {
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
     right: 0;
-    border: 1px solid #fff;
+    border: 2px solid #ffc678;
 }
 
     .dropdown-content-user li {
@@ -2251,5 +2256,4 @@ body {
         padding: 3px !important;
         border: 3px solid #12634c !important;
     }
-
 

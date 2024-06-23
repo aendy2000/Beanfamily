@@ -1,0 +1,197 @@
+﻿@using Beanfamily.Models
+@using PagedList.Mvc;
+@using PagedList;
+@model IPagedList<Beanfamily.Models.DonHangVuonRauMuaSamVaMenuHangNgay>
+@{
+    var tkkh = Session["user-data"] as TaiKhoanKhachHang;
+
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+
+<!-- Title Page -->
+<section style="background-repeat: no-repeat; background-position: center 0; background-size: cover; background-image: url(/Content/assets/images/backgroud.png);">
+    <div class="flex-c-m" style="background-image: linear-gradient(180deg, #00000000 0%, #122E26 100%); width: 100%; min-height: 545px; padding-left: 15px; padding-right: 15px; background-repeat: no-repeat; background-position: center 0; background-size: cover; ">
+        <div>
+            <h2 class="tit6 t-center">
+                TRA CỨU ĐƠN HÀNG
+            </h2>
+            <h6 class="t-center text-white mt-2">
+                <a class="text-white text-decoration-underline" href="@Url.Action("index", "home")">TRANG CHỦ</a>
+                <label class="ms-2 me-2">/</label>
+                <a>TRA CỨU ĐƠN HÀNG</a>
+            </h6>
+        </div>
+    </div>
+</section>
+
+<section class="section-ourmenu bg1-pattern">
+    <div class="section-child-bg1">
+        <div class="container p-b-40">
+            <div style="position: sticky; top: 70px; z-index: 98" class="row">
+                <div class="col-12">
+                    <div class="row bg-bg2" style="width: 100%; height: 120px; border-radius: 16px; border: 1px solid #ffc687; margin: 30px 0 0 0 !important; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+                        <div class="col-md-12 col-sm-12" style="padding: 0 30px; margin-bottom: 3px; display: flex; flex-direction: column; align-items: start; justify-content: center; ">
+                            <span class="txt9">
+                                Tìm kiếm đơn hàng:
+                            </span>
+                            <div class="wrap-inputphone size12 bo-rad-16 m-t-3 mb-3 flex-r-m">
+                                <input style="border-radius: 16px 0 0 16px" class="bo-rad-16 sizefull txt10 p-l-20" type="search" id="sodienthoai" name="phone" data-type="numbers" placeholder="Nhập mã đơn hàng cần tìm">
+                                <a id="BtnTimkiemdonhang" style="border-radius: 0 16px 16px 0;height: 52px; width: auto; padding: 10px 20px 10px 20px; cursor: pointer; float: right" class="btn3 flex-c-m size1 txt11 trans-0-4 text-nowrap">Tìm kiếm</a>
+                            </div>
+                            <p hidden id="validate-timkiemdonhang-timkiem" style="margin-top: -10px; margin-bottom: 10px" class="text-danger"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row p-t-30">
+                <div class="col-12">
+                    @if (tkkh != null && Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+                            <div class="card mb-3 bo-rad-16 bggreen text-white item-order" style="border: 2px solid #ffc687">
+                                <div class="card-body me-3 ms-3" style="padding: 10px;">
+                                    <div class="d-flex justify-content-between row">
+                                        <div class="col-md-8 col-sm-8 ">
+                                            <div class="d-flex flex-row align-items-center ms-2 me-2 mt-2 mb-2">
+                                                <div>
+                                                    <a class="text-white">
+                                                        <img src="@Url.Content("~/Content/assets/images/orderlogo.png")"
+                                                             class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
+                                                    </a>
+                                                </div>
+                                                <div class="ms-3">
+                                                    <a class="text-white item-order-child">
+                                                        <h6>
+                                                            Mã ĐH: <b>@item.madonhang</b>
+                                                        </h6>
+                                                    </a>
+                                                    <p class="small mb-0 text-white item-order-child">
+                                                        @(item.ChiTietDonHangSanPhamMuaSam.Count + item.ChiTietDonHangSanPhamRauNhaTrong.Count + item.ChiTietDonHangSanPhamThucDonHangNgay.Count)
+                                                        Sản Phẩm &nbsp; | &nbsp; Tổng: @((item.ChiTietDonHangSanPhamMuaSam.Sum(s => s.soluongmua * s.gia)
+                                                        + item.ChiTietDonHangSanPhamRauNhaTrong.Sum(s => s.soluongmua * s.gia)
+                                                        + item.ChiTietDonHangSanPhamThucDonHangNgay.Sum(s => s.soluongmua * s.gia)).ToString("0,0"))đ
+                                                    </p>
+
+
+
+                                                    @if (item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude.ToLower().Equals("chờ duyệt"))
+                                                    {
+                                                        <p class="small mb-0 text-white">
+                                                            Trạng thái:
+                                                            <span class="small ms-1 p-t-0 p-b-0 p-l-10 p-r-10" style="background-color: #ffc687 !important; color: white; display: inline-block; border-radius: 8px">
+                                                                <b>Chờ duyệt</b>
+                                                            </span>
+                                                        </p>
+                                                    }
+                                                    else if (item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude.ToLower().Equals("đang đóng gói"))
+                                                    {
+                                                        <p class="small mb-0 text-white">
+                                                            Trạng thái:
+                                                            <span class="small ms-1 p-t-0 p-b-0 p-l-10 p-r-10 bg-primary" style="color: white; display: inline-block; border-radius: 8px">
+                                                                <b>Đang đóng gói</b>
+                                                            </span>
+                                                        </p>
+                                                    }
+                                                    else if (item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude.ToLower().Equals("đang giao"))
+                                                    {
+                                                        <p class="small mb-0 text-white">
+                                                            Trạng thái:
+                                                            <span class="small ms-1 p-t-0 p-b-0 p-l-10 p-r-10 bg-primary" style="color: white; display: inline-block; border-radius: 8px">
+                                                                <b>Đang giao</b>
+                                                            </span>
+                                                        </p>
+                                                    }
+                                                    else if (item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude.ToLower().Equals("không thành công"))
+                                                    {
+                                                        <p class="small mb-0 text-white">
+                                                            Trạng thái:
+                                                            <span class="small ms-1 p-t-0 p-b-0 p-l-10 p-r-10 bg-danger" style="color: white; display: inline-block; border-radius: 8px">
+                                                                <b>Không thành công</b>
+                                                            </span>
+                                                        </p>
+                                                    }
+                                                    else if (item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude.ToLower().Equals("đã hủy"))
+                                                    {
+                                                        <p class="small mb-0 text-white">
+                                                            Trạng thái:
+                                                            <span class="small ms-1 p-t-0 p-b-0 p-l-10 p-r-10 bg-danger" style="color: white; display: inline-block; border-radius: 8px">
+                                                                <b>Đã hủy</b>
+                                                            </span>
+                                                        </p>
+                                                    }
+                                                    else if (item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude.ToLower().Equals("hoàn thành"))
+                                                    {
+                                                        <p class="small mb-0 text-white">
+                                                            Trạng thái:
+                                                            <span class="small ms-1 p-t-0 p-b-0 p-l-10 p-r-10 bg-success" style="color: white; display: inline-block; border-radius: 8px">
+                                                                <b>Hoàn thành</b>
+                                                            </span>
+                                                        </p>
+                                                    }
+
+                                                    <p class="small mt-3" style="font-size: 11px; padding-top: 3px; border-top: 1px solid #d4d4d4">
+                                                        <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                                        @item.ngaydat.ToString("HH"):@(item.ngaydat.ToString("mm")) ngày @item.ngaydat.ToString("dd/MM/yyyy")
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class=" col-md-4 col-sm-4" style=" display: flex; flex-direction: row; justify-content: right; align-items: center;">
+                                            <div class="d-flex flex-row align-items-center  float-end me-2">
+                                                <div class="row">
+                                                    @if (item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude.ToLower().Equals("chờ duyệt"))
+                                                    {
+                                                        <div class="col-sm-12 t-right">
+                                                            <a id="xemchitiet-@item.id" style="height: 45px; width: auto; padding: 10px 20px 10px 20px; cursor: pointer; float: right; width: 150px; border-radius: 10px 10px 0 0" class="btn3 flex-c-m size1 txt11 trans-0-4 text-nowrap">Xem Chi Tiết</a>
+                                                        </div>
+                                                        <div class="col-sm-12 t-right">
+                                                            <a id="huydon-@item.id" style="width: auto; padding: 10px 20px 10px 20px; cursor: pointer; float: right; width: 150px; border-radius: 0 0 10px 10px " class="btn-danger flex-c-m size1 txt11 trans-0-4 text-nowrap">Hủy đơn</a>
+                                                        </div>
+                                                    }
+                                                    else if (item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude.ToLower().Equals("đang đóng gói"))
+                                                    {
+                                                        <div class="col-sm-12 t-right">
+                                                            <a id="xemchitiet-@item.id" style="height: 45px; width: auto; padding: 10px 20px 10px 20px; cursor: pointer; float: right; width: 150px; border-radius: 10px" class="btn3 flex-c-m size1 txt11 trans-0-4 text-nowrap">Xem Chi Tiết</a>
+                                                        </div>
+                                                    }
+                                                    else if (item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude.ToLower().Equals("đang giao"))
+                                                    {
+                                                        <div class="col-sm-12 t-right">
+                                                            <a id="xemchitiet-@item.id" style="height: 45px; width: auto; padding: 10px 20px 10px 20px; cursor: pointer; float: right; width: 150px; border-radius: 10px" class="btn3 flex-c-m size1 txt11 trans-0-4 text-nowrap">Xem Chi Tiết</a>
+                                                        </div>
+                                                    }
+                                                    else if (item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude.ToLower().Equals("không thành công"))
+                                                    {
+                                                        <div class="col-sm-12 t-right">
+                                                            <a id="xemchitiet-@item.id" style="height: 45px; width: auto; padding: 10px 20px 10px 20px; cursor: pointer; float: right; width: 150px; border-radius: 10px" class="btn3 flex-c-m size1 txt11 trans-0-4 text-nowrap">Xem Chi Tiết</a>
+                                                        </div>
+                                                    }
+                                                    else if (item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude.ToLower().Equals("đã hủy"))
+                                                    {
+                                                        <div class="col-sm-12 t-right">
+                                                            <a id="xemchitiet-@item.id" style="height: 45px; width: auto; padding: 10px 20px 10px 20px; cursor: pointer; float: right; width: 150px; border-radius: 10px" class="btn3 flex-c-m size1 txt11 trans-0-4 text-nowrap">Xem Chi Tiết</a>
+                                                        </div>
+                                                    }
+                                                    else if (item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude.ToLower().Equals("hoàn thành"))
+                                                    {
+                                                        <div class="col-sm-12 t-right">
+                                                            <a id="xemchitiet-@item.id" style="height: 45px; width: auto; padding: 10px 20px 10px 20px; cursor: pointer; float: right; width: 150px; border-radius: 10px" class="btn3 flex-c-m size1 txt11 trans-0-4 text-nowrap">Xem Chi Tiết</a>
+                                                        </div>
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+                <div class="col-12" style="display: flex; justify-content: center; flex-direction:inherit">
+                    @Html.PagedListPager(Model, pageNum => Url.Action("tracuudonhang", new { pageNum, PageSize = 10 }))
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -521,5 +521,19 @@ namespace Beanfamily.Controllers
                 return Content("Chi tiết lỗi: " + Ex.Message);
             }
         }
+
+        public ActionResult TraCuuDonHang(int? pageNum, int? pageSize)
+        {
+            if (pageSize == null)
+                pageSize = 10;
+            if (pageNum == null)
+                pageNum = 1;
+
+            var tkkh = Session["user-data"] as TaiKhoanKhachHang;
+            if (tkkh == null)
+                return View("tracuudonhang", new List<DonHangVuonRauMuaSamVaMenuHangNgay>().ToPagedList((int)pageNum, (int)pageSize));
+            else
+                return View("tracuudonhang", model.DonHangVuonRauMuaSamVaMenuHangNgay.Where(d => d.id_taikhoankhkachhang == tkkh.id).ToList().ToPagedList((int)pageNum, (int)pageSize));
+        }
     }
 }

@@ -363,6 +363,7 @@
     <Content Include="Content\assets\images\logo\Bamboo3.png" />
     <Content Include="Content\assets\images\logo\Bamboo4.png" />
     <Content Include="Content\assets\images\logo\hoa-tiet-chims.png" />
+    <Content Include="Content\assets\images\orderlogo.png" />
     <Content Include="Content\assets\images\videodefault.jpg" />
     <Content Include="Content\AdminAreas\assets\css\style.css" />
     <Content Include="Content\AdminAreas\assets\img\apple-touch-icon.png" />
@@ -2956,6 +2957,7 @@
     <Content Include="Views\DatHang\Index.cshtml" />
     <Content Include="Views\DatHang\_UpdateInfoCart.cshtml" />
     <Content Include="Views\DatHang\TienHanhDatHang.cshtml" />
+    <Content Include="Views\Home\TraCuuDonHang.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
