@@ -319,7 +319,8 @@
     <Content Include="ActionOnPage\MenuTiecBan\loadPageMenuTiecBan.js" />
     <Content Include="ActionOnPage\MenuTiecBan\SubmitFormDatBan.js" />
     <Content Include="ActionOnPage\NhaHang\loadPageNhaHang.js" />
-    <Content Include="ActionOnPage\TemplateMail\index.html" />
+    <Content Include="ActionOnPage\TemplateMail\ThongBaoDonDatHang.html" />
+    <Content Include="ActionOnPage\TemplateMail\ThongBaoDonDatBan.html" />
     <Content Include="ActionOnPage\TemplateMail\MailGuiMaXacNhan.html" />
     <Content Include="ActionOnPage\ThucDonHangNgay\AddToCart.js" />
     <Content Include="ActionOnPage\ThucDonHangNgay\loadPageThucDonHangNgayDetail.js" />

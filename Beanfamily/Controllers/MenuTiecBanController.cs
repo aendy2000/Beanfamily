@@ -130,7 +130,7 @@ namespace Beanfamily.Controllers
                 model.SaveChanges();
 
                 string bodyMail = string.Empty;
-                using (StreamReader reader = new StreamReader(Server.MapPath("~/ActionOnPage/TemplateMail/index.html")))
+                using (StreamReader reader = new StreamReader(Server.MapPath("~/ActionOnPage/TemplateMail/ThongBaoDonDatBan.html")))
                 {
                     bodyMail = reader.ReadToEnd();
                 }

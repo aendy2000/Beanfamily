@@ -249,10 +249,10 @@
           <Property Name="dienthoai" Type="nvarchar" MaxLength="12" Nullable="false" />
           <Property Name="email" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="ghichu" Type="nvarchar" MaxLength="200" />
-          <Property Name="diachi" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="tinh" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="quanhuyen" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="phuongxa" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="diachi" Type="nvarchar" MaxLength="200" />
+          <Property Name="tinh" Type="nvarchar" MaxLength="200" />
+          <Property Name="quanhuyen" Type="nvarchar" MaxLength="200" />
+          <Property Name="phuongxa" Type="nvarchar" MaxLength="200" />
           <Property Name="ngaydat" Type="datetime" Nullable="false" />
           <Property Name="hinhthucthanhtoan" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="giaohangtannoi" Type="bit" Nullable="false" />
@@ -487,7 +487,7 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_donhangvuonraumuasamvathucdonhangngay" Type="int" Nullable="false" />
-          <Property Name="id_taikhoanbean" Type="int" Nullable="false" />
+          <Property Name="id_taikhoanbean" Type="int" />
           <Property Name="tieude" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="noidung" Type="nvarchar(max)" Nullable="false" />
           <Property Name="thoigian" Type="datetime" Nullable="false" />
@@ -1029,7 +1029,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay_TaiKhoanBean">
-          <End Role="TaiKhoanBean" Type="Self.TaiKhoanBean" Multiplicity="1" />
+          <End Role="TaiKhoanBean" Type="Self.TaiKhoanBean" Multiplicity="0..1" />
           <End Role="TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay" Type="Self.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TaiKhoanBean">
@@ -1551,10 +1551,10 @@
           <Property Name="dienthoai" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ghichu" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="diachi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="tinh" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="quanhuyen" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="phuongxa" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="diachi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="tinh" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="quanhuyen" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="phuongxa" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="ngaydat" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="hinhthucthanhtoan" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="giaohangtannoi" Type="Boolean" Nullable="false" />
@@ -1840,7 +1840,7 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_donhangvuonraumuasamvathucdonhangngay" Type="Int32" Nullable="false" />
-          <Property Name="id_taikhoanbean" Type="Int32" Nullable="false" />
+          <Property Name="id_taikhoanbean" Type="Int32" />
           <Property Name="tieude" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="noidung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="thoigian" Type="DateTime" Nullable="false" Precision="3" />
@@ -2398,7 +2398,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay_TaiKhoanBean">
-          <End Role="TaiKhoanBean" Type="Self.TaiKhoanBean" Multiplicity="1" />
+          <End Role="TaiKhoanBean" Type="Self.TaiKhoanBean" Multiplicity="0..1" />
           <End Role="TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay" Type="Self.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TaiKhoanBean">

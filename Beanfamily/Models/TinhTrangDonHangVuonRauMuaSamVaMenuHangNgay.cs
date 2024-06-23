@@ -16,7 +16,7 @@ namespace Beanfamily.Models
     {
         public int id { get; set; }
         public int id_donhangvuonraumuasamvathucdonhangngay { get; set; }
-        public int id_taikhoanbean { get; set; }
+        public Nullable<int> id_taikhoanbean { get; set; }
         public string tieude { get; set; }
         public string noidung { get; set; }
         public System.DateTime thoigian { get; set; }
