@@ -535,5 +535,31 @@ namespace Beanfamily.Controllers
             else
                 return View("tracuudonhang", model.DonHangVuonRauMuaSamVaMenuHangNgay.Where(d => d.id_taikhoankhkachhang == tkkh.id).ToList().ToPagedList((int)pageNum, (int)pageSize));
         }
+
+        public ActionResult TimKiemDonHang(int? pageNum, int? pageSize, string content)
+        {
+            if (pageSize == null)
+                pageSize = 10;
+            if (pageNum == null)
+                pageNum = 1;
+
+            if(string.IsNullOrEmpty(content))
+            {
+                var tkkh = Session["user-data"] as TaiKhoanKhachHang;
+                if (tkkh == null)
+                    return PartialView("_timkiemdonhang", new List<DonHangVuonRauMuaSamVaMenuHangNgay>().ToPagedList((int)pageNum, (int)pageSize));
+                else
+                    return PartialView("_timkiemdonhang", model.DonHangVuonRauMuaSamVaMenuHangNgay.Where(d => d.id_taikhoankhkachhang == tkkh.id).ToList().ToPagedList((int)pageNum, (int)pageSize));
+            }
+            else
+            {
+                var tkkh = Session["user-data"] as TaiKhoanKhachHang;
+                if (tkkh == null)
+                    return PartialView("_timkiemdonhang", model.DonHangVuonRauMuaSamVaMenuHangNgay.Where(d => d.madonhang.ToLower().Equals(content.ToLower())).ToList().ToPagedList((int)pageNum, (int)pageSize));
+                else
+                    return PartialView("_timkiemdonhang", model.DonHangVuonRauMuaSamVaMenuHangNgay.Where(d => d.id_taikhoankhkachhang == tkkh.id && d.madonhang.ToLower().Contains(content.ToLower())).ToList().ToPagedList((int)pageNum, (int)pageSize));
+            }
+            
+        }
     }
 }
