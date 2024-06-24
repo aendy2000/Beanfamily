@@ -46,7 +46,7 @@
             <div id="content-order-load">
                 <div class="row p-t-30">
                     <div class="col-12">
-                        @if (tkkh != null && Model != null)
+                        @if (Model != null)
                         {
                             foreach (var item in Model)
                             {
@@ -143,41 +143,26 @@
                                                     <div class="row">
                                                         @if (item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude.ToLower().Equals("chờ duyệt"))
                                                         {
-                                                            <div class="col-sm-12 t-right">
-                                                                <a id="xemchitiet-@item.id" style="height: 45px; width: auto; padding: 10px 20px 10px 20px; cursor: pointer; float: right; width: 150px; border-radius: 10px 10px 0 0" class="btn3 flex-c-m size1 txt11 trans-0-4 text-nowrap">Xem Chi Tiết</a>
-                                                            </div>
-                                                            <div class="col-sm-12 t-right">
-                                                                <a id="huydon-@item.id" style="width: auto; padding: 10px 20px 10px 20px; cursor: pointer; float: right; width: 150px; border-radius: 0 0 10px 10px " class="btn-danger flex-c-m size1 txt11 trans-0-4 text-nowrap">Hủy đơn</a>
-                                                            </div>
+                                                            if (Session["user-data"] != null)
+                                                            {
+                                                                <div class="col-sm-12 t-right">
+                                                                    <a name="@item.id" id="xemchitietdonhang-@item.id" style="height: 45px; width: auto; padding: 10px 20px 10px 20px; cursor: pointer; float: right; width: 150px; border-radius: 10px 10px 0 0" class="btn3 flex-c-m size1 txt11 trans-0-4 text-nowrap">Xem Chi Tiết</a>
+                                                                </div>
+                                                                <div class="col-sm-12 t-right">
+                                                                    <a name="@item.id" id="huydonhang-@item.id" style="width: auto; padding: 10px 20px 10px 20px; cursor: pointer; float: right; width: 150px; border-radius: 0 0 10px 10px " class="btn-danger flex-c-m size1 txt11 trans-0-4 text-nowrap">Hủy đơn</a>
+                                                                </div>
+                                                            }
+                                                            else
+                                                            {
+                                                                <div class="col-sm-12 t-right">
+                                                                    <a name="@item.id" id="xemchitietdonhang-@item.id" style="height: 45px; width: auto; padding: 10px 20px 10px 20px; cursor: pointer; float: right; width: 150px; border-radius: 10px" class="btn3 flex-c-m size1 txt11 trans-0-4 text-nowrap">Xem Chi Tiết</a>
+                                                                </div>
+                                                            }
                                                         }
-                                                        else if (item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude.ToLower().Equals("đang đóng gói"))
+                                                        else
                                                         {
                                                             <div class="col-sm-12 t-right">
-                                                                <a id="xemchitiet-@item.id" style="height: 45px; width: auto; padding: 10px 20px 10px 20px; cursor: pointer; float: right; width: 150px; border-radius: 10px" class="btn3 flex-c-m size1 txt11 trans-0-4 text-nowrap">Xem Chi Tiết</a>
-                                                            </div>
-                                                        }
-                                                        else if (item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude.ToLower().Equals("đang giao"))
-                                                        {
-                                                            <div class="col-sm-12 t-right">
-                                                                <a id="xemchitiet-@item.id" style="height: 45px; width: auto; padding: 10px 20px 10px 20px; cursor: pointer; float: right; width: 150px; border-radius: 10px" class="btn3 flex-c-m size1 txt11 trans-0-4 text-nowrap">Xem Chi Tiết</a>
-                                                            </div>
-                                                        }
-                                                        else if (item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude.ToLower().Equals("không thành công"))
-                                                        {
-                                                            <div class="col-sm-12 t-right">
-                                                                <a id="xemchitiet-@item.id" style="height: 45px; width: auto; padding: 10px 20px 10px 20px; cursor: pointer; float: right; width: 150px; border-radius: 10px" class="btn3 flex-c-m size1 txt11 trans-0-4 text-nowrap">Xem Chi Tiết</a>
-                                                            </div>
-                                                        }
-                                                        else if (item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude.ToLower().Equals("đã hủy"))
-                                                        {
-                                                            <div class="col-sm-12 t-right">
-                                                                <a id="xemchitiet-@item.id" style="height: 45px; width: auto; padding: 10px 20px 10px 20px; cursor: pointer; float: right; width: 150px; border-radius: 10px" class="btn3 flex-c-m size1 txt11 trans-0-4 text-nowrap">Xem Chi Tiết</a>
-                                                            </div>
-                                                        }
-                                                        else if (item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude.ToLower().Equals("hoàn thành"))
-                                                        {
-                                                            <div class="col-sm-12 t-right">
-                                                                <a id="xemchitiet-@item.id" style="height: 45px; width: auto; padding: 10px 20px 10px 20px; cursor: pointer; float: right; width: 150px; border-radius: 10px" class="btn3 flex-c-m size1 txt11 trans-0-4 text-nowrap">Xem Chi Tiết</a>
+                                                                <a name="@item.id" id="xemchitietdonhang-@item.id" style="height: 45px; width: auto; padding: 10px 20px 10px 20px; cursor: pointer; float: right; width: 150px; border-radius: 10px" class="btn3 flex-c-m size1 txt11 trans-0-4 text-nowrap">Xem Chi Tiết</a>
                                                             </div>
                                                         }
                                                     </div>
@@ -197,4 +182,19 @@
         </div>
     </div>
 </section>
-<script src="~/ActionOnPage/DonHang/TimKiemDonHang.js"></script>
+<script src="~/ActionOnPage/DonHang/ActionDonHang.js"></script>
+<div class="modal fade" id="chiTietDonHangModal" tabindex="-1" aria-labelledby="chiTietDonHangModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div id="content-chitiet-donhang-xemchitiet" class="modal-content">
+            <div class="modal-header" style="text-align: center; border-bottom: none;">
+                <h1 class="modal-title fs-5" style="text-align: center" id="chiTietDonHangModalLabel"></h1>
+                <button style="z-index: 999" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="margin-top: -30px;">
+                <div class="row ms-2 me-2">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

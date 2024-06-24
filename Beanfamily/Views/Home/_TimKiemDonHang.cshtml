@@ -118,23 +118,23 @@
                                                     if (Session["user-data"] != null)
                                                     {
                                                         <div class="col-sm-12 t-right">
-                                                            <a id="xemchitiet-@item.id" style="height: 45px; width: auto; padding: 10px 20px 10px 20px; cursor: pointer; float: right; width: 150px; border-radius: 10px 10px 0 0" class="btn3 flex-c-m size1 txt11 trans-0-4 text-nowrap">Xem Chi Tiết</a>
+                                                            <a name="@item.id" id="xemchitietdonhang-@item.id" style="height: 45px; width: auto; padding: 10px 20px 10px 20px; cursor: pointer; float: right; width: 150px; border-radius: 10px 10px 0 0" class="btn3 flex-c-m size1 txt11 trans-0-4 text-nowrap">Xem Chi Tiết</a>
                                                         </div>
                                                         <div class="col-sm-12 t-right">
-                                                            <a id="huydon-@item.id" style="width: auto; padding: 10px 20px 10px 20px; cursor: pointer; float: right; width: 150px; border-radius: 0 0 10px 10px " class="btn-danger flex-c-m size1 txt11 trans-0-4 text-nowrap">Hủy đơn</a>
+                                                            <a name="@item.id" id="huydonhang-@item.id" style="width: auto; padding: 10px 20px 10px 20px; cursor: pointer; float: right; width: 150px; border-radius: 0 0 10px 10px " class="btn-danger flex-c-m size1 txt11 trans-0-4 text-nowrap">Hủy đơn</a>
                                                         </div>
                                                     }
                                                     else
                                                     {
                                                         <div class="col-sm-12 t-right">
-                                                            <a id="xemchitiet-@item.id" style="height: 45px; width: auto; padding: 10px 20px 10px 20px; cursor: pointer; float: right; width: 150px; border-radius: 10px" class="btn3 flex-c-m size1 txt11 trans-0-4 text-nowrap">Xem Chi Tiết</a>
+                                                            <a name="@item.id" id="xemchitietdonhang-@item.id" style="height: 45px; width: auto; padding: 10px 20px 10px 20px; cursor: pointer; float: right; width: 150px; border-radius: 10px" class="btn3 flex-c-m size1 txt11 trans-0-4 text-nowrap">Xem Chi Tiết</a>
                                                         </div>
                                                     }
                                                 }
                                                 else
                                                 {
                                                     <div class="col-sm-12 t-right">
-                                                        <a id="xemchitiet-@item.id" style="height: 45px; width: auto; padding: 10px 20px 10px 20px; cursor: pointer; float: right; width: 150px; border-radius: 10px" class="btn3 flex-c-m size1 txt11 trans-0-4 text-nowrap">Xem Chi Tiết</a>
+                                                        <a name="@item.id" id="xemchitietdonhang-@item.id" style="height: 45px; width: auto; padding: 10px 20px 10px 20px; cursor: pointer; float: right; width: 150px; border-radius: 10px" class="btn3 flex-c-m size1 txt11 trans-0-4 text-nowrap">Xem Chi Tiết</a>
                                                     </div>
                                                 }
                                             </div>
@@ -161,4 +161,31 @@
             @Html.PagedListPager(Model, pageNum => Url.Action("tracuudonhang", new { pageNum, PageSize = 10 }))
         </div>
     </div>
+    <script>
+        $('body').find('[id^="xemchitietdonhang-"]').on('click', function () {
+            var btn = $(this);
+            btn.html('<span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"> </span> Đang tải...');
+            btn.css('pointer-events', 'none');
+
+            var id = $(this).attr('name');
+
+            var formData = new FormData();
+            formData.append('id', id);
+
+            $.ajax({
+                url: $('body').find('[id="requestPath"]').val() + 'home/xemchitietdonhang',
+                data: formData,
+                dataType: 'html',
+                type: 'POST',
+                processData: false,
+                contentType: false,
+            }).done(function (ketqua) {
+                btn.html('Xem chi tiết');
+                btn.css('pointer-events', 'all');
+
+                $('body').find('[id="content-chitiet-donhang-xemchitiet"]').replaceWith(ketqua);
+                $('body').find('[id="chiTietDonHangModal"]').modal('toggle');
+            });
+        });
+    </script>
 </div>

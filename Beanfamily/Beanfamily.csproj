@@ -302,7 +302,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ActionOnPage\DonHang\TimKiemDonHang.js" />
+    <Content Include="ActionOnPage\DonHang\HuyDonHang.js" />
+    <Content Include="ActionOnPage\DonHang\ActionDonHang.js" />
     <Content Include="ActionOnPage\GioHang\ChangeQuantity.js" />
     <Content Include="ActionOnPage\GioHang\DeletedProduct.js" />
     <Content Include="ActionOnPage\GioHang\DatHang.js" />
@@ -2960,6 +2961,7 @@
     <Content Include="Views\DatHang\TienHanhDatHang.cshtml" />
     <Content Include="Views\Home\TraCuuDonHang.cshtml" />
     <Content Include="Views\Home\_TimKiemDonHang.cshtml" />
+    <Content Include="Views\Home\_ChiTietDonHang.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

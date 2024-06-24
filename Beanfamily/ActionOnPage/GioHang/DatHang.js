@@ -165,7 +165,7 @@
                                 text: "Cảm ơn bạn đã đặt hàng, chúng tôi đã nhận được thông tin và sẽ sớm liên hệ lại với bạn để xác nhận đơn đặt hàng này. \nMã đơn hàng: " + madonhang,
                                 icon: "success"
                             }).then(() => {
-                                window.location.reload();
+                                window.location.href = $('#requestPath').val() + "home/tracuudonhang?id=" + madonhang;
                             });
                         }
                         else if (ketqua.indexOf("Chi tiết lỗi:") !== -1) {

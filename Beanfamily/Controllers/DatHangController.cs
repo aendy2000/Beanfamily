@@ -282,36 +282,6 @@ namespace Beanfamily.Controllers
                 model.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.Add(ttdh);
                 model.SaveChanges();
 
-                string bodyMail = string.Empty;
-                using (StreamReader reader = new StreamReader(Server.MapPath("~/ActionOnPage/TemplateMail/ThongBaoDonDatHang.html")))
-                {
-                    bodyMail = reader.ReadToEnd();
-                }
-
-                bodyMail = bodyMail.Replace("{HoVaTen}", hoten);
-                bodyMail = bodyMail.Replace("{SoDienThoai}", sodienthoai);
-                bodyMail = bodyMail.Replace("{MaDonHang}", madonhang);
-
-                using (MailMessage mailMessage = new MailMessage("beanfamilyshop@gmail.com", "duongle15012000@gmail.com"))
-                {
-                    mailMessage.To.Add("dv.tuan3010@gmail.com");
-                    mailMessage.Subject = "[BEANFAMILY] ĐƠN ĐẶT HÀNG MỚI";
-                    mailMessage.IsBodyHtml = true;
-                    mailMessage.Body = bodyMail;
-
-                    using (SmtpClient smtp = new SmtpClient())
-                    {
-                        smtp.Host = "smtp.gmail.com";
-                        smtp.EnableSsl = true;
-                        NetworkCredential cred = new NetworkCredential("beanfamilyshop@gmail.com", "qwyxakxwvxtspdhr");
-                        smtp.UseDefaultCredentials = true;
-                        smtp.Credentials = cred;
-                        smtp.Port = 587;
-
-                        smtp.Send(mailMessage);
-                    }
-                }
-
                 Session["giohang-muasam"] = null;
                 Session["giohang-vuonrau"] = null;
                 Session["giohang-thucdonhangngay"] = null;
@@ -332,6 +302,38 @@ namespace Beanfamily.Controllers
 
                     model.SaveChanges();
                 }
+
+                string bodyMail = string.Empty;
+                using (StreamReader reader = new StreamReader(Server.MapPath("~/ActionOnPage/TemplateMail/ThongBaoDonDatHang.html")))
+                {
+                    bodyMail = reader.ReadToEnd();
+                }
+
+                bodyMail = bodyMail.Replace("{HoVaTen}", hoten);
+                bodyMail = bodyMail.Replace("{SoDienThoai}", sodienthoai);
+                bodyMail = bodyMail.Replace("{MaDonHang}", madonhang);
+
+                using (MailMessage mailMessage = new MailMessage("beanfamilyshop@gmail.com", "duongle15012000@gmail.com"))
+                {
+                    if (string.IsNullOrEmpty(email))
+                        mailMessage.To.Add(email);
+                    mailMessage.Subject = "[BEANFAMILY] ĐƠN ĐẶT HÀNG MỚI";
+                    mailMessage.IsBodyHtml = true;
+                    mailMessage.Body = bodyMail;
+
+                    using (SmtpClient smtp = new SmtpClient())
+                    {
+                        smtp.Host = "smtp.gmail.com";
+                        smtp.EnableSsl = true;
+                        NetworkCredential cred = new NetworkCredential("beanfamilyshop@gmail.com", "qwyxakxwvxtspdhr");
+                        smtp.UseDefaultCredentials = true;
+                        smtp.Credentials = cred;
+                        smtp.Port = 587;
+
+                        smtp.Send(mailMessage);
+                    }
+                }
+
                 return Content("SUCCESS-" + madonhang);
             }
             catch (Exception ex)

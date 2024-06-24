@@ -145,9 +145,10 @@ namespace Beanfamily.Controllers
 
                 using (MailMessage mailMessage = new MailMessage("beanfamilyshop@gmail.com", "duongle15012000@gmail.com"))
                 {
+                    if (string.IsNullOrEmpty(email))
+                        mailMessage.To.Add(email);
                     mailMessage.Subject = "[BEANFAMILY] ĐƠN ĐẶT BÀN MENU BUFFET MỚI";
                     mailMessage.IsBodyHtml = true;
-                    //mailMessage.Body = "<b>" + hovaten + " | " + sodienthoai + "</b> đã đặt " + soban + " bàn Menu Buffet.<br/><br/>Mã đơn: <b>" + madonhang + "</b>.<br/><br/>Hãy nhanh chóng liên hệ lại với <b>" + hovaten + "</b> để xác nhận đơn đặt bàn!";
                     mailMessage.Body = bodyMail;
 
                     using (SmtpClient smtp = new SmtpClient())

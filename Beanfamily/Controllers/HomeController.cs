@@ -522,20 +522,33 @@ namespace Beanfamily.Controllers
             }
         }
 
-        public ActionResult TraCuuDonHang(int? pageNum, int? pageSize)
+        public ActionResult TraCuuDonHang(int? pageNum, int? pageSize, string id)
         {
             if (pageSize == null)
                 pageSize = 10;
             if (pageNum == null)
                 pageNum = 1;
 
-            var tkkh = Session["user-data"] as TaiKhoanKhachHang;
-            if (tkkh == null)
-                return View("tracuudonhang", new List<DonHangVuonRauMuaSamVaMenuHangNgay>().ToPagedList((int)pageNum, (int)pageSize));
+            if(!string.IsNullOrEmpty(id))
+            {
+                var tkkh = Session["user-data"] as TaiKhoanKhachHang;
+                if (tkkh == null)
+                    return View("tracuudonhang",  model.DonHangVuonRauMuaSamVaMenuHangNgay.Where(d => d.madonhang.ToLower().Equals(id.ToLower())).ToList().ToPagedList((int)pageNum, (int)pageSize));
+                else
+                    return View("tracuudonhang", model.DonHangVuonRauMuaSamVaMenuHangNgay.Where(d => d.id_taikhoankhkachhang == tkkh.id && d.madonhang.ToLower().Equals(id.ToLower())).ToList().ToPagedList((int)pageNum, (int)pageSize));
+            }
             else
-                return View("tracuudonhang", model.DonHangVuonRauMuaSamVaMenuHangNgay.Where(d => d.id_taikhoankhkachhang == tkkh.id).ToList().ToPagedList((int)pageNum, (int)pageSize));
+            {
+                var tkkh = Session["user-data"] as TaiKhoanKhachHang;
+                if (tkkh == null)
+                    return View("tracuudonhang", new List<DonHangVuonRauMuaSamVaMenuHangNgay>().ToPagedList((int)pageNum, (int)pageSize));
+                else
+                    return View("tracuudonhang", model.DonHangVuonRauMuaSamVaMenuHangNgay.Where(d => d.id_taikhoankhkachhang == tkkh.id).ToList().ToPagedList((int)pageNum, (int)pageSize));
+            }
+            
         }
 
+        [HttpPost]
         public ActionResult TimKiemDonHang(int? pageNum, int? pageSize, string content)
         {
             if (pageSize == null)
@@ -543,7 +556,7 @@ namespace Beanfamily.Controllers
             if (pageNum == null)
                 pageNum = 1;
 
-            if(string.IsNullOrEmpty(content))
+            if (string.IsNullOrEmpty(content))
             {
                 var tkkh = Session["user-data"] as TaiKhoanKhachHang;
                 if (tkkh == null)
@@ -559,7 +572,49 @@ namespace Beanfamily.Controllers
                 else
                     return PartialView("_timkiemdonhang", model.DonHangVuonRauMuaSamVaMenuHangNgay.Where(d => d.id_taikhoankhkachhang == tkkh.id && d.madonhang.ToLower().Contains(content.ToLower())).ToList().ToPagedList((int)pageNum, (int)pageSize));
             }
-            
+        }
+
+        [HttpPost]
+        public ActionResult XemChiTietDonHang(int id)
+        {
+            try
+            {
+                var dh = model.DonHangVuonRauMuaSamVaMenuHangNgay.Find(id);
+                if (dh == null)
+                    return Content("NOTEXIST");
+
+                return PartialView("_ChiTietDonHang", dh);
+            }
+            catch (Exception Ex)
+            {
+                return Content("Chi tiết lỗi: " + Ex.Message);
+            }
+
+        }
+
+        [HttpPost]
+        public ActionResult HuyDonHang(int id)
+        {
+            try
+            {
+                var dh = model.DonHangVuonRauMuaSamVaMenuHangNgay.Find(id);
+                if (dh == null)
+                    return Content("NOTEXIST");
+
+                var ttdh = model.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.FirstOrDefault(t => t.id_donhangvuonraumuasamvathucdonhangngay == dh.id);
+                ttdh.tieude = "Đã hủy";
+                ttdh.noidung = "Đơn hàng đã được hủy bởi người đặt";
+                ttdh.thoigian = DateTime.Now;
+                model.Entry(ttdh).State = EntityState.Modified;
+                model.SaveChanges();
+
+                return Content("SUCCESS");
+            }
+            catch (Exception Ex)
+            {
+                return Content("Chi tiết lỗi: " + Ex.Message);
+            }
+
         }
     }
 }
