@@ -85,7 +85,47 @@
                                     <hr />
                                 </div>
                                 <div class="col-6 mb-1 text-dark">
-                                    Tạm tính:
+                                    Họ & tên:
+                                </div>
+                                <div class="col-6 mb-1 float-end t-right text-dark">
+                                    @Model.hoten
+                                </div>
+                                <div class="col-6 mb-1 text-dark">
+                                    Điện thoại:
+                                </div>
+                                <div class="col-6 mb-1 float-end t-right text-dark">
+                                    @Model.dienthoai
+                                </div>
+                                <div class="col-6 mb-1 text-dark">
+                                    Email:
+                                </div>
+                                <div class="col-6 mb-1 float-end t-right text-dark">
+                                    @Model.email
+                                </div>
+                                <div class="col-6 mb-1 text-dark">
+                                    Nhận hàng:
+                                </div>
+                                <div class="col-6 mb-1 float-end t-right text-dark">
+                                    @if (Model.giaohangtannoi == true)
+                                    {
+                                        <span>@Model.diachi, @Model.phuongxa, @Model.quanhuyen, @Model.tinh</span>
+                                    }
+                                    else
+                                    {
+                                        <span>Nhận tại cửa hàng</span>
+                                    }
+                                </div>
+                                <div class="col-6 mb-1 text-dark">
+                                    HTTT:
+                                </div>
+                                <div class="col-6 mb-1 float-end t-right text-dark">
+                                    @Model.hinhthucthanhtoan
+                                </div>
+                                <div class="col-12">
+                                    <hr />
+                                </div>
+                                <div class="col-6 mb-1 text-dark">
+                                    Giá đơn hàng:
                                 </div>
                                 <div class="col-6 mb-1 float-end t-right text-dark">
                                     @strTongTien
@@ -97,10 +137,11 @@
                                 <div class="col-6 mb-3 float-end t-right text-dark">
                                     ---
                                 </div>
-                                <div class="col-6 text-dark"><h6><b>Tổng:</b></h6></div>
+                                <div class="col-6 text-dark"><h6><b>Tổng thanh toán:</b></h6></div>
                                 <div class="col-6 float-end t-right text-dark">
                                     <h6><b>@strTongTien</b></h6>
                                 </div>
+
                             </div>
                         </div>
                     </div>
