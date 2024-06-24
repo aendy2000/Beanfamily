@@ -533,9 +533,9 @@ namespace Beanfamily.Controllers
             {
                 var tkkh = Session["user-data"] as TaiKhoanKhachHang;
                 if (tkkh == null)
-                    return View("tracuudonhang",  model.DonHangVuonRauMuaSamVaMenuHangNgay.Where(d => d.madonhang.ToLower().Equals(id.ToLower())).ToList().ToPagedList((int)pageNum, (int)pageSize));
+                    return View("tracuudonhang",  model.DonHangVuonRauMuaSamVaMenuHangNgay.Where(d => d.madonhang.ToLower().Equals(id.ToLower())).ToList().OrderByDescending(o => o.id).ToPagedList((int)pageNum, (int)pageSize));
                 else
-                    return View("tracuudonhang", model.DonHangVuonRauMuaSamVaMenuHangNgay.Where(d => d.id_taikhoankhkachhang == tkkh.id && d.madonhang.ToLower().Equals(id.ToLower())).ToList().ToPagedList((int)pageNum, (int)pageSize));
+                    return View("tracuudonhang", model.DonHangVuonRauMuaSamVaMenuHangNgay.Where(d => d.id_taikhoankhkachhang == tkkh.id && d.madonhang.ToLower().Equals(id.ToLower())).ToList().OrderByDescending(o => o.id).ToPagedList((int)pageNum, (int)pageSize));
             }
             else
             {
@@ -543,7 +543,7 @@ namespace Beanfamily.Controllers
                 if (tkkh == null)
                     return View("tracuudonhang", new List<DonHangVuonRauMuaSamVaMenuHangNgay>().ToPagedList((int)pageNum, (int)pageSize));
                 else
-                    return View("tracuudonhang", model.DonHangVuonRauMuaSamVaMenuHangNgay.Where(d => d.id_taikhoankhkachhang == tkkh.id).ToList().ToPagedList((int)pageNum, (int)pageSize));
+                    return View("tracuudonhang", model.DonHangVuonRauMuaSamVaMenuHangNgay.Where(d => d.id_taikhoankhkachhang == tkkh.id).ToList().OrderByDescending(o => o.id).ToPagedList((int)pageNum, (int)pageSize));
             }
             
         }
@@ -603,7 +603,7 @@ namespace Beanfamily.Controllers
 
                 var ttdh = model.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.FirstOrDefault(t => t.id_donhangvuonraumuasamvathucdonhangngay == dh.id);
                 ttdh.tieude = "Đã hủy";
-                ttdh.noidung = "Đơn hàng đã được hủy bởi người đặt";
+                ttdh.noidung = "Đơn hàng được hủy bởi người mua";
                 ttdh.thoigian = DateTime.Now;
                 model.Entry(ttdh).State = EntityState.Modified;
                 model.SaveChanges();
