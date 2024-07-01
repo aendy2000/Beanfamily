@@ -1,0 +1,239 @@
+﻿@model IEnumerable<Beanfamily.Models.DonHangVuonRauMuaSamVaMenuHangNgay>
+@using Beanfamily.Models
+@{
+    ViewBag.Title = "Đơn Đặt Hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+
+    BeanfamilyEntities models = new BeanfamilyEntities();
+    var lstTTDH = models.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.ToList();
+}
+<div class="pagetitle">
+    <div class="row">
+        <div class="col-md-7 col-12">
+            <h1>Đơn Đặt Hàng</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="@Url.Action("index", "dashboard")">Bảng Điều Khiển</a></li>
+                    <li class="breadcrumb-item active">Quản Lý Đơn Đặt Hàng</li>
+                </ol>
+            </nav>
+        </div>
+        <div class="col-md-5 col-12 text-end">
+            <div style="display: flex; flex-direction: row; justify-content: end; align-items: center; height: 100%">
+                <select id="locdonhang" class="form-control form-select me-2">
+                    <option selected value="all">Tất cả đơn hàng (@lstTTDH.Count())</option>
+                    <option value="choduyet">Đang chờ duyệt (@lstTTDH.Where(t => t.tieude.Equals("Chờ duyệt")).Count())</option>
+                    <option value="donggoi">Đang đóng gói (@lstTTDH.Where(t => t.tieude.Equals("Đang đóng gói")).Count())</option>
+                    <option value="danggiao">Đang giao (@lstTTDH.Where(t => t.tieude.Equals("Đang giao")).Count())</option>
+                    <option value="thatbai">Giao thất bại (@lstTTDH.Where(t => t.tieude.Equals("Không thành công")).Count())</option>
+                    <option value="dahuy">Đã hủy (@lstTTDH.Where(t => t.tieude.Equals("Đã hủy")).Count())</option>
+                    <option value="hoanthanh">Hoàn thành (@lstTTDH.Where(t => t.tieude.Equals("Hoàn thành")).Count())</option>
+                </select>
+                @if (Session["chophep-them"] != null)
+                {
+                    if (Convert.ToBoolean(Session["chophep-them"]) == true)
+                    {
+                    }
+                }
+                @if (Session["chophep-xoa"] != null)
+                {
+                    if (Convert.ToBoolean(Session["chophep-xoa"]) == true)
+                    {
+                        <button id="huydonhangloat" class="btn btn-danger ms-1 text-nowrap"><i class="bi bi-x-square-fill"> </i> Hủy Đơn Đã Chọn</button>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+
+</div><!-- End Page Title -->
+
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body" id="content-table">
+                    <!-- Table with stripped rows -->
+                    <table id="lstDonDatHangTable" class="table datatable" width="100%">
+                        <thead>
+                            <tr class="text-nowrap">
+                                <th style="width: 10px">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input p-2" id="checkAlls" />
+                                        <label class="form-check-label" for="checkAlls"></label>
+                                    </div>
+                                </th>
+                                <th scope="col">Ngày đặt</th>
+                                <th scope="col">Mã đơn</th>
+                                <th scope="col">Trạng thái</th>
+                                <th scope="col">Thanh toán</th>
+                                <th scope="col">Khách hàng</th>
+                                <th scope="col">#</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.OrderByDescending(o => o.id))
+                            {
+                                <tr style="vertical-align: middle">
+                                    <td>
+                                        @if (!item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude.ToLower().Equals("hoàn thành")
+                                            && !item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude.ToLower().Equals("đã hủy")
+                                            && !item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude.ToLower().Equals("không thành công"))
+                                        {
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input p-2" id="checkitem@(item.id)" name="@item.id" />
+                                                <label class="form-check-label" for="checkitem@(item.id)"></label>
+                                            </div>
+                                        }
+                                    </td>
+                                    <td>
+                                        <small>
+                                            <i class="bi bi-clock-history"></i> @item.ngaydat.ToString("HH:mm")<br />@item.ngaydat.ToString("dd/MM/yyyy")
+                                        </small>
+                                    </td>
+                                    <td>
+                                        <small>
+                                            @item.madonhang
+                                        </small>
+                                        <input hidden id="inpMaDonHang@(item.id)" value="@item.madonhang" />
+                                        <input hidden id="inpTrangThaiDonHang@(item.id)" value="@item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude" />
+                                    </td>
+                                    <td>
+                                        @if (item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude.ToLower().Equals("đã hủy")
+                                            || item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude.ToLower().Equals("không thành công"))
+                                        {
+                                            <span class="badge bg-danger">
+                                                @item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude
+                                            </span>
+                                        }
+                                        else if (item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude.ToLower().Equals("hoàn thành"))
+                                        {
+                                            <span class="badge bg-success">
+                                                @item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude
+                                            </span>
+                                        }
+                                        else if (item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude.ToLower().Equals("chờ duyệt"))
+                                        {
+                                            <span class="badge bg-warning">
+                                                @item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-primary">
+                                                @item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude
+                                            </span>
+                                        }
+                                        <br />
+                                        <label>
+                                            <small>(@item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().noidung)</small>
+                                        </label>
+                                        <br />
+                                        <label>
+                                            <small><i class="bi bi-clock-history"></i> @item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().thoigian.ToString("HH:mm dd/MM/yyyy")</small>
+                                        </label>
+                                    </td>
+
+                                    <td>
+                                        <small class="me-4">@item.hinhthucthanhtoan</small>
+                                    </td>
+                                    <td>
+                                        <ul style="margin-left: -2rem; margin-bottom: 0;">
+                                            <li>
+                                                <small><b>Họ & Tên:</b> @item.hoten</small>
+                                            </li>
+                                            <li>
+                                                <small><b>Điện thoại:</b> @item.dienthoai</small>
+                                            </li>
+                                            <li>
+                                                <small><b>Email:</b> @item.email</small>
+                                            </li>
+                                            <li>
+                                                <small>
+                                                    <b>
+                                                        Nhận hàng:
+                                                    </b>
+                                                    @if (item.giaohangtannoi == true)
+                                                    {
+                                                        <span>@item.diachi, @item.phuongxa, @item.quanhuyen, @item.tinh</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span>Nhận tại cửa hàng</span>
+                                                    }
+                                                </small>
+                                            </li>
+                                            <li>
+                                                <small><b>Ghi chú:</b> @item.ghichu</small>
+                                            </li>
+                                        </ul>
+                                    </td>
+
+                                    <td class="text-nowrap">
+                                        @if (Session["chophep-sua"] != null)
+                                        {
+                                            if (Convert.ToBoolean(Session["chophep-sua"]) == true)
+                                            {
+                                                <button id="btncapnhatdon@(item.id)" name="@item.id" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Xem & Cập nhật đơn hàng"><i class="bi bi-arrows-angle-expand"></i></button>
+                                            }
+                                        }
+                                        @if (Session["chophep-xoa"] != null)
+                                        {
+                                            if (Convert.ToBoolean(Session["chophep-xoa"]) == true)
+                                            {
+                                                if (!item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude.ToLower().Equals("hoàn thành")
+                                                    && !item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude.ToLower().Equals("đã hủy")
+                                                    && !item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude.ToLower().Equals("không thành công"))
+                                                {
+                                                    <button id="btnhuydon@(item.id)" name="@item.id" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Hủy đơn hàng"><i class="bi bi-x-square-fill"></i></button>
+                                                }
+                                            }
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+@if (Session["chophep-sua"] != null)
+{
+    if (Convert.ToBoolean(Session["chophep-sua"]) == true)
+    {
+        <!-- Sửa danh mục -->
+        <div class="modal fade" id="CapNhatDonHangModal" tabindex="-1">
+            <div class="modal-dialog  modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="row" style="width: 100%">
+                            <div class="col-6">
+                                <h5 id="TitleCapNhatDonHangModal" class="modal-title"></h5>
+                            </div>
+                            <div class="col-6 text-end">
+                                <span id="trangthaidonhang-chitiet" style="font-size: 17px" class="badge"></span>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="content-CapNhatDonHangModal">
+                    </div>
+
+                    <div class="modal-footer mt-3">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                        <button id="btnLuuCapNhatDonHang" type="button" class="btn btn-primary">Lưu thông tin</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+<script src="~/Validation/DonDatHang/HuyDonHangLoat.js"></script>
+<script src="~/Validation/DonDatHang/HuyDon.js"></script>
+<script src="~/Validation/DonDatHang/DanhSach.js"></script>
+<script src="~/Validation/DonDatHang/CapNhatDon.js"></script>
+

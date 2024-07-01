@@ -13,7 +13,7 @@
 
     //Luu chinh sua
     $('#btnluuchinhsuarole').on('click', function () {
-        $('#btnluuchinhsuarole').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"> </span> Đang tải...');
+        $('#btnluuchinhsuarole').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"> </span> Vui lòng chờ...');
         $('#btnluuchinhsuarole').prop('disabled', true);
 
         var name = $('#editname').val().trim();

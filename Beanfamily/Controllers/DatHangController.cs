@@ -107,7 +107,7 @@ namespace Beanfamily.Controllers
 
                 int idDH = donhang.id;
                 idTemp = donhang.id;
-                string madonhang = "DH" + idDH + DateTime.Now.ToString("mmHHddMMyyyy");
+                string madonhang = "DH" + idDH + DateTime.Now.ToString("ddMMyyyy");
 
                 donhang.madonhang = madonhang;
                 model.Entry(donhang).State = EntityState.Modified;
@@ -315,9 +315,36 @@ namespace Beanfamily.Controllers
 
                 using (MailMessage mailMessage = new MailMessage("beanfamilyshop@gmail.com", "duongle15012000@gmail.com"))
                 {
-                    if (string.IsNullOrEmpty(email))
-                        mailMessage.To.Add(email);
+                    //if (string.IsNullOrEmpty(email))
+                    //    mailMessage.To.Add(email);
                     mailMessage.Subject = "[BEANFAMILY] ĐƠN ĐẶT HÀNG MỚI";
+                    mailMessage.IsBodyHtml = true;
+                    mailMessage.Body = bodyMail;
+
+                    using (SmtpClient smtp = new SmtpClient())
+                    {
+                        smtp.Host = "smtp.gmail.com";
+                        smtp.EnableSsl = true;
+                        NetworkCredential cred = new NetworkCredential("beanfamilyshop@gmail.com", "qwyxakxwvxtspdhr");
+                        smtp.UseDefaultCredentials = true;
+                        smtp.Credentials = cred;
+                        smtp.Port = 587;
+
+                        smtp.Send(mailMessage);
+                    }
+                }
+
+                bodyMail = string.Empty;
+                using (StreamReader reader = new StreamReader(Server.MapPath("~/ActionOnPage/TemplateMail/ThongBaoDonDatHangChoKhach.html")))
+                {
+                    bodyMail = reader.ReadToEnd();
+                }
+
+                bodyMail = bodyMail.Replace("{MaDonHang}", madonhang);
+
+                using (MailMessage mailMessage = new MailMessage("beanfamilyshop@gmail.com", email))
+                {
+                    mailMessage.Subject = "[BEANFAMILY] ĐẶT HÀNG THÀNH CÔNG";
                     mailMessage.IsBodyHtml = true;
                     mailMessage.Body = bodyMail;
 

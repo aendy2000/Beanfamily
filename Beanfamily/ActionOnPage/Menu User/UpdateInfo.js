@@ -2,7 +2,7 @@
     //Đổi thông tin cá nhân
     $('body').find('[id="submit-info-luuthongtin"]').on('click', function () {
         var btn = $(this);
-        btn.html('<span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"> </span> Đang tải...');
+        btn.html('<span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"> </span> Vui lòng chờ...');
         btn.css('pointer-events', 'none');
 
         var hoten = $('body').find('[id="info-hoten"]').val().trim();
@@ -111,7 +111,7 @@
     //Đăng ký
     $('body').find('[id="submit-info-doimatkhau"]').on('click', function () {
         var btn = $(this);
-        btn.html('<span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"> </span> Đang tải...');
+        btn.html('<span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"> </span> Vui lòng chờ...');
         btn.css('pointer-events', 'none');
 
         var id = $('body').find('[id="info-matkhauhientai"]').attr('idtk');

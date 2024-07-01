@@ -42,6 +42,11 @@ namespace Beanfamily.Areas.Admin.Controllers
                         Session["user-role-id"] = taikhoan.id_quyentaikhoanbean;
                         Session["user-avatar"] = taikhoan.hinhdaidien + "";
 
+                        //Nút thông báo nhỏ trên menu
+                        Session["new-dondathang"] = model.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.Where(w => w.tieude.Equals("Chờ duyệt")).Count();
+                        Session["new-dondatbantiec"] = model.TinhTrangDonHangMenuTiecBan.Where(w => w.tieude.Equals("Chờ duyệt")).Count();
+                        Session["new-dondatbanbuffet"] = model.TinhTrangDonHangMenuBuffet.Where(w => w.tieude.Equals("Chờ duyệt")).Count();
+
                         //Set check function null
                         Session["mtb-dmc1"] = null;
                         Session["mtb-qlm"] = null;

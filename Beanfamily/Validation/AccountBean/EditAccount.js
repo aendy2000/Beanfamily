@@ -10,7 +10,7 @@
 
     //Luu them moi
     $('#btnluuedittaikhoan').on('click', function () {
-        $('#btnluuedittaikhoan').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"> </span> Đang tải...');
+        $('#btnluuedittaikhoan').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"> </span> Vui lòng chờ...');
         $('#btnluuedittaikhoan').prop('disabled', true);
 
         var tendangnhap = $('#tendangnhapedit').val().trim();

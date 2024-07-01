@@ -603,10 +603,68 @@ namespace Beanfamily.Controllers
 
                 var ttdh = model.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.FirstOrDefault(t => t.id_donhangvuonraumuasamvathucdonhangngay == dh.id);
                 ttdh.tieude = "Đã hủy";
-                ttdh.noidung = "Đơn hàng được hủy bởi người mua";
+                ttdh.noidung = "Đã hủy bởi người mua";
                 ttdh.thoigian = DateTime.Now;
                 model.Entry(ttdh).State = EntityState.Modified;
                 model.SaveChanges();
+
+                string bodyMail = string.Empty;
+                using (StreamReader reader = new StreamReader(Server.MapPath("~/ActionOnPage/TemplateMail/ThongBaoHuyDonDatHang.html")))
+                {
+                    bodyMail = reader.ReadToEnd();
+                }
+
+                bodyMail = bodyMail.Replace("{HoVaTen}", dh.hoten);
+                bodyMail = bodyMail.Replace("{SoDienThoai}", dh.dienthoai);
+                bodyMail = bodyMail.Replace("{MaDonHang}", dh.madonhang);
+
+                using (MailMessage mailMessage = new MailMessage("beanfamilyshop@gmail.com", "duongle15012000@gmail.com"))
+                {
+                    //if (string.IsNullOrEmpty(email))
+                    //    mailMessage.To.Add(email);
+                    mailMessage.Subject = "[BEANFAMILY] ĐƠN HÀNG ĐÃ ĐƯỢC HỦY";
+                    mailMessage.IsBodyHtml = true;
+                    mailMessage.Body = bodyMail;
+
+                    using (SmtpClient smtp = new SmtpClient())
+                    {
+                        smtp.Host = "smtp.gmail.com";
+                        smtp.EnableSsl = true;
+                        NetworkCredential cred = new NetworkCredential("beanfamilyshop@gmail.com", "qwyxakxwvxtspdhr");
+                        smtp.UseDefaultCredentials = true;
+                        smtp.Credentials = cred;
+                        smtp.Port = 587;
+
+                        smtp.Send(mailMessage);
+                    }
+                }
+
+                bodyMail = string.Empty;
+                using (StreamReader reader = new StreamReader(Server.MapPath("~/ActionOnPage/TemplateMail/ThongBaoHuyDonDatHangChoKhach.html")))
+                {
+                    bodyMail = reader.ReadToEnd();
+                }
+
+                bodyMail = bodyMail.Replace("{MaDonHang}", dh.madonhang);
+
+                using (MailMessage mailMessage = new MailMessage("beanfamilyshop@gmail.com", dh.email))
+                {
+                    mailMessage.Subject = "[BEANFAMILY] ĐƠN HÀNG ĐÃ ĐƯỢC HỦY";
+                    mailMessage.IsBodyHtml = true;
+                    mailMessage.Body = bodyMail;
+
+                    using (SmtpClient smtp = new SmtpClient())
+                    {
+                        smtp.Host = "smtp.gmail.com";
+                        smtp.EnableSsl = true;
+                        NetworkCredential cred = new NetworkCredential("beanfamilyshop@gmail.com", "qwyxakxwvxtspdhr");
+                        smtp.UseDefaultCredentials = true;
+                        smtp.Credentials = cred;
+                        smtp.Port = 587;
+
+                        smtp.Send(mailMessage);
+                    }
+                }
 
                 return Content("SUCCESS");
             }

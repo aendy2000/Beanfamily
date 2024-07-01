@@ -13,7 +13,7 @@
 
     //Luu them moi
     $('#btnluuthemrole').on('click', function () {
-        $('#btnluuthemrole').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"> </span> Đang tải...');
+        $('#btnluuthemrole').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"> </span> Vui lòng chờ...');
         $('#btnluuthemrole').prop('disabled', true);
 
         var name = $('#name').val().trim();

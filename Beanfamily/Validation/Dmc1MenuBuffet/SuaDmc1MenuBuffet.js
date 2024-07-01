@@ -17,7 +17,7 @@
     });
 
     $('#btnluuSuaDmMtb').on('click', function () {
-        $('#btnluuSuaDmMtb').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"> </span> Đang tải...');
+        $('#btnluuSuaDmMtb').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"> </span> Vui lòng chờ...');
         $('#btnluuSuaDmMtb').prop('disabled', true);
 
         var tendanhmuc = $('#suatendanhmuc').val().trim();

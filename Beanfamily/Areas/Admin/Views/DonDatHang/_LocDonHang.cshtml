@@ -1,0 +1,169 @@
+﻿@model IEnumerable<Beanfamily.Models.DonHangVuonRauMuaSamVaMenuHangNgay>
+
+<div class="card-body" id="content-table">
+    <!-- Table with stripped rows -->
+    <table id="lstDonDatHangTable" class="table datatable" width="100%">
+        <thead>
+            <tr class="text-nowrap">
+                <th style="width: 10px">
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input p-2" id="checkAlls" />
+                        <label class="form-check-label" for="checkAlls"></label>
+                    </div>
+                </th>
+                <th scope="col">Ngày đặt</th>
+                <th scope="col">Mã đơn</th>
+                <th scope="col">Trạng thái</th>
+                <th scope="col">Thanh toán</th>
+                <th scope="col">Khách hàng</th>
+                <th scope="col">#</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderByDescending(o => o.id))
+            {
+                <tr style="vertical-align: middle">
+                    <td>
+                        @if (!item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude.ToLower().Equals("hoàn thành")
+                            && !item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude.ToLower().Equals("đã hủy")
+                            && !item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude.ToLower().Equals("không thành công"))
+                        {
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input p-2" id="checkitem@(item.id)" name="@item.id" />
+                                <label class="form-check-label" for="checkitem@(item.id)"></label>
+                            </div>
+                        }
+                    </td>
+                    <td>
+                        <small>
+                            <i class="bi bi-clock-history"></i> @item.ngaydat.ToString("HH:mm") @item.ngaydat.ToString("dd/MM/yyyy")
+                        </small>
+                    </td>
+                    <td>
+                        <small>
+                            @item.madonhang
+                        </small>
+                        <input hidden id="inpMaDonHang@(item.id)" value="@item.madonhang" />
+                        <input hidden id="inpTrangThaiDonHang@(item.id)" value="@item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude" />
+                    </td>
+                    <td>
+                        @if (item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude.ToLower().Equals("đã hủy")
+                            || item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude.ToLower().Equals("không thành công"))
+                        {
+                            <span class="badge bg-danger">
+                                @item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude
+                            </span>
+                        }
+                        else if (item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude.ToLower().Equals("hoàn thành"))
+                        {
+                            <span class="badge bg-success">
+                                @item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude
+                            </span>
+                        }
+                        else if (item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude.ToLower().Equals("chờ duyệt"))
+                        {
+                            <span class="badge bg-warning">
+                                @item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-primary">
+                                @item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude
+                            </span>
+                        }
+                        <label>
+                            <small>(@item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().noidung)</small>
+                        </label>
+                        <label>
+                            <small><i class="bi bi-clock-history"></i> @item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().thoigian.ToString("HH:mm dd/MM/yyyy")</small>
+                        </label>
+                    </td>
+
+                    <td>
+                        <small>@item.hinhthucthanhtoan</small>
+                    </td>
+                    <td>
+                        <ul style="margin-left: -2rem; margin-bottom: 0;">
+                            <li>
+                                <small><b>Họ & Tên:</b> @item.hoten</small>
+                            </li>
+                            <li>
+                                <small><b>Điện thoại:</b> @item.dienthoai</small>
+                            </li>
+                            <li>
+                                <small><b>Email:</b> @item.email</small>
+                            </li>
+                            <li>
+                                <small>
+                                    <b>
+                                        Nhận hàng:
+                                    </b>
+                                    @if (item.giaohangtannoi == true)
+                                    {
+                                        <span>@item.diachi, @item.phuongxa, @item.quanhuyen, @item.tinh</span>
+                                    }
+                                    else
+                                    {
+                                        <span>Nhận tại cửa hàng</span>
+                                    }
+                                </small>
+                            </li>
+                            <li>
+                                <small><b>Ghi chú:</b> @item.ghichu</small>
+                            </li>
+                        </ul>
+                    </td>
+
+                    <td class="text-nowrap">
+                        @if (Session["chophep-sua"] != null)
+                        {
+                            if (Convert.ToBoolean(Session["chophep-sua"]) == true)
+                            {
+                                <button id="btncapnhatdon@(item.id)" name="@item.id" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Xem & Cập nhật đơn hàng"><i class="bi bi-arrows-angle-expand"></i></button>
+                            }
+                        }
+                        @if (Session["chophep-xoa"] != null)
+                        {
+                            if (Convert.ToBoolean(Session["chophep-xoa"]) == true)
+                            {
+                                if (!item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude.ToLower().Equals("hoàn thành")
+                                    && !item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude.ToLower().Equals("đã hủy")
+                                    && !item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude.ToLower().Equals("không thành công"))
+                                {
+                                    <button id="btnhuydon@(item.id)" name="@item.id" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Hủy đơn hàng"><i class="bi bi-x-square-fill"></i></button>
+                                }
+                            }
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <script>
+        jQuery('.datatable').DataTable({
+            scrollX: true,
+            order: [],
+            columnDefs: [{
+                'targets': [0],
+                'orderable': false,
+            }],
+        }).on("draw", function () {
+            $('[data-bs-toggle="tooltip"]').tooltip();
+        });
+
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+
+        $('#checkAlls').on('click', function () {
+            $('.datatable').DataTable()
+                .column(0)
+                .nodes()
+                .to$()
+                .find('input[type=checkbox]')
+                .prop('checked', this.checked);
+        });
+    </script>
+</div>

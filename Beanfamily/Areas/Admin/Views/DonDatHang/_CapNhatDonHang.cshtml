@@ -1,0 +1,484 @@
+﻿@model Beanfamily.Models.DonHangVuonRauMuaSamVaMenuHangNgay
+@{
+    var donhangmuassam = Model.ChiTietDonHangSanPhamMuaSam.ToList();
+    var donhangvuonrau = Model.ChiTietDonHangSanPhamRauNhaTrong.ToList();
+    var donhangthucdonhangngay = Model.ChiTietDonHangSanPhamThucDonHangNgay.ToList();
+
+    int SPMuaSam = (donhangmuassam != null ? donhangmuassam.Count : 0);
+    int SPVuonRau = (donhangvuonrau != null ? donhangvuonrau.Count : 0);
+    int SPMNHN = (donhangthucdonhangngay != null ? donhangthucdonhangngay.Count : 0);
+
+    int sosanpham = SPMuaSam + SPVuonRau + SPMNHN;
+
+    decimal tongTien = donhangmuassam.Sum(s => s.gia * s.soluongmua)
+        + donhangvuonrau.Sum(s => s.soluongmua * s.gia)
+        + donhangthucdonhangngay.Sum(s => s.soluongmua * s.gia);
+
+    string strTongTien = "";
+    if (tongTien > 0)
+    {
+        strTongTien = tongTien.ToString("0,0") + "đ";
+    }
+    else
+    {
+        strTongTien = "0";
+    }
+
+    var ttdh = Model.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First();
+}
+<div class="modal-body" id="content-CapNhatDonHangModal">
+    <div class="row ms-2 me-2">
+        <div class="col-md-12 col-sm-12">
+            <div class="row">
+                <div class="col-12 p-0">
+                    <div class="bg-white bo-rad-16 txt10 p-t-20 p-b-20 p-l-20 p-r-20 mb-3 m-t-3" style="padding: 10px;">
+                        <div class="row">
+                            <div class="col-6 mb-1 text-dark">
+                                Cập nhật trạng thái:
+                            </div>
+                            <div class="col-6 mb-1 text-end text-dark">
+                                <select name="@Model.id-@Model.madonhang" id="capnhat-trangthai" style="width: auto; float: right; border: 2px solid var(--bs-primary); " class="form-control form-select mb-2 text-end">
+                                    @if (ttdh.tieude.ToLower().Equals("chờ duyệt"))
+                                    {
+                                        <option selected value="choduyet">
+                                            Chờ duyệt &nbsp;
+                                        </option>
+                                        <option value="donggoi">
+                                            Chuẩn bị đơn hàng &nbsp;
+                                        </option>
+                                        <option value="giaohang">
+                                            Tiến hành giao &nbsp;
+                                        </option>
+                                        <option value="khongthanhcong">
+                                            Giao hàng thất bại &nbsp;
+                                        </option>
+                                        <option value="huydon">
+                                            Hủy đơn hàng &nbsp;
+                                        </option>
+                                        <option value="thanhcong">
+                                            Giao thành công &nbsp;
+                                        </option>
+                                    }
+                                    else if (ttdh.tieude.ToLower().Equals("đang đóng gói"))
+                                    {
+                                        <option value="choduyet">
+                                            Chờ duyệt &nbsp;
+                                        </option>
+                                        <option selected value="donggoi">
+                                            Chuẩn bị đơn hàng &nbsp;
+                                        </option>
+                                        <option value="giaohang">
+                                            Tiến hành giao &nbsp;
+                                        </option>
+                                        <option value="khongthanhcong">
+                                            Giao hàng thất bại &nbsp;
+                                        </option>
+                                        <option value="huydon">
+                                            Hủy đơn hàng &nbsp;
+                                        </option>
+                                        <option value="thanhcong">
+                                            Giao thành công &nbsp;
+                                        </option>
+                                    }
+                                    else if (ttdh.tieude.ToLower().Equals("đang giao"))
+                                    {
+                                        <option value="choduyet">
+                                            Chờ duyệt &nbsp;
+                                        </option>
+                                        <option value="donggoi">
+                                            Chuẩn bị đơn hàng &nbsp;
+                                        </option>
+                                        <option selected value="giaohang">
+                                            Tiến hành giao &nbsp;
+                                        </option>
+                                        <option value="khongthanhcong">
+                                            Giao hàng thất bại &nbsp;
+                                        </option>
+                                        <option value="huydon">
+                                            Hủy đơn hàng &nbsp;
+                                        </option>
+                                        <option value="thanhcong">
+                                            Giao thành công &nbsp;
+                                        </option>
+                                    }
+                                    else if (ttdh.tieude.ToLower().Equals("không thành công"))
+                                    {
+                                        <option value="choduyet">
+                                            Chờ duyệt &nbsp;
+                                        </option>
+                                        <option value="donggoi">
+                                            Chuẩn bị đơn hàng &nbsp;
+                                        </option>
+                                        <option value="giaohang">
+                                            Tiến hành giao &nbsp;
+                                        </option>
+                                        <option selected value="khongthanhcong">
+                                            Giao hàng thất bại &nbsp;
+                                        </option>
+                                        <option value="huydon">
+                                            Hủy đơn hàng &nbsp;
+                                        </option>
+                                        <option value="thanhcong">
+                                            Giao thành công &nbsp;
+                                        </option>
+                                    }
+                                    else if (ttdh.tieude.ToLower().Equals("đã hủy"))
+                                    {
+                                        <option value="choduyet">
+                                            Chờ duyệt &nbsp;
+                                        </option>
+                                        <option value="donggoi">
+                                            Chuẩn bị đơn hàng &nbsp;
+                                        </option>
+                                        <option value="giaohang">
+                                            Tiến hành giao &nbsp;
+                                        </option>
+                                        <option value="khongthanhcong">
+                                            Giao hàng thất bại &nbsp;
+                                        </option>
+                                        <option selected value="huydon">
+                                            Hủy đơn hàng &nbsp;
+                                        </option>
+                                        <option value="thanhcong">
+                                            Giao thành công &nbsp;
+                                        </option>
+                                    }
+                                    else
+                                    {
+                                        <option value="choduyet">
+                                            Chờ duyệt &nbsp;
+                                        </option>
+                                        <option value="donggoi">
+                                            Chuẩn bị đơn hàng &nbsp;
+                                        </option>
+                                        <option value="giaohang">
+                                            Tiến hành giao &nbsp;
+                                        </option>
+                                        <option value="khongthanhcong">
+                                            Giao hàng thất bại &nbsp;
+                                        </option>
+                                        <option value="huydon">
+                                            Hủy đơn hàng &nbsp;
+                                        </option>
+                                        <option selected value="thanhcong">
+                                            Giao thành công &nbsp;
+                                        </option>
+                                    }
+                                </select>
+                            </div>
+
+                            <div class="col-6 mb-1 text-dark">
+                                Chi tiết:
+                            </div>
+                            <div class="col-6 mb-1 text-end text-dark">
+                                @ttdh.noidung
+                            </div>
+
+                            <div class="col-6 text-dark">
+                                Cập nhật:
+                            </div>
+                            <div class="col-6 text-end small mt-1">
+                                <i class="bi bi-clock-history"></i>
+                                @ttdh.thoigian.ToString("HH:mm") ngày @ttdh.thoigian.ToString("dd/MM/yyyy")
+                            </div>
+                            <div class="col-12 mb-1 text-dark mt-4">
+                                <small>Yêu cầu khác / Ghi chú thêm:</small>
+                            </div>
+                            <div class="col-12 mb-2 text-dark">
+                                <textarea id="capnhat-ghichuthem" class="form-control form-control-sm" style="border: 2px solid var(--bs-primary)" maxlength="200" rows="5" placeholder="Nhập yêu cầu khác hoặc ghi chú thêm cho đơn hàng">@Model.yeucaukhac</textarea>
+                            </div>
+                            <div class="col-12">
+                                <hr />
+                            </div>
+                            <div class="col-6 mb-1 text-dark">
+                                Họ & tên:
+                            </div>
+                            <div class="col-6 mb-1 text-end text-dark">
+                                @Model.hoten
+                            </div>
+                            <div class="col-6 mb-1 text-dark">
+                                Điện thoại:
+                            </div>
+                            <div class="col-6 mb-1 text-end text-dark">
+                                @Model.dienthoai
+                            </div>
+                            <div class="col-6 mb-1 text-dark">
+                                Email:
+                            </div>
+                            <div class="col-6 mb-1 text-end text-dark">
+                                @Model.email
+                            </div>
+                            <div class="col-6 mb-1 text-dark">
+                                Nhận hàng:
+                            </div>
+                            <div class="col-6 mb-1 text-end text-dark">
+                                @if (Model.giaohangtannoi == true)
+                                {
+                                    <span>@Model.diachi, @Model.phuongxa, @Model.quanhuyen, @Model.tinh</span>
+                                }
+                                else
+                                {
+                                    <span>Nhận tại cửa hàng</span>
+                                }
+                            </div>
+                            <div class="col-6 mb-1 text-dark">
+                                HTTT:
+                            </div>
+                            <div class="col-6 mb-1 text-end text-dark">
+                                @Model.hinhthucthanhtoan
+                            </div>
+                            <div class="col-6 mb-1 text-dark">
+                                Ghi chú:
+                            </div>
+                            <div class="col-6 mb-1 text-end text-dark">
+                                @Model.ghichu
+                            </div>
+                            <div class="col-12">
+                                <hr />
+                            </div>
+                            <div class="col-6 mb-1 text-dark">
+                                Giá đơn hàng:
+                            </div>
+                            <div class="col-6 mb-1 text-end text-dark">
+                                @strTongTien
+                            </div>
+
+                            <div class="col-6 mb-3 text-dark">
+                                Phí vận chuyển:
+                            </div>
+                            <div class="col-6 mb-3 text-end text-dark">
+                                ---
+                            </div>
+                            <div class="col-6 text-dark"><h6><b>Tổng thanh toán:</b></h6></div>
+                            <div class="col-6 text-end text-dark">
+                                <h6><b>@strTongTien</b></h6>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="lastHeight" class="row" style=" overflow-y: auto; border: 2px solid #ffc678; border-radius: 18px;">
+                <div class="col-lg-12 bgwhite" style="padding: 0; border-radius: 18px;">
+                    @if ((donhangmuassam == null || donhangmuassam.Count < 1) && (donhangvuonrau == null || donhangvuonrau.Count < 1) && (donhangthucdonhangngay == null || donhangthucdonhangngay.Count < 1))
+                    {
+                        <div class="mb-3 bo-rad-16 text-white ms-3 me-3">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between row">
+                                    <div style="width: 100%" class="d-flex flex-col align-items-center justify-content-center col-md-6 col-sm-6 ms-2 me-2 mt-2 mb-2">
+                                        <h5 style="text-align: center; font-weight: bold; color: #333" class="mb-4 mt-4">Chưa có sản phẩm nào trong giỏ hàng!</h5>
+                                        <a href="@Url.Action("index", "home")" style="width: auto; padding: 10px" class="btn3 flex-c-m size1 txt11 trans-0-4 mb-3">TIẾP TỤC MUA SẮM</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        if ((donhangmuassam != null && donhangmuassam.Count > 0))
+                        {
+                            <h5 class="text-center mb-3 text-white" style="background: #5e443b !important; border-radius: 16px 16px 0 0; height: 50px; display: flex; flex-direction: column; justify-content: center; ">SẢN PHẨM MỤC MUA SẮM</h5>
+
+                            foreach (var item in donhangmuassam)
+                            {
+                                <div class="card mb-3 bo-rad-16 bggreen text-white  ms-3 me-3">
+                                    <div class="card-body" style="padding: 10px;">
+                                        <div class="d-flex justify-content-between row">
+                                            <div class="col-md-8 col-sm-8 ">
+                                                <div class="d-flex flex-row align-items-center ms-2 me-2 mt-2 mb-2">
+                                                    <div>
+                                                        @if (string.IsNullOrEmpty(item.hinhanh))
+                                                        {
+                                                            <a class="text-dark" href="@Url.Action("productdetail", "muasam", new { id = item.id_sanphammuasam })">
+                                                                <img src="@Url.Content("~/Content/assets/images/product/sanphamdefault.jpg")"
+                                                                     class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
+                                                            </a>
+                                                        }
+                                                        else
+                                                        {
+                                                            <a class="text-dark" href="@Url.Action("productdetail", "muasam", new { id = item.id_sanphammuasam })">
+                                                                <img src="@Url.Content(item.hinhanh.Split('#')[0])"
+                                                                     class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
+                                                            </a>
+                                                        }
+                                                    </div>
+                                                    <div class="ms-3">
+                                                        <a class="text-dark" href="@Url.Action("productdetail", "muasam", new { id = item.id_sanphammuasam })"><h6>@item.tensanpham</h6></a>
+                                                        <p class="small mb-0 text-dark">@item.tenloaitonkho, @(item.gia.ToString("0,0"))đ</p>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class=" col-md-4 col-sm-4">
+                                                <div class="d-flex flex-row align-items-center  float-end me-2">
+                                                    <div class="row">
+                                                        <div class="ms-2 me-2 mt-2 col-sm-12 t-right">
+                                                            <a class="text-dark">
+                                                                Số lượng: @item.soluongmua
+                                                            </a>
+                                                            <br />
+                                                            <a class="text-dark mt-2">
+                                                                Tổng: @((item.soluongmua * item.gia).ToString("0,0"))đ
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            }
+                        }
+
+                        if (donhangvuonrau != null && donhangvuonrau.Count > 0)
+                        {
+                            if (donhangmuassam != null && donhangvuonrau != null)
+                            {
+                                if (donhangmuassam.Count > 0 && donhangvuonrau.Count > 0)
+                                {
+                                    <h5 class="text-center mb-3 text-white" style="background: #5e443b !important; height: 50px; display: flex; flex-direction: column; justify-content: center;">SẢN PHẨM RAU NHÀ TRỒNG</h5>
+                                }
+                                else
+                                {
+                                    <h5 class="text-center mb-3 text-white" style="background: #5e443b !important; border-radius: 16px 16px 0 0; height: 50px; display: flex; flex-direction: column; justify-content: center;">SẢN PHẨM RAU NHÀ TRỒNG</h5>
+                                }
+                            }
+                            else
+                            {
+                                <h5 class="text-center mb-3 text-white" style="background: #5e443b !important; border-radius: 16px 16px 0 0; height: 50px; display: flex; flex-direction: column; justify-content: center;">SẢN PHẨM RAU NHÀ TRỒNG</h5>
+                            }
+
+                            @*<h5 class="text-center mb-3 text-white" style="background: #5e443b !important; border-radius: 16px 16px 0 0; height: 50px; display: flex; flex-direction: column; justify-content: center;">SẢN PHẨM RAU NHÀ TRỒNG</h5>*@
+
+                            foreach (var item in donhangvuonrau)
+                            {
+
+                                <div class="card mb-3 bo-rad-16 bggreen text-white ms-3 me-3">
+                                    <div class="card-body" style="padding: 10px;">
+                                        <div class="d-flex justify-content-between row">
+                                            <div class="col-md-8 col-sm-8 ">
+                                                <div class="d-flex flex-row align-items-center ms-2 me-2 mt-2 mb-2">
+                                                    <div>
+                                                        @if (string.IsNullOrEmpty(item.hinhanh))
+                                                        {
+                                                            <a class="text-dark" href="@Url.Action("productdetail", "vuonrau", new { id = item.id_sanphamraunhatrong })">
+                                                                <img src="@Url.Content("~/Content/assets/images/product/sanphamdefault.jpg")"
+                                                                     class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
+                                                            </a>
+                                                        }
+                                                        else
+                                                        {
+                                                            <a class="text-dark" href="@Url.Action("productdetail", "vuonrau", new { id = item.id_sanphamraunhatrong })">
+                                                                <img src="@Url.Content(item.hinhanh.Split('#')[0])"
+                                                                     class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
+                                                            </a>
+                                                        }
+                                                    </div>
+                                                    <div class="ms-3">
+                                                        <a class="text-dark" href="@Url.Action("productdetail", "vuonrau", new { id = item.id_sanphamraunhatrong })"><h6>@item.tensanpham</h6></a>
+                                                        <p class="small mb-0 text-dark">@item.gia.ToString("0,0")đ / @item.donvi</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-sm-4 ">
+                                                <div class="d-flex flex-row align-items-center  float-end me-2">
+                                                    <div class="row">
+                                                        <div class="ms-2 me-2 mt-2 col-sm-12 t-right">
+                                                            <a class="text-dark">
+                                                                Số lượng: @item.soluongmua
+                                                            </a>
+                                                            <br />
+                                                            <a class="text-dark mt-2">
+                                                                Tổng: @((item.gia * item.soluongmua).ToString("0,0") + "đ")
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            }
+                        }
+
+                        if (donhangthucdonhangngay != null && donhangthucdonhangngay.Count > 0)
+                        {
+                            if (donhangvuonrau != null && donhangthucdonhangngay != null)
+                            {
+                                if (donhangvuonrau.Count > 0 && donhangthucdonhangngay.Count > 0)
+                                {
+                                    <h5 class="text-center mb-3 text-white" style="background: #5e443b !important; height: 50px; display: flex; flex-direction: column; justify-content: center;">THỰC ĐƠN HẰNG NGÀY</h5>
+                                }
+                                else
+                                {
+                                    <h5 class="text-center mb-3 text-white" style="background: #5e443b !important; border-radius: 16px 16px 0 0; height: 50px; display: flex; flex-direction: column; justify-content: center;">THỰC ĐƠN HẰNG NGÀY</h5>
+                                }
+                            }
+                            else
+                            {
+                                <h5 class="text-center mb-3 text-white" style="background: #5e443b !important; border-radius: 16px 16px 0 0; height: 50px; display: flex; flex-direction: column; justify-content: center;">THỰC ĐƠN HẰNG NGÀY</h5>
+                            }
+
+                            foreach (var item in donhangthucdonhangngay)
+                            {
+
+
+                                <div class="card mb-3 bo-rad-16 bggreen text-white ms-3 me-3">
+                                    <div class="card-body" style="padding: 10px;">
+                                        <div class="d-flex justify-content-between row">
+                                            <div class="col-md-8 col-sm-8 ">
+                                                <div class="d-flex flex-row align-items-center ms-2 me-2 mt-2 mb-2">
+                                                    <div>
+                                                        @if (string.IsNullOrEmpty(item.hinhanh))
+                                                        {
+                                                            <a class="text-dark" href="@Url.Action("productdetail", "thucdonhangngay", new { id = item.id_sanphamthucdonhangngay })">
+                                                                <img src="@Url.Content("~/Content/assets/images/product/sanphamdefault.jpg")"
+                                                                     class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
+                                                            </a>
+                                                        }
+                                                        else
+                                                        {
+                                                            <a class="text-whidarkte" href="@Url.Action("productdetail", "thucdonhangngay", new { id = item.id_sanphamthucdonhangngay })">
+                                                                <img src="@Url.Content(item.hinhanh.Split('#')[0])"
+                                                                     class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
+                                                            </a>
+                                                        }
+                                                    </div>
+                                                    <div class="ms-3">
+                                                        <a class="text-dark" href="@Url.Action("productdetail", "thucdonhangngay", new { id = item.id_sanphamthucdonhangngay })"><h6>@item.tensanpham</h6></a>
+                                                        <p class="small mb-0 text-dark">@item.gia.ToString("0,0")đ</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-sm-4 ">
+                                                <div class="d-flex flex-row align-items-center  float-end me-2">
+                                                    <div class="row">
+                                                        <div class="ms-2 me-2 mt-2 col-sm-12 t-right">
+
+                                                            <a class="text-dark">
+                                                                Số lượng: @item.soluongmua
+                                                            </a>
+                                                            <br />
+                                                            <a class="text-dark mt-2">
+                                                                Tổng: @((item.gia * item.soluongmua).ToString("0,0") + "đ")
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

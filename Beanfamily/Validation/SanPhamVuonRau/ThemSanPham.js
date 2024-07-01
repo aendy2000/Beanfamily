@@ -38,7 +38,7 @@
 
     //Lưu thêm món
     $('#btnluuthemSanPham').on('click', function () {
-        $('#btnluuthemSanPham').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"> </span> Đang tải...');
+        $('#btnluuthemSanPham').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"> </span> Vui lòng chờ...');
         $('#btnluuthemSanPham').prop('disabled', true);
 
         var ten = $('#ten').val().trim();

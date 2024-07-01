@@ -27,11 +27,13 @@
                             <div class="col-sm-4 col-12">
                                 @item.tensanpham
                             </div>
-                            <div class="col-sm-2 col-12">
-                                Kho: @item.soluong
-                            </div>
-                            <div class="col-sm-3 col-12 text-end">
-                                @item.gia.ToString("0,0") đ
+                            <div class="col-sm-5 col-12">
+                                @foreach (var items in item.TonKhoSanPhamMuaSam.ToList())
+                                {
+                                    <label>
+                                        Loại @items.tenloai: kho còn @items.soluong, giá @(items.gia.ToString("0,0"))đ
+                                    </label>
+                                }
                             </div>
                         }
                         else
@@ -42,11 +44,13 @@
                             <div class="col-sm-4 col-12">
                                 @item.tensanpham
                             </div>
-                            <div class="col-sm-2 col-12">
-                                Kho: @item.soluong
-                            </div>
-                            <div class="col-sm-3 col-12 text-end">
-                                @item.gia.ToString("0,0") đ
+                            <div class="col-sm-5 col-12">
+                                @foreach (var items in item.TonKhoSanPhamMuaSam.ToList())
+                                {
+                                    <label>
+                                        Loại @items.tenloai: kho còn @items.soluong, giá @(items.gia.ToString("0,0"))đ
+                                    </label>
+                                }
                             </div>
                         }
                     </div>
@@ -69,11 +73,13 @@
                             <div class="col-sm-4 col-12">
                                 @item.tensanpham
                             </div>
-                            <div class="col-sm-2 col-12">
-                                Kho: @item.soluong
-                            </div>
-                            <div class="col-sm-3 col-12 text-end">
-                                @item.gia.ToString("0,0") đ
+                            <div class="col-sm-5 col-12">
+                                @foreach (var items in item.TonKhoSanPhamMuaSam.ToList())
+                                {
+                                    <label>
+                                        Loại @items.tenloai: kho còn @items.soluong, giá @(items.gia.ToString("0,0"))đ
+                                    </label>
+                                }
                             </div>
                         }
                         else
@@ -84,11 +90,13 @@
                             <div class="col-sm-4 col-12">
                                 @item.tensanpham
                             </div>
-                            <div class="col-sm-2 col-12">
-                                Kho: @item.soluong
-                            </div>
-                            <div class="col-sm-3 col-12 text-end">
-                                @item.gia.ToString("0,0") đ
+                            <div class="col-sm-5 col-12">
+                                @foreach (var items in item.TonKhoSanPhamMuaSam.ToList())
+                                {
+                                    <label>
+                                        Loại @items.tenloai: kho còn @items.soluong, giá @(items.gia.ToString("0,0"))đ
+                                    </label>
+                                }
                             </div>
                         }
                     </div>

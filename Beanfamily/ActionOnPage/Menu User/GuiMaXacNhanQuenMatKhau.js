@@ -2,7 +2,7 @@
     //Gửi mã xác nhận
     $('body').find('[id="submit-ma-quenmatkhau"]').on('click', function () {
         var btn = $(this);
-        btn.html('<span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"> </span> Đang tải...');
+        btn.html('<span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"> </span> Vui lòng chờ...');
         btn.css('pointer-events', 'none');
 
         var ma = $('body').find('[id="guima-quenmatkhau"]').val().trim();
@@ -76,7 +76,7 @@
     //Gửi lại mã xác nhận
     $('body').find('[id="guilaima-quenmatkhau"]').on('click', function () {
         var btn = $(this);
-        btn.html('<span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"> </span> Đang tải...');
+        btn.html('<span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"> </span> Vui lòng chờ...');
         btn.css('pointer-events', 'none');
 
         $('body').find('[id="validate-guima-quenmatkhau"]').prop('hidden', true);

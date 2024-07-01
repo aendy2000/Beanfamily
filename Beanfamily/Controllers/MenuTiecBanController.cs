@@ -75,7 +75,7 @@ namespace Beanfamily.Controllers
                 model.SaveChanges();
 
                 int idDH = donhang.id;
-                string madonhang = "MTB" + idDH + DateTime.Now.ToString("mmHHddMMyyyy");
+                string madonhang = "MTB" + idDH + DateTime.Now.ToString("ddMMyyyy");
 
                 donhang.madonhang = madonhang;
                 model.Entry(donhang).State = System.Data.Entity.EntityState.Modified;
@@ -135,18 +135,18 @@ namespace Beanfamily.Controllers
                     bodyMail = reader.ReadToEnd();
                 }
 
-                bodyMail = bodyMail.Replace("{TitleMenu}", "MENU TIỆC");
+                bodyMail = bodyMail.Replace("{TitleMenu}", "TIỆC");
                 bodyMail = bodyMail.Replace("{HoVaTen}", hovaten);
                 bodyMail = bodyMail.Replace("{SoDienThoai}", sodienthoai);
                 bodyMail = bodyMail.Replace("{SoBan}", soban.ToString());
                 bodyMail = bodyMail.Replace("{MaDonHang}", madonhang);
-                bodyMail = bodyMail.Replace("{LoaiDon}", "Menu Tiệc Bàn");
+                bodyMail = bodyMail.Replace("{LoaiDon}", "Tiệc");
 
                 using (MailMessage mailMessage = new MailMessage("beanfamilyshop@gmail.com", "duongle15012000@gmail.com"))
                 {
                     if (string.IsNullOrEmpty(email))
                         mailMessage.To.Add(email);
-                    mailMessage.Subject = "[BEANFAMILY] ĐƠN ĐẶT BÀN MENU TIỆC MỚI";
+                    mailMessage.Subject = "[BEANFAMILY] ĐƠN ĐẶT BÀN TIỆC MỚI";
                     mailMessage.IsBodyHtml = true;
                     mailMessage.Body = bodyMail;
 
@@ -163,6 +163,35 @@ namespace Beanfamily.Controllers
                     }
                 }
 
+                bodyMail = string.Empty;
+                using (StreamReader reader = new StreamReader(Server.MapPath("~/ActionOnPage/TemplateMail/ThongBaoDonDatBanChoKhach.html")))
+                {
+                    bodyMail = reader.ReadToEnd();
+                }
+
+                bodyMail = bodyMail.Replace("{TitleMenu}", "TIỆC");
+                bodyMail = bodyMail.Replace("{SoBan}", soban.ToString());
+                bodyMail = bodyMail.Replace("{MaDonHang}", madonhang);
+                bodyMail = bodyMail.Replace("{LoaiDon}", "Tiệc");
+
+                using (MailMessage mailMessage = new MailMessage("beanfamilyshop@gmail.com", email))
+                {
+                    mailMessage.Subject = "[BEANFAMILY] ĐẶT BÀN TIỆC THÀNH CÔNG";
+                    mailMessage.IsBodyHtml = true;
+                    mailMessage.Body = bodyMail;
+
+                    using (SmtpClient smtp = new SmtpClient())
+                    {
+                        smtp.Host = "smtp.gmail.com";
+                        smtp.EnableSsl = true;
+                        NetworkCredential cred = new NetworkCredential("beanfamilyshop@gmail.com", "qwyxakxwvxtspdhr");
+                        smtp.UseDefaultCredentials = true;
+                        smtp.Credentials = cred;
+                        smtp.Port = 587;
+
+                        smtp.Send(mailMessage);
+                    }
+                }
                 return Content("SUCCESS-" + madonhang);
             }
             catch (Exception Ex)

@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
     $('#btnluuchinhsua').on('click', function () {
-        $('#btnluuchinhsua').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"> </span> Đang tải...');
+        $('#btnluuchinhsua').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"> </span> Vui lòng chờ...');
         $('#btnluuchinhsua').prop('disabled', true);
 
         var tendangnhap = $('#tendangnhap').val().trim();
@@ -122,7 +122,7 @@
     });
 
     $('#btndoimatkhau').on('click', function () {
-        $('#btndoimatkhau').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"> </span> Đang tải...');
+        $('#btndoimatkhau').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"> </span> Vui lòng chờ...');
         $('#btndoimatkhau').prop('disabled', true);
 
         var matkhauhientai = $('#matkhauhientai').val();

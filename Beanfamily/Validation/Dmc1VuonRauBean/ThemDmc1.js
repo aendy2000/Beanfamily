@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
     $('#btnluuthemDmVrb').on('click', function () {
-        $('#btnluuthemDmVrb').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"> </span> Đang tải...');
+        $('#btnluuthemDmVrb').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"> </span> Vui lòng chờ...');
         $('#btnluuthemDmVrb').prop('disabled', true);
 
         var tendanhmuc = $('#tendanhmuc').val().trim();

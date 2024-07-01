@@ -11,7 +11,7 @@
         }).then((result) => {
             if (result.isConfirmed) {
                 var btn = $(this);
-                btn.html('<span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"> </span> Đang tải...');
+                btn.html('<span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"> </span> Vui lòng chờ...');
                 btn.css('pointer-events', 'none');
 
                 var id = $(this).attr('name');

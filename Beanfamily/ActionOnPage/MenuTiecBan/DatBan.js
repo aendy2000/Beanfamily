@@ -2,7 +2,7 @@
     //Đặt bàn
     $('#btnDatBanTiec').on('click', function () {
         var btn = $(this);
-        btn.html('<span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"> </span> Đang tải...');
+        btn.html('<span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"> </span> Vui lòng chờ...');
         btn.css('pointer-events', 'none');
 
         var lstId = ""; //Định dạng: id Món 1 - id Món 2

@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
     $('body').find('[id="submitDatBan"]').on('click', function () {
         var btn = $(this);
-        btn.html('<span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"> </span> Đang tải...');
+        btn.html('<span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"> </span> Vui lòng chờ...');
         btn.css('pointer-events', 'none');
 
         var soban = $('body').find('[id="soban"]').val().trim();

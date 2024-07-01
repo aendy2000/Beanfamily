@@ -15,6 +15,8 @@
             'targets': [0],
             'orderable': false,
         }],
+    }).on("draw", function () {
+        $('[data-bs-toggle="tooltip"]').tooltip();
     });
 
     /**

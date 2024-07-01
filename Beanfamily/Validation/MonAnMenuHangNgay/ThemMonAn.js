@@ -38,7 +38,7 @@
 
     //Lưu thêm món
     $('#btnluuthemMonAn').on('click', function () {
-        $('#btnluuthemMonAn').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"> </span> Đang tải...');
+        $('#btnluuthemMonAn').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"> </span> Vui lòng chờ...');
         $('#btnluuthemMonAn').prop('disabled', true);
 
         var tenmon = $('#tenmon').val().trim();

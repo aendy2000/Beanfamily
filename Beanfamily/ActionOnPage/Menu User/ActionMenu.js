@@ -31,7 +31,7 @@
     //Đăng nhập
     $('body').find('[id="submit-user-dangnhap"]').on('click', function () {
         var btn = $(this);
-        btn.html('<span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"> </span> Đang tải...');
+        btn.html('<span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"> </span> Vui lòng chờ...');
         btn.css('pointer-events', 'none');
 
         var sdt = $('body').find('[id="sodienthoai-dangnhap"]').val().trim();
@@ -110,7 +110,7 @@
     //Đăng ký
     $('body').find('[id="submit-user-dangky"]').on('click', function () {
         var btn = $(this);
-        btn.html('<span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"> </span> Đang tải...');
+        btn.html('<span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"> </span> Vui lòng chờ...');
         btn.css('pointer-events', 'none');
         var testMail = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
 
@@ -269,7 +269,7 @@
     //Lấy mã quên mật khẩu
     $('body').find('[id="submit-user-quenmatkhau"]').on('click', function () {
         var btn = $(this);
-        btn.html('<span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"> </span> Đang tải...');
+        btn.html('<span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"> </span> Vui lòng chờ...');
         btn.css('pointer-events', 'none');
         var testMail = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
 

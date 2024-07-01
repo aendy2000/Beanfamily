@@ -13,7 +13,7 @@
 
     //Lưu thêm món
     $('#btnluusuaMonAn').on('click', function () {
-        $('#btnluusuaMonAn').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"> </span> Đang tải...');
+        $('#btnluusuaMonAn').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"> </span> Vui lòng chờ...');
         $('#btnluusuaMonAn').prop('disabled', true);
 
         var tenmon = $('#suatenmon').val().trim();

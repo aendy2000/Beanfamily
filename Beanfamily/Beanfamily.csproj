@@ -145,6 +145,7 @@
     <Compile Include="Areas\Admin\Controllers\DmCap1MenuHangNgayController.cs" />
     <Compile Include="Areas\Admin\Controllers\DmCap1MenuTiecBanController.cs" />
     <Compile Include="Areas\Admin\Controllers\DmCap1VuonRauBeanController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DonDatBanTiecController.cs" />
     <Compile Include="Areas\Admin\Controllers\DonDatHangController.cs" />
     <Compile Include="Areas\Admin\Controllers\HinhAnhBeanController.cs" />
     <Compile Include="Areas\Admin\Controllers\MonAnMenuBuffetController.cs" />
@@ -321,6 +322,14 @@
     <Content Include="ActionOnPage\MenuTiecBan\loadPageMenuTiecBan.js" />
     <Content Include="ActionOnPage\MenuTiecBan\SubmitFormDatBan.js" />
     <Content Include="ActionOnPage\NhaHang\loadPageNhaHang.js" />
+    <Content Include="ActionOnPage\TemplateMail\ThongBaoTrangThaiDonHangChoKhach.html" />
+    <Content Include="ActionOnPage\TemplateMail\ThongBaoTrangThaiDonHang.html" />
+    <Content Include="ActionOnPage\TemplateMail\ThongBaoHuyDonDatHangChoKhach.html" />
+    <Content Include="ActionOnPage\TemplateMail\ThongBaoHuyDonDatHang.html" />
+    <Content Include="ActionOnPage\TemplateMail\ThongBaoHuyDonDatBanChoKhach.html" />
+    <Content Include="ActionOnPage\TemplateMail\ThongBaoHuyDonDatBan.html" />
+    <Content Include="ActionOnPage\TemplateMail\ThongBaoDonDatBanChoKhach.html" />
+    <Content Include="ActionOnPage\TemplateMail\ThongBaoDonDatHangChoKhach.html" />
     <Content Include="ActionOnPage\TemplateMail\ThongBaoDonDatHang.html" />
     <Content Include="ActionOnPage\TemplateMail\ThongBaoDonDatBan.html" />
     <Content Include="ActionOnPage\TemplateMail\MailGuiMaXacNhan.html" />
@@ -2589,6 +2598,10 @@
     <Content Include="Validation\Dmc1MenuTiecBan\XemMonDmc1MenuTiecBan.js" />
     <Content Include="Validation\Dmc1MenuTiecBan\XoaDmc1MenuTiecBan.js" />
     <Content Include="Validation\Dmc1VuonRauBean\XoaHangLoat.js" />
+    <Content Include="Validation\DonDatHang\CapNhatDon.js" />
+    <Content Include="Validation\DonDatHang\HuyDon.js" />
+    <Content Include="Validation\DonDatHang\HuyDonHangLoat.js" />
+    <Content Include="Validation\DonDatHang\DanhSach.js" />
     <Content Include="Validation\Login\login.js" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.js" />
@@ -2862,6 +2875,7 @@
     <Content Include="Content\assets\vendor\bootstrap5\js\bootstrap.esm.min.js.map" />
     <Content Include="Content\assets\vendor\bootstrap5\js\bootstrap.js.map" />
     <Content Include="Content\assets\vendor\bootstrap5\js\bootstrap.min.js.map" />
+    <Content Include="Areas\Admin\Views\DonDatHang\Index.cshtml" />
     <EntityDeploy Include="Models\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
@@ -2869,6 +2883,9 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Views\DonDatHang\_LocDonHang.cshtml" />
+    <Content Include="Areas\Admin\Views\DonDatHang\_CapNhatDonHang.cshtml" />
+    <Content Include="Areas\Admin\Views\DonDatBanTiec\Index.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -2966,7 +2983,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Views\DonDatHang\" />
     <Folder Include="Content\AdminAreas\images\taikhoanbean\" />
     <Folder Include="Content\assets\vendor\splide\" />
   </ItemGroup>

@@ -9,7 +9,7 @@
     });
     //Luu them moi
     $('#btnluuthemtaikhoan').on('click', function () {
-        $('#btnluuthemtaikhoan').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"> </span> Đang tải...');
+        $('#btnluuthemtaikhoan').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"> </span> Vui lòng chờ...');
         $('#btnluuthemtaikhoan').prop('disabled', true);
 
         var tendangnhap = $('#tendangnhap').val().trim();

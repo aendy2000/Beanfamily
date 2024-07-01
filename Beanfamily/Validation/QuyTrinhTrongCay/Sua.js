@@ -129,7 +129,7 @@
     });
 
     $('#btnluusuaSanPham').on('click', function () {
-        $('#btnluusuaSanPham').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"> </span> Đang tải...');
+        $('#btnluusuaSanPham').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"> </span> Vui lòng chờ...');
         $('#btnluusuaSanPham').prop('disabled', true);
 
         var idQuyTrinh = $('#suaidQuyTrinh').val();

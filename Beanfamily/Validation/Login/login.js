@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
     function login() {
-        $('#loginsubmit').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"> </span> Đang tải...');
+        $('#loginsubmit').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"> </span> Vui lòng chờ...');
         $('#loginsubmit').prop('disabled', true);
 
         var usname = $("#yourUsername").val().trim();
