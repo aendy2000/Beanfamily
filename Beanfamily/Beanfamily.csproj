@@ -322,6 +322,10 @@
     <Content Include="ActionOnPage\MenuTiecBan\loadPageMenuTiecBan.js" />
     <Content Include="ActionOnPage\MenuTiecBan\SubmitFormDatBan.js" />
     <Content Include="ActionOnPage\NhaHang\loadPageNhaHang.js" />
+    <Content Include="ActionOnPage\TemplateMail\ThongBaoThanhToanChoKhach.html" />
+    <Content Include="ActionOnPage\TemplateMail\ThongBaoTrangThaiDonDatBan.html" />
+    <Content Include="ActionOnPage\TemplateMail\ThongBaoTrangThaiDonDatBanChoKhach.html" />
+    <Content Include="ActionOnPage\TemplateMail\ThongBaoThanhToan.html" />
     <Content Include="ActionOnPage\TemplateMail\ThongBaoTrangThaiDonHangChoKhach.html" />
     <Content Include="ActionOnPage\TemplateMail\ThongBaoTrangThaiDonHang.html" />
     <Content Include="ActionOnPage\TemplateMail\ThongBaoHuyDonDatHangChoKhach.html" />
@@ -2598,6 +2602,11 @@
     <Content Include="Validation\Dmc1MenuTiecBan\XemMonDmc1MenuTiecBan.js" />
     <Content Include="Validation\Dmc1MenuTiecBan\XoaDmc1MenuTiecBan.js" />
     <Content Include="Validation\Dmc1VuonRauBean\XoaHangLoat.js" />
+    <Content Include="Validation\DonDatBanTiec\ThanhToan.js" />
+    <Content Include="Validation\DonDatBanTiec\CapNhatDon.js" />
+    <Content Include="Validation\DonDatBanTiec\DanhSach.js" />
+    <Content Include="Validation\DonDatBanTiec\HuyDon.js" />
+    <Content Include="Validation\DonDatBanTiec\HuyDonHangLoat.js" />
     <Content Include="Validation\DonDatHang\CapNhatDon.js" />
     <Content Include="Validation\DonDatHang\HuyDon.js" />
     <Content Include="Validation\DonDatHang\HuyDonHangLoat.js" />
@@ -2886,6 +2895,9 @@
     <Content Include="Areas\Admin\Views\DonDatHang\_LocDonHang.cshtml" />
     <Content Include="Areas\Admin\Views\DonDatHang\_CapNhatDonHang.cshtml" />
     <Content Include="Areas\Admin\Views\DonDatBanTiec\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\DonDatBanTiec\_CapNhatDonHang.cshtml" />
+    <Content Include="Areas\Admin\Views\DonDatBanTiec\_LocDonHang.cshtml" />
+    <Content Include="Areas\Admin\Views\DonDatBanTiec\_ThanhToan.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

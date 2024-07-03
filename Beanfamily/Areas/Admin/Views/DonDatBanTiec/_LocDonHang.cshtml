@@ -1,0 +1,308 @@
+﻿@model IEnumerable<Beanfamily.Models.DonHangMenuTiecBan>
+@using Beanfamily.Models
+@{
+    BeanfamilyEntities models = new BeanfamilyEntities();
+    var lstTTDH = models.TinhTrangDonHangMenuTiecBan.ToList();
+    var lstDH = models.DonHangMenuTiecBan.ToList();
+    var currentDate = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd"));
+    int chuaThanhToan = 0;
+    int hoanthanh = 0;
+    foreach (var item in lstDH.Where(w => (w.ngaybatdau - DateTime.Now).Days <= 0).ToList())
+    {
+        if (item.LichSuThanhToanDonHangTongHop.Count < 1
+            && item.TinhTrangDonHangMenuTiecBan.First().tieude.Equals("Hoàn thành"))
+        {
+            chuaThanhToan++;
+        }
+        else
+        {
+            if ((item.ChiTietDonHangSanPhamMenuTiecBan.Sum(s => s.gia * item.soban) +
+                item.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == true).Sum(s => s.gia * item.soban) +
+                item.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == false).Sum(s => s.gia))
+                > item.LichSuThanhToanDonHangTongHop.Sum(s => s.sotien)
+                && item.TinhTrangDonHangMenuTiecBan.First().tieude.Equals("Hoàn thành"))
+            {
+                chuaThanhToan++;
+            }
+        }
+
+        if ((item.ChiTietDonHangSanPhamMenuTiecBan.Sum(s => s.gia * item.soban) +
+            item.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == true).Sum(s => s.gia * item.soban) +
+            item.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == false).Sum(s => s.gia))
+            <= item.LichSuThanhToanDonHangTongHop.Sum(s => s.sotien)
+            && item.TinhTrangDonHangMenuTiecBan.First().tieude.Equals("Hoàn thành"))
+        {
+            hoanthanh++;
+        }
+    }
+}
+<div class="card-body" id="content-table">
+    <!-- Table with stripped rows -->
+    <table id="lstDonDatHangTable" class="table datatable" width="100%">
+        <thead>
+            <tr class="text-nowrap">
+                <th style="width: 10px">
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input p-2" id="checkAlls" />
+                        <label class="form-check-label" for="checkAlls"></label>
+                    </div>
+                </th>
+                <th scope="col">Diễn ra</th>
+                <th scope="col">Trạng thái</th>
+                <th scope="col">Thông tin</th>
+                <th scope="col">Thanh toán</th>
+                <th scope="col">Khách hàng</th>
+                <th scope="col">#</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderByDescending(o => o.id))
+            {
+                <tr style="vertical-align: middle">
+                    <td>
+                        @if (!item.TinhTrangDonHangMenuTiecBan.First().tieude.ToLower().Equals("hoàn thành")
+                            && !item.TinhTrangDonHangMenuTiecBan.First().tieude.ToLower().Equals("đã hủy")
+                            && !item.TinhTrangDonHangMenuTiecBan.First().tieude.ToLower().Equals("không thành công"))
+                        {
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input p-2" id="checkitem@(item.id)" name="@item.id" />
+                                <label class="form-check-label" for="checkitem@(item.id)"></label>
+                            </div>
+                        }
+                        <input hidden id="inpMaDonHang@(item.id)" value="@item.madonhang" />
+                    </td>
+                    <td>
+                        <small>
+                            <i class="bi bi-clock-history"></i> @item.giobatdau<br />@item.ngaybatdau.ToString("dd/MM/yyyy")
+                        </small>
+                    </td>
+                    <td>
+                        @if (item.TinhTrangDonHangMenuTiecBan.First().tieude.Equals("Đã hủy"))
+                        {
+                            <span class="badge bg-danger me-2">
+                                @item.TinhTrangDonHangMenuTiecBan.First().tieude
+                            </span>
+                            <input hidden id="inpTrangThaiDonHang@(item.id)" value="@item.TinhTrangDonHangMenuTiecBan.First().tieude" />
+                            <input hidden id="mauChuTrangThai@(item.id)" value="bg-danger" />
+                        }
+                        @if ((item.ngaybatdau - currentDate).Days <= 0
+                            && (item.ChiTietDonHangSanPhamMenuTiecBan.Sum(s => s.gia * item.soban) +
+                            item.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == true).Sum(s => s.gia * item.soban) +
+                            item.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == false).Sum(s => s.gia))
+                            <= item.LichSuThanhToanDonHangTongHop.Sum(s => s.sotien)
+                            && item.TinhTrangDonHangMenuTiecBan.First().tieude.Equals("Hoàn thành"))
+                        {
+                            <span class="badge bg-success me-2">
+                                @item.TinhTrangDonHangMenuTiecBan.First().tieude
+                            </span>
+                            <input hidden id="inpTrangThaiDonHang@(item.id)" value="@item.TinhTrangDonHangMenuTiecBan.First().tieude" />
+                            <input hidden id="mauChuTrangThai@(item.id)" value="bg-success" />
+                        }
+                        @if (item.TinhTrangDonHangMenuTiecBan.First().tieude.Equals("Chờ duyệt"))
+                        {
+                            <span class="badge bg-warning me-2">
+                                @item.TinhTrangDonHangMenuTiecBan.First().tieude
+                            </span>
+                            <input hidden id="inpTrangThaiDonHang@(item.id)" value="@item.TinhTrangDonHangMenuTiecBan.First().tieude" />
+                            <input hidden id="mauChuTrangThai@(item.id)" value="bg-warning" />
+                        }
+                        @if (item.TinhTrangDonHangMenuTiecBan.First().tieude.Equals("Đã lên món"))
+                        {
+                            <span class="badge bg-primary me-2">
+                                @item.TinhTrangDonHangMenuTiecBan.First().tieude
+                            </span>
+                            <input hidden id="inpTrangThaiDonHang@(item.id)" value="@item.TinhTrangDonHangMenuTiecBan.First().tieude" />
+                            <input hidden id="mauChuTrangThai@(item.id)" value="bg-primary" />
+                        }
+                        @if (item.TinhTrangDonHangMenuTiecBan.First().tieude.Equals("Đã xác nhận")
+                            && (item.ngaybatdau - currentDate).Days < 0)
+                        {
+                            <span class="badge bg-danger me-2">
+                                Quá hạn @((item.ngaybatdau - currentDate).Days.ToString().Replace("-", "")) ngày
+                            </span>
+                            <input hidden id="inpTrangThaiDonHang@(item.id)" value="Quá hạn @((item.ngaybatdau - currentDate).Days.ToString().Replace("-", "")) ngày" />
+                            <input hidden id="mauChuTrangThai@(item.id)" value="bg-danger" />
+                        }
+                        @if (item.TinhTrangDonHangMenuTiecBan.First().tieude.Equals("Đã xác nhận")
+                            && (item.ngaybatdau - currentDate).Days == 0)
+                        {
+                            <span class="badge bg-primary me-2">
+                                Đang diễn ra
+                            </span>
+                            <input hidden id="inpTrangThaiDonHang@(item.id)" value="Đang diễn ra" />
+                            <input hidden id="mauChuTrangThai@(item.id)" value="bg-primary" />
+                        }
+                        @if (item.TinhTrangDonHangMenuTiecBan.First().tieude.Equals("Đã xác nhận")
+                            && (item.ngaybatdau - currentDate).Days == 1)
+                        {
+                            <span class="badge bg-primary me-2">
+                                Diễn ra vào ngày mai
+                            </span>
+                            <input hidden id="inpTrangThaiDonHang@(item.id)" value="Diễn ra vào ngày mai" />
+                            <input hidden id="mauChuTrangThai@(item.id)" value="bg-primary" />
+                        }
+                        @if (item.TinhTrangDonHangMenuTiecBan.First().tieude.Equals("Đã xác nhận")
+                            && (item.ngaybatdau - currentDate).Days >= 2)
+                        {
+                            <span class="badge bg-primary me-2">
+                                Diễn ra sau @((item.ngaybatdau - currentDate).Days) ngày
+                            </span>
+                            <input hidden id="inpTrangThaiDonHang@(item.id)" value="Diễn ra sau @((item.ngaybatdau - currentDate).Days) ngày" />
+                            <input hidden id="mauChuTrangThai@(item.id)" value="bg-primary" />
+                        }
+                        @if ((item.ngaybatdau - currentDate).Days < 0
+                            && (item.LichSuThanhToanDonHangTongHop.Count < 1
+                            && item.TinhTrangDonHangMenuTiecBan.First().tieude.Equals("Hoàn thành"))
+                            ||
+                            (item.ChiTietDonHangSanPhamMenuTiecBan.Sum(s => s.gia * item.soban) +
+                            item.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == true).Sum(s => s.gia * item.soban) +
+                            item.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == false).Sum(s => s.gia))
+                            > item.LichSuThanhToanDonHangTongHop.Sum(s => s.sotien)
+                            && item.TinhTrangDonHangMenuTiecBan.First().tieude.Equals("Hoàn thành"))
+                        {
+                            <span class="badge bg-danger me-2">
+                                Chờ thanh toán
+                            </span>
+                            <input hidden id="inpTrangThaiDonHang@(item.id)" value="Chờ thanh toán" />
+                            <input hidden id="mauChuTrangThai@(item.id)" value="bg-danger" />
+                        }
+                        <br />
+                        <label class="me-2">
+                            <small>(@item.TinhTrangDonHangMenuTiecBan.First().noidung)</small>
+                        </label>
+                        <br />
+                        <label class="me-2">
+                            <small><i class="bi bi-clock-history"></i> @item.TinhTrangDonHangMenuTiecBan.First().thoigian.ToString("HH:mm dd/MM/yyyy")</small>
+                        </label>
+                    </td>
+                    <td class="text-nowrap">
+                        <ul style="margin-left: -2rem; margin-bottom: 0;" class="me-4">
+                            <li>
+                                <small><b>Mã:</b> @item.madonhang</small>
+                            </li>
+                            <li>
+                                <small><b>Số bàn:</b> @item.soban bàn</small>
+                            </li>
+                            <li>
+                                <small><b>Số món:</b> @item.ChiTietDonHangSanPhamMenuTiecBan.Count() món</small>
+                            </li>
+                            <li>
+                                <small>
+                                    <b>Phục vụ:</b>
+                                    @foreach (var pv in item.ChiTietDonHangDanhMucPhucVuMenuTiecBan)
+                                    {
+                                        if (item.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Last() == pv)
+                                        {
+                                            <span>
+                                                @pv.tendanhmuc
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span>
+                                                @pv.tendanhmuc,
+                                            </span>
+                                        }
+                                    }
+                                </small>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="text-nowrap">
+                        <ul style="margin-left: -2rem; margin-bottom: 0;">
+                            <li>
+                                <small class="me-4">
+                                    <b>Tổng thanh toán:</b> @((item.ChiTietDonHangSanPhamMenuTiecBan.Sum(s => s.gia * item.soban) +
+                                item.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == true).Sum(s => s.gia * item.soban) +
+                                item.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == false).Sum(s => s.gia)).ToString("0,0") + "đ")
+                                </small>
+                            </li>
+                            <li>
+                                <small class="me-4">
+                                    <b>Đã thanh toán:</b> @(item.LichSuThanhToanDonHangTongHop.Sum(s => s.sotien).ToString("0,0").Equals("00") ?
+                                "0đ" : item.LichSuThanhToanDonHangTongHop.Sum(s => s.sotien).ToString("0,0") + "đ")
+                                </small>
+                            </li>
+                            <li>
+                                <small class="me-4">
+                                    <b>Còn lại:</b> @((
+                                        (item.ChiTietDonHangSanPhamMenuTiecBan.Sum(s => s.gia * item.soban) +
+                                    item.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == true).Sum(s => s.gia * item.soban) +
+                                    item.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == false).Sum(s => s.gia))
+                                    - item.LichSuThanhToanDonHangTongHop.Sum(s => s.sotien)
+                                    ).ToString("0,0") + "đ"
+                                    )
+                                </small>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="text-nowrap">
+                        <ul style="margin-left: -2rem; margin-bottom: 0;">
+                            <li>
+                                <small><b>Họ & Tên:</b> @item.hoten</small>
+                            </li>
+                            <li>
+                                <small><b>Điện thoại:</b> @item.sdt</small>
+                            </li>
+                            <li>
+                                <small><b>Email:</b> @item.email</small>
+                            </li>
+
+                            <li>
+                                <small><b>Ghi chú:</b> @item.ghichukhachhang</small>
+                            </li>
+                        </ul>
+                    </td>
+
+                    <td class="text-nowrap">
+                        @if (Session["chophep-sua"] != null)
+                        {
+                            if (Convert.ToBoolean(Session["chophep-sua"]) == true)
+                            {
+                                <button id="btncapnhatdon@(item.id)" name="@item.id" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Xem & Cập nhật đơn hàng"><i class="bi bi-arrows-angle-expand"></i></button>
+                            }
+                        }
+                        @if (Session["chophep-xoa"] != null)
+                        {
+                            if (Convert.ToBoolean(Session["chophep-xoa"]) == true)
+                            {
+                                if (!item.TinhTrangDonHangMenuTiecBan.First().tieude.ToLower().Equals("hoàn thành")
+                                    && !item.TinhTrangDonHangMenuTiecBan.First().tieude.ToLower().Equals("đã hủy")
+                                    && !item.TinhTrangDonHangMenuTiecBan.First().tieude.ToLower().Equals("không thành công"))
+                                {
+                                    <button id="btnhuydon@(item.id)" name="@item.id" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Hủy đơn hàng"><i class="bi bi-x-square-fill"></i></button>
+                                }
+                            }
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <script>
+        jQuery('.datatable').DataTable({
+            scrollX: true,
+            order: [],
+            columnDefs: [{
+                'targets': [0],
+                'orderable': false,
+            }],
+        }).on("draw", function () {
+            $('[data-bs-toggle="tooltip"]').tooltip();
+        });
+
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+
+        $('#checkAlls').on('click', function () {
+            $('.datatable').DataTable()
+                .column(0)
+                .nodes()
+                .to$()
+                .find('input[type=checkbox]')
+                .prop('checked', this.checked);
+        });
+    </script>
+</div>

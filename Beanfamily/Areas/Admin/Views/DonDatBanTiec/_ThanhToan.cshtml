@@ -1,0 +1,133 @@
+﻿@model Beanfamily.Models.DonHangMenuTiecBan
+@using Beanfamily.Models
+@{
+    BeanfamilyEntities models = new BeanfamilyEntities();
+    var currentDate = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd"));
+    var ttdh = Model.TinhTrangDonHangMenuTiecBan.First();
+}
+
+<div class="modal-body" id="content-CapNhatDonHangModal">
+    <div class="row ms-2 me-2">
+        <div class="col-md-12 col-sm-12">
+            <div class="row">
+                <div class="col-12 p-0">
+                    <div class="bg-white bo-rad-16 txt10 p-t-20 p-b-20 p-l-20 p-r-20 mb-3 m-t-3" style="padding: 10px;">
+                        <div class="row">
+                            <div class="col-6 mb-1 text-dark">
+                                Mã đơn đặt bàn:
+                            </div>
+                            <div class="col-6 mb-1 text-end text-dark">
+                                @Model.madonhang
+                            </div>
+
+                            <div class="col-6 text-dark mb-1">
+                                Thời gian diễn ra:
+                            </div>
+                            <div class="col-6 text-end small mb-1">
+                                <i class="bi bi-clock-history"></i>
+                                @Model.giobatdau @Model.ngaybatdau.ToString("dd/MM/yyyy")
+                            </div>
+                            <div class="col-6 mb-1 text-dark">
+                                Số bàn đặt:
+                            </div>
+                            <div class="col-6 mb-1 text-end text-dark">
+                                @Model.soban bàn
+                            </div>
+                            <div class="col-6 mb-1 text-dark">
+                                Số món mỗi bàn:
+                            </div>
+                            <div class="col-6 mb-1 text-end text-dark">
+                                @Model.ChiTietDonHangSanPhamMenuTiecBan.Count() món
+                            </div>
+                            <div class="col-6 mb-1 text-dark">
+                                Phục vụ tùy chọn:
+                            </div>
+                            <div class="col-6 mb-1 text-end text-dark">
+                                @foreach (var item in Model.ChiTietDonHangDanhMucPhucVuMenuTiecBan.ToList())
+                                {
+                                    <p style="margin-bottom:0px !important"><small>@item.tendanhmuc (@(item.giatheosoban == true ? item.gia.ToString("0,0") + "đ) x " + Model.soban : item.gia.ToString("0,0") + "đ)")</small></p>
+                                }
+                            </div>
+                            <div class="col-12">
+                                <hr />
+                            </div>
+                            <div class="col-6 mb-1 text-dark">
+                                Tổng thanh toán:
+                            </div>
+                            <div class="col-6 mb-1 text-end text-dark">
+                                <h6>
+                                    <b>
+                                        @((Model.ChiTietDonHangSanPhamMenuTiecBan.Sum(s => s.gia * Model.soban)
+                                        + Model.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == true).Sum(s => s.gia * Model.soban)
+                                        + Model.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == false).Sum(s => s.gia)).ToString("0,0") + "đ")
+                                    </b>
+                                </h6>
+                            </div>
+
+                            <div class="col-6 mb-1 text-dark">
+                                Đã thanh toán:
+                            </div>
+                            <div class="col-6 mb-1 text-end text-dark">
+                                <h6 id="sotienDaThanhToan" madonhang="@Model.madonhang" name="@(Model.LichSuThanhToanDonHangTongHop.Sum(s => s.sotien).ToString("0,0") + "đ")">
+                                    <b>
+                                        @(Model.LichSuThanhToanDonHangTongHop.Sum(s => s.sotien).ToString("0,0") + "đ")
+                                    </b>
+                                </h6>
+                            </div>
+                            <div class="col-6 mb-1 text-dark">
+                                Còn lại:
+                            </div>
+                            <div class="col-6 mb-1 text-end text-dark">
+                                <h6 id="sotienConLai" madonhang="@Model.madonhang" name="@(((Model.ChiTietDonHangSanPhamMenuTiecBan.Sum(s => s.gia * Model.soban)
+                                                            + Model.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == true).Sum(s => s.gia * Model.soban)
+                                                            + Model.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == false).Sum(s => s.gia))
+                                                            - Model.LichSuThanhToanDonHangTongHop.Sum(s => s.sotien)).ToString("0,0").Replace(",", "").Replace(".", ""))">
+                                    <b>
+                                        @(((Model.ChiTietDonHangSanPhamMenuTiecBan.Sum(s => s.gia * Model.soban)
+                                        + Model.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == true).Sum(s => s.gia * Model.soban)
+                                        + Model.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == false).Sum(s => s.gia))
+                                        - Model.LichSuThanhToanDonHangTongHop.Sum(s => s.sotien)).ToString("0,0") + "đ")
+                                    </b>
+                                </h6>
+                            </div>
+                            <div class="col-12">
+                                <hr />
+                            </div>
+                            <div class="col-12 mb-2 text-dark">
+                                <small>Số tiền thanh toán (VNĐ): <span class="text-danger">*</span></small>
+                            </div>
+                            <div class="col-12 mb-3 text-dark input-group">
+                                <div class="input-group-append">
+                                    <select aria-describedby="sotien-thanhtoan" id="inpLoaiTien" style="float: right; border: 2px solid var(--bs-primary); border-right: none; border-top-right-radius: 0px; border-bottom-right-radius: 0px" class="form-control form-select">
+                                        <option selected value="thu">
+                                            Khoản thu &nbsp;
+                                        </option>
+                                        <option value="tra">
+                                            Khoản hoàn trả &nbsp;
+                                        </option>
+
+                                    </select>
+                                </div>
+                                <input aria-describedby="sotien-thanhtoan" class="form-control text-center fw-bold" placeholder="Nhập số tiền thanh toán" type="text" data-type="currency" id="inpSoTien" style="border: 2px solid var(--bs-primary) !important; height: 40px;" />
+                                <div class="input-group-append">
+                                    <span style="border-top: 2px solid var(--bs-primary) !important; border-right: 2px solid var(--bs-primary) !important; border-bottom: 2px solid var(--bs-primary) !important; height: 40px; border-bottom-left-radius: 0px; border-top-left-radius: 0px; " class="input-group-text" id="sotien-thanhtoan">VNĐ</span>
+                                </div>
+                            </div>
+                            <label style="margin-left: 5px; margin-top: -15px;" id="invalid-inpSoTien-thanhtoan" class="text-danger mb-2" hidden></label>
+
+                            <div class="col-12 mb-2 text-dark">
+                                <textarea id="inpNoiDung" class="form-control form-control-sm" style="border: 2px solid var(--bs-primary)" maxlength="200" rows="5" placeholder="Nhập nội dung thanh toán"></textarea>
+                                <label style="margin-left: 5px" id="invalid-inpNoiDung-thanhtoan" class="text-danger" hidden></label>
+                            </div>
+                            <div class="col-12 text-center mt-4">
+                                <button id="btnHuyThanhToan" name="@Model.id" type="button" class="btn btn-secondary me-1">Quay lại</button>
+                                <button id="btnSubmitThanhToan" name="@Model.id" type="button" class="btn btn-primary">Thanh toán</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/Validation/DonDatBanTiec/ThanhToan.js"></script>
+</div>

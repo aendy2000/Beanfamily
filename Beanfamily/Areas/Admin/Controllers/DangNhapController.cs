@@ -43,9 +43,32 @@ namespace Beanfamily.Areas.Admin.Controllers
                         Session["user-avatar"] = taikhoan.hinhdaidien + "";
 
                         //Nút thông báo nhỏ trên menu
-                        Session["new-dondathang"] = model.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.Where(w => w.tieude.Equals("Chờ duyệt")).Count();
-                        Session["new-dondatbantiec"] = model.TinhTrangDonHangMenuTiecBan.Where(w => w.tieude.Equals("Chờ duyệt")).Count();
-                        Session["new-dondatbanbuffet"] = model.TinhTrangDonHangMenuBuffet.Where(w => w.tieude.Equals("Chờ duyệt")).Count();
+                        Session["new-dondathang"] = model.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.Where(w => !w.tieude.Equals("Đã hủy") && !w.tieude.Equals("Không thành công") && !w.tieude.Equals("Hoàn thành")).Count();
+
+                        var donhangTB = model.DonHangMenuTiecBan.ToList();
+                        int numTB = donhangTB.Count;
+                        foreach (var item in donhangTB.Where(w => w.TinhTrangDonHangMenuTiecBan.Where(ws => ws.tieude == "Hoàn thành").Count() > 0).ToList())
+                        {
+                            if (item.LichSuThanhToanDonHangTongHop.Sum(s => s.sotien)
+                                >= (item.ChiTietDonHangSanPhamMenuTiecBan.Sum(s => s.gia * item.soban)
+                                + item.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == true).Sum(s => s.gia * item.soban)
+                                + item.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == false).Sum(s => s.gia)))
+                            {
+                                numTB--;
+                            }
+                        }
+                        Session["new-dondatbantiec"] = numTB;
+
+                        var donhangBF = model.DonHangMenuBuffet.ToList();
+                        int numBF = donhangBF.Count;
+                        foreach (var item in donhangBF.Where(w => w.TinhTrangDonHangMenuBuffet.Where(ws => ws.tieude == "Hoàn thành").Count() > 0).ToList())
+                        {
+                            if (item.LichSuThanhToanDonHangTongHop.Count() > 0)
+                            {
+                                numBF--;
+                            }
+                        }
+                        Session["new-dondatbanbuffet"] = numBF;
 
                         //Set check function null
                         Session["mtb-dmc1"] = null;

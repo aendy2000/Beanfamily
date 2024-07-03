@@ -277,6 +277,45 @@
                 </a>
             </li>
 
+            @if (Session["ddh"] != null)
+            {
+                <li class="nav-item">
+                    <a class="nav-link @Session["active-ddh"].ToString().Split('#')[0]" href="@Url.Action("index", "dondathang")">
+                        <i class="bi bi-box-seam"></i>
+                        <span>Đơn Đặt Hàng</span>
+                        <span style="position: absolute; right: 33px; background: #dc3545; width: 20px; height: 20px; display: flex; text-align: center; align-items: center; justify-content: center; flex-direction: row; font-size: 11px; border-radius: 50%; color: #fff; margin-left: 5px; ">
+                            @Session["new-dondathang"].ToString()
+                        </span>
+                    </a>
+                </li>
+            }
+
+            @if (Session["ddbt"] != null)
+            {
+                <li class="nav-item">
+                    <a class="nav-link @Session["active-ddbt"].ToString().Split('#')[0]" href="@Url.Action("index", "dondatbantiec")">
+                        <i class="bi bi-receipt-cutoff"></i>
+                        <span>Đơn Đặt Bàn Tiệc</span>
+                        <span style="position: absolute; right: 33px; background: #dc3545; width: 20px; height: 20px; display: flex; text-align: center; align-items: center; justify-content: center; flex-direction: row; font-size: 11px; border-radius: 50%; color: #fff; margin-left: 5px; ">
+                            @Session["new-dondatbantiec"].ToString()
+                        </span>
+                    </a>
+                </li>
+            }
+
+            @if (Session["ddbb"] != null)
+            {
+                <li class="nav-item">
+                    <a class="nav-link @Session["active-ddbb"].ToString().Split('#')[0]" href="index.html">
+                        <i class="bi bi-receipt-cutoff"></i>
+                        <span>Đơn Đặt Bàn Buffet</span>
+                        <span style="position: absolute; right: 33px; background: #dc3545; width: 20px; height: 20px; display: flex; text-align: center; align-items: center; justify-content: center; flex-direction: row; font-size: 11px; border-radius: 50%; color: #fff; margin-left: 5px; ">
+                            @Session["new-dondatbanbuffet"].ToString()
+                        </span>
+                    </a>
+                </li>
+            }
+            <hr />
             @if (Session["dmpv"] != null)
             {
                 <li class="nav-item">
@@ -462,44 +501,6 @@
                 </li>
             }
 
-            @if (Session["ddh"] != null)
-            {
-                <li class="nav-item">
-                    <a class="nav-link @Session["active-ddh"].ToString().Split('#')[0]" href="@Url.Action("index", "dondathang")">
-                        <i class="bi bi-box-seam"></i>
-                        <span>Đơn Đặt Hàng</span>
-                        <span style="position: absolute; right: 33px; background: #dc3545; width: 18px; height: 18px; display: flex; text-align: center; align-items: center; justify-content: center; flex-direction: row; font-size: 11px; border-radius: 50%; color: #fff; margin-left: 5px; ">
-                            @Session["new-dondathang"].ToString()
-                        </span>
-                    </a>
-                </li>
-            }
-
-            @if (Session["ddbt"] != null)
-            {
-                <li class="nav-item">
-                    <a class="nav-link @Session["active-ddbt"].ToString().Split('#')[0]" href="@Url.Action("index", "dondatbantiec")">
-                        <i class="bi bi-receipt-cutoff"></i>
-                        <span>Đơn Đặt Bàn Tiệc</span>
-                        <span style="position: absolute; right: 33px; background: #dc3545; width: 18px; height: 18px; display: flex; text-align: center; align-items: center; justify-content: center; flex-direction: row; font-size: 11px; border-radius: 50%; color: #fff; margin-left: 5px;">
-                            @Session["new-dondatbantiec"].ToString()
-                        </span>
-                    </a>
-                </li>
-            }
-
-            @if (Session["ddbb"] != null)
-            {
-                <li class="nav-item">
-                    <a class="nav-link @Session["active-ddbb"].ToString().Split('#')[0]" href="index.html">
-                        <i class="bi bi-receipt-cutoff"></i>
-                        <span>Đơn Đặt Bàn Buffet</span>
-                        <span style="position: absolute; right: 33px; background: #dc3545; width: 18px; height: 18px; display: flex; text-align: center; align-items: center; justify-content: center; flex-direction: row; font-size: 11px; border-radius: 50%; color: #fff; margin-left: 5px; ">
-                            @Session["new-dondatbanbuffet"].ToString()
-                        </span>
-                    </a>
-                </li>
-            }
 
             @if (Session["hab"] != null)
             {

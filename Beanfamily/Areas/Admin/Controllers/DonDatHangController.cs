@@ -44,7 +44,7 @@ namespace Beanfamily.Areas.Admin.Controllers
             Session["active-tlc-ttw"] = "collapsed # # ";
             Session["active-tlc-lkmxh"] = "collapsed # # ";
 
-            Session["new-dondathang"] = model.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.Where(w => w.tieude.Equals("Chờ duyệt")).Count();
+            Session["new-dondathang"] = model.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.Where(w => !w.tieude.Equals("Đã hủy") && !w.tieude.Equals("Không thành công") && !w.tieude.Equals("Hoàn thành")).Count();
 
             if (Session["ddh"] == null)
                 return RedirectToAction("index", "dashboard");
@@ -73,7 +73,7 @@ namespace Beanfamily.Areas.Admin.Controllers
         {
             try
             {
-                Session["new-dondathang"] = model.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.Where(w => w.tieude.Equals("Chờ duyệt")).Count();
+                Session["new-dondathang"] = model.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.Where(w => !w.tieude.Equals("Đã hủy") && !w.tieude.Equals("Không thành công") && !w.tieude.Equals("Hoàn thành")).Count();
                 if (filter.Equals("all"))
                 {
                     var donhang = model.DonHangVuonRauMuaSamVaMenuHangNgay.ToList();
@@ -195,7 +195,7 @@ namespace Beanfamily.Areas.Admin.Controllers
                 }
 
                 model = new BeanfamilyEntities();
-                Session["new-dondathang"] = model.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.Where(w => w.tieude.Equals("Chờ duyệt")).Count();
+                Session["new-dondathang"] = model.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.Where(w => !w.tieude.Equals("Đã hủy") && !w.tieude.Equals("Không thành công") && !w.tieude.Equals("Hoàn thành")).Count();
 
                 return Content("SUCCESS");
             }
@@ -222,7 +222,7 @@ namespace Beanfamily.Areas.Admin.Controllers
                 model.SaveChanges();
 
                 model = new BeanfamilyEntities();
-                Session["new-dondathang"] = model.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.Where(w => w.tieude.Equals("Chờ duyệt")).Count();
+                Session["new-dondathang"] = model.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.Where(w => !w.tieude.Equals("Đã hủy") && !w.tieude.Equals("Không thành công") && !w.tieude.Equals("Hoàn thành")).Count();
 
                 string bodyMail = string.Empty;
                 using (StreamReader reader = new StreamReader(Server.MapPath("~/ActionOnPage/TemplateMail/ThongBaoHuyDonDatHang.html")))
@@ -320,6 +320,7 @@ namespace Beanfamily.Areas.Admin.Controllers
                 model.SaveChanges();
 
                 var ttdh = dh.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.FirstOrDefault(t => t.id_donhangvuonraumuasamvathucdonhangngay == id);
+                string trangthaihientại = ttdh.tieude;
                 if (ttdh == null)
                 {
                     TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay ttdhnew = new TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay();
@@ -401,7 +402,7 @@ namespace Beanfamily.Areas.Admin.Controllers
                 }
 
                 model = new BeanfamilyEntities();
-                Session["new-dondathang"] = model.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.Where(w => w.tieude.Equals("Chờ duyệt")).Count();
+                Session["new-dondathang"] = model.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.Where(w => !w.tieude.Equals("Đã hủy") && !w.tieude.Equals("Không thành công") && !w.tieude.Equals("Hoàn thành")).Count();
 
                 string bodyMail = string.Empty;
                 using (StreamReader reader = new StreamReader(Server.MapPath("~/ActionOnPage/TemplateMail/ThongBaoTrangThaiDonHang.html")))
@@ -411,6 +412,9 @@ namespace Beanfamily.Areas.Admin.Controllers
 
                 if (trangthai.Equals("choduyet"))
                 {
+                    if (trangthaihientại.Equals("Chờ duyệt"))
+                        return Content("SUCCESS");
+
                     bodyMail = bodyMail.Replace("{TitleDonHang}", "ĐƯỢC CẬP NHẬT");
                     bodyMail = bodyMail.Replace("{HoVaTen}", Session["user-fullname"].ToString());
                     bodyMail = bodyMail.Replace("{MaNhanVien}", "NV" + Int32.Parse(Session["user-id"].ToString()).ToString("D6"));
@@ -419,6 +423,9 @@ namespace Beanfamily.Areas.Admin.Controllers
                 }
                 else if (trangthai.Equals("donggoi"))
                 {
+                    if (trangthaihientại.Equals("Đang đóng gói"))
+                        return Content("SUCCESS");
+
                     bodyMail = bodyMail.Replace("{TitleDonHang}", "ĐƯỢC ĐÓNG GÓI");
                     bodyMail = bodyMail.Replace("{HoVaTen}", Session["user-fullname"].ToString());
                     bodyMail = bodyMail.Replace("{MaNhanVien}", "NV" + Int32.Parse(Session["user-id"].ToString()).ToString("D6"));
@@ -427,6 +434,9 @@ namespace Beanfamily.Areas.Admin.Controllers
                 }
                 else if (trangthai.Equals("giaohang"))
                 {
+                    if (trangthaihientại.Equals("Đang giao"))
+                        return Content("SUCCESS");
+
                     bodyMail = bodyMail.Replace("{TitleDonHang}", "ĐƯỢC TIẾN HÀNH GIAO");
                     bodyMail = bodyMail.Replace("{HoVaTen}", Session["user-fullname"].ToString());
                     bodyMail = bodyMail.Replace("{MaNhanVien}", "NV" + Int32.Parse(Session["user-id"].ToString()).ToString("D6"));
@@ -435,6 +445,9 @@ namespace Beanfamily.Areas.Admin.Controllers
                 }
                 else if (trangthai.Equals("khongthanhcong"))
                 {
+                    if (trangthaihientại.Equals("Không thành công"))
+                        return Content("SUCCESS");
+
                     bodyMail = bodyMail.Replace("{TitleDonHang}", "GIAO THẤT BẠI");
                     bodyMail = bodyMail.Replace("{HoVaTen}", Session["user-fullname"].ToString());
                     bodyMail = bodyMail.Replace("{MaNhanVien}", "NV" + Int32.Parse(Session["user-id"].ToString()).ToString("D6"));
@@ -443,6 +456,9 @@ namespace Beanfamily.Areas.Admin.Controllers
                 }
                 else if (trangthai.Equals("huydon"))
                 {
+                    if (trangthaihientại.Equals("Đã hủy"))
+                        return Content("SUCCESS");
+
                     bodyMail = bodyMail.Replace("{TitleDonHang}", "ĐƯỢC HỦY");
                     bodyMail = bodyMail.Replace("{HoVaTen}", Session["user-fullname"].ToString());
                     bodyMail = bodyMail.Replace("{MaNhanVien}", "NV" + Int32.Parse(Session["user-id"].ToString()).ToString("D6"));
@@ -451,6 +467,9 @@ namespace Beanfamily.Areas.Admin.Controllers
                 }
                 else
                 {
+                    if (trangthaihientại.Equals("Hoàn thành"))
+                        return Content("SUCCESS");
+
                     bodyMail = bodyMail.Replace("{TitleDonHang}", "ĐƯỢC GIAO THÀNH CÔNG");
                     bodyMail = bodyMail.Replace("{HoVaTen}", Session["user-fullname"].ToString());
                     bodyMail = bodyMail.Replace("{MaNhanVien}", "NV" + Int32.Parse(Session["user-id"].ToString()).ToString("D6"));
@@ -487,36 +506,54 @@ namespace Beanfamily.Areas.Admin.Controllers
 
                 if (trangthai.Equals("choduyet"))
                 {
+                    if (trangthaihientại.Equals("Chờ duyệt"))
+                        return Content("SUCCESS");
+
                     bodyMail = bodyMail.Replace("{TitleDonHang}", "ĐƯỢC CẬP NHẬT");
                     bodyMail = bodyMail.Replace("{Content}", "Trạng thái đơn hàng của bạn đã được đặt thành <b>Chờ duyệt</b>");
                     bodyMail = bodyMail.Replace("{MaDonHang}", ttdh.DonHangVuonRauMuaSamVaMenuHangNgay.madonhang);
                 }
                 else if (trangthai.Equals("donggoi"))
                 {
+                    if (trangthaihientại.Equals("Đang đóng gói"))
+                        return Content("SUCCESS");
+
                     bodyMail = bodyMail.Replace("{TitleDonHang}", "ĐƯỢC ĐÓNG GÓI");
                     bodyMail = bodyMail.Replace("{Content}", "Đơn hàng của bạn đã được <b>Đóng gói</b>");
                     bodyMail = bodyMail.Replace("{MaDonHang}", ttdh.DonHangVuonRauMuaSamVaMenuHangNgay.madonhang);
                 }
                 else if (trangthai.Equals("giaohang"))
                 {
+                    if (trangthaihientại.Equals("Đang giao"))
+                        return Content("SUCCESS");
+
                     bodyMail = bodyMail.Replace("{TitleDonHang}", "ĐƯỢC TIẾN HÀNH GIAO");
                     bodyMail = bodyMail.Replace("{Content}", "Đơn hàng đang trên đường <b>Giao</b> đến bạn");
                     bodyMail = bodyMail.Replace("{MaDonHang}", ttdh.DonHangVuonRauMuaSamVaMenuHangNgay.madonhang);
                 }
                 else if (trangthai.Equals("khongthanhcong"))
                 {
+                    if (trangthaihientại.Equals("Không thành công"))
+                        return Content("SUCCESS");
+
                     bodyMail = bodyMail.Replace("{TitleDonHang}", "GIAO THẤT BẠI");
                     bodyMail = bodyMail.Replace("{Content}", "Giao hàng <b>Không thành công</b>");
                     bodyMail = bodyMail.Replace("{MaDonHang}", ttdh.DonHangVuonRauMuaSamVaMenuHangNgay.madonhang);
                 }
                 else if (trangthai.Equals("huydon"))
                 {
+                    if (trangthaihientại.Equals("Đã hủy"))
+                        return Content("SUCCESS");
+
                     bodyMail = bodyMail.Replace("{TitleDonHang}", "ĐƯỢC HỦY");
                     bodyMail = bodyMail.Replace("{Content}", "Đơn hàng của bạn đã được <b>Hủy</b>");
                     bodyMail = bodyMail.Replace("{MaDonHang}", ttdh.DonHangVuonRauMuaSamVaMenuHangNgay.madonhang);
                 }
                 else
                 {
+                    if (trangthaihientại.Equals("Hoàn thành"))
+                        return Content("SUCCESS");
+
                     bodyMail = bodyMail.Replace("{TitleDonHang}", "ĐƯỢC GIAO THÀNH CÔNG");
                     bodyMail = bodyMail.Replace("{Content}", "Đã hoàn tất giao hàng<br><br>Cảm ơn bạn đã luôn tin dùng sản phẩm và dịch vụ tại Beanfamily.shop");
                     bodyMail = bodyMail.Replace("{MaDonHang}", ttdh.DonHangVuonRauMuaSamVaMenuHangNgay.madonhang);

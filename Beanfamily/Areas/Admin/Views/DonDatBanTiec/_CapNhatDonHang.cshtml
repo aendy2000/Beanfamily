@@ -1,0 +1,305 @@
+﻿@model Beanfamily.Models.DonHangMenuTiecBan
+@using Beanfamily.Models
+@{
+    BeanfamilyEntities models = new BeanfamilyEntities();
+    var currentDate = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd"));
+    var ttdh = Model.TinhTrangDonHangMenuTiecBan.First();
+}
+<div class="modal-body" id="content-CapNhatDonHangModal">
+    <div class="row ms-2 me-2">
+        <div class="col-md-12 col-sm-12">
+            <div class="row">
+                <div class="col-12 p-0">
+                    <div class="bg-white bo-rad-16 txt10 p-t-20 p-b-20 p-l-20 p-r-20 mb-3 m-t-3" style="padding: 10px;">
+                        <div class="row">
+                            <div class="col-6 mb-1 text-dark">
+                                Cập nhật trạng thái:
+                            </div>
+                            <div class="col-6 mb-1 text-end text-dark">
+                                <select name="@Model.id-@Model.madonhang" id="capnhat-trangthai" style="width: 200px; float: right; border: 2px solid var(--bs-primary); " class="form-control form-select mb-2 text-end">
+                                    @if (ttdh.tieude.Equals("Chờ duyệt"))
+                                    {
+                                        <option selected value="choduyet">
+                                            Chờ duyệt &nbsp;
+                                        </option>
+                                        <option value="xacnhan">
+                                            Xác nhận &nbsp;
+                                        </option>
+                                        <option value="lenmon">
+                                            Lên món &nbsp;
+                                        </option>
+                                        <option value="huydon">
+                                            Hủy đơn &nbsp;
+                                        </option>
+                                        <option value="hoanthanh">
+                                            Hoàn thành &nbsp;
+                                        </option>
+                                    }
+                                    else if (ttdh.tieude.Equals("Đã xác nhận"))
+                                    {
+                                        <option value="choduyet">
+                                            Chờ duyệt &nbsp;
+                                        </option>
+                                        <option selected value="xacnhan">
+                                            Xác nhận &nbsp;
+                                        </option>
+                                        <option value="lenmon">
+                                            Lên món &nbsp;
+                                        </option>
+                                        <option value="huydon">
+                                            Hủy đơn &nbsp;
+                                        </option>
+                                        <option value="hoanthanh">
+                                            Hoàn thành &nbsp;
+                                        </option>
+                                    }
+                                    else if (ttdh.tieude.Equals("Đã lên món"))
+                                    {
+                                        <option value="choduyet">
+                                            Chờ duyệt &nbsp;
+                                        </option>
+                                        <option value="xacnhan">
+                                            Xác nhận &nbsp;
+                                        </option>
+                                        <option selected value="lenmon">
+                                            Lên món &nbsp;
+                                        </option>
+                                        <option value="huydon">
+                                            Hủy đơn &nbsp;
+                                        </option>
+                                        <option value="hoanthanh">
+                                            Hoàn thành &nbsp;
+                                        </option>
+                                    }
+                                    else if (ttdh.tieude.Equals("Đã hủy"))
+                                    {
+                                        <option value="choduyet">
+                                            Chờ duyệt &nbsp;
+                                        </option>
+                                        <option value="xacnhan">
+                                            Xác nhận &nbsp;
+                                        </option>
+                                        <option value="lenmon">
+                                            Lên món &nbsp;
+                                        </option>
+                                        <option selected value="huydon">
+                                            Hủy đơn &nbsp;
+                                        </option>
+                                        <option value="hoanthanh">
+                                            Hoàn thành &nbsp;
+                                        </option>
+                                    }
+                                    else
+                                    {
+                                        <option value="choduyet">
+                                            Chờ duyệt &nbsp;
+                                        </option>
+                                        <option value="xacnhan">
+                                            Xác nhận &nbsp;
+                                        </option>
+                                        <option value="lenmon">
+                                            Lên món &nbsp;
+                                        </option>
+                                        <option value="huydon">
+                                            Hủy đơn &nbsp;
+                                        </option>
+                                        <option selected value="hoanthanh">
+                                            Hoàn thành &nbsp;
+                                        </option>
+                                    }
+
+                                </select>
+                            </div>
+                            <div class="col-6 mb-1 text-dark">
+                                Thanh toán:
+                            </div>
+                            <div class="col-6 mb-1 text-end text-dark">
+                                <button id="btnThanhToan" name="@Model.id" style="width: 200px; border: 2px solid var(--bs-primary); " type="button" class="btn btn-outline-primary mb-2">Thanh toán</button>
+                            </div>
+                            <div class="col-6 mb-1 text-dark">
+                                Cập nhật món / số bàn:
+                            </div>
+                            <div class="col-6 mb-3 text-end text-dark">
+                                <button id="btnCapNhatSoBanSoMon" name="@Model.id" style="width: 200px; border: 2px solid var(--bs-primary); " type="button" class="btn btn-outline-primary mb-2">Cập nhật món / số bàn</button>
+                            </div>
+                            <hr />
+                            <div class="col-6 mb-1 text-dark">
+                                Mã đơn đặt bàn:
+                            </div>
+                            <div class="col-6 mb-1 text-end text-dark">
+                                @Model.madonhang
+                            </div>
+                            <div class="col-6 mb-1 text-dark">
+                                Trạng thái:
+                            </div>
+                            <div class="col-6 mb-1 text-end text-dark">
+                                <small>@Model.TinhTrangDonHangMenuTiecBan.First().noidung</small>
+                            </div>
+                            <div class="col-6 text-dark mb-1">
+                                Thời gian diễn ra:
+                            </div>
+                            <div class="col-6 text-end small mb-1">
+                                <i class="bi bi-clock-history"></i>
+                                @Model.giobatdau @Model.ngaybatdau.ToString("dd/MM/yyyy")
+                            </div>
+                            <div class="col-6 mb-1 text-dark">
+                                Số bàn đặt:
+                            </div>
+                            <div class="col-6 mb-1 text-end text-dark">
+                                @Model.soban bàn
+                            </div>
+                            <div class="col-6 mb-1 text-dark">
+                                Số món mỗi bàn:
+                            </div>
+                            <div class="col-6 mb-1 text-end text-dark">
+                                @Model.ChiTietDonHangSanPhamMenuTiecBan.Count() món
+                            </div>
+                            <div class="col-6 mb-1 text-dark">
+                                Phục vụ tùy chọn:
+                            </div>
+                            <div class="col-6 mb-4 text-end text-dark">
+                                @foreach (var item in Model.ChiTietDonHangDanhMucPhucVuMenuTiecBan.ToList())
+                                {
+                                    <p style="margin-bottom:0px !important"><small>@item.tendanhmuc (@(item.giatheosoban == true ? item.gia.ToString("0,0") + "đ) x " + Model.soban : item.gia.ToString("0,0") + "đ)")</small></p>
+                                }
+                            </div>
+                            <div class="col-12 mb-1 text-dark">
+                                <small>Yêu cầu khác / Ghi chú thêm:</small>
+                            </div>
+                            <div class="col-12 mb-2 text-dark">
+                                <textarea id="capnhat-ghichuthem" class="form-control form-control-sm" style="border: 2px solid var(--bs-primary)" maxlength="200" rows="5" placeholder="Nhập yêu cầu khác hoặc ghi chú thêm cho đơn hàng">@Model.ghichuquantrivien</textarea>
+                            </div>
+                            <div class="col-12">
+                                <hr />
+                            </div>
+                            <div class="col-6 mb-1 text-dark">
+                                Họ và tên:
+                            </div>
+                            <div class="col-6 mb-1 text-end text-dark">
+                                @Model.hoten
+                            </div>
+                            <div class="col-6 mb-1 text-dark">
+                                Điện thoại:
+                            </div>
+                            <div class="col-6 mb-1 text-end text-dark">
+                                @Model.sdt
+                            </div>
+                            <div class="col-6 mb-1 text-dark">
+                                Email:
+                            </div>
+                            <div class="col-6 mb-1 text-end text-dark">
+                                @Model.email
+                            </div>
+                            <div class="col-6 mb-1 text-dark">
+                                Ghi chú:
+                            </div>
+                            <div class="col-6 mb-1 text-end text-dark">
+                                @Model.ghichukhachhang
+                            </div>
+                            <div class="col-12">
+                                <hr />
+                            </div>
+                            <div class="col-6 mb-1 text-dark">
+                                Tổng thanh toán:
+                            </div>
+                            <div class="col-6 mb-1 text-end text-dark">
+                                <h6>
+                                    <b>
+                                        @((Model.ChiTietDonHangSanPhamMenuTiecBan.Sum(s => s.gia * Model.soban)
+                                        + Model.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == true).Sum(s => s.gia * Model.soban)
+                                        + Model.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == false).Sum(s => s.gia)).ToString("0,0") + "đ")
+                                    </b>
+                                </h6>
+                            </div>
+
+                            <div class="col-6 mb-1 text-dark">
+                                Đã thanh toán:
+                            </div>
+                            <div class="col-6 mb-1 text-end text-dark">
+                                <h6>
+                                    <b>
+                                        @(Model.LichSuThanhToanDonHangTongHop.Sum(s => s.sotien).ToString("0,0") + "đ")
+                                    </b>
+                                </h6>
+                            </div>
+                            <div class="col-6 mb-1 text-dark">
+                                Còn lại:
+                            </div>
+                            <div class="col-6 mb-1 text-end text-dark">
+                                <h6>
+                                    <b>
+                                        @(((Model.ChiTietDonHangSanPhamMenuTiecBan.Sum(s => s.gia * Model.soban)
+                                        + Model.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == true).Sum(s => s.gia * Model.soban)
+                                        + Model.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == false).Sum(s => s.gia))
+                                        - Model.LichSuThanhToanDonHangTongHop.Sum(s => s.sotien)).ToString("0,0") + "đ")
+                                    </b>
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="lastHeight" class="row" style=" overflow-y: auto; border: 2px solid #ffc678; border-radius: 18px;">
+                <div class="col-lg-12 bgwhite" style="padding: 0; border-radius: 18px;">
+
+                    <h5 class="text-center mb-3 text-white" style="background: #5e443b !important; border-radius: 16px 16px 0 0; height: 50px; display: flex; flex-direction: column; justify-content: center; ">DANH SÁCH MÓN ĂN ĐÃ CHỌN</h5>
+
+                    @foreach (var item in Model.ChiTietDonHangSanPhamMenuTiecBan.ToList())
+                    {
+                    <div class="card mb-3 bo-rad-16 bggreen text-white  ms-3 me-3">
+                        <div class="card-body" style="padding: 10px;">
+                            <div class="d-flex justify-content-between row">
+                                <div class="col-md-8 col-sm-8 ">
+                                    <div class="d-flex flex-row align-items-center ms-2 me-2 mt-2 mb-2">
+                                        <div>
+                                            @if (string.IsNullOrEmpty(item.hinhanh))
+                                            {
+                                                <a class="text-dark">
+                                                    <img src="@Url.Content("~/Content/assets/images/product/sanphamdefault.jpg")"
+                                                         class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <a class="text-dark">
+                                                    <img src="@Url.Content(item.hinhanh.Split('#')[0])"
+                                                         class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
+                                                </a>
+                                            }
+                                        </div>
+                                        <div class="ms-3">
+                                            <a class="text-dark"><h6>@item.tensanpham</h6></a>
+                                            <p class="small mb-0 text-dark">@(models.DanhMucMenuTiecBanCap1
+
+                                                            .FirstOrDefault(d => d.SanPhamMenuTiecBan
+                                                            .Where(w => w.id == item.id_sanphammenutiecban).Count() > 0).tendanhmuc)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class=" col-md-4 col-sm-4">
+                                    <div class="d-flex flex-row align-items-center  float-end me-2">
+                                        <div class="row">
+                                            <div class="ms-2 me-2 mt-2 col-sm-12 t-right">
+                                                <a class="text-dark">
+                                                    Giá món: @item.gia.ToString("0,0")đ
+                                                </a>
+                                                <br />
+                                                <a class="text-dark mt-2">
+                                                    Tổng: @((item.gia * Model.soban).ToString("0,0"))đ
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
