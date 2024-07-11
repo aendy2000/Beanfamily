@@ -64,7 +64,7 @@ namespace Beanfamily.Controllers
 
                 var ngaystart = Convert.ToDateTime(ngaytochuc.ToString().Split('/')[2] + "-" + ngaytochuc.ToString().Split('/')[1] + "-" + ngaytochuc.ToString().Split('/')[0]);
                 var currentDate = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd"));
-                if (ngaystart.CompareTo(currentDate) <= 0)
+                if ((ngaystart - currentDate).Days <= 0)
                     return Content("SMALLDATE");
 
                 donhang.ngaybatdau = ngaystart;

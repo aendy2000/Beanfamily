@@ -66,7 +66,7 @@
             btn.html('Đặt Bàn Ngay');
             btn.css('pointer-events', 'all');
         }
-        else if (sodienthoai.length > 12) {
+        else if (sodienthoai.length != 10) {
             check = false;
             $('body').find('[id="sodienthoai"]').addClass('valid-was-validated');
             $('body').find('[id="invalid-sodienthoai-feedback"]').text("Số điện thoại chưa hợp lệ.").prop('hidden', false);

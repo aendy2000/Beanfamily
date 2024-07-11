@@ -13,19 +13,22 @@
         {
             <div class="col-md-4 col-sm-12">
                 <ul style=" list-style-position: outside !important;" class=" ms-3">
-                    <li class="mt-1" style="list-style-type: none !important;">
-                        @if (!string.IsNullOrEmpty(item.hinhanh))
-                        {
+                    @if (!string.IsNullOrEmpty(item.hinhanh))
+                    {
+                        <li class="mt-1" style="list-style-type: none !important;">
+
                             <div style="height: 40px; width: 40px; float: left">
                                 <img style="float: left; height: 40px; width: 40px;object-fit: cover; border-radius: 50% " src="@Url.Content(item.hinhanh)">
                             </div>
                             <label style="margin-top: 10px; margin-left: 10px">@item.tensanpham | @(item.gia.ToString("0,0").Equals("00") ? "0" : item.gia.ToString("0,0")) đ</label>
-                        }
-                        else
-                        {
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="mt-3" style="list-style-type: none !important;">
                             <label>@item.tensanpham | @(item.gia.ToString("0,0").Equals("00") ? "0" : item.gia.ToString("0,0")) đ</label>
-                        }
-                    </li>
+                        </li>
+                    }
                 </ul>
             </div>
         }
@@ -146,7 +149,7 @@
                         <option>07:00</option>
                         <option>07:30</option>
                         <option>08:00</option>
-                        <option>09:30</option>
+                        <option>08:30</option>
                         <option>09:00</option>
                         <option>09:30</option>
                         <option>10:00</option>

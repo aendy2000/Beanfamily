@@ -321,6 +321,7 @@
     <Content Include="ActionOnPage\MenuTiecBan\DatBan.js" />
     <Content Include="ActionOnPage\MenuTiecBan\loadPageMenuTiecBan.js" />
     <Content Include="ActionOnPage\MenuTiecBan\SubmitFormDatBan.js" />
+    <Content Include="Validation\DonDatBanTiec\CapNhatThongTinDonDatBan.js" />
     <Content Include="ActionOnPage\NhaHang\loadPageNhaHang.js" />
     <Content Include="ActionOnPage\TemplateMail\ThongBaoThanhToanChoKhach.html" />
     <Content Include="ActionOnPage\TemplateMail\ThongBaoTrangThaiDonDatBan.html" />
@@ -2898,6 +2899,7 @@
     <Content Include="Areas\Admin\Views\DonDatBanTiec\_CapNhatDonHang.cshtml" />
     <Content Include="Areas\Admin\Views\DonDatBanTiec\_LocDonHang.cshtml" />
     <Content Include="Areas\Admin\Views\DonDatBanTiec\_ThanhToan.cshtml" />
+    <Content Include="Areas\Admin\Views\DonDatBanTiec\_CapNhatThongTinDonHang.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

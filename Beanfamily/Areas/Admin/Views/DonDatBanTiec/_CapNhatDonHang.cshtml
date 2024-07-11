@@ -117,10 +117,10 @@
                                 <button id="btnThanhToan" name="@Model.id" style="width: 200px; border: 2px solid var(--bs-primary); " type="button" class="btn btn-outline-primary mb-2">Thanh toán</button>
                             </div>
                             <div class="col-6 mb-1 text-dark">
-                                Cập nhật món / số bàn:
+                                Cập nhật thông tin:
                             </div>
                             <div class="col-6 mb-3 text-end text-dark">
-                                <button id="btnCapNhatSoBanSoMon" name="@Model.id" style="width: 200px; border: 2px solid var(--bs-primary); " type="button" class="btn btn-outline-primary mb-2">Cập nhật món / số bàn</button>
+                                <button id="btnCapNhatThongTinDonHang" name="@Model.id" style="width: 200px; border: 2px solid var(--bs-primary); " type="button" class="btn btn-outline-primary mb-2">Cập nhật thông tin</button>
                             </div>
                             <hr />
                             <div class="col-6 mb-1 text-dark">
@@ -248,55 +248,56 @@
 
                     @foreach (var item in Model.ChiTietDonHangSanPhamMenuTiecBan.ToList())
                     {
-                    <div class="card mb-3 bo-rad-16 bggreen text-white  ms-3 me-3">
-                        <div class="card-body" style="padding: 10px;">
-                            <div class="d-flex justify-content-between row">
-                                <div class="col-md-8 col-sm-8 ">
-                                    <div class="d-flex flex-row align-items-center ms-2 me-2 mt-2 mb-2">
-                                        <div>
-                                            @if (string.IsNullOrEmpty(item.hinhanh))
-                                            {
-                                                <a class="text-dark">
-                                                    <img src="@Url.Content("~/Content/assets/images/product/sanphamdefault.jpg")"
-                                                         class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
-                                                </a>
-                                            }
-                                            else
-                                            {
-                                                <a class="text-dark">
-                                                    <img src="@Url.Content(item.hinhanh.Split('#')[0])"
-                                                         class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
-                                                </a>
-                                            }
-                                        </div>
-                                        <div class="ms-3">
-                                            <a class="text-dark"><h6>@item.tensanpham</h6></a>
-                                            <p class="small mb-0 text-dark">@(models.DanhMucMenuTiecBanCap1
+                        <div class="card mb-3 bo-rad-16 bggreen text-white  ms-3 me-3">
+                            <div class="card-body" style="padding: 10px;">
+                                <div class="d-flex justify-content-between row">
+                                    <div class="col-md-8 col-sm-8 ">
+                                        <div class="d-flex flex-row align-items-center ms-2 me-2 mt-2 mb-2">
+                                            <div>
+                                                @if (string.IsNullOrEmpty(item.hinhanh))
+                                                {
+                                                    <a class="text-dark">
+                                                        <img src="@Url.Content("~/Content/assets/images/product/sanphamdefault.jpg")"
+                                                             class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
+                                                    </a>
+                                                }
+                                                else
+                                                {
+                                                    <a class="text-dark">
+                                                        <img src="@Url.Content(item.hinhanh.Split('#')[0])"
+                                                             class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
+                                                    </a>
+                                                }
+                                            </div>
+                                            <div class="ms-3">
+                                                <a class="text-dark"><h6>@item.tensanpham</h6></a>
+                                                <p class="small mb-0 text-dark">
+                                                    @(models.DanhMucMenuTiecBanCap1
 
                                                             .FirstOrDefault(d => d.SanPhamMenuTiecBan
-                                                            .Where(w => w.id == item.id_sanphammenutiecban).Count() > 0).tendanhmuc)</p>
+                                                            .Where(w => w.id == item.id_sanphammenutiecban).Count() > 0).tendanhmuc)
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class=" col-md-4 col-sm-4">
-                                    <div class="d-flex flex-row align-items-center  float-end me-2">
-                                        <div class="row">
-                                            <div class="ms-2 me-2 mt-2 col-sm-12 t-right">
-                                                <a class="text-dark">
-                                                    Giá món: @item.gia.ToString("0,0")đ
-                                                </a>
-                                                <br />
-                                                <a class="text-dark mt-2">
-                                                    Tổng: @((item.gia * Model.soban).ToString("0,0"))đ
-                                                </a>
+                                    <div class=" col-md-4 col-sm-4">
+                                        <div class="d-flex flex-row align-items-center  float-end me-2">
+                                            <div class="row">
+                                                <div class="ms-2 me-2 mt-2 col-sm-12 t-right">
+                                                    <a class="text-dark">
+                                                        Giá món: @item.gia.ToString("0,0")đ
+                                                    </a>
+                                                    <br />
+                                                    <a class="text-dark mt-2">
+                                                        Tổng: @((item.gia * Model.soban).ToString("0,0"))đ
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
                     }
                 </div>
             </div>

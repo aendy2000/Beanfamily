@@ -868,5 +868,77 @@ namespace Beanfamily.Areas.Admin.Controllers
                 return Content("Chi tiết lỗi: " + Ex.Message);
             }
         }
+
+        [HttpPost]
+        public ActionResult CapNhatThongTinDonHang(int id)
+        {
+            try
+            {
+                var dh = model.DonHangMenuTiecBan.Find(id);
+                if (dh == null)
+                    return Content("NOTEXIST");
+
+                return PartialView("_CapNhatThongTinDonHang", dh);
+            }
+            catch (Exception Ex)
+            {
+                return Content("Chi tiết lỗi: " + Ex.Message);
+            }
+        }
+        [HttpPost]
+        public ActionResult SubmitCapNhatThongTinDonHang(int id,int soban, string hovaten, string sodienthoai, string email, string ngaytochuc, string giotochuc, string ghichu, string lstMonAn)
+        {
+            try
+            {
+                var donhang = model.DonHangMenuTiecBan.Find(id);
+
+                if (donhang == null)
+                    return Content("NOTEXIST");
+
+                donhang.soban = soban;
+                donhang.hoten = hovaten;
+                donhang.sdt = sodienthoai;
+                donhang.email = email;
+
+                var ngaystart = Convert.ToDateTime(ngaytochuc);
+                var currentDate = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd"));
+                if ((ngaystart - currentDate).Days < 0)
+                    return Content("SMALLDATE");
+
+                donhang.ngaybatdau = ngaystart;
+                donhang.giobatdau = giotochuc;
+                donhang.ghichukhachhang = ghichu;
+
+                model.Entry(donhang).State = EntityState.Modified;
+                model.ChiTietDonHangSanPhamMenuTiecBan.RemoveRange(donhang.ChiTietDonHangSanPhamMenuTiecBan);
+                model.SaveChanges();
+
+                List<ChiTietDonHangSanPhamMenuTiecBan> lstDhSP = new List<ChiTietDonHangSanPhamMenuTiecBan>();
+                foreach (var item in lstMonAn.Split('-').ToList())
+                {
+                    int idSP = Int32.Parse(item);
+                    var sp = model.SanPhamMenuTiecBan.Find(idSP);
+                    ChiTietDonHangSanPhamMenuTiecBan dhSP = new ChiTietDonHangSanPhamMenuTiecBan();
+                    dhSP.id_donhangmenutiecban = id;
+                    dhSP.id_sanphammenutiecban = idSP;
+                    dhSP.hinhanh = sp.hinhanh;
+                    dhSP.tensanpham = sp.tensanpham;
+                    dhSP.gia = sp.gia;
+                   
+                    lstDhSP.Add(dhSP);
+                }
+                if (lstDhSP.Count > 0)
+                {
+                    model.ChiTietDonHangSanPhamMenuTiecBan.AddRange(lstDhSP);
+                    model.SaveChanges();
+                }
+            
+                return Content("SUCCESS");
+            }
+            catch (Exception Ex)
+            {
+                return Content("Chi tiết lỗi: " + Ex.Message);
+            }
+        }
     }
 }
