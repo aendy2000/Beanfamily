@@ -145,6 +145,7 @@
     <Compile Include="Areas\Admin\Controllers\DmCap1MenuHangNgayController.cs" />
     <Compile Include="Areas\Admin\Controllers\DmCap1MenuTiecBanController.cs" />
     <Compile Include="Areas\Admin\Controllers\DmCap1VuonRauBeanController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DonDatBanBuffetController.cs" />
     <Compile Include="Areas\Admin\Controllers\DonDatBanTiecController.cs" />
     <Compile Include="Areas\Admin\Controllers\DonDatHangController.cs" />
     <Compile Include="Areas\Admin\Controllers\HinhAnhBeanController.cs" />
@@ -321,6 +322,12 @@
     <Content Include="ActionOnPage\MenuTiecBan\DatBan.js" />
     <Content Include="ActionOnPage\MenuTiecBan\loadPageMenuTiecBan.js" />
     <Content Include="ActionOnPage\MenuTiecBan\SubmitFormDatBan.js" />
+    <Content Include="Validation\DonDatBanBuffet\CapNhatDon.js" />
+    <Content Include="Validation\DonDatBanBuffet\CapNhatThongTinDonDatBan.js" />
+    <Content Include="Validation\DonDatBanBuffet\DanhSach.js" />
+    <Content Include="Validation\DonDatBanBuffet\HuyDon.js" />
+    <Content Include="Validation\DonDatBanBuffet\HuyDonHangLoat.js" />
+    <Content Include="Validation\DonDatBanBuffet\ThanhToan.js" />
     <Content Include="Validation\DonDatBanTiec\CapNhatThongTinDonDatBan.js" />
     <Content Include="ActionOnPage\NhaHang\loadPageNhaHang.js" />
     <Content Include="ActionOnPage\TemplateMail\ThongBaoThanhToanChoKhach.html" />
@@ -2900,6 +2907,11 @@
     <Content Include="Areas\Admin\Views\DonDatBanTiec\_LocDonHang.cshtml" />
     <Content Include="Areas\Admin\Views\DonDatBanTiec\_ThanhToan.cshtml" />
     <Content Include="Areas\Admin\Views\DonDatBanTiec\_CapNhatThongTinDonHang.cshtml" />
+    <Content Include="Areas\Admin\Views\DonDatBanBuffet\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\DonDatBanBuffet\_LocDonHang.cshtml" />
+    <Content Include="Areas\Admin\Views\DonDatBanBuffet\_CapNhatDonHang.cshtml" />
+    <Content Include="Areas\Admin\Views\DonDatBanBuffet\_CapNhatThongTinDonHang.cshtml" />
+    <Content Include="Areas\Admin\Views\DonDatBanBuffet\_ThanhToan.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

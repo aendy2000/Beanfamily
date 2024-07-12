@@ -1,0 +1,168 @@
+﻿@model Beanfamily.Models.DonHangMenuBuffet
+@using Beanfamily.Models
+@{
+    BeanfamilyEntities models = new BeanfamilyEntities();
+    var currentDate = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd"));
+    var ttdh = Model.TinhTrangDonHangMenuBuffet.First();
+
+    int hour = 7;
+}
+
+<div class="modal-body" id="content-CapNhatDonHangModal">
+    <div class="row ms-2 me-2">
+        <div class="col-md-12 col-sm-12">
+            <div class="row">
+                <div class="col-12 p-0">
+                    <div class="bg-white bo-rad-16 txt10 p-t-20 p-b-20 p-l-20 p-r-20 mb-3 m-t-3" style="padding: 10px;">
+                        <div class="row">
+                            <div class="col-6 mb-1 text-dark">
+                                Mã đơn đặt bàn:
+                            </div>
+                            <div class="col-6 mb-1 text-end text-dark">
+                                @Model.madonhang
+                            </div>
+                            <div class="col-12">
+                                <hr />
+                            </div>
+                            <div class="col-12 text-dark mb-1">
+                                <div class="row">
+                                    <div class="col-12 mb-2">
+                                        <label class="small" for="hovaten">Họ & tên khách hàng <span class="text-danger">*</span></label>
+                                        <input value="@Model.hoten" class="form-control" placeholder="Nhập Họ và Tên người đặt bàn" type="text" id="hovaten"
+                                               style="border: 2px solid var(--bs-primary) !important; height: 40px;" />
+                                        <label style="margin-left: 5px" id="invalid-hovaten-capnhatdonhang" class="text-danger" hidden></label>
+                                    </div>
+                                    <div class="col-12 mb-2">
+                                        <label class="small" for="sodienthoai">Số điện thoại <span class="text-danger">*</span></label>
+                                        <input value="@Model.sdt" class="form-control" placeholder="Nhập số điện thoại người đặt bàn" type="text" data-type="numbers" id="sodienthoai"
+                                               style="border: 2px solid var(--bs-primary) !important; height: 40px;" />
+                                        <label style="margin-left: 5px" id="invalid-sodienthoai-capnhatdonhang" class="text-danger" hidden></label>
+                                    </div>
+                                    <div class="col-12 mb-2">
+                                        <label class="small" for="email">Địa chỉ Email</label>
+                                        <input value="@Model.email" class="form-control" placeholder="Nhập số tiền thanh toán" type="text" id="email"
+                                               style="border: 2px solid var(--bs-primary) !important; height: 40px;" />
+                                        <label style="margin-left: 5px" id="invalid-email-capnhatdonhang" class="text-danger" hidden></label>
+                                    </div>
+                                    <div class="col-12 mb-2">
+                                        <label class="small" for="ngaytochuc">Ngày tổ chức <span class="text-danger">*</span></label>
+                                        <input value="@Model.ngaybatdau.ToString("yyyy-MM-dd")" class="form-control" placeholder="Nhập số tiền thanh toán" type="date" id="ngaytochuc"
+                                               style="border: 2px solid var(--bs-primary) !important; height: 40px;" />
+                                        <label style="margin-left: 5px" id="invalid-ngaytochuc-capnhatdonhang" class="text-danger" hidden></label>
+                                    </div>
+                                    <div class="col-12 mb-2">
+                                        <label class="small" for="giotochuc">Giờ tổ chức <span class="text-danger">*</span></label>
+                                        <select id="giotochuc" class="form-control form-select" style="border: 2px solid var(--bs-primary) !important; height: 40px;">
+                                            @for (int i = 1; i <= 32; i++)
+                                            {
+                                                string time = "";
+
+                                                if (i % 2 != 0)
+                                                {
+                                                    time = hour.ToString("D2") + ":00";
+                                                }
+                                                else
+                                                {
+                                                    time = hour.ToString("D2") + ":30";
+                                                    hour++;
+                                                }
+
+                                                if (time.Equals(Model.giobatdau))
+                                                {
+                                                    <option selected value="@time">@time</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@time">@time</option>
+                                                }
+                                            }
+                                        </select>
+                                        <label style="margin-left: 5px" id="invalid-giotochuc-capnhatdonhang" class="text-danger" hidden></label>
+                                    </div>
+                                    <div class="col-12">
+                                        <label mb-2 for="ghichu">Ghi chú</label>
+                                        <textarea placeholder="Ghi chú của khách hàng" rows="4" id="ghichu" class="form-control" style="border: 2px solid var(--bs-primary) !important;">@Model.ghichukhachhang</textarea>
+                                        <label style="margin-left: 5px" id="invalid-ghichu-capnhatdonhang" class="text-danger" hidden></label>
+                                    </div>
+                                    <div class="col-12">
+                                        <hr />
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="small" for="soban">Số bàn <span class="text-danger">*</span></label>
+                                        <input value="@Model.soban" class="form-control" placeholder="Nhập số bàn khách đặt" type="text" data-type="numbers" id="soban"
+                                               style="border: 2px solid var(--bs-primary) !important; height: 40px;" />
+                                        <label style="margin-left: 5px;" id="invalid-soban-capnhatdonhang" class="text-danger" hidden></label>
+
+                                        <div class="row mt-3 ms-0 me-0" style=" overflow-y: auto; border: 2px solid var(--bs-primary); border-radius: 10px;">
+                                            <div class="col-lg-12" id="lst-sanpham" style="padding: 0; border-radius: 8px;">
+
+                                                <h5 class="text-center mb-3 text-white" style="background: #5e443b !important; border-radius: 8px 8px 0 0; height: 50px; display: flex; flex-direction: column; justify-content: center; ">DANH SÁCH MÓN ĂN</h5>
+                                                <div class="m-3">
+                                                    <input value="" class="form-control" placeholder="Nhập tên món cần tìm" type="text" id="timkiemmon"
+                                                           style="border: 2px solid var(--bs-primary) !important; height: 40px;" />
+                                                </div>
+                                                <div style="max-height: 80%; overflow: auto; padding-top: 15px">
+
+                                                    @foreach (var item in models.SanPhamMenuBuffet.ToList())
+                                                    {
+                                                        string styles = "";
+                                                        string checkeds = "";
+                                                        if (Model.ChiTietDonHangSanPhamMenuBuffet.Where(w => w.id_sanphammenubuffet == item.id).Count() > 0)
+                                                        {
+                                                            styles = "background: #dbdcff;";
+                                                            checkeds = "checked";
+                                                        }
+
+                                                        <div class="card bo-rad-16 bggreen text-white  ms-3 me-3 item-sanpham" id="parentDiv-@item.id" style="margin-bottom: 20px; @styles">
+                                                            <div class="card-body" style="padding: 10px;">
+                                                                <div class="d-flex justify-content-between row">
+                                                                    <div class="col-sm-1 col-md-1" style="display: flex; justify-content: center; align-items: center;">
+                                                                        <input @checkeds class="form-check" style="width: 40px" type="checkbox" id="chonmon-@item.id" name="@item.id" />
+                                                                    </div>
+                                                                    <div class="col-md-11 col-sm-11">
+                                                                        <div class="d-flex flex-row align-items-center ms-2 me-2 mt-2 mb-2">
+                                                                            <div>
+                                                                                @if (string.IsNullOrEmpty(item.hinhanh))
+                                                                                {
+                                                                                    <a class="text-dark">
+                                                                                        <img src="@Url.Content("~/Content/assets/images/product/sanphamdefault.jpg")"
+                                                                                             class="img-fluid rounded-3" alt="Shopping item" style="width: 50px;">
+                                                                                    </a>
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                                    <a class="text-dark">
+                                                                                        <img src="@Url.Content(item.hinhanh.Split('#')[0])"
+                                                                                             class="img-fluid rounded-3" alt="Shopping item" style="width: 50px;">
+                                                                                    </a>
+                                                                                }
+                                                                            </div>
+                                                                            <div class="ms-3 mt-2">
+                                                                                <a class="text-dark"><h6>@item.DanhMucMenuBuffetCap1.tendanhmuc, <label class="item-sanpham-tenmon">@item.tensanpham</label></h6></a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 text-center mt-4">
+                                            <button id="btnHuyCapNhat" name="@Model.id" type="button" class="btn btn-secondary me-1">Quay lại</button>
+                                            <button id="btnSubMitCapNhat" name="@Model.id" type="button" class="btn btn-primary">Lưu thông tin</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/Validation/DonDatBanBuffet/CapNhatThongTinDonDatBan.js"></script>
+</div>

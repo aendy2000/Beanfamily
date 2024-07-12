@@ -306,7 +306,7 @@
             @if (Session["ddbb"] != null)
             {
                 <li class="nav-item">
-                    <a class="nav-link @Session["active-ddbb"].ToString().Split('#')[0]" href="index.html">
+                    <a class="nav-link @Session["active-ddbb"].ToString().Split('#')[0]" href="@Url.Action("index", "dondatbanbuffet")">
                         <i class="bi bi-receipt-cutoff"></i>
                         <span>Đơn Đặt Bàn Buffet</span>
                         <span style="position: absolute; right: 33px; background: #dc3545; width: 20px; height: 20px; display: flex; text-align: center; align-items: center; justify-content: center; flex-direction: row; font-size: 11px; border-radius: 50%; color: #fff; margin-left: 5px; ">

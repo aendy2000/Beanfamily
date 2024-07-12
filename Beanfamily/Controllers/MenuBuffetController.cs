@@ -140,7 +140,7 @@ namespace Beanfamily.Controllers
                 bodyMail = bodyMail.Replace("{HoVaTen}", hovaten);
                 bodyMail = bodyMail.Replace("{SoDienThoai}", sodienthoai);
                 bodyMail = bodyMail.Replace("{SoBan}", soban.ToString());
-                bodyMail = bodyMail.Replace("{MaDonHang}", madonhang); 
+                bodyMail = bodyMail.Replace("{MaDonHang}", madonhang);
                 bodyMail = bodyMail.Replace("{LoaiDon}", "Buffet");
 
                 using (MailMessage mailMessage = new MailMessage("beanfamilyshop@gmail.com", "duongle15012000@gmail.com"))
@@ -162,33 +162,36 @@ namespace Beanfamily.Controllers
                     }
                 }
 
-                bodyMail = string.Empty;
-                using (StreamReader reader = new StreamReader(Server.MapPath("~/ActionOnPage/TemplateMail/ThongBaoDonDatBanChoKhach.html")))
+                if (!string.IsNullOrEmpty(email))
                 {
-                    bodyMail = reader.ReadToEnd();
-                }
-
-                bodyMail = bodyMail.Replace("{TitleMenu}", "BUFFET");
-                bodyMail = bodyMail.Replace("{SoBan}", soban.ToString());
-                bodyMail = bodyMail.Replace("{MaDonHang}", madonhang);
-                bodyMail = bodyMail.Replace("{LoaiDon}", "Buffet");
-
-                using (MailMessage mailMessage = new MailMessage("beanfamilyshop@gmail.com", email))
-                {
-                    mailMessage.Subject = "[BEANFAMILY] ĐẶT BÀN BUFFET THÀNH CÔNG";
-                    mailMessage.IsBodyHtml = true;
-                    mailMessage.Body = bodyMail;
-
-                    using (SmtpClient smtp = new SmtpClient())
+                    bodyMail = string.Empty;
+                    using (StreamReader reader = new StreamReader(Server.MapPath("~/ActionOnPage/TemplateMail/ThongBaoDonDatBanChoKhach.html")))
                     {
-                        smtp.Host = "smtp.gmail.com";
-                        smtp.EnableSsl = true;
-                        NetworkCredential cred = new NetworkCredential("beanfamilyshop@gmail.com", "qwyxakxwvxtspdhr");
-                        smtp.UseDefaultCredentials = true;
-                        smtp.Credentials = cred;
-                        smtp.Port = 587;
+                        bodyMail = reader.ReadToEnd();
+                    }
 
-                        smtp.Send(mailMessage);
+                    bodyMail = bodyMail.Replace("{TitleMenu}", "BUFFET");
+                    bodyMail = bodyMail.Replace("{SoBan}", soban.ToString());
+                    bodyMail = bodyMail.Replace("{MaDonHang}", madonhang);
+                    bodyMail = bodyMail.Replace("{LoaiDon}", "Buffet");
+
+                    using (MailMessage mailMessage = new MailMessage("beanfamilyshop@gmail.com", email))
+                    {
+                        mailMessage.Subject = "[BEANFAMILY] ĐẶT BÀN BUFFET THÀNH CÔNG";
+                        mailMessage.IsBodyHtml = true;
+                        mailMessage.Body = bodyMail;
+
+                        using (SmtpClient smtp = new SmtpClient())
+                        {
+                            smtp.Host = "smtp.gmail.com";
+                            smtp.EnableSsl = true;
+                            NetworkCredential cred = new NetworkCredential("beanfamilyshop@gmail.com", "qwyxakxwvxtspdhr");
+                            smtp.UseDefaultCredentials = true;
+                            smtp.Credentials = cred;
+                            smtp.Port = 587;
+
+                            smtp.Send(mailMessage);
+                        }
                     }
                 }
 

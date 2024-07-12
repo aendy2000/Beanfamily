@@ -334,33 +334,36 @@ namespace Beanfamily.Controllers
                     }
                 }
 
-                bodyMail = string.Empty;
-                using (StreamReader reader = new StreamReader(Server.MapPath("~/ActionOnPage/TemplateMail/ThongBaoDonDatHangChoKhach.html")))
+                if (!string.IsNullOrEmpty(email))
                 {
-                    bodyMail = reader.ReadToEnd();
-                }
 
-                bodyMail = bodyMail.Replace("{MaDonHang}", madonhang);
-
-                using (MailMessage mailMessage = new MailMessage("beanfamilyshop@gmail.com", email))
-                {
-                    mailMessage.Subject = "[BEANFAMILY] ĐẶT HÀNG THÀNH CÔNG";
-                    mailMessage.IsBodyHtml = true;
-                    mailMessage.Body = bodyMail;
-
-                    using (SmtpClient smtp = new SmtpClient())
+                    bodyMail = string.Empty;
+                    using (StreamReader reader = new StreamReader(Server.MapPath("~/ActionOnPage/TemplateMail/ThongBaoDonDatHangChoKhach.html")))
                     {
-                        smtp.Host = "smtp.gmail.com";
-                        smtp.EnableSsl = true;
-                        NetworkCredential cred = new NetworkCredential("beanfamilyshop@gmail.com", "qwyxakxwvxtspdhr");
-                        smtp.UseDefaultCredentials = true;
-                        smtp.Credentials = cred;
-                        smtp.Port = 587;
+                        bodyMail = reader.ReadToEnd();
+                    }
 
-                        smtp.Send(mailMessage);
+                    bodyMail = bodyMail.Replace("{MaDonHang}", madonhang);
+
+                    using (MailMessage mailMessage = new MailMessage("beanfamilyshop@gmail.com", email))
+                    {
+                        mailMessage.Subject = "[BEANFAMILY] ĐẶT HÀNG THÀNH CÔNG";
+                        mailMessage.IsBodyHtml = true;
+                        mailMessage.Body = bodyMail;
+
+                        using (SmtpClient smtp = new SmtpClient())
+                        {
+                            smtp.Host = "smtp.gmail.com";
+                            smtp.EnableSsl = true;
+                            NetworkCredential cred = new NetworkCredential("beanfamilyshop@gmail.com", "qwyxakxwvxtspdhr");
+                            smtp.UseDefaultCredentials = true;
+                            smtp.Credentials = cred;
+                            smtp.Port = 587;
+
+                            smtp.Send(mailMessage);
+                        }
                     }
                 }
-
                 return Content("SUCCESS-" + madonhang);
             }
             catch (Exception ex)

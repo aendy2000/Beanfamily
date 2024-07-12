@@ -13,10 +13,10 @@ using System.Net;
 
 namespace Beanfamily.Areas.Admin.Controllers
 {
-    public class DonDatBanTiecController : Controller
+    public class DonDatBanBuffetController : Controller
     {
         BeanfamilyEntities model = new BeanfamilyEntities();
-        // GET: Admin/DonDatBanTiec
+        // GET: Admin/DonDatBanBuffet
         public ActionResult Index()
         {
             Session["active-dashboard"] = "collapsed # # ";
@@ -35,35 +35,33 @@ namespace Beanfamily.Areas.Admin.Controllers
             Session["active-tkb-pq"] = "collapsed # # ";
             Session["active-tkb-tk"] = "collapsed # # ";
             Session["active-ddh"] = "collapsed # # ";
-            Session["active-ddbt"] = " # # ";
-            Session["active-ddbb"] = "collapsed # # ";
+            Session["active-ddbt"] = "collapsed # # ";
+            Session["active-ddbb"] = " # # ";
             Session["active-hab"] = "collapsed # # ";
             Session["active-qlsp"] = "collapsed # # ";
             Session["active-tlc-ttw"] = "collapsed # # ";
             Session["active-tlc-lkmxh"] = "collapsed # # ";
 
-            model = new BeanfamilyEntities(); var donhangTB = model.DonHangMenuTiecBan.ToList();
-            int numTB = donhangTB.Count;
-            foreach (var item in donhangTB.Where(w => w.TinhTrangDonHangMenuTiecBan.Where(ws => ws.tieude == "Hoàn thành").Count() > 0).ToList())
+            model = new BeanfamilyEntities(); var donhangTB = model.DonHangMenuBuffet.ToList();
+            var donhangBF = model.DonHangMenuBuffet.ToList();
+            int numBF = donhangBF.Count;
+            foreach (var item in donhangBF.Where(w => w.TinhTrangDonHangMenuBuffet.Where(ws => ws.tieude == "Hoàn thành").Count() > 0).ToList())
             {
-                if (item.LichSuThanhToanDonHangTongHop.Sum(s => s.sotien)
-                    >= (item.ChiTietDonHangSanPhamMenuTiecBan.Sum(s => s.gia * item.soban)
-                    + item.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == true).Sum(s => s.gia * item.soban)
-                    + item.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == false).Sum(s => s.gia)))
+                if (item.LichSuThanhToanDonHangTongHop.Count() > 0)
                 {
-                    numTB--;
+                    numBF--;
                 }
             }
-            Session["new-dondatbantiec"] = numTB;
+            Session["new-dondatbanbuffet"] = numBF;
 
-            if (Session["ddbt"] == null)
+            if (Session["ddbb"] == null)
                 return RedirectToAction("index", "dashboard");
 
-            var dh = model.DonHangMenuTiecBan.ToList();
+            var dh = model.DonHangMenuBuffet.ToList();
 
             int idRole = Int32.Parse(Session["user-role-id"].ToString());
             var chophepthemsuaxoa = model.ApDungChucNangChoQuyenTaiKhoan.FirstOrDefault(a => a.id_quyentaikhoanbean == idRole
-            && a.ChucNangHeThongBean.keycode.Equals("ddbt"));
+            && a.ChucNangHeThongBean.keycode.Equals("ddbb"));
             if (chophepthemsuaxoa != null)
             {
                 Session["chophep-them"] = chophepthemsuaxoa.chophepthem;
@@ -84,60 +82,57 @@ namespace Beanfamily.Areas.Admin.Controllers
             try
             {
                 model = new BeanfamilyEntities();
-                var donhangTB = model.DonHangMenuTiecBan.ToList();
-                int numTB = donhangTB.Count;
-                foreach (var item in donhangTB.Where(w => w.TinhTrangDonHangMenuTiecBan.Where(ws => ws.tieude == "Hoàn thành").Count() > 0).ToList())
+                var donhangBF = model.DonHangMenuBuffet.ToList();
+                int numBF = donhangBF.Count;
+                foreach (var item in donhangBF.Where(w => w.TinhTrangDonHangMenuBuffet.Where(ws => ws.tieude == "Hoàn thành").Count() > 0).ToList())
                 {
-                    if (item.LichSuThanhToanDonHangTongHop.Sum(s => s.sotien)
-                        >= (item.ChiTietDonHangSanPhamMenuTiecBan.Sum(s => s.gia * item.soban)
-                        + item.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == true).Sum(s => s.gia * item.soban)
-                        + item.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == false).Sum(s => s.gia)))
+                    if (item.LichSuThanhToanDonHangTongHop.Count() > 0)
                     {
-                        numTB--;
+                        numBF--;
                     }
                 }
-                Session["new-dondatbantiec"] = numTB;
+                Session["new-dondatbanbuffet"] = numBF;
 
                 var currentDate = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd"));
 
                 if (filter.Equals("all"))
                 {
-                    var donhang = model.DonHangMenuTiecBan.ToList();
+                    var donhang = model.DonHangMenuBuffet.ToList();
                     return PartialView("_LocDonHang", donhang);
                 }
                 else if (filter.Equals("choduyet"))
                 {
-                    var donhang = model.DonHangMenuTiecBan.Where(d => d.TinhTrangDonHangMenuTiecBan.Where(w => w.tieude.Equals("Chờ duyệt")).Count() > 0).ToList();
+                    var donhang = model.DonHangMenuBuffet.Where(d => d.TinhTrangDonHangMenuBuffet.Where(w => w.tieude.Equals("Chờ duyệt")).Count() > 0).ToList();
                     return PartialView("_LocDonHang", donhang);
                 }
                 else if (filter.Equals("dangdienra"))
                 {
-                    var donhang = model.DonHangMenuTiecBan.Where(d => d.ngaybatdau == currentDate
-                    && d.TinhTrangDonHangMenuTiecBan.Where(w => w.tieude.Equals("Đã xác nhận")).Count() > 0).ToList();
+                    var donhang = model.DonHangMenuBuffet.Where(d => d.ngaybatdau == currentDate
+                    && d.TinhTrangDonHangMenuBuffet.Where(w => w.tieude.Equals("Đã xác nhận")).Count() > 0).ToList();
                     return PartialView("_LocDonHang", donhang);
                 }
                 else if (filter.Equals("sapdienra"))
                 {
-                    var donhang = model.DonHangMenuTiecBan.Where(d => d.ngaybatdau > currentDate
-                    && d.TinhTrangDonHangMenuTiecBan.Where(w => w.tieude.Equals("Đã xác nhận")).Count() > 0).ToList();
+                    var donhang = model.DonHangMenuBuffet.Where(d => d.ngaybatdau > currentDate
+                    && d.TinhTrangDonHangMenuBuffet.Where(w => w.tieude.Equals("Đã xác nhận")).Count() > 0).ToList();
                     return PartialView("_LocDonHang", donhang);
                 }
                 else if (filter.Equals("quahan"))
                 {
-                    var donhang = model.DonHangMenuTiecBan.Where(d => d.ngaybatdau < currentDate
-                    && d.TinhTrangDonHangMenuTiecBan.Where(w => w.tieude.Equals("Đã xác nhận")).Count() > 0).ToList();
+                    var donhang = model.DonHangMenuBuffet.Where(d => d.ngaybatdau < currentDate
+                    && d.TinhTrangDonHangMenuBuffet.Where(w => w.tieude.Equals("Đã xác nhận")).Count() > 0).ToList();
                     return PartialView("_LocDonHang", donhang);
                 }
                 else if (filter.Equals("chuathanhtoan"))
                 {
-                    var donhang = model.DonHangMenuTiecBan.Where(w => w.TinhTrangDonHangMenuTiecBan.Where(ws => ws.tieude == "Hoàn thành").Count() > 0).ToList();
-                    var lstDonHang = new List<DonHangMenuTiecBan>();
+                    var donhang = model.DonHangMenuBuffet.Where(w => w.TinhTrangDonHangMenuBuffet.Where(ws => ws.tieude == "Hoàn thành").Count() > 0).ToList();
+                    var lstDonHang = new List<DonHangMenuBuffet>();
                     foreach (var item in donhang)
                     {
                         if (item.LichSuThanhToanDonHangTongHop.Sum(s => s.sotien)
-                            < (item.ChiTietDonHangSanPhamMenuTiecBan.Sum(s => s.gia * item.soban)
-                            + item.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == true).Sum(s => s.gia * item.soban)
-                            + item.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == false).Sum(s => s.gia)))
+                            < (item.giamon
+                            + item.ChiTietDonHangDanhMucPhucVuMenuBuffet.Where(w => w.giatheosoban == true).Sum(s => s.gia * item.soban)
+                            + item.ChiTietDonHangDanhMucPhucVuMenuBuffet.Where(w => w.giatheosoban == false).Sum(s => s.gia)))
                         {
                             lstDonHang.Add(item);
                         }
@@ -146,19 +141,19 @@ namespace Beanfamily.Areas.Admin.Controllers
                 }
                 else if (filter.Equals("dahuy"))
                 {
-                    var donhang = model.DonHangMenuTiecBan.Where(d => d.TinhTrangDonHangMenuTiecBan.Where(w => w.tieude.Equals("Đã hủy")).Count() > 0).ToList();
+                    var donhang = model.DonHangMenuBuffet.Where(d => d.TinhTrangDonHangMenuBuffet.Where(w => w.tieude.Equals("Đã hủy")).Count() > 0).ToList();
                     return PartialView("_LocDonHang", donhang);
                 }
                 else
                 {
-                    var donhang = model.DonHangMenuTiecBan.Where(w => w.TinhTrangDonHangMenuTiecBan.Where(ws => ws.tieude == "Hoàn thành").Count() > 0).ToList();
-                    var lstDonHang = new List<DonHangMenuTiecBan>();
+                    var donhang = model.DonHangMenuBuffet.Where(w => w.TinhTrangDonHangMenuBuffet.Where(ws => ws.tieude == "Hoàn thành").Count() > 0).ToList();
+                    var lstDonHang = new List<DonHangMenuBuffet>();
                     foreach (var item in donhang)
                     {
                         if (item.LichSuThanhToanDonHangTongHop.Sum(s => s.sotien)
-                            >= (item.ChiTietDonHangSanPhamMenuTiecBan.Sum(s => s.gia * item.soban)
-                            + item.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == true).Sum(s => s.gia * item.soban)
-                            + item.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == false).Sum(s => s.gia)))
+                            >= (item.giamon
+                            + item.ChiTietDonHangDanhMucPhucVuMenuBuffet.Where(w => w.giatheosoban == true).Sum(s => s.gia * item.soban)
+                            + item.ChiTietDonHangDanhMucPhucVuMenuBuffet.Where(w => w.giatheosoban == false).Sum(s => s.gia)))
                         {
                             lstDonHang.Add(item);
                         }
@@ -181,7 +176,7 @@ namespace Beanfamily.Areas.Admin.Controllers
                 {
                     int id = Convert.ToInt32(item);
 
-                    var ttdh = model.TinhTrangDonHangMenuTiecBan.FirstOrDefault(d => d.id_donhangmenutiecban == id);
+                    var ttdh = model.TinhTrangDonHangMenuBuffet.FirstOrDefault(d => d.id_donhangmenubuffet == id);
                     if (ttdh != null)
                     {
                         ttdh.id_taikhoanbean = Int32.Parse(Session["user-id"].ToString());
@@ -197,17 +192,17 @@ namespace Beanfamily.Areas.Admin.Controllers
                             bodyMail = reader.ReadToEnd();
                         }
 
-                        bodyMail = bodyMail.Replace("{TitleMenu}", "TIỆC");
-                        bodyMail = bodyMail.Replace("{LoaiDon}", "Tiệc");
+                        bodyMail = bodyMail.Replace("{TitleMenu}", "BUFFET");
+                        bodyMail = bodyMail.Replace("{LoaiDon}", "Buffet");
                         bodyMail = bodyMail.Replace("{HoVaTen}", Session["user-fullname"].ToString());
                         bodyMail = bodyMail.Replace("{SoDienThoai}", "NV" + Int32.Parse(Session["user-id"].ToString()).ToString("D6"));
-                        bodyMail = bodyMail.Replace("{MaDonHang}", ttdh.DonHangMenuTiecBan.madonhang);
+                        bodyMail = bodyMail.Replace("{MaDonHang}", ttdh.DonHangMenuBuffet.madonhang);
 
                         using (MailMessage mailMessage = new MailMessage("beanfamilyshop@gmail.com", "duongle15012000@gmail.com"))
                         {
                             //if (string.IsNullOrEmpty(email))
                             //    mailMessage.To.Add(email);
-                            mailMessage.Subject = "[BEANFAMILY] ĐƠN ĐẶT BÀN TIỆC ĐÃ ĐƯỢC HỦY";
+                            mailMessage.Subject = "[BEANFAMILY] ĐƠN ĐẶT BÀN BUFFET ĐÃ ĐƯỢC HỦY";
                             mailMessage.IsBodyHtml = true;
                             mailMessage.Body = bodyMail;
 
@@ -224,7 +219,7 @@ namespace Beanfamily.Areas.Admin.Controllers
                             }
                         }
 
-                        if (!string.IsNullOrEmpty(ttdh.DonHangMenuTiecBan.email))
+                        if (!string.IsNullOrEmpty(ttdh.DonHangMenuBuffet.email))
                         {
                             bodyMail = string.Empty;
                             using (StreamReader reader = new StreamReader(Server.MapPath("~/ActionOnPage/TemplateMail/ThongBaoHuyDonDatBanChoKhach.html")))
@@ -232,13 +227,13 @@ namespace Beanfamily.Areas.Admin.Controllers
                                 bodyMail = reader.ReadToEnd();
                             }
 
-                            bodyMail = bodyMail.Replace("{TitleMenu}", "TIỆC");
-                            bodyMail = bodyMail.Replace("{LoaiDon}", "Tiệc");
-                            bodyMail = bodyMail.Replace("{MaDonHang}", ttdh.DonHangMenuTiecBan.madonhang);
+                            bodyMail = bodyMail.Replace("{TitleMenu}", "BUFFET");
+                            bodyMail = bodyMail.Replace("{LoaiDon}", "Buffet");
+                            bodyMail = bodyMail.Replace("{MaDonHang}", ttdh.DonHangMenuBuffet.madonhang);
 
-                            using (MailMessage mailMessage = new MailMessage("beanfamilyshop@gmail.com", ttdh.DonHangMenuTiecBan.email))
+                            using (MailMessage mailMessage = new MailMessage("beanfamilyshop@gmail.com", ttdh.DonHangMenuBuffet.email))
                             {
-                                mailMessage.Subject = "[BEANFAMILY] ĐƠN ĐẶT BÀN TIỆC ĐÃ ĐƯỢC HỦY";
+                                mailMessage.Subject = "[BEANFAMILY] ĐƠN ĐẶT BÀN BUFFET ĐÃ ĐƯỢC HỦY";
                                 mailMessage.IsBodyHtml = true;
                                 mailMessage.Body = bodyMail;
 
@@ -259,19 +254,16 @@ namespace Beanfamily.Areas.Admin.Controllers
                 }
 
                 model = new BeanfamilyEntities();
-                var donhangTB = model.DonHangMenuTiecBan.ToList();
-                int numTB = donhangTB.Count;
-                foreach (var item in donhangTB.Where(w => w.TinhTrangDonHangMenuTiecBan.Where(ws => ws.tieude == "Hoàn thành").Count() > 0).ToList())
+                var donhangBF = model.DonHangMenuBuffet.ToList();
+                int numBF = donhangBF.Count;
+                foreach (var item in donhangBF.Where(w => w.TinhTrangDonHangMenuBuffet.Where(ws => ws.tieude == "Hoàn thành").Count() > 0).ToList())
                 {
-                    if (item.LichSuThanhToanDonHangTongHop.Sum(s => s.sotien)
-                        >= (item.ChiTietDonHangSanPhamMenuTiecBan.Sum(s => s.gia * item.soban)
-                        + item.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == true).Sum(s => s.gia * item.soban)
-                        + item.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == false).Sum(s => s.gia)))
+                    if (item.LichSuThanhToanDonHangTongHop.Count() > 0)
                     {
-                        numTB--;
+                        numBF--;
                     }
                 }
-                Session["new-dondatbantiec"] = numTB;
+                Session["new-dondatbanbuffet"] = numBF;
 
                 return Content("SUCCESS");
             }
@@ -286,7 +278,7 @@ namespace Beanfamily.Areas.Admin.Controllers
         {
             try
             {
-                var ttdh = model.TinhTrangDonHangMenuTiecBan.FirstOrDefault(d => d.id_donhangmenutiecban == id);
+                var ttdh = model.TinhTrangDonHangMenuBuffet.FirstOrDefault(d => d.id_donhangmenubuffet == id);
                 if (ttdh == null)
                     return Content("NOTEXIST");
 
@@ -298,20 +290,16 @@ namespace Beanfamily.Areas.Admin.Controllers
                 model.SaveChanges();
 
                 model = new BeanfamilyEntities();
-                var donhangTB = model.DonHangMenuTiecBan.ToList();
-                int numTB = donhangTB.Count;
-                foreach (var item in donhangTB.Where(w => w.TinhTrangDonHangMenuTiecBan.Where(ws => ws.tieude == "Hoàn thành").Count() > 0).ToList())
+                var donhangBF = model.DonHangMenuBuffet.ToList();
+                int numBF = donhangBF.Count;
+                foreach (var item in donhangBF.Where(w => w.TinhTrangDonHangMenuBuffet.Where(ws => ws.tieude == "Hoàn thành").Count() > 0).ToList())
                 {
-                    if (item.LichSuThanhToanDonHangTongHop.Sum(s => s.sotien)
-                        >= (item.ChiTietDonHangSanPhamMenuTiecBan.Sum(s => s.gia * item.soban)
-                        + item.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == true).Sum(s => s.gia * item.soban)
-                        + item.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == false).Sum(s => s.gia)))
+                    if (item.LichSuThanhToanDonHangTongHop.Count() > 0)
                     {
-                        numTB--;
+                        numBF--;
                     }
                 }
-                Session["new-dondatbantiec"] = numTB;
-
+                Session["new-dondatbanbuffet"] = numBF;
 
                 string bodyMail = string.Empty;
                 using (StreamReader reader = new StreamReader(Server.MapPath("~/ActionOnPage/TemplateMail/ThongBaoHuyDonDatBan.html")))
@@ -319,17 +307,17 @@ namespace Beanfamily.Areas.Admin.Controllers
                     bodyMail = reader.ReadToEnd();
                 }
 
-                bodyMail = bodyMail.Replace("{TitleMenu}", "TIỆC");
-                bodyMail = bodyMail.Replace("{LoaiDon}", "Tiệc");
+                bodyMail = bodyMail.Replace("{TitleMenu}", "BUFFET");
+                bodyMail = bodyMail.Replace("{LoaiDon}", "Buffet");
                 bodyMail = bodyMail.Replace("{HoVaTen}", Session["user-fullname"].ToString());
                 bodyMail = bodyMail.Replace("{SoDienThoai}", "NV" + Int32.Parse(Session["user-id"].ToString()).ToString("D6"));
-                bodyMail = bodyMail.Replace("{MaDonHang}", ttdh.DonHangMenuTiecBan.madonhang);
+                bodyMail = bodyMail.Replace("{MaDonHang}", ttdh.DonHangMenuBuffet.madonhang);
 
                 using (MailMessage mailMessage = new MailMessage("beanfamilyshop@gmail.com", "duongle15012000@gmail.com"))
                 {
                     //if (string.IsNullOrEmpty(email))
                     //    mailMessage.To.Add(email);
-                    mailMessage.Subject = "[BEANFAMILY] ĐƠN ĐẶT BÀN TIỆC ĐÃ ĐƯỢC HỦY";
+                    mailMessage.Subject = "[BEANFAMILY] ĐƠN ĐẶT BÀN BUFFET ĐÃ ĐƯỢC HỦY";
                     mailMessage.IsBodyHtml = true;
                     mailMessage.Body = bodyMail;
 
@@ -346,22 +334,21 @@ namespace Beanfamily.Areas.Admin.Controllers
                     }
                 }
 
-                if (!string.IsNullOrEmpty(ttdh.DonHangMenuTiecBan.email))
+                if (!string.IsNullOrEmpty(ttdh.DonHangMenuBuffet.email))
                 {
-
                     bodyMail = string.Empty;
                     using (StreamReader reader = new StreamReader(Server.MapPath("~/ActionOnPage/TemplateMail/ThongBaoHuyDonDatBanChoKhach.html")))
                     {
                         bodyMail = reader.ReadToEnd();
                     }
 
-                    bodyMail = bodyMail.Replace("{TitleMenu}", "TIỆC");
-                    bodyMail = bodyMail.Replace("{LoaiDon}", "Tiệc");
-                    bodyMail = bodyMail.Replace("{MaDonHang}", ttdh.DonHangMenuTiecBan.madonhang);
+                    bodyMail = bodyMail.Replace("{TitleMenu}", "BUFFET");
+                    bodyMail = bodyMail.Replace("{LoaiDon}", "Buffet");
+                    bodyMail = bodyMail.Replace("{MaDonHang}", ttdh.DonHangMenuBuffet.madonhang);
 
-                    using (MailMessage mailMessage = new MailMessage("beanfamilyshop@gmail.com", ttdh.DonHangMenuTiecBan.email))
+                    using (MailMessage mailMessage = new MailMessage("beanfamilyshop@gmail.com", ttdh.DonHangMenuBuffet.email))
                     {
-                        mailMessage.Subject = "[BEANFAMILY] ĐƠN ĐẶT BÀN TIỆC ĐÃ ĐƯỢC HỦY";
+                        mailMessage.Subject = "[BEANFAMILY] ĐƠN ĐẶT BÀN BUFFET ĐÃ ĐƯỢC HỦY";
                         mailMessage.IsBodyHtml = true;
                         mailMessage.Body = bodyMail;
 
@@ -378,7 +365,6 @@ namespace Beanfamily.Areas.Admin.Controllers
                         }
                     }
                 }
-
                 return Content("SUCCESS");
             }
             catch (Exception Ex)
@@ -392,7 +378,7 @@ namespace Beanfamily.Areas.Admin.Controllers
         {
             try
             {
-                var dh = model.DonHangMenuTiecBan.Find(id);
+                var dh = model.DonHangMenuBuffet.Find(id);
                 if (dh == null)
                     return Content("NOTEXIST");
 
@@ -404,13 +390,12 @@ namespace Beanfamily.Areas.Admin.Controllers
             }
         }
 
-
         [HttpPost]
         public ActionResult SubmitCapNhatDonHang(int id, string trangthai, string ghichu)
         {
             try
             {
-                var dh = model.DonHangMenuTiecBan.Find(id);
+                var dh = model.DonHangMenuBuffet.Find(id);
                 if (dh == null)
                     return Content("NOTEXIST");
 
@@ -418,12 +403,12 @@ namespace Beanfamily.Areas.Admin.Controllers
                 model.Entry(dh).State = EntityState.Modified;
                 model.SaveChanges();
 
-                var ttdh = dh.TinhTrangDonHangMenuTiecBan.FirstOrDefault(t => t.id_donhangmenutiecban == id);
+                var ttdh = dh.TinhTrangDonHangMenuBuffet.FirstOrDefault(t => t.id_donhangmenubuffet == id);
                 string trangthaihientại = ttdh.tieude;
                 if (ttdh == null)
                 {
-                    TinhTrangDonHangMenuTiecBan ttdhnew = new TinhTrangDonHangMenuTiecBan();
-                    ttdhnew.id_donhangmenutiecban = id;
+                    TinhTrangDonHangMenuBuffet ttdhnew = new TinhTrangDonHangMenuBuffet();
+                    ttdhnew.id_donhangmenubuffet = id;
                     ttdhnew.id_taikhoanbean = Int32.Parse(Session["user-id"].ToString());
 
                     if (trangthai.Equals("choduyet"))
@@ -452,7 +437,7 @@ namespace Beanfamily.Areas.Admin.Controllers
                         ttdhnew.noidung = "Xác nhận đã hoàn thành bởi " + Session["user-fullname"].ToString() + " - NV" + Int32.Parse(Session["user-id"].ToString()).ToString("D6");
                     }
                     ttdhnew.thoigian = DateTime.Now;
-                    model.TinhTrangDonHangMenuTiecBan.Add(ttdhnew);
+                    model.TinhTrangDonHangMenuBuffet.Add(ttdhnew);
                     model.SaveChanges();
                 }
                 else
@@ -490,14 +475,14 @@ namespace Beanfamily.Areas.Admin.Controllers
                 }
 
                 model = new BeanfamilyEntities();
-                var donhangTB = model.DonHangMenuTiecBan.ToList();
+                var donhangTB = model.DonHangMenuBuffet.ToList();
                 int numTB = donhangTB.Count;
-                foreach (var item in donhangTB.Where(w => w.TinhTrangDonHangMenuTiecBan.Where(ws => ws.tieude == "Hoàn thành").Count() > 0).ToList())
+                foreach (var item in donhangTB.Where(w => w.TinhTrangDonHangMenuBuffet.Where(ws => ws.tieude == "Hoàn thành").Count() > 0).ToList())
                 {
                     if (item.LichSuThanhToanDonHangTongHop.Sum(s => s.sotien)
-                        >= (item.ChiTietDonHangSanPhamMenuTiecBan.Sum(s => s.gia * item.soban)
-                        + item.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == true).Sum(s => s.gia * item.soban)
-                        + item.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == false).Sum(s => s.gia)))
+                        >= (item.giamon
+                        + item.ChiTietDonHangDanhMucPhucVuMenuBuffet.Where(w => w.giatheosoban == true).Sum(s => s.gia * item.soban)
+                        + item.ChiTietDonHangDanhMucPhucVuMenuBuffet.Where(w => w.giatheosoban == false).Sum(s => s.gia)))
                     {
                         numTB--;
                     }
@@ -515,22 +500,22 @@ namespace Beanfamily.Areas.Admin.Controllers
                     if (trangthaihientại.Equals("Chờ duyệt"))
                         return Content("SUCCESS");
 
-                    bodyMail = bodyMail.Replace("{TitleDonHang}", "TIỆC ĐÃ ĐƯỢC CẬP NHẬT");
+                    bodyMail = bodyMail.Replace("{TitleDonHang}", "BUFFET ĐÃ ĐƯỢC CẬP NHẬT");
                     bodyMail = bodyMail.Replace("{HoVaTen}", Session["user-fullname"].ToString());
                     bodyMail = bodyMail.Replace("{MaNhanVien}", "NV" + Int32.Parse(Session["user-id"].ToString()).ToString("D6"));
                     bodyMail = bodyMail.Replace("{Content}", "đã đặt trạng thái đơn đặt bàn thành <b>Chờ duyệt</b>");
-                    bodyMail = bodyMail.Replace("{MaDonHang}", ttdh.DonHangMenuTiecBan.madonhang);
+                    bodyMail = bodyMail.Replace("{MaDonHang}", ttdh.DonHangMenuBuffet.madonhang);
                 }
                 else if (trangthai.Equals("xacnhan"))
                 {
                     if (trangthaihientại.Equals("Đã xác nhận"))
                         return Content("SUCCESS");
 
-                    bodyMail = bodyMail.Replace("{TitleDonHang}", "TIỆC ĐÃ ĐƯỢC XÁC NHẬN");
+                    bodyMail = bodyMail.Replace("{TitleDonHang}", "BUFFET ĐÃ ĐƯỢC XÁC NHẬN");
                     bodyMail = bodyMail.Replace("{HoVaTen}", Session["user-fullname"].ToString());
                     bodyMail = bodyMail.Replace("{MaNhanVien}", "NV" + Int32.Parse(Session["user-id"].ToString()).ToString("D6"));
                     bodyMail = bodyMail.Replace("{Content}", "đã <b>Xác nhận</b> đơn đặt bàn");
-                    bodyMail = bodyMail.Replace("{MaDonHang}", ttdh.DonHangMenuTiecBan.madonhang);
+                    bodyMail = bodyMail.Replace("{MaDonHang}", ttdh.DonHangMenuBuffet.madonhang);
                 }
                 else if (trangthai.Equals("lenmon"))
                 {
@@ -541,29 +526,29 @@ namespace Beanfamily.Areas.Admin.Controllers
                     if (trangthaihientại.Equals("Đã hủy"))
                         return Content("SUCCESS");
 
-                    bodyMail = bodyMail.Replace("{TitleDonHang}", "TIỆC ĐÃ ĐƯỢC HỦY");
+                    bodyMail = bodyMail.Replace("{TitleDonHang}", "BUFFET ĐÃ ĐƯỢC HỦY");
                     bodyMail = bodyMail.Replace("{HoVaTen}", Session["user-fullname"].ToString());
                     bodyMail = bodyMail.Replace("{MaNhanVien}", "NV" + Int32.Parse(Session["user-id"].ToString()).ToString("D6"));
                     bodyMail = bodyMail.Replace("{Content}", "đã hủy đơn đặt bàn");
-                    bodyMail = bodyMail.Replace("{MaDonHang}", ttdh.DonHangMenuTiecBan.madonhang);
+                    bodyMail = bodyMail.Replace("{MaDonHang}", ttdh.DonHangMenuBuffet.madonhang);
                 }
                 else
                 {
                     if (trangthaihientại.Equals("Hoàn thành"))
                         return Content("SUCCESS");
 
-                    bodyMail = bodyMail.Replace("{TitleDonHang}", "TIỆC ĐÃ HOÀN THÀNH");
+                    bodyMail = bodyMail.Replace("{TitleDonHang}", "BUFFET ĐÃ HOÀN THÀNH");
                     bodyMail = bodyMail.Replace("{HoVaTen}", Session["user-fullname"].ToString());
                     bodyMail = bodyMail.Replace("{MaNhanVien}", "NV" + Int32.Parse(Session["user-id"].ToString()).ToString("D6"));
                     bodyMail = bodyMail.Replace("{Content}", "đã xác nhận hoàn thành và kết thúc bữa tiệc");
-                    bodyMail = bodyMail.Replace("{MaDonHang}", ttdh.DonHangMenuTiecBan.madonhang);
+                    bodyMail = bodyMail.Replace("{MaDonHang}", ttdh.DonHangMenuBuffet.madonhang);
                 }
 
                 using (MailMessage mailMessage = new MailMessage("beanfamilyshop@gmail.com", "duongle15012000@gmail.com"))
                 {
                     //if (string.IsNullOrEmpty(email))
                     //    mailMessage.To.Add(email);
-                    mailMessage.Subject = "[BEANFAMILY] ĐƠN ĐẶT BÀN TIỆC ĐÃ ĐƯỢC CẬP NHẬT";
+                    mailMessage.Subject = "[BEANFAMILY] ĐƠN ĐẶT BÀN BUFFET ĐÃ ĐƯỢC CẬP NHẬT";
                     mailMessage.IsBodyHtml = true;
                     mailMessage.Body = bodyMail;
 
@@ -580,7 +565,7 @@ namespace Beanfamily.Areas.Admin.Controllers
                     }
                 }
 
-                if (!string.IsNullOrEmpty(ttdh.DonHangMenuTiecBan.email))
+                if (!string.IsNullOrEmpty(ttdh.DonHangMenuBuffet.email))
                 {
 
                     bodyMail = string.Empty;
@@ -594,18 +579,18 @@ namespace Beanfamily.Areas.Admin.Controllers
                         if (trangthaihientại.Equals("Chờ duyệt"))
                             return Content("SUCCESS");
 
-                        bodyMail = bodyMail.Replace("{TitleDonHang}", "TIỆC ĐÃ ĐƯỢC CẬP NHẬT");
+                        bodyMail = bodyMail.Replace("{TitleDonHang}", "BUFFET ĐÃ ĐƯỢC CẬP NHẬT");
                         bodyMail = bodyMail.Replace("{Content}", "Trạng thái đơn đặt bàn của bạn đã được đặt thành <b>Chờ duyệt</b>");
-                        bodyMail = bodyMail.Replace("{MaDonHang}", ttdh.DonHangMenuTiecBan.madonhang);
+                        bodyMail = bodyMail.Replace("{MaDonHang}", ttdh.DonHangMenuBuffet.madonhang);
                     }
                     else if (trangthai.Equals("xacnhan"))
                     {
                         if (trangthaihientại.Equals("Đã xác nhận"))
                             return Content("SUCCESS");
 
-                        bodyMail = bodyMail.Replace("{TitleDonHang}", "TIỆC ĐÃ ĐƯỢC XÁC NHẬN");
+                        bodyMail = bodyMail.Replace("{TitleDonHang}", "BUFFET ĐÃ ĐƯỢC XÁC NHẬN");
                         bodyMail = bodyMail.Replace("{Content}", "Đơn đặt bàn của bạn đã được <b>Xác nhận</b>");
-                        bodyMail = bodyMail.Replace("{MaDonHang}", ttdh.DonHangMenuTiecBan.madonhang);
+                        bodyMail = bodyMail.Replace("{MaDonHang}", ttdh.DonHangMenuBuffet.madonhang);
                     }
                     else if (trangthai.Equals("lenmon"))
                     {
@@ -616,24 +601,24 @@ namespace Beanfamily.Areas.Admin.Controllers
                         if (trangthaihientại.Equals("Đã hủy"))
                             return Content("SUCCESS");
 
-                        bodyMail = bodyMail.Replace("{TitleDonHang}", "TIỆC ĐÃ ĐƯỢC HỦY");
+                        bodyMail = bodyMail.Replace("{TitleDonHang}", "BUFFET ĐÃ ĐƯỢC HỦY");
                         bodyMail = bodyMail.Replace("{Content}", "Đơn hàng của bạn đã được <b>Hủy</b>");
-                        bodyMail = bodyMail.Replace("{MaDonHang}", ttdh.DonHangMenuTiecBan.madonhang);
+                        bodyMail = bodyMail.Replace("{MaDonHang}", ttdh.DonHangMenuBuffet.madonhang);
                     }
                     else
                     {
                         if (trangthaihientại.Equals("Hoàn thành"))
                             return Content("SUCCESS");
 
-                        bodyMail = bodyMail.Replace("{TitleDonHang}", "TIỆC ĐÃ KẾT THÚC");
+                        bodyMail = bodyMail.Replace("{TitleDonHang}", "BUFFET ĐÃ KẾT THÚC");
                         bodyMail = bodyMail.Replace("{Content}", "Bữa tiệc của bạn đã kết thúc<br><br>Cảm ơn bạn đã luôn tin dùng sản phẩm và dịch vụ tại Beanfamily.shop");
-                        bodyMail = bodyMail.Replace("{MaDonHang}", ttdh.DonHangMenuTiecBan.madonhang);
+                        bodyMail = bodyMail.Replace("{MaDonHang}", ttdh.DonHangMenuBuffet.madonhang);
                     }
-                    bodyMail = bodyMail.Replace("{MaDonHang}", ttdh.DonHangMenuTiecBan.madonhang);
+                    bodyMail = bodyMail.Replace("{MaDonHang}", ttdh.DonHangMenuBuffet.madonhang);
 
-                    using (MailMessage mailMessage = new MailMessage("beanfamilyshop@gmail.com", ttdh.DonHangMenuTiecBan.email))
+                    using (MailMessage mailMessage = new MailMessage("beanfamilyshop@gmail.com", ttdh.DonHangMenuBuffet.email))
                     {
-                        mailMessage.Subject = "[BEANFAMILY] CẬP NHẬT ĐƠN ĐẶT BÀN TIỆC";
+                        mailMessage.Subject = "[BEANFAMILY] CẬP NHẬT ĐƠN ĐẶT BÀN BUFFET";
                         mailMessage.IsBodyHtml = true;
                         mailMessage.Body = bodyMail;
 
@@ -663,7 +648,7 @@ namespace Beanfamily.Areas.Admin.Controllers
         {
             try
             {
-                var dh = model.DonHangMenuTiecBan.Find(id);
+                var dh = model.DonHangMenuBuffet.Find(id);
                 if (dh == null)
                     return Content("NOTEXIST");
 
@@ -680,7 +665,7 @@ namespace Beanfamily.Areas.Admin.Controllers
         {
             try
             {
-                var dh = model.DonHangMenuTiecBan.Find(id);
+                var dh = model.DonHangMenuBuffet.Find(id);
                 if (dh == null)
                     return Content("NOTEXIST");
 
@@ -689,7 +674,7 @@ namespace Beanfamily.Areas.Admin.Controllers
                 if (loai.Equals("thu"))
                 {
                     lstt.madonhang = dh.madonhang;
-                    lstt.id_donhangmenutiecban = id;
+                    lstt.id_donhangmenubuffet = id;
                     lstt.id_taikhoanbean = Int32.Parse(Session["user-id"].ToString());
                     lstt.sotien = Convert.ToDecimal(sotien.Replace(",", ""));
                     lstt.thoigian = DateTime.Now;
@@ -707,7 +692,7 @@ namespace Beanfamily.Areas.Admin.Controllers
                         bodyMail = reader.ReadToEnd();
                     }
 
-                    bodyMail = bodyMail.Replace("{TieuDeChinh}", "HÓA ĐƠN THANH TOÁN BÀN TIỆC");
+                    bodyMail = bodyMail.Replace("{TieuDeChinh}", "HÓA ĐƠN THANH TOÁN BÀN BUFFET");
                     bodyMail = bodyMail.Replace("{NoiDungChinh}", "Mã đơn: <strong>" + dh.madonhang + "</strong><br>" +
                                                                     "Số tiền: <strong>" + sotien + "đ</strong><br>" +
                                                                     "Ngày GD: <strong>" + DateTime.Now + "</strong><br>" +
@@ -745,7 +730,7 @@ namespace Beanfamily.Areas.Admin.Controllers
                             bodyMail = reader.ReadToEnd();
                         }
 
-                        bodyMail = bodyMail.Replace("{TieuDeChinh}", "HÓA ĐƠN THANH TOÁN BÀN TIỆC");
+                        bodyMail = bodyMail.Replace("{TieuDeChinh}", "HÓA ĐƠN THANH TOÁN BÀN BUFFET");
                         bodyMail = bodyMail.Replace("{NoiDungChinh}", "Mã đơn: <strong>" + dh.madonhang + "</strong><br>" +
                                                                         "Số tiền: <strong>" + sotien + "đ</strong><br>" +
                                                                         "Ngày GD: <strong>" + DateTime.Now + "</strong><br>" +
@@ -778,7 +763,7 @@ namespace Beanfamily.Areas.Admin.Controllers
                 else
                 {
                     lstt.madonhang = dh.madonhang;
-                    lstt.id_donhangmenutiecban = id;
+                    lstt.id_donhangmenubuffet = id;
                     lstt.id_taikhoanbean = Int32.Parse(Session["user-id"].ToString());
                     lstt.sotien = Convert.ToDecimal("-" + sotien.Replace(",", ""));
                     lstt.thoigian = DateTime.Now;
@@ -796,7 +781,7 @@ namespace Beanfamily.Areas.Admin.Controllers
                         bodyMail = reader.ReadToEnd();
                     }
 
-                    bodyMail = bodyMail.Replace("{TieuDeChinh}", "HÓA ĐƠN HOÀN TRẢ DỊCH VỤ BÀN TIỆC");
+                    bodyMail = bodyMail.Replace("{TieuDeChinh}", "HÓA ĐƠN HOÀN TRẢ DỊCH VỤ BÀN BUFFET");
                     bodyMail = bodyMail.Replace("{NoiDungChinh}", "Mã đơn: <strong>" + dh.madonhang + "</strong><br>" +
                                                                     "Số tiền: <strong>" + sotien + "đ</strong><br>" +
                                                                     "Ngày GD: <strong>" + DateTime.Now + "</strong><br>" +
@@ -834,7 +819,7 @@ namespace Beanfamily.Areas.Admin.Controllers
                             bodyMail = reader.ReadToEnd();
                         }
 
-                        bodyMail = bodyMail.Replace("{TieuDeChinh}", "HÓA ĐƠN HOÀN TRẢ DỊCH VỤ BÀN TIỆC");
+                        bodyMail = bodyMail.Replace("{TieuDeChinh}", "HÓA ĐƠN HOÀN TRẢ DỊCH VỤ BÀN BUFFET");
                         bodyMail = bodyMail.Replace("{NoiDungChinh}", "Mã đơn: <strong>" + dh.madonhang + "</strong><br>" +
                                                                         "Số tiền: <strong>" + sotien + "đ</strong><br>" +
                                                                         "Ngày GD: <strong>" + DateTime.Now + "</strong><br>" +
@@ -866,14 +851,14 @@ namespace Beanfamily.Areas.Admin.Controllers
                 }
 
                 model = new BeanfamilyEntities();
-                var donhangTB = model.DonHangMenuTiecBan.ToList();
+                var donhangTB = model.DonHangMenuBuffet.ToList();
                 int numTB = donhangTB.Count;
-                foreach (var item in donhangTB.Where(w => w.TinhTrangDonHangMenuTiecBan.Where(ws => ws.tieude == "Hoàn thành").Count() > 0).ToList())
+                foreach (var item in donhangTB.Where(w => w.TinhTrangDonHangMenuBuffet.Where(ws => ws.tieude == "Hoàn thành").Count() > 0).ToList())
                 {
                     if (item.LichSuThanhToanDonHangTongHop.Sum(s => s.sotien)
-                        >= (item.ChiTietDonHangSanPhamMenuTiecBan.Sum(s => s.gia * item.soban)
-                        + item.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == true).Sum(s => s.gia * item.soban)
-                        + item.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == false).Sum(s => s.gia)))
+                        >= (item.giamon
+                        + item.ChiTietDonHangDanhMucPhucVuMenuBuffet.Where(w => w.giatheosoban == true).Sum(s => s.gia * item.soban)
+                        + item.ChiTietDonHangDanhMucPhucVuMenuBuffet.Where(w => w.giatheosoban == false).Sum(s => s.gia)))
                     {
                         numTB--;
                     }
@@ -893,7 +878,7 @@ namespace Beanfamily.Areas.Admin.Controllers
         {
             try
             {
-                var dh = model.DonHangMenuTiecBan.Find(id);
+                var dh = model.DonHangMenuBuffet.Find(id);
                 if (dh == null)
                     return Content("NOTEXIST");
 
@@ -904,12 +889,13 @@ namespace Beanfamily.Areas.Admin.Controllers
                 return Content("Chi tiết lỗi: " + Ex.Message);
             }
         }
+
         [HttpPost]
         public ActionResult SubmitCapNhatThongTinDonHang(int id, int soban, string hovaten, string sodienthoai, string email, string ngaytochuc, string giotochuc, string ghichu, string lstMonAn)
         {
             try
             {
-                var donhang = model.DonHangMenuTiecBan.Find(id);
+                var donhang = model.DonHangMenuBuffet.Find(id);
 
                 if (donhang == null)
                     return Content("NOTEXIST");
@@ -929,26 +915,25 @@ namespace Beanfamily.Areas.Admin.Controllers
                 donhang.ghichukhachhang = ghichu;
 
                 model.Entry(donhang).State = EntityState.Modified;
-                model.ChiTietDonHangSanPhamMenuTiecBan.RemoveRange(donhang.ChiTietDonHangSanPhamMenuTiecBan);
+                model.ChiTietDonHangSanPhamMenuBuffet.RemoveRange(donhang.ChiTietDonHangSanPhamMenuBuffet);
                 model.SaveChanges();
 
-                List<ChiTietDonHangSanPhamMenuTiecBan> lstDhSP = new List<ChiTietDonHangSanPhamMenuTiecBan>();
+                List<ChiTietDonHangSanPhamMenuBuffet> lstDhSP = new List<ChiTietDonHangSanPhamMenuBuffet>();
                 foreach (var item in lstMonAn.Split('-').ToList())
                 {
                     int idSP = Int32.Parse(item);
-                    var sp = model.SanPhamMenuTiecBan.Find(idSP);
-                    ChiTietDonHangSanPhamMenuTiecBan dhSP = new ChiTietDonHangSanPhamMenuTiecBan();
-                    dhSP.id_donhangmenutiecban = id;
-                    dhSP.id_sanphammenutiecban = idSP;
+                    var sp = model.SanPhamMenuBuffet.Find(idSP);
+                    ChiTietDonHangSanPhamMenuBuffet dhSP = new ChiTietDonHangSanPhamMenuBuffet();
+                    dhSP.id_donhangmenubuffet = id;
+                    dhSP.id_sanphammenubuffet = idSP;
                     dhSP.hinhanh = sp.hinhanh;
                     dhSP.tensanpham = sp.tensanpham;
-                    dhSP.gia = sp.gia;
 
                     lstDhSP.Add(dhSP);
                 }
                 if (lstDhSP.Count > 0)
                 {
-                    model.ChiTietDonHangSanPhamMenuTiecBan.AddRange(lstDhSP);
+                    model.ChiTietDonHangSanPhamMenuBuffet.AddRange(lstDhSP);
                     model.SaveChanges();
                 }
 
