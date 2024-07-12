@@ -10,10 +10,22 @@ namespace Beanfamily.Middlewall
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            if (filterContext.HttpContext.Session["user-id"] == null)
+            if (filterContext.HttpContext.Request.IsAjaxRequest())
             {
-                filterContext.Result = new RedirectResult("~/admin/dangnhap");
-                return;
+                if (filterContext.HttpContext.Session["user-id"] == null)
+                {
+                    filterContext.HttpContext.Response.StatusCode = 403;
+                    filterContext.Result = new JsonResult { Data = "SystemLoginAgain", JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+                    return;
+                }
+            }
+            else
+            {
+                if (filterContext.HttpContext.Session["user-id"] == null)
+                {
+                    filterContext.Result = new RedirectResult("~/admin/dangnhap");
+                    return;
+                }
             }
         }
     }

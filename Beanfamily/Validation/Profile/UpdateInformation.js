@@ -91,7 +91,7 @@
                 formData.append('xoahinhdaidien', 'no');
             }
 
-            $.ajax({
+            $.ajax({error: function (a, xhr, c) {if (a.status == 403 && a.responseText.indexOf("SystemLoginAgain") != -1) {window.location.href = $('body').find('[id="requestPath"]').val() + "admin/dangnhap/logout";}},
                 url: $('#requestPath').val() + "accountprofile/updateinfor",
                 data: formData,
                 dataType: 'html',
@@ -187,7 +187,7 @@
             formData.append('matkhaumoi', matkhaumoi);
             formData.append('nhaplaimatkhaumoi', nhaplaimatkhaumoi);
 
-            $.ajax({
+            $.ajax({error: function (a, xhr, c) {if (a.status == 403 && a.responseText.indexOf("SystemLoginAgain") != -1) {window.location.href = $('body').find('[id="requestPath"]').val() + "admin/dangnhap/logout";}},
                 url: $('#requestPath').val() + "admin/accountprofile/updatepassword",
                 data: formData,
                 dataType: 'html',

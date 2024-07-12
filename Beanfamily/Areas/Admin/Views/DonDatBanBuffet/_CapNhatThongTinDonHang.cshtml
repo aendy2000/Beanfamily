@@ -27,6 +27,12 @@
                             <div class="col-12 text-dark mb-1">
                                 <div class="row">
                                     <div class="col-12 mb-2">
+                                        <label class="small" for="giamon">Tổng giá món VNĐ <i><span class="text-secondary small">(Không bao gồm phí phục vụ & dịch vụ khác)</span></i> <span class="text-danger">*</span></label>
+                                        <input value="@(Model.giamon.ToString("0,0").Equals("00") ? "0" : Model.giamon.ToString("0,0").Replace(".", ","))" data-type="currency" class="form-control" placeholder="Tổng giá món trong buổi tiệc" type="text" id="giamon"
+                                               style="border: 2px solid var(--bs-primary) !important; height: 40px;" />
+                                        <label style="margin-left: 5px" id="invalid-giamon-capnhatdonhang" class="text-danger" hidden></label>
+                                    </div>
+                                    <div class="col-12 mb-2">
                                         <label class="small" for="hovaten">Họ & tên khách hàng <span class="text-danger">*</span></label>
                                         <input value="@Model.hoten" class="form-control" placeholder="Nhập Họ và Tên người đặt bàn" type="text" id="hovaten"
                                                style="border: 2px solid var(--bs-primary) !important; height: 40px;" />

@@ -29,7 +29,7 @@
             formData.append('hienthi', $('#hienthi').prop('checked'));
             formData.append('sothutu', sothutu);
 
-            $.ajax({
+            $.ajax({error: function (a, xhr, c) {if (a.status == 403 && a.responseText.indexOf("SystemLoginAgain") != -1) {window.location.href = $('body').find('[id="requestPath"]').val() + "admin/dangnhap/logout";}},
                 url: $('#requestPath').val() + "admin/dmcap1muasam/themdm",
                 data: formData,
                 dataType: 'html',

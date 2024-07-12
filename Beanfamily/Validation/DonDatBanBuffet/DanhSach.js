@@ -14,7 +14,7 @@
         var formData = new FormData();
         formData.append('filter', filter);
 
-        $.ajax({
+        $.ajax({error: function (a, xhr, c) {if (a.status == 403 && a.responseText.indexOf("SystemLoginAgain") != -1) {window.location.href = $('body').find('[id="requestPath"]').val() + "admin/dangnhap/logout";}},
             url: $('#requestPath').val() + "admin/dondatbanbuffet/locdonhang",
             data: formData,
             dataType: 'html',

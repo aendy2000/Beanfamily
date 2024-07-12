@@ -13,6 +13,7 @@ using System.Net;
 
 namespace Beanfamily.Areas.Admin.Controllers
 {
+    [AdminLoginverification]
     public class DonDatBanBuffetController : Controller
     {
         BeanfamilyEntities model = new BeanfamilyEntities();
@@ -891,7 +892,7 @@ namespace Beanfamily.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult SubmitCapNhatThongTinDonHang(int id, int soban, string hovaten, string sodienthoai, string email, string ngaytochuc, string giotochuc, string ghichu, string lstMonAn)
+        public ActionResult SubmitCapNhatThongTinDonHang(int id, string giamon, int soban, string hovaten, string sodienthoai, string email, string ngaytochuc, string giotochuc, string ghichu, string lstMonAn)
         {
             try
             {
@@ -904,6 +905,9 @@ namespace Beanfamily.Areas.Admin.Controllers
                 donhang.hoten = hovaten;
                 donhang.sdt = sodienthoai;
                 donhang.email = email;
+
+                if(!string.IsNullOrEmpty(giamon))
+                    donhang.giamon = Convert.ToDecimal(giamon.Replace(",", ""));
 
                 var ngaystart = Convert.ToDateTime(ngaytochuc);
                 var currentDate = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd"));

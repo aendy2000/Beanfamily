@@ -20,7 +20,6 @@ namespace Beanfamily.Models
         public string tieude { get; set; }
         public string noidung { get; set; }
         public System.DateTime thoigian { get; set; }
-        public string hinhanh { get; set; }
     
         public virtual DonHangVuonRauMuaSamVaMenuHangNgay DonHangVuonRauMuaSamVaMenuHangNgay { get; set; }
         public virtual TaiKhoanBean TaiKhoanBean { get; set; }

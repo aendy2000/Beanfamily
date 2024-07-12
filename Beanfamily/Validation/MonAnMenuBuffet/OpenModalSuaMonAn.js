@@ -4,16 +4,13 @@
         var formData = new FormData();
         var id = $(this).attr('name').trim();
         formData.append('id', id);
-        $.ajax({
+        $.ajax({error: function (a, xhr, c) {if (a.status == 403 && a.responseText.indexOf("SystemLoginAgain") != -1) {window.location.href = $('body').find('[id="requestPath"]').val() + "admin/dangnhap/logout";}},
             url: $('#requestPath').val() + "admin/monanmenubuffet/OpenSuaMon",
             data: formData,
             dataType: 'html',
             type: 'POST',
             processData: false,
             contentType: false,
-            error: function (ex) {
-                console.log(ex);
-            },
         }).done(function (ketqua) {
             if (ketqua == "KHONGTONTAI") {
                 Swal.fire({

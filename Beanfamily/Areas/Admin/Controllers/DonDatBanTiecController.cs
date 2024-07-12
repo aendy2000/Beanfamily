@@ -13,6 +13,7 @@ using System.Net;
 
 namespace Beanfamily.Areas.Admin.Controllers
 {
+    [AdminLoginverification]
     public class DonDatBanTiecController : Controller
     {
         BeanfamilyEntities model = new BeanfamilyEntities();

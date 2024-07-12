@@ -1,8 +1,101 @@
-﻿
+﻿@model IEnumerable<Beanfamily.Models.HinhAnhBean>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Hình ảnh Bean";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Index</h2>
+<div class="pagetitle">
+    <div class="row">
+        <div class="col-md-12 col-12">
+            <h1>Hình Ảnh Bean</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="@Url.Action("index", "dashboard")">Bảng Điều Khiển</a></li>
+                    <li class="breadcrumb-item active">Hình Ảnh Bean</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div><!-- End Page Title -->
+<section class="section">
+    <div class="col-img-5">
+        <div class="img-item-add" style="cursor: pointer; display: flex; flex-direction: column; justify-content: center; align-items: center;
+       border-radius: 16px; background: #fff; border: 2px solid #dbdcff">
+            <img style="width: 70%; padding-top: 50px; height: auto" src="~/Content/AdminAreas/assets/img/default-hinhanhbean.png" />
+            <h6 style="padding-bottom: 40px; padding-top: 15px" class="fw-bold">
+                Thêm Hình Ảnh
+            </h6>
+        </div>
+        @foreach (var item in Model)
+        {
+            <div style="border-radius: 16px; " class="img-item-show">
+                <img id="hinhanhbean-show-@item.id" name="@item.id" data-src="@Url.Content(item.url)" style="width: 100%; height: auto; border-radius: 16px; " src="@Url.Content(item.url)" />
+            </div>
+        }
 
+    </div>
+</section>
+
+@if (Session["chophep-them"] != null)
+{
+    if (Convert.ToBoolean(Session["chophep-them"]) == true)
+    {
+        <!-- Sửa danh mục -->
+        <div class="modal fade" id="ThemHinhAnhModal" tabindex="-1">
+            <div class="modal-dialog  modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 id="TitleThemHinhAnhModal" class="modal-title">Thêm hình ảnh</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="content-ThemHinhAnhModal">
+                        <div class="row mb-3 ms-3 me-3 mt-2">
+                            <div class="col-12">
+                                <fieldset class="form-group">
+                                    <a class="btn btn-sm btn-primary mb-2" onclick="$('#pro-image').click()"><i class="bi bi-images me-1"></i> Tải lên hình ảnh</a> <small class="text-muted fst-italic">(Chọn 1 hoặc nhiều hình ảnh).</small>
+                                    <input accept="image/jpeg, image/png" type="file" id="pro-image" name="pro-image[]" style="display: none;" class="form-control" multiple>
+                                </fieldset>
+                                <div class="preview-images-zone form-control" style="height: 400px !important">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer mt-3">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                        <button id="btnLuuCapNhat" type="button" class="btn btn-primary">Lưu thông tin</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="~/Scripts/jquery-ui.js"></script>
+        <script src="~/Validation/HinhAnhBean/ThemHinhAnh.js"></script>
+    }
+}
+
+@if (Session["chophep-xoa"] != null)
+{
+    if (Convert.ToBoolean(Session["chophep-xoa"]) == true)
+    {
+        <!-- Sửa danh mục -->
+        <div class="modal fade" id="XemHinhAnhModal" tabindex="-1">
+            <div class="modal-dialog  modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 id="TitleXemHinhAnhModal" class="modal-title">Xem hình ảnh</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="content-XemHinhAnhModal" style="padding: 0; display: flex; justify-content: center;">
+                        <img id="show-img-xoa" name="" style="width: auto; max-height: 75vh; max-width: 100%" data-src="" src="" />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                        <button id="btnLuuXoa" type="button" class="btn btn-danger">Xóa ảnh</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="~/Validation/HinhAnhBean/XoaHinhAnh.js"></script>
+    }
+}

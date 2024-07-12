@@ -217,7 +217,7 @@
             formData.append('lstMotaBuoc', lstMota.substring(0, lstMota.length - 1));
             formData.append('lstCoHinh', lstCoHinh.substring(0, lstCoHinh.length - 1));
 
-            $.ajax({
+            $.ajax({error: function (a, xhr, c) {if (a.status == 403 && a.responseText.indexOf("SystemLoginAgain") != -1) {window.location.href = $('body').find('[id="requestPath"]').val() + "admin/dangnhap/logout";}},
                 url: $('#requestPath').val() + "admin/quytrinhtrongcay/themquytrinh",
                 data: formData,
                 dataType: 'html',

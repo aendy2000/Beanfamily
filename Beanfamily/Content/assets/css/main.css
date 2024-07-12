@@ -2257,3 +2257,53 @@ body {
         border: 3px solid #12634c !important;
     }
 
+.col-img-5 {
+    -webkit-column-count: 4;
+    -moz-column-count: 4;
+    column-count: 4;
+    transition: ease all .2s;
+}
+
+    .col-img-5 > div {
+        background: black;
+        width: 97%;
+        height: auto;
+        margin-bottom: 25px;
+        display: inline-block;
+        page-break-inside: avoid;
+    }
+
+    .col-img-5 .img-item-show {
+        cursor: pointer;
+        transition: ease all .2s;
+    }
+
+        .col-img-5 .img-item-show:hover {
+            transform: scale(1.05);
+        }
+
+.img-item-add {
+    transition: ease all .2s;
+}
+
+    .img-item-add:hover {
+        background: #dbdcff !important;
+    }
+
+    .img-item-add img {
+        transition: ease all .2s;
+    }
+
+    .img-item-add h6 {
+        transition: ease all .2s;
+    }
+
+
+    .img-item-add:hover img {
+        transform: scale(1.05);
+    }
+
+    .img-item-add:hover h6 {
+        margin-top: 10px;
+        padding-bottom: 30px !important;
+    }

@@ -3,6 +3,7 @@
     //Add hình ảnh tải lên
     document.getElementById('pro-image').addEventListener('change', readImage, false);
     $(".preview-images-zone").sortable();
+
     //Xóa hình ảnh
     $('body').on('click', '[id^="xoa-hinhanhsp-"]', function (e) {
         let fileName = $(this).attr('name');
@@ -100,16 +101,14 @@
             formData.append('trangthai', $('#trangthai').prop('checked'));
             formData.append('hienthi', $('#hienthi').prop('checked'));
 
-            $.ajax({
+            $.ajax({error: function (a, xhr, c) {if (a.status == 403 && a.responseText.indexOf("SystemLoginAgain") != -1) {window.location.href = $('body').find('[id="requestPath"]').val() + "admin/dangnhap/logout";}},
                 url: $('#requestPath').val() + "admin/monanmenuhangngay/themmon",
                 data: formData,
                 dataType: 'html',
                 type: 'POST',
                 processData: false,
                 contentType: false,
-                error: function (ex) {
-                    console.log(ex);
-                },
+                
             }).done(function (ketqua) {
                 if (ketqua == "SUCCESS") {
                     $('#btnluuthemMonAn').html('Lưu thông tin');

@@ -58,7 +58,7 @@
             else
                 formData.append('idPv', lstIdPv.substring(0, lstIdPv.length - 1));
 
-            $.ajax({
+            $.ajax({error: function (a, xhr, c) {if (a.status == 403 && a.responseText.indexOf("SystemLoginAgain") != -1) {window.location.href = $('body').find('[id="requestPath"]').val() + "admin/dangnhap/logout";}},
                 url: $('#requestPath').val() + "admin/dmcap1menutiecban/suadm",
                 data: formData,
                 dataType: 'html',

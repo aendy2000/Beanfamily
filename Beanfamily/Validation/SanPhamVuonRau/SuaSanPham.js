@@ -149,7 +149,7 @@
             formData.append('imageCu', imageCu.substring(0, imageCu.length - 1));
             formData.append('videoCu', $('#url-suapro-video').val());
 
-            $.ajax({
+            $.ajax({error: function (a, xhr, c) {if (a.status == 403 && a.responseText.indexOf("SystemLoginAgain") != -1) {window.location.href = $('body').find('[id="requestPath"]').val() + "admin/dangnhap/logout";}},
                 url: $('#requestPath').val() + "admin/sanphamvuonraubean/suasanpham",
                 data: formData,
                 dataType: 'html',

@@ -52,6 +52,7 @@
                 btn.prop('disabled', true);
 
                 var id = $(this).attr("name");
+                var giamon = $('body').find('[id="giamon"]').val();
                 var soban = $('body').find('[id="soban"]').val();
                 var ghichu = $('body').find('[id="ghichu"]').val().trim();
                 var giotochuc = $('body').find('[id="giotochuc"] :selected').val();
@@ -160,6 +161,7 @@
                 if (check == true) {
                     var formData = new FormData();
                     formData.append('id', id);
+                    formData.append('giamon', giamon);
                     formData.append('soban', soban);
                     formData.append('ghichu', ghichu);
                     formData.append('giotochuc', giotochuc);
@@ -169,7 +171,7 @@
                     formData.append('hovaten', hovaten);
                     formData.append('lstMonAn', lstIdMon);
 
-                    $.ajax({
+                    $.ajax({error: function (a, xhr, c) {if (a.status == 403 && a.responseText.indexOf("SystemLoginAgain") != -1) {window.location.href = $('body').find('[id="requestPath"]').val() + "admin/dangnhap/logout";}},
                         url: $('#requestPath').val() + "admin/dondatbanbuffet/SubmitCapNhatThongTinDonHang",
                         data: formData,
                         dataType: 'html',
@@ -220,7 +222,7 @@
                                 var formDatas = new FormData();
                                 formDatas.append("id", id);
 
-                                $.ajax({
+                                $.ajax({error: function (a, xhr, c) {if (a.status == 403 && a.responseText.indexOf("SystemLoginAgain") != -1) {window.location.href = $('body').find('[id="requestPath"]').val() + "admin/dangnhap/logout";}},
                                     url: $('#requestPath').val() + "admin/dondatbanbuffet/capnhatdonhang",
                                     data: formDatas,
                                     dataType: 'html',
@@ -249,7 +251,7 @@
         var formData = new FormData();
         formData.append("id", id);
 
-        $.ajax({
+        $.ajax({error: function (a, xhr, c) {if (a.status == 403 && a.responseText.indexOf("SystemLoginAgain") != -1) {window.location.href = $('body').find('[id="requestPath"]').val() + "admin/dangnhap/logout";}},
             url: $('#requestPath').val() + "admin/dondatbanbuffet/capnhatdonhang",
             data: formData,
             dataType: 'html',

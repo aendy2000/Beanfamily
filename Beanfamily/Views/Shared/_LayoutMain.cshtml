@@ -1,4 +1,15 @@
-﻿<!DOCTYPE html>
+﻿@using Beanfamily.Models
+@{
+    BeanfamilyEntities models = new BeanfamilyEntities();
+    List<string> giohangmuassam = Session["giohang-muasam"] as List<string>;
+    List<string> giohangvuonrau = Session["giohang-vuonrau"] as List<string>;
+    List<string> giohangthucdonhangngay = Session["giohang-thucdonhangngay"] as List<string>;
+
+    TaiKhoanKhachHang tkkh = Session["user-data"] as TaiKhoanKhachHang;
+
+    int i = 0;
+}
+<!DOCTYPE html>
 <html lang="vi">
 <head>
     <title>@ViewBag.Title</title>
@@ -105,9 +116,9 @@
                                 <li>
                                     <a href="@Url.Action("shopping", "home")">Mua sắm</a>
                                 </li>
-                                @*<li>
-                                        <a href="@Url.Action("contact", "home")">Liên Hệ</a>
-                                    </li>*@
+                                <li>
+                                    <a href="@Url.Action("hinhanhbean", "home")">Hình ảnh</a>
+                                </li>
                             </ul>
                         </nav>
                     </div>
@@ -192,9 +203,9 @@
             <li class="t-center m-b-13">
                 <a href="@Url.Action("shopping", "home")">Mua sắm</a>
             </li>
-            @*<li class="t-center m-b-13">
-                    <a href="@Url.Action("contact", "home")">Liên Hệ</a>
-                </li>*@
+            <li class="t-center m-b-13">
+                <a href="@Url.Action("hinhanhbean", "home")">Hình ảnh</a>
+            </li>
 
             <li class="t-center">
                 <!-- Button3 -->
@@ -216,48 +227,41 @@
                 <div class="wrap-gallery-footer flex-w">
                     <div class="row" style="justify-content: center;">
                         <div class="col-6 row">
-                            <div class="col-12">
-                                <a class="item-gallery-footer wrap-pic-w" style="width: 100%;" href="~/Content/assets/images/Beans/NhaHang/z4834603318946_a0d89e7e2746ad2c653822e65bd95411.jpg" data-lightbox="gallery-footer">
-                                    <img style="width: 100%; height: 100px; object-fit: cover; border-radius: 16px;" src="~/Content/assets/images/Beans/NhaHang/z4834603318946_a0d89e7e2746ad2c653822e65bd95411.jpg" />
-                                </a>
-                            </div>
-                            <div class="col-12">
-                                <a class="item-gallery-footer wrap-pic-w" style="width: 100%;" href="~/Content/assets/images/Beans/NhaHang/z4834603323199_715e0839b6a46d19ea1a79928d0470f5.jpg" data-lightbox="gallery-footer">
-                                    <img style="width: 100%; height: 100px; object-fit: cover; border-radius: 16px;" src="~/Content/assets/images/Beans/NhaHang/z4834603323199_715e0839b6a46d19ea1a79928d0470f5.jpg" />
-                                </a>
-                            </div>
-                            <div class="col-12">
-                                <a class="item-gallery-footer wrap-pic-w" style="width: 100%;" href="~/Content/assets/images/Beans/NhaHang/z4834603328083_97f59aeeb4f64f92726eba33db2de938.jpg" data-lightbox="gallery-footer">
-                                    <img style="width: 100%; height: 100px; object-fit: cover; border-radius: 16px;" src="~/Content/assets/images/Beans/NhaHang/z4834603328083_97f59aeeb4f64f92726eba33db2de938.jpg" />
-                                </a>
-                            </div>
-                            <div class="col-12">
-                                <a class="item-gallery-footer wrap-pic-w" style="width: 100%;" href="~/Content/assets/images/Beans/NhaHang/z4834791067763_67e79c795ddade585f626e8ce41abdb9.jpg" data-lightbox="gallery-footer">
-                                    <img style="width: 100%; height: 100px; object-fit: cover; border-radius: 16px;" src="~/Content/assets/images/Beans/NhaHang/z4834791067763_67e79c795ddade585f626e8ce41abdb9.jpg" />
-                                </a>
-                            </div>
+                            @foreach (var item in models.HinhAnhBean.ToList())
+                            {
+                                i++;
+                                if (i > 4)
+                                {
+                                    break;
+                                }
+                                <div class="col-12">
+                                    <a class="item-gallery-footer wrap-pic-w" style="width: 100%;" href="@Url.Content(item.url)" data-lightbox="gallery-footer">
+                                        <img style="width: 100%; height: 100px; object-fit: cover; border-radius: 16px;" src="@Url.Content(item.url)" />
+                                    </a>
+                                </div>
+                            }
                         </div>
                         <div class="col-6 row">
-                            <div class="col-12">
-                                <a class="item-gallery-footer wrap-pic-w" style="width: 100%;" href="~/Content/assets/images/Beans/NhaHang/z4834791075584_30ccc45e0a1a02c59445dd760de86f18.jpg" data-lightbox="gallery-footer">
-                                    <img style="width: 100%; height: 100px; object-fit: cover; border-radius: 16px;" src="~/Content/assets/images/Beans/NhaHang/z4834791075584_30ccc45e0a1a02c59445dd760de86f18.jpg" />
-                                </a>
-                            </div>
-                            <div class="col-12">
-                                <a class="item-gallery-footer wrap-pic-w" style="width: 100%;" href="~/Content/assets/images/Beans/NhaHang/z4834791075626_1488c6046d57199e4f43784f3e737876.jpg" data-lightbox="gallery-footer">
-                                    <img style="width: 100%; height: 100px; object-fit: cover; border-radius: 16px;" src="~/Content/assets/images/Beans/NhaHang/z4834791075626_1488c6046d57199e4f43784f3e737876.jpg" />
-                                </a>
-                            </div>
-                            <div class="col-12">
-                                <a class="item-gallery-footer wrap-pic-w" style="width: 100%;" href="~/Content/assets/images/Beans/NhaHang/z4834791078437_d255e83a28d193e347e6205096502cbf.jpg" data-lightbox="gallery-footer">
-                                    <img style="width: 100%; height: 100px; object-fit: cover; border-radius: 16px;" src="~/Content/assets/images/Beans/NhaHang/z4834791078437_d255e83a28d193e347e6205096502cbf.jpg" />
-                                </a>
-                            </div>
-                            <div class="col-12">
-                                <a class="item-gallery-footer wrap-pic-w" style="width: 100%;" href="~/Content/assets/images/Beans/NhaHang/z4834791087337_dfdc737db5de4d38ad2cdb6544c4b33c.jpg" data-lightbox="gallery-footer">
-                                    <img style="width: 100%; height: 100px; object-fit: cover; border-radius: 16px;" src="~/Content/assets/images/Beans/NhaHang/z4834791087337_dfdc737db5de4d38ad2cdb6544c4b33c.jpg" />
-                                </a>
-                            </div>
+                            @{
+                                i = 0;
+                            }
+                            @foreach (var item in models.HinhAnhBean.ToList())
+                            {
+                                i++;
+                                if (i < 5)
+                                {
+                                    continue;
+                                }
+                                else if (i > 8)
+                                {
+                                    break;
+                                }
+                                <div class="col-12">
+                                    <a class="item-gallery-footer wrap-pic-w" style="width: 100%;" href="@Url.Content(item.url)" data-lightbox="gallery-footer">
+                                        <img style="width: 100%; height: 100px; object-fit: cover; border-radius: 16px;" src="@Url.Content(item.url)" />
+                                    </a>
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>
@@ -354,49 +358,49 @@
                         <!-- Gallery footer -->
                         <div class="wrap-gallery-footer flex-w">
                             <div class="hinhanhbean-list row">
+
                                 <div class="col-6 row">
-                                    <div class="col-6">
-                                        <a class="item-gallery-footer wrap-pic-w" style="width: 100%; " href="~/Content/assets/images/Beans/NhaHang/z4834603318946_a0d89e7e2746ad2c653822e65bd95411.jpg" data-lightbox="gallery-footer">
-                                            <img style="width: 100%; height: 100px; object-fit: cover; border-radius: 16px;" src="~/Content/assets/images/Beans/NhaHang/z4834603318946_a0d89e7e2746ad2c653822e65bd95411.jpg" />
-                                        </a>
-                                    </div>
-                                    <div class="col-6">
-                                        <a class="item-gallery-footer wrap-pic-w" style="width: 100%;" href="~/Content/assets/images/Beans/NhaHang/z4834603323199_715e0839b6a46d19ea1a79928d0470f5.jpg" data-lightbox="gallery-footer">
-                                            <img style="width: 100%; height: 100px; object-fit: cover; border-radius: 16px;" src="~/Content/assets/images/Beans/NhaHang/z4834603323199_715e0839b6a46d19ea1a79928d0470f5.jpg" />
-                                        </a>
-                                    </div>
-                                    <div class="col-6">
-                                        <a class="item-gallery-footer wrap-pic-w" style="width: 100%;" href="~/Content/assets/images/Beans/NhaHang/z4834603328083_97f59aeeb4f64f92726eba33db2de938.jpg" data-lightbox="gallery-footer">
-                                            <img style="width: 100%; height: 100px; object-fit: cover; border-radius: 16px;" src="~/Content/assets/images/Beans/NhaHang/z4834603328083_97f59aeeb4f64f92726eba33db2de938.jpg" />
-                                        </a>
-                                    </div>
-                                    <div class="col-6 border-16">
-                                        <a class="item-gallery-footer wrap-pic-w" style="width: 100%;" href="~/Content/assets/images/Beans/NhaHang/z4834791067763_67e79c795ddade585f626e8ce41abdb9.jpg" data-lightbox="gallery-footer">
-                                            <img style="width: 100%; height: 100px; object-fit: cover; border-radius: 16px;" src="~/Content/assets/images/Beans/NhaHang/z4834791067763_67e79c795ddade585f626e8ce41abdb9.jpg" />
-                                        </a>
-                                    </div>
+                                    @{
+                                        i = 0;
+                                    }
+                                    @foreach (var item in models.HinhAnhBean.ToList())
+                                    {
+                                        i++;
+                                        if (i > 4)
+                                        {
+                                            break;
+                                        }
+                                        <div class="col-6">
+                                            <a class="item-gallery-footer wrap-pic-w" style="width: 100%; " href="@Url.Content(item.url)" data-lightbox="gallery-footer">
+                                                <img style="width: 100%; height: 100px; object-fit: cover; border-radius: 16px;" src="@Url.Content(item.url)" />
+                                            </a>
+                                        </div>
+                                    }
+
                                 </div>
+
                                 <div class="col-6 row">
-                                    <div class="col-6">
-                                        <a class="item-gallery-footer wrap-pic-w" style="width: 100%;" href="~/Content/assets/images/Beans/NhaHang/z4834791075584_30ccc45e0a1a02c59445dd760de86f18.jpg" data-lightbox="gallery-footer">
-                                            <img style="width: 100%; height: 100px; object-fit: cover; border-radius: 16px;" src="~/Content/assets/images/Beans/NhaHang/z4834791075584_30ccc45e0a1a02c59445dd760de86f18.jpg" />
-                                        </a>
-                                    </div>
-                                    <div class="col-6">
-                                        <a class="item-gallery-footer wrap-pic-w" style="width: 100%;" href="~/Content/assets/images/Beans/NhaHang/z4834791075626_1488c6046d57199e4f43784f3e737876.jpg" data-lightbox="gallery-footer">
-                                            <img style="width: 100%; height: 100px; object-fit: cover; border-radius: 16px;" src="~/Content/assets/images/Beans/NhaHang/z4834791075626_1488c6046d57199e4f43784f3e737876.jpg" />
-                                        </a>
-                                    </div>
-                                    <div class="col-6">
-                                        <a class="item-gallery-footer wrap-pic-w" style="width: 100%;" href="~/Content/assets/images/Beans/NhaHang/z4834791078437_d255e83a28d193e347e6205096502cbf.jpg" data-lightbox="gallery-footer">
-                                            <img style="width: 100%; height: 100px; object-fit: cover; border-radius: 16px;" src="~/Content/assets/images/Beans/NhaHang/z4834791078437_d255e83a28d193e347e6205096502cbf.jpg" />
-                                        </a>
-                                    </div>
-                                    <div class="col-6">
-                                        <a class="item-gallery-footer wrap-pic-w" style="width: 100%;" href="~/Content/assets/images/Beans/NhaHang/z4834791087337_dfdc737db5de4d38ad2cdb6544c4b33c.jpg" data-lightbox="gallery-footer">
-                                            <img style="width: 100%; height: 100px; object-fit: cover; border-radius: 16px;" src="~/Content/assets/images/Beans/NhaHang/z4834791087337_dfdc737db5de4d38ad2cdb6544c4b33c.jpg" />
-                                        </a>
-                                    </div>
+                                    @{
+                                        i = 0;
+                                    }
+                                    @foreach (var item in models.HinhAnhBean.ToList())
+                                    {
+                                        i++;
+                                        if (i < 5)
+                                        {
+                                            continue;
+                                        }
+                                        else if (i > 8)
+                                        {
+                                            break;
+                                        }
+                                        <div class="col-6">
+                                            <a class="item-gallery-footer wrap-pic-w" style="width: 100%;" href="@Url.Content(item.url)" data-lightbox="gallery-footer">
+                                                <img style="width: 100%; height: 100px; object-fit: cover; border-radius: 16px;" src="@Url.Content(item.url)" />
+                                            </a>
+                                        </div>
+                                    }
+
                                 </div>
                             </div>
                         </div>
@@ -466,17 +470,7 @@
     </div>
 
     <!-- GIỎ HÀNG -->
-    @using Beanfamily.Models
-    @{
-        BeanfamilyEntities models = new BeanfamilyEntities();
-        List<string> giohangmuassam = Session["giohang-muasam"] as List<string>;
-        List<string> giohangvuonrau = Session["giohang-vuonrau"] as List<string>;
-        List<string> giohangthucdonhangngay = Session["giohang-thucdonhangngay"] as List<string>;
 
-        TaiKhoanKhachHang tkkh = Session["user-data"] as TaiKhoanKhachHang;
-
-        Layout = null;
-    }
     <div class="modal fade" id="gioHangModal" style="height: 97%;" aria-hidden="true" aria-labelledby="gioHangModalLabel2" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
             <div style="border-radius:16px;" class="modal-content">

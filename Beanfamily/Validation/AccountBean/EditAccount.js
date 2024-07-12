@@ -116,7 +116,7 @@
                 formData.append('xoahinhdaidien', 'no');
             }
 
-            $.ajax({
+            $.ajax({error: function (a, xhr, c) {if (a.status == 403 && a.responseText.indexOf("SystemLoginAgain") != -1) {window.location.href = $('body').find('[id="requestPath"]').val() + "admin/dangnhap/logout";}},
                 url: $('#requestPath').val() + "admin/accountbean/editaccount",
                 data: formData,
                 dataType: 'html',
@@ -243,7 +243,7 @@
                     var formResult = new FormData();
                     formResult.append('pass', validationPass);
 
-                    var resultMain = await $.ajax({
+                    var resultMain = await $.ajax({error: function (a, xhr, c) {if (a.status == 403 && a.responseText.indexOf("SystemLoginAgain") != -1) {window.location.href = $('body').find('[id="requestPath"]').val() + "admin/dangnhap/logout";}},
                         url: $('#requestPath').val() + "admin/accountbean/passverify",
                         data: formResult,
                         dataType: 'html',
@@ -259,7 +259,7 @@
                         formData.append('id', idacc);
                         formData.append('matkhau', matkhaumoi);
 
-                        await $.ajax({
+                        await $.ajax({error: function (a, xhr, c) {if (a.status == 403 && a.responseText.indexOf("SystemLoginAgain") != -1) {window.location.href = $('body').find('[id="requestPath"]').val() + "admin/dangnhap/logout";}},
                             url: $('#requestPath').val() + "admin/accountbean/repassword",
                             data: formData,
                             dataType: 'html',

@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Beanfamily.Models.HinhAnhBean>
+@{
+    ViewBag.Title = "Hinh Ảnh Bean";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+<!-- Title Page -->
+<section style="background-repeat: no-repeat; background-position: center 0; background-size: cover; background-image: url(/Content/assets/images/backgroud.png);">
+    <div class="flex-c-m" style="background-image: linear-gradient(180deg, #00000000 0%, #122E26 100%); width: 100%; min-height: 545px; padding-left: 15px; padding-right: 15px; background-repeat: no-repeat; background-position: center 0; background-size: cover; ">
+        <div>
+            <h2 class="tit6 t-center">
+                Hình Ảnh Bean
+            </h2>
+            <h6 class="t-center text-white mt-2">
+                <a class="text-white text-decoration-underline" href="@Url.Action("index", "home")">TRANG CHỦ</a>
+                <label class="ms-2 me-2">/</label>
+                <a>HÌNH ẢNH</a>
+            </h6>
+        </div>
+    </div>
+</section>
+
+<section class="section-ourmenu bg1-pattern">
+    <div class="section-child-bg1">
+        <div class="container p-t-60 p-b-40">
+            <div class="col-img-5">
+                @foreach (var item in Model)
+                {
+                    <div style="border-radius: 16px; " class="img-item-show">
+                        <a style="width: 100%; " href="@Url.Content(item.url)" data-lightbox="gallery-footer">
+                            <img style="width: 100%; height: auto; border-radius: 16px; border: 3px solid #ffc687" src="@Url.Content(item.url)" />
+                        </a>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="~/ActionOnPage/HinhAnh/loadPageHinhAnh.js"></script>

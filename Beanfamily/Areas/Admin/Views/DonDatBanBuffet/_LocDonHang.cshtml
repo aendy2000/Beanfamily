@@ -211,6 +211,20 @@
                     <td class="text-nowrap">
                         <ul style="margin-left: -2rem; margin-bottom: 0;">
                             <li>
+                                @if (item.giamon == 0)
+                                {
+                                    <small class="me-4 text-danger">
+                                        <b>Chưa thêm giá / Miễn phí</b>
+                                    </small>
+                                }
+                                else
+                                {
+                                    <small class="me-4">
+                                        <b>Tổng giá món: <span class="text-warning">@item.giamon.ToString("0,0")đ</span></b>
+                                    </small>
+                                }
+                            </li>
+                            <li>
                                 <small class="me-4">
                                     <b>Tổng thanh toán:</b> @((item.giamon +
                                 item.ChiTietDonHangDanhMucPhucVuMenuBuffet.Where(w => w.giatheosoban == true).Sum(s => s.gia * item.soban) +

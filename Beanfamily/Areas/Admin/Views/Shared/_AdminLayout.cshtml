@@ -505,7 +505,7 @@
             @if (Session["hab"] != null)
             {
                 <li class="nav-item">
-                    <a class="nav-link @Session["active-hab"].ToString().Split('#')[0]" href="index.html">
+                    <a class="nav-link @Session["active-hab"].ToString().Split('#')[0]" href="@Url.Action("index", "hinhanhbean")">
                         <i class="bi bi-images"></i>
                         <span>Hình Ảnh Bean</span>
                     </a>

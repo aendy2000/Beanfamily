@@ -7,7 +7,7 @@
 
         var formData = new FormData();
         formData.append('id', id);
-        $.ajax({
+        $.ajax({error: function (a, xhr, c) {if (a.status == 403 && a.responseText.indexOf("SystemLoginAgain") != -1) {window.location.href = $('body').find('[id="requestPath"]').val() + "admin/dangnhap/logout";}},
             url: $('#requestPath').val() + "admin/dondatbanbuffet/CapNhatDonHang",
             data: formData,
             dataType: 'html',
@@ -58,7 +58,7 @@
         var formData = new FormData();
         formData.append('id', id);
 
-        $.ajax({
+        $.ajax({error: function (a, xhr, c) {if (a.status == 403 && a.responseText.indexOf("SystemLoginAgain") != -1) {window.location.href = $('body').find('[id="requestPath"]').val() + "admin/dangnhap/logout";}},
             url: $('#requestPath').val() + "admin/dondatbanbuffet/thanhtoan",
             data: formData,
             dataType: 'html',
@@ -111,7 +111,7 @@
         var formData = new FormData();
         formData.append('id', id);
 
-        $.ajax({
+        $.ajax({error: function (a, xhr, c) {if (a.status == 403 && a.responseText.indexOf("SystemLoginAgain") != -1) {window.location.href = $('body').find('[id="requestPath"]').val() + "admin/dangnhap/logout";}},
             url: $('#requestPath').val() + "admin/dondatbanbuffet/capnhatthongtindonhang",
             data: formData,
             dataType: 'html',
@@ -190,7 +190,7 @@
                 formData.append('trangthai', trangthai);
                 formData.append('ghichu', ghichu);
 
-                $.ajax({
+                $.ajax({error: function (a, xhr, c) {if (a.status == 403 && a.responseText.indexOf("SystemLoginAgain") != -1) {window.location.href = $('body').find('[id="requestPath"]').val() + "admin/dangnhap/logout";}},
                     url: $('#requestPath').val() + "admin/dondatbanbuffet/submitcapnhatdonhang",
                     data: formData,
                     dataType: 'html',

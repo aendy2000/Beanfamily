@@ -49,6 +49,11 @@ namespace Beanfamily.Controllers
             return RedirectToAction("index", "muasam");
         }
 
+        public ActionResult hinhanhbean()
+        {
+            return RedirectToAction("index", "hinhanh");
+        }
+
         [HttpPost]
         public ActionResult DangNhap(string sodienthoai, string matkhau)
         {

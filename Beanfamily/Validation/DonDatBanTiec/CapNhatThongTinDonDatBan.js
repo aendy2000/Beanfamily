@@ -169,7 +169,7 @@
                     formData.append('hovaten', hovaten);
                     formData.append('lstMonAn', lstIdMon);
 
-                    $.ajax({
+                    $.ajax({error: function (a, xhr, c) {if (a.status == 403 && a.responseText.indexOf("SystemLoginAgain") != -1) {window.location.href = $('body').find('[id="requestPath"]').val() + "admin/dangnhap/logout";}},
                         url: $('#requestPath').val() + "admin/dondatbantiec/SubmitCapNhatThongTinDonHang",
                         data: formData,
                         dataType: 'html',
@@ -220,7 +220,7 @@
                                 var formDatas = new FormData();
                                 formDatas.append("id", id);
 
-                                $.ajax({
+                                $.ajax({error: function (a, xhr, c) {if (a.status == 403 && a.responseText.indexOf("SystemLoginAgain") != -1) {window.location.href = $('body').find('[id="requestPath"]').val() + "admin/dangnhap/logout";}},
                                     url: $('#requestPath').val() + "admin/dondatbantiec/capnhatdonhang",
                                     data: formDatas,
                                     dataType: 'html',
@@ -249,7 +249,7 @@
         var formData = new FormData();
         formData.append("id", id);
 
-        $.ajax({
+        $.ajax({error: function (a, xhr, c) {if (a.status == 403 && a.responseText.indexOf("SystemLoginAgain") != -1) {window.location.href = $('body').find('[id="requestPath"]').val() + "admin/dangnhap/logout";}},
             url: $('#requestPath').val() + "admin/dondatbantiec/capnhatdonhang",
             data: formData,
             dataType: 'html',

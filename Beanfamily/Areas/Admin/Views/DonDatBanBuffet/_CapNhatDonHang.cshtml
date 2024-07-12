@@ -155,7 +155,20 @@
                                 @Model.ChiTietDonHangSanPhamMenuBuffet.Count() món
                             </div>
                             <div class="col-6 mb-1 text-dark">
-                                Phục vụ tùy chọn:
+                                Tổng giá món:
+                            </div>
+                            <div class="col-6 mb-1 text-end text-dark">
+                                @if (Model.giamon == 0)
+                                {
+                                    <span class="small">Chưa thêm giá / Miễn phí</span>
+                                }
+                                else
+                                {
+                                    <span>@Model.giamon.ToString("0,0")đ</span>
+                                }
+                            </div>
+                            <div class="col-6 mb-1 text-dark">
+                                Phí phục vụ:
                             </div>
                             <div class="col-6 mb-4 text-end text-dark">
                                 @foreach (var item in Model.ChiTietDonHangDanhMucPhucVuMenuBuffet.ToList())
@@ -280,7 +293,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                 </div>
                             </div>
                         </div>

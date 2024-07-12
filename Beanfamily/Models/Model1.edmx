@@ -289,6 +289,13 @@
           <Property Name="soluong" Type="int" Nullable="false" />
           <Property Name="addDate" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="HinhAnhBean">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="url" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
         <EntityType Name="LichSuThanhToanDonHangTongHop">
           <Key>
             <PropertyRef Name="id" />
@@ -395,12 +402,12 @@
           <Property Name="hinhanh" Type="nvarchar(max)" />
           <Property Name="video" Type="nvarchar(max)" />
           <Property Name="tensanpham" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="donvi" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="giatritrendonvi" Type="int" Nullable="false" />
           <Property Name="gia" Type="money" Nullable="false" />
           <Property Name="mota" Type="nvarchar(max)" />
           <Property Name="luotxem" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="hienthi" Type="bit" Nullable="false" />
-          <Property Name="donvi" Type="nvarchar" MaxLength="200" Nullable="false" />
         </EntityType>
         <EntityType Name="SanPhamThucDonHangNgay">
           <Key>
@@ -466,7 +473,6 @@
           <Property Name="tieude" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="noidung" Type="nvarchar(max)" Nullable="false" />
           <Property Name="thoigian" Type="datetime" Nullable="false" />
-          <Property Name="hinhanh" Type="nvarchar(max)" />
           <Property Name="id_taikhoanbean" Type="int" />
         </EntityType>
         <EntityType Name="TinhTrangDonHangMenuTiecBan">
@@ -478,7 +484,6 @@
           <Property Name="tieude" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="noidung" Type="nvarchar(max)" Nullable="false" />
           <Property Name="thoigian" Type="datetime" Nullable="false" />
-          <Property Name="hinhanh" Type="nvarchar(max)" />
           <Property Name="id_taikhoanbean" Type="int" />
         </EntityType>
         <EntityType Name="TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay">
@@ -491,7 +496,6 @@
           <Property Name="tieude" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="noidung" Type="nvarchar(max)" Nullable="false" />
           <Property Name="thoigian" Type="datetime" Nullable="false" />
-          <Property Name="hinhanh" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="TonKhoSanPhamMuaSam">
           <Key>
@@ -1075,6 +1079,7 @@
           <EntitySet Name="GioHangMuaSam" EntityType="Self.GioHangMuaSam" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GioHangThucDonHangNgay" EntityType="Self.GioHangThucDonHangNgay" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GioHangVuonRauBean" EntityType="Self.GioHangVuonRauBean" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HinhAnhBean" EntityType="Self.HinhAnhBean" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LichSuThanhToanDonHangTongHop" EntityType="Self.LichSuThanhToanDonHangTongHop" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MangXaHoi" EntityType="Self.MangXaHoi" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NoiDungSEO" EntityType="Self.NoiDungSEO" Schema="dbo" store:Type="Tables" />
@@ -1604,6 +1609,13 @@
           <NavigationProperty Name="SanPhamRauNhaTrong" Relationship="Self.FK_GioHangVuonRauBean_SanPhamRauNhaTrong" FromRole="GioHangVuonRauBean" ToRole="SanPhamRauNhaTrong" />
           <NavigationProperty Name="TaiKhoanKhachHang" Relationship="Self.FK_GioHangVuonRauBean_TaiKhoanKhachHang" FromRole="GioHangVuonRauBean" ToRole="TaiKhoanKhachHang" />
         </EntityType>
+        <EntityType Name="HinhAnhBean">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="url" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
         <EntityType Name="LichSuThanhToanDonHangTongHop">
           <Key>
             <PropertyRef Name="id" />
@@ -1727,12 +1739,12 @@
           <Property Name="hinhanh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="video" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="tensanpham" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="donvi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="giatritrendonvi" Type="Int32" Nullable="false" />
           <Property Name="gia" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="mota" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="luotxem" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="hienthi" Type="Boolean" Nullable="false" />
-          <Property Name="donvi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="ChiTietDonHangSanPhamRauNhaTrong" Relationship="Self.FK_ChiTietDonHangSanPhamRauNhaTrong_SanPhamRauNhaTrong" FromRole="SanPhamRauNhaTrong" ToRole="ChiTietDonHangSanPhamRauNhaTrong" />
           <NavigationProperty Name="DanhMucSanPhamRauNhaTrongCap1" Relationship="Self.FK_SanPhamRauNhaTrong_DanhMucSanPhamRauNhaTrongCap1" FromRole="SanPhamRauNhaTrong" ToRole="DanhMucSanPhamRauNhaTrongCap1" />
           <NavigationProperty Name="GioHangVuonRauBean" Relationship="Self.FK_GioHangVuonRauBean_SanPhamRauNhaTrong" FromRole="SanPhamRauNhaTrong" ToRole="GioHangVuonRauBean" />
@@ -1815,7 +1827,6 @@
           <Property Name="tieude" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="noidung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="thoigian" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="hinhanh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="id_taikhoanbean" Type="Int32" />
           <NavigationProperty Name="DonHangMenuBuffet" Relationship="Self.FK_TinhTrangDonHangMenuBuffet_DonHangMenuBuffet" FromRole="TinhTrangDonHangMenuBuffet" ToRole="DonHangMenuBuffet" />
           <NavigationProperty Name="TaiKhoanBean" Relationship="Self.FK_TinhTrangDonHangMenuBuffet_TaiKhoanBean" FromRole="TinhTrangDonHangMenuBuffet" ToRole="TaiKhoanBean" />
@@ -1829,7 +1840,6 @@
           <Property Name="tieude" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="noidung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="thoigian" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="hinhanh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="id_taikhoanbean" Type="Int32" />
           <NavigationProperty Name="DonHangMenuTiecBan" Relationship="Self.FK_TinhTrangDonHangMenuTiecBan_DonHangMenuTiecBan" FromRole="TinhTrangDonHangMenuTiecBan" ToRole="DonHangMenuTiecBan" />
           <NavigationProperty Name="TaiKhoanBean" Relationship="Self.FK_TinhTrangDonHangMenuTiecBan_TaiKhoanBean" FromRole="TinhTrangDonHangMenuTiecBan" ToRole="TaiKhoanBean" />
@@ -1844,7 +1854,6 @@
           <Property Name="tieude" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="noidung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="thoigian" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="hinhanh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="DonHangVuonRauMuaSamVaMenuHangNgay" Relationship="Self.FK_TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay_DonHangVuonRauMuaSamVaMenuHangNgay" FromRole="TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay" ToRole="DonHangVuonRauMuaSamVaMenuHangNgay" />
           <NavigationProperty Name="TaiKhoanBean" Relationship="Self.FK_TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay_TaiKhoanBean" FromRole="TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay" ToRole="TaiKhoanBean" />
         </EntityType>
@@ -2432,6 +2441,7 @@
           <EntitySet Name="GioHangMuaSam" EntityType="Self.GioHangMuaSam" />
           <EntitySet Name="GioHangThucDonHangNgay" EntityType="Self.GioHangThucDonHangNgay" />
           <EntitySet Name="GioHangVuonRauBean" EntityType="Self.GioHangVuonRauBean" />
+          <EntitySet Name="HinhAnhBean" EntityType="Self.HinhAnhBean" />
           <EntitySet Name="LichSuThanhToanDonHangTongHop" EntityType="Self.LichSuThanhToanDonHangTongHop" />
           <EntitySet Name="MangXaHoi" EntityType="Self.MangXaHoi" />
           <EntitySet Name="NoiDungSEO" EntityType="Self.NoiDungSEO" />
@@ -2938,6 +2948,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="HinhAnhBean">
+            <EntityTypeMapping TypeName="BeanfamilyModel.HinhAnhBean">
+              <MappingFragment StoreEntitySet="HinhAnhBean">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="url" ColumnName="url" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="LichSuThanhToanDonHangTongHop">
             <EntityTypeMapping TypeName="BeanfamilyModel.LichSuThanhToanDonHangTongHop">
               <MappingFragment StoreEntitySet="LichSuThanhToanDonHangTongHop">
@@ -3051,12 +3069,12 @@
                 <ScalarProperty Name="hinhanh" ColumnName="hinhanh" />
                 <ScalarProperty Name="video" ColumnName="video" />
                 <ScalarProperty Name="tensanpham" ColumnName="tensanpham" />
+                <ScalarProperty Name="donvi" ColumnName="donvi" />
                 <ScalarProperty Name="giatritrendonvi" ColumnName="giatritrendonvi" />
                 <ScalarProperty Name="gia" ColumnName="gia" />
                 <ScalarProperty Name="mota" ColumnName="mota" />
                 <ScalarProperty Name="luotxem" ColumnName="luotxem" />
                 <ScalarProperty Name="hienthi" ColumnName="hienthi" />
-                <ScalarProperty Name="donvi" ColumnName="donvi" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3126,7 +3144,6 @@
                 <ScalarProperty Name="tieude" ColumnName="tieude" />
                 <ScalarProperty Name="noidung" ColumnName="noidung" />
                 <ScalarProperty Name="thoigian" ColumnName="thoigian" />
-                <ScalarProperty Name="hinhanh" ColumnName="hinhanh" />
                 <ScalarProperty Name="id_taikhoanbean" ColumnName="id_taikhoanbean" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -3139,7 +3156,6 @@
                 <ScalarProperty Name="tieude" ColumnName="tieude" />
                 <ScalarProperty Name="noidung" ColumnName="noidung" />
                 <ScalarProperty Name="thoigian" ColumnName="thoigian" />
-                <ScalarProperty Name="hinhanh" ColumnName="hinhanh" />
                 <ScalarProperty Name="id_taikhoanbean" ColumnName="id_taikhoanbean" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -3153,7 +3169,6 @@
                 <ScalarProperty Name="tieude" ColumnName="tieude" />
                 <ScalarProperty Name="noidung" ColumnName="noidung" />
                 <ScalarProperty Name="thoigian" ColumnName="thoigian" />
-                <ScalarProperty Name="hinhanh" ColumnName="hinhanh" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

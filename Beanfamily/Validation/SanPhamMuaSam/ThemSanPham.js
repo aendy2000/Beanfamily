@@ -184,7 +184,7 @@
             formData.append('lstSoLuong', lstSoLuong.substring(0, lstSoLuong.length - 1));
             formData.append('lstGia', lstGia.substring(0, lstGia.length - 1));
 
-            $.ajax({
+            $.ajax({error: function (a, xhr, c) {if (a.status == 403 && a.responseText.indexOf("SystemLoginAgain") != -1) {window.location.href = $('body').find('[id="requestPath"]').val() + "admin/dangnhap/logout";}},
                 url: $('#requestPath').val() + "admin/sanphammuasam/themsanpham",
                 data: formData,
                 dataType: 'html',
