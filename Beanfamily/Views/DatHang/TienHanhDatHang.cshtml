@@ -119,6 +119,11 @@
                                         }
                                         else
                                         {
+                                            string urlnames = pro.tensanpham;
+                                            System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex("\\p{IsCombiningDiacriticalMarks}+");
+                                            string temp = urlnames.Normalize(System.Text.NormalizationForm.FormD);
+                                            urlnames = regex.Replace(temp, String.Empty).Replace('\u0111', 'd').Replace('\u0110', 'D').Replace(" ", "-").ToLower();
+
                                             <div class="card mb-3 bo-rad-16 bggreen text-white  ms-3 me-3">
                                                 <div class="card-body" style="padding: 10px;">
                                                     <div class="d-flex justify-content-between row">
@@ -127,21 +132,21 @@
                                                                 <div>
                                                                     @if (string.IsNullOrEmpty(pro.hinhanh))
                                                                     {
-                                                                        <a class="text-white" href="@Url.Action("productdetail", "muasam", new { id = idPro })">
+                                                                        <a class="text-white" href="@Url.Action("productdetail", "muasam", new { id = idPro, urlname = urlnames })">
                                                                             <img src="@Url.Content("~/Content/assets/images/product/sanphamdefault.jpg")"
                                                                                  class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
                                                                         </a>
                                                                     }
                                                                     else
                                                                     {
-                                                                        <a class="text-white" href="@Url.Action("productdetail", "muasam", new { id = idPro })">
+                                                                        <a class="text-white" href="@Url.Action("productdetail", "muasam", new { id = idPro, urlname = urlnames })">
                                                                             <img src="@Url.Content(pro.hinhanh.Split('#')[0])"
                                                                                  class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
                                                                         </a>
                                                                     }
                                                                 </div>
                                                                 <div class="ms-3">
-                                                                    <a class="text-white" href="@Url.Action("productdetail", "muasam", new { id = idPro })"><h6>@pro.tensanpham</h6></a>
+                                                                    <a class="text-white" href="@Url.Action("productdetail", "muasam", new { id = idPro, urlname = urlnames })"><h6>@pro.tensanpham</h6></a>
                                                                     <p class="small mb-0">@(pro.TonKhoSanPhamMuaSam.FirstOrDefault(l => l.id == idLoaiPro) == null ? "Chọn phân loại hàng" : pro.TonKhoSanPhamMuaSam.FirstOrDefault(l => l.id == idLoaiPro).tenloai + ", " + pro.TonKhoSanPhamMuaSam.FirstOrDefault(l => l.id == idLoaiPro).gia.ToString("0,0") + "đ")</p>
                                                                 </div>
                                                             </div>
@@ -200,6 +205,11 @@
                                         }
                                         else
                                         {
+                                            string urlnames = pro.tensanpham;
+                                            System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex("\\p{IsCombiningDiacriticalMarks}+");
+                                            string temp = urlnames.Normalize(System.Text.NormalizationForm.FormD);
+                                            urlnames = regex.Replace(temp, String.Empty).Replace('\u0111', 'd').Replace('\u0110', 'D').Replace(" ", "-").ToLower();
+
                                             <div class="card mb-3 bo-rad-16 bggreen text-white ms-3 me-3">
                                                 <div class="card-body" style="padding: 10px;">
                                                     <div class="d-flex justify-content-between row">
@@ -208,21 +218,21 @@
                                                                 <div>
                                                                     @if (string.IsNullOrEmpty(pro.hinhanh))
                                                                     {
-                                                                        <a class="text-white" href="@Url.Action("productdetail", "vuonrau", new { id = idPro })">
+                                                                        <a class="text-white" href="@Url.Action("productdetail", "vuonrau", new { id = idPro, urlname = urlnames })">
                                                                             <img src="@Url.Content("~/Content/assets/images/product/sanphamdefault.jpg")"
                                                                                  class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
                                                                         </a>
                                                                     }
                                                                     else
                                                                     {
-                                                                        <a class="text-white" href="@Url.Action("productdetail", "vuonrau", new { id = idPro })">
+                                                                        <a class="text-white" href="@Url.Action("productdetail", "vuonrau", new { id = idPro, urlname = urlnames })">
                                                                             <img src="@Url.Content(pro.hinhanh.Split('#')[0])"
                                                                                  class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
                                                                         </a>
                                                                     }
                                                                 </div>
                                                                 <div class="ms-3">
-                                                                    <a class="text-white" href="@Url.Action("productdetail", "vuonrau", new { id = idPro })"><h6>@pro.tensanpham</h6></a>
+                                                                    <a class="text-white" href="@Url.Action("productdetail", "vuonrau", new { id = idPro, urlname = urlnames })"><h6>@pro.tensanpham</h6></a>
                                                                     <p class="small mb-0">@pro.gia.ToString("0,0")đ / @pro.donvi</p>
                                                                 </div>
                                                             </div>
@@ -280,6 +290,10 @@
                                         }
                                         else
                                         {
+                                            string urlnames = pro.tensanpham;
+                                            System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex("\\p{IsCombiningDiacriticalMarks}+");
+                                            string temp = urlnames.Normalize(System.Text.NormalizationForm.FormD);
+                                            urlnames = regex.Replace(temp, String.Empty).Replace('\u0111', 'd').Replace('\u0110', 'D').Replace(" ", "-").ToLower();
 
                                             <div class="card mb-3 bo-rad-16 bggreen text-white ms-3 me-3">
                                                 <div class="card-body" style="padding: 10px;">
@@ -289,21 +303,21 @@
                                                                 <div>
                                                                     @if (string.IsNullOrEmpty(pro.hinhanh))
                                                                     {
-                                                                        <a class="text-white" href="@Url.Action("productdetail", "thucdonhangngay", new { id = idPro })">
+                                                                        <a class="text-white" href="@Url.Action("productdetail", "thucdonhangngay", new { id = idPro, urlname = urlnames })">
                                                                             <img src="@Url.Content("~/Content/assets/images/product/sanphamdefault.jpg")"
                                                                                  class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
                                                                         </a>
                                                                     }
                                                                     else
                                                                     {
-                                                                        <a class="text-white" href="@Url.Action("productdetail", "thucdonhangngay", new { id = idPro })">
+                                                                        <a class="text-white" href="@Url.Action("productdetail", "thucdonhangngay", new { id = idPro, urlname = urlnames })">
                                                                             <img src="@Url.Content(pro.hinhanh.Split('#')[0])"
                                                                                  class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
                                                                         </a>
                                                                     }
                                                                 </div>
                                                                 <div class="ms-3">
-                                                                    <a class="text-white" href="@Url.Action("productdetail", "thucdonhangngay", new { id = idPro })"><h6>@pro.tensanpham</h6></a>
+                                                                    <a class="text-white" href="@Url.Action("productdetail", "thucdonhangngay", new { id = idPro, urlname = urlnames })"><h6>@pro.tensanpham</h6></a>
                                                                     <p class="small mb-0">@pro.gia.ToString("0,0")đ</p>
                                                                 </div>
                                                             </div>
@@ -381,7 +395,7 @@
                                         </span>
 
                                         <div class="wrap-inputname size12 bo-rad-16 m-t-3 mb-2">
-                                            <input style="border: 1px solid #ced4da !important;"  class="bo-rad-16 sizefull txt10 p-l-20" type="text" id="hoten" placeholder="Họ và Tên người nhận hàng">
+                                            <input style="border: 1px solid #ced4da !important;" class="bo-rad-16 sizefull txt10 p-l-20" type="text" id="hoten" placeholder="Họ và Tên người nhận hàng">
                                         </div>
                                         <p hidden id="validate-tienhanhdathang-hoten" style="margin-top: -10px; margin-bottom: 10px" class="text-danger"></p>
                                     </div>
@@ -391,7 +405,7 @@
                                         </span>
 
                                         <div class="wrap-inputphone size12 bo-rad-16 m-t-3 mb-2">
-                                            <input style="border: 1px solid #ced4da !important;"  class="bo-rad-16 sizefull txt10 p-l-20" type="text" id="sodienthoai" name="phone" data-type="numbers" placeholder="Số điện thoại nhận hàng">
+                                            <input style="border: 1px solid #ced4da !important;" class="bo-rad-16 sizefull txt10 p-l-20" type="text" id="sodienthoai" name="phone" data-type="numbers" placeholder="Số điện thoại nhận hàng">
                                         </div>
                                         <p hidden id="validate-tienhanhdathang-sodienthoai" style="margin-top: -10px; margin-bottom: 10px" class="text-danger"></p>
                                     </div>
@@ -401,7 +415,7 @@
                                         </span>
 
                                         <div class="wrap-inputemail size12 bo-rad-16 m-t-3 mb-2">
-                                            <input style="border: 1px solid #ced4da !important;"  class="bo-rad-16 sizefull txt10 p-l-20" type="text" id="email" name="email" placeholder="Địa chỉ email">
+                                            <input style="border: 1px solid #ced4da !important;" class="bo-rad-16 sizefull txt10 p-l-20" type="text" id="email" name="email" placeholder="Địa chỉ email">
                                         </div>
                                         <p hidden id="validate-tienhanhdathang-email" style="margin-top: -10px; margin-bottom: 10px" class="text-danger"></p>
                                     </div>
@@ -520,7 +534,7 @@
                                         </span>
 
                                         <div class="wrap-inputphone size12 bo-rad-16 m-t-3 mb-2">
-                                            <input style="border: 1px solid #ced4da !important;"  value="@tkkh.sodienthoai" class="bo-rad-16 sizefull txt10 p-l-20" type="text" id="sodienthoai" name="phone" data-type="numbers" placeholder="Số điện thoại nhận hàng">
+                                            <input style="border: 1px solid #ced4da !important;" value="@tkkh.sodienthoai" class="bo-rad-16 sizefull txt10 p-l-20" type="text" id="sodienthoai" name="phone" data-type="numbers" placeholder="Số điện thoại nhận hàng">
                                         </div>
                                         <p hidden id="validate-tienhanhdathang-sodienthoai" style="margin-top: -10px; margin-bottom: 10px" class="text-danger"></p>
                                     </div>
@@ -530,7 +544,7 @@
                                         </span>
 
                                         <div class="wrap-inputemail size12 bo-rad-16 m-t-3 mb-2">
-                                            <input style="border: 1px solid #ced4da !important;"  value="@tkkh.email" class="bo-rad-16 sizefull txt10 p-l-20" type="text" id="email" name="email" placeholder="Địa chỉ email">
+                                            <input style="border: 1px solid #ced4da !important;" value="@tkkh.email" class="bo-rad-16 sizefull txt10 p-l-20" type="text" id="email" name="email" placeholder="Địa chỉ email">
                                         </div>
                                         <p hidden id="validate-tienhanhdathang-email" style="margin-top: -10px; margin-bottom: 10px" class="text-danger"></p>
                                     </div>

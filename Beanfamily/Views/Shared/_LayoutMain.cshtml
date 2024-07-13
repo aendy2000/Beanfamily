@@ -8,16 +8,36 @@
     TaiKhoanKhachHang tkkh = Session["user-data"] as TaiKhoanKhachHang;
 
     int i = 0;
+
+    string Title = "";
+    string Keyword = "";
+    string Desc = "";
+    var seopage = models.NoiDungSEO.ToList();
+    if (seopage.Count > 0)
+    {
+        var seopages = seopage.First();
+        Title = seopages.SEOtitle;
+        Keyword = seopages.SEOkeyword;
+        Desc = seopages.SEOdescription;
+    }
+
+    if (ViewBag.Title == "Trang Chủ")
+    {
+        ViewBag.Title = Title;
+    }
 }
 <!DOCTYPE html>
 <html lang="vi">
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
     <title>@ViewBag.Title</title>
-    <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Beanfamily.vn nhà hàng chay ngon bình dương, vườn rau nhà trồng đảm bảo an toàn sức khỏe, cửa hàng tiện lợi.">
-    <meta name="robots" content="noindex" />
-    <meta name="keywords" content="beanfamily, beanfamily.vn, nhà hàng chay bình dương, nhà hàng chay, rau, vườn rau, bean, family">
+    <meta name="description" content="@Desc.ToString()">
+    <meta name="keywords" charset="utf-8" content="@Keyword.ToString()">
+
+    <meta name="robots" content="index,follow,noodp" />
     <style>
         /* width */
         ::-webkit-scrollbar {

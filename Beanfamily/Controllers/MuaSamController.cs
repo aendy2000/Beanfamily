@@ -70,14 +70,12 @@ namespace Beanfamily.Controllers
             }
         }
 
-        public ActionResult ProductDetail(int id)
+        public ActionResult ProductDetail(int id, string urlname)
         {
 
             var sp = model.SanPhamMuaSam.Find(id);
             if (sp == null)
                 return RedirectToAction("index");
-
-            Session["title-url"] = "san-pham-" + sp.tensanpham.ToLower().Replace(" ", "-");
 
             sp.luotxem = sp.luotxem + 1;
             model.Entry(sp).State = System.Data.Entity.EntityState.Modified;

@@ -157,6 +157,8 @@
     <Compile Include="Areas\Admin\Controllers\RoleController.cs" />
     <Compile Include="Areas\Admin\Controllers\SanPhamMuaSamController.cs" />
     <Compile Include="Areas\Admin\Controllers\SanPhamVuonRauBeanController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SEOPageConfigController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CauHinhWebController.cs" />
     <Compile Include="Controllers\DatHangController.cs" />
     <Compile Include="Controllers\HinhAnhController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -290,7 +292,7 @@
     <Compile Include="Models\TaiKhoanKhachHang.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ThongTinChung.cs">
+    <Compile Include="Models\ThongTinCauHinh.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TinhTrangDonHangMenuBuffet.cs">
@@ -327,7 +329,9 @@
     <Content Include="ActionOnPage\MenuTiecBan\DatBan.js" />
     <Content Include="ActionOnPage\MenuTiecBan\loadPageMenuTiecBan.js" />
     <Content Include="ActionOnPage\MenuTiecBan\SubmitFormDatBan.js" />
+    <Content Include="Content\AdminAreas\assets\img\analyst.png" />
     <Content Include="Content\AdminAreas\assets\img\default-hinhanhbean.png" />
+    <Content Include="Content\AdminAreas\assets\img\ggsearch.png" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
@@ -338,6 +342,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Content Include="Validation\CauHinhWeb\Update.js" />
     <Content Include="Validation\DonDatBanBuffet\CapNhatDon.js" />
     <Content Include="Validation\DonDatBanBuffet\CapNhatThongTinDonDatBan.js" />
     <Content Include="Validation\DonDatBanBuffet\DanhSach.js" />
@@ -2920,6 +2925,8 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Views\SEOPageConfig\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\CauHinhWeb\Index.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -2973,6 +2980,7 @@
     <Content Include="Validation\SanPhamVuonRau\XemHinhAnh.js" />
     <Content Include="Validation\SanPhamVuonRau\XoaHangLoat.js" />
     <Content Include="Validation\SanPhamVuonRau\XoaSanPham.js" />
+    <Content Include="Validation\SEOPageConfig\Update.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

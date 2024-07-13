@@ -12,23 +12,27 @@ namespace Beanfamily.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ThongTinChung
+    public partial class ThongTinCauHinh
     {
         public int id { get; set; }
+        public string noidunggiomocua { get; set; }
         public string diachi { get; set; }
         public string email { get; set; }
-        public string hotline { get; set; }
+        public string sodienthoai { get; set; }
+        public string facebook { get; set; }
+        public string messenger { get; set; }
         public string zalo { get; set; }
+        public string instagram { get; set; }
+        public string tiktok { get; set; }
         public string website { get; set; }
         public string coppyright { get; set; }
-        public string fanpage { get; set; }
-        public string toadogooglemap { get; set; }
         public string linkchiduong { get; set; }
         public string toadogooglemapiframe { get; set; }
         public string googleanalyst { get; set; }
+        public string googlesearchconsole { get; set; }
         public string googlewebmastertool { get; set; }
+        public string metatag { get; set; }
         public string headjs { get; set; }
         public string bodyjs { get; set; }
-        public string tieude { get; set; }
     }
 }

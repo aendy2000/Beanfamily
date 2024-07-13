@@ -64,6 +64,6 @@ namespace Beanfamily.Models
         public virtual DbSet<TinhTrangDonHangMenuTiecBan> TinhTrangDonHangMenuTiecBan { get; set; }
         public virtual DbSet<TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay> TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay { get; set; }
         public virtual DbSet<TonKhoSanPhamMuaSam> TonKhoSanPhamMuaSam { get; set; }
-        public virtual DbSet<ThongTinChung> ThongTinChung { get; set; }
+        public virtual DbSet<ThongTinCauHinh> ThongTinCauHinh { get; set; }
     }
 }

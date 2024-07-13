@@ -13,28 +13,36 @@ namespace Beanfamily
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
-            BeanfamilyEntities model = new BeanfamilyEntities();
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            //var titleUrl = model.NoiDungSEO.Find(1);
-            string strTitleUrl = "Nước mắm chay";
-
+            string strTitleUrl = "";
             Regex regex = new Regex("\\p{IsCombiningDiacriticalMarks}+");
             string temp = strTitleUrl.Normalize(NormalizationForm.FormD);
             strTitleUrl = regex.Replace(temp, String.Empty).Replace('\u0111', 'd').Replace('\u0110', 'D').Replace(" ", "-").ToLower();
 
+
+            //Hình ảnh bean
+            routes.MapRoute(
+                name: "Hình Ảnh Bean",
+                url: "hinh-anh-bean",
+                defaults: new { controller = "HinhAnh", action = "Index", id = UrlParameter.Optional }
+            );
+
+            //Tra cứu đơn hàng
             routes.MapRoute(
                 name: "Tra Cứu Đơn Hàng",
                 url: "tra-cuu-don-hang",
                 defaults: new { controller = "Home", action = "TraCuuDonHang", id = UrlParameter.Optional }
             );
 
+            //Thông tin đặt hàng
             routes.MapRoute(
                 name: "Tiến Hành Đặt Hàng",
                 url: "tien-hanh-dat-hang",
                 defaults: new { controller = "DatHang", action = "TienHanhDatHang", id = UrlParameter.Optional }
             );
 
+            //Giỏ hàng
             routes.MapRoute(
                 name: "Giỏ Hàng",
                 url: "gio-hang",
@@ -44,8 +52,8 @@ namespace Beanfamily
             //Mua sắm
             routes.MapRoute(
                 name: "Sản Phẩm Mua Sắm",
-                url: "mua-sam/" + strTitleUrl + "-{id}",
-                defaults: new { controller = "MuaSam", action = "ProductDetail", id = UrlParameter.Optional }
+                url: "mua-sam/{urlname}",
+                defaults: new { controller = "MuaSam", action = "ProductDetail", id = UrlParameter.Optional, urlname = UrlParameter.Optional }
             );
             routes.MapRoute(
                 name: "Mua sắm",
@@ -63,8 +71,8 @@ namespace Beanfamily
             //Thực đơn hằng ngày
             routes.MapRoute(
                 name: "Sản Phẩm Thực Đơn Hằng Ngày",
-                url: "menu-hang-ngay/thuc-don-{id}",
-                defaults: new { controller = "ThucDonHangNgay", action = "ProductDetail", id = UrlParameter.Optional }
+                url: "menu-hang-ngay/{urlname}",
+                defaults: new { controller = "ThucDonHangNgay", action = "ProductDetail", id = UrlParameter.Optional, urlname = UrlParameter.Optional }
             );
             routes.MapRoute(
                 name: "Thực Đơn Hằng Ngày",
@@ -94,8 +102,8 @@ namespace Beanfamily
             );
             routes.MapRoute(
                 name: "Sản Phẩm Vườn Rau Bean",
-                url: "vuon-rau-bean/rau-cai-thia-{id}",
-                defaults: new { controller = "VuonRau", action = "ProductDetail", id = UrlParameter.Optional }
+                url: "vuon-rau-bean/{urlname}",
+                defaults: new { controller = "VuonRau", action = "ProductDetail", id = UrlParameter.Optional, urlname = UrlParameter.Optional }
             );
             routes.MapRoute(
                 name: "Vườn Rau Bean",
@@ -110,7 +118,7 @@ namespace Beanfamily
                 defaults: new { controller = "Home", action = "About", id = UrlParameter.Optional }
             );
 
-            //Default
+            //Trang chủ
             routes.MapRoute(
                 name: "Trang Chủ",
                 url: "{controller}/{action}/{id}",

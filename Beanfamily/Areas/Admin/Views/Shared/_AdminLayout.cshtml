@@ -515,7 +515,7 @@
             @if (Session["qlsp"] != null)
             {
                 <li class="nav-item">
-                    <a class="nav-link @Session["active-qlsp"].ToString().Split('#')[0]" href="index.html">
+                    <a class="nav-link @Session["active-qlsp"].ToString().Split('#')[0]" href="@Url.Action("index", "seopageconfig")">
                         <i class="bi bi-graph-up-arrow"></i>
                         <span>Quản Lý SEO Page</span>
                     </a>
@@ -532,8 +532,8 @@
                         @if (Session["tlc-ttw"] != null)
                         {
                             <li>
-                                <a href="components-alerts.html" class="@Session["active-tlc-ttw"].ToString().Split('#')[2]">
-                                    <i class="bi bi-circle"></i><span>Thông Tin Website</span>
+                                <a href="@Url.Action("index", "cauhinhweb")" class="@Session["active-tlc-ttw"].ToString().Split('#')[2]">
+                                    <i class="bi bi-circle"></i><span>Cấu Hình Web</span>
                                 </a>
                             </li>
                         }
@@ -541,7 +541,7 @@
                         {
                             <li>
                                 <a href="components-accordion.html" class="@Session["active-tlc-lkmxh"].ToString().Split('#')[2]">
-                                    <i class="bi bi-circle"></i><span>Liên Kết Mạng Xã Hội</span>
+                                    <i class="bi bi-circle"></i><span>Thông Tin Web</span>
                                 </a>
                             </li>
                         }

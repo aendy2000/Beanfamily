@@ -21,7 +21,7 @@
                 <div style="width: 100%; height: 100%; background-image: linear-gradient(180deg, #00000000 20%, #122E26 100%); ">
                     <div class="gio-mo-cua">
                         <div class="container">
-                            <h4 class="txt13 m-b-15">
+                            <h4 class="txt13 m-b-10">
                                 Giờ mở cửa
                             </h4>
 
@@ -32,6 +32,19 @@
 
                                 <li class="text-white" style="font-size: 16px">
                                     Tất cả các ngày
+                                </li>
+                            </ul>
+
+                            <h4 class="txt13 m-b-10" style="margin-top: 30px">
+                                Thông tin liên hệ
+                            </h4>
+
+                            <ul>
+                                <li class="text-white" style="font-size: 16px">
+                                    Phone: 0367 909 248
+                                </li>
+                                <li class="text-white" style="font-size: 16px">
+                                    Email: info@aendy.net
                                 </li>
                             </ul>
                         </div>
@@ -312,12 +325,17 @@
                 <div class="col-md-6 p-b-30">
                     @foreach (var item in sanphammoinhahang)
                     {
-                        <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom bg-bg1" style="border: 1px solid; border-color: white;" onclick="location.href = '@(Url.Action("productdetail", "thucdonhangngay", new { id = item.id }))'">
+                        string urlnames = item.tensanpham;
+                        System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex("\\p{IsCombiningDiacriticalMarks}+");
+                        string temp = urlnames.Normalize(System.Text.NormalizationForm.FormD);
+                        urlnames = regex.Replace(temp, String.Empty).Replace('\u0111', 'd').Replace('\u0110', 'D').Replace(" ", "-").ToLower();
+
+                        <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom bg-bg1" style="border: 1px solid; border-color: white;" onclick="location.href = '@(Url.Action("productdetail", "thucdonhangngay", new { id = item.id, urlname = urlnames }))'">
                             <div class="pic-blo3 size20 hov-img-zoom m-r-28">
-                                <a href="@Url.Action("productdetail", "thucdonhangngay", new { id = item.id })"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
+                                <a href="@Url.Action("productdetail", "thucdonhangngay", new { id = item.id, urlname = urlnames })"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
                             </div>
                             <div class="text-blo3 size21 flex-col-l-m">
-                                <a href="@Url.Action("productdetail", "thucdonhangngay", new { id = item.id })" class="txt21 m-b-3">
+                                <a href="@Url.Action("productdetail", "thucdonhangngay", new { id = item.id, urlname = urlnames })" class="txt21 m-b-3">
                                     @item.tensanpham
                                 </a>
 
@@ -365,13 +383,18 @@
                     <div class="p-b-30 change-position-map-left">
                         @foreach (var item in sanphammoivuonrau)
                         {
-                            <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom bg-bg1" style="border: 1px solid; border-color: white;" onclick="location.href = '@(Url.Action("productdetail", "vuonrau", new { id = item.id }))'">
+                            string urlnames = item.tensanpham;
+                            System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex("\\p{IsCombiningDiacriticalMarks}+");
+                            string temp = urlnames.Normalize(System.Text.NormalizationForm.FormD);
+                            urlnames = regex.Replace(temp, String.Empty).Replace('\u0111', 'd').Replace('\u0110', 'D').Replace(" ", "-").ToLower();
+
+                            <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom bg-bg1" style="border: 1px solid; border-color: white;" onclick="location.href = '@(Url.Action("productdetail", "vuonrau", new { id = item.id, urlname = urlnames }))'">
                                 <div class="pic-blo3 size20 hov-img-zoom m-r-28">
-                                    <a href="@Url.Action("productdetail", "vuonrau", new { id = item.id })"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
+                                    <a href="@Url.Action("productdetail", "vuonrau", new { id = item.id, urlname = urlnames })"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
                                 </div>
 
                                 <div class="text-blo3 size21 flex-col-l-m">
-                                    <a href="@Url.Action("productdetail", "vuonrau", new { id = item.id })" class="txt21 m-b-3">
+                                    <a href="@Url.Action("productdetail", "vuonrau", new { id = item.id, urlname = urlnames })" class="txt21 m-b-3">
                                         @item.tensanpham
                                     </a>
 
@@ -423,13 +446,18 @@
                 <div class="col-md-6 p-b-30" style="float: left">
                     @foreach (var item in sanphammoimuasam)
                     {
-                        <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom  bg-bg1" style="border: 1px solid; border-color: white;" onclick="location.href = '@(Url.Action("productdetail", "muasam", new { id = item.id }))'">
+                        string urlnames = item.tensanpham;
+                        System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex("\\p{IsCombiningDiacriticalMarks}+");
+                        string temp = urlnames.Normalize(System.Text.NormalizationForm.FormD);
+                        urlnames = regex.Replace(temp, String.Empty).Replace('\u0111', 'd').Replace('\u0110', 'D').Replace(" ", "-").ToLower();
+
+                        <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom  bg-bg1" style="border: 1px solid; border-color: white;" onclick="location.href = '@(Url.Action("productdetail", "muasam", new { id = item.id, urlname = urlnames }))'">
                             <div class="pic-blo3 size20 hov-img-zoom m-r-28">
-                                <a href="@Url.Action("productdetail", "muasam", new { id = item.id })"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
+                                <a href="@Url.Action("productdetail", "muasam", new { id = item.id, urlname = urlnames })"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
                             </div>
 
                             <div class="text-blo3 size21 flex-col-l-m">
-                                <a href="@Url.Action("productdetail", "muasam", new { id = item.id })" class="txt21 m-b-3">
+                                <a href="@Url.Action("productdetail", "muasam", new { id = item.id, urlname = urlnames })" class="txt21 m-b-3">
                                     @item.tensanpham
                                 </a>
 
@@ -482,7 +510,7 @@
                             Beanfamily - Gia Đình Đậu là một trong những nhà hàng món chay ngon nổi tiếng tại Bình Dương với các món ăn thuần rau củ quả tươi nhiên được chế biến bởi các đầu bếp đầy đam mê và sáng tạo. Beanfamily là địa điểm thân thuộc cho các buổi sinh nhật, gặp mặt gia đình, bạn bè, đồng nghiệp... cùng tận hưởng không gian thanh nhiên tĩnh nhẹ rất khác biệt, Không gian tĩnh lặng, bài trí độc đáo, món ăn thanh nhẹ, nhân viên thân thiện, tất cả hòa quyện nơi đây tạo nên một nét riêng.
                         </p>
 
-                        <a href="@Url.Action("productdetail", "nhahang")" class="txt4">
+                        <a href="@Url.Action("index", "nhahang")" class="txt4">
                             Xem thêm
                             <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
                         </a>
@@ -492,13 +520,18 @@
                 <div class="col-md-6 p-b-30">
                     @foreach (var item in sanphamnoibatnhahang)
                     {
-                        <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom-bgbrown  bg-bg2" style="border: 1px solid; border-color: white;" onclick="location.href = '@(Url.Action("productdetail", "thucdonhangngay", new { id = item.id }))'">
+                        string urlnames = item.tensanpham;
+                        System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex("\\p{IsCombiningDiacriticalMarks}+");
+                        string temp = urlnames.Normalize(System.Text.NormalizationForm.FormD);
+                        urlnames = regex.Replace(temp, String.Empty).Replace('\u0111', 'd').Replace('\u0110', 'D').Replace(" ", "-").ToLower();
+
+                        <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom-bgbrown  bg-bg2" style="border: 1px solid; border-color: white;" onclick="location.href = '@(Url.Action("productdetail", "thucdonhangngay", new { id = item.id, urlname = urlnames }))'">
                             <div class="pic-blo3 size20 hov-img-zoom m-r-28">
-                                <a href="@Url.Action("productdetail", "thucdonhangngay", new { id = item.id })"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
+                                <a href="@Url.Action("productdetail", "thucdonhangngay", new { id = item.id, urlname = urlnames })"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
                             </div>
 
                             <div class="text-blo3 size21 flex-col-l-m">
-                                <a href="@Url.Action("productdetail", "thucdonhangngay", new { id = item.id })" class="txt21 m-b-3">
+                                <a href="@Url.Action("productdetail", "thucdonhangngay", new { id = item.id, urlname = urlnames })" class="txt21 m-b-3">
                                     @item.tensanpham
                                 </a>
 
@@ -547,13 +580,18 @@
                     <div class="p-b-30 change-position-map-left">
                         @foreach (var item in sanphamnoibatvuonrau)
                         {
-                            <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom-bgbrown  bg-bg2" style="border: 1px solid; border-color: white;" onclick="location.href = '@(Url.Action("productdetail", "vuonrau", new { id = item.id }))'">
+                            string urlnames = item.tensanpham;
+                            System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex("\\p{IsCombiningDiacriticalMarks}+");
+                            string temp = urlnames.Normalize(System.Text.NormalizationForm.FormD);
+                            urlnames = regex.Replace(temp, String.Empty).Replace('\u0111', 'd').Replace('\u0110', 'D').Replace(" ", "-").ToLower();
+
+                            <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom-bgbrown  bg-bg2" style="border: 1px solid; border-color: white;" onclick="location.href = '@(Url.Action("productdetail", "vuonrau", new { id = item.id, urlname = urlnames }))'">
                                 <div class="pic-blo3 size20 hov-img-zoom m-r-28">
-                                    <a href="@Url.Action("productdetail", "vuonrau", new { id = item.id })"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
+                                    <a href="@Url.Action("productdetail", "vuonrau", new { id = item.id, urlname = urlnames })"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
                                 </div>
 
                                 <div class="text-blo3 size21 flex-col-l-m">
-                                    <a href="@Url.Action("productdetail", "vuonrau", new { id = item.id })" class="txt21 m-b-3">
+                                    <a href="@Url.Action("productdetail", "vuonrau", new { id = item.id, urlname = urlnames })" class="txt21 m-b-3">
                                         @item.tensanpham
                                     </a>
 
@@ -602,13 +640,18 @@
                 <div class="col-md-6 p-b-30">
                     @foreach (var item in sanphamnoibatmuasam)
                     {
-                        <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom-bgbrown bg-bg2" style="border: 1px solid white;" onclick="location.href = '@(Url.Action("productdetail", "muasam", new { id = item.id }))'">
+                        string urlnames = item.tensanpham;
+                        System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex("\\p{IsCombiningDiacriticalMarks}+");
+                        string temp = urlnames.Normalize(System.Text.NormalizationForm.FormD);
+                        urlnames = regex.Replace(temp, String.Empty).Replace('\u0111', 'd').Replace('\u0110', 'D').Replace(" ", "-").ToLower();
+
+                        <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom-bgbrown bg-bg2" style="border: 1px solid white;" onclick="location.href = '@(Url.Action("productdetail", "muasam", new { id = item.id, urlname = urlnames }))'">
                             <div class="pic-blo3 size20 hov-img-zoom m-r-28">
-                                <a href="@Url.Action("productdetail", "muasam", new { id = item.id })"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
+                                <a href="@Url.Action("productdetail", "muasam", new { id = item.id, urlname = urlnames })"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
                             </div>
 
                             <div class="text-blo3 size21 flex-col-l-m">
-                                <a href="@Url.Action("productdetail", "muasam", new { id = item.id })" class="txt21 m-b-3">
+                                <a href="@Url.Action("productdetail", "muasam", new { id = item.id, urlname = urlnames })" class="txt21 m-b-3">
                                     @item.tensanpham
                                 </a>
 
@@ -947,79 +990,76 @@
                             </div>
 
                             <div class="col-md-6">-->
+@*Phone*@
+<!--<span class="txt9">
+    Số điện thoại <span class="text-danger">*</span>
+</span>
 
+<div class="wrap-inputphone size12 bo-rad-16 m-t-3 m-b-23">
+    <input class="bo-rad-16 sizefull txt10 p-l-20" type="text" name="phone" placeholder="Phone">
+</div>
 
-                                @*Phone*@
-                                <!--<span class="txt9">
-                                    Số điện thoại <span class="text-danger">*</span>
-                                </span>
+<span class="txt9">
+    Giờ tổ chức <span class="text-danger">*</span>
+</span>
 
-                                <div class="wrap-inputphone size12 bo-rad-16 m-t-3 m-b-23">
-                                    <input class="bo-rad-16 sizefull txt10 p-l-20" type="text" name="phone" placeholder="Phone">
-                                </div>
+<div class="wrap-inputtime size12 bo-rad-16 m-t-3 m-b-23">
+    <select class="selection-1" name="time">
+        <option>07:00</option>
+        <option>07:30</option>
+        <option>08:00</option>
+        <option>09:30</option>
+        <option>09:00</option>
+        <option>09:30</option>
+        <option>10:00</option>
+        <option>10:30</option>
+        <option>11:00</option>
+        <option>11:30</option>
+        <option>12:00</option>
+        <option>12:30</option>
+        <option>13:00</option>
+        <option>13:30</option>
+        <option>14:00</option>
+        <option>14:30</option>
+        <option>15:00</option>
+        <option>15:30</option>
+        <option>16:00</option>
+        <option>16:30</option>
+        <option>17:00</option>
+        <option>17:30</option>
+        <option>18:00</option>
+        <option>18:30</option>
+        <option>19:00</option>
+        <option>19:30</option>
+        <option>20:00</option>
+        <option>20:30</option>
+        <option>21:00</option>
+        <option>21:30</option>
+        <option>22:00</option>
+    </select>
+</div>-->
+@*Email*@
+<!--<span class="txt9">
+            Địa chỉ Email <span class="text-danger">*</span>
+        </span>
 
-                                <span class="txt9">
-                                    Giờ tổ chức <span class="text-danger">*</span>
-                                </span>
+        <div class="wrap-inputemail size12 bo-rad-16 m-t-3 m-b-23">
+            <input class="bo-rad-16 sizefull txt10 p-l-20" type="text" name="email" placeholder="emailcuaban@email.com">
+        </div>
 
-                                <div class="wrap-inputtime size12 bo-rad-16 m-t-3 m-b-23">
-                                    <select class="selection-1" name="time">
-                                        <option>07:00</option>
-                                        <option>07:30</option>
-                                        <option>08:00</option>
-                                        <option>09:30</option>
-                                        <option>09:00</option>
-                                        <option>09:30</option>
-                                        <option>10:00</option>
-                                        <option>10:30</option>
-                                        <option>11:00</option>
-                                        <option>11:30</option>
-                                        <option>12:00</option>
-                                        <option>12:30</option>
-                                        <option>13:00</option>
-                                        <option>13:30</option>
-                                        <option>14:00</option>
-                                        <option>14:30</option>
-                                        <option>15:00</option>
-                                        <option>15:30</option>
-                                        <option>16:00</option>
-                                        <option>16:30</option>
-                                        <option>17:00</option>
-                                        <option>17:30</option>
-                                        <option>18:00</option>
-                                        <option>18:30</option>
-                                        <option>19:00</option>
-                                        <option>19:30</option>
-                                        <option>20:00</option>
-                                        <option>20:30</option>
-                                        <option>21:00</option>
-                                        <option>21:30</option>
-                                        <option>22:00</option>
-                                    </select>
-                                </div>-->
+    </div>
+    <div class="col-md-12">
+        <span class="txt9">
+            Ghi chú
+        </span>
+        <textarea class="bo-rad-16 size35 txt10 p-l-20 p-t-15 m-b-10 m-t-3" rows="4" name="ghichu" placeholder="Ghi chú thêm (nếu có)"></textarea>
 
-                                @*Email*@
-                                <!--<span class="txt9">
-                                    Địa chỉ Email <span class="text-danger">*</span>
-                                </span>
+    </div>
+</div>
 
-                                <div class="wrap-inputemail size12 bo-rad-16 m-t-3 m-b-23">
-                                    <input class="bo-rad-16 sizefull txt10 p-l-20" type="text" name="email" placeholder="emailcuaban@email.com">
-                                </div>
-
-                            </div>
-                            <div class="col-md-12">
-                                <span class="txt9">
-                                    Ghi chú
-                                </span>
-                                <textarea class="bo-rad-16 size35 txt10 p-l-20 p-t-15 m-b-10 m-t-3" rows="4" name="ghichu" placeholder="Ghi chú thêm (nếu có)"></textarea>
-
-                            </div>
-                        </div>
-
-                        <div class="wrap-btn-booking flex-c-m m-t-6">-->
-                            @*Button3*@
-                            <!--<button type="submit" class="btn1 flex-c-m size1 txt3 trans-0-4">
+<div class="wrap-btn-booking flex-c-m m-t-6">-->
+@*Button3*@
+<!--<button type="submit" class="btn1 flex-c-m size1 txt3 trans-0-4">
                                 gửi thông tin
                             </button>
                         </div>
@@ -1030,7 +1070,6 @@
 
     </div>
 </section>-->
-
 <!-- Review -->
 <!--<section class="section-review bg-brown p-t-115">-->
 <!-- - -->

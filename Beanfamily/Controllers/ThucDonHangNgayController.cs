@@ -69,7 +69,7 @@ namespace Beanfamily.Controllers
             }
         }
 
-        public ActionResult ProductDetail(int id)
+        public ActionResult ProductDetail(int id, string urlname)
         {
             var sp = model.SanPhamThucDonHangNgay.Find(id);
             if (sp == null)
