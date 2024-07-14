@@ -33,140 +33,142 @@
                 <div class="col-12 p-0">
                     <div class="bg-white bo-rad-16 txt10 p-t-20 p-b-20 p-l-20 p-r-20 mb-3 m-t-3" style="padding: 10px;">
                         <div class="row">
-                            <div class="col-6 mb-1 text-dark">
-                                Cập nhật trạng thái:
-                            </div>
-                            <div class="col-6 mb-1 text-end text-dark">
-                                <select name="@Model.id-@Model.madonhang" id="capnhat-trangthai" style="width: auto; float: right; border: 2px solid var(--bs-primary); " class="form-control form-select mb-2 text-end">
-                                    @if (ttdh.tieude.ToLower().Equals("chờ duyệt"))
-                                    {
-                                        <option selected value="choduyet">
-                                            Chờ duyệt &nbsp;
-                                        </option>
-                                        <option value="donggoi">
-                                            Chuẩn bị đơn hàng &nbsp;
-                                        </option>
-                                        <option value="giaohang">
-                                            Tiến hành giao &nbsp;
-                                        </option>
-                                        <option value="khongthanhcong">
-                                            Giao hàng thất bại &nbsp;
-                                        </option>
-                                        <option value="huydon">
-                                            Hủy đơn hàng &nbsp;
-                                        </option>
-                                        <option value="thanhcong">
-                                            Giao thành công &nbsp;
-                                        </option>
-                                    }
-                                    else if (ttdh.tieude.ToLower().Equals("đang đóng gói"))
-                                    {
-                                        <option value="choduyet">
-                                            Chờ duyệt &nbsp;
-                                        </option>
-                                        <option selected value="donggoi">
-                                            Chuẩn bị đơn hàng &nbsp;
-                                        </option>
-                                        <option value="giaohang">
-                                            Tiến hành giao &nbsp;
-                                        </option>
-                                        <option value="khongthanhcong">
-                                            Giao hàng thất bại &nbsp;
-                                        </option>
-                                        <option value="huydon">
-                                            Hủy đơn hàng &nbsp;
-                                        </option>
-                                        <option value="thanhcong">
-                                            Giao thành công &nbsp;
-                                        </option>
-                                    }
-                                    else if (ttdh.tieude.ToLower().Equals("đang giao"))
-                                    {
-                                        <option value="choduyet">
-                                            Chờ duyệt &nbsp;
-                                        </option>
-                                        <option value="donggoi">
-                                            Chuẩn bị đơn hàng &nbsp;
-                                        </option>
-                                        <option selected value="giaohang">
-                                            Tiến hành giao &nbsp;
-                                        </option>
-                                        <option value="khongthanhcong">
-                                            Giao hàng thất bại &nbsp;
-                                        </option>
-                                        <option value="huydon">
-                                            Hủy đơn hàng &nbsp;
-                                        </option>
-                                        <option value="thanhcong">
-                                            Giao thành công &nbsp;
-                                        </option>
-                                    }
-                                    else if (ttdh.tieude.ToLower().Equals("không thành công"))
-                                    {
-                                        <option value="choduyet">
-                                            Chờ duyệt &nbsp;
-                                        </option>
-                                        <option value="donggoi">
-                                            Chuẩn bị đơn hàng &nbsp;
-                                        </option>
-                                        <option value="giaohang">
-                                            Tiến hành giao &nbsp;
-                                        </option>
-                                        <option selected value="khongthanhcong">
-                                            Giao hàng thất bại &nbsp;
-                                        </option>
-                                        <option value="huydon">
-                                            Hủy đơn hàng &nbsp;
-                                        </option>
-                                        <option value="thanhcong">
-                                            Giao thành công &nbsp;
-                                        </option>
-                                    }
-                                    else if (ttdh.tieude.ToLower().Equals("đã hủy"))
-                                    {
-                                        <option value="choduyet">
-                                            Chờ duyệt &nbsp;
-                                        </option>
-                                        <option value="donggoi">
-                                            Chuẩn bị đơn hàng &nbsp;
-                                        </option>
-                                        <option value="giaohang">
-                                            Tiến hành giao &nbsp;
-                                        </option>
-                                        <option value="khongthanhcong">
-                                            Giao hàng thất bại &nbsp;
-                                        </option>
-                                        <option selected value="huydon">
-                                            Hủy đơn hàng &nbsp;
-                                        </option>
-                                        <option value="thanhcong">
-                                            Giao thành công &nbsp;
-                                        </option>
-                                    }
-                                    else
-                                    {
-                                        <option value="choduyet">
-                                            Chờ duyệt &nbsp;
-                                        </option>
-                                        <option value="donggoi">
-                                            Chuẩn bị đơn hàng &nbsp;
-                                        </option>
-                                        <option value="giaohang">
-                                            Tiến hành giao &nbsp;
-                                        </option>
-                                        <option value="khongthanhcong">
-                                            Giao hàng thất bại &nbsp;
-                                        </option>
-                                        <option value="huydon">
-                                            Hủy đơn hàng &nbsp;
-                                        </option>
-                                        <option selected value="thanhcong">
-                                            Giao thành công &nbsp;
-                                        </option>
-                                    }
-                                </select>
-                            </div>
-
+                            @if (!ttdh.tieude.ToLower().Equals("hoàn thành"))
+                            {
+                                <div class="col-6 mb-1 text-dark">
+                                    Cập nhật trạng thái:
+                                </div>
+                                <div class="col-6 mb-1 text-end text-dark">
+                                    <select name="@Model.id-@Model.madonhang" id="capnhat-trangthai" style="width: auto; float: right; border: 2px solid var(--bs-primary); " class="form-control form-select mb-2 text-end">
+                                        @if (ttdh.tieude.ToLower().Equals("chờ duyệt"))
+                                        {
+                                            <option selected value="choduyet">
+                                                Chờ duyệt &nbsp;
+                                            </option>
+                                            <option value="donggoi">
+                                                Chuẩn bị đơn hàng &nbsp;
+                                            </option>
+                                            <option value="giaohang">
+                                                Tiến hành giao &nbsp;
+                                            </option>
+                                            <option value="khongthanhcong">
+                                                Giao hàng thất bại &nbsp;
+                                            </option>
+                                            <option value="huydon">
+                                                Hủy đơn hàng &nbsp;
+                                            </option>
+                                            <option value="thanhcong">
+                                                Giao thành công &nbsp;
+                                            </option>
+                                        }
+                                        else if (ttdh.tieude.ToLower().Equals("đang đóng gói"))
+                                        {
+                                            <option value="choduyet">
+                                                Chờ duyệt &nbsp;
+                                            </option>
+                                            <option selected value="donggoi">
+                                                Chuẩn bị đơn hàng &nbsp;
+                                            </option>
+                                            <option value="giaohang">
+                                                Tiến hành giao &nbsp;
+                                            </option>
+                                            <option value="khongthanhcong">
+                                                Giao hàng thất bại &nbsp;
+                                            </option>
+                                            <option value="huydon">
+                                                Hủy đơn hàng &nbsp;
+                                            </option>
+                                            <option value="thanhcong">
+                                                Giao thành công &nbsp;
+                                            </option>
+                                        }
+                                        else if (ttdh.tieude.ToLower().Equals("đang giao"))
+                                        {
+                                            <option value="choduyet">
+                                                Chờ duyệt &nbsp;
+                                            </option>
+                                            <option value="donggoi">
+                                                Chuẩn bị đơn hàng &nbsp;
+                                            </option>
+                                            <option selected value="giaohang">
+                                                Tiến hành giao &nbsp;
+                                            </option>
+                                            <option value="khongthanhcong">
+                                                Giao hàng thất bại &nbsp;
+                                            </option>
+                                            <option value="huydon">
+                                                Hủy đơn hàng &nbsp;
+                                            </option>
+                                            <option value="thanhcong">
+                                                Giao thành công &nbsp;
+                                            </option>
+                                        }
+                                        else if (ttdh.tieude.ToLower().Equals("không thành công"))
+                                        {
+                                            <option value="choduyet">
+                                                Chờ duyệt &nbsp;
+                                            </option>
+                                            <option value="donggoi">
+                                                Chuẩn bị đơn hàng &nbsp;
+                                            </option>
+                                            <option value="giaohang">
+                                                Tiến hành giao &nbsp;
+                                            </option>
+                                            <option selected value="khongthanhcong">
+                                                Giao hàng thất bại &nbsp;
+                                            </option>
+                                            <option value="huydon">
+                                                Hủy đơn hàng &nbsp;
+                                            </option>
+                                            <option value="thanhcong">
+                                                Giao thành công &nbsp;
+                                            </option>
+                                        }
+                                        else if (ttdh.tieude.ToLower().Equals("đã hủy"))
+                                        {
+                                            <option value="choduyet">
+                                                Chờ duyệt &nbsp;
+                                            </option>
+                                            <option value="donggoi">
+                                                Chuẩn bị đơn hàng &nbsp;
+                                            </option>
+                                            <option value="giaohang">
+                                                Tiến hành giao &nbsp;
+                                            </option>
+                                            <option value="khongthanhcong">
+                                                Giao hàng thất bại &nbsp;
+                                            </option>
+                                            <option selected value="huydon">
+                                                Hủy đơn hàng &nbsp;
+                                            </option>
+                                            <option value="thanhcong">
+                                                Giao thành công &nbsp;
+                                            </option>
+                                        }
+                                        else
+                                        {
+                                            <option value="choduyet">
+                                                Chờ duyệt &nbsp;
+                                            </option>
+                                            <option value="donggoi">
+                                                Chuẩn bị đơn hàng &nbsp;
+                                            </option>
+                                            <option value="giaohang">
+                                                Tiến hành giao &nbsp;
+                                            </option>
+                                            <option value="khongthanhcong">
+                                                Giao hàng thất bại &nbsp;
+                                            </option>
+                                            <option value="huydon">
+                                                Hủy đơn hàng &nbsp;
+                                            </option>
+                                            <option selected value="thanhcong">
+                                                Giao thành công &nbsp;
+                                            </option>
+                                        }
+                                    </select>
+                                </div>
+                            }
                             <div class="col-6 mb-1 text-dark">
                                 Chi tiết:
                             </div>

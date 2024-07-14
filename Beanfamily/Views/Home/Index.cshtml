@@ -349,17 +349,12 @@
                 <div class="col-md-6 p-b-30">
                     @foreach (var item in sanphammoinhahang)
                     {
-                        string urlnames = item.tensanpham;
-                        System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex("\\p{IsCombiningDiacriticalMarks}+");
-                        string temp = urlnames.Normalize(System.Text.NormalizationForm.FormD);
-                        urlnames = regex.Replace(temp, String.Empty).Replace('\u0111', 'd').Replace('\u0110', 'D').Replace(" ", "-").ToLower();
-
-                        <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom bg-bg1" style="border: 1px solid; border-color: white;" onclick="location.href = '@(Url.Action("productdetail", "thucdonhangngay", new { id = item.id, urlname = urlnames }))'">
+                         <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom bg-bg1" style="border: 1px solid; border-color: white;" onclick="location.href = '@(Url.Action("productdetail", "thucdonhangngay", new { id = item.id }))'">
                             <div class="pic-blo3 size20 hov-img-zoom m-r-28">
-                                <a href="@Url.Action("productdetail", "thucdonhangngay", new { id = item.id, urlname = urlnames })"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
+                                <a href="@Url.Action("productdetail", "thucdonhangngay", new { id = item.id })"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
                             </div>
                             <div class="text-blo3 size21 flex-col-l-m">
-                                <a href="@Url.Action("productdetail", "thucdonhangngay", new { id = item.id, urlname = urlnames })" class="txt21 m-b-3">
+                                <a href="@Url.Action("productdetail", "thucdonhangngay", new { id = item.id })" class="txt21 m-b-3">
                                     @item.tensanpham
                                 </a>
 
@@ -407,18 +402,13 @@
                     <div class="p-b-30 change-position-map-left">
                         @foreach (var item in sanphammoivuonrau)
                         {
-                            string urlnames = item.tensanpham;
-                            System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex("\\p{IsCombiningDiacriticalMarks}+");
-                            string temp = urlnames.Normalize(System.Text.NormalizationForm.FormD);
-                            urlnames = regex.Replace(temp, String.Empty).Replace('\u0111', 'd').Replace('\u0110', 'D').Replace(" ", "-").ToLower();
-
-                            <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom bg-bg1" style="border: 1px solid; border-color: white;" onclick="location.href = '@(Url.Action("productdetail", "vuonrau", new { id = item.id, urlname = urlnames }))'">
+                             <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom bg-bg1" style="border: 1px solid; border-color: white;" onclick="location.href = '@(Url.Action("productdetail", "vuonrau", new { id = item.id }))'">
                                 <div class="pic-blo3 size20 hov-img-zoom m-r-28">
-                                    <a href="@Url.Action("productdetail", "vuonrau", new { id = item.id, urlname = urlnames })"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
+                                    <a href="@Url.Action("productdetail", "vuonrau", new { id = item.id })"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
                                 </div>
 
                                 <div class="text-blo3 size21 flex-col-l-m">
-                                    <a href="@Url.Action("productdetail", "vuonrau", new { id = item.id, urlname = urlnames })" class="txt21 m-b-3">
+                                    <a href="@Url.Action("productdetail", "vuonrau", new { id = item.id })" class="txt21 m-b-3">
                                         @item.tensanpham
                                     </a>
 
@@ -470,18 +460,13 @@
                 <div class="col-md-6 p-b-30" style="float: left">
                     @foreach (var item in sanphammoimuasam)
                     {
-                        string urlnames = item.tensanpham;
-                        System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex("\\p{IsCombiningDiacriticalMarks}+");
-                        string temp = urlnames.Normalize(System.Text.NormalizationForm.FormD);
-                        urlnames = regex.Replace(temp, String.Empty).Replace('\u0111', 'd').Replace('\u0110', 'D').Replace(" ", "-").ToLower();
-
-                        <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom  bg-bg1" style="border: 1px solid; border-color: white;" onclick="location.href = '@(Url.Action("productdetail", "muasam", new { id = item.id, urlname = urlnames }))'">
+                        <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom  bg-bg1" style="border: 1px solid; border-color: white;" onclick="location.href = '@(Url.Action("productdetail", "muasam", new { id = item.id }))'">
                             <div class="pic-blo3 size20 hov-img-zoom m-r-28">
-                                <a href="@Url.Action("productdetail", "muasam", new { id = item.id, urlname = urlnames })"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
+                                <a href="@Url.Action("productdetail", "muasam", new { id = item.id })"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
                             </div>
 
                             <div class="text-blo3 size21 flex-col-l-m">
-                                <a href="@Url.Action("productdetail", "muasam", new { id = item.id, urlname = urlnames })" class="txt21 m-b-3">
+                                <a href="@Url.Action("productdetail", "muasam", new { id = item.id })" class="txt21 m-b-3">
                                     @item.tensanpham
                                 </a>
 
@@ -544,18 +529,13 @@
                 <div class="col-md-6 p-b-30">
                     @foreach (var item in sanphamnoibatnhahang)
                     {
-                        string urlnames = item.tensanpham;
-                        System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex("\\p{IsCombiningDiacriticalMarks}+");
-                        string temp = urlnames.Normalize(System.Text.NormalizationForm.FormD);
-                        urlnames = regex.Replace(temp, String.Empty).Replace('\u0111', 'd').Replace('\u0110', 'D').Replace(" ", "-").ToLower();
-
-                        <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom-bgbrown  bg-bg2" style="border: 1px solid; border-color: white;" onclick="location.href = '@(Url.Action("productdetail", "thucdonhangngay", new { id = item.id, urlname = urlnames }))'">
+                         <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom-bgbrown  bg-bg2" style="border: 1px solid; border-color: white;" onclick="location.href = '@(Url.Action("productdetail", "thucdonhangngay", new { id = item.id }))'">
                             <div class="pic-blo3 size20 hov-img-zoom m-r-28">
-                                <a href="@Url.Action("productdetail", "thucdonhangngay", new { id = item.id, urlname = urlnames })"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
+                                <a href="@Url.Action("productdetail", "thucdonhangngay", new { id = item.id })"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
                             </div>
 
                             <div class="text-blo3 size21 flex-col-l-m">
-                                <a href="@Url.Action("productdetail", "thucdonhangngay", new { id = item.id, urlname = urlnames })" class="txt21 m-b-3">
+                                <a href="@Url.Action("productdetail", "thucdonhangngay", new { id = item.id })" class="txt21 m-b-3">
                                     @item.tensanpham
                                 </a>
 
@@ -604,18 +584,13 @@
                     <div class="p-b-30 change-position-map-left">
                         @foreach (var item in sanphamnoibatvuonrau)
                         {
-                            string urlnames = item.tensanpham;
-                            System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex("\\p{IsCombiningDiacriticalMarks}+");
-                            string temp = urlnames.Normalize(System.Text.NormalizationForm.FormD);
-                            urlnames = regex.Replace(temp, String.Empty).Replace('\u0111', 'd').Replace('\u0110', 'D').Replace(" ", "-").ToLower();
-
-                            <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom-bgbrown  bg-bg2" style="border: 1px solid; border-color: white;" onclick="location.href = '@(Url.Action("productdetail", "vuonrau", new { id = item.id, urlname = urlnames }))'">
+                            <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom-bgbrown  bg-bg2" style="border: 1px solid; border-color: white;" onclick="location.href = '@(Url.Action("productdetail", "vuonrau", new { id = item.id }))'">
                                 <div class="pic-blo3 size20 hov-img-zoom m-r-28">
-                                    <a href="@Url.Action("productdetail", "vuonrau", new { id = item.id, urlname = urlnames })"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
+                                    <a href="@Url.Action("productdetail", "vuonrau", new { id = item.id })"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
                                 </div>
 
                                 <div class="text-blo3 size21 flex-col-l-m">
-                                    <a href="@Url.Action("productdetail", "vuonrau", new { id = item.id, urlname = urlnames })" class="txt21 m-b-3">
+                                    <a href="@Url.Action("productdetail", "vuonrau", new { id = item.id })" class="txt21 m-b-3">
                                         @item.tensanpham
                                     </a>
 
@@ -664,18 +639,13 @@
                 <div class="col-md-6 p-b-30">
                     @foreach (var item in sanphamnoibatmuasam)
                     {
-                        string urlnames = item.tensanpham;
-                        System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex("\\p{IsCombiningDiacriticalMarks}+");
-                        string temp = urlnames.Normalize(System.Text.NormalizationForm.FormD);
-                        urlnames = regex.Replace(temp, String.Empty).Replace('\u0111', 'd').Replace('\u0110', 'D').Replace(" ", "-").ToLower();
-
-                        <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom-bgbrown bg-bg2" style="border: 1px solid white;" onclick="location.href = '@(Url.Action("productdetail", "muasam", new { id = item.id, urlname = urlnames }))'">
+                         <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom-bgbrown bg-bg2" style="border: 1px solid white;" onclick="location.href = '@(Url.Action("productdetail", "muasam", new { id = item.id }))'">
                             <div class="pic-blo3 size20 hov-img-zoom m-r-28">
-                                <a href="@Url.Action("productdetail", "muasam", new { id = item.id, urlname = urlnames })"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
+                                <a href="@Url.Action("productdetail", "muasam", new { id = item.id })"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
                             </div>
 
                             <div class="text-blo3 size21 flex-col-l-m">
-                                <a href="@Url.Action("productdetail", "muasam", new { id = item.id, urlname = urlnames })" class="txt21 m-b-3">
+                                <a href="@Url.Action("productdetail", "muasam", new { id = item.id })" class="txt21 m-b-3">
                                     @item.tensanpham
                                 </a>
 

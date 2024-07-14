@@ -768,7 +768,7 @@ namespace Beanfamily.Areas.Admin.Controllers
                     lstt.id_taikhoanbean = Int32.Parse(Session["user-id"].ToString());
                     lstt.sotien = Convert.ToDecimal("-" + sotien.Replace(",", ""));
                     lstt.thoigian = DateTime.Now;
-                    lstt.tieude = "Hoàn trả cho đơn đặt bàn tiệc " + "[" + dh.madonhang + "]";
+                    lstt.tieude = "Hoàn trả cho đơn đặt bàn tiệc " + "[" + dh.madonhang + "]. Thực hiện bởi " + Session["user-fullname"].ToString() + " - NV" + Int32.Parse(Session["user-id"].ToString()).ToString("D6");
                     lstt.noidung = ghichu;
                     lstt.tenkhachhang = dh.hoten;
                     lstt.sdtkhachhang = dh.sdt;

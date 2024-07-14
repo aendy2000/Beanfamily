@@ -330,6 +330,7 @@
     <Content Include="Content\AdminAreas\assets\img\analyst.png" />
     <Content Include="Content\AdminAreas\assets\img\default-hinhanhbean.png" />
     <Content Include="Content\AdminAreas\assets\img\ggsearch.png" />
+    <Content Include="Content\AdminAreas\assets\vendor\table2excel\jquery.table2excel.min.js" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
@@ -341,6 +342,7 @@
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
     <Content Include="Validation\CauHinhWeb\Update.js" />
+    <Content Include="Validation\Dashboard\ThongKeNam.js" />
     <Content Include="Validation\DonDatBanBuffet\CapNhatDon.js" />
     <Content Include="Validation\DonDatBanBuffet\CapNhatThongTinDonDatBan.js" />
     <Content Include="Validation\DonDatBanBuffet\DanhSach.js" />
@@ -2926,6 +2928,8 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Views\Dashboard\_ThongKeDoanhThu.cshtml" />
+    <Content Include="Areas\Admin\Views\Dashboard\_ThongKeDoanhThuTheoThang.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

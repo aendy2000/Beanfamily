@@ -1,0 +1,158 @@
+﻿@model IEnumerable<Beanfamily.Models.LichSuThanhToanDonHangTongHop>
+@{
+    var doanhthulst = Model.ToList();
+    var currentYear = Int32.Parse(Session["nam-thongke"].ToString());
+    var currentMonth = Int32.Parse(Session["thang-thongke"].ToString());
+}
+
+<div id="content-doanhthu-append">
+    <div class="row">
+        <div class="col-12" style="display: flex; flex-direction: row; justify-content: end">
+            <select id="chonthangthongke" class="form-control form-select mt-3 me-2" style="margin-top: 5px; width: auto !important">
+
+                @for (int i = 1; i <= 12; i++)
+                {
+                    if (currentMonth == i)
+                    {
+                        <option selected value="@i">Doanh Thu Tháng @i/@currentYear</option>
+                    }
+                    else
+                    {
+                        <option value="@i">Doanh Thu Tháng @i/@currentYear</option>
+                    }
+                }
+            </select>
+            <button id="xuat-thong-ke" class="btn btn-primary  mt-3"><i class="bi bi-cloud-arrow-down-fill"></i><span class="ms-2">Xuất Thống Kê</span></button>
+        </div>
+    </div>
+    <table id="dataTableBasic" class="table datatable" width="100%">
+        <thead class="table-light">
+            <tr>
+                <th scope="col" class="text-nowrap">#</th>
+                <th scope="col" class="text-nowrap">Thời gian</th>
+                <th scope="col" class="text-nowrap">Loại</th>
+                <th scope="col" class="text-nowrap">Thực hiện</th>
+                <th scope="col" class="text-nowrap">Số tiền</th>
+                <th scope="col" class="text-nowrap">Ghi chú</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (doanhthulst.Count() > 0)
+            {
+                int i = 0;
+                foreach (var item in doanhthulst)
+                {
+                    i++;
+                    <tr>
+                        <td class="align-middle text-nowrap">
+                            @i.
+                        </td>
+                        <td class="align-middle text-nowrap">
+                            @item.thoigian.ToString("HH:mm") @item.thoigian.ToString("dd/MM/yyyy")
+                        </td>
+                        <td class="align-middle text-nowrap">
+                            @if (item.id_donhangvuonraumuasamvamenuhangngay != null)
+                            {
+                                <span>Đơn đặt hàng</span>
+                            }
+                            else if (item.id_donhangmenubuffet != null)
+                            {
+                                <span>Đặt bàn buffet</span>
+                            }
+                            else
+                            {
+                                <span>Đặt bàn tiệc</span>
+                            }
+                        </td>
+                        <td class="align-middle">
+                            @item.TaiKhoanBean.hovaten
+                            <br />
+                            NV@(item.id_taikhoanbean.ToString("D6"))
+                        </td>
+                        <td class="align-middle text-nowrap">
+                            @item.sotien.ToString("0,0")đ
+                        </td>
+                        <td style="max-width: 400px" class="align-middle">
+                            @item.noidung
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <div hidden>
+        <table slyear="@currentYear" slmonth="@currentMonth" id="download-table-doanhthu">
+            <thead>
+                <tr colspan="6" rowspan="2">
+                    THỐNG KÊ DOANH THU THÁNG @currentMonth/@currentYear
+                </tr>
+                <tr>
+                    <th scope="col" class="text-nowrap">STT</th>
+                    <th scope="col" class="text-nowrap">Thời gian</th>
+                    <th scope="col" class="text-nowrap">Loại</th>
+                    <th scope="col" class="text-nowrap">Thực hiện</th>
+                    <th scope="col" class="text-nowrap">Số tiền</th>
+                    <th scope="col" class="text-nowrap">Ghi chú</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (doanhthulst.Where(w => w.thoigian.Month == currentMonth).ToList().Count() > 0)
+                {
+                    int i = 0;
+                    foreach (var item in doanhthulst.Where(w => w.thoigian.Month == currentMonth).ToList().OrderByDescending(o => o.id).ToList())
+                    {
+                        i++;
+                        <tr>
+                            <td class="align-middle text-nowrap">
+                                @i
+                            </td>
+                            <td class="align-middle text-nowrap">
+                                @item.thoigian.ToString("HH:mm") ngày @item.thoigian.ToString("dd/MM/yyyy")
+                            </td>
+                            <td class="align-middle text-nowrap">
+                                @if (item.id_donhangvuonraumuasamvamenuhangngay != null)
+                                {
+                                    <span>Đơn đặt hàng</span>
+                                }
+                                else if (item.id_donhangmenubuffet != null)
+                                {
+                                    <span>Đặt bàn buffet</span>
+                                }
+                                else
+                                {
+                                    <span>Đặt bàn tiệc</span>
+                                }
+                            </td>
+                            <td class="align-middle">
+                                @item.TaiKhoanBean.hovaten
+                                <br />
+                                NV@(item.id_taikhoanbean.ToString("D6"))
+                            </td>
+                            <td class="align-middle text-nowrap">
+                                @item.sotien.ToString("0,0") đ
+                            </td>
+                            <td class="align-middle">
+                                @item.noidung
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+
+        jQuery('.datatable').DataTable({
+            scrollX: true,
+            order: [],
+            columnDefs: [{
+                'targets': [0],
+                'orderable': false,
+            }],
+        }).on("draw", function () {
+            $('[data-bs-toggle="tooltip"]').tooltip();
+        });
+    });
+</script>

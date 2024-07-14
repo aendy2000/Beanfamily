@@ -15,12 +15,6 @@ namespace Beanfamily
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            string strTitleUrl = "";
-            Regex regex = new Regex("\\p{IsCombiningDiacriticalMarks}+");
-            string temp = strTitleUrl.Normalize(NormalizationForm.FormD);
-            strTitleUrl = regex.Replace(temp, String.Empty).Replace('\u0111', 'd').Replace('\u0110', 'D').Replace(" ", "-").ToLower();
-
-
             //Hình ảnh bean
             routes.MapRoute(
                 name: "Hình Ảnh Bean",
@@ -52,8 +46,8 @@ namespace Beanfamily
             //Mua sắm
             routes.MapRoute(
                 name: "Sản Phẩm Mua Sắm",
-                url: "mua-sam/{urlname}",
-                defaults: new { controller = "MuaSam", action = "ProductDetail", id = UrlParameter.Optional, urlname = UrlParameter.Optional }
+                url: "mua-sam/san-pham-mua-sam-{id}",
+                defaults: new { controller = "MuaSam", action = "ProductDetail", id = UrlParameter.Optional }
             );
             routes.MapRoute(
                 name: "Mua sắm",
@@ -71,8 +65,8 @@ namespace Beanfamily
             //Thực đơn hằng ngày
             routes.MapRoute(
                 name: "Sản Phẩm Thực Đơn Hằng Ngày",
-                url: "menu-hang-ngay/{urlname}",
-                defaults: new { controller = "ThucDonHangNgay", action = "ProductDetail", id = UrlParameter.Optional, urlname = UrlParameter.Optional }
+                url: "menu-hang-ngay/san-pham-thuc-don-hang-ngay-{id}",
+                defaults: new { controller = "ThucDonHangNgay", action = "ProductDetail", id = UrlParameter.Optional }
             );
             routes.MapRoute(
                 name: "Thực Đơn Hằng Ngày",
@@ -102,8 +96,8 @@ namespace Beanfamily
             );
             routes.MapRoute(
                 name: "Sản Phẩm Vườn Rau Bean",
-                url: "vuon-rau-bean/{urlname}",
-                defaults: new { controller = "VuonRau", action = "ProductDetail", id = UrlParameter.Optional, urlname = UrlParameter.Optional }
+                url: "vuon-rau-bean/san-pham-rau-{id}",
+                defaults: new { controller = "VuonRau", action = "ProductDetail", id = UrlParameter.Optional }
             );
             routes.MapRoute(
                 name: "Vườn Rau Bean",

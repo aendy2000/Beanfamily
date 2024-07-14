@@ -1,5 +1,13 @@
-﻿
+﻿@using Beanfamily.Models
 @{
+    BeanfamilyEntities model = new BeanfamilyEntities();
+
+    var currentMonth = DateTime.Now.Month;
+    var currentYear = DateTime.Now.Year;
+
+    var maxyear = DateTime.Now.Year;
+    var doanhthulst = model.LichSuThanhToanDonHangTongHop.Where(w => w.thoigian.Year == currentYear).ToList();
+
     ViewBag.Title = "Bảng điều khiển";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
@@ -14,628 +22,477 @@
     </nav>
 </div><!-- End Page Title -->
 
-<!--<section class="section dashboard">
-    <div class="row">-->
-
-        <!-- Left side columns -->
-        <!--<div class="col-lg-8">
-            <div class="row">-->
-
-                <!-- Sales Card -->
-                <!--<div class="col-xxl-4 col-md-6">
-                    <div class="card info-card sales-card">
-
-                        <div class="filter">
-                            <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                <li class="dropdown-header text-start">
-                                    <h6>Filter</h6>
-                                </li>
-
-                                <li><a class="dropdown-item" href="#">Today</a></li>
-                                <li><a class="dropdown-item" href="#">This Month</a></li>
-                                <li><a class="dropdown-item" href="#">This Year</a></li>
-                            </ul>
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-6 col-6">
+                            <h5 class="ms-3" id="tieude-doanhthu" style="margin-top: 15px">THỐNG KÊ DOANH THU NĂM @currentYear</h5>
                         </div>
+                        <div class="col-md-6 col-6" style="display: flex; justify-content: end">
+                            <select id="chonnamthongke" class="form-control form-select mb-1 me-2" style="margin-top: 5px; width: auto !important">
+                                @for (int i = 2024; i <= maxyear; i++)
+                                {
+                                    if (currentYear == i)
+                                    {
+                                        <option selected value="@i">Doanh Thu Năm @i</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@i">Doanh Thu Năm @i</option>
+                                    }
+                                }
 
-                        <div class="card-body">
-                            <h5 class="card-title">Sales <span>| Today</span></h5>
-
-                            <div class="d-flex align-items-center">
-                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                    <i class="bi bi-cart"></i>
-                                </div>
-                                <div class="ps-3">
-                                    <h6>145</h6>
-                                    <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
-
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>--><!-- End Sales Card -->
-                <!-- Revenue Card -->
-                <!--<div class="col-xxl-4 col-md-6">
-                    <div class="card info-card revenue-card">
-
-                        <div class="filter">
-                            <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                <li class="dropdown-header text-start">
-                                    <h6>Filter</h6>
-                                </li>
-
-                                <li><a class="dropdown-item" href="#">Today</a></li>
-                                <li><a class="dropdown-item" href="#">This Month</a></li>
-                                <li><a class="dropdown-item" href="#">This Year</a></li>
-                            </ul>
-                        </div>
-
-                        <div class="card-body">
-                            <h5 class="card-title">Revenue <span>| This Month</span></h5>
-
-                            <div class="d-flex align-items-center">
-                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                    <i class="bi bi-currency-dollar"></i>
-                                </div>
-                                <div class="ps-3">
-                                    <h6>$3,264</h6>
-                                    <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>
-
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>--><!-- End Revenue Card -->
-                <!-- Customers Card -->
-                <!--<div class="col-xxl-4 col-xl-12">
-
-                    <div class="card info-card customers-card">
-
-                        <div class="filter">
-                            <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                <li class="dropdown-header text-start">
-                                    <h6>Filter</h6>
-                                </li>
-
-                                <li><a class="dropdown-item" href="#">Today</a></li>
-                                <li><a class="dropdown-item" href="#">This Month</a></li>
-                                <li><a class="dropdown-item" href="#">This Year</a></li>
-                            </ul>
-                        </div>
-
-                        <div class="card-body">
-                            <h5 class="card-title">Customers <span>| This Year</span></h5>
-
-                            <div class="d-flex align-items-center">
-                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                    <i class="bi bi-people"></i>
-                                </div>
-                                <div class="ps-3">
-                                    <h6>1244</h6>
-                                    <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span>
-
-                                </div>
-                            </div>
-
+                            </select>
                         </div>
                     </div>
 
-                </div>--><!-- End Customers Card -->
-                <!-- Reports -->
-                <!--<div class="col-12">
-                    <div class="card">
-
-                        <div class="filter">
-                            <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                <li class="dropdown-header text-start">
-                                    <h6>Filter</h6>
-                                </li>
-
-                                <li><a class="dropdown-item" href="#">Today</a></li>
-                                <li><a class="dropdown-item" href="#">This Month</a></li>
-                                <li><a class="dropdown-item" href="#">This Year</a></li>
-                            </ul>
-                        </div>
-
-                        <div class="card-body">
-                            <h5 class="card-title">Reports <span>/Today</span></h5>-->
-
-                            <!-- Line Chart -->
-                            <!--<div id="reportsChart"></div>
-
-                            <script>
-                                document.addEventListener("DOMContentLoaded", () => {
-                                    new ApexCharts(document.querySelector("#reportsChart"), {
-                                        series: [{
-                                            name: 'Sales',
-                                            data: [31, 40, 28, 51, 42, 82, 56],
-                                        }, {
-                                            name: 'Revenue',
-                                            data: [11, 32, 45, 32, 34, 52, 41]
-                                        }, {
-                                            name: 'Customers',
-                                            data: [15, 11, 32, 18, 9, 24, 11]
-                                        }],
-                                        chart: {
-                                            height: 350,
-                                            type: 'area',
-                                            toolbar: {
-                                                show: false
-                                            },
-                                        },
-                                        markers: {
-                                            size: 4
-                                        },
-                                        colors: ['#4154f1', '#2eca6a', '#ff771d'],
-                                        fill: {
-                                            type: "gradient",
-                                            gradient: {
-                                                shadeIntensity: 1,
-                                                opacityFrom: 0.3,
-                                                opacityTo: 0.4,
-                                                stops: [0, 90, 100]
-                                            }
-                                        },
-                                        dataLabels: {
-                                            enabled: false
-                                        },
-                                        stroke: {
-                                            curve: 'smooth',
-                                            width: 2
-                                        },
-                                        xaxis: {
-                                            type: 'datetime',
-                                            categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
-                                        },
-                                        tooltip: {
-                                            x: {
-                                                format: 'dd/MM/yy HH:mm'
-                                            },
-                                        }
-                                    }).render();
-                                });
-                            </script>-->
-                            <!-- End Line Chart -->
-
-                        <!--</div>
-
-                    </div>
-                </div>--><!-- End Reports -->
-                <!-- Recent Sales -->
-                <!--<div class="col-12">
-                    <div class="card recent-sales overflow-auto">
-
-                        <div class="filter">
-                            <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                <li class="dropdown-header text-start">
-                                    <h6>Filter</h6>
-                                </li>
-
-                                <li><a class="dropdown-item" href="#">Today</a></li>
-                                <li><a class="dropdown-item" href="#">This Month</a></li>
-                                <li><a class="dropdown-item" href="#">This Year</a></li>
-                            </ul>
-                        </div>
-
-                        <div class="card-body">
-                            <h5 class="card-title">Recent Sales <span>| Today</span></h5>
-
-                            <table class="table table-borderless datatable">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Customer</th>
-                                        <th scope="col">Product</th>
-                                        <th scope="col">Price</th>
-                                        <th scope="col">Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row"><a href="#">#2457</a></th>
-                                        <td>Brandon Jacob</td>
-                                        <td><a href="#" class="text-primary">At praesentium minu</a></td>
-                                        <td>$64</td>
-                                        <td><span class="badge bg-success">Approved</span></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row"><a href="#">#2147</a></th>
-                                        <td>Bridie Kessler</td>
-                                        <td><a href="#" class="text-primary">Blanditiis dolor omnis similique</a></td>
-                                        <td>$47</td>
-                                        <td><span class="badge bg-warning">Pending</span></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row"><a href="#">#2049</a></th>
-                                        <td>Ashleigh Langosh</td>
-                                        <td><a href="#" class="text-primary">At recusandae consectetur</a></td>
-                                        <td>$147</td>
-                                        <td><span class="badge bg-success">Approved</span></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row"><a href="#">#2644</a></th>
-                                        <td>Angus Grady</td>
-                                        <td><a href="#" class="text-primar">Ut voluptatem id earum et</a></td>
-                                        <td>$67</td>
-                                        <td><span class="badge bg-danger">Rejected</span></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row"><a href="#">#2644</a></th>
-                                        <td>Raheem Lehner</td>
-                                        <td><a href="#" class="text-primary">Sunt similique distinctio</a></td>
-                                        <td>$165</td>
-                                        <td><span class="badge bg-success">Approved</span></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-
-                        </div>
-
-                    </div>
-                </div>--><!-- End Recent Sales -->
-                <!-- Top Selling -->
-                <!--<div class="col-12">
-                    <div class="card top-selling overflow-auto">
-
-                        <div class="filter">
-                            <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                <li class="dropdown-header text-start">
-                                    <h6>Filter</h6>
-                                </li>
-
-                                <li><a class="dropdown-item" href="#">Today</a></li>
-                                <li><a class="dropdown-item" href="#">This Month</a></li>
-                                <li><a class="dropdown-item" href="#">This Year</a></li>
-                            </ul>
-                        </div>
-
-                        <div class="card-body pb-0">
-                            <h5 class="card-title">Top Selling <span>| Today</span></h5>
-
-                            <table class="table table-borderless">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Preview</th>
-                                        <th scope="col">Product</th>
-                                        <th scope="col">Price</th>
-                                        <th scope="col">Sold</th>
-                                        <th scope="col">Revenue</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row"><a href="#"><img src="~/Content/AdminAreas/assets/img/product-1.jpg" alt=""></a></th>
-                                        <td><a href="#" class="text-primary fw-bold">Ut inventore ipsa voluptas nulla</a></td>
-                                        <td>$64</td>
-                                        <td class="fw-bold">124</td>
-                                        <td>$5,828</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row"><a href="#"><img src="~/Content/AdminAreas/assets/img/product-2.jpg" alt=""></a></th>
-                                        <td><a href="#" class="text-primary fw-bold">Exercitationem similique doloremque</a></td>
-                                        <td>$46</td>
-                                        <td class="fw-bold">98</td>
-                                        <td>$4,508</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row"><a href="#"><img src="~/Content/AdminAreas/assets/img/product-3.jpg" alt=""></a></th>
-                                        <td><a href="#" class="text-primary fw-bold">Doloribus nisi exercitationem</a></td>
-                                        <td>$59</td>
-                                        <td class="fw-bold">74</td>
-                                        <td>$4,366</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row"><a href="#"><img src="~/Content/AdminAreas/assets/img/product-4.jpg" alt=""></a></th>
-                                        <td><a href="#" class="text-primary fw-bold">Officiis quaerat sint rerum error</a></td>
-                                        <td>$32</td>
-                                        <td class="fw-bold">63</td>
-                                        <td>$2,016</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row"><a href="#"><img src="~/Content/AdminAreas/assets/img/product-5.jpg" alt=""></a></th>
-                                        <td><a href="#" class="text-primary fw-bold">Sit unde debitis delectus repellendus</a></td>
-                                        <td>$79</td>
-                                        <td class="fw-bold">41</td>
-                                        <td>$3,239</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-
-                        </div>
-
-                    </div>
-                </div>--><!-- End Top Selling -->
-
-            <!--</div>
-        </div>--><!-- End Left side columns -->
-        <!-- Right side columns -->
-        <!--<div class="col-lg-4">-->
-
-            <!-- Recent Activity -->
-            <!--<div class="card">
-                <div class="filter">
-                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                        <li class="dropdown-header text-start">
-                            <h6>Filter</h6>
-                        </li>
-
-                        <li><a class="dropdown-item" href="#">Today</a></li>
-                        <li><a class="dropdown-item" href="#">This Month</a></li>
-                        <li><a class="dropdown-item" href="#">This Year</a></li>
-                    </ul>
                 </div>
-
                 <div class="card-body">
-                    <h5 class="card-title">Recent Activity <span>| Today</span></h5>
+                    <div id="doanhthutongChart" class="mt-3 mb-3"></div>
+                    <hr />
+                    <!-- table -->
+                    <div id="content-doanhthu-append">
+                        <div class="row">
+                            <div class="col-12" style="display: flex; flex-direction: row; justify-content: end">
+                                <select id="chonthangthongke" class="form-control form-select mt-3 me-2" style="margin-top: 5px; width: auto !important">
 
-                    <div class="activity">
-
-                        <div class="activity-item d-flex">
-                            <div class="activite-label">32 min</div>
-                            <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
-                            <div class="activity-content">
-                                Quia quae rerum <a href="#" class="fw-bold text-dark">explicabo officiis</a> beatae
-                            </div>
-                        </div>--><!-- End activity item-->
-
-                        <!--<div class="activity-item d-flex">
-                            <div class="activite-label">56 min</div>
-                            <i class='bi bi-circle-fill activity-badge text-danger align-self-start'></i>
-                            <div class="activity-content">
-                                Voluptatem blanditiis blanditiis eveniet
-                            </div>
-                        </div>--><!-- End activity item-->
-
-                        <!--<div class="activity-item d-flex">
-                            <div class="activite-label">2 hrs</div>
-                            <i class='bi bi-circle-fill activity-badge text-primary align-self-start'></i>
-                            <div class="activity-content">
-                                Voluptates corrupti molestias voluptatem
-                            </div>
-                        </div>--><!-- End activity item-->
-
-                        <!--<div class="activity-item d-flex">
-                            <div class="activite-label">1 day</div>
-                            <i class='bi bi-circle-fill activity-badge text-info align-self-start'></i>
-                            <div class="activity-content">
-                                Tempore autem saepe <a href="#" class="fw-bold text-dark">occaecati voluptatem</a> tempore
-                            </div>
-                        </div>--><!-- End activity item-->
-
-                        <!--<div class="activity-item d-flex">
-                            <div class="activite-label">2 days</div>
-                            <i class='bi bi-circle-fill activity-badge text-warning align-self-start'></i>
-                            <div class="activity-content">
-                                Est sit eum reiciendis exercitationem
-                            </div>
-                        </div>--><!-- End activity item-->
-
-                        <!--<div class="activity-item d-flex">
-                            <div class="activite-label">4 weeks</div>
-                            <i class='bi bi-circle-fill activity-badge text-muted align-self-start'></i>
-                            <div class="activity-content">
-                                Dicta dolorem harum nulla eius. Ut quidem quidem sit quas
-                            </div>
-                        </div>--><!-- End activity item-->
-
-                    <!--</div>
-
-                </div>
-            </div>--><!-- End Recent Activity -->
-            <!-- Budget Report -->
-            <!--<div class="card">
-                <div class="filter">
-                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                        <li class="dropdown-header text-start">
-                            <h6>Filter</h6>
-                        </li>
-
-                        <li><a class="dropdown-item" href="#">Today</a></li>
-                        <li><a class="dropdown-item" href="#">This Month</a></li>
-                        <li><a class="dropdown-item" href="#">This Year</a></li>
-                    </ul>
-                </div>
-
-                <div class="card-body pb-0">
-                    <h5 class="card-title">Budget Report <span>| This Month</span></h5>
-
-                    <div id="budgetChart" style="min-height: 400px;" class="echart"></div>
-
-                    <script>
-                        document.addEventListener("DOMContentLoaded", () => {
-                            var budgetChart = echarts.init(document.querySelector("#budgetChart")).setOption({
-                                legend: {
-                                    data: ['Allocated Budget', 'Actual Spending']
-                                },
-                                radar: {
-                                    // shape: 'circle',
-                                    indicator: [{
-                                        name: 'Sales',
-                                        max: 6500
-                                    },
+                                    @for (int i = 1; i <= 12; i++)
                                     {
-                                        name: 'Administration',
-                                        max: 16000
-                                    },
-                                    {
-                                        name: 'Information Technology',
-                                        max: 30000
-                                    },
-                                    {
-                                        name: 'Customer Support',
-                                        max: 38000
-                                    },
-                                    {
-                                        name: 'Development',
-                                        max: 52000
-                                    },
-                                    {
-                                        name: 'Marketing',
-                                        max: 25000
-                                    }
-                                    ]
-                                },
-                                series: [{
-                                    name: 'Budget vs spending',
-                                    type: 'radar',
-                                    data: [{
-                                        value: [4200, 3000, 20000, 35000, 50000, 18000],
-                                        name: 'Allocated Budget'
-                                    },
-                                    {
-                                        value: [5000, 14000, 28000, 26000, 42000, 21000],
-                                        name: 'Actual Spending'
-                                    }
-                                    ]
-                                }]
-                            });
-                        });
-                    </script>
-
-                </div>
-            </div>--><!-- End Budget Report -->
-            <!-- Website Traffic -->
-            <!--<div class="card">
-                <div class="filter">
-                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                        <li class="dropdown-header text-start">
-                            <h6>Filter</h6>
-                        </li>
-
-                        <li><a class="dropdown-item" href="#">Today</a></li>
-                        <li><a class="dropdown-item" href="#">This Month</a></li>
-                        <li><a class="dropdown-item" href="#">This Year</a></li>
-                    </ul>
-                </div>
-
-                <div class="card-body pb-0">
-                    <h5 class="card-title">Website Traffic <span>| Today</span></h5>
-
-                    <div id="trafficChart" style="min-height: 400px;" class="echart"></div>
-
-                    <script>
-                        document.addEventListener("DOMContentLoaded", () => {
-                            echarts.init(document.querySelector("#trafficChart")).setOption({
-                                tooltip: {
-                                    trigger: 'item'
-                                },
-                                legend: {
-                                    top: '5%',
-                                    left: 'center'
-                                },
-                                series: [{
-                                    name: 'Access From',
-                                    type: 'pie',
-                                    radius: ['40%', '70%'],
-                                    avoidLabelOverlap: false,
-                                    label: {
-                                        show: false,
-                                        position: 'center'
-                                    },
-                                    emphasis: {
-                                        label: {
-                                            show: true,
-                                            fontSize: '18',
-                                            fontWeight: 'bold'
+                                        if (currentMonth == i)
+                                        {
+                                            <option selected value="@i">Doanh Thu Tháng @i/@currentYear</option>
                                         }
-                                    },
-                                    labelLine: {
-                                        show: false
-                                    },
-                                    data: [{
-                                        value: 1048,
-                                        name: 'Search Engine'
-                                    },
-                                    {
-                                        value: 735,
-                                        name: 'Direct'
-                                    },
-                                    {
-                                        value: 580,
-                                        name: 'Email'
-                                    },
-                                    {
-                                        value: 484,
-                                        name: 'Union Ads'
-                                    },
-                                    {
-                                        value: 300,
-                                        name: 'Video Ads'
+                                        else
+                                        {
+                                            <option value="@i">Doanh Thu Tháng @i/@currentYear</option>
+                                        }
                                     }
-                                    ]
-                                }]
-                            });
-                        });
-                    </script>
+                                </select>
+                                <button id="xuat-thong-ke" class="btn btn-primary  mt-3"><i class="bi bi-cloud-arrow-down-fill"></i><span class="ms-2">Xuất Thống Kê</span></button>
+                            </div>
+                        </div>
+                        <table id="dataTableBasic" class="table datatable" width="100%">
+                            <thead class="table-light">
+                                <tr>
+                                    <th scope="col" class="text-nowrap">#</th>
+                                    <th scope="col" class="text-nowrap">Thời gian</th>
+                                    <th scope="col" class="text-nowrap">Loại</th>
+                                    <th scope="col" class="text-nowrap">Thực hiện</th>
+                                    <th scope="col" class="text-nowrap">Số tiền</th>
+                                    <th scope="col" class="text-nowrap">Ghi chú</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (doanhthulst.Where(w => w.thoigian.Month == currentMonth).ToList().Count() > 0)
+                                {
+                                    int i = 0;
+                                    foreach (var item in doanhthulst.Where(w => w.thoigian.Month == currentMonth).ToList().OrderByDescending(o => o.id).ToList())
+                                    {
+                                        i++;
+                                        <tr>
+                                            <td class="align-middle text-nowrap">
+                                                @i.
+                                            </td>
+                                            <td class="align-middle text-nowrap">
+                                                @item.thoigian.ToString("HH:mm") @item.thoigian.ToString("dd/MM/yyyy")
+                                            </td>
+                                            <td class="align-middle text-nowrap">
+                                                @if (item.id_donhangvuonraumuasamvamenuhangngay != null)
+                                                {
+                                                    <span>Đơn đặt hàng</span>
+                                                }
+                                                else if (item.id_donhangmenubuffet != null)
+                                                {
+                                                    <span>Đặt bàn buffet</span>
+                                                }
+                                                else
+                                                {
+                                                    <span>Đặt bàn tiệc</span>
+                                                }
+                                            </td>
+                                            <td class="align-middle">
+                                                @item.TaiKhoanBean.hovaten
+                                                <br />
+                                                NV@(item.id_taikhoanbean.ToString("D6"))
+                                            </td>
+                                            <td class="align-middle text-nowrap">
+                                                @item.sotien.ToString("0,0") đ
+                                            </td>
+                                            <td style="max-width: 400px" class="align-middle">
+                                                @item.noidung
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                        <div hidden>
+                            <table slyear="@currentYear" slmonth="@currentMonth" id="download-table-doanhthu">
+                                <thead>
+                                    <tr colspan="6" rowspan="2">
+                                        THỐNG KÊ DOANH THU THÁNG @currentMonth/@currentYear
+                                    </tr>
+                                    <tr>
+                                        <th scope="col" class="text-nowrap">STT</th>
+                                        <th scope="col" class="text-nowrap">Thời gian</th>
+                                        <th scope="col" class="text-nowrap">Loại</th>
+                                        <th scope="col" class="text-nowrap">Thực hiện</th>
+                                        <th scope="col" class="text-nowrap">Số tiền</th>
+                                        <th scope="col" class="text-nowrap">Ghi chú</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (doanhthulst.Where(w => w.thoigian.Month == currentMonth).ToList().Count() > 0)
+                                    {
+                                        int i = 0;
+                                        foreach (var item in doanhthulst.Where(w => w.thoigian.Month == currentMonth).ToList().OrderByDescending(o => o.id).ToList())
+                                        {
+                                            i++;
+                                            <tr>
+                                                <td class="align-middle text-nowrap">
+                                                    @i
+                                                </td>
+                                                <td class="align-middle text-nowrap">
+                                                    @item.thoigian.ToString("HH:mm") ngày @item.thoigian.ToString("dd/MM/yyyy")
+                                                </td>
+                                                <td class="align-middle text-nowrap">
+                                                    @if (item.id_donhangvuonraumuasamvamenuhangngay != null)
+                                                    {
+                                                        <span>Đơn đặt hàng</span>
+                                                    }
+                                                    else if (item.id_donhangmenubuffet != null)
+                                                    {
+                                                        <span>Đặt bàn buffet</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span>Đặt bàn tiệc</span>
+                                                    }
+                                                </td>
+                                                <td class="align-middle">
+                                                    @item.TaiKhoanBean.hovaten
+                                                    <br />
+                                                    NV@(item.id_taikhoanbean.ToString("D6"))
+                                                </td>
+                                                <td class="align-middle text-nowrap">
+                                                    @item.sotien.ToString("0,0") đ
+                                                </td>
+                                                <td class="align-middle">
+                                                    @item.noidung
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card h-100">
+        <div class="row">
+            <div class="col-12 col-md-12 col-lg-12 col-xl-6" style="padding-right: 0;">
+                <!-- card header -->
+                <div class="card-header text-center">
+                    <h6 class="mb-0">THỐNG KÊ ĐƠN HÀNG</h6>
+                </div>
+                <!-- card body -->
+                <div class="card-body" style="border-right: 1px solid #ebeef4">
+                    <!-- chart -->
+                    <div id="chartDonHang" class=" mt-4"></div>
+                    <!-- table -->
 
                 </div>
-            </div>--><!-- End Website Traffic -->
-            <!-- News & Updates Traffic -->
-            <!--<div class="card">
-                <div class="filter">
-                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                        <li class="dropdown-header text-start">
-                            <h6>Filter</h6>
-                        </li>
-
-                        <li><a class="dropdown-item" href="#">Today</a></li>
-                        <li><a class="dropdown-item" href="#">This Month</a></li>
-                        <li><a class="dropdown-item" href="#">This Year</a></li>
-                    </ul>
+            </div>
+            <div class="col-12 col-md-12 col-lg-12 col-xl-6" style="padding-left: 0;">
+                <!-- card -->
+                <!-- card header -->
+                <div class="card-header text-center">
+                    <h6 class="mb-0">TIẾN TRÌNH ĐƠN HÀNG</h6>
                 </div>
+                <!-- card body -->
+                <div class="card-body">
+                    <!-- chart -->
+                    <div id="chartTienTrinhDonHang"></div>
+                    <!-- table -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-12 col-lg-12 col-xl-6 mb-4">
+            <!-- card -->
+            <div class="card h-100">
+                <!-- card header -->
+                <div class="card-header text-center">
+                    <h6 class="mb-0">THỐNG KÊ ĐƠN ĐẶT BÀN TIỆC</h6>
+                </div>
+                <!-- card body -->
+                <div class="card-body">
+                    <div id="chartBanTiec"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-12 col-lg-12 col-xl-6 mb-4">
+            <!-- card -->
+            <div class="card h-100">
+                <!-- card header -->
+                <div class="card-header text-center">
+                    <h6 class="mb-0">THỐNG KÊ ĐƠN ĐẶT BÀN BUFFET</h6>
+                </div>
+                <!-- card body -->
+                <div class="card-body">
+                    <div id="chartBanBuffet"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    $(document).ready(function () {
 
-                <div class="card-body pb-0">
-                    <h5 class="card-title">News &amp; Updates <span>| Today</span></h5>
+        //Chart doanh thu
+        var lstDoanhThu = @Html.Raw(Json.Encode(Session["lst-doanhthu-nam"]));
+        var lstDonHang = @Html.Raw(Json.Encode(Session["lst-donhang-nam"]));
+        var lstTiecBan = @Html.Raw(Json.Encode(Session["lst-tiecban-nam"]));
+        var lstBuffet = @Html.Raw(Json.Encode(Session["lst-buffet-nam"]));
+        var lstSoDonHang = @Html.Raw(Json.Encode(Session["lst-sodonhang-nam"]));
+        var lstSoTiecBan = @Html.Raw(Json.Encode(Session["lst-sotiecban-nam"]));
+        var lstSoBuffet = @Html.Raw(Json.Encode(Session["lst-sobuffet-nam"]));
 
-                    <div class="news">
-                        <div class="post-item clearfix">
-                            <img src="~/Content/AdminAreas/assets/img/news-1.jpg" alt="">
-                            <h4><a href="#">Nihil blanditiis at in nihil autem</a></h4>
-                            <p>Sit recusandae non aspernatur laboriosam. Quia enim eligendi sed ut harum...</p>
-                        </div>
+        var doanhthutach = lstDoanhThu.split('-');
+        var donhangtach = lstDonHang.split('-');
+        var tiecbantach = lstTiecBan.split('-');
+        var buffettach = lstBuffet.split('-');
+        var sodonhangtach = lstSoDonHang.split('-');
+        var sotiecbantach = lstSoTiecBan.split('-');
+        var sobuffettach = lstSoBuffet.split('-');
 
-                        <div class="post-item clearfix">
-                            <img src="~/Content/AdminAreas/assets/img/news-2.jpg" alt="">
-                            <h4><a href="#">Quidem autem et impedit</a></h4>
-                            <p>Illo nemo neque maiores vitae officiis cum eum turos elan dries werona nande...</p>
-                        </div>
+        var options = {
+            series: [{
+                name: ' Tổng doanh thu',
+                data: []
+            }, {
+                name: ' DT đơn hàng',
+                data: []
+            }, {
+                name: ' Số đơn hàng',
+                data: []
+            } , {
+                name: ' DT đơn bàn tiệc',
+                data: []
+            }, {
+                name: ' Số đơn bàn tiệc',
+                data: []
+            }, {
+                name: ' DT đơn bàn buffet',
+                data: []
+            }, {
+                name: ' Số đơn bàn buffet',
+                data: []
+            }],
+            title: {
+                text: '\n',
+                margin: 20,
+                floating: false
+            },
+            chart: {
+                height: 350,
+                type: 'area'
+            },
+            dataLabels: {
+                enabled: false,
+            },
+            colors: ["#6610f2", "#dc3545", "#d63384", "#198754", "#20c997", "#fd7e14", "#ffc107"],
+            stroke: {
+                curve: 'smooth'
+            },
+            xaxis: {
+                type: 'month',
+                categories: ["T1/@currentYear.ToString()", "T2/@currentYear.ToString()", "T3/@currentYear.ToString()", "T4/@currentYear.ToString()", "T5/@currentYear.ToString()"
+                    , "T6/@currentYear.ToString()", "T7/@currentYear.ToString()", "T8/@currentYear.ToString()", "T9/@currentYear.ToString()", "T10/@currentYear.ToString()", "T11/@currentYear.ToString()", "T12/@currentYear.ToString()"]
+            },
+            yaxis: [{
+            }, {
+                opposite: true,
+            }]
+        };
 
-                        <div class="post-item clearfix">
-                            <img src="~/Content/AdminAreas/assets/img/news-3.jpg" alt="">
-                            <h4><a href="#">Id quia et et ut maxime similique occaecati ut</a></h4>
-                            <p>Fugiat voluptas vero eaque accusantium eos. Consequuntur sed ipsam et totam...</p>
-                        </div>
+        options.series[0].data = doanhthutach;
+        options.series[1].data = donhangtach;
+        options.series[2].data = sodonhangtach;
+        options.series[3].data = tiecbantach;
+        options.series[4].data = sotiecbantach;
+        options.series[5].data = buffettach;
+        options.series[6].data = sobuffettach;
+        var chart = new ApexCharts(document.querySelector("#doanhthutongChart"), options);
+        chart.render();
 
-                        <div class="post-item clearfix">
-                            <img src="~/Content/AdminAreas/assets/img/news-4.jpg" alt="">
-                            <h4><a href="#">Laborum corporis quo dara net para</a></h4>
-                            <p>Qui enim quia optio. Eligendi aut asperiores enim repellendusvel rerum cuder...</p>
-                        </div>
+        //Chart đơn hàng
+        var lstThongKeDonHang = @Html.Raw(Json.Encode(Session["lst-donhang-thongke"]));
+        var thongkedonhangtach = lstThongKeDonHang.split('-');
 
-                        <div class="post-item clearfix">
-                            <img src="~/Content/AdminAreas/assets/img/news-5.jpg" alt="">
-                            <h4><a href="#">Et dolores corrupti quae illo quod dolor</a></h4>
-                            <p>Odit ut eveniet modi reiciendis. Atque cupiditate libero beatae dignissimos eius...</p>
-                        </div>
+        var optionsDonHang = {
+            series: [],
+            chart: {
+                type: 'polarArea',
+            },
+            stroke: {
+                colors: ['#fff']
+            },
+            fill: {
+                opacity: 0.8
+            },
+            colors: ["#ffc107", "#0dcaf0", "#6610f2", "#dc3545"],
+            labels: ['Đơn chờ duyệt', 'Đơn đang đóng gói', 'Đơn đang giao', 'Đơn giao thất bại'],
+            responsive: [{
+                breakpoint: 480,
+                options: {
+                    chart: {
+                        width: 200
+                    },
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }]
+        };
+        for (var i = 0; i < 4; i++) {
+            optionsDonHang.series.push(thongkedonhangtach[i]);
+        }
+        var chartDonHang = new ApexCharts(document.querySelector("#chartDonHang"), optionsDonHang);
+        chartDonHang.render();
 
-                    </div>--><!-- End sidebar recent posts-->
 
-                <!--</div>
-            </div>--><!-- End News & Updates -->
 
-        <!--</div>--><!-- End Right side columns -->
+        //Chart tiến trình đơn hàng
+        var thongSoTienTrinhDonHang = @Html.Raw(Json.Encode(Session["tientrinhdonhang-thongke"]));
+        var optionschartTienTrinhDonHang = {
+            chart: {
+                height: 380,
+                type: "radialBar",
+            },
 
-    <!--</div>
-</section>-->
+            series: [thongSoTienTrinhDonHang],
+            colors: ["#6610f2"],
+            plotOptions: {
+                radialBar: {
+                    hollow: {
+                        margin: 0,
+                        size: "50%",
+                        background: "#ffffff"
+                    },
+                    track: {
+                        dropShadow: {
+                            enabled: true,
+                            top: 2,
+                            left: 0,
+                            blur: 4,
+                            opacity: 0.15
+                        }
+                    },
+                    dataLabels: {
+                        name: {
+                            offsetY: -10,
+                            color: "#293450",
+                            fontSize: "14px"
+                        },
+                        value: {
+                            color: "#293450",
+                            fontSize: "30px",
+                            show: true
+                        }
+                    }
+                }
+            },
+            fill: {
+                type: "gradient",
+                gradient: {
+                    shade: "dark",
+                    type: "vertical",
+                    gradientToColors: ["#dc3545"],
+                    stops: [0, 100]
+                }
+            },
+            stroke: {
+                lineCap: "round"
+            },
+            labels: ["Đã giao hàng"]
+        };
 
+        var chartTienTrinhDonHang = new ApexCharts(document.querySelector("#chartTienTrinhDonHang"), optionschartTienTrinhDonHang);
+        chartTienTrinhDonHang.render();
+
+
+        //Chart đơn tiệc bàn
+        var datachartBanTiec = @Html.Raw(Json.Encode(Session["dontiecban-thongke"]));
+        var chartBanTiectach = datachartBanTiec.split('-');
+
+        var optionschartBanTiec = {
+            series: [{
+                data: [400, 430, 448, 470, 470]
+            }],
+            chart: {
+                type: 'bar',
+                height: 350
+            },
+            plotOptions: {
+                bar: {
+                    borderRadius: 4,
+                    borderRadiusApplication: 'end',
+                    horizontal: true,
+                }
+            },
+            colors: ["#ffc107", "#0dcaf0", "#6610f2", "#dc3545"],
+            dataLabels: {
+                enabled: false
+            },
+            xaxis: {
+                categories: ['Chờ duyệt', 'Đang diễn ra', 'Sắp diễn ra', 'Đã quá hạn', 'Chờ thanh toán'
+                ],
+            }
+        };
+        optionschartBanTiec.series[0].data = chartBanTiectach;
+        var chartBanTiec = new ApexCharts(document.querySelector("#chartBanTiec"), optionschartBanTiec);
+        chartBanTiec.render();
+
+        //Chart đơn tiệc bàn
+        var datachartBanBuffet = @Html.Raw(Json.Encode(Session["donbuffet-thongke"]));
+        var chartBanBuffettach = datachartBanBuffet.split('-');
+
+        var optionschartBanBuffet = {
+            series: [{
+                data: [400, 430, 448, 470, 470]
+            }],
+            chart: {
+                type: 'bar',
+                height: 350
+            },
+            plotOptions: {
+                bar: {
+                    borderRadius: 4,
+                    borderRadiusApplication: 'end',
+                    horizontal: true,
+                }
+            },
+            colors: ["#ffc107", "#0dcaf0", "#6610f2", "#dc3545"],
+            dataLabels: {
+                enabled: false
+            },
+            xaxis: {
+                categories: ['Chờ duyệt', 'Đang diễn ra', 'Sắp diễn ra', 'Đã quá hạn', 'Chờ thanh toán'
+                ],
+            }
+        };
+        optionschartBanBuffet.series[0].data = chartBanBuffettach;
+        var chartBanBuffet = new ApexCharts(document.querySelector("#chartBanBuffet"), optionschartBanBuffet);
+        chartBanBuffet.render();
+    });
+</script>
+<script src="~/Validation/Dashboard/ThongKeNam.js"></script>
+<script src="~/Content/AdminAreas/assets/vendor/table2excel/jquery.table2excel.min.js"></script>

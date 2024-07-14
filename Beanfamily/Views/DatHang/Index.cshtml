@@ -117,11 +117,6 @@
                                         }
                                         else
                                         {
-                                            string urlnames = pro.tensanpham;
-                                            System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex("\\p{IsCombiningDiacriticalMarks}+");
-                                            string temp = urlnames.Normalize(System.Text.NormalizationForm.FormD);
-                                            urlnames = regex.Replace(temp, String.Empty).Replace('\u0111', 'd').Replace('\u0110', 'D').Replace(" ", "-").ToLower();
-
                                             <div class="card mb-3 bo-rad-16 bggreen text-white  ms-3 me-3">
                                                 <div class="card-body">
                                                     <div class="d-flex justify-content-between row">
@@ -129,7 +124,7 @@
                                                             <div>
                                                                 @if (string.IsNullOrEmpty(pro.hinhanh))
                                                                 {
-                                                                    <a class="text-white" href="@Url.Action("productdetail", "muasam", new { id = idPro, urlname = urlnames })">
+                                                                    <a class="text-white" href="@Url.Action("productdetail", "muasam", new { id = idPro })">
                                                                         <img src="@Url.Content("~/Content/assets/images/product/sanphamdefault.jpg")"
                                                                              class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
                                                                     </a>
@@ -137,14 +132,14 @@
                                                                 else
                                                                 {
 
-                                                                    <a class="text-white" href="@Url.Action("productdetail", "muasam", new { id = idPro, urlname = urlnames })">
+                                                                    <a class="text-white" href="@Url.Action("productdetail", "muasam", new { id = idPro })">
                                                                         <img src="@Url.Content(pro.hinhanh.Split('#')[0])"
                                                                              class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
                                                                     </a>
                                                                 }
                                                             </div>
                                                             <div class="ms-3">
-                                                                <a class="text-white" href="@Url.Action("productdetail", "muasam", new { id = idPro, urlname = urlnames })"><h5>@pro.tensanpham</h5></a>
+                                                                <a class="text-white" href="@Url.Action("productdetail", "muasam", new { id = idPro })"><h5>@pro.tensanpham</h5></a>
                                                                 <p class="small mb-0">@(pro.TonKhoSanPhamMuaSam.FirstOrDefault(l => l.id == idLoaiPro) == null ? "Chọn phân loại hàng" : pro.TonKhoSanPhamMuaSam.FirstOrDefault(l => l.id == idLoaiPro).tenloai + ", " + pro.TonKhoSanPhamMuaSam.FirstOrDefault(l => l.id == idLoaiPro).gia.ToString("0,0") + "đ")</p>
                                                             </div>
                                                         </div>
@@ -226,11 +221,7 @@
                                         }
                                         else
                                         {
-                                            string urlnames = pro.tensanpham;
-                                            System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex("\\p{IsCombiningDiacriticalMarks}+");
-                                            string temp = urlnames.Normalize(System.Text.NormalizationForm.FormD);
-                                            urlnames = regex.Replace(temp, String.Empty).Replace('\u0111', 'd').Replace('\u0110', 'D').Replace(" ", "-").ToLower();
-
+                                            
                                             <div class="card mb-3 bo-rad-16 bggreen text-white ms-3 me-3">
                                                 <div class="card-body">
                                                     <div class="d-flex justify-content-between row">
@@ -238,21 +229,21 @@
                                                             <div>
                                                                 @if (string.IsNullOrEmpty(pro.hinhanh))
                                                                 {
-                                                                    <a class="text-white" href="@Url.Action("productdetail", "vuonrau", new { id = idPro, urlname = urlnames })">
+                                                                    <a class="text-white" href="@Url.Action("productdetail", "vuonrau", new { id = idPro })">
                                                                         <img src="@Url.Content("~/Content/assets/images/product/sanphamdefault.jpg")"
                                                                              class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
                                                                     </a>
                                                                 }
                                                                 else
                                                                 {
-                                                                    <a class="text-white" href="@Url.Action("productdetail", "vuonrau", new { id = idPro, urlname = urlnames })">
+                                                                    <a class="text-white" href="@Url.Action("productdetail", "vuonrau", new { id = idPro })">
                                                                         <img src="@Url.Content(pro.hinhanh.Split('#')[0])"
                                                                              class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
                                                                     </a>
                                                                 }
                                                             </div>
                                                             <div class="ms-3">
-                                                                <a class="text-white" href="@Url.Action("productdetail", "vuonrau", new { id = idPro, urlname = urlnames })"><h5>@pro.tensanpham</h5></a>
+                                                                <a class="text-white" href="@Url.Action("productdetail", "vuonrau", new { id = idPro })"><h5>@pro.tensanpham</h5></a>
                                                                 <p class="small mb-0">@pro.gia.ToString("0,0")đ / @pro.donvi</p>
                                                             </div>
                                                         </div>
@@ -326,11 +317,7 @@
                                         }
                                         else
                                         {
-                                            string urlnames = pro.tensanpham;
-                                            System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex("\\p{IsCombiningDiacriticalMarks}+");
-                                            string temp = urlnames.Normalize(System.Text.NormalizationForm.FormD);
-                                            urlnames = regex.Replace(temp, String.Empty).Replace('\u0111', 'd').Replace('\u0110', 'D').Replace(" ", "-").ToLower();
-
+                                           
                                             <div class="card mb-3 bo-rad-16 bggreen text-white ms-3 me-3">
                                                 <div class="card-body">
                                                     <div class="d-flex justify-content-between row">
@@ -338,21 +325,21 @@
                                                             <div>
                                                                 @if (string.IsNullOrEmpty(pro.hinhanh))
                                                                 {
-                                                                    <a class="text-white" href="@Url.Action("productdetail", "thucdonhangngay", new { id = idPro, urlname = urlnames })">
+                                                                    <a class="text-white" href="@Url.Action("productdetail", "thucdonhangngay", new { id = idPro })">
                                                                         <img src="@Url.Content("~/Content/assets/images/product/sanphamdefault.jpg")"
                                                                              class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
                                                                     </a>
                                                                 }
                                                                 else
                                                                 {
-                                                                    <a class="text-white" href="@Url.Action("productdetail", "thucdonhangngay", new { id = idPro, urlname = urlnames })">
+                                                                    <a class="text-white" href="@Url.Action("productdetail", "thucdonhangngay", new { id = idPro })">
                                                                         <img src="@Url.Content(pro.hinhanh.Split('#')[0])"
                                                                              class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
                                                                     </a>
                                                                 }
                                                             </div>
                                                             <div class="ms-3">
-                                                                <a class="text-white" href="@Url.Action("productdetail", "thucdonhangngay", new { id = idPro, urlname = urlnames })"><h5>@pro.tensanpham</h5></a>
+                                                                <a class="text-white" href="@Url.Action("productdetail", "thucdonhangngay", new { id = idPro })"><h5>@pro.tensanpham</h5></a>
                                                                 <p class="small mb-0">@pro.gia.ToString("0,0")đ</p>
                                                             </div>
                                                         </div>

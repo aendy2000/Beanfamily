@@ -70,7 +70,7 @@ namespace Beanfamily.Controllers
             }
         }
 
-        public ActionResult ProductDetail(int id, string urlname)
+        public ActionResult ProductDetail(int id)
         {
 
             var sp = model.SanPhamMuaSam.Find(id);
