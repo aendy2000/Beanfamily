@@ -59,6 +59,17 @@
         strTongTien = "0";
     }
 
+    string diachi = "";
+    string linkchiduong = "";
+
+    var tt = models.ThongTinCauHinh.ToList();
+    if (tt.Count > 0)
+    {
+        var tts = tt.First();
+        diachi = tts.diachi;
+        linkchiduong = tts.linkchiduong;
+    }
+
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
 }
 
@@ -477,8 +488,8 @@
                                     </div>
                                     <div hidden id="chontaicuahang" class="row">
                                         <div class="col-md-12">
-                                            <label style="font-weight: bold;" class="me-2">Địa chỉ chi nhánh:</label><span>Số 38 - Đường D1 - KDC Phú Hòa 1 - Phường Phú Hòa - Thủ Dầu Một - Bình Dương.</span>
-                                            <a href="https://maps.app.goo.gl/FF9oT3HenhLGbiYG7" target="_blank" style="width: auto; padding: 10px" class="btn3 flex-c-m size1 txt11 trans-0-4 mt-3">XEM TRÊN BẢN ĐỒ</a>
+                                            <label style="font-weight: bold;" class="me-2">Địa chỉ chi nhánh:</label><span>@diachi.</span>
+                                            <a href="@linkchiduong" target="_blank" style="width: auto; padding: 10px" class="btn3 flex-c-m size1 txt11 trans-0-4 mt-3">XEM TRÊN BẢN ĐỒ</a>
                                         </div>
                                     </div>
                                 </div>
@@ -606,8 +617,8 @@
                                     </div>
                                     <div hidden id="chontaicuahang" class="row">
                                         <div class="col-md-12">
-                                            <label style="font-weight: bold;" class="me-2">Địa chỉ chi nhánh:</label><span>Số 38 - Đường D1 - KDC Phú Hòa 1 - Phường Phú Hòa - Thủ Dầu Một - Bình Dương.</span>
-                                            <a href="https://maps.app.goo.gl/FF9oT3HenhLGbiYG7" target="_blank" style="width: auto; padding: 10px" class="btn3 flex-c-m size1 txt11 trans-0-4 mt-3">XEM TRÊN BẢN ĐỒ</a>
+                                            <label style="font-weight: bold;" class="me-2">Địa chỉ chi nhánh:</label><span>@diachi.</span>
+                                            <a href="@linkchiduong" target="_blank" style="width: auto; padding: 10px" class="btn3 flex-c-m size1 txt11 trans-0-4 mt-3">XEM TRÊN BẢN ĐỒ</a>
                                         </div>
                                     </div>
                                 </div>

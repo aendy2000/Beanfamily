@@ -18,7 +18,6 @@ namespace Beanfamily.Models
         public TaiKhoanBean()
         {
             this.LichSuThanhToanDonHangTongHop = new HashSet<LichSuThanhToanDonHangTongHop>();
-            this.MangXaHoi = new HashSet<MangXaHoi>();
             this.TinhTrangDonHangMenuBuffet = new HashSet<TinhTrangDonHangMenuBuffet>();
             this.TinhTrangDonHangMenuTiecBan = new HashSet<TinhTrangDonHangMenuTiecBan>();
             this.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay = new HashSet<TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay>();
@@ -44,8 +43,6 @@ namespace Beanfamily.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LichSuThanhToanDonHangTongHop> LichSuThanhToanDonHangTongHop { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MangXaHoi> MangXaHoi { get; set; }
         public virtual QuyenTaiKhoanBean QuyenTaiKhoanBean { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TinhTrangDonHangMenuBuffet> TinhTrangDonHangMenuBuffet { get; set; }

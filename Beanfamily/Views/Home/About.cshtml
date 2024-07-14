@@ -1,4 +1,18 @@
-﻿@{
+﻿@using Beanfamily.Models
+@{
+    BeanfamilyEntities models = new BeanfamilyEntities();
+
+    string diachi = "";
+    string toado = "";
+
+    var tt = models.ThongTinCauHinh.ToList();
+    if (tt.Count > 0)
+    {
+        var tts = tt.First();
+        diachi = tts.diachi;
+        toado = tts.toadogooglemapiframe;
+    }
+
     ViewBag.Title = "Giới Thiệu";
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
 }
@@ -146,9 +160,9 @@
 
             <div class="row" style="margin-top: 80px">
                 <div class="col-12">
-                    <h6 class="text-white" style="margin-bottom: 10px"><i class="fa fa-map-marker fs-16 dis-inline-block"> </i> Địa chỉ: Số 38 - Đường D1 - KDC Phú Hòa 1 - Phường Phú Hòa - Thủ Dầu Một - Bình Dương.</h6>
+                    <h6 class="text-white" style="margin-bottom: 10px"><i class="fa fa-map-marker fs-16 dis-inline-block"> </i> @diachi</h6>
                     <div id="map" style="height: 500px">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.8592950601287!2d106.67811437493583!3d10.97399138918707!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174d12e2d579009%3A0x617c96e92c4de0fe!2z4bqobSBUaOG7sWMgQ2hheSBHaWEgxJDDrG5oIMSQ4bqtdSAtIEJlYW4gRmFtaWx5!5e0!3m2!1svi!2s!4v1717299665568!5m2!1svi!2s" width="100%" height="500px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <iframe src="@toado" width="100%" height="500px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
             </div>

@@ -159,6 +159,7 @@
     <Compile Include="Areas\Admin\Controllers\SanPhamVuonRauBeanController.cs" />
     <Compile Include="Areas\Admin\Controllers\SEOPageConfigController.cs" />
     <Compile Include="Areas\Admin\Controllers\CauHinhWebController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ThongTinWebController.cs" />
     <Compile Include="Controllers\DatHangController.cs" />
     <Compile Include="Controllers\HinhAnhController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -242,9 +243,6 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LichSuThanhToanDonHangTongHop.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\MangXaHoi.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Model1.Context.cs">
@@ -2918,6 +2916,9 @@
     <Content Include="Areas\Admin\Views\DonDatBanBuffet\_CapNhatDonHang.cshtml" />
     <Content Include="Areas\Admin\Views\DonDatBanBuffet\_CapNhatThongTinDonHang.cshtml" />
     <Content Include="Areas\Admin\Views\DonDatBanBuffet\_ThanhToan.cshtml" />
+    <Content Include="Areas\Admin\Views\SEOPageConfig\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\CauHinhWeb\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ThongTinWeb\Index.cshtml" />
     <EntityDeploy Include="Models\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
@@ -2925,8 +2926,6 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
-    <Content Include="Areas\Admin\Views\SEOPageConfig\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\CauHinhWeb\Index.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -2981,6 +2980,7 @@
     <Content Include="Validation\SanPhamVuonRau\XoaHangLoat.js" />
     <Content Include="Validation\SanPhamVuonRau\XoaSanPham.js" />
     <Content Include="Validation\SEOPageConfig\Update.js" />
+    <Content Include="Validation\ThongTinWeb\Update.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

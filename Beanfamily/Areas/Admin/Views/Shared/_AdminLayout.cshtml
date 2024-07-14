@@ -540,7 +540,7 @@
                         @if (Session["tlc-lkmxh"] != null)
                         {
                             <li>
-                                <a href="components-accordion.html" class="@Session["active-tlc-lkmxh"].ToString().Split('#')[2]">
+                                <a href="@Url.Action("index", "thongtinweb")" class="@Session["active-tlc-lkmxh"].ToString().Split('#')[2]">
                                     <i class="bi bi-circle"></i><span>Thông Tin Web</span>
                                 </a>
                             </li>

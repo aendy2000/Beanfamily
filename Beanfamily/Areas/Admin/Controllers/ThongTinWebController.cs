@@ -9,14 +9,13 @@ using System.Data.Entity;
 using System.Security.Cryptography;
 using System.Web.Razor.Tokenizer.Symbols;
 
-
 namespace Beanfamily.Areas.Admin.Controllers
 {
     [AdminLoginverification]
-    public class CauHinhWebController : Controller
+    public class ThongTinWebController : Controller
     {
         BeanfamilyEntities model = new BeanfamilyEntities();
-        // GET: Admin/CauHinhWeb
+        // GET: Admin/ThongTinWeb
         public ActionResult Index()
         {
             Session["active-dashboard"] = "collapsed # # ";
@@ -39,17 +38,17 @@ namespace Beanfamily.Areas.Admin.Controllers
             Session["active-ddbb"] = "collapsed # # ";
             Session["active-hab"] = "collapsed # # ";
             Session["active-qlsp"] = "collapsed # # ";
-            Session["active-tlc-ttw"] = " # show # active";
-            Session["active-tlc-lkmxh"] = " # show # ";
+            Session["active-tlc-ttw"] = " # show # ";
+            Session["active-tlc-lkmxh"] = " # show # active";
 
-            if (Session["tlc-ttw"] == null)
+            if (Session["tlc-lkmxh"] == null)
                 return RedirectToAction("index", "dashboard");
 
-            var chw = model.ThongTinCauHinh.ToList();
+            var ttw = model.ThongTinCauHinh.ToList();
 
             int idRole = Int32.Parse(Session["user-role-id"].ToString());
             var chophepthemsuaxoa = model.ApDungChucNangChoQuyenTaiKhoan.FirstOrDefault(a => a.id_quyentaikhoanbean == idRole
-            && a.ChucNangHeThongBean.keycode.Equals("tlc-ttw"));
+            && a.ChucNangHeThongBean.keycode.Equals("tlc-lkmxh"));
             if (chophepthemsuaxoa != null)
             {
                 Session["chophep-them"] = chophepthemsuaxoa.chophepthem;
@@ -61,11 +60,11 @@ namespace Beanfamily.Areas.Admin.Controllers
                 return RedirectToAction("index", "dashboard");
             }
 
-            return View("index", chw);
+            return View("index", ttw);
         }
-
         [HttpPost]
-        public ActionResult CapNhat(string googlesearchconsole, string googleanalyst)
+        public ActionResult CapNhat(string giomocua, string ngaymocua, string sodienthoai, string email, string diachi, 
+            string facebook, string mess, string zalo, string ig, string tiktok, string chiduong, string toado, string tenmien)
         {
             try
             {
@@ -73,16 +72,38 @@ namespace Beanfamily.Areas.Admin.Controllers
                 if (cauhinh.Count < 1)
                 {
                     ThongTinCauHinh cauhinhs = new ThongTinCauHinh();
-                    cauhinhs.googleanalyst = googleanalyst;
-                    cauhinhs.googlesearchconsole = googlesearchconsole;
+                    cauhinhs.giomocua = giomocua;
+                    cauhinhs.ngaymocua = ngaymocua;
+                    cauhinhs.sodienthoai = sodienthoai;
+                    cauhinhs.email = email;
+                    cauhinhs.diachi = diachi;
+                    cauhinhs.facebook = facebook;
+                    cauhinhs.messenger = mess;
+                    cauhinhs.zalo = zalo;
+                    cauhinhs.instagram = ig;
+                    cauhinhs.tiktok = tiktok;
+                    cauhinhs.linkchiduong = chiduong;
+                    cauhinhs.toadogooglemapiframe = toado;
+                    cauhinhs.coppyright = tenmien;
 
                     model.ThongTinCauHinh.Add(cauhinhs);
                 }
                 else
                 {
                     var cauhinhs = cauhinh.First();
-                    cauhinhs.googleanalyst = googleanalyst;
-                    cauhinhs.googlesearchconsole = googlesearchconsole;
+                    cauhinhs.giomocua = giomocua;
+                    cauhinhs.ngaymocua = ngaymocua;
+                    cauhinhs.sodienthoai = sodienthoai;
+                    cauhinhs.email = email;
+                    cauhinhs.diachi = diachi;
+                    cauhinhs.facebook = facebook;
+                    cauhinhs.messenger = mess;
+                    cauhinhs.zalo = zalo;
+                    cauhinhs.instagram = ig;
+                    cauhinhs.tiktok = tiktok;
+                    cauhinhs.linkchiduong = chiduong;
+                    cauhinhs.toadogooglemapiframe = toado;
+                    cauhinhs.coppyright = tenmien;
 
                     model.Entry(cauhinhs).State = EntityState.Modified;
                 }

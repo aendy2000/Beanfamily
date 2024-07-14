@@ -60,6 +60,8 @@ namespace Beanfamily.Areas.Admin.Controllers
 
             return View("index", seopage);
         }
+
+        [HttpPost]
         public ActionResult CapNhatSEOPage(string title, string keyword, string desc)
         {
             try

@@ -313,19 +313,6 @@
           <Property Name="tenkhachhang" Type="nvarchar" MaxLength="200" />
           <Property Name="sdtkhachhang" Type="nvarchar" MaxLength="12" />
         </EntityType>
-        <EntityType Name="MangXaHoi">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="logo" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="tenmangxahoi" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="lienketmangxahoi" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="hienthi" Type="bit" Nullable="false" />
-          <Property Name="id_taikhoanbean" Type="int" Nullable="false" />
-          <Property Name="ngaytao" Type="datetime" Nullable="false" />
-          <Property Name="ngaysuadoi" Type="datetime" Nullable="false" />
-        </EntityType>
         <EntityType Name="NoiDungSEO">
           <Key>
             <PropertyRef Name="id" />
@@ -512,7 +499,8 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="noidunggiomocua" Type="nvarchar(max)" />
+          <Property Name="giomocua" Type="nvarchar(max)" />
+          <Property Name="ngaymocua" Type="nvarchar(max)" />
           <Property Name="diachi" Type="nvarchar(max)" />
           <Property Name="email" Type="nvarchar(max)" />
           <Property Name="sodienthoai" Type="nvarchar(max)" />
@@ -521,16 +509,11 @@
           <Property Name="zalo" Type="nvarchar(max)" />
           <Property Name="instagram" Type="nvarchar(max)" />
           <Property Name="tiktok" Type="nvarchar(max)" />
-          <Property Name="website" Type="nvarchar(max)" />
           <Property Name="coppyright" Type="nvarchar(max)" />
           <Property Name="linkchiduong" Type="nvarchar(max)" />
           <Property Name="toadogooglemapiframe" Type="nvarchar(max)" />
           <Property Name="googleanalyst" Type="nvarchar(max)" />
           <Property Name="googlesearchconsole" Type="nvarchar(max)" />
-          <Property Name="googlewebmastertool" Type="nvarchar(max)" />
-          <Property Name="metatag" Type="nvarchar(max)" />
-          <Property Name="headjs" Type="nvarchar(max)" />
-          <Property Name="bodyjs" Type="nvarchar(max)" />
         </EntityType>
         <Association Name="FK_ApDungChucNangChoQuyenTaiKhoan_ChucNangHeThongBean">
           <End Role="ChucNangHeThongBean" Type="Self.ChucNangHeThongBean" Multiplicity="1" />
@@ -880,18 +863,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_MangXaHoi_TaiKhoanBean">
-          <End Role="TaiKhoanBean" Type="Self.TaiKhoanBean" Multiplicity="1" />
-          <End Role="MangXaHoi" Type="Self.MangXaHoi" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TaiKhoanBean">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="MangXaHoi">
-              <PropertyRef Name="id_taikhoanbean" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_SanPhamMenuBuffet_DanhMucMenuBuffetCap1">
           <End Role="DanhMucMenuBuffetCap1" Type="Self.DanhMucMenuBuffetCap1" Multiplicity="1" />
           <End Role="SanPhamMenuBuffet" Type="Self.SanPhamMenuBuffet" Multiplicity="*" />
@@ -1085,7 +1056,6 @@
           <EntitySet Name="GioHangVuonRauBean" EntityType="Self.GioHangVuonRauBean" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HinhAnhBean" EntityType="Self.HinhAnhBean" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LichSuThanhToanDonHangTongHop" EntityType="Self.LichSuThanhToanDonHangTongHop" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="MangXaHoi" EntityType="Self.MangXaHoi" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NoiDungSEO" EntityType="Self.NoiDungSEO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuyenTaiKhoanBean" EntityType="Self.QuyenTaiKhoanBean" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuyTrinhTrongCay" EntityType="Self.QuyTrinhTrongCay" Schema="dbo" store:Type="Tables" />
@@ -1216,10 +1186,6 @@
           <AssociationSet Name="FK_LichSuThanhToanDonHangTongHop_TaiKhoanBean" Association="Self.FK_LichSuThanhToanDonHangTongHop_TaiKhoanBean">
             <End Role="TaiKhoanBean" EntitySet="TaiKhoanBean" />
             <End Role="LichSuThanhToanDonHangTongHop" EntitySet="LichSuThanhToanDonHangTongHop" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MangXaHoi_TaiKhoanBean" Association="Self.FK_MangXaHoi_TaiKhoanBean">
-            <End Role="TaiKhoanBean" EntitySet="TaiKhoanBean" />
-            <End Role="MangXaHoi" EntitySet="MangXaHoi" />
           </AssociationSet>
           <AssociationSet Name="FK_SanPhamMenuBuffet_DanhMucMenuBuffetCap1" Association="Self.FK_SanPhamMenuBuffet_DanhMucMenuBuffetCap1">
             <End Role="DanhMucMenuBuffetCap1" EntitySet="DanhMucMenuBuffetCap1" />
@@ -1641,20 +1607,6 @@
           <NavigationProperty Name="DonHangVuonRauMuaSamVaMenuHangNgay" Relationship="Self.FK_LichSuThanhToanDonHangTongHop_DonHangVuonRauMuaSamVaMenuHangNgay" FromRole="LichSuThanhToanDonHangTongHop" ToRole="DonHangVuonRauMuaSamVaMenuHangNgay" />
           <NavigationProperty Name="TaiKhoanBean" Relationship="Self.FK_LichSuThanhToanDonHangTongHop_TaiKhoanBean" FromRole="LichSuThanhToanDonHangTongHop" ToRole="TaiKhoanBean" />
         </EntityType>
-        <EntityType Name="MangXaHoi">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="logo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="tenmangxahoi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="lienketmangxahoi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="hienthi" Type="Boolean" Nullable="false" />
-          <Property Name="id_taikhoanbean" Type="Int32" Nullable="false" />
-          <Property Name="ngaytao" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ngaysuadoi" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="TaiKhoanBean" Relationship="Self.FK_MangXaHoi_TaiKhoanBean" FromRole="MangXaHoi" ToRole="TaiKhoanBean" />
-        </EntityType>
         <EntityType Name="NoiDungSEO">
           <Key>
             <PropertyRef Name="id" />
@@ -1794,7 +1746,6 @@
           <Property Name="solandasaimatkhau" Type="Int32" Nullable="false" />
           <Property Name="hinhdaidien" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="LichSuThanhToanDonHangTongHop" Relationship="Self.FK_LichSuThanhToanDonHangTongHop_TaiKhoanBean" FromRole="TaiKhoanBean" ToRole="LichSuThanhToanDonHangTongHop" />
-          <NavigationProperty Name="MangXaHoi" Relationship="Self.FK_MangXaHoi_TaiKhoanBean" FromRole="TaiKhoanBean" ToRole="MangXaHoi" />
           <NavigationProperty Name="QuyenTaiKhoanBean" Relationship="Self.FK_TaiKhoanBean_QuyenTaiKhoanBean" FromRole="TaiKhoanBean" ToRole="QuyenTaiKhoanBean" />
           <NavigationProperty Name="TinhTrangDonHangMenuBuffet" Relationship="Self.FK_TinhTrangDonHangMenuBuffet_TaiKhoanBean" FromRole="TaiKhoanBean" ToRole="TinhTrangDonHangMenuBuffet" />
           <NavigationProperty Name="TinhTrangDonHangMenuTiecBan" Relationship="Self.FK_TinhTrangDonHangMenuTiecBan_TaiKhoanBean" FromRole="TaiKhoanBean" ToRole="TinhTrangDonHangMenuTiecBan" />
@@ -1878,7 +1829,8 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="noidunggiomocua" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="giomocua" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ngaymocua" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="diachi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="sodienthoai" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -1887,16 +1839,11 @@
           <Property Name="zalo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="instagram" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="tiktok" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="website" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="coppyright" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="linkchiduong" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="toadogooglemapiframe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="googleanalyst" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="googlesearchconsole" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="googlewebmastertool" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="metatag" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="headjs" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="bodyjs" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_ApDungChucNangChoQuyenTaiKhoan_ChucNangHeThongBean">
           <End Role="ChucNangHeThongBean" Type="Self.ChucNangHeThongBean" Multiplicity="1" />
@@ -2342,18 +2289,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_MangXaHoi_TaiKhoanBean">
-          <End Role="TaiKhoanBean" Type="Self.TaiKhoanBean" Multiplicity="1" />
-          <End Role="MangXaHoi" Type="Self.MangXaHoi" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TaiKhoanBean">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="MangXaHoi">
-              <PropertyRef Name="id_taikhoanbean" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_TaiKhoanBean_QuyenTaiKhoanBean">
           <End Role="QuyenTaiKhoanBean" Type="Self.QuyenTaiKhoanBean" Multiplicity="1" />
           <End Role="TaiKhoanBean" Type="Self.TaiKhoanBean" Multiplicity="*" />
@@ -2451,7 +2386,6 @@
           <EntitySet Name="GioHangVuonRauBean" EntityType="Self.GioHangVuonRauBean" />
           <EntitySet Name="HinhAnhBean" EntityType="Self.HinhAnhBean" />
           <EntitySet Name="LichSuThanhToanDonHangTongHop" EntityType="Self.LichSuThanhToanDonHangTongHop" />
-          <EntitySet Name="MangXaHoi" EntityType="Self.MangXaHoi" />
           <EntitySet Name="NoiDungSEO" EntityType="Self.NoiDungSEO" />
           <EntitySet Name="QuyenTaiKhoanBean" EntityType="Self.QuyenTaiKhoanBean" />
           <EntitySet Name="QuyTrinhTrongCay" EntityType="Self.QuyTrinhTrongCay" />
@@ -2614,10 +2548,6 @@
           <AssociationSet Name="FK_LichSuThanhToanDonHangTongHop_TaiKhoanBean" Association="Self.FK_LichSuThanhToanDonHangTongHop_TaiKhoanBean">
             <End Role="TaiKhoanBean" EntitySet="TaiKhoanBean" />
             <End Role="LichSuThanhToanDonHangTongHop" EntitySet="LichSuThanhToanDonHangTongHop" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MangXaHoi_TaiKhoanBean" Association="Self.FK_MangXaHoi_TaiKhoanBean">
-            <End Role="TaiKhoanBean" EntitySet="TaiKhoanBean" />
-            <End Role="MangXaHoi" EntitySet="MangXaHoi" />
           </AssociationSet>
           <AssociationSet Name="FK_TaiKhoanBean_QuyenTaiKhoanBean" Association="Self.FK_TaiKhoanBean_QuyenTaiKhoanBean">
             <End Role="QuyenTaiKhoanBean" EntitySet="QuyenTaiKhoanBean" />
@@ -2982,20 +2912,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="MangXaHoi">
-            <EntityTypeMapping TypeName="BeanfamilyModel.MangXaHoi">
-              <MappingFragment StoreEntitySet="MangXaHoi">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="logo" ColumnName="logo" />
-                <ScalarProperty Name="tenmangxahoi" ColumnName="tenmangxahoi" />
-                <ScalarProperty Name="lienketmangxahoi" ColumnName="lienketmangxahoi" />
-                <ScalarProperty Name="hienthi" ColumnName="hienthi" />
-                <ScalarProperty Name="id_taikhoanbean" ColumnName="id_taikhoanbean" />
-                <ScalarProperty Name="ngaytao" ColumnName="ngaytao" />
-                <ScalarProperty Name="ngaysuadoi" ColumnName="ngaysuadoi" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="NoiDungSEO">
             <EntityTypeMapping TypeName="BeanfamilyModel.NoiDungSEO">
               <MappingFragment StoreEntitySet="NoiDungSEO">
@@ -3195,7 +3111,8 @@
             <EntityTypeMapping TypeName="BeanfamilyModel.ThongTinCauHinh">
               <MappingFragment StoreEntitySet="ThongTinCauHinh">
                 <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="noidunggiomocua" ColumnName="noidunggiomocua" />
+                <ScalarProperty Name="giomocua" ColumnName="giomocua" />
+                <ScalarProperty Name="ngaymocua" ColumnName="ngaymocua" />
                 <ScalarProperty Name="diachi" ColumnName="diachi" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="sodienthoai" ColumnName="sodienthoai" />
@@ -3204,16 +3121,11 @@
                 <ScalarProperty Name="zalo" ColumnName="zalo" />
                 <ScalarProperty Name="instagram" ColumnName="instagram" />
                 <ScalarProperty Name="tiktok" ColumnName="tiktok" />
-                <ScalarProperty Name="website" ColumnName="website" />
                 <ScalarProperty Name="coppyright" ColumnName="coppyright" />
                 <ScalarProperty Name="linkchiduong" ColumnName="linkchiduong" />
                 <ScalarProperty Name="toadogooglemapiframe" ColumnName="toadogooglemapiframe" />
                 <ScalarProperty Name="googleanalyst" ColumnName="googleanalyst" />
                 <ScalarProperty Name="googlesearchconsole" ColumnName="googlesearchconsole" />
-                <ScalarProperty Name="googlewebmastertool" ColumnName="googlewebmastertool" />
-                <ScalarProperty Name="metatag" ColumnName="metatag" />
-                <ScalarProperty Name="headjs" ColumnName="headjs" />
-                <ScalarProperty Name="bodyjs" ColumnName="bodyjs" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

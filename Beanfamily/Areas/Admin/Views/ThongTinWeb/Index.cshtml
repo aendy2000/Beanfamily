@@ -1,0 +1,125 @@
+﻿@model IEnumerable<Beanfamily.Models.ThongTinCauHinh>
+@{
+    string giomocua = "";
+    string ngaymocua = "";
+    string sodienthoai = "";
+    string email = "";
+    string diachi = "";
+    string facebook = "";
+    string mess = "";
+    string zalo = "";
+    string ig = "";
+    string tiktok = "";
+    string chiduong = "";
+    string toado = "";
+    string coppy = "";
+
+    if (Model.Count() > 0)
+    {
+        var ttw = Model.First();
+        giomocua = ttw.giomocua;
+        ngaymocua = ttw.ngaymocua;
+        sodienthoai = ttw.sodienthoai;
+        email = ttw.email;
+        diachi = ttw.diachi;
+        facebook = ttw.facebook;
+        mess = ttw.messenger;
+        zalo = ttw.zalo;
+        ig = ttw.instagram;
+        tiktok = ttw.tiktok;
+        chiduong = ttw.linkchiduong;
+        toado = ttw.toadogooglemapiframe;
+        coppy = ttw.coppyright;
+    }
+
+    ViewBag.Title = "Thông Tin Website";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="pagetitle">
+    <div class="row">
+        <div class="col-md-12 col-12">
+            <h1>Thông Tin Web</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="@Url.Action("index", "dashboard")">Bảng Điều Khiển</a></li>
+                    <li class="breadcrumb-item">Thiết Lập Chung</li>
+                    <li class="breadcrumb-item active">Thông Tin Web</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
+<!-- End Page Title -->
+
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row ms-2 me-2 mb-4 mt-4">
+                        <div class="col-6">
+                            <label for="giomocua" class="col-12 col-form-label">Giờ mở cửa:</label>
+                            <input placeholder="07:00 - 22:00" type="text" spellcheck="false" value="@giomocua" style="border: 2px solid var(--bs-primary) !important" id="giomocua" class="form-control" />
+                        </div>
+                        <div class="col-6">
+                            <label for="ngaymocua" class="col-12 col-form-label">Ngày mở cửa:</label>
+                            <input type="text" placeholder="Tất cả các ngày" spellcheck="false" value="@ngaymocua" style="border: 2px solid var(--bs-primary) !important" id="ngaymocua" class="form-control" />
+                        </div>
+                        <div class="col-6">
+                            <label for="sodienthoai" class="col-12 col-form-label">Số điện thoại:</label>
+                            <input data-type="numbers" placeholder="Số điện thoại hiển thị trên trang" type="text" spellcheck="false" value="@sodienthoai" style="border: 2px solid var(--bs-primary) !important" id="sodienthoai" class="form-control" />
+                        </div>
+                        <div class="col-6">
+                            <label for="email" class="col-12 col-form-label">Email:</label>
+                            <input type="text" placeholder="Email hiển thị trên trang" spellcheck="false" value="@email" style="border: 2px solid var(--bs-primary) !important" id="email" class="form-control" />
+                        </div>
+                        <div class="col-12">
+                            <label for="diachi" class="col-12 col-form-label">Địa chỉ:</label>
+                            <textarea type="text" spellcheck="false" style="border: 2px solid var(--bs-primary) !important;" id="diachi" class="form-control" placeholder="Địa chỉ hiển thị trên trang" rows="3">@diachi</textarea>
+                        </div>
+                        <div class="col-12">
+                            <label for="tenmien" class="col-12 col-form-label">Tên miền:</label>
+                            <input type="text" placeholder="Tên miền website" spellcheck="false" value="@coppy" style="border: 2px solid var(--bs-primary) !important" id="tenmien" class="form-control" />
+                        </div>
+                        <div class="col-12">
+                            <label for="linkchiduong" class="col-12 col-form-label">Url Chỉ Đường:</label>
+                            <input type="text" placeholder="https://maps.app.goo.gl/MaDiaChi" spellcheck="false" value="@chiduong" style="border: 2px solid var(--bs-primary) !important" id="linkchiduong" class="form-control" />
+                        </div>
+                        <div class="col-12">
+                            <label for="htmltoado" class="col-12 col-form-label">Mã HTML Google Map:</label>
+                            <textarea type="text" spellcheck="false" style="border: 2px solid var(--bs-primary) !important; font-family: monospace" id="htmltoado" class="form-control form-control-sm" placeholder="Địa chỉ hiển thị trên trang" rows="8">@("<iframe\nsrc=\"")@toado@("\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\">\n</iframe>")</textarea>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row  ms-2 me-2 mb-4 ">
+                        <div class="col-12">
+                            <label for="facebook" class="col-12 col-form-label">Địa chỉ Facebook:</label>
+                            <input id="facebook" type="text" placeholder="https://www.facebook.com/username" spellcheck="false" value="@facebook" style="border: 2px solid var(--bs-primary) !important" class="form-control" />
+                        </div>
+                        <div class="col-12">
+                            <label for="mess" class="col-12 col-form-label">Địa chỉ Messenger:</label>
+                            <input id="mess" type="text" placeholder="https://www.messenger.com/username" spellcheck="false" value="@mess" style="border: 2px solid var(--bs-primary) !important" class="form-control" />
+                        </div>
+                        <div class="col-12">
+                            <label for="zalo" class="col-12 col-form-label">Địa chỉ Zalo:</label>
+                            <input id="zalo" type="text" placeholder="https://zalo.me/phone" spellcheck="false" value="@zalo" style="border: 2px solid var(--bs-primary) !important" class="form-control" />
+                        </div>
+                        <div class="col-12">
+                            <label for="ig" class="col-12 col-form-label">Url Instagram:</label>
+                            <input id="ig" type="text" placeholder="https://www.instagram.com/username" spellcheck="false" value="@ig" style="border: 2px solid var(--bs-primary) !important" class="form-control" />
+                        </div>
+                        <div class="col-12">
+                            <label for="tiktok" class="col-12 col-form-label">Url Tiktok:</label>
+                            <input id="tiktok" type="text" placeholder="https://www.tiktok.com/username" spellcheck="false" value="@tiktok" style="border: 2px solid var(--bs-primary) !important" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="row ms-2 me-2 mb-3" style="display: flex; justify-content: end;">
+                        <button style="width: 200px; height: 40px; margin-right: .5rem;" id="btnLuuThongTin" type="button" class="btn btn-primary mt-2">Lưu thông tin</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="~/Validation/ThongTinWeb/Update.js"></script>

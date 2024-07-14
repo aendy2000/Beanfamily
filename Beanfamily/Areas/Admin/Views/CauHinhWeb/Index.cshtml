@@ -7,6 +7,13 @@
     {
         var chw = Model.First();
         googleanalyst = chw.googleanalyst;
+        googleanalyst = "<!-- Google tag (gtag.js) -->\n"
+            + @"<script async src=""https://www.googletagmanager.com/gtag/js?id="""+ googleanalyst + "\"></script>\n"
+            + "<script>\n"
+            + "\twindow.dataLayer = window.dataLayer || [];\n"
+            + "\tfunction gtag() { dataLayer.push(arguments); }\n"
+            + "\t" + @"gtag('js', new Date());"
+            + "\n\n\t" + @"gtag('config', '" + googleanalyst + "');\n</script>";
         googlesearchconsole = chw.googlesearchconsole;
     }
 
@@ -37,9 +44,9 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row ms-2 me-2 mb-4 mt-4">
-                        <label for="googleanalyst" class="col-12 col-form-label">Mã xác thực Goole Search Console:</label>
+                        <label for="googlesearchconsole" class="col-12 col-form-label">Mã xác thực Goole Search Console:</label>
                         <div class="col-12">
-                            <input value="@googlesearchconsole" style="border: 2px solid var(--bs-primary) !important" id="googlesearchconsole" class="form-control" />
+                            <input type="text" spellcheck="false" value="@googlesearchconsole" style="border: 2px solid var(--bs-primary) !important" id="googlesearchconsole" class="form-control" />
                         </div>
                         <small class="mt-2 mb-2 text-danger">Chỉ nhập mã được bôi đen như hình:</small>
                         <div class="col-12" style="display: flex; flex-direction:column; justify-content: center; align-items: center;">
@@ -48,9 +55,9 @@
                     </div>
                     <hr />
                     <div class="row  ms-2 me-2 mb-4 ">
-                        <label for="googlesearchconsole" class="col-12 col-form-label">Mã theo dõi Google Analyst:</label>
+                        <label for="googleanalyst" class="col-12 col-form-label">Mã theo dõi Google Analyst:</label>
                         <div class="col-12">
-                            <textarea style="border: 2px solid var(--bs-primary) !important" id="googlesearchconsole" class="form-control" rows="10">@googlesearchconsole</textarea>
+                            <textarea type="text" spellcheck="false" style="border: 2px solid var(--bs-primary) !important; font-family: monospace" id="googleanalyst" class="form-control  form-control-sm" rows="10">@googleanalyst</textarea>
                         </div>
                         <small class="mt-2 mb-2 text-danger">Nhập toàn bộ mã sao chép được như hình:</small>
                         <div class="col-12" style="display: flex; flex-direction:column; justify-content: center; align-items: center;">

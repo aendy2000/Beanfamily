@@ -21,6 +21,43 @@
         Desc = seopages.SEOdescription;
     }
 
+    string googlesearchconsole = "";
+    string googleanalyst = "";
+    var ggconfig = models.ThongTinCauHinh.ToList();
+    if (ggconfig.Count > 0)
+    {
+        var ggconfigs = ggconfig.First();
+        googlesearchconsole = ggconfigs.googlesearchconsole;
+        googleanalyst = ggconfigs.googleanalyst;
+    }
+
+    string fb = "";
+    string mess = "";
+    string zalo = "";
+    string ig = "";
+    string tiktok = "";
+    string web = "";
+    string phone = "";
+    string mail = "";
+    string diachi = "";
+    string linkchiduong = "";
+
+    var tt = models.ThongTinCauHinh.ToList();
+    if (tt.Count > 0)
+    {
+        var tts = tt.First();
+        web = tts.coppyright;
+        fb = tts.facebook;
+        mess = tts.messenger;
+        zalo = tts.zalo;
+        ig = tts.instagram;
+        tiktok = tts.tiktok;
+        phone = tts.sodienthoai;
+        mail = tts.email;
+        diachi = tts.diachi;
+        linkchiduong = tts.linkchiduong;
+    }
+
     if (ViewBag.Title == "Trang Chủ")
     {
         ViewBag.Title = Title;
@@ -38,6 +75,10 @@
     <meta name="keywords" charset="utf-8" content="@Keyword.ToString()">
 
     <meta name="robots" content="index,follow,noodp" />
+
+    <!-- Google Search -->
+    <meta name="google-site-verification" content="@googlesearchconsole" />
+
     <style>
         /* width */
         ::-webkit-scrollbar {
@@ -86,6 +127,19 @@
     <!--===============================================================================================-->
     <link href="~/Scripts/SweetAlert/sweetalert2.min.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+    <!-- Google analyst -->
+    @if (!string.IsNullOrEmpty(googleanalyst))
+    {
+    <script async src="https://www.googletagmanager.com/gtag/js?id=@googleanalyst"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', '@googleanalyst');
+    </script>
+    }
 </head>
 <body>
 
@@ -176,25 +230,25 @@
         </div>
     </header>
     <div class="sticky-icon">
-        <a target="_blank" href="https://facebook.com/dgtuan.dev/" class="Facebook">
+        <a target="_blank" href="@fb" class="Facebook">
             <img style="max-width: 30px" src="~/Content/assets/images/icons/fb.png" /> Facebook
         </a>
-        <a target="_blank" href="https://facebook.com/dgtuan.dev/" class="Messenger">
+        <a target="_blank" href="@mess" class="Messenger">
             <img style="max-width: 30px" src="~/Content/assets/images/icons/mess.png" /> Messenger
         </a>
-        <a target="_blank" href="https://facebook.com/dgtuan.dev/" class="Zalo">
+        <a target="_blank" href="@zalo" class="Zalo">
             <img style="max-width: 30px" src="~/Content/assets/images/icons/zalo.png" /> Zalo Chat
         </a>
-        <a target="_blank" href="https://facebook.com/dgtuan.dev/" class="Instagram">
+        <a target="_blank" href="@ig" class="Instagram">
             <img style="max-width: 30px" src="~/Content/assets/images/icons/ig.png" /> Instagram
         </a>
-        <a target="_blank" href="https://facebook.com/dgtuan.dev/" class="TikTok">
+        <a target="_blank" href="@tiktok" class="TikTok">
             <img style="max-width: 30px" src="~/Content/assets/images/icons/ttok.png" /> TikTok
         </a>
-        <a href="tel:+842743844554" class="Phone">
+        <a href="tel:@phone" class="Phone">
             <img style="max-width: 30px" src="~/Content/assets/images/icons/phone.png" /> 0274 3844 554
         </a>
-        <a href="mailto:duongle15012000@gmail.com" class="Email">
+        <a href="mailto:@mail" class="Email">
             <img style="max-width: 30px" src="~/Content/assets/images/icons/mail.png" /> Gửi mail
         </a>
     </div>
@@ -304,19 +358,19 @@
                         </h4>
 
                         <ul class="m-b-70">
-                            <li class="txt14 m-b-14">
+                            <li class="txt14 m-b-14" style="cursor: pointer" onclick="window.open('@linkchiduong','mywindow')">
                                 <i class="fa fa-map-marker fs-16 dis-inline-block size19" aria-hidden="true"></i>
-                                Số 38 - Đường D1 - KDC Phú Hòa 1 - Phường Phú Hòa - Thủ Dầu Một - Bình Dương
+                                @diachi
                             </li>
 
-                            <li class="txt14 m-b-14">
+                            <li class="txt14 m-b-14" style="cursor: pointer" onclick="location.href = 'tel:@phone'">
                                 <i class="fa fa-phone fs-16 dis-inline-block size19" aria-hidden="true"></i>
-                                (+84) 274 3844 554
+                                @phone
                             </li>
 
-                            <li class="txt14 m-b-14">
+                            <li class="txt14 m-b-14" style="cursor: pointer" onclick="location.href = 'mailto:@mail'">
                                 <i class="fa fa-envelope fs-13 dis-inline-block size19" aria-hidden="true"></i>
-                                duongle15012000@gmail.com
+                                @mail
                             </li>
                         </ul>
 
@@ -432,31 +486,31 @@
                 <div class="container">
                     <div class="flex-sb-m flex-w p-t-22 p-b-22">
                         <div style="width: 100%" class="p-t-5 p-b-5">
-                            <a href="#" target="_blank" class="fs-15 c-white me-2 .Facebook">
+                            <a href="@fb" target="_blank" class="fs-15 c-white me-2 .Facebook">
                                 <img style="max-width: 30px; border-radius:50%; outline: 2px solid #fff" src="~/Content/assets/images/icons/fb.png" />
                             </a>
-                            <a href="#" target="_blank" class="fs-15 c-white me-2">
+                            <a href="@mess" target="_blank" class="fs-15 c-white me-2">
                                 <img style="max-width: 30px; border-radius: 50%; outline: 2px solid #fff " src="~/Content/assets/images/icons/mess.png" />
                             </a>
-                            <a href="#" target="_blank" class="fs-15 c-white me-2">
+                            <a href="@zalo" target="_blank" class="fs-15 c-white me-2">
                                 <img style="max-width: 30px; border-radius: 50%; outline: 2px solid #fff " src="~/Content/assets/images/icons/zalo.png" />
                             </a>
-                            <a href="#" target="_blank" class="fs-15 c-white me-2">
+                            <a href="@ig" target="_blank" class="fs-15 c-white me-2">
                                 <img style="max-width: 30px; border-radius: 50%; outline: 2px solid #fff " src="~/Content/assets/images/icons/ig.png" />
                             </a>
-                            <a href="#" target="_blank" class="fs-15 c-white me-2">
+                            <a href="@tiktok" target="_blank" class="fs-15 c-white me-2">
                                 <img style="max-width: 30px; border-radius: 50%; outline: 2px solid #fff " src="~/Content/assets/images/icons/ttok.png" />
                             </a>
-                            <a href="tel:+842743844554" class="fs-15 c-white me-2">
+                            <a href="tel:@phone" class="fs-15 c-white me-2">
                                 <img style="max-width: 30px; border-radius: 50%; outline: 2px solid #fff " src="~/Content/assets/images/icons/phone.png" />
                             </a>
-                            <a href="mailto:duongle15012000@gmail.com" class="fs-15 c-white">
+                            <a href="mailto:@mail" class="fs-15 c-white">
                                 <img style="max-width: 30px; border-radius: 50%; outline: 2px solid #fff " src="~/Content/assets/images/icons/mail.png" />
                             </a>
                         </div>
 
                         <div class="txt17 p-r-20 p-t-5 p-b-5" style="width: 100%">
-                            Copyright &copy; @DateTime.Now.Year  <a href="https://beanfamily.vn">Beanfamily.vn</a>  |  Design by <a href="https://www.aendy.net" target="_blank">Aendy.Net</a>
+                            Copyright &copy; @DateTime.Now.Year  <a href="@(web.IndexOf("http") != -1 ? web : "https://" + web)">@(web.IndexOf("http") != -1 ? web.Split('/')[2] : web)</a>  |  Design by <a href="https://www.aendy.net" target="_blank">Aendy.Net</a>
                         </div>
                     </div>
                 </div>
@@ -475,7 +529,7 @@
     <div id="dropDownSelect1"></div>
 
     <!-- Modal Video 01-->
-    <div class="modal fade" id="modal-video-01" tabindex="-1" role="dialog" aria-hidden="true">
+    @*<div class="modal fade" id="modal-video-01" tabindex="-1" role="dialog" aria-hidden="true">
 
         <div class="modal-dialog" role="document" data-dismiss="modal">
             <div class="close-mo-video-01 trans-0-4" data-dismiss="modal" aria-label="Close">&times;</div>
@@ -487,7 +541,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>*@
 
     <!-- GIỎ HÀNG -->
 
