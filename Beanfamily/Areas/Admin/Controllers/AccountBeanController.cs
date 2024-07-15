@@ -80,10 +80,16 @@ namespace Beanfamily.Areas.Admin.Controllers
 
                 TaiKhoanBean acc = new TaiKhoanBean();
                 string path = "";
+                string pathDirectory = "";
                 if (avatar != null)
                 {
                     if (avatar.ContentLength > 0)
                     {
+                        pathDirectory = Path.Combine(Server.MapPath("~/Content/AdminAreas/images/taikhoanbean"));
+                        if (!Directory.Exists(pathDirectory))
+                        {
+                            Directory.CreateDirectory(pathDirectory);
+                        }
                         path = Path.Combine(Server.MapPath("~/Content/AdminAreas/images/taikhoanbean"), avatar.FileName);
                         avatar.SaveAs(path);
                         acc.hinhdaidien = "~/Content/AdminAreas/images/taikhoanbean/" + avatar.FileName;
@@ -134,10 +140,16 @@ namespace Beanfamily.Areas.Admin.Controllers
 
                 var acc = model.TaiKhoanBean.Find(id);
                 string path = "";
+                string pathDirectory = "";
                 if (avatar != null)
                 {
                     if (avatar.ContentLength > 0)
                     {
+                        pathDirectory = Path.Combine(Server.MapPath("~/Content/AdminAreas/images/taikhoanbean"));
+                        if (!Directory.Exists(pathDirectory))
+                        {
+                            Directory.CreateDirectory(pathDirectory);
+                        }
                         path = Path.Combine(Server.MapPath("~/Content/AdminAreas/images/taikhoanbean"), avatar.FileName);
                         avatar.SaveAs(path);
                         acc.hinhdaidien = "~/Content/AdminAreas/images/taikhoanbean/" + avatar.FileName;
