@@ -40,11 +40,17 @@ namespace Beanfamily.Areas.Admin.Controllers
                 return Content("INDEX");
             }
 
+            string pathDirectory = "";
             string path = "";
             if (avatar != null)
             {
                 if (avatar.ContentLength > 0)
                 {
+                    pathDirectory = Path.Combine(Server.MapPath("~/Content/AdminAreas/images/taikhoanbean"));
+                    if (!Directory.Exists(pathDirectory))
+                    {
+                        Directory.CreateDirectory(pathDirectory);
+                    }
                     path = Path.Combine(Server.MapPath("~/Content/AdminAreas/images/taikhoanbean"), avatar.FileName);
                     avatar.SaveAs(path);
                     info.hinhdaidien = "~/Content/AdminAreas/images/taikhoanbean/" + avatar.FileName;
@@ -55,7 +61,7 @@ namespace Beanfamily.Areas.Admin.Controllers
             {
                 if (xoahinhdaidien.Equals("yes"))
                 {
-                    Session["user-avatar"] = "~/Content/AdminAreas/assets/img/profile-img.jpg";
+                    Session["user-avatar"] = "~/Content/AdminAreas/assets/img/profile-img.png";
                     info.hinhdaidien = "";
                 }
             }

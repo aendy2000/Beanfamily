@@ -61,7 +61,7 @@
                                         <a role="button" id="opentDetail@(item.id)" name="@item.id" class="nav-link nav-profile d-flex align-items-center pe-0 text-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Xem tài khoản">
                                             @if (string.IsNullOrEmpty(item.hinhdaidien))
                                             {
-                                                <img style="max-width: 30px" src="~/Content/AdminAreas/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+                                                <img style="max-width: 30px" src="~/Content/AdminAreas/assets/img/profile-img.png" alt="Profile" class="rounded-circle">
                                             }
                                             else
                                             {
@@ -127,7 +127,7 @@
                         <div class="row mb-3">
                             <label for="profileImage" class="col-md-4 col-lg-3 col-form-label"></label>
                             <div class="col-md-12 col-lg-12 text-center profile-edit">
-                                <img src="~/Content/AdminAreas/assets/img/profile-img.jpg" id="previewImage" alt="Profile" class="rounded-circle">
+                                <img src="~/Content/AdminAreas/assets/img/profile-img.png" id="previewImage" alt="Profile" class="rounded-circle">
                                 <input hidden id="selectFiles" type="file" name="file" accept="image/*" onchange="ShowImageUpload(this, document.getElementById('previewImage'))" />
                                 <div class="pt-2">
                                     <a id="themhinhdaidien" role="button" class="btn btn-primary btn-sm" title="Tải lên hình đại diện"><i class="bi bi-upload"></i></a>

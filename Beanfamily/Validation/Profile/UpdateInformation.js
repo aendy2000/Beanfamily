@@ -234,6 +234,6 @@
 
     $('#xoahinhdaidien').on('click', function () {
         $('#selectFiles').val(null);
-        $('#previewImage').attr('src', $('#requestPath').val() + 'Content/AdminAreas/assets/img/profile-img.jpg');
+        $('#previewImage').attr('src', $('#requestPath').val() + 'Content/AdminAreas/assets/img/profile-img.png');
     });
 });

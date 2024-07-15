@@ -330,6 +330,7 @@
     <Content Include="Content\AdminAreas\assets\img\analyst.png" />
     <Content Include="Content\AdminAreas\assets\img\default-hinhanhbean.png" />
     <Content Include="Content\AdminAreas\assets\img\ggsearch.png" />
+    <Content Include="Content\AdminAreas\assets\img\profile-img.png" />
     <Content Include="Content\AdminAreas\assets\vendor\table2excel\jquery.table2excel.min.js" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -428,7 +429,6 @@
     <Content Include="Content\AdminAreas\assets\img\product-3.jpg" />
     <Content Include="Content\AdminAreas\assets\img\product-4.jpg" />
     <Content Include="Content\AdminAreas\assets\img\product-5.jpg" />
-    <Content Include="Content\AdminAreas\assets\img\profile-img.jpg" />
     <Content Include="Content\AdminAreas\assets\img\slides-1.jpg" />
     <Content Include="Content\AdminAreas\assets\img\slides-2.jpg" />
     <Content Include="Content\AdminAreas\assets\img\slides-3.jpg" />

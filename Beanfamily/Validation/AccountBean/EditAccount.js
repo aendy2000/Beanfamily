@@ -5,7 +5,7 @@
 
     $('#xoahinhdaidienedit').on('click', function () {
         $('#selectFilesEdit').val(null);
-        $('#previewImageEdit').attr('src', $('#requestPath').val() + 'Content/AdminAreas/assets/img/profile-img.jpg');
+        $('#previewImageEdit').attr('src', $('#requestPath').val() + 'Content/AdminAreas/assets/img/profile-img.png');
     });
 
     //Luu them moi
