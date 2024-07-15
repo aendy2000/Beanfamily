@@ -2307,3 +2307,66 @@ body {
         margin-top: 10px;
         padding-bottom: 30px !important;
     }
+
+
+@media (max-width: 992px) {
+    .col-img-5 {
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+        column-count: 2;
+        transition: ease all .2s;
+    }
+
+        .col-img-5 > div {
+            background: black;
+            width: 98%;
+            height: auto;
+            margin-bottom: 20px;
+            display: inline-block;
+            page-break-inside: avoid;
+        }
+
+    .thongtin-giohang-page {
+        margin-right: 0;
+        margin-left: 0;
+        margin-bottom: 25px;
+    }
+
+    .product-thdh-1 {
+        padding-bottom: 20px;
+        border-right: 0 !important;
+        border-bottom: 1px solid darkgray;
+    }
+
+    .product-thdh-2 {
+        margin-top: 30px;
+        margin-bottom: 20px;
+        border-left: 0 !important;
+    }
+
+    .product-thdh-1 > #firstHeight > div {
+        padding: 0 !important;
+    }
+
+    .product-thdh-2 > #firstHeight > div {
+        padding: 0 !important;
+    }
+
+    .product-thdh-1 > div {
+        padding-right: 15px !important;
+        padding-left: 15px !important;
+    }
+    .product-thdh-2 > div {
+        padding-right: 15px !important;
+        padding-left: 15px !important;
+    }
+
+    .change-position-map-right {
+        height: auto !important;
+    }
+
+    .change-position-map-left {
+        height: auto !important;
+        margin-bottom: 30px;
+    }
+}

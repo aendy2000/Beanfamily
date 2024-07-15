@@ -1209,11 +1209,11 @@ h6 {
             background: #3e4f6f;
         }
 
-@media (min-width: 992px) {
-    .error-404 img {
-        max-width: 50%;
+    @media (min-width: 992px) {
+        .error-404 img {
+            max-width: 50%;
+        }
     }
-}
 
 /*--------------------------------------------------------------
 # Footer
@@ -1459,6 +1459,33 @@ h6 {
 figure {
     margin: 0 0 1.5rem;
 }
+
+
+.col-img-3 {
+    -webkit-column-count: 3;
+    -moz-column-count: 3;
+    column-count: 3;
+    transition: ease all .2s;
+}
+
+    .col-img-3 > div {
+        background: black;
+        width: 97%;
+        height: auto;
+        margin-bottom: 25px;
+        display: inline-block;
+        page-break-inside: avoid;
+    }
+
+    .col-img-3 .img-item-show {
+        cursor: pointer;
+        transition: ease all .2s;
+    }
+
+        .col-img-3 .img-item-show:hover {
+            transform: scale(1.05);
+        }
+
 
 .col-img-5 {
     -webkit-column-count: 4;

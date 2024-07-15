@@ -10,23 +10,21 @@
     <section class="gallery">
         <div class="container">
             <div class="grid row">
-                @if (!string.IsNullOrEmpty(video))
-                {
-                    <div class="col-md-4">
-                        <figure class="img-container">
-                            <video style="width: 100%; height:auto" autoplay src="@Url.Content(video)"></video>
-                        </figure>
-                    </div>
-                }
+                <div class="col-img-3">
+                    @if (!string.IsNullOrEmpty(video))
+                    {
+                        <div style="border-radius: 16px; " class="img-item-show">
+                            <video style="width: 100%; height: auto; border-radius: 16px; " autoplay src="@Url.Content(video)"></video>
+                        </div>
+                    }
 
-                @foreach (var item in lstImage)
-                {
-                    <div class="col-md-4">
-                        <figure class="img-container">
-                            <img src="@Url.Content(item)" />
-                        </figure>
-                    </div>
-                }
+                    @foreach (var item in lstImage)
+                    {
+                        <div style="border-radius: 16px; " class="img-item-show">
+                            <img data-src="@Url.Content(item)" style="width: 100%; height: auto; border-radius: 16px; " src="@Url.Content(item)" />
+                        </div>
+                    }
+                </div>
             </div>
         </div>
     </section>

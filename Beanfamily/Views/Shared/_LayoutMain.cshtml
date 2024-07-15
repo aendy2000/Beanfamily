@@ -79,6 +79,12 @@
     <!-- Google Search -->
     <meta name="google-site-verification" content="@googlesearchconsole" />
 
+    <!-- Canonical -->
+    <link rel="canonical" href="@(web.IndexOf("http") != -1 ? web.Split('/')[2] : web)" />
+
+    <!-- Chống đổi màu trên IOS -->
+    <meta name="format-detection" content="telephone=no">
+
     <style>
         /* width */
         ::-webkit-scrollbar {
@@ -131,14 +137,14 @@
     <!-- Google analyst -->
     @if (!string.IsNullOrEmpty(googleanalyst))
     {
-    <script async src="https://www.googletagmanager.com/gtag/js?id=@googleanalyst"></script>
-    <script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=@googleanalyst"></script>
+        <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
 
         gtag('config', '@googleanalyst');
-    </script>
+        </script>
     }
 </head>
 <body>
