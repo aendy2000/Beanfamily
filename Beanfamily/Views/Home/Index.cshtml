@@ -354,8 +354,8 @@
                                 <a href="@Url.Action("productdetail", "thucdonhangngay", new { id = item.id })"><img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU"></a>
                             </div>
                             <div class="text-blo3 size21 flex-col-l-m">
-                                <a href="@Url.Action("productdetail", "thucdonhangngay", new { id = item.id })" class="txt21 m-b-3">
-                                    @item.tensanpham
+                                <a href="@Url.Action("productdetail", "thucdonhangngay", new { id = item.id })" class="txt21 m-b-3" title="@item.tensanpham">
+                                    @(item.tensanpham.Length > 25 ? item.tensanpham.Substring(0, 24) + "..." : item.tensanpham)
                                 </a>
 
                                 <span class="txt23">
@@ -408,8 +408,8 @@
                                 </div>
 
                                 <div class="text-blo3 size21 flex-col-l-m">
-                                    <a href="@Url.Action("productdetail", "vuonrau", new { id = item.id })" class="txt21 m-b-3">
-                                        @item.tensanpham
+                                    <a href="@Url.Action("productdetail", "vuonrau", new { id = item.id })" class="txt21 m-b-3" title="@item.tensanpham">
+                                        @(item.tensanpham.Length > 25 ? item.tensanpham.Substring(0, 24) + "..." : item.tensanpham)
                                     </a>
 
                                     <span class="txt23">
@@ -466,8 +466,8 @@
                             </div>
 
                             <div class="text-blo3 size21 flex-col-l-m">
-                                <a href="@Url.Action("productdetail", "muasam", new { id = item.id })" class="txt21 m-b-3">
-                                    @item.tensanpham
+                                <a href="@Url.Action("productdetail", "muasam", new { id = item.id })" class="txt21 m-b-3" title="@item.tensanpham">
+                                    @(item.tensanpham.Length > 25 ? item.tensanpham.Substring(0, 24) + "..." : item.tensanpham)
                                 </a>
 
                                 <span class="txt23">
@@ -535,8 +535,8 @@
                             </div>
 
                             <div class="text-blo3 size21 flex-col-l-m">
-                                <a href="@Url.Action("productdetail", "thucdonhangngay", new { id = item.id })" class="txt21 m-b-3">
-                                    @item.tensanpham
+                                <a href="@Url.Action("productdetail", "thucdonhangngay", new { id = item.id })" class="txt21 m-b-3" title="@item.tensanpham">
+                                    @(item.tensanpham.Length > 25 ? item.tensanpham.Substring(0, 24) + "..." : item.tensanpham)
                                 </a>
 
                                 <span class="txt23">
@@ -590,8 +590,8 @@
                                 </div>
 
                                 <div class="text-blo3 size21 flex-col-l-m">
-                                    <a href="@Url.Action("productdetail", "vuonrau", new { id = item.id })" class="txt21 m-b-3">
-                                        @item.tensanpham
+                                    <a href="@Url.Action("productdetail", "vuonrau", new { id = item.id })" class="txt21 m-b-3" title="@item.tensanpham">
+                                        @(item.tensanpham.Length > 25 ? item.tensanpham.Substring(0, 24) + "..." : item.tensanpham)
                                     </a>
 
                                     <span class="txt23">
@@ -645,8 +645,8 @@
                             </div>
 
                             <div class="text-blo3 size21 flex-col-l-m">
-                                <a href="@Url.Action("productdetail", "muasam", new { id = item.id })" class="txt21 m-b-3">
-                                    @item.tensanpham
+                                <a href="@Url.Action("productdetail", "muasam", new { id = item.id })" class="txt21 m-b-3" title="@item.tensanpham">
+                                    @(item.tensanpham.Length > 25 ? item.tensanpham.Substring(0, 24) + "..." : item.tensanpham)
                                 </a>
 
                                 <span class="txt23">

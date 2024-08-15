@@ -116,7 +116,7 @@
                                             </ul>
                                         </div>
                                         <div class="product-content">
-                                            <h3 class="title"><a href="@Url.Action("productdetail", "vuonrau", new {id = item.id })">@item.tensanpham</a></h3>
+                                            <h3 class="title"><a href="@Url.Action("productdetail", "vuonrau", new {id = item.id })" title="@item.tensanpham">@(item.tensanpham.Length > 21 ? item.tensanpham.Substring(0, 20) + "..." : item.tensanpham)</a></h3>
 
                                             <div class="price">
                                                 @item.gia.ToString("0,0")đ / @item.donvi
