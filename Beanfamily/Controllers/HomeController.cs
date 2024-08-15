@@ -59,13 +59,16 @@ namespace Beanfamily.Controllers
         {
             try
             {
-                var taikhoan = model.TaiKhoanKhachHang.FirstOrDefault(t => t.sodienthoai.Equals(sodienthoai) && t.password.Equals(matkhau));
+                var taikhoan = model.TaiKhoanKhachHang.FirstOrDefault(t => t.sodienthoai.Equals(sodienthoai));
                 if (taikhoan == null)
                 {
-                    return Content("INVALID");
+                    return Content("NOTEXIST");
                 }
                 else
                 {
+                    if (!taikhoan.password.Equals(matkhau))
+                        return Content("INVALID");
+
                     if (taikhoan.taikhoankhoa == true)
                     {
                         return Content("LOCKED");
@@ -534,11 +537,11 @@ namespace Beanfamily.Controllers
             if (pageNum == null)
                 pageNum = 1;
 
-            if(!string.IsNullOrEmpty(id))
+            if (!string.IsNullOrEmpty(id))
             {
                 var tkkh = Session["user-data"] as TaiKhoanKhachHang;
                 if (tkkh == null)
-                    return View("tracuudonhang",  model.DonHangVuonRauMuaSamVaMenuHangNgay.Where(d => d.madonhang.ToLower().Equals(id.ToLower())).ToList().OrderByDescending(o => o.id).ToPagedList((int)pageNum, (int)pageSize));
+                    return View("tracuudonhang", model.DonHangVuonRauMuaSamVaMenuHangNgay.Where(d => d.madonhang.ToLower().Equals(id.ToLower())).ToList().OrderByDescending(o => o.id).ToPagedList((int)pageNum, (int)pageSize));
                 else
                     return View("tracuudonhang", model.DonHangVuonRauMuaSamVaMenuHangNgay.Where(d => d.id_taikhoankhkachhang == tkkh.id && d.madonhang.ToLower().Equals(id.ToLower())).ToList().OrderByDescending(o => o.id).ToPagedList((int)pageNum, (int)pageSize));
             }
@@ -550,7 +553,7 @@ namespace Beanfamily.Controllers
                 else
                     return View("tracuudonhang", model.DonHangVuonRauMuaSamVaMenuHangNgay.Where(d => d.id_taikhoankhkachhang == tkkh.id).ToList().OrderByDescending(o => o.id).ToPagedList((int)pageNum, (int)pageSize));
             }
-            
+
         }
 
         [HttpPost]

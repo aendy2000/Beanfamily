@@ -73,6 +73,11 @@
                     btn.html("ĐĂNG NHẬP");
                     $('body').find('[id="validate-matkhau-dangnhap"]').text('Tài khoản hoặc mật khẩu không chính xác.').prop('hidden', false);
                 }
+                else if (ketqua == "NOTEXIST") {
+                    btn.css('pointer-events', 'auto');
+                    btn.html("ĐĂNG NHẬP");
+                    $('body').find('[id="validate-sodienthoai-dangnhap"]').text('Tài khoản không tồn tại.').prop('hidden', false);
+                }
                 else if (ketqua == "LOCKED") {
                     btn.css('pointer-events', 'auto');
                     btn.html("ĐĂNG NHẬP");
