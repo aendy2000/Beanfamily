@@ -761,12 +761,34 @@
                                             <hr class="my-4" style="background-color: darkgray" />
                                         }
                                     }
+                                    else if (giohangmuassam != null && giohangthucdonhangngay != null)
+                                    {
+                                        if (giohangmuassam.Count > 0 && giohangthucdonhangngay.Count > 0)
+                                        {
+                                            <hr class="my-4" style="background-color: darkgray" />
+                                        }
+                                    }
 
                                     if (giohangthucdonhangngay != null && giohangthucdonhangngay.Count > 0)
                                     {
                                         if (giohangvuonrau != null && giohangthucdonhangngay != null)
                                         {
                                             if (giohangvuonrau.Count > 0 && giohangthucdonhangngay.Count > 0)
+                                            {
+                                                <h5 class="text-center mb-3 text-white" style="background: #5e443b !important; height: 50px; display: flex; flex-direction: column; justify-content: center;">THỰC ĐƠN HẰNG NGÀY</h5>
+                                            }
+                                            else if (giohangmuassam.Count > 0 && giohangthucdonhangngay.Count > 0)
+                                            {
+                                                <h5 class="text-center mb-3 text-white" style="background: #5e443b !important; height: 50px; display: flex; flex-direction: column; justify-content: center;">THỰC ĐƠN HẰNG NGÀY</h5>
+                                            }
+                                            else
+                                            {
+                                                <h5 class="text-center mb-3 text-white" style="background: #5e443b !important; border-radius: 16px 16px 0 0; height: 50px; display: flex; flex-direction: column; justify-content: center;">THỰC ĐƠN HẰNG NGÀY</h5>
+                                            }
+                                        }
+                                        else if (giohangmuassam != null && giohangthucdonhangngay != null)
+                                        {
+                                            if (giohangmuassam.Count > 0 && giohangthucdonhangngay.Count > 0)
                                             {
                                                 <h5 class="text-center mb-3 text-white" style="background: #5e443b !important; height: 50px; display: flex; flex-direction: column; justify-content: center;">THỰC ĐƠN HẰNG NGÀY</h5>
                                             }
