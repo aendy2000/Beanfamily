@@ -151,7 +151,7 @@ namespace Beanfamily.Areas.Admin.Controllers
                 if (dm == null)
                     return Content("KHONGTONTAI");
 
-                var mon = model.SanPhamMenuTiecBan.ToList();
+                var mon = model.SanPhamMenuTiecBan.Where(w => w.id_danhmucmenutiecbancap1 == id).ToList();
                 return PartialView("_DanhSachMonTiecBan", mon);
             }
             catch (Exception ex)

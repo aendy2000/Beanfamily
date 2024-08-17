@@ -150,7 +150,7 @@ namespace Beanfamily.Areas.Admin.Controllers
                 if (dm == null)
                     return Content("KHONGTONTAI");
 
-                var mon = model.SanPhamMenuBuffet.ToList();
+                var mon = model.SanPhamMenuBuffet.Where(w => w.id_danhmucmenubuffetcap1 == id).ToList();
                 return PartialView("_DanhSachMonBuffet", mon);
             }
             catch (Exception ex)

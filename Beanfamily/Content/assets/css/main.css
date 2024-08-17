@@ -2208,6 +2208,14 @@ body {
     .sticky-icon {
         display: none;
     }
+
+    .dathangsdt {
+        padding-right: 20px;
+    }
+
+    .dathangmail {
+        padding-left: 20px;
+    }
 }
 
 
