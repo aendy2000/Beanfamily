@@ -70,22 +70,28 @@
                                         <div class="col-11 p-0 mt-1">
                                             @if (!string.IsNullOrEmpty(items.hinhanh))
                                             {
-                                                <div style="height: 40px; width: 40px; float: left">
-                                                    <img style="float: left; height: 40px; width: 40px;object-fit: cover; border-radius: 50% " src="@Url.Content(items.hinhanh)">
+                                                <div style=" white-space: nowrap; display: flex; flex-direction: row; align-items: center">
+                                                    <div style="height: 40px; width: 40px; float: left; margin-right: 10px">
+                                                        <img style="float: left; height: 40px; width: 40px;object-fit: cover; border-radius: 50% " src="@Url.Content(items.hinhanh)">
+                                                    </div>
+                                                    <label style="display: unset; white-space: normal; word-break: break-word; cursor: pointer;" id="label-monantiecban-@item.id-@items.id" for="monantiecban-@item.id-@items.id">
+                                                        @items.tensanpham | @(items.gia.ToString("0,0").Equals("00") ? "0" : items.gia.ToString("0,0"))
+                                                    </label>
                                                 </div>
-                                                <label style="cursor: pointer; margin-left: 10px; margin-top: 10px" id="label-monantiecban-@item.id-@items.id" for="monantiecban-@item.id-@items.id">
-                                                    @items.tensanpham | @(items.gia.ToString("0,0").Equals("00") ? "0" : items.gia.ToString("0,0"))
-                                                </label>
                                             }
                                             else
                                             {
-                                                <label style="cursor: pointer;" id="label-monantiecban-@item.id-@items.id" for="monantiecban-@item.id-@items.id">
-                                                    @items.tensanpham | @(items.gia.ToString("0,0").Equals("00") ? "0" : items.gia.ToString("0,0"))
-                                                </label>
+                                                <div style=" white-space: nowrap; display: flex; flex-direction: row; align-items: center">
+                                                    <label style="display: unset; white-space: normal; word-break: break-word; cursor: pointer;" id="label-monantiecban-@item.id-@items.id" for="monantiecban-@item.id-@items.id">
+                                                        @items.tensanpham | @(items.gia.ToString("0,0").Equals("00") ? "0" : items.gia.ToString("0,0"))
+                                                    </label>
+                                                </div>
                                             }
                                         </div>
-                                        <div class="col-1 mt-1">
-                                            <input price="@items.gia.ToString("0")" id="monantiecban-@item.id-@items.id" type="checkbox" style="height: 20px; width: 20px; margin-left: -5px; margin-top: 10px; accent-color: #12634c " />
+                                        <div class="col-1 mt-1" style="display: flex; flex-direction: row; align-items: center">
+                                            <div style="display: unset">
+                                                <input price="@items.gia.ToString("0")" id="monantiecban-@item.id-@items.id" type="checkbox" style="height: 20px; width: 20px; margin-left: -5px; margin-top: 10px; accent-color: #12634c " />
+                                            </div>
                                         </div>
                                     }
                                 </div>
@@ -96,7 +102,7 @@
                                         <h6 id="total-@item.id" style="font-weight: bold; color: #C49A6C;" price="0" class="t-center">Đã chọn: 0</h6>
                                     </div>
                                 </div>
-                            </div> 
+                            </div>
                         </div>
                     }
                 }

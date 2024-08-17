@@ -69,22 +69,30 @@
                                         <div class="col-11 p-0 mt-1">
                                             @if (!string.IsNullOrEmpty(items.hinhanh))
                                             {
-                                                <div style="height: 40px; width: 40px; float: left">
-                                                    <img style="float: left; height: 40px; width: 40px;object-fit: cover; border-radius: 50% " src="@Url.Content(items.hinhanh)">
+                                                <div style="white-space: nowrap; display:flex; flex-direction: row; align-items: center">
+                                                    <div style="height: 40px; width: 40px; float: left; margin-right: 10px">
+                                                        <img style="float: left; height: 40px; width: 40px;object-fit: cover; border-radius: 50% " src="@Url.Content(items.hinhanh)">
+                                                    </div>
+                                                    <div>
+                                                        <label style="display: unset; white-space: normal; word-break: break-word; cursor: pointer;" id="label-monanbuffet-@item.id-@items.id" for="monanbuffet-@item.id-@items.id">
+                                                            @items.tensanpham
+                                                        </label>
+                                                    </div>
                                                 </div>
-                                                <label style="cursor: pointer; margin-left: 10px; margin-top: 10px" id="label-monanbuffet-@item.id-@items.id" for="monanbuffet-@item.id-@items.id">
-                                                    @items.tensanpham
-                                                </label>
                                             }
                                             else
                                             {
-                                                <label style="cursor: pointer;" id="label-monanbuffet-@item.id-@items.id" for="monanbuffet-@item.id-@items.id">
-                                                    @items.tensanpham
-                                                </label>
+                                                <div style=" white-space: nowrap; display: flex; flex-direction: row; align-items: center">
+                                                    <label style="display: unset; white-space: normal; word-break: break-word; cursor: pointer;" id="label-monanbuffet-@item.id-@items.id" for="monanbuffet-@item.id-@items.id">
+                                                        @items.tensanpham
+                                                    </label>
+                                                </div>
                                             }
                                         </div>
-                                        <div class="col-1 mt-1">
-                                            <input id="monanbuffet-@item.id-@items.id" type="checkbox" style="height: 20px; width: 20px; margin-left: -5px; margin-top: 10px; accent-color: #12634c " />
+                                        <div class="col-1 mt-1" style="display: flex; flex-direction: row; align-items: center">
+                                            <div style="display: unset">
+                                                <input id="monanbuffet-@item.id-@items.id" type="checkbox" style="height: 20px; width: 20px; margin-left: -5px; margin-top: 10px; accent-color: #12634c " />
+                                            </div>
                                         </div>
                                     }
                                 </div>
@@ -95,7 +103,7 @@
                                         <h6 id="total-@item.id" style="font-weight: bold; color: #C49A6C;" price="0" class="t-center">Đã chọn: 0</h6>
                                     </div>
                                 </div>
-                            </div> 
+                            </div>
                         </div>
                     }
                 }
@@ -114,7 +122,7 @@
             <div class="modal-body" style="padding-left: 0px; padding-right: 0px; padding-top: 10px;">
                 <div style="padding-bottom: 0 !important;" class="container py-3 h-100">
                     <div class="row d-flex justify-content-center align-items-center h-100">
-                        <div class="row" style="padding-left: 25px; padding-right: 25px;"> 
+                        <div class="row" style="padding-left: 25px; padding-right: 25px;">
                             <div id="contentDatBan" class="col-lg-12">
 
                             </div>

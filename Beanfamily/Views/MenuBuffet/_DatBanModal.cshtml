@@ -16,15 +16,26 @@
                     <li class="mt-1" style="list-style-type: none !important;">
                         @if (!string.IsNullOrEmpty(item.hinhanh))
                         {
-                            <div style="height: 40px; width: 40px; float: left">
-                                <img style="float: left; height: 40px; width: 40px;object-fit: cover; border-radius: 50% " src="@Url.Content(item.hinhanh)">
+                            <div style=" display: flex; flex-direction: row; justify-content: left; align-items: center;">
+                                <div>
+                                    <div style="margin-right: 10px; height: 40px; width: 40px; float: left">
+                                        <img style="float: left; height: 40px; width: 40px;object-fit: cover; border-radius: 50% " src="@Url.Content(item.hinhanh)">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label>@item.tensanpham</label>
+                                </div>
                             </div>
-                            <label style="margin-top: 10px; margin-left: 10px">@item.tensanpham</label>
                         }
                         else
                         {
-                            <label>@item.tensanpham</label>
+                            <div style=" display: flex; flex-direction: row; justify-content: left; align-items: center;">
+                                <div>
+                                    <label>@item.tensanpham</label>
+                                </div>
+                            </div>
                         }
+
                     </li>
                 </ul>
             </div>
