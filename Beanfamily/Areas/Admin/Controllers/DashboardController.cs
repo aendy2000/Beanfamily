@@ -11,6 +11,7 @@ using System.Net.Mail;
 using System.Net;
 using System.Web.Helpers;
 using System.Reflection;
+using System.Web.Razor.Parser.SyntaxTree;
 
 namespace Beanfamily.Areas.Admin.Controllers
 {
@@ -72,10 +73,14 @@ namespace Beanfamily.Areas.Admin.Controllers
                 {
                     foreach (var item in donhang)
                     {
-                        money += item.ChiTietDonHangSanPhamMuaSam.Sum(s => s.gia * s.soluongmua)
+                        if (item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude.ToLower().Equals("hoàn thành"))
+                        {
+                            money += item.ChiTietDonHangSanPhamMuaSam.Sum(s => s.gia * s.soluongmua)
                                 + item.ChiTietDonHangSanPhamRauNhaTrong.Sum(s => s.soluongmua * s.gia)
                                 + item.ChiTietDonHangSanPhamThucDonHangNgay.Sum(s => s.soluongmua * s.gia);
+                        }
                     }
+
                     listDonHang += money + "-";
                     listSoDonHang += donhang.Count + "-";
                 }
@@ -94,7 +99,7 @@ namespace Beanfamily.Areas.Admin.Controllers
             {
                 var donhang = model.DonHangMenuTiecBan.Where(p => p.ngaytao.Month == i && p.ngaytao.Year == currentYear).ToList();
                 decimal money = 0;
-
+                int listSoTiecBanCount = 0;
                 if (donhang.Count > 0)
                 {
                     foreach (var item in donhang)
@@ -109,11 +114,13 @@ namespace Beanfamily.Areas.Admin.Controllers
                             money += item.ChiTietDonHangSanPhamMenuTiecBan.Sum(s => s.gia * item.soban)
                                     + item.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == true).Sum(s => item.soban * s.gia)
                                     + item.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == false).Sum(s => s.gia);
+
+                            listSoTiecBanCount++;
                         }
                     }
 
                     listTiecBan += money + "-";
-                    listSoTiecBan += donhang.Count + "-";
+                    listSoTiecBan += listSoTiecBanCount + "-";
                 }
                 else
                 {
@@ -130,7 +137,7 @@ namespace Beanfamily.Areas.Admin.Controllers
             {
                 var donhang = model.DonHangMenuBuffet.Where(p => p.ngaytao.Month == i && p.ngaytao.Year == currentYear).ToList();
                 decimal money = 0;
-
+                int listSoBuffetCount = 0;
                 if (donhang.Count > 0)
                 {
                     foreach (var item in donhang)
@@ -145,10 +152,12 @@ namespace Beanfamily.Areas.Admin.Controllers
                             money += item.ChiTietDonHangSanPhamMenuBuffet.Sum(s => item.giamon)
                                     + item.ChiTietDonHangDanhMucPhucVuMenuBuffet.Where(w => w.giatheosoban == true).Sum(s => item.soban * s.gia)
                                     + item.ChiTietDonHangDanhMucPhucVuMenuBuffet.Where(w => w.giatheosoban == false).Sum(s => s.gia);
+
+                            listSoBuffetCount++;
                         }
                     }
                     listBuffet += money + "-";
-                    listSoBuffet += donhang.Count + "-";
+                    listSoBuffet += listSoBuffetCount + "-";
                 }
                 else
                 {

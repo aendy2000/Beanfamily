@@ -1,12 +1,10 @@
-﻿$(document).ready(function () {
+﻿    $(document).ready(function () {
     $('body').on('click', '[id^="btnSubmitThanhToan"]', function () {
         var btn = $(this);
         btn.html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"> </span> Vui lòng chờ...');
         btn.prop('disabled', true);
 
         var id = $(this).attr("name");
-        var sotienconlai = $('body').find('[id="sotienConLai"]').attr('name');
-        var sotiendathanhtoan = $('body').find('[id="sotienDaThanhToan"]').attr('name');
         var madonhang = $('body').find('[id="sotienConLai"]').attr('madonhang');
 
         $('body').find('[id="invalid-inpSoTien-thanhtoan"]').prop('hidden', true);
@@ -35,14 +33,7 @@
                 $('body').find('[id="inpSoTien"]').focus();
                 $('body').find('[id="invalid-inpSoTien-thanhtoan"]').text('Vui lòng nhập số tiền thanh toán.').prop('hidden', false);
             }
-            else if (Number(sotien.replace(/,/g, '')) > Number(sotienconlai)) {
-                btn.html('Thanh toán');
-                btn.prop('disabled', false);
-
-                check = false;
-                $('body').find('[id="inpSoTien"]').focus();
-                $('body').find('[id="invalid-inpSoTien-thanhtoan"]').text('Số tiền vượt quá khoản còn lại.').prop('hidden', false);
-            }
+            
         }
         else {
             if (sotien.length < 1) {
@@ -53,14 +44,7 @@
                 $('body').find('[id="inpSoTien"]').focus();
                 $('body').find('[id="invalid-inpSoTien-thanhtoan"]').text('Vui lòng nhập số tiền hoàn trả.').prop('hidden', false);
             }
-            else if (Number(sotien.replace(/,/g, '')) > Number(sotiendathanhtoan)) {
-                btn.html('Thanh toán');
-                btn.prop('disabled', false);
-
-                check = false;
-                $('body').find('[id="inpSoTien"]').focus();
-                $('body').find('[id="invalid-inpSoTien-thanhtoan"]').text('Số tiền trả lại vượt quá khoản đã thu.').prop('hidden', false);
-            }
+            
         }
 
         if (check == true) {

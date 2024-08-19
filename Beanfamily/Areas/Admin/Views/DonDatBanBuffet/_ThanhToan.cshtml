@@ -45,7 +45,7 @@
                             <div class="col-6 mb-1 text-end text-dark">
                                 @foreach (var item in Model.ChiTietDonHangDanhMucPhucVuMenuBuffet.ToList())
                                 {
-                                    <p style="margin-bottom:0px !important"><small>@item.tendanhmuc (@(item.giatheosoban == true ? item.gia.ToString("0,0") + "đ) x " + Model.soban : item.gia.ToString("0,0") + "đ)")</small></p>
+                                    <p style="margin-bottom:0px !important"><small>@item.tendanhmuc</small></p>
                                 }
                             </div>
                             <div class="col-12">
@@ -56,11 +56,16 @@
                             </div>
                             <div class="col-6 mb-1 text-end text-dark">
                                 <h6>
-                                    <b>
-                                        @((Model.giamon
-                                        + Model.ChiTietDonHangDanhMucPhucVuMenuBuffet.Where(w => w.giatheosoban == true).Sum(s => s.gia * Model.soban)
-                                        + Model.ChiTietDonHangDanhMucPhucVuMenuBuffet.Where(w => w.giatheosoban == false).Sum(s => s.gia)).ToString("0,0") + "đ")
-                                    </b>
+                                    @if (Model.giamon == 0)
+                                    {
+                                        <b>Chưa thêm chi phí</b>
+                                    }
+                                    else
+                                    {
+                                        <b>
+                                            @(Model.giamon.ToString("0,0") + "đ")
+                                        </b>
+                                    }
                                 </h6>
                             </div>
 
@@ -78,16 +83,17 @@
                                 Còn lại:
                             </div>
                             <div class="col-6 mb-1 text-end text-dark">
-                                <h6 id="sotienConLai" madonhang="@Model.madonhang" name="@(((Model.giamon
-                                                            + Model.ChiTietDonHangDanhMucPhucVuMenuBuffet.Where(w => w.giatheosoban == true).Sum(s => s.gia * Model.soban)
-                                                            + Model.ChiTietDonHangDanhMucPhucVuMenuBuffet.Where(w => w.giatheosoban == false).Sum(s => s.gia))
-                                                            - Model.LichSuThanhToanDonHangTongHop.Sum(s => s.sotien)).ToString("0,0").Replace(",", "").Replace(".", ""))">
-                                    <b>
-                                        @(((Model.giamon
-                                        + Model.ChiTietDonHangDanhMucPhucVuMenuBuffet.Where(w => w.giatheosoban == true).Sum(s => s.gia * Model.soban)
-                                        + Model.ChiTietDonHangDanhMucPhucVuMenuBuffet.Where(w => w.giatheosoban == false).Sum(s => s.gia))
-                                        - Model.LichSuThanhToanDonHangTongHop.Sum(s => s.sotien)).ToString("0,0") + "đ")
-                                    </b>
+                                <h6 id="sotienConLai" madonhang="@Model.madonhang" name="@(Model.giamon - Model.LichSuThanhToanDonHangTongHop.Sum(s => s.sotien)).ToString(" 0,0").Replace(",", "" ).Replace(".", "" ))">
+                                    @if (Model.giamon == 0)
+                                    {
+                                        <b>Chưa thêm chi phí</b>
+                                    }
+                                    else
+                                    {
+                                        <b>
+                                            @((Model.giamon - Model.LichSuThanhToanDonHangTongHop.Sum(s => s.sotien)).ToString("0,0") + "đ")
+                                        </b>
+                                    }
                                 </h6>
                             </div>
                             <div class="col-12">
