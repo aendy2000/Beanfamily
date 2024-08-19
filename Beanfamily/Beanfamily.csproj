@@ -332,6 +332,7 @@
     <Content Include="Content\AdminAreas\assets\img\ggsearch.png" />
     <Content Include="Content\AdminAreas\assets\img\profile-img.png" />
     <Content Include="Content\AdminAreas\assets\vendor\table2excel\jquery.table2excel.min.js" />
+    <Content Include="Content\assets\images\ImageBean\bannergioithieu.jpg" />
     <Content Include="Content\assets\images\ImageBean\2382148336_694728379344396_4963814383689281368_n.jpg" />
     <Content Include="Content\assets\images\ImageBean\2z5708932492674_1e339065fc38b483bc79e1c28d01086f.jpg" />
     <Content Include="Content\assets\images\ImageBean\2z5708935792217_91c04c63af0590076f807189fc0d4b5a.jpg" />

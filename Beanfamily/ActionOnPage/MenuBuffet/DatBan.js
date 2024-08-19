@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    //Đặt bàn
+    //KIỂM TRA MÓN ĐÃ CHỌN
     $('#btnDatBanBuffet').on('click', function () {
         var btn = $(this);
         btn.html('<span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"> </span> Vui lòng chờ...');
@@ -16,7 +16,7 @@
         if (lstId.length < 1) {
             check = false;
             btn.css('pointer-events', 'auto');
-            btn.html("ĐẶT BÀN");
+            btn.html("KIỂM TRA MÓN ĐÃ CHỌN");
             Swal.fire({
                 title: "Chưa chọn món!",
                 text: "Vui lòng chọn ít nhất 1 món trong Menu!",
@@ -36,7 +36,7 @@
                 processData: false,
                 contentType: false
             }).done(function (ketqua) {
-                btn.html('ĐẶT BÀN');
+                btn.html('KIỂM TRA MÓN ĐÃ CHỌN');
                 btn.css('pointer-events', 'all');
 
                 if (ketqua.indexOf("Chi tiết lỗi:") != -1) {
