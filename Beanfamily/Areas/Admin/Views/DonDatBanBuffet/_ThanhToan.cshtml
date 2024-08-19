@@ -83,7 +83,7 @@
                                 Còn lại:
                             </div>
                             <div class="col-6 mb-1 text-end text-dark">
-                                <h6 id="sotienConLai" madonhang="@Model.madonhang" name="@(Model.giamon - Model.LichSuThanhToanDonHangTongHop.Sum(s => s.sotien)).ToString(" 0,0").Replace(",", "" ).Replace(".", "" ))">
+                                <h6 id="sotienConLai" madonhang="@Model.madonhang" name="@((Model.giamon - Model.LichSuThanhToanDonHangTongHop.Sum(s => s.sotien)).ToString(" 0,0").Replace(",", "" ).Replace(".", "" ))">
                                     @if (Model.giamon == 0)
                                     {
                                         <b>Chưa thêm chi phí</b>
