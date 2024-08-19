@@ -46,6 +46,7 @@ namespace Beanfamily.Areas.Admin.Controllers
 
             var currentYear = DateTime.Now.Year;
             var currentMonth = DateTime.Now.Year;
+            var currentDate = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd"));
 
             Session["nam-thongke"] = currentYear;
             Session["thang-thongke"] = currentMonth;
@@ -98,10 +99,19 @@ namespace Beanfamily.Areas.Admin.Controllers
                 {
                     foreach (var item in donhang)
                     {
-                        money += item.ChiTietDonHangSanPhamMenuTiecBan.Sum(s => s.gia * item.soban)
-                                + item.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == true).Sum(s => item.soban * s.gia)
-                                + item.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == false).Sum(s => s.gia);
+                        if ((item.ngaybatdau - currentDate).Days <= 0
+                                            && (item.ChiTietDonHangSanPhamMenuTiecBan.Sum(s => s.gia * item.soban) +
+                                            item.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == true).Sum(s => s.gia * item.soban) +
+                                            item.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == false).Sum(s => s.gia))
+                                            <= item.LichSuThanhToanDonHangTongHop.Sum(s => s.sotien)
+                                            && item.TinhTrangDonHangMenuTiecBan.First().tieude.Equals("Hoàn thành"))
+                        {
+                            money += item.ChiTietDonHangSanPhamMenuTiecBan.Sum(s => s.gia * item.soban)
+                                    + item.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == true).Sum(s => item.soban * s.gia)
+                                    + item.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == false).Sum(s => s.gia);
+                        }
                     }
+
                     listTiecBan += money + "-";
                     listSoTiecBan += donhang.Count + "-";
                 }
@@ -125,9 +135,17 @@ namespace Beanfamily.Areas.Admin.Controllers
                 {
                     foreach (var item in donhang)
                     {
-                        money += item.ChiTietDonHangSanPhamMenuBuffet.Sum(s => item.giamon)
-                                + item.ChiTietDonHangDanhMucPhucVuMenuBuffet.Where(w => w.giatheosoban == true).Sum(s => item.soban * s.gia)
-                                + item.ChiTietDonHangDanhMucPhucVuMenuBuffet.Where(w => w.giatheosoban == false).Sum(s => s.gia);
+                        if ((item.ngaybatdau - currentDate).Days <= 0
+                                            && (item.giamon +
+                                            item.ChiTietDonHangDanhMucPhucVuMenuBuffet.Where(w => w.giatheosoban == true).Sum(s => s.gia * item.soban) +
+                                            item.ChiTietDonHangDanhMucPhucVuMenuBuffet.Where(w => w.giatheosoban == false).Sum(s => s.gia))
+                                            <= item.LichSuThanhToanDonHangTongHop.Sum(s => s.sotien)
+                                            && item.TinhTrangDonHangMenuBuffet.First().tieude.Equals("Hoàn thành"))
+                        {
+                            money += item.ChiTietDonHangSanPhamMenuBuffet.Sum(s => item.giamon)
+                                    + item.ChiTietDonHangDanhMucPhucVuMenuBuffet.Where(w => w.giatheosoban == true).Sum(s => item.soban * s.gia)
+                                    + item.ChiTietDonHangDanhMucPhucVuMenuBuffet.Where(w => w.giatheosoban == false).Sum(s => s.gia);
+                        }
                     }
                     listBuffet += money + "-";
                     listSoBuffet += donhang.Count + "-";
@@ -184,7 +202,6 @@ namespace Beanfamily.Areas.Admin.Controllers
 
             var lstTTDHTB = model.TinhTrangDonHangMenuTiecBan.ToList();
             var lstDHTB = model.DonHangMenuTiecBan.ToList();
-            var currentDate = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd"));
             int chuaThanhToan = 0;
             foreach (var item in lstDHTB.Where(w => (w.ngaybatdau - DateTime.Now).Days <= 0).ToList())
             {
