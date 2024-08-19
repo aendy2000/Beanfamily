@@ -1,4 +1,63 @@
 ﻿$(document).ready(function () {
+    $('body').find('[id^="item-dichvu-"]').on('change', function () {
+        var checks = $(this);
+        var id = $(this).attr('name');
+
+        if (checks.prop('checked') == true) {
+            $('body').find('[id="select-item-dichvu-' + id + '"]').prop('hidden', false);
+            $('body').find('[id="tamtinhgiaphucvu-' + id + '"]').attr('hienthi', true);
+        }
+        else {
+            $('body').find('[id="select-item-dichvu-' + id + '"]').prop('hidden', true);
+            $('body').find('[id="tamtinhgiaphucvu-' + id + '"]').attr('hienthi', false);
+        }
+
+        var qtt = $('body').find('[id="soban"]').val() + "";
+
+        if (qtt.length < 1) {
+            qtt = Number(0);
+        }
+
+        //tam tinh gia mon
+        var giamon = $('body').find('[id^="tamtinhgiamon"]').attr('price');
+        var tongtamtinhgiamon = Number(qtt) * Number(giamon);
+        var formatgiamon = formatCurrencys(giamon);
+        var formattonggiamon = formatCurrencys(tongtamtinhgiamon);
+        $('body').find('[id="tamtinhgiamon"]').text(formatgiamon + ' x ' + qtt + ' bàn = ' + formattonggiamon + ' đ');
+
+        var tongtamtinhgiapv = 0;
+        //tam tinh gia phuc vu
+        $('body').find('[id^="tamtinhgiaphucvu-"]').each(function () {
+            var itemphucvu = $(this);
+            var state = itemphucvu.attr('priceType');
+            var shows = itemphucvu.attr('hienthi');
+            if (state == "true" && shows == "true") {
+                var giapv = itemphucvu.attr('price');
+                var tongtamtinhgiapvs = Number(qtt) * Number(giapv);
+                tongtamtinhgiapv += tongtamtinhgiapvs;
+                var formatgiapv = formatCurrencys(giapv);
+                var formattonggiapv = formatCurrencys(tongtamtinhgiapvs);
+                itemphucvu.text(formatgiapv + ' x ' + qtt + ' bàn = ' + formattonggiapv + ' đ');
+            }
+        });
+
+        //tong tam tinh
+        var tongtamtinhgiapvcodinh = 0;
+        $('body').find('[id^="tamtinhgiaphucvu-"]').each(function () {
+            var itemphucvu = $(this);
+            var state = itemphucvu.attr('priceType');
+            var shows = itemphucvu.attr('hienthi');
+            if (state == "false" && shows == "true") {
+                var giapv = itemphucvu.attr('price');
+                tongtamtinhgiapvcodinh += Number(giapv);
+            }
+        });
+
+        var tongtamtinhgiatong = Number(tongtamtinhgiamon) + Number(tongtamtinhgiapv) + Number(tongtamtinhgiapvcodinh);
+        var formattong = formatCurrencys(tongtamtinhgiatong);
+        $('body').find('[id="tongtamtinh"]').html(formattong + ' đ ' + '<small style="font-weight: normal">(tạm tính)</small>');
+    });
+
     $('body').find('[id="submitDatBan"]').on('click', function () {
         var btn = $(this);
         btn.html('<span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"> </span> Vui lòng chờ...');
@@ -111,6 +170,18 @@
             formData.append('giotochuc', giotochuc);
             formData.append('ghichu', ghichu);
 
+            var idPv = "";
+            $('body').find('[id^="item-dichvu-"]').each(function () {
+                var checks = $(this);
+                if (checks.prop('checked') == true) {
+                    idPv += checks.attr('name') + "-";
+                }
+            });
+            if (idPv.length > 0) {
+                idPv = idPv.substring(0, idPv.length - 1);
+            }
+            formData.append('idpv', idPv);
+
             $.ajax({
                 url: $('#requestPath').val() + "menutiecban/GuiFormDatBan",
                 data: formData,
@@ -172,6 +243,7 @@
         locale: {
             format: 'DD/MM/YYYY'
         },
+        drops: 'up',
     });
 
     /* Cộng giá bàn ghế */
@@ -189,32 +261,35 @@
         var formattonggiamon = formatCurrencys(tongtamtinhgiamon);
         $('body').find('[id="tamtinhgiamon"]').text(formatgiamon + ' x ' + qtt + ' bàn = ' + formattonggiamon + ' đ');
 
+        var tongtamtinhgiapv = 0;
         //tam tinh gia phuc vu
         $('body').find('[id^="tamtinhgiaphucvu-"]').each(function () {
             var itemphucvu = $(this);
             var state = itemphucvu.attr('priceType');
-            if (state == "true") {
+            var shows = itemphucvu.attr('hienthi');
+            if (state == "true" && shows == "true") {
                 var giapv = itemphucvu.attr('price');
-                var tongtamtinhgiapv = Number(qtt) * Number(giapv);
+                var tongtamtinhgiapvs = Number(qtt) * Number(giapv);
+                tongtamtinhgiapv += tongtamtinhgiapvs;
                 var formatgiapv = formatCurrencys(giapv);
-                var formattonggiapv = formatCurrencys(tongtamtinhgiapv);
+                var formattonggiapv = formatCurrencys(tongtamtinhgiapvs);
                 itemphucvu.text(formatgiapv + ' x ' + qtt + ' bàn = ' + formattonggiapv + ' đ');
             }
         });
 
         //tong tam tinh
-        var giatong = $('body').find('[id^="tongtamtinh"]').attr('price');
-        var giadvcodinh = 0;
-        $('body').find('[id^="tamtinhgiaphucvu"]').each(function () {
+        var tongtamtinhgiapvcodinh = 0;
+        $('body').find('[id^="tamtinhgiaphucvu-"]').each(function () {
             var itemphucvu = $(this);
             var state = itemphucvu.attr('priceType');
-            if (state == "false") {
+            var shows = itemphucvu.attr('hienthi');
+            if (state == "false" && shows == "true") {
                 var giapv = itemphucvu.attr('price');
-                giadvcodinh = Number(giadvcodinh) + Number(giapv);
+                tongtamtinhgiapvcodinh += Number(giapv);
             }
         });
 
-        var tongtamtinhgiatong = (Number(qtt) * Number(giatong)) + Number(giadvcodinh);
+        var tongtamtinhgiatong = Number(tongtamtinhgiamon) + Number(tongtamtinhgiapv) + Number(tongtamtinhgiapvcodinh);
         var formattong = formatCurrencys(tongtamtinhgiatong);
         $('body').find('[id="tongtamtinh"]').html(formattong + ' đ ' + '<small style="font-weight: normal">(tạm tính)</small>');
 

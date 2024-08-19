@@ -19,9 +19,7 @@
         }
         else
         {
-            if ((item.giamon +
-                item.ChiTietDonHangDanhMucPhucVuMenuBuffet.Where(w => w.giatheosoban == true).Sum(s => s.gia * item.soban) +
-                item.ChiTietDonHangDanhMucPhucVuMenuBuffet.Where(w => w.giatheosoban == false).Sum(s => s.gia))
+            if (item.giamon
                 > item.LichSuThanhToanDonHangTongHop.Sum(s => s.sotien)
                 && item.TinhTrangDonHangMenuBuffet.First().tieude.Equals("Hoàn thành"))
             {
@@ -29,9 +27,7 @@
             }
         }
 
-        if ((item.giamon +
-            item.ChiTietDonHangDanhMucPhucVuMenuBuffet.Where(w => w.giatheosoban == true).Sum(s => s.gia * item.soban) +
-            item.ChiTietDonHangDanhMucPhucVuMenuBuffet.Where(w => w.giatheosoban == false).Sum(s => s.gia))
+        if (item.giamon
             <= item.LichSuThanhToanDonHangTongHop.Sum(s => s.sotien)
             && item.TinhTrangDonHangMenuBuffet.First().tieude.Equals("Hoàn thành"))
         {
@@ -111,8 +107,8 @@ w.TinhTrangDonHangMenuBuffet.First().tieude.Equals("Đã xác nhận")).Count())
                                 <th scope="col">Diễn ra</th>
                                 <th scope="col">Trạng thái</th>
                                 <th scope="col">Thông tin</th>
-                                <th scope="col">Thanh toán</th>
                                 <th scope="col">Khách hàng</th>
+                                <th scope="col">Thanh toán</th>
                                 <th scope="col">#</th>
                             </tr>
                         </thead>
@@ -215,9 +211,7 @@ w.TinhTrangDonHangMenuBuffet.First().tieude.Equals("Đã xác nhận")).Count())
                                             && (item.LichSuThanhToanDonHangTongHop.Count < 1
                                             && item.TinhTrangDonHangMenuBuffet.First().tieude.Equals("Hoàn thành"))
                                             ||
-                                            (item.giamon +
-                                            item.ChiTietDonHangDanhMucPhucVuMenuBuffet.Where(w => w.giatheosoban == true).Sum(s => s.gia * item.soban) +
-                                            item.ChiTietDonHangDanhMucPhucVuMenuBuffet.Where(w => w.giatheosoban == false).Sum(s => s.gia))
+                                            item.giamon
                                             > item.LichSuThanhToanDonHangTongHop.Sum(s => s.sotien)
                                             && item.TinhTrangDonHangMenuBuffet.First().tieude.Equals("Hoàn thành"))
                                         {
@@ -269,48 +263,7 @@ w.TinhTrangDonHangMenuBuffet.First().tieude.Equals("Đã xác nhận")).Count())
                                             </li>
                                         </ul>
                                     </td>
-                                    <td class="text-nowrap">
-                                        <ul style="margin-left: -2rem; margin-bottom: 0;">
-                                            <li>
-                                                @if (item.giamon == 0)
-                                                {
-                                                    <small class="me-4 text-danger">
-                                                        <b>Chưa thêm giá / Miễn phí</b>
-                                                    </small>
-                                                }
-                                                else
-                                                {
-                                                    <small class="me-4">
-                                                        <b>Tổng giá món: <span class="text-warning">@item.giamon.ToString("0,0")đ</span></b>
-                                                    </small>
-                                                }
-                                            </li>
-                                            <li>
-                                                <small class="me-4">
-                                                    <b>Tổng thanh toán:</b> @((item.giamon +
-                                                item.ChiTietDonHangDanhMucPhucVuMenuBuffet.Where(w => w.giatheosoban == true).Sum(s => s.gia * item.soban) +
-                                                item.ChiTietDonHangDanhMucPhucVuMenuBuffet.Where(w => w.giatheosoban == false).Sum(s => s.gia)).ToString("0,0") + "đ")
-                                                </small>
-                                            </li>
-                                            <li>
-                                                <small class="me-4">
-                                                    <b>Đã thanh toán:</b> @(item.LichSuThanhToanDonHangTongHop.Sum(s => s.sotien).ToString("0,0").Equals("00") ?
-                                                "0đ" : item.LichSuThanhToanDonHangTongHop.Sum(s => s.sotien).ToString("0,0") + "đ")
-                                                </small>
-                                            </li>
-                                            <li>
-                                                <small class="me-4">
-                                                    <b>Còn lại:</b> @((
-                                                        (item.giamon +
-                                                    item.ChiTietDonHangDanhMucPhucVuMenuBuffet.Where(w => w.giatheosoban == true).Sum(s => s.gia * item.soban) +
-                                                    item.ChiTietDonHangDanhMucPhucVuMenuBuffet.Where(w => w.giatheosoban == false).Sum(s => s.gia))
-                                                    - item.LichSuThanhToanDonHangTongHop.Sum(s => s.sotien)
-                                                    ).ToString("0,0") + "đ"
-                                                    )
-                                                </small>
-                                            </li>
-                                        </ul>
-                                    </td>
+
                                     <td class="text-nowrap">
                                         <ul style="margin-left: -2rem; margin-bottom: 0;">
                                             <li>
@@ -328,7 +281,30 @@ w.TinhTrangDonHangMenuBuffet.First().tieude.Equals("Đã xác nhận")).Count())
                                             </li>
                                         </ul>
                                     </td>
-
+                                    <td class="text-nowrap">
+                                        <ul style="margin-left: -2rem; margin-bottom: 0;">
+                                            <li>
+                                                @if (item.giamon == 0)
+                                                {
+                                                    <small class="me-4 text-danger">
+                                                        <b>Chưa thêm chi phí</b>
+                                                    </small>
+                                                }
+                                                else
+                                                {
+                                                    <small class="me-4">
+                                                        <b>Tổng chi phí: <span class="text-warning">@item.giamon.ToString("0,0")đ</span></b>
+                                                    </small>
+                                                }
+                                            </li>
+                                            <li>
+                                                <small class="me-4">
+                                                    <b>Đã thanh toán:</b> @(item.LichSuThanhToanDonHangTongHop.Sum(s => s.sotien).ToString("0,0").Equals("00") ?
+              "0đ" : item.LichSuThanhToanDonHangTongHop.Sum(s => s.sotien).ToString("0,0") + "đ")
+                                                </small>
+                                            </li>
+                                        </ul>
+                                    </td>
                                     <td class="text-nowrap">
                                         @if (Session["chophep-sua"] != null)
                                         {

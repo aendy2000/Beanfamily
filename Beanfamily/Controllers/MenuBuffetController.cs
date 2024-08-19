@@ -52,7 +52,7 @@ namespace Beanfamily.Controllers
         }
 
         [HttpPost]
-        public ActionResult GuiFormDatBan(int soban, string hovaten, string sodienthoai, string email, string ngaytochuc, string giotochuc, string ghichu)
+        public ActionResult GuiFormDatBan(int soban, string hovaten, string sodienthoai, string email, string ngaytochuc, string giotochuc, string ghichu, string idpv)
         {
             try
             {
@@ -83,28 +83,41 @@ namespace Beanfamily.Controllers
                 model.Entry(donhang).State = System.Data.Entity.EntityState.Modified;
                 model.SaveChanges();
 
-                var lstDmpv = Session["lst-sanpham-datban-buffet-dmpv"] as List<DanhMucPhucVuMenuTiecBanVaMenuBuffet>;
-                List<ChiTietDonHangDanhMucPhucVuMenuBuffet> lstDmPvDH = new List<ChiTietDonHangDanhMucPhucVuMenuBuffet>();
-                foreach (var item in lstDmpv)
+                if (!string.IsNullOrEmpty(idpv))
                 {
-                    ChiTietDonHangDanhMucPhucVuMenuBuffet dmPvDH = new ChiTietDonHangDanhMucPhucVuMenuBuffet();
-                    dmPvDH.id_donhangmenubuffet = idDH;
-                    dmPvDH.id_danhmucphucvu = item.id;
-                    dmPvDH.tendanhmuc = item.tendanhmuc;
-                    dmPvDH.gia = item.gia;
-                    dmPvDH.giatheosoban = item.giatheosoban;
-                    dmPvDH.ngaytao = item.ngaytao;
-                    dmPvDH.ngaysuadoi = item.ngaysuadoi;
-                    dmPvDH.apdungmenutiecban = item.apdungmenutiecban;
-                    dmPvDH.apdungmenubuffet = item.apdungmenubuffet;
-                    lstDmPvDH.Add(dmPvDH);
-                }
-                if (lstDmPvDH.Count > 0)
-                {
-                    model.ChiTietDonHangDanhMucPhucVuMenuBuffet.AddRange(lstDmPvDH);
-                    model.SaveChanges();
-                }
+                    if (idpv.Length > 0)
+                    {
+                        var lstDmpv = Session["lst-sanpham-datban-buffet-dmpv"] as List<DanhMucPhucVuMenuTiecBanVaMenuBuffet>;
+                        List<ChiTietDonHangDanhMucPhucVuMenuBuffet> lstDmPvDH = new List<ChiTietDonHangDanhMucPhucVuMenuBuffet>();
+                        foreach (var item in idpv.Split('-').ToList())
+                        {
+                            var idPvs = Int32.Parse(item);
+                            var dmpvm = lstDmpv.Find(f => f.id == idPvs);
 
+                            if (dmpvm == null)
+                                continue;
+
+                            ChiTietDonHangDanhMucPhucVuMenuBuffet dmPvDH = new ChiTietDonHangDanhMucPhucVuMenuBuffet();
+                            dmPvDH.id_donhangmenubuffet = idDH;
+                            dmPvDH.id_danhmucphucvu = dmpvm.id;
+                            dmPvDH.tendanhmuc = dmpvm.tendanhmuc;
+                            dmPvDH.gia = dmpvm.gia;
+                            dmPvDH.giatheosoban = dmpvm.giatheosoban;
+                            dmPvDH.ngaytao = dmpvm.ngaytao;
+                            dmPvDH.ngaysuadoi = dmpvm.ngaysuadoi;
+                            dmPvDH.apdungmenutiecban = dmpvm.apdungmenutiecban;
+                            dmPvDH.apdungmenubuffet = dmpvm.apdungmenubuffet;
+                            lstDmPvDH.Add(dmPvDH);
+                        }
+
+                        if (lstDmPvDH.Count > 0)
+                        {
+                            model.ChiTietDonHangDanhMucPhucVuMenuBuffet.AddRange(lstDmPvDH);
+                            model.SaveChanges();
+                        }
+                    }
+                }
+                
                 var lstSp = Session["lst-sanpham-datban-buffet"] as List<SanPhamMenuBuffet>;
                 List<ChiTietDonHangSanPhamMenuBuffet> lstDhSP = new List<ChiTietDonHangSanPhamMenuBuffet>();
                 foreach (var item in lstSp)

@@ -155,12 +155,12 @@
                                 @Model.ChiTietDonHangSanPhamMenuBuffet.Count() món
                             </div>
                             <div class="col-6 mb-1 text-dark">
-                                Tổng giá món:
+                                Tổng chi phí:
                             </div>
                             <div class="col-6 mb-1 text-end text-dark">
                                 @if (Model.giamon == 0)
                                 {
-                                    <span class="small">Chưa thêm giá / Miễn phí</span>
+                                    <span class="small">Chưa thêm chi phí</span>
                                 }
                                 else
                                 {
@@ -168,12 +168,14 @@
                                 }
                             </div>
                             <div class="col-6 mb-1 text-dark">
-                                Phí phục vụ:
+                                Dịch vụ kèm:
                             </div>
                             <div class="col-6 mb-4 text-end text-dark">
                                 @foreach (var item in Model.ChiTietDonHangDanhMucPhucVuMenuBuffet.ToList())
                                 {
-                                    <p style="margin-bottom:0px !important"><small>@item.tendanhmuc (@(item.giatheosoban == true ? item.gia.ToString("0,0") + "đ) x " + Model.soban : item.gia.ToString("0,0") + "đ)")</small></p>
+                                    <small>
+                                        <p style="margin-bottom:0px !important">@item.tendanhmuc</p>
+                                    </small>
                                 }
                             </div>
                             <div class="col-12 mb-1 text-dark">
@@ -217,11 +219,14 @@
                             </div>
                             <div class="col-6 mb-1 text-end text-dark">
                                 <h6>
-                                    <b>
-                                        @((Model.giamon
-                                        + Model.ChiTietDonHangDanhMucPhucVuMenuBuffet.Where(w => w.giatheosoban == true).Sum(s => s.gia * Model.soban)
-                                        + Model.ChiTietDonHangDanhMucPhucVuMenuBuffet.Where(w => w.giatheosoban == false).Sum(s => s.gia)).ToString("0,0") + "đ")
-                                    </b>
+                                    @if (Model.giamon == 0)
+                                    {
+                                        <b>Chưa thêm chi phí</b>
+                                    }
+                                    else
+                                    {
+                                        <b>@Model.giamon.ToString("0,0")đ</b>
+                                    }
                                 </h6>
                             </div>
 
@@ -240,12 +245,16 @@
                             </div>
                             <div class="col-6 mb-1 text-end text-dark">
                                 <h6>
-                                    <b>
-                                        @(((Model.giamon
-                                        + Model.ChiTietDonHangDanhMucPhucVuMenuBuffet.Where(w => w.giatheosoban == true).Sum(s => s.gia * Model.soban)
-                                        + Model.ChiTietDonHangDanhMucPhucVuMenuBuffet.Where(w => w.giatheosoban == false).Sum(s => s.gia))
-                                        - Model.LichSuThanhToanDonHangTongHop.Sum(s => s.sotien)).ToString("0,0") + "đ")
-                                    </b>
+                                    @if (Model.giamon == 0)
+                                    {
+                                        <b>Chưa thêm chi phí</b>
+                                    }
+                                    else
+                                    {
+                                        <b>
+                                            @((Model.giamon - Model.LichSuThanhToanDonHangTongHop.Sum(s => s.sotien)).ToString("0,0") + "đ")
+                                        </b>
+                                    }
                                 </h6>
                             </div>
                         </div>

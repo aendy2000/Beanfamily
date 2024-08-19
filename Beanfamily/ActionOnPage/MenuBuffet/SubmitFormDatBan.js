@@ -111,6 +111,18 @@
             formData.append('giotochuc', giotochuc);
             formData.append('ghichu', ghichu);
 
+            var idPv = "";
+            $('body').find('[id^="item-dichvu-"]').each(function () {
+                var checks = $(this);
+                if (checks.prop('checked') == true) {
+                    idPv += checks.attr('name') + "-";
+                }
+            });
+            if (idPv.length > 0) {
+                idPv = idPv.substring(0, idPv.length - 1);
+            }
+            formData.append('idpv', idPv);
+
             $.ajax({
                 url: $('#requestPath').val() + "menubuffet/GuiFormDatBan",
                 data: formData,
@@ -172,74 +184,6 @@
         locale: {
             format: 'DD/MM/YYYY'
         },
+        drops: 'up',
     });
-
-    /* Cộng giá bàn ghế */
-    $('body').find('[id="soban"]').on('input', function () {
-        var qtt = $(this).val() + "";
-
-        if (qtt.length < 1) {
-            qtt = Number(0);
-        }
-
-        //tam tinh gia phuc vu
-        $('body').find('[id^="tamtinhgiaphucvu-"]').each(function () {
-            var itemphucvu = $(this);
-            var state = itemphucvu.attr('priceType');
-            if (state == "true") {
-                var giapv = itemphucvu.attr('price');
-                var tongtamtinhgiapv = Number(qtt) * Number(giapv);
-                var formatgiapv = formatCurrencys(giapv);
-                var formattonggiapv = formatCurrencys(tongtamtinhgiapv);
-                itemphucvu.text(formatgiapv + ' x ' + qtt + ' bàn = ' + formattonggiapv + ' đ');
-            }
-        });
-
-        //tong tam tinh
-        var giatong = $('body').find('[id^="tongtamtinh"]').attr('price');
-        var giadvcodinh = 0;
-        $('body').find('[id^="tamtinhgiaphucvu"]').each(function () {
-            var itemphucvu = $(this);
-            var state = itemphucvu.attr('priceType');
-            if (state == "false") {
-                var giapv = itemphucvu.attr('price');
-                giadvcodinh = Number(giadvcodinh) + Number(giapv);
-            }
-        });
-
-        var tongtamtinhgiatong = (Number(qtt) * Number(giatong)) + Number(giadvcodinh);
-        var formattong = formatCurrencys(tongtamtinhgiatong);
-        $('body').find('[id="tongtamtinh"]').html(formattong + ' đ + Giá bữa tiệc ' + '<small style="font-weight: normal">(tạm tính)</small>');
-
-    });
-
-    function formatCurrencys(input) {
-        var input_val = input + "";
-
-        if (input_val === "") { return; }
-
-        if (input_val.indexOf(".") >= 0) {
-
-            var decimal_pos = input_val.indexOf(".");
-
-            var left_side = input_val.substring(0, decimal_pos);
-            var right_side = input_val.substring(decimal_pos);
-
-            left_side = formatNumber(left_side);
-            right_side = formatNumber(right_side);
-
-            right_side = right_side.substring(0, 2);
-            input_val = left_side + "." + right_side;
-
-        } else {
-            input_val = formatNumber(input_val);
-            input_val = input_val;
-        }
-        return input_val;
-    }
-    function formatNumber(n) {
-        return n.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-    }
-
-
 });
