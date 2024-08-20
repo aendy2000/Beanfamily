@@ -6,15 +6,18 @@ using System.Web.Mvc;
 using System.Data.Entity;
 using Beanfamily.Models;
 using Beanfamily.Middlewall;
+using System.Data.Entity.Core.Objects;
 using System.IO;
+using System.Net.Mail;
+using System.Net;
 
 namespace Beanfamily.Areas.Admin.Controllers
 {
     [AdminLoginverification]
-    public class HinhAnhBeanController : Controller
+    public class LienHeDatBanController : Controller
     {
         BeanfamilyEntities model = new BeanfamilyEntities();
-        // GET: Admin/HinhAnhBean
+        // GET: Admin/LienHeDatBan
         public ActionResult Index()
         {
             Session["active-dashboard"] = "collapsed # # ";
@@ -34,20 +37,26 @@ namespace Beanfamily.Areas.Admin.Controllers
             Session["active-tkb-tk"] = "collapsed # # ";
             Session["active-ddh"] = "collapsed # # ";
             Session["active-ddbt"] = "collapsed # # ";
-            Session["active-ddbb"] = "collapsed # # "; Session["active-lhdb"] = "collapsed # # ";
-            Session["active-hab"] = " # # ";
+            Session["active-ddbb"] = "collapsed # # ";
+            Session["active-hab"] = "collapsed # # ";
             Session["active-qlsp"] = "collapsed # # ";
             Session["active-tlc-ttw"] = "collapsed # # ";
             Session["active-tlc-lkmxh"] = "collapsed # # ";
+            Session["active-lhdb"] = " # # ";
 
-            if (Session["hab"] == null)
+            model = new BeanfamilyEntities(); var donhangTB = model.LienHeDatBan.ToList();
+            int numTB = donhangTB.Where(w => w.id_donhangmenubuffet == null && w.id_donhangmenutiecban == null && !w.trangthai.Equals("cancel")).ToList().Count;
+
+            Session["new-lienhedatban"] = numTB;
+
+            if (Session["lhdb"] == null)
                 return RedirectToAction("index", "dashboard");
 
-            var ha = model.HinhAnhBean.ToList();
+            var dh = model.LienHeDatBan.ToList();
 
             int idRole = Int32.Parse(Session["user-role-id"].ToString());
             var chophepthemsuaxoa = model.ApDungChucNangChoQuyenTaiKhoan.FirstOrDefault(a => a.id_quyentaikhoanbean == idRole
-            && a.ChucNangHeThongBean.keycode.Equals("hab"));
+            && a.ChucNangHeThongBean.keycode.Equals("lhdb"));
             if (chophepthemsuaxoa != null)
             {
                 Session["chophep-them"] = chophepthemsuaxoa.chophepthem;
@@ -59,75 +68,69 @@ namespace Beanfamily.Areas.Admin.Controllers
                 return RedirectToAction("index", "dashboard");
             }
 
-            return View("Index", ha);
+            return View("Index", dh.OrderByDescending(o => o.id).ToList());
         }
 
         [HttpPost]
-        public ActionResult ThemHinhAnh(List<HttpPostedFileBase> images)
+        public ActionResult BoQuaLienHe(int id)
         {
             try
             {
-                int i = 0;
-                if (images != null)
-                {
-                    foreach (var item in images)
-                    {
-                        if (item != null)
-                        {
-                            if (item.ContentLength > 0)
-                            {
-                                HinhAnhBean ha = new HinhAnhBean();
+                var dm = model.LienHeDatBan.Find(id);
+                if (dm == null)
+                    return Content("KHONGTONTAI");
 
-                                string pathSecond = i.ToString() + DateTime.Now.ToString("fffssmmHHddMMyyyy");
-                                string pathDirectory = Path.Combine(Server.MapPath("~/Content/AdminAreas/images/HinhAnhBean"));
-                                if (!Directory.Exists(pathDirectory))
-                                {
-                                    Directory.CreateDirectory(pathDirectory);
-                                }
-                                string path = Path.Combine(Server.MapPath("~/Content/AdminAreas/images/HinhAnhBean"), pathSecond + item.FileName);
-                                item.SaveAs(path);
+                dm.trangthai = "cancel";
+                dm.id_donhangmenubuffet = null;
+                dm.id_donhangmenutiecban = null;
 
-                                ha.url = "~/Content/AdminAreas/images/HinhAnhBean/" + pathSecond + item.FileName;
-                                model.HinhAnhBean.Add(ha);
-                                model.SaveChanges();
-
-                                i++;
-                            }
-                        }
-                    }
-                }
+                model.Entry(dm).State = EntityState.Modified;
+                model.SaveChanges();
 
                 return Content("SUCCESS");
             }
             catch (Exception ex)
             {
-                return Content("Chi tiết lỗi: " + ex.Message);
+                return Content(ex.Message);
             }
         }
 
         [HttpPost]
-        public ActionResult XoaHinhAnh(int id, string src)
+        public ActionResult BoQuaHangLoat(string lstId)
         {
             try
             {
-                var ha = model.HinhAnhBean.Find(id);
-                if (ha != null) { 
-                    model.HinhAnhBean.Remove(ha);
+                if (lstId.IndexOf("-") != -1)
+                {
+                    foreach (var item in lstId.Split('-'))
+                    {
+                        int id = Int32.Parse(item);
+                        var dm = model.LienHeDatBan.Find(id);
+                        dm.trangthai = "cancel";
+                        dm.id_donhangmenubuffet = null;
+                        dm.id_donhangmenutiecban = null;
+
+                        model.Entry(dm).State = EntityState.Modified;
+                        model.SaveChanges();
+                    }
+                }
+                else
+                {
+                    int id = Int32.Parse(lstId);
+                    var dm = model.LienHeDatBan.Find(id);
+                    dm.trangthai = "cancel";
+                    dm.id_donhangmenubuffet = null;
+                    dm.id_donhangmenutiecban = null;
+
+                    model.Entry(dm).State = EntityState.Modified;
                     model.SaveChanges();
                 }
 
-                try
-                {
-                    string path = Path.Combine(Server.MapPath(src));
-                    System.IO.File.Delete(path);
-                }
-                catch (Exception) {}
-
                 return Content("SUCCESS");
             }
             catch (Exception ex)
             {
-                return Content("Chi tiết lỗi: " + ex.Message);
+                return Content(ex.Message);
             }
         }
     }

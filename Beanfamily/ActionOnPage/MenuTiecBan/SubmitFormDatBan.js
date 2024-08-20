@@ -23,7 +23,7 @@
         var tongtamtinhgiamon = Number(qtt) * Number(giamon);
         var formatgiamon = formatCurrencys(giamon);
         var formattonggiamon = formatCurrencys(tongtamtinhgiamon);
-        $('body').find('[id="tamtinhgiamon"]').text(formatgiamon + ' x ' + qtt + ' bàn = ' + formattonggiamon + ' đ');
+        $('body').find('[id="tamtinhgiamon"]').text(formatgiamon + ' x ' + qtt + ' bàn = ' + formattonggiamon + 'đ');
 
         var tongtamtinhgiapv = 0;
         //tam tinh gia phuc vu
@@ -37,7 +37,7 @@
                 tongtamtinhgiapv += tongtamtinhgiapvs;
                 var formatgiapv = formatCurrencys(giapv);
                 var formattonggiapv = formatCurrencys(tongtamtinhgiapvs);
-                itemphucvu.text(formatgiapv + ' x ' + qtt + ' bàn = ' + formattonggiapv + ' đ');
+                itemphucvu.text(formatgiapv + ' x ' + qtt + ' bàn = ' + formattonggiapv + 'đ');
             }
         });
 
@@ -55,7 +55,7 @@
 
         var tongtamtinhgiatong = Number(tongtamtinhgiamon) + Number(tongtamtinhgiapv) + Number(tongtamtinhgiapvcodinh);
         var formattong = formatCurrencys(tongtamtinhgiatong);
-        $('body').find('[id="tongtamtinh"]').html(formattong + ' đ ' + '<small style="font-weight: normal">(tạm tính)</small>');
+        $('body').find('[id="tongtamtinh"]').html(formattong + 'đ ' + '<small style="font-weight: normal">(tạm tính)</small>');
     });
 
     $('body').find('[id="submitDatBan"]').on('click', function () {
@@ -259,7 +259,7 @@
         var tongtamtinhgiamon = Number(qtt) * Number(giamon);
         var formatgiamon = formatCurrencys(giamon);
         var formattonggiamon = formatCurrencys(tongtamtinhgiamon);
-        $('body').find('[id="tamtinhgiamon"]').text(formatgiamon + ' x ' + qtt + ' bàn = ' + formattonggiamon + ' đ');
+        $('body').find('[id="tamtinhgiamon"]').text(formatgiamon + ' x ' + qtt + ' bàn = ' + formattonggiamon + 'đ');
 
         var tongtamtinhgiapv = 0;
         //tam tinh gia phuc vu
@@ -273,7 +273,7 @@
                 tongtamtinhgiapv += tongtamtinhgiapvs;
                 var formatgiapv = formatCurrencys(giapv);
                 var formattonggiapv = formatCurrencys(tongtamtinhgiapvs);
-                itemphucvu.text(formatgiapv + ' x ' + qtt + ' bàn = ' + formattonggiapv + ' đ');
+                itemphucvu.text(formatgiapv + ' x ' + qtt + ' bàn = ' + formattonggiapv + 'đ');
             }
         });
 
@@ -291,7 +291,7 @@
 
         var tongtamtinhgiatong = Number(tongtamtinhgiamon) + Number(tongtamtinhgiapv) + Number(tongtamtinhgiapvcodinh);
         var formattong = formatCurrencys(tongtamtinhgiatong);
-        $('body').find('[id="tongtamtinh"]').html(formattong + ' đ ' + '<small style="font-weight: normal">(tạm tính)</small>');
+        $('body').find('[id="tongtamtinh"]').html(formattong + 'đ ' + '<small style="font-weight: normal">(tạm tính)</small>');
 
     });
 

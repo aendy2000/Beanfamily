@@ -20,6 +20,7 @@ namespace Beanfamily.Models
             this.ChiTietDonHangDanhMucPhucVuMenuTiecBan = new HashSet<ChiTietDonHangDanhMucPhucVuMenuTiecBan>();
             this.ChiTietDonHangSanPhamMenuTiecBan = new HashSet<ChiTietDonHangSanPhamMenuTiecBan>();
             this.LichSuThanhToanDonHangTongHop = new HashSet<LichSuThanhToanDonHangTongHop>();
+            this.LienHeDatBan = new HashSet<LienHeDatBan>();
             this.TinhTrangDonHangMenuTiecBan = new HashSet<TinhTrangDonHangMenuTiecBan>();
         }
     
@@ -41,6 +42,8 @@ namespace Beanfamily.Models
         public virtual ICollection<ChiTietDonHangSanPhamMenuTiecBan> ChiTietDonHangSanPhamMenuTiecBan { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LichSuThanhToanDonHangTongHop> LichSuThanhToanDonHangTongHop { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LienHeDatBan> LienHeDatBan { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TinhTrangDonHangMenuTiecBan> TinhTrangDonHangMenuTiecBan { get; set; }
     }

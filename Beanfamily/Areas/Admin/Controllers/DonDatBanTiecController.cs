@@ -42,6 +42,7 @@ namespace Beanfamily.Areas.Admin.Controllers
             Session["active-qlsp"] = "collapsed # # ";
             Session["active-tlc-ttw"] = "collapsed # # ";
             Session["active-tlc-lkmxh"] = "collapsed # # ";
+            Session["active-lhdb"] = "collapsed # # ";
 
             model = new BeanfamilyEntities(); var donhangTB = model.DonHangMenuTiecBan.ToList();
             int numTB = donhangTB.Count;

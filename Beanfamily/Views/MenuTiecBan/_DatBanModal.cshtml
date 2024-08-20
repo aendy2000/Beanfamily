@@ -20,7 +20,7 @@
     <div class="row">
         <div class="ttmondadattiecbanleft col-md-6 col-12 mb-4">
             <div style="border: 2px solid #ffc678; border-radius: 16px; padding: 0; height: 100%; width: 100%">
-                <h5 class="text-center mb-3 text-white" style="background: #5e443b !important; border-radius: 16px 16px 0 0; height: 40px; display: flex; flex-direction: column; justify-content: center; ">Thông Tin Món & Dịch Vụ</h5>
+                <h5 class="text-center mb-3 text-white" style="background: #5e443b !important; border-radius: 16px 16px 0 0; height: 40px; display: flex; flex-direction: column; justify-content: center; ">Thông Tin Món Đã Đặt</h5>
                 <div class="row p-l-15 p-r-15">
                     @foreach (var item in Model)
                     {
@@ -55,47 +55,57 @@
                         </div>
                     }
                 </div>
-
-                <hr class="my-3" />
-                <div class="row p-l-15 p-r-15">
-                    @foreach (var item in Dmpv)
-                    {
-                        <div class="col-12 mb-2">
-                            <ul style=" list-style-position: outside !important;">
-                                <li style="list-style-type: none !important;" class="ms-3">
-                                    <div class="row" style="white-space: nowrap; display: flex; flex-direction: row; align-items: center">
-                                        <div class="col-1">
-                                            <div style="display: unset;">
-                                                <input name="@item.id" price="@item.gia.ToString("0")" id="item-dichvu-@item.id" type="checkbox" style="height: 20px; width: 20px; margin-left: -5px; margin-top: 10px; accent-color: #12634c " />
-                                            </div>
-                                        </div>
-                                        <div class="col-11 p-0">
-                                            <div style="height:20px">
-                                                <label style="display: unset; white-space: normal; word-break: break-word; cursor: pointer;" id="label-dichvu-@item.id" for="item-dichvu-@item.id">
-                                                    @item.tendanhmuc | @(item.gia.ToString("0,0").Equals("00") ? "0" : item.gia.ToString("0,0"))đ
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    }
-                </div>
             </div>
         </div>
         <div class="ttmondadattiecbanright col-md-6 col-12  mb-4">
             <div style="border: 2px solid #ffc678; border-radius: 16px; padding: 0; height: 100%; width: 100%">
-                <h5 class="text-center mb-3 text-white" style="background: #5e443b !important; border-radius: 16px 16px 0 0; height: 40px; display: flex; flex-direction: column; justify-content: center; ">Thông Tin Chi Phí</h5>
+                <h5 class="text-center mb-3 text-white" style="background: #5e443b !important; border-radius: 16px 16px 0 0; height: 40px; display: flex; flex-direction: column; justify-content: center; ">Thông Tin Dịch Vụ & Chi Phí</h5>
+                <div class="row p-l-15 p-r-15">
+
+                    <div class="col-12 mb-2">
+                        <div class="col-12">
+                            <div class="row p-0 mb-2" style="display: flex; flex-direction: row; align-items: center">
+                                <div class="col-md-4">
+                                    Dịch vụ kèm:
+                                </div>
+                                <div class="col-md-8">
+                                    <ul style=" list-style-position: outside !important;">
+                                        @foreach (var item in Dmpv)
+                                        {
+                                            <li style="list-style-type: none !important;" class="ms-1">
+                                                <div class="row" style="white-space: nowrap; display: flex; flex-direction: row; align-items: center">
+                                                    <div class="col-1">
+                                                        <div style="display: unset;">
+                                                            <input name="@item.id" price="@item.gia.ToString("0")" id="item-dichvu-@item.id" type="checkbox" style="height: 20px; width: 20px; margin-left: -5px; margin-top: 10px; accent-color: #12634c " />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-11 p-0">
+                                                        <div style="margin-left: 10px; height: 20px">
+                                                            <label style="display: unset; white-space: normal; word-break: break-word; cursor: pointer;" id="label-dichvu-@item.id" for="item-dichvu-@item.id">
+                                                                @item.tendanhmuc | @(item.gia.ToString("0,0").Equals("00") ? "0" : item.gia.ToString("0,0"))đ
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
                 <div class="row p-l-15 p-r-15">
                     <div class="col-12">
                         <div class="row p-0 mb-2" style="display: flex; flex-direction: row; align-items: center">
                             <div class="col-md-4">
-                                <h6 style="font-weight: normal; color: #333333;" class="mb-3">Số lượng bàn:</h6>
+                                <h6 style="font-weight: normal; color: #333333;" class="mb-3">Số lượng bàn:<br /><small>(10 người / 1 bàn)</small></h6>
                             </div>
                             <div class="col-md-8">
-                                    <input style="height: 50px;border: 1px solid #333 !important; background: #122E26; color: #fff !important" class="bo-rad-10 sizefull txt10 p-l-20" data-type="numbers" type="text" id="soban" name="tabled" placeholder="Số bàn đặt">
-                                    <label style="margin-left: 5px" id="invalid-soban-feedback" class="text-danger" hidden></label>
+                                <input style="height: 50px;border: 1px solid #333 !important; background: #122E26; color: #fff !important" class="bo-rad-10 sizefull txt10 p-l-20" data-type="numbers" type="text" id="soban" name="tabled" placeholder="Số bàn đặt (10 người / 1 bàn)">
+                                <label style="margin-left: 5px" id="invalid-soban-feedback" class="text-danger" hidden></label>
                             </div>
                         </div>
                     </div>
@@ -158,8 +168,6 @@
             </div>
         </div>
     </div>
-
-
 
 
     <div class="row" style="border: 2px solid #ffc678; border-radius: 16px; padding: 0; margin:0">

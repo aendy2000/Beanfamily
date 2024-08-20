@@ -682,5 +682,62 @@ namespace Beanfamily.Controllers
             }
 
         }
+
+        [HttpPost]
+        public ActionResult GuiFormDatBan(int soban, string hovaten, string sodienthoai, string email, string ngaytochuc, string giotochuc, string ghichu)
+        {
+            try
+            {
+                LienHeDatBan donhang = new LienHeDatBan();
+                donhang.ngaytao = DateTime.Now;
+                donhang.soban = soban;
+                donhang.hoten = hovaten;
+                donhang.sdt = sodienthoai;
+                donhang.email = email;
+                donhang.trangthai = "new";
+
+                var ngaystart = Convert.ToDateTime(ngaytochuc.ToString().Split('/')[2] + "-" + ngaytochuc.ToString().Split('/')[1] + "-" + ngaytochuc.ToString().Split('/')[0]);
+                var currentDate = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd"));
+                if ((ngaystart - currentDate).Days <= 0)
+                    return Content("SMALLDATE");
+
+                donhang.ngaybatdau = ngaystart;
+                donhang.giobatdau = giotochuc;
+                donhang.ghichukhachhang = ghichu;
+
+                model.LienHeDatBan.Add(donhang);
+                model.SaveChanges();
+
+                string bodyMail = hovaten + " | " + sodienthoai + " đã gửi một liên hệ đặt bàn mới!.<br>Hãy nhanh chóng liên hệ lại với khách hàng để xác nhận." +
+                    "<br><br>Truy cập quản lý: https://beanfamily.shop/admin/lienhedatban";
+               
+                using (MailMessage mailMessage = new MailMessage("beanfamilyshop@gmail.com", "duongle15012000@gmail.com"))
+                {
+                    if (string.IsNullOrEmpty(email))
+                        mailMessage.To.Add(email);
+                    mailMessage.Subject = "[BEANFAMILY] LIÊN HỆ ĐẶT BÀN";
+                    mailMessage.IsBodyHtml = true;
+                    mailMessage.Body = bodyMail;
+
+                    using (SmtpClient smtp = new SmtpClient())
+                    {
+                        smtp.Host = "smtp.gmail.com";
+                        smtp.EnableSsl = true;
+                        NetworkCredential cred = new NetworkCredential("beanfamilyshop@gmail.com", "qwyxakxwvxtspdhr");
+                        smtp.UseDefaultCredentials = true;
+                        smtp.Credentials = cred;
+                        smtp.Port = 587;
+
+                        smtp.Send(mailMessage);
+                    }
+                }
+               
+                return Content("SUCCESS");
+            }
+            catch (Exception Ex)
+            {
+                return Content("Chi tiết lỗi: " + Ex.Message);
+            }
+        }
     }
 }

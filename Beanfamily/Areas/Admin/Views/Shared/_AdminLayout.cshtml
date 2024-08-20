@@ -1,4 +1,41 @@
-﻿<!DOCTYPE html>
+﻿@using Beanfamily.Models;
+@{ 
+    BeanfamilyEntities model = new BeanfamilyEntities();
+    //Nút thông báo nhỏ trên menu
+    Session["new-dondathang"] = model.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.Where(w => !w.tieude.Equals("Đã hủy") && !w.tieude.Equals("Không thành công") && !w.tieude.Equals("Hoàn thành")).Count();
+
+    var donhangTB = model.DonHangMenuTiecBan.ToList();
+    int numTB = donhangTB.Count;
+    foreach (var item in donhangTB.Where(w => w.TinhTrangDonHangMenuTiecBan.Where(ws => ws.tieude == "Hoàn thành").Count() > 0).ToList())
+    {
+        if (item.LichSuThanhToanDonHangTongHop.Sum(s => s.sotien)
+            >= (item.ChiTietDonHangSanPhamMenuTiecBan.Sum(s => s.gia * item.soban)
+            + item.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == true).Sum(s => s.gia * item.soban)
+            + item.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == false).Sum(s => s.gia)))
+        {
+            numTB--;
+        }
+    }
+    Session["new-dondatbantiec"] = numTB;
+
+    var donhangBF = model.DonHangMenuBuffet.ToList();
+    int numBF = donhangBF.Count;
+    foreach (var item in donhangBF.Where(w => w.TinhTrangDonHangMenuBuffet.Where(ws => ws.tieude == "Hoàn thành").Count() > 0).ToList())
+    {
+        if (item.LichSuThanhToanDonHangTongHop.Count() > 0)
+        {
+            numBF--;
+        }
+    }
+    Session["new-dondatbanbuffet"] = numBF;
+
+    var lhdbTB = model.LienHeDatBan.ToList();
+    int numlhdbTB = lhdbTB.Where(w => w.id_donhangmenubuffet == null && w.id_donhangmenutiecban == null && !w.trangthai.Equals("cancel")).Count();
+
+    Session["new-lienhedatban"] = numlhdbTB;
+}
+
+<!DOCTYPE html>
 <html lang="vi">
 <head>
     <title>@ViewBag.Title</title>
@@ -7,6 +44,10 @@
     <meta name="description" content="Beanfamily.vn nhà hàng chay ngon bình dương, vườn rau nhà trồng đảm bảo an toàn sức khỏe, cửa hàng tiện lợi.">
     <meta name="robots" content="noindex" />
     <meta name="keywords" content="beanfamily, beanfamily.vn, nhà hàng chay bình dương, nhà hàng chay, rau, vườn rau, bean, family">
+
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
 
     <style>
         /* width */
@@ -311,6 +352,18 @@
                         <span>Đơn Đặt Bàn Buffet</span>
                         <span style="position: absolute; right: 33px; background: #dc3545; width: 20px; height: 20px; display: flex; text-align: center; align-items: center; justify-content: center; flex-direction: row; font-size: 11px; border-radius: 50%; color: #fff; margin-left: 5px; ">
                             @Session["new-dondatbanbuffet"].ToString()
+                        </span>
+                    </a>
+                </li>
+            }
+            @if (Session["lhdb"] != null)
+            {
+                <li class="nav-item">
+                    <a class="nav-link @Session["active-lhdb"].ToString().Split('#')[0]" href="@Url.Action("index", "lienhedatban")">
+                        <i class="bi bi-journal-text"></i>
+                        <span>Liên Hệ Đặt Bàn</span>
+                        <span style="position: absolute; right: 33px; background: #dc3545; width: 20px; height: 20px; display: flex; text-align: center; align-items: center; justify-content: center; flex-direction: row; font-size: 11px; border-radius: 50%; color: #fff; margin-left: 5px; ">
+                            @Session["new-lienhedatban"].ToString()
                         </span>
                     </a>
                 </li>

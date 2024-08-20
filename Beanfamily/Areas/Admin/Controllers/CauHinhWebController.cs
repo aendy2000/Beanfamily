@@ -36,7 +36,7 @@ namespace Beanfamily.Areas.Admin.Controllers
             Session["active-tkb-tk"] = "collapsed # # ";
             Session["active-ddh"] = "collapsed # # ";
             Session["active-ddbt"] = "collapsed # # ";
-            Session["active-ddbb"] = "collapsed # # ";
+            Session["active-ddbb"] = "collapsed # # "; Session["active-lhdb"] = "collapsed # # ";
             Session["active-hab"] = "collapsed # # ";
             Session["active-qlsp"] = "collapsed # # ";
             Session["active-tlc-ttw"] = " # show # active";

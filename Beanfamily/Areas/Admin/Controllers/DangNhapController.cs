@@ -70,6 +70,11 @@ namespace Beanfamily.Areas.Admin.Controllers
                         }
                         Session["new-dondatbanbuffet"] = numBF;
 
+                        var lhdbTB = model.LienHeDatBan.ToList();
+                        int numlhdbTB = lhdbTB.Where(w => w.id_donhangmenubuffet == null && w.id_donhangmenutiecban == null && !w.trangthai.Equals("cancel")).Count();
+                        
+                        Session["new-lienhedatban"] = numlhdbTB;
+
                         //Set check function null
                         Session["mtb-dmc1"] = null;
                         Session["mtb-qlm"] = null;
@@ -88,6 +93,7 @@ namespace Beanfamily.Areas.Admin.Controllers
                         Session["ddh"] = null;
                         Session["ddbt"] = null;
                         Session["ddbb"] = null;
+                        Session["lhdb"] = null;
                         Session["hab"] = null;
                         Session["qlsp"] = null;
                         Session["tlc-ttw"] = null;
@@ -144,6 +150,9 @@ namespace Beanfamily.Areas.Admin.Controllers
 
                             else if (keycodes.Equals("ddbb"))
                                 Session["ddbb"] = true;
+
+                            else if (keycodes.Equals("lhdb"))
+                                Session["lhdb"] = true;
 
                             else if (keycodes.Equals("hab"))
                                 Session["hab"] = true;
