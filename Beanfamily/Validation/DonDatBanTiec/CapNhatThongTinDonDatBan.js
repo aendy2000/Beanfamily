@@ -11,6 +11,77 @@
         });
     });
 
+
+
+    function formatNumber(n) {
+        return n.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    }
+
+    function formatCurrencys(input) {
+        var input_val = input + "";
+        if (input_val === "") { return; }
+
+        if (input_val.indexOf(".") >= 0) {
+
+            var decimal_pos = input_val.indexOf(".");
+
+            var left_side = input_val.substring(0, decimal_pos);
+            var right_side = input_val.substring(decimal_pos);
+
+            left_side = formatNumber(left_side);
+            right_side = formatNumber(right_side);
+
+            right_side = right_side.substring(0, 2);
+            input_val = left_side + "." + right_side;
+
+        } else {
+            input_val = formatNumber(input_val);
+            input_val = input_val;
+        }
+
+        return input_val;
+    }
+
+    function ChangeGia() {
+        var tongDv = 0;
+        var tongMon = 0;
+        var tong = 0;
+        var soban = Number($('body').find('[id="soban"]').val());
+
+        $('body').find('[id^="chonmon-"]').each(function () {
+            var mon = $(this);
+            if (mon.prop('checked') == true) {
+                tongMon += Number(mon.attr('price')) * Number(soban);
+            }
+        });
+
+        //Dv không
+        $('body').find('[id^="chondv-"]').each(function () {
+            var mons = $(this);
+            var type = mons.attr('priceType');
+
+            if (mons.prop('checked') == true) {
+                //cố định
+                if (type == "true") {
+                    tongDv += Number(mons.attr('price')) * Number(soban);
+                }
+                else { //Không cố định
+                    tongDv += Number(mons.attr('price'));
+                }
+            }
+        });
+
+
+
+        tong = Number(tongMon) + Number(tongDv);
+        tong = formatCurrencys(tong) + "";
+
+        tongMon = formatCurrencys(tongMon) + "";
+        tongDv = formatCurrencys(tongDv) + "";
+
+        $('body').find('[id="appendGiaTong"]').html(tongMon + "đ<small> (giá món)</small> + " + tongDv + "đ<small> (giá dịch vụ)</small> = " + tong + "đ");
+    }
+
     $(document).on('change', '[id^="chonmon-"]', function () {
         var inpCheck = $(this);
         var id = inpCheck.attr('name');
@@ -21,18 +92,16 @@
         else {
             $('[id="parentDiv-' + id + '"]').css('background', '#ffffff');
         }
+
+        ChangeGia();
     });
 
-    $(document).on('change', '[id^="chonphucvu-"]', function () {
-        var inpCheck = $(this);
-        var id = inpCheck.attr('name');
+    $('body').find('[id^="chondv-"]').on('change', function () {
+        ChangeGia();
+    });
 
-        if (inpCheck.prop('checked')) {
-            $('[id="parentDivPhucVu-' + id + '"]').css('background', '#dbdcff');
-        }
-        else {
-            $('[id="parentDivPhucVu-' + id + '"]').css('background', '#ffffff');
-        }
+    $('body').find('[id="soban"]').on('change', function () {
+        ChangeGia();
     });
 
     $('body').on('click', '[id^="btnSubMitCapNhat"]', function () {
@@ -143,7 +212,6 @@
                         lstIdMon += id + "-";
                     }
                 });
-                lstIdMon = lstIdMon.substring(0, lstIdMon.length - 1);
                 if (lstIdMon.length < 1) {
                     btn.html('Lưu thông tin');
                     btn.prop('disabled', false);
@@ -155,6 +223,20 @@
                         text: "Vui lòng chọn ít nhất 1 món trong danh sách!",
                         icon: "warning"
                     });
+                }
+                else {
+                    lstIdMon = lstIdMon.substring(0, lstIdMon.length - 1);
+                }
+
+                var lstIdDv = "";
+                $('body').find('[id^="chondv-"]').each(function () {
+                    if ($(this).prop('checked')) {
+                        var ids = $(this).attr('name');
+                        lstIdDv += ids + "-";
+                    }
+                });
+                if (lstIdDv.length > 0) {
+                    lstIdDv = lstIdDv.substring(0, lstIdDv.length - 1);
                 }
 
                 if (check == true) {
@@ -168,8 +250,10 @@
                     formData.append('sodienthoai', sodienthoai);
                     formData.append('hovaten', hovaten);
                     formData.append('lstMonAn', lstIdMon);
+                    formData.append('lstDv', lstIdDv);
 
-                    $.ajax({error: function (a, xhr, c) {if (a.status == 403 && a.responseText.indexOf("SystemLoginAgain") != -1) {window.location.href = $('body').find('[id="requestPath"]').val() + "admin/dangnhap/logout";}},
+                    $.ajax({
+                        error: function (a, xhr, c) { if (a.status == 403 && a.responseText.indexOf("SystemLoginAgain") != -1) { window.location.href = $('body').find('[id="requestPath"]').val() + "admin/dangnhap/logout"; } },
                         url: $('#requestPath').val() + "admin/dondatbantiec/SubmitCapNhatThongTinDonHang",
                         data: formData,
                         dataType: 'html',
@@ -220,7 +304,8 @@
                                 var formDatas = new FormData();
                                 formDatas.append("id", id);
 
-                                $.ajax({error: function (a, xhr, c) {if (a.status == 403 && a.responseText.indexOf("SystemLoginAgain") != -1) {window.location.href = $('body').find('[id="requestPath"]').val() + "admin/dangnhap/logout";}},
+                                $.ajax({
+                                    error: function (a, xhr, c) { if (a.status == 403 && a.responseText.indexOf("SystemLoginAgain") != -1) { window.location.href = $('body').find('[id="requestPath"]').val() + "admin/dangnhap/logout"; } },
                                     url: $('#requestPath').val() + "admin/dondatbantiec/capnhatdonhang",
                                     data: formDatas,
                                     dataType: 'html',
@@ -249,7 +334,8 @@
         var formData = new FormData();
         formData.append("id", id);
 
-        $.ajax({error: function (a, xhr, c) {if (a.status == 403 && a.responseText.indexOf("SystemLoginAgain") != -1) {window.location.href = $('body').find('[id="requestPath"]').val() + "admin/dangnhap/logout";}},
+        $.ajax({
+            error: function (a, xhr, c) { if (a.status == 403 && a.responseText.indexOf("SystemLoginAgain") != -1) { window.location.href = $('body').find('[id="requestPath"]').val() + "admin/dangnhap/logout"; } },
             url: $('#requestPath').val() + "admin/dondatbantiec/capnhatdonhang",
             data: formData,
             dataType: 'html',

@@ -85,11 +85,20 @@
                                         {
                                             if (item.id_donhangmenubuffet != null)
                                             {
-                                                <span class="badge bg-success">Đã tạo đơn Buffet</span>
+                                                <span class="badge bg-success">
+                                                    Đã tạo đơn Buffet
+                                                    <br />
+                                                    Mã đơn: @item.DonHangMenuBuffet.madonhang
+                                                </span>
+
                                             }
                                             else if (item.id_donhangmenutiecban != null)
                                             {
-                                                <span class="badge bg-success">Đã tạo đơn Tiệc Bàn</span>
+                                                <span class="badge bg-success">
+                                                    Đã tạo đơn Tiệc Bàn
+                                                    <br />
+                                                    Mã đơn: @item.DonHangMenuTiecBan.madonhang
+                                                </span>
                                             }
                                         }
                                     </td>
@@ -112,14 +121,23 @@
                                         {
                                             if (Convert.ToBoolean(Session["chophep-sua"]) == true)
                                             {
-                                                <button id="btnTaoDonTiec@(item.id)" name="@item.id" class="btn btn-sm btn-primary"><i class="bi bi-plus-circle me-2"></i> Tạo đơn Tiệc Bàn</button>
-                                                <br />
-                                                <button id="btnTaoDonBuffet@(item.id)" name="@item.id" class="btn btn-sm btn-primary mt-2"><i class="bi bi-plus-circle me-2"></i>Tạo đơn Buffet</button>
+                                                if (item.id_donhangmenutiecban == null)
+                                                {
+                                                    <button id="btnTaoDonTiec@(item.id)" name="@item.id" class="btn btn-sm btn-primary"><i class="bi bi-plus-circle me-2"></i> Tạo đơn Tiệc Bàn</button>
+                                                }
+                                                if (item.id_donhangmenubuffet == null && item.id_donhangmenutiecban == null)
+                                                {
+                                                    <br />
+                                                }
+                                                if (item.id_donhangmenubuffet == null)
+                                                {
+                                                    <button id="btnTaoDonBuffet@(item.id)" name="@item.id" class="btn btn-sm btn-primary mt-2"><i class="bi bi-plus-circle me-2"></i>Tạo đơn Buffet</button>
+                                                }
                                             }
                                         }
                                         @if (Session["chophep-xoa"] != null)
                                         {
-                                            if (Convert.ToBoolean(Session["chophep-xoa"]) == true)
+                                            if (Convert.ToBoolean(Session["chophep-xoa"]) == true && item.trangthai.Equals("new"))
                                             {
                                                 <br />
                                                 <button id="btnBoQuaLH@(item.id)" name="@item.id" class="btn btn-sm btn-danger mt-2"><i class="bi bi-ban me-2"></i>Bỏ qua Liên hệ</button>
@@ -147,6 +165,9 @@
             <div id="TaoDonTiecBanModalPartial" class="modal-body">
 
             </div>
+            <div class="modal-footer">
+                <button id="btnSubmitTaoDonTiecBan" type="button" class="btn btn-primary">Lưu thông tin</button>
+            </div>
         </div>
     </div>
 </div>
@@ -160,6 +181,9 @@
             </div>
             <div id="TaoDonBuffetModalPartial" class="modal-body">
 
+            </div>
+            <div class="modal-footer">
+                <button id="btnSubmitTaoDonBuffet" type="button" class="btn btn-primary">Lưu thông tin</button>
             </div>
         </div>
     </div>

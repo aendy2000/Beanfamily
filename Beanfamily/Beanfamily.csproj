@@ -2654,6 +2654,10 @@
     <Content Include="Validation\DonDatHang\DanhSach.js" />
     <Content Include="Validation\HinhAnhBean\XoaHinhAnh.js" />
     <Content Include="Validation\HinhAnhBean\ThemHinhAnh.js" />
+    <Content Include="Validation\LienHeDatBan\SubmitTaoDonBuffet.js" />
+    <Content Include="Validation\LienHeDatBan\SubmitTaoDonTiecBan.js" />
+    <Content Include="Validation\LienHeDatBan\ThemDonBuffet.js" />
+    <Content Include="Validation\LienHeDatBan\ThemDonTiecBan.js" />
     <Content Include="Validation\LienHeDatBan\GuiLienHeDatBan.js" />
     <Content Include="Validation\LienHeDatBan\BoQuaHangLoat.js" />
     <Content Include="Validation\LienHeDatBan\BoQua.js" />
@@ -2949,6 +2953,8 @@
     <Content Include="Areas\Admin\Views\Dashboard\_ThongKeDoanhThu.cshtml" />
     <Content Include="Areas\Admin\Views\Dashboard\_ThongKeDoanhThuTheoThang.cshtml" />
     <Content Include="Areas\Admin\Views\LienHeDatBan\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\LienHeDatBan\_OpenTaoDonTiecBan.cshtml" />
+    <Content Include="Areas\Admin\Views\LienHeDatBan\_OpenTaoDonBuffet.cshtml" />
     <EntityDeploy Include="Models\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>

@@ -1,53 +1,46 @@
-﻿@model Beanfamily.Models.DonHangMenuTiecBan
+﻿@model int?
 @using Beanfamily.Models
 @{
     BeanfamilyEntities models = new BeanfamilyEntities();
-    var currentDate = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd"));
-    var ttdh = Model.TinhTrangDonHangMenuTiecBan.First();
+    var lstSp = models.SanPhamMenuTiecBan.ToList();
     var lstDmPv = models.DanhMucPhucVuMenuTiecBanVaMenuBuffet.Where(w => w.apdungmenutiecban == true).ToList();
+
+    var ttlh = models.LienHeDatBan.Find(Model);
 
     int hour = 7;
 }
 
-<div class="modal-body" id="content-CapNhatDonHangModal">
+<div id="TaoDonTiecBanModalPartial" class="modal-body">
     <div class="row ms-2 me-2">
         <div class="col-md-12 col-sm-12">
             <div class="row">
                 <div class="col-12 p-0">
-                    <div class="bg-white bo-rad-16 txt10 p-t-20 p-b-20 p-l-20 p-r-20 mb-3 m-t-3" style="padding: 10px;">
+                    <div class="bg-white bo-rad-16 txt10 p-t-20 p-b-20 p-l-20 p-r-20 m-t-3" style="padding: 10px;">
                         <div class="row">
-                            <div class="col-6 mb-1 text-dark">
-                                Mã đơn đặt bàn:
-                            </div>
-                            <div class="col-6 mb-1 text-end text-dark">
-                                @Model.madonhang
-                            </div>
-                            <div class="col-12">
-                                <hr />
-                            </div>
                             <div class="col-12 text-dark mb-1">
                                 <div class="row">
                                     <div class="col-12 mb-2">
                                         <label class="small" for="hovaten">Họ & tên khách hàng <span class="text-danger">*</span></label>
-                                        <input value="@Model.hoten" class="form-control" placeholder="Nhập Họ và Tên người đặt bàn" type="text" id="hovaten"
+                                        <input hidden id="id-taodontiecban" value="@Model" />
+                                        <input value="@ttlh.hoten" class="form-control" placeholder="Nhập Họ và Tên người đặt bàn" type="text" id="hovaten"
                                                style="border: 2px solid var(--bs-primary) !important; height: 40px;" />
                                         <label style="margin-left: 5px" id="invalid-hovaten-capnhatdonhang" class="text-danger" hidden></label>
                                     </div>
                                     <div class="col-12 mb-2">
                                         <label class="small" for="sodienthoai">Số điện thoại <span class="text-danger">*</span></label>
-                                        <input value="@Model.sdt" class="form-control" placeholder="Nhập số điện thoại người đặt bàn" type="text" data-type="numbers" id="sodienthoai"
+                                        <input value="@ttlh.sdt" class="form-control" placeholder="Nhập số điện thoại người đặt bàn" type="text" data-type="numbers" id="sodienthoai"
                                                style="border: 2px solid var(--bs-primary) !important; height: 40px;" />
                                         <label style="margin-left: 5px" id="invalid-sodienthoai-capnhatdonhang" class="text-danger" hidden></label>
                                     </div>
                                     <div class="col-12 mb-2">
                                         <label class="small" for="email">Địa chỉ Email</label>
-                                        <input value="@Model.email" class="form-control" placeholder="Nhập số tiền thanh toán" type="text" id="email"
+                                        <input value="@ttlh.email" class="form-control" placeholder="Nhập số tiền thanh toán" type="text" id="email"
                                                style="border: 2px solid var(--bs-primary) !important; height: 40px;" />
                                         <label style="margin-left: 5px" id="invalid-email-capnhatdonhang" class="text-danger" hidden></label>
                                     </div>
                                     <div class="col-12 mb-2">
                                         <label class="small" for="ngaytochuc">Ngày tổ chức <span class="text-danger">*</span></label>
-                                        <input value="@Model.ngaybatdau.ToString("yyyy-MM-dd")" class="form-control" placeholder="Nhập số tiền thanh toán" type="date" id="ngaytochuc"
+                                        <input value="@ttlh.ngaybatdau.ToString("yyyy-MM-dd")" class="form-control" placeholder="Nhập số tiền thanh toán" type="date" id="ngaytochuc"
                                                style="border: 2px solid var(--bs-primary) !important; height: 40px;" />
                                         <label style="margin-left: 5px" id="invalid-ngaytochuc-capnhatdonhang" class="text-danger" hidden></label>
                                     </div>
@@ -68,7 +61,7 @@
                                                     hour++;
                                                 }
 
-                                                if (time.Equals(Model.giobatdau))
+                                                if (time.Equals(ttlh.giobatdau))
                                                 {
                                                     <option selected value="@time">@time</option>
                                                 }
@@ -83,31 +76,26 @@
                                     <div class="col-12">
                                         <hr />
                                     </div>
-                                    <div class="col-12">
+                                    <div class="col-12 mb-2">
                                         <div class="col-12 mb-2">
                                             <label class="small" for="soban">Số bàn (10 người / 1 bàn) <span class="text-danger">*</span></label>
-                                            <input value="@Model.soban" class="form-control" placeholder="Nhập số bàn khách đặt" type="text" data-type="numbers" id="soban"
+                                            <input value="@ttlh.soban" class="form-control" placeholder="Nhập số bàn khách đặt" type="text" data-type="numbers" id="soban"
                                                    style="border: 2px solid var(--bs-primary) !important; height: 40px;" />
                                             <label style="margin-left: 5px;" id="invalid-soban-capnhatdonhang" class="text-danger" hidden></label>
                                         </div>
                                         <div class="col-12 mb-4">
                                             <label mb-2 for="ghichu">Ghi chú</label>
-                                            <textarea placeholder="Ghi chú của khách hàng" rows="4" id="ghichu" class="form-control" style="border: 2px solid var(--bs-primary) !important;">@Model.ghichukhachhang</textarea>
+                                            <textarea placeholder="Ghi chú của khách hàng" rows="4" id="ghichu" class="form-control" style="border: 2px solid var(--bs-primary) !important;">@ttlh.ghichukhachhang</textarea>
                                             <label style="margin-left: 5px" id="invalid-ghichu-capnhatdonhang" class="text-danger" hidden></label>
                                         </div>
 
-                                        <div class="col-12 mt-2 mb-4 form-control" style="border: 2px solid var(--bs-primary) !important; padding:0; border-radius: 8px;">
+                                        <div class="col-12 mb-2 form-control" style="border: 2px solid var(--bs-primary) !important; padding:0; border-radius: 8px;">
                                             <h5 class="text-center mb-3 text-white" style="background: #5e443b !important; border-radius: 8px 8px 0 0; height: 50px; display: flex; flex-direction: column; justify-content: center; ">DỊCH VỤ KÈM</h5>
                                             @foreach (var item in lstDmPv)
                                             {
-                                                string checkeds = "";
-                                                if (Model.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(f => f.id_danhmucphucvu == item.id).Count() > 0)
-                                                {
-                                                    checkeds = "checked";
-                                                }
                                                 <div class="row mb-3">
                                                     <div class="col-sm-1 col-md-1" style="display: flex; justify-content: center; align-items: center; padding-right: inherit">
-                                                        <input @checkeds price="@item.gia.ToString("0")" priceType="@item.giatheosoban.ToString().ToLower()" class="form-check" style="width: 30px" type="checkbox" id="chondv-@item.id" name="@item.id" />
+                                                        <input price="@item.gia.ToString("0")" priceType="@item.giatheosoban.ToString().ToLower()" class="form-check" style="width: 30px" type="checkbox" id="chondv-@item.id" name="@item.id" />
                                                     </div>
                                                     <div class="col-md-11 col-sm-11">
                                                         <label for="chondv-@item.id">@item.tendanhmuc | @item.gia.ToString("0,0")đ <small>@(item.giatheosoban == true ? "(giá theo số bàn)" : "(giá cố định)")</small></label>
@@ -115,7 +103,6 @@
                                                 </div>
                                             }
                                         </div>
-
                                         <div class="row mt-4 mb-4 ms-0 me-0" style=" overflow-y: auto; border: 2px solid var(--bs-primary); border-radius: 10px;">
                                             <div class="col-lg-12" id="lst-sanpham" style="padding: 0; border-radius: 8px;">
 
@@ -126,21 +113,13 @@
                                                 </div>
                                                 <div style="max-height: 80vh; overflow: auto; padding-top: 15px">
 
-                                                    @foreach (var item in models.SanPhamMenuTiecBan.ToList())
+                                                    @foreach (var item in lstSp)
                                                     {
-                                                        string styles = "";
-                                                        string checkeds = "";
-                                                        if (Model.ChiTietDonHangSanPhamMenuTiecBan.Where(w => w.id_sanphammenutiecban == item.id).Count() > 0)
-                                                        {
-                                                            styles = "background: #dbdcff;";
-                                                            checkeds = "checked";
-                                                        }
-
-                                                        <div class="card bo-rad-16 bggreen text-white  ms-3 me-3 item-sanpham" id="parentDiv-@item.id" style="margin-bottom: 20px; @styles">
+                                                        <div class="card bo-rad-16 bggreen text-white  ms-3 me-3 item-sanpham" id="parentDiv-@item.id" style="margin-bottom: 20px;">
                                                             <div class="card-body" style="padding: 10px;">
                                                                 <div class="d-flex justify-content-between row">
                                                                     <div class="col-sm-1 col-md-1" style="display: flex; justify-content: center; align-items: center;">
-                                                                        <input @checkeds price="@item.gia.ToString("0")" class="form-check" style="width: 40px" type="checkbox" id="chonmon-@item.id" name="@item.id" />
+                                                                        <input price="@item.gia.ToString("0")" class="form-check" style="width: 40px" type="checkbox" id="chonmon-@item.id" name="@item.id" />
                                                                     </div>
                                                                     <div class="col-md-7 col-sm-7">
                                                                         <div class="d-flex flex-row align-items-center ms-2 me-2 mt-2 mb-2">
@@ -183,22 +162,12 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="col-12 mb-2 form-control" style="border: 2px solid var(--bs-primary) !important; padding:0; border-radius: 8px;">
                                             <h5 class="text-center mb-3 text-white" style="background: #5e443b !important; border-radius: 8px 8px 0 0; height: 50px; display: flex; flex-direction: column; justify-content: center; ">TỔNG CHI PHÍ</h5>
                                             <div class="row mb-3" style="margin: 10px; text-align: center">
-                                                <b>
-                                                    <span id="appendGiaTong">
-                                                        @(Model.ChiTietDonHangSanPhamMenuTiecBan.Sum(s => s.gia * Model.soban).ToString("0,0").Replace(".", ","))đ <small>(giá món)</small> + @((Model.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == true).Sum(s => s.gia * Model.soban) + Model.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == false).Sum(s => s.gia)).ToString("0,0").Replace(".", ","))đ <small>(giá dịch vụ)</small>
-                                                        = @((Model.ChiTietDonHangSanPhamMenuTiecBan.Sum(s => s.gia * Model.soban)
-                                                    + (Model.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == true).Sum(s => s.gia * Model.soban)
-                                                    + Model.ChiTietDonHangDanhMucPhucVuMenuTiecBan.Where(w => w.giatheosoban == false).Sum(s => s.gia))).ToString("0,0").Replace(".",","))đ
-                                                    </span>
-                                                </b>
+                                                <b><span id="appendGiaTong">0</span></b>
                                             </div>
-                                        </div>
-                                        <div class="col-12 text-center mt-4">
-                                            <button id="btnHuyCapNhat" name="@Model.id" type="button" class="btn btn-secondary me-1">Quay lại</button>
-                                            <button id="btnSubMitCapNhat" name="@Model.id" type="button" class="btn btn-primary">Lưu thông tin</button>
                                         </div>
                                     </div>
                                 </div>
@@ -210,5 +179,5 @@
             </div>
         </div>
     </div>
-    <script src="~/Validation/DonDatBanTiec/CapNhatThongTinDonDatBan.js"></script>
+    <script src="~/Validation/LienHeDatBan/SubmitTaoDonTiecBan.js"></script>
 </div>

@@ -893,7 +893,7 @@ namespace Beanfamily.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult SubmitCapNhatThongTinDonHang(int id, string giamon, int soban, string hovaten, string sodienthoai, string email, string ngaytochuc, string giotochuc, string ghichu, string lstMonAn)
+        public ActionResult SubmitCapNhatThongTinDonHang(int id, string giamon, int soban, string hovaten, string sodienthoai, string email, string ngaytochuc, string giotochuc, string ghichu, string lstMonAn, string lstDv)
         {
             try
             {
@@ -940,6 +940,36 @@ namespace Beanfamily.Areas.Admin.Controllers
                 {
                     model.ChiTietDonHangSanPhamMenuBuffet.AddRange(lstDhSP);
                     model.SaveChanges();
+                }
+
+                if (!string.IsNullOrEmpty(lstDv))
+                {
+                    model.ChiTietDonHangDanhMucPhucVuMenuBuffet.RemoveRange(donhang.ChiTietDonHangDanhMucPhucVuMenuBuffet);
+                    model.SaveChanges();
+
+                    List<ChiTietDonHangDanhMucPhucVuMenuBuffet> lstDhDv = new List<ChiTietDonHangDanhMucPhucVuMenuBuffet>();
+                    foreach (var item in lstDv.Split('-').ToList())
+                    {
+                        int idSP = Int32.Parse(item);
+                        var sp = model.DanhMucPhucVuMenuTiecBanVaMenuBuffet.Find(idSP);
+                        ChiTietDonHangDanhMucPhucVuMenuBuffet dhSP = new ChiTietDonHangDanhMucPhucVuMenuBuffet();
+                        dhSP.id_donhangmenubuffet = id;
+                        dhSP.id_danhmucphucvu = sp.id;
+                        dhSP.tendanhmuc = sp.tendanhmuc;
+                        dhSP.gia = sp.gia;
+                        dhSP.giatheosoban = sp.giatheosoban;
+                        dhSP.ngaytao = sp.ngaytao;
+                        dhSP.ngaysuadoi = sp.ngaysuadoi;
+                        dhSP.apdungmenutiecban = sp.apdungmenutiecban;
+                        dhSP.apdungmenubuffet = sp.apdungmenubuffet;
+
+                        lstDhDv.Add(dhSP);
+                    }
+                    if (lstDhDv.Count > 0)
+                    {
+                        model.ChiTietDonHangDanhMucPhucVuMenuBuffet.AddRange(lstDhDv);
+                        model.SaveChanges();
+                    }
                 }
 
                 return Content("SUCCESS");

@@ -1,44 +1,8 @@
 ﻿$(document).ready(function () {
-    $("#timkiemmon").keyup(function () {
-        var filter = $(this).val().trim();
-        $('[id="lst-sanpham"]').find('.item-sanpham').each(function () {
-
-            if ($(this).find('.item-sanpham-tenmon').text().search(new RegExp(filter, "i")) < 0) {
-                $(this).fadeOut(100);
-            } else {
-                $(this).fadeIn(100);
-            }
-        });
-    });
-
-    $(document).on('change', '[id^="chonmon-"]', function () {
-        var inpCheck = $(this);
-        var id = inpCheck.attr('name');
-
-        if (inpCheck.prop('checked')) {
-            $('[id="parentDiv-' + id + '"]').css('background', '#dbdcff');
-        }
-        else {
-            $('[id="parentDiv-' + id + '"]').css('background', '#ffffff');
-        }
-    });
-
-    $(document).on('change', '[id^="chonphucvu-"]', function () {
-        var inpCheck = $(this);
-        var id = inpCheck.attr('name');
-
-        if (inpCheck.prop('checked')) {
-            $('[id="parentDivPhucVu-' + id + '"]').css('background', '#dbdcff');
-        }
-        else {
-            $('[id="parentDivPhucVu-' + id + '"]').css('background', '#ffffff');
-        }
-    });
-
-    $('body').on('click', '[id^="btnSubMitCapNhat"]', function () {
+    $('body').on('click', '[id^="btnSubmitTaoDonBuffet"]', function () {
         Swal.fire({
-            title: 'Lưu cập nhật?',
-            text: 'Bạn có chắc muốn cập nhật thông tin đơn đặt bàn này?',
+            title: 'Tạo đơn Buffet?',
+            text: 'Xác nhận tạo đơn Buffet cho liên hệ này? Lưu ý: nếu đã tạo đơn Tiệc Bàn từ trước xin vui lòng hủy đơn Tiệc Bàn trước khi tạo đơn Buffet mới để tránh gây trùng lặp đơn hàng!',
             icon: "question",
             showCancelButton: true,
             cancelButtonColor: "#d33",
@@ -51,8 +15,7 @@
                 btn.html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"> </span> Vui lòng chờ...');
                 btn.prop('disabled', true);
 
-                var id = $(this).attr("name");
-                var giamon = $('body').find('[id="giamon"]').val();
+                var id = $('body').find('[id="id-taodonbuffet"]').val();
                 var soban = $('body').find('[id="soban"]').val();
                 var ghichu = $('body').find('[id="ghichu"]').val().trim();
                 var giotochuc = $('body').find('[id="giotochuc"] :selected').val();
@@ -140,8 +103,8 @@
                 var lstIdMon = "";
                 $('body').find('[id^="chonmon-"]').each(function () {
                     if ($(this).prop('checked')) {
-                        var id = $(this).attr('name');
-                        lstIdMon += id + "-";
+                        var ids = $(this).attr('name');
+                        lstIdMon += ids + "-";
                     }
                 });
                 if (lstIdMon.length < 1) {
@@ -174,7 +137,6 @@
                 if (check == true) {
                     var formData = new FormData();
                     formData.append('id', id);
-                    formData.append('giamon', giamon);
                     formData.append('soban', soban);
                     formData.append('ghichu', ghichu);
                     formData.append('giotochuc', giotochuc);
@@ -185,27 +147,16 @@
                     formData.append('lstMonAn', lstIdMon);
                     formData.append('lstDv', lstIdDv);
 
-                    $.ajax({error: function (a, xhr, c) {if (a.status == 403 && a.responseText.indexOf("SystemLoginAgain") != -1) {window.location.href = $('body').find('[id="requestPath"]').val() + "admin/dangnhap/logout";}},
-                        url: $('#requestPath').val() + "admin/dondatbanbuffet/SubmitCapNhatThongTinDonHang",
+                    $.ajax({
+                        error: function (a, xhr, c) { if (a.status == 403 && a.responseText.indexOf("SystemLoginAgain") != -1) { window.location.href = $('body').find('[id="requestPath"]').val() + "admin/dangnhap/logout"; } },
+                        url: $('#requestPath').val() + "admin/lienhedatban/submittaodonbuffet",
                         data: formData,
                         dataType: 'html',
                         type: 'POST',
                         processData: false,
                         contentType: false
                     }).done(function (ketqua) {
-                        if (ketqua == "NOTEXIST") {
-                            btn.html('Lưu thông tin');
-                            btn.prop('disabled', false);
-
-                            Swal.fire({
-                                title: "Không tồn tại",
-                                text: "Đơn đặt bàn này không tồn tại trong hệ thống.",
-                                icon: "error"
-                            }).then(() => {
-                                window.location.reload();
-                            });
-                        }
-                        else if (ketqua == "SMALLDATE") {
+                        if (ketqua == "SMALLDATE") {
                             btn.html('Lưu thông tin');
                             btn.prop('disabled', false);
 
@@ -230,23 +181,10 @@
 
                             Swal.fire({
                                 title: "Thành công",
-                                text: 'Đã cập nhật thông tin đơn đặt bàn',
+                                text: 'Đã tạo đơn Buffet cho liên hệ này!',
                                 icon: "success"
                             }).then(() => {
-                                var formDatas = new FormData();
-                                formDatas.append("id", id);
-
-                                $.ajax({error: function (a, xhr, c) {if (a.status == 403 && a.responseText.indexOf("SystemLoginAgain") != -1) {window.location.href = $('body').find('[id="requestPath"]').val() + "admin/dangnhap/logout";}},
-                                    url: $('#requestPath').val() + "admin/dondatbanbuffet/capnhatdonhang",
-                                    data: formDatas,
-                                    dataType: 'html',
-                                    type: 'POST',
-                                    processData: false,
-                                    contentType: false
-                                }).done(function (ketqua) {
-                                    $('body').find('[id="content-CapNhatDonHangModal"]').replaceWith(ketqua);
-                                    $('body').find('[id="footer-modal-capnhatdonhang"]').prop('hidden', false);
-                                });
+                                window.location.reload();
                             });
 
                         }
@@ -255,26 +193,16 @@
             }
         });
     });
+    
+    $('body').find('[id^="chonmon-"]').on('change', function () {
+        var inpCheck = $(this);
+        var id = inpCheck.attr('name');
 
-    $('body').on('click', '[id^="btnHuyCapNhat"]', function () {
-        var btn = $(this);
-        btn.html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"> </span> Vui lòng chờ...');
-        btn.prop('disabled', true);
-
-        var id = $(this).attr("name");
-        var formData = new FormData();
-        formData.append("id", id);
-
-        $.ajax({error: function (a, xhr, c) {if (a.status == 403 && a.responseText.indexOf("SystemLoginAgain") != -1) {window.location.href = $('body').find('[id="requestPath"]').val() + "admin/dangnhap/logout";}},
-            url: $('#requestPath').val() + "admin/dondatbanbuffet/capnhatdonhang",
-            data: formData,
-            dataType: 'html',
-            type: 'POST',
-            processData: false,
-            contentType: false
-        }).done(function (ketqua) {
-            $('body').find('[id="content-CapNhatDonHangModal"]').replaceWith(ketqua);
-            $('body').find('[id="footer-modal-capnhatdonhang"]').prop('hidden', false);
-        });
+        if (inpCheck.prop('checked')) {
+            $('[id="parentDiv-' + id + '"]').css('background', '#dbdcff');
+        }
+        else {
+            $('[id="parentDiv-' + id + '"]').css('background', '#ffffff');
+        }
     });
 });
