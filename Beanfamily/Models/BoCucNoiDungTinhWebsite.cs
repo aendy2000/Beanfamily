@@ -48,5 +48,6 @@ namespace Beanfamily.Models
         public string hinhanh_menuhangngay { get; set; }
         public string hinhanh_menutiecban { get; set; }
         public string hinhanh_menutiecbuffet { get; set; }
+        public string mota1_gioithieu { get; set; }
     }
 }

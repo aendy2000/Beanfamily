@@ -54,6 +54,7 @@
           <Property Name="hinhanh_menuhangngay" Type="nvarchar(max)" />
           <Property Name="hinhanh_menutiecban" Type="nvarchar(max)" />
           <Property Name="hinhanh_menutiecbuffet" Type="nvarchar(max)" />
+          <Property Name="mota1_gioithieu" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="CacBuocQuyTrinhTrongCay">
           <Key>
@@ -1390,6 +1391,7 @@
           <Property Name="hinhanh_menuhangngay" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="hinhanh_menutiecban" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="hinhanh_menutiecbuffet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="mota1_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="CacBuocQuyTrinhTrongCay">
           <Key>
@@ -2780,6 +2782,7 @@
           <EntitySetMapping Name="BoCucNoiDungTinhWebsite">
             <EntityTypeMapping TypeName="BeanfamilyModel.BoCucNoiDungTinhWebsite">
               <MappingFragment StoreEntitySet="BoCucNoiDungTinhWebsite">
+                <ScalarProperty Name="mota1_gioithieu" ColumnName="mota1_gioithieu" />
                 <ScalarProperty Name="hinhanh_menutiecbuffet" ColumnName="hinhanh_menutiecbuffet" />
                 <ScalarProperty Name="hinhanh_menutiecban" ColumnName="hinhanh_menutiecban" />
                 <ScalarProperty Name="hinhanh_menuhangngay" ColumnName="hinhanh_menuhangngay" />

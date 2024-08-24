@@ -167,7 +167,7 @@ namespace Beanfamily.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult SaveGioiThieu(List<HttpPostedFileBase> banner_gioithieu, string banner_gioithieuCu,
         HttpPostedFileBase hinhanh1_gioithieu, HttpPostedFileBase hinhanh2_gioithieu,
-        HttpPostedFileBase hinhanh_mota_gioithieu, string tieude_gioithieu, string tieude2_gioithieu,
+        HttpPostedFileBase hinhanh_mota_gioithieu, string tieude_gioithieu, string mota1_gioithieu, string tieude2_gioithieu,
         string hinhanh1_gioithieuCu, string hinhanh2_gioithieuCu, string hinhanh_mota_gioithieuCu, string mota_gioithieu)
         {
             try
@@ -302,6 +302,7 @@ namespace Beanfamily.Areas.Admin.Controllers
                 ndt.tieude_gioithieu = tieude_gioithieu;
                 ndt.tieude2_gioithieu = tieude2_gioithieu;
                 ndt.mota_gioithieu = mota_gioithieu;
+                ndt.mota1_gioithieu = mota1_gioithieu;
 
                 model.Entry(ndt).State = EntityState.Modified;
                 model.SaveChanges();

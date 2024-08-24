@@ -15,6 +15,7 @@
 
     string banner_gioithieu = "";
     string tieude_gioithieu = "";
+    string mota1_gioithieu = "";
     string hinhanh1_gioithieu = "";
     string hinhanh2_gioithieu = "";
 
@@ -31,6 +32,7 @@
         var dndt = ndt.First();
         banner_gioithieu = dndt.banner_gioithieu;
         tieude_gioithieu = dndt.tieude_gioithieu;
+        mota1_gioithieu = dndt.mota1_gioithieu;
         hinhanh1_gioithieu = dndt.hinhanh1_gioithieu;
         hinhanh2_gioithieu = dndt.hinhanh2_gioithieu;
 
@@ -69,13 +71,15 @@
 <section class="section-ourmenu bg1-pattern">
     <div class="section-child-bg1">
         <div class="container p-b-40">
-            <div class="row" style="padding-top:60px">
+            <div class="row" style="padding-top:60px; display: flex; flex-direction: row; align-items: center">
                 <div class="col-md-6 col-sm-12">
                     <span class="tit2">
                         Về Beanfamily
                     </span>
                     <h4 class="text-white txt1" style="margin-bottom: 35px; margin-top: 25px; font-size: 42px; font-family: Merriweather, serif !important;">@tieude_gioithieu</h4>
-
+                    <p style="font-size: 16px" class="text-white mb-4">
+                        @mota1_gioithieu
+                    </p>
                     <div style="background-image: url('@hinhanh1_gioithieu.Replace("~", "")'); background-size: auto 100%; width: 100%; height: 400px"></div>
                 </div>
                 <div class="col-md-6 col-sm-12">

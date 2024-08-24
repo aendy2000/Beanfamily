@@ -280,6 +280,7 @@
         formData.append('tieude_gioithieu', $('#tieude_gioithieu').val().trim());
         formData.append('tieude2_gioithieu', $('#tieude2_gioithieu').val().trim());
         formData.append('mota_gioithieu', $('#mota_gioithieu').val().trim());
+        formData.append('mota1_gioithieu', $('#mota1_gioithieu').val().trim());
 
         $.ajax({
             error: function (a, xhr, c) { if (a.status == 403 && a.responseText.indexOf("SystemLoginAgain") != -1) { window.location.href = $('body').find('[id="requestPath"]').val() + "admin/dangnhap/logout"; } },
