@@ -1261,14 +1261,14 @@ h6 {
 
     .preview-images-zone > .preview-image:first-child {
         height: 112px;
-        width: 112px;
+        width: auto;
         position: relative;
         margin-right: 5px;
     }
 
     .preview-images-zone > .preview-image {
         height: 112px;
-        width: 112px;
+        width: auto;
         position: relative;
         margin-right: 5px;
         float: left;
@@ -1276,12 +1276,12 @@ h6 {
     }
 
         .preview-images-zone > .preview-image > .image-zone {
-            width: 100%;
+            width: auto;
             height: 100%;
         }
 
             .preview-images-zone > .preview-image > .image-zone > img {
-                width: 100%;
+                width: auto;
                 height: 100%;
                 object-fit: cover;
                 border-radius: 5px;
@@ -1305,6 +1305,7 @@ h6 {
             right: 0;
             font-weight: bold;
             margin-right: 10px;
+            margin-top: 5px;
             cursor: pointer;
             display: none;
             z-index: 100;
@@ -1322,14 +1323,14 @@ h6 {
 
     .suapreview-images-zone > .preview-image:first-child {
         height: 112px;
-        width: 112px;
+        width: auto;
         position: relative;
         margin-right: 5px;
     }
 
     .suapreview-images-zone > .preview-image {
         height: 112px;
-        width: 112px;
+        width: auto;
         position: relative;
         margin-right: 5px;
         float: left;

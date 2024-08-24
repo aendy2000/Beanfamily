@@ -154,6 +154,7 @@
     <Compile Include="Areas\Admin\Controllers\MonAnMenuHangNgayController.cs" />
     <Compile Include="Areas\Admin\Controllers\MonAnMenuTiecBanController.cs" />
     <Compile Include="Areas\Admin\Controllers\DmCap1MuaSamController.cs" />
+    <Compile Include="Areas\Admin\Controllers\NoiDungTinhController.cs" />
     <Compile Include="Areas\Admin\Controllers\QuyTrinhTrongCayController.cs" />
     <Compile Include="Areas\Admin\Controllers\RoleController.cs" />
     <Compile Include="Areas\Admin\Controllers\SanPhamMuaSamController.cs" />
@@ -175,6 +176,9 @@
     </Compile>
     <Compile Include="Middlewall\Loginverification.cs" />
     <Compile Include="Models\ApDungChucNangChoQuyenTaiKhoan.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BoCucNoiDungTinhWebsite.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CacBuocQuyTrinhTrongCay.cs">
@@ -2955,6 +2959,7 @@
     <Content Include="Areas\Admin\Views\LienHeDatBan\Index.cshtml" />
     <Content Include="Areas\Admin\Views\LienHeDatBan\_OpenTaoDonTiecBan.cshtml" />
     <Content Include="Areas\Admin\Views\LienHeDatBan\_OpenTaoDonBuffet.cshtml" />
+    <Content Include="Areas\Admin\Views\NoiDungTinh\Index.cshtml" />
     <EntityDeploy Include="Models\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
@@ -2990,6 +2995,16 @@
     <Content Include="Validation\MonAnMenuHangNgay\XoaMonAn.js" />
     <Content Include="Validation\MonAnMenuHangNgay\ThemMonAn.js" />
     <Content Include="Validation\MonAnMenuHangNgay\XemHinhAnh.js" />
+    <Content Include="Validation\NoiDungTinh\UpdateKhac.js" />
+    <Content Include="Validation\NoiDungTinh\UpdateHinhAnh.js" />
+    <Content Include="Validation\NoiDungTinh\UpdateMuaSam.js" />
+    <Content Include="Validation\NoiDungTinh\UpdateVuonRau.js" />
+    <Content Include="Validation\NoiDungTinh\UpdateThucMenuBuffet.js" />
+    <Content Include="Validation\NoiDungTinh\UpdateThucMenuTiecBan.js" />
+    <Content Include="Validation\NoiDungTinh\UpdateThucDonHangNgay.js" />
+    <Content Include="Validation\NoiDungTinh\UpdateNhaHang.js" />
+    <Content Include="Validation\NoiDungTinh\UpdateGioiThieu.js" />
+    <Content Include="Validation\NoiDungTinh\UpdateTrangChu.js" />
     <Content Include="Validation\Profile\UpdateInformation.js" />
     <Content Include="Validation\AccountBean\AddAccount.js" />
     <Content Include="Validation\QuyTrinhTrongCay\OpenModalSua.js" />
@@ -3029,7 +3044,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_LayoutMain.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\MuaSam\Index.cshtml" />

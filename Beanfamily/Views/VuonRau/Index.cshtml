@@ -4,13 +4,27 @@
 @model IPagedList<Beanfamily.Models.SanPhamRauNhaTrong>
 @{
     BeanfamilyEntities models = new BeanfamilyEntities();
+
+    string banner_vuonrau = "";
+    var ndt = models.BoCucNoiDungTinhWebsite.ToList();
+    if (ndt.Count > 0)
+    {
+        var dndt = ndt.First();
+        banner_vuonrau = dndt.banner_vuonrau;
+    }
+
+    if (string.IsNullOrEmpty(banner_vuonrau))
+    {
+        banner_vuonrau = "~/Content/AdminAreas/images/NoiDungTinh/GioiThieu/Banner/2z5708932492674_1e339065fc38b483bc79e1c28d01086f.jpg";
+    }
+
     var dm = Session["categories-raunhatrong"] as List<DanhMucSanPhamRauNhaTrongCap1>;
     ViewBag.Title = "Vườn Rau";
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
 }
 
 <!-- Title Page -->
-<section style="background-repeat: no-repeat; background-position: center 0; background-size: cover; background-image: url(/Content/assets/images/ImageBean/2z5708932492674_1e339065fc38b483bc79e1c28d01086f.jpg);">
+<section style="background-repeat: no-repeat; background-position: center 0; background-size: cover; background-image: url(@Url.Content(banner_vuonrau));">
     <div class="flex-c-m" style="background-image: linear-gradient(180deg, #00000000 0%, #122E26 100%); width: 100%; min-height: 545px; padding-left: 15px; padding-right: 15px; background-repeat: no-repeat; background-position: center 0; background-size: cover; ">
         <div>
             <h2 class="tit6 t-center">

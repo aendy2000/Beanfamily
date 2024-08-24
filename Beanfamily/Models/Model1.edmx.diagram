@@ -4,8 +4,9 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="65a1b123de684ea590d6d40dc7a1ec0d" Name="Diagram1">
+      <Diagram DiagramId="5446fee60ab543e4a473074b39cbda59" Name="Diagram1">
         <EntityTypeShape EntityType="BeanfamilyModel.ApDungChucNangChoQuyenTaiKhoan" Width="1.5" PointX="9" PointY="27.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeanfamilyModel.BoCucNoiDungTinhWebsite" Width="1.5" PointX="8.75" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="BeanfamilyModel.CacBuocQuyTrinhTrongCay" Width="1.5" PointX="6" PointY="49.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BeanfamilyModel.ChiTietDonHangDanhMucPhucVuMenuBuffet" Width="1.5" PointX="8.25" PointY="49.125" IsExpanded="true" />
         <EntityTypeShape EntityType="BeanfamilyModel.ChiTietDonHangDanhMucPhucVuMenuTiecBan" Width="1.5" PointX="5.25" PointY="45.375" IsExpanded="true" />
@@ -44,7 +45,7 @@
         <EntityTypeShape EntityType="BeanfamilyModel.TinhTrangDonHangMenuTiecBan" Width="1.5" PointX="8.25" PointY="36.25" IsExpanded="true" />
         <EntityTypeShape EntityType="BeanfamilyModel.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay" Width="1.5" PointX="8.25" PointY="12.25" IsExpanded="true" />
         <EntityTypeShape EntityType="BeanfamilyModel.TonKhoSanPhamMuaSam" Width="1.5" PointX="0.75" PointY="21.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="BeanfamilyModel.ThongTinCauHinh" Width="1.5" PointX="7.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeanfamilyModel.ThongTinCauHinh" Width="1.5" PointX="10.75" PointY="1.25" IsExpanded="true" />
         <AssociationConnector Association="BeanfamilyModel.FK_ApDungChucNangChoQuyenTaiKhoan_ChucNangHeThongBean" ManuallyRouted="false" />
         <AssociationConnector Association="BeanfamilyModel.FK_ApDungChucNangChoQuyenTaiKhoan_QuyenTaiKhoanBean" ManuallyRouted="false" />
         <AssociationConnector Association="BeanfamilyModel.FK_CacBuocQuyTrinhTrongCay_QuyTrinhTrongCay" ManuallyRouted="false" />

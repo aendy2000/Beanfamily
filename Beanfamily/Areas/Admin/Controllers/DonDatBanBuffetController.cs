@@ -42,7 +42,7 @@ namespace Beanfamily.Areas.Admin.Controllers
             Session["active-hab"] = "collapsed # # ";
             Session["active-qlsp"] = "collapsed # # ";
             Session["active-tlc-ttw"] = "collapsed # # ";
-            Session["active-tlc-lkmxh"] = "collapsed # # ";
+            Session["active-tlc-lkmxh"] = "collapsed # # "; Session["active-ndt"] = "collapsed # # ";
 
             model = new BeanfamilyEntities(); var donhangTB = model.DonHangMenuBuffet.ToList();
             var donhangBF = model.DonHangMenuBuffet.ToList();

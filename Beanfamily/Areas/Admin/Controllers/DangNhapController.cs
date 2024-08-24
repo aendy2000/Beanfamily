@@ -98,7 +98,7 @@ namespace Beanfamily.Areas.Admin.Controllers
                         Session["qlsp"] = null;
                         Session["tlc-ttw"] = null;
                         Session["tlc-lkmxh"] = null;
-
+                        Session["ndt"] = null;
                         Session["chophep-them"] = null;
                         Session["chophep-sua"] = null;
                         Session["chophep-xoa"] = null;
@@ -164,6 +164,9 @@ namespace Beanfamily.Areas.Admin.Controllers
                                 Session["tlc-ttw"] = true;
                             else if (keycodes.Equals("tlc-lkmxh"))
                                 Session["tlc-lkmxh"] = true;
+
+                            else if (keycodes.Equals("ndt"))
+                                Session["ndt"] = true;
                         }
 
                         return Content("SUCCESS");

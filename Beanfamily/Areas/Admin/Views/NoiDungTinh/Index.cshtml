@@ -1,0 +1,887 @@
+﻿@model IEnumerable<Beanfamily.Models.BoCucNoiDungTinhWebsite>
+@{
+    string banner_trangchu = "";
+    string mota_trangchu = "";
+    string hinhanh_mota_trangchu = "";
+    string mota_thanhphanchinh_nhahang = "";
+    string mota_thanhphanchinh_vuonrau = "";
+    string mota_thanhphanchinh_muasam = "";
+    string mota_sanphammoi_nhahang = "";
+    string mota_sanphammoi_vuonrau = "";
+    string mota_sanphammoi_muasam = "";
+    string mota_sanphamnoibat_nhahang = "";
+    string mota_sanphamnoibat_vuonrau = "";
+    string mota_sanphamnoibat_muasam = "";
+
+    string banner_gioithieu = "";
+    string tieude_gioithieu = "";
+    string hinhanh1_gioithieu = "";
+    string hinhanh2_gioithieu = "";
+    string tieude2_gioithieu = "";
+    string mota_gioithieu = "";
+    string hinhanh_mota_gioithieu = "";
+
+    string banner_nhahang = "";
+    string hinhanh_menuhangngay = "";
+    string hinhanh_menutiecban = "";
+    string hinhanh_menutiecbuffet = "";
+    string mota_menuhangngay = "";
+    string mota_menutiecban = "";
+    string mota_menutiecbuffet = "";
+
+    string banner_thucdonhangngay = "";
+    string banner_tiecban = "";
+    string banner_buffet = "";
+    string banner_vuonrau = "";
+    string banner_muasam = "";
+    string banner_hinhanh = "";
+    string banner_khac = "";
+
+
+    if (Model.Count() > 0)
+    {
+        var dndt = Model.First();
+        banner_trangchu = dndt.banner_trangchu;
+        mota_trangchu = dndt.mota_trangchu;
+        hinhanh_mota_trangchu = dndt.hinhanh_mota_trangchu;
+        mota_thanhphanchinh_nhahang = dndt.mota_thanhphanchinh_nhahang;
+        mota_thanhphanchinh_vuonrau = dndt.mota_thanhphanchinh_vuonrau;
+        mota_thanhphanchinh_muasam = dndt.mota_thanhphanchinh_muasam;
+        mota_sanphammoi_nhahang = dndt.mota_sanphammoi_nhahang;
+        mota_sanphammoi_vuonrau = dndt.mota_sanphammoi_vuonrau;
+        mota_sanphammoi_muasam = dndt.mota_sanphammoi_muasam;
+        mota_sanphamnoibat_nhahang = dndt.mota_sanphamnoibat_nhahang;
+        mota_sanphamnoibat_vuonrau = dndt.mota_sanphamnoibat_vuonrau;
+        mota_sanphamnoibat_muasam = dndt.mota_sanphamnoibat_muasam;
+
+        banner_gioithieu = dndt.banner_gioithieu;
+        tieude_gioithieu = dndt.tieude_gioithieu;
+        hinhanh1_gioithieu = dndt.hinhanh1_gioithieu;
+        hinhanh2_gioithieu = dndt.hinhanh2_gioithieu;
+        tieude2_gioithieu = dndt.tieude2_gioithieu;
+        mota_gioithieu = dndt.mota_gioithieu;
+        hinhanh_mota_gioithieu = dndt.hinhanh_mota_gioithieu;
+
+        banner_nhahang = dndt.banner_nhahang;
+        hinhanh_menuhangngay = dndt.hinhanh_menuhangngay;
+        hinhanh_menutiecban = dndt.hinhanh_menutiecban;
+        hinhanh_menutiecbuffet = dndt.hinhanh_menutiecbuffet;
+        mota_menuhangngay = dndt.mota_menuhangngay;
+        mota_menutiecban = dndt.mota_menutiecban;
+        mota_menutiecbuffet = dndt.mota_menutiecbuffet;
+
+        banner_thucdonhangngay = dndt.banner_thucdonhangngay;
+        banner_tiecban = dndt.banner_tiecban;
+        banner_buffet = dndt.banner_buffet;
+        banner_vuonrau = dndt.banner_vuonrau;
+        banner_muasam = dndt.banner_muasam;
+        banner_hinhanh = dndt.banner_hinhanh;
+        banner_khac = dndt.banner_khac;
+    }
+
+    ViewBag.Title = "Quản Lý Nội Dung Trang Tĩnh";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="pagetitle">
+    <div class="row">
+        <div class="col-md-12 col-12">
+            <h1>Quản Lý Nội Dung Trang Tĩnh</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="@Url.Action("index", "dashboard")">Bảng Điều Khiển</a></li>
+                    <li class="breadcrumb-item active">Quản Lý Nội Dung Trang Tĩnh</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
+
+
+<section class="section">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5><b>Nội dung trên <a target="_blank" href="@Url.Action("index", "home", new {area = ""})">Trang chủ</a></b></h5>
+                </div>
+                <div class="card-body">
+                    <div class="row ms-2 me-2 mb-2 mt-4">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Hình ảnh banner</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row ms-2 me-2 mb-3 mt-4">
+                                        <div class="col-12">
+                                            <fieldset class="form-group">
+                                                <a class="btn btn-sm btn-primary mb-2" onclick="$('#banner_trangchu').click()"><i class="bi bi-images me-1"></i> Tải lên hình ảnh</a> <small class="text-muted fst-italic">(Chọn 1 hoặc nhiều hình ảnh xuất hiện trên Banner).</small>
+                                                <input accept="image/jpeg, image/png" type="file" id="banner_trangchu" name="banner_trangchu[]" style="display: none;" class="form-control" multiple>
+                                            </fieldset>
+                                            <div class="preview-images-zone preview-images-zonebanner_trangchu form-control" style="height: 140px !important">
+                                                @if (!string.IsNullOrEmpty(banner_trangchu))
+                                                {
+                                                    foreach (string item in banner_trangchu.Split('#').ToList())
+                                                    {
+                                                        int lastindex = item.LastIndexOf("/") + 1;
+                                                        int childLength = item.Length - lastindex;
+                                                        <div id="suaidHinhAnh-hinhcu-banner_trangchu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" class="preview-image preview-show-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")">
+                                                            <div id="suaxoa-hinhanhsp-banner_trangchu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" class="image-cancel" name="daylahinhcu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")"><i class="bi bi-x-circle-fill text-dark"></i></div>
+                                                            <div class="image-zone"><img id="@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" src="@Url.Content(item)"></div>
+                                                        </div>
+                                                        <input id="url-suaidHinhAnh-hinhcu-banner_trangchu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" value="@Url.Content(item)" hidden />
+                                                    }
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Giới thiệu</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row ms-2 me-2 mb-3 mt-4">
+                                        <div class="col-12 mb-3">
+                                            <label for="mota_trangchu" class="col-12 col-form-label">Nội dung giới thiệu:</label>
+                                            <textarea id="mota_trangchu" rows="4" type="text" placeholder="Nhập nội dung giới thiệu trên trang chủ" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control">@mota_trangchu</textarea>
+                                        </div>
+                                        <div class="col-12">
+                                            <fieldset class="form-group">
+                                                <a class="btn btn-sm btn-primary mb-2" onclick="$('#hinhanh_mota_trangchu').click()"><i class="bi bi-images me-1"></i> Tải lên hình ảnh</a> <small class="text-muted fst-italic">(Chọn 1 hình ảnh).</small>
+                                                <input accept="image/jpeg, image/png" type="file" id="hinhanh_mota_trangchu" name="hinhanh_mota_trangchu[]" style="display: none;" class="form-control">
+                                            </fieldset>
+                                            <div class="preview-images-zone preview-images-zonehinhanh_mota_trangchu form-control" style="height: 140px !important">
+                                                @if (!string.IsNullOrEmpty(hinhanh_mota_trangchu))
+                                                {
+                                                    var item = hinhanh_mota_trangchu;
+                                                    int lastindex = item.LastIndexOf("/") + 1;
+                                                    int childLength = item.Length - lastindex;
+                                                    <div id="suaidHinhAnh-hinhcu-hinhanh_mota_trangchu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" class="preview-image preview-show-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")">
+                                                        <div id="suaxoa-hinhanhsp-hinhanh_mota_trangchu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" class="image-cancel" name="daylahinhcu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")"><i class="bi bi-x-circle-fill text-dark"></i></div>
+                                                        <div class="image-zone"><img id="@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" src="@Url.Content(item)"></div>
+                                                    </div>
+                                                    <input id="url-suaidHinhAnh-hinhcu-hinhanh_mota_trangchu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" value="@Url.Content(item)" hidden />
+
+                                                }
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Thành phần thương hiệu chính</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row ms-2 me-2 mb-3 mt-4">
+                                        <div class="col-12 mb-3">
+                                            <label for="mota_thanhphanchinh_nhahang" class="col-12 col-form-label">Mô tả danh mục Nhà hàng:</label>
+                                            <textarea id="mota_thanhphanchinh_nhahang" rows="3" type="text" placeholder="Nhập nội dung mô tả danh mục nhà hàng" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control">@mota_thanhphanchinh_nhahang</textarea>
+                                        </div>
+                                        <div class="col-12 mb-3">
+                                            <label for="mota_thanhphanchinh_vuonrau" class="col-12 col-form-label">Mô tả danh mục Vườn rau:</label>
+                                            <textarea id="mota_thanhphanchinh_vuonrau" rows="3" type="text" placeholder="Nhập nội dung mô tả danh mục vườn rau" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control">@mota_thanhphanchinh_vuonrau</textarea>
+                                        </div>
+                                        <div class="col-12 mb-3">
+                                            <label for="mota_thanhphanchinh_muasam" class="col-12 col-form-label">Mô tả danh mục Mua sắm:</label>
+                                            <textarea id="mota_thanhphanchinh_muasam" rows="3" type="text" placeholder="Nhập nội dung mô tả danh mục mua sắm" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control">@mota_thanhphanchinh_muasam</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-sm-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Mô tả danh mục sản phẩm mới</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row ms-2 me-2 mb-3 mt-4">
+                                        <div class="col-12 mb-3">
+                                            <label for="mota_sanphammoi_nhahang" class="col-12 col-form-label">Mô tả sản phẩm mới Nhà hàng:</label>
+                                            <textarea id="mota_sanphammoi_nhahang" rows="3" type="text" placeholder="Nhập nội dung mô tả sản phẩm mới nhà hàng" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control">@mota_sanphammoi_nhahang</textarea>
+                                        </div>
+                                        <div class="col-12 mb-3">
+                                            <label for="mota_sanphammoi_vuonrau" class="col-12 col-form-label">Mô tả sản phẩm mới Vườn rau:</label>
+                                            <textarea id="mota_sanphammoi_vuonrau" rows="3" type="text" placeholder="Nhập nội dung mô tả sản phẩm mới vườn rau" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control">@mota_sanphammoi_vuonrau</textarea>
+                                        </div>
+                                        <div class="col-12 mb-3">
+                                            <label for="mota_sanphammoi_muasam" class="col-12 col-form-label">Mô tả sản phẩm mới Mua sắm:</label>
+                                            <textarea id="mota_sanphammoi_muasam" rows="3" type="text" placeholder="Nhập nội dung mô tả sản phẩm mới mua sắm" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control">@mota_sanphammoi_muasam</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-sm-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Mô tả danh mục sản phẩm nỗi bật</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row ms-2 me-2 mb-3 mt-4">
+                                        <div class="col-12 mb-3">
+                                            <label for="mota_sanphamnoibat_nhahang" class="col-12 col-form-label">Mô tả sản phẩm nỗi bật Nhà hàng:</label>
+                                            <textarea id="mota_sanphamnoibat_nhahang" rows="3" type="text" placeholder="Nhập nội dung mô tả sản phẩm nỗi bật nhà hàng" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control">@mota_sanphamnoibat_nhahang</textarea>
+                                        </div>
+                                        <div class="col-12 mb-3">
+                                            <label for="mota_sanphamnoibat_vuonrau" class="col-12 col-form-label">Mô tả sản phẩm nỗi bật Vườn rau:</label>
+                                            <textarea id="mota_sanphamnoibat_vuonrau" rows="3" type="text" placeholder="Nhập nội dung mô tả sản phẩm nỗi bật vườn rau" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control">@mota_sanphamnoibat_vuonrau</textarea>
+                                        </div>
+                                        <div class="col-12 mb-3">
+                                            <label for="mota_sanphamnoibat_muasam" class="col-12 col-form-label">Mô tả sản phẩm nỗi bật Mua sắm:</label>
+                                            <textarea id="mota_sanphamnoibat_muasam" rows="3" type="text" placeholder="Nhập nội dung mô tả sản phẩm nỗi bật mua sắm" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control">@mota_sanphamnoibat_muasam</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row ms-2 me-2 mb-3" style="display: flex; justify-content: end;">
+                        <button style="width: 200px; height: 40px; margin-right: .5rem;" id="btnLuuThongTinTrangChu" type="button" class="btn btn-primary mt-2">Lưu thông tin</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5><b>Nội dung trang <a target="_blank" href="@Url.Action("about", "home", new {area = ""})">Giới Thiệu</a></b></h5>
+                </div>
+                <div class="card-body">
+                    <div class="row ms-2 me-2 mb-2 mt-4">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Hình ảnh banner</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row ms-2 me-2 mb-4 mt-4">
+                                        <div class="col-12">
+                                            <fieldset class="form-group">
+                                                <a class="btn btn-sm btn-primary mb-2" onclick="$('#banner_gioithieu').click()"><i class="bi bi-images me-1"></i> Tải lên hình ảnh</a> <small class="text-muted fst-italic">(Chọn 1 hình ảnh xuất hiện trên Banner).</small>
+                                                <input accept="image/jpeg, image/png" type="file" id="banner_gioithieu" name="banner_gioithieu[]" style="display: none;" class="form-control">
+                                            </fieldset>
+                                            <div class="preview-images-zone preview-images-zonebanner_gioithieu form-control" style="height: 140px !important">
+                                                @if (!string.IsNullOrEmpty(banner_gioithieu))
+                                                {
+                                                    var item = banner_gioithieu;
+                                                    int lastindex = item.LastIndexOf("/") + 1;
+                                                    int childLength = item.Length - lastindex;
+                                                    <div id="suaidHinhAnh-hinhcu-banner_gioithieu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" class="preview-image preview-show-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")">
+                                                        <div id="suaxoa-hinhanhsp-banner_gioithieu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" class="image-cancel" name="daylahinhcu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")"><i class="bi bi-x-circle-fill text-dark"></i></div>
+                                                        <div class="image-zone"><img id="@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" src="@Url.Content(item)"></div>
+                                                    </div>
+                                                    <input id="url-suaidHinhAnh-hinhcu-banner_gioithieu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" value="@Url.Content(item)" hidden />
+
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Nội dung trang</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row ms-2 me-2 mb-4 mt-4">
+                                        <div class="col-12 mb-4">
+                                            <label for="tieude_gioithieu" class="col-12 col-form-label">Tiêu đề 1:</label>
+                                            <input value="@tieude_gioithieu" id="tieude_gioithieu" type="text" placeholder="Nhập nội dung tiêu đề 1" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control" />
+                                        </div>
+
+                                        <div class="col-md-6 col-sm-12 mb-4">
+                                            <fieldset class="form-group">
+                                                <a class="btn btn-sm btn-primary mb-2" onclick="$('#hinhanh1_gioithieu').click()"><i class="bi bi-images me-1"></i> Tải lên hình ảnh</a> <small class="text-muted fst-italic">(Chọn 1 hình ảnh 1).</small>
+                                                <input accept="image/jpeg, image/png" type="file" id="hinhanh1_gioithieu" name="hinhanh1_gioithieu[]" style="display: none;" class="form-control">
+                                            </fieldset>
+                                            <div class="preview-images-zone preview-images-zonehinhanh1_gioithieu form-control" style="height: 140px !important">
+                                                @if (!string.IsNullOrEmpty(hinhanh1_gioithieu))
+                                                {
+                                                    var item = hinhanh1_gioithieu;
+                                                    int lastindex = item.LastIndexOf("/") + 1;
+                                                    int childLength = item.Length - lastindex;
+                                                    <div id="suaidHinhAnh-hinhcu-hinhanh1_gioithieu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" class="preview-image preview-show-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")">
+                                                        <div id="suaxoa-hinhanhsp-hinhanh1_gioithieu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" class="image-cancel" name="daylahinhcu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")"><i class="bi bi-x-circle-fill text-dark"></i></div>
+                                                        <div class="image-zone"><img id="@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" src="@Url.Content(item)"></div>
+                                                    </div>
+                                                    <input id="url-suaidHinhAnh-hinhcu-hinhanh1_gioithieu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" value="@Url.Content(item)" hidden />
+
+                                                }
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6 col-sm-12 mb-4">
+                                            <fieldset class="form-group">
+                                                <a class="btn btn-sm btn-primary mb-2" onclick="$('#hinhanh2_gioithieu').click()"><i class="bi bi-images me-1"></i> Tải lên hình ảnh</a> <small class="text-muted fst-italic">(Chọn 1 hình ảnh 2).</small>
+                                                <input accept="image/jpeg, image/png" type="file" id="hinhanh2_gioithieu" name="hinhanh2_gioithieu[]" style="display: none;" class="form-control">
+                                            </fieldset>
+                                            <div class="preview-images-zone preview-images-zonehinhanh2_gioithieu form-control" style="height: 140px !important">
+                                                @if (!string.IsNullOrEmpty(hinhanh2_gioithieu))
+                                                {
+                                                    var item = hinhanh2_gioithieu;
+                                                    int lastindex = item.LastIndexOf("/") + 1;
+                                                    int childLength = item.Length - lastindex;
+                                                    <div id="suaidHinhAnh-hinhcu-hinhanh2_gioithieu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" class="preview-image preview-show-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")">
+                                                        <div id="suaxoa-hinhanhsp-hinhanh2_gioithieu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" class="image-cancel" name="daylahinhcu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")"><i class="bi bi-x-circle-fill text-dark"></i></div>
+                                                        <div class="image-zone"><img id="@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" src="@Url.Content(item)"></div>
+                                                    </div>
+                                                    <input id="url-suaidHinhAnh-hinhcu-hinhanh2_gioithieu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" value="@Url.Content(item)" hidden />
+
+                                                }
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="col-12 mb-3">
+                                            <div class="col-12 mb-2">
+                                                <label for="tieude2_gioithieu" class="col-12 col-form-label">Tiêu đề 2:</label>
+                                                <input value="@tieude2_gioithieu" id="tieude2_gioithieu" type="text" placeholder="Nhập nội dung tiêu đề 2" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control" />
+                                            </div>
+                                            <div class="col-12 mb-2">
+                                                <label for="mota_gioithieu" class="col-12 col-form-label">Nội dung mô tả:</label>
+                                                <textarea id="mota_gioithieu" rows="4" type="text" placeholder="Nhập nội dung mô tả" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control">@mota_gioithieu</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <fieldset class="form-group">
+                                                <a class="btn btn-sm btn-primary mb-2" onclick="$('#hinhanh_mota_gioithieu').click()"><i class="bi bi-images me-1"></i> Tải lên hình ảnh</a> <small class="text-muted fst-italic">(Chọn 1 hình ảnh 3).</small>
+                                                <input accept="image/jpeg, image/png" type="file" id="hinhanh_mota_gioithieu" name="hinhanh_mota_gioithieu[]" style="display: none;" class="form-control">
+                                            </fieldset>
+                                            <div class="preview-images-zone preview-images-zonehinhanh_mota_gioithieu form-control" style="height: 140px !important">
+                                                @if (!string.IsNullOrEmpty(hinhanh_mota_gioithieu))
+                                                {
+                                                    var item = hinhanh_mota_gioithieu;
+                                                    int lastindex = item.LastIndexOf("/") + 1;
+                                                    int childLength = item.Length - lastindex;
+                                                    <div id="suaidHinhAnh-hinhcu-hinhanh_mota_gioithieu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" class="preview-image preview-show-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")">
+                                                        <div id="suaxoa-hinhanhsp-hinhanh_mota_gioithieu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" class="image-cancel" name="daylahinhcu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")"><i class="bi bi-x-circle-fill text-dark"></i></div>
+                                                        <div class="image-zone"><img id="@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" src="@Url.Content(item)"></div>
+                                                    </div>
+                                                    <input id="url-suaidHinhAnh-hinhcu-hinhanh_mota_gioithieu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" value="@Url.Content(item)" hidden />
+
+                                                }
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row ms-2 me-2 mb-3" style="display: flex; justify-content: end;">
+                        <button style="width: 200px; height: 40px; margin-right: .5rem;" id="btnLuuThongTinTrangGioiThieu" type="button" class="btn btn-primary mt-2">Lưu thông tin</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5><b>Nội dung trang <a target="_blank" href="@Url.Action("index", "nhahangbean", new {area = ""})">Nhà Hàng</a></b></h5>
+                </div>
+                <div class="card-body">
+                    <div class="row ms-2 me-2 mb-2 mt-4">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Hình ảnh banner</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row ms-2 me-2 mb-4 mt-4">
+                                        <div class="col-12">
+                                            <fieldset class="form-group">
+                                                <a class="btn btn-sm btn-primary mb-2" onclick="$('#banner_nhahang').click()"><i class="bi bi-images me-1"></i> Tải lên hình ảnh</a> <small class="text-muted fst-italic">(Chọn 1 hình ảnh xuất hiện trên Banner).</small>
+                                                <input accept="image/jpeg, image/png" type="file" id="banner_nhahang" name="banner_nhahang[]" style="display: none;" class="form-control">
+                                            </fieldset>
+                                            <div class="preview-images-zone preview-images-zonebanner_nhahang form-control" style="height: 140px !important">
+                                                @if (!string.IsNullOrEmpty(banner_nhahang))
+                                                {
+                                                    var item = banner_nhahang;
+                                                    int lastindex = item.LastIndexOf("/") + 1;
+                                                    int childLength = item.Length - lastindex;
+                                                    <div id="suaidHinhAnh-hinhcu-banner_nhahang-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" class="preview-image preview-show-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")">
+                                                        <div id="suaxoa-hinhanhsp-banner_nhahang-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" class="image-cancel" name="daylahinhcu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")"><i class="bi bi-x-circle-fill text-dark"></i></div>
+                                                        <div class="image-zone"><img id="@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" src="@Url.Content(item)"></div>
+                                                    </div>
+                                                    <input id="url-suaidHinhAnh-hinhcu-banner_nhahang-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" value="@Url.Content(item)" hidden />
+
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Nội dung trang</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row ms-2 me-2 mb-4 mt-4">
+                                        <div class="col-12 mb-3">
+                                            <label for="mota_menuhangngay" class="col-12 col-form-label">Mô tả danh mục thực đơn hằng ngày:</label>
+                                            <input value="@mota_menuhangngay" id="mota_menuhangngay" type="text" placeholder="Nhập nội dung mô tả danh mục thực đơn hằng ngày" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control" />
+                                        </div>
+
+                                        <div class="col-12 mb-4">
+                                            <fieldset class="form-group">
+                                                <a class="btn btn-sm btn-primary mb-2" onclick="$('#hinhanh_menuhangngay').click()"><i class="bi bi-images me-1"></i> Tải lên hình ảnh</a> <small class="text-muted fst-italic">(Chọn 1 hình ảnh danh mục thực đơn hằng ngày).</small>
+                                                <input accept="image/jpeg, image/png" type="file" id="hinhanh_menuhangngay" name="hinhanh_menuhangngay[]" style="display: none;" class="form-control">
+                                            </fieldset>
+                                            <div class="preview-images-zone preview-images-zonehinhanh_menuhangngay form-control" style="height: 140px !important">
+                                                @if (!string.IsNullOrEmpty(hinhanh_menuhangngay))
+                                                {
+                                                    var item = hinhanh_menuhangngay;
+                                                    int lastindex = item.LastIndexOf("/") + 1;
+                                                    int childLength = item.Length - lastindex;
+                                                    <div id="suaidHinhAnh-hinhcu-hinhanh_menuhangngay-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" class="preview-image preview-show-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")">
+                                                        <div id="suaxoa-hinhanhsp-hinhanh_menuhangngay-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" class="image-cancel" name="daylahinhcu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")"><i class="bi bi-x-circle-fill text-dark"></i></div>
+                                                        <div class="image-zone"><img id="@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" src="@Url.Content(item)"></div>
+                                                    </div>
+                                                    <input id="url-suaidHinhAnh-hinhcu-hinhanh_menuhangngay-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" value="@Url.Content(item)" hidden />
+
+                                                }
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-12 mb-3">
+                                            <label for="mota_menutiecban" class="col-12 col-form-label">Mô tả danh mục menu tiệc bàn:</label>
+                                            <input value="@mota_menutiecban" id="mota_menutiecban" type="text" placeholder="Nhập nội dung mô tả danh mục menu tiệc bàn" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control" />
+                                        </div>
+
+                                        <div class="col-12 mb-4">
+                                            <fieldset class="form-group">
+                                                <a class="btn btn-sm btn-primary mb-2" onclick="$('#hinhanh_menutiecban').click()"><i class="bi bi-images me-1"></i> Tải lên hình ảnh</a> <small class="text-muted fst-italic">(Chọn 1 hình ảnh danh mục menu tiệc bàn).</small>
+                                                <input accept="image/jpeg, image/png" type="file" id="hinhanh_menutiecban" name="hinhanh_menutiecban[]" style="display: none;" class="form-control">
+                                            </fieldset>
+                                            <div class="preview-images-zone preview-images-zonehinhanh_menutiecban form-control" style="height: 140px !important">
+                                                @if (!string.IsNullOrEmpty(hinhanh_menutiecban))
+                                                {
+                                                    var item = hinhanh_menutiecban;
+                                                    int lastindex = item.LastIndexOf("/") + 1;
+                                                    int childLength = item.Length - lastindex;
+                                                    <div id="suaidHinhAnh-hinhcu-hinhanh_menutiecban-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" class="preview-image preview-show-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")">
+                                                        <div id="suaxoa-hinhanhsp-hinhanh_menutiecban-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" class="image-cancel" name="daylahinhcu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")"><i class="bi bi-x-circle-fill text-dark"></i></div>
+                                                        <div class="image-zone"><img id="@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" src="@Url.Content(item)"></div>
+                                                    </div>
+                                                    <input id="url-suaidHinhAnh-hinhcu-hinhanh_menutiecban-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" value="@Url.Content(item)" hidden />
+
+                                                }
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-12 mb-3">
+                                            <label for="mota_menutiecbuffet" class="col-12 col-form-label">Mô tả danh mục menu buffet:</label>
+                                            <input value="@mota_menutiecbuffet" id="mota_menutiecbuffet" type="text" placeholder="Nhập nội dung mô tả danh mục menu buffet" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control" />
+                                        </div>
+
+                                        <div class="col-12 mb-4">
+                                            <fieldset class="form-group">
+                                                <a class="btn btn-sm btn-primary mb-2" onclick="$('#hinhanh_menutiecbuffet').click()"><i class="bi bi-images me-1"></i> Tải lên hình ảnh </a> <small class="text-muted fst-italic">(Chọn 1 hình ảnh danh mục menu buffet).</small>
+                                                <input accept="image/jpeg, image/png" type="file" id="hinhanh_menutiecbuffet" name="hinhanh_menutiecbuffet[]" style="display: none;" class="form-control">
+                                            </fieldset>
+                                            <div class="preview-images-zone preview-images-zonehinhanh_menutiecbuffet form-control" style="height: 140px !important">
+                                                @if (!string.IsNullOrEmpty(hinhanh_menutiecbuffet))
+                                                {
+                                                    var item = hinhanh_menutiecbuffet;
+                                                    int lastindex = item.LastIndexOf("/") + 1;
+                                                    int childLength = item.Length - lastindex;
+                                                    <div id="suaidHinhAnh-hinhcu-hinhanh_menutiecbuffet-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" class="preview-image preview-show-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")">
+                                                        <div id="suaxoa-hinhanhsp-hinhanh_menutiecbuffet-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" class="image-cancel" name="daylahinhcu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")"><i class="bi bi-x-circle-fill text-dark"></i></div>
+                                                        <div class="image-zone"><img id="@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" src="@Url.Content(item)"></div>
+                                                    </div>
+                                                    <input id="url-suaidHinhAnh-hinhcu-hinhanh_menutiecbuffet-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" value="@Url.Content(item)" hidden />
+
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row ms-2 me-2 mb-3" style="display: flex; justify-content: end;">
+                        <button style="width: 200px; height: 40px; margin-right: .5rem;" id="btnLuuThongTinTrangNhaHang" type="button" class="btn btn-primary mt-2">Lưu thông tin</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5><b>Nội dung trang <a target="_blank" href="@Url.Action("index", "thucdonhangngay", new {area = ""})">Menu Hằng Ngày</a></b></h5>
+                </div>
+                <div class="card-body">
+                    <div class="row ms-2 me-2 mb-2 mt-4">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Hình ảnh banner</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row ms-2 me-2 mb-4 mt-4">
+                                        <div class="col-12">
+                                            <fieldset class="form-group">
+                                                <a class="btn btn-sm btn-primary mb-2" onclick="$('#banner_thucdonhangngay').click()"><i class="bi bi-images me-1"></i> Tải lên hình ảnh</a> <small class="text-muted fst-italic">(Chọn 1 hình ảnh xuất hiện trên Banner).</small>
+                                                <input accept="image/jpeg, image/png" type="file" id="banner_thucdonhangngay" name="banner_thucdonhangngay[]" style="display: none;" class="form-control">
+                                            </fieldset>
+                                            <div class="preview-images-zone preview-images-zonebanner_thucdonhangngay form-control" style="height: 140px !important">
+                                                @if (!string.IsNullOrEmpty(banner_thucdonhangngay))
+                                                {
+                                                    var item = banner_thucdonhangngay;
+                                                    int lastindex = item.LastIndexOf("/") + 1;
+                                                    int childLength = item.Length - lastindex;
+                                                    <div id="suaidHinhAnh-hinhcu-banner_thucdonhangngay-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" class="preview-image preview-show-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")">
+                                                        <div id="suaxoa-hinhanhsp-banner_thucdonhangngay-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" class="image-cancel" name="daylahinhcu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")"><i class="bi bi-x-circle-fill text-dark"></i></div>
+                                                        <div class="image-zone"><img id="@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" src="@Url.Content(item)"></div>
+                                                    </div>
+                                                    <input id="url-suaidHinhAnh-hinhcu-banner_thucdonhangngay-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" value="@Url.Content(item)" hidden />
+
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row ms-2 me-2 mb-3" style="display: flex; justify-content: end;">
+                        <button style="width: 200px; height: 40px; margin-right: .5rem;" id="btnLuuThongTinTrangMenuHangNgay" type="button" class="btn btn-primary mt-2">Lưu thông tin</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5><b>Nội dung trang <a target="_blank" href="@Url.Action("index", "menutiecban", new {area = ""})">Menu Tiệc Bàn</a></b></h5>
+                </div>
+                <div class="card-body">
+                    <div class="row ms-2 me-2 mb-2 mt-4">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Hình ảnh banner</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row ms-2 me-2 mb-4 mt-4">
+                                        <div class="col-12">
+                                            <fieldset class="form-group">
+                                                <a class="btn btn-sm btn-primary mb-2" onclick="$('#banner_tiecban').click()"><i class="bi bi-images me-1"></i> Tải lên hình ảnh</a> <small class="text-muted fst-italic">(Chọn 1 hình ảnh xuất hiện trên Banner).</small>
+                                                <input accept="image/jpeg, image/png" type="file" id="banner_tiecban" name="banner_tiecban[]" style="display: none;" class="form-control">
+                                            </fieldset>
+                                            <div class="preview-images-zone preview-images-zonebanner_tiecban form-control" style="height: 140px !important">
+                                                @if (!string.IsNullOrEmpty(banner_tiecban))
+                                                {
+                                                    var item = banner_tiecban;
+                                                    int lastindex = item.LastIndexOf("/") + 1;
+                                                    int childLength = item.Length - lastindex;
+                                                    <div id="suaidHinhAnh-hinhcu-banner_tiecban-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" class="preview-image preview-show-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")">
+                                                        <div id="suaxoa-hinhanhsp-banner_tiecban-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" class="image-cancel" name="daylahinhcu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")"><i class="bi bi-x-circle-fill text-dark"></i></div>
+                                                        <div class="image-zone"><img id="@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" src="@Url.Content(item)"></div>
+                                                    </div>
+                                                    <input id="url-suaidHinhAnh-hinhcu-banner_tiecban-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" value="@Url.Content(item)" hidden />
+
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row ms-2 me-2 mb-3" style="display: flex; justify-content: end;">
+                        <button style="width: 200px; height: 40px; margin-right: .5rem;" id="btnLuuThongTinTrangMenuTiecBan" type="button" class="btn btn-primary mt-2">Lưu thông tin</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5><b>Nội dung trang <a target="_blank" href="@Url.Action("index", "menubuffet", new {area = ""})">Menu Buffet</a></b></h5>
+                </div>
+                <div class="card-body">
+                    <div class="row ms-2 me-2 mb-2 mt-4">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Hình ảnh banner</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row ms-2 me-2 mb-4 mt-4">
+                                        <div class="col-12">
+                                            <fieldset class="form-group">
+                                                <a class="btn btn-sm btn-primary mb-2" onclick="$('#banner_buffet').click()"><i class="bi bi-images me-1"></i> Tải lên hình ảnh</a> <small class="text-muted fst-italic">(Chọn 1 hình ảnh xuất hiện trên Banner).</small>
+                                                <input accept="image/jpeg, image/png" type="file" id="banner_buffet" name="banner_buffet[]" style="display: none;" class="form-control">
+                                            </fieldset>
+                                            <div class="preview-images-zone preview-images-zonebanner_buffet form-control" style="height: 140px !important">
+                                                @if (!string.IsNullOrEmpty(banner_buffet))
+                                                {
+                                                    var item = banner_buffet;
+                                                    int lastindex = item.LastIndexOf("/") + 1;
+                                                    int childLength = item.Length - lastindex;
+                                                    <div id="suaidHinhAnh-hinhcu-banner_buffet-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" class="preview-image preview-show-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")">
+                                                        <div id="suaxoa-hinhanhsp-banner_buffet-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" class="image-cancel" name="daylahinhcu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")"><i class="bi bi-x-circle-fill text-dark"></i></div>
+                                                        <div class="image-zone"><img id="@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" src="@Url.Content(item)"></div>
+                                                    </div>
+                                                    <input id="url-suaidHinhAnh-hinhcu-banner_buffet-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" value="@Url.Content(item)" hidden />
+
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row ms-2 me-2 mb-3" style="display: flex; justify-content: end;">
+                        <button style="width: 200px; height: 40px; margin-right: .5rem;" id="btnLuuThongTinTrangMenuBuffet" type="button" class="btn btn-primary mt-2">Lưu thông tin</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5><b>Nội dung trang <a target="_blank" href="@Url.Action("index", "vuonrau", new {area = ""})">Vườn Rau</a></b></h5>
+                </div>
+                <div class="card-body">
+                    <div class="row ms-2 me-2 mb-2 mt-4">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Hình ảnh banner</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row ms-2 me-2 mb-4 mt-4">
+                                        <div class="col-12">
+                                            <fieldset class="form-group">
+                                                <a class="btn btn-sm btn-primary mb-2" onclick="$('#banner_vuonrau').click()"><i class="bi bi-images me-1"></i> Tải lên hình ảnh</a> <small class="text-muted fst-italic">(Chọn 1 hình ảnh xuất hiện trên Banner).</small>
+                                                <input accept="image/jpeg, image/png" type="file" id="banner_vuonrau" name="banner_vuonrau[]" style="display: none;" class="form-control">
+                                            </fieldset>
+                                            <div class="preview-images-zone preview-images-zonebanner_vuonrau form-control" style="height: 140px !important">
+                                                @if (!string.IsNullOrEmpty(banner_vuonrau))
+                                                {
+                                                    var item = banner_vuonrau;
+                                                    int lastindex = item.LastIndexOf("/") + 1;
+                                                    int childLength = item.Length - lastindex;
+                                                    <div id="suaidHinhAnh-hinhcu-banner_vuonrau-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" class="preview-image preview-show-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")">
+                                                        <div id="suaxoa-hinhanhsp-banner_vuonrau-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" class="image-cancel" name="daylahinhcu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")"><i class="bi bi-x-circle-fill text-dark"></i></div>
+                                                        <div class="image-zone"><img id="@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" src="@Url.Content(item)"></div>
+                                                    </div>
+                                                    <input id="url-suaidHinhAnh-hinhcu-banner_vuonrau-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" value="@Url.Content(item)" hidden />
+
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row ms-2 me-2 mb-3" style="display: flex; justify-content: end;">
+                        <button style="width: 200px; height: 40px; margin-right: .5rem;" id="btnLuuThongTinTrangVuonRau" type="button" class="btn btn-primary mt-2">Lưu thông tin</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5><b>Nội dung trang <a target="_blank" href="@Url.Action("index", "muasam", new {area = ""})">Mua Sắm</a></b></h5>
+                </div>
+                <div class="card-body">
+                    <div class="row ms-2 me-2 mb-2 mt-4">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Hình ảnh banner</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row ms-2 me-2 mb-4 mt-4">
+                                        <div class="col-12">
+                                            <fieldset class="form-group">
+                                                <a class="btn btn-sm btn-primary mb-2" onclick="$('#banner_muasam').click()"><i class="bi bi-images me-1"></i> Tải lên hình ảnh</a> <small class="text-muted fst-italic">(Chọn 1 hình ảnh xuất hiện trên Banner).</small>
+                                                <input accept="image/jpeg, image/png" type="file" id="banner_muasam" name="banner_muasam[]" style="display: none;" class="form-control">
+                                            </fieldset>
+                                            <div class="preview-images-zone preview-images-zonebanner_muasam form-control" style="height: 140px !important">
+                                                @if (!string.IsNullOrEmpty(banner_muasam))
+                                                {
+                                                    var item = banner_muasam;
+                                                    int lastindex = item.LastIndexOf("/") + 1;
+                                                    int childLength = item.Length - lastindex;
+                                                    <div id="suaidHinhAnh-hinhcu-banner_muasam-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" class="preview-image preview-show-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")">
+                                                        <div id="suaxoa-hinhanhsp-banner_muasam-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" class="image-cancel" name="daylahinhcu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")"><i class="bi bi-x-circle-fill text-dark"></i></div>
+                                                        <div class="image-zone"><img id="@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" src="@Url.Content(item)"></div>
+                                                    </div>
+                                                    <input id="url-suaidHinhAnh-hinhcu-banner_muasam-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" value="@Url.Content(item)" hidden />
+
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row ms-2 me-2 mb-3" style="display: flex; justify-content: end;">
+                        <button style="width: 200px; height: 40px; margin-right: .5rem;" id="btnLuuThongTinTrangMuaSam" type="button" class="btn btn-primary mt-2">Lưu thông tin</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5><b>Nội dung trang <a target="_blank" href="@Url.Action("index", "hinhanh", new {area = ""})">Hình Ảnh</a></b></h5>
+                </div>
+                <div class="card-body">
+                    <div class="row ms-2 me-2 mb-2 mt-4">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Hình ảnh banner</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row ms-2 me-2 mb-4 mt-4">
+                                        <div class="col-12">
+                                            <fieldset class="form-group">
+                                                <a class="btn btn-sm btn-primary mb-2" onclick="$('#banner_hinhanh').click()"><i class="bi bi-images me-1"></i> Tải lên hình ảnh</a> <small class="text-muted fst-italic">(Chọn 1 hình ảnh xuất hiện trên Banner).</small>
+                                                <input accept="image/jpeg, image/png" type="file" id="banner_hinhanh" name="banner_hinhanh[]" style="display: none;" class="form-control">
+                                            </fieldset>
+                                            <div class="preview-images-zone preview-images-zonebanner_hinhanh form-control" style="height: 140px !important">
+                                                @if (!string.IsNullOrEmpty(banner_hinhanh))
+                                                {
+                                                    var item = banner_hinhanh;
+                                                    int lastindex = item.LastIndexOf("/") + 1;
+                                                    int childLength = item.Length - lastindex;
+                                                    <div id="suaidHinhAnh-hinhcu-banner_hinhanh-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" class="preview-image preview-show-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")">
+                                                        <div id="suaxoa-hinhanhsp-banner_hinhanh-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" class="image-cancel" name="daylahinhcu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")"><i class="bi bi-x-circle-fill text-dark"></i></div>
+                                                        <div class="image-zone"><img id="@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" src="@Url.Content(item)"></div>
+                                                    </div>
+                                                    <input id="url-suaidHinhAnh-hinhcu-banner_hinhanh-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" value="@Url.Content(item)" hidden />
+
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row ms-2 me-2 mb-3" style="display: flex; justify-content: end;">
+                        <button style="width: 200px; height: 40px; margin-right: .5rem;" id="btnLuuThongTinTrangHinhAnh" type="button" class="btn btn-primary mt-2">Lưu thông tin</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5><b>Nội dung các trang Khác <small>(tra cứu đơn hàng, đặt hàng, ...)</small></b></h5>
+                </div>
+                <div class="card-body">
+                    <div class="row ms-2 me-2 mb-2 mt-4">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Hình ảnh banner</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row ms-2 me-2 mb-4 mt-4">
+                                        <div class="col-12">
+                                            <fieldset class="form-group">
+                                                <a class="btn btn-sm btn-primary mb-2" onclick="$('#banner_khac').click()"><i class="bi bi-images me-1"></i> Tải lên hình ảnh</a> <small class="text-muted fst-italic">(Chọn 1 hình ảnh xuất hiện trên Banner).</small>
+                                                <input accept="image/jpeg, image/png" type="file" id="banner_khac" name="banner_khac[]" style="display: none;" class="form-control">
+                                            </fieldset>
+                                            <div class="preview-images-zone preview-images-zonebanner_khac form-control" style="height: 140px !important">
+                                                @if (!string.IsNullOrEmpty(banner_khac))
+                                                {
+                                                    var item = banner_khac;
+                                                    int lastindex = item.LastIndexOf("/") + 1;
+                                                    int childLength = item.Length - lastindex;
+                                                    <div id="suaidHinhAnh-hinhcu-banner_khac-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" class="preview-image preview-show-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")">
+                                                        <div id="suaxoa-hinhanhsp-banner_khac-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" class="image-cancel" name="daylahinhcu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")"><i class="bi bi-x-circle-fill text-dark"></i></div>
+                                                        <div class="image-zone"><img id="@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" src="@Url.Content(item)"></div>
+                                                    </div>
+                                                    <input id="url-suaidHinhAnh-hinhcu-banner_khac-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" value="@Url.Content(item)" hidden />
+
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row ms-2 me-2 mb-3" style="display: flex; justify-content: end;">
+                        <button style="width: 200px; height: 40px; margin-right: .5rem;" id="btnLuuThongTinTrangKhac" type="button" class="btn btn-primary mt-2">Lưu thông tin</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+<script src="~/Scripts/jquery-ui.js"></script>
+<script src="~/Validation/NoiDungTinh/UpdateTrangChu.js"></script>
+<script src="~/Validation/NoiDungTinh/UpdateGioiThieu.js"></script>
+<script src="~/Validation/NoiDungTinh/UpdateNhaHang.js"></script>
+<script src="~/Validation/NoiDungTinh/UpdateThucDonHangNgay.js"></script>
+<script src="~/Validation/NoiDungTinh/UpdateThucMenuBuffet.js"></script>
+<script src="~/Validation/NoiDungTinh/UpdateThucMenuTiecBan.js"></script>
+<script src="~/Validation/NoiDungTinh/UpdateVuonRau.js"></script>
+<script src="~/Validation/NoiDungTinh/UpdateMuaSam.js"></script>
+<script src="~/Validation/NoiDungTinh/UpdateHinhAnh.js"></script>
+<script src="~/Validation/NoiDungTinh/UpdateKhac.js"></script>
+

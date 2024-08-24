@@ -13,10 +13,45 @@
         toado = tts.toadogooglemapiframe;
     }
 
+    string banner_gioithieu = "";
+    string tieude_gioithieu = "";
+    string hinhanh1_gioithieu = "";
+    string hinhanh2_gioithieu = "";
+
+    string mota_thanhphanchinh_nhahang = "";
+    string mota_thanhphanchinh_vuonrau = "";
+    string mota_thanhphanchinh_muasam = "";
+
+    string tieude2_gioithieu = "";
+    string mota_gioithieu = "";
+    string hinhanh_mota_gioithieu = "";
+    var ndt = models.BoCucNoiDungTinhWebsite.ToList();
+    if (ndt.Count > 0)
+    {
+        var dndt = ndt.First();
+        banner_gioithieu = dndt.banner_gioithieu;
+        tieude_gioithieu = dndt.tieude_gioithieu;
+        hinhanh1_gioithieu = dndt.hinhanh1_gioithieu;
+        hinhanh2_gioithieu = dndt.hinhanh2_gioithieu;
+
+        mota_thanhphanchinh_nhahang = dndt.mota_thanhphanchinh_nhahang;
+        mota_thanhphanchinh_vuonrau = dndt.mota_thanhphanchinh_vuonrau;
+        mota_thanhphanchinh_muasam = dndt.mota_thanhphanchinh_muasam;
+
+        tieude2_gioithieu = dndt.tieude2_gioithieu;
+        mota_gioithieu = dndt.mota_gioithieu;
+        hinhanh_mota_gioithieu = dndt.hinhanh_mota_gioithieu;
+    }
+
+    if (string.IsNullOrEmpty(banner_gioithieu))
+    {
+        banner_gioithieu = "~/Content/AdminAreas/images/NoiDungTinh/GioiThieu/Banner/2z5708932492674_1e339065fc38b483bc79e1c28d01086f.jpg";
+    }
+
     ViewBag.Title = "Giới Thiệu";
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
 }
-<section style="background-repeat: no-repeat; background-position: center 0; background-size: cover; background-image: url(/Content/assets/images/ImageBean/bannergioithieu.jpg);">
+<section style="background-repeat: no-repeat; background-position: center 0; background-size: cover; background-image: url(@Url.Content(banner_gioithieu));">
     <div class="flex-c-m" style="background-image: linear-gradient(180deg, #00000000 0%, #122E26 100%); width: 100%; min-height: 545px; padding-left: 15px; padding-right: 15px; background-repeat: no-repeat; background-position: center 0; background-size: cover; ">
         <div>
             <h2 class="tit6 t-center">
@@ -39,12 +74,12 @@
                     <span class="tit2">
                         Về Beanfamily
                     </span>
-                    <h4 class="text-white txt1" style="margin-bottom: 35px; margin-top: 25px; font-size: 42px; font-family: Merriweather, serif !important;">Beanfamily - nhà hàng chay ngon Bình Dương.</h4>
+                    <h4 class="text-white txt1" style="margin-bottom: 35px; margin-top: 25px; font-size: 42px; font-family: Merriweather, serif !important;">@tieude_gioithieu</h4>
 
-                    <div style="background-image: url('/Content/assets/images/ImageBean/z5708938685869_44f923cd3422cc6da332ba580aa5ba46.jpg'); background-size: auto 100%; width: 100%; height: 400px"></div>
+                    <div style="background-image: url('@hinhanh1_gioithieu.Replace("~", "")'); background-size: auto 100%; width: 100%; height: 400px"></div>
                 </div>
                 <div class="col-md-6 col-sm-12">
-                    <div style="background-image: url('/Content/assets/images/ImageBean/382585708_694727149344519_3433722379434549341_n.jpg'); background-size: auto 100%; width: 100%; height: 700px"></div>
+                    <div style="background-image: url('@hinhanh2_gioithieu.Replace("~", "")'); background-size: auto 100%; width: 100%; height: 700px"></div>
                 </div>
             </div>
 
@@ -81,7 +116,7 @@
                                 </a>
 
                                 <p class="m-b-20 text-white">
-                                    Đặt bàn - tiệc, phục vụ những món ăn ngon và đầy đủ dinh dưỡng.
+                                    @mota_thanhphanchinh_nhahang
                                 </p>
 
                                 <a href="@Url.Action("index", "nhahang")" class="txt4">
@@ -103,7 +138,7 @@
                                 </a>
 
                                 <p class="m-b-20 text-white">
-                                    Các loại rau nhà trồng, tìm hiểu công dụng và phương pháp trồng
+                                    @mota_thanhphanchinh_vuonrau
                                 </p>
 
                                 <a href="@Url.Action("index", "vuonrau")" class="txt4">
@@ -125,7 +160,7 @@
                                 </a>
 
                                 <p class="m-b-20 text-white">
-                                    Cửa hàng tạp hóa, mua bán các loại rau củ, thực phẩm thức uống, gia vị.
+                                    @mota_thanhphanchinh_muasam
                                 </p>
 
                                 <a href="@Url.Action("index", "muasam")" class="txt4">
@@ -146,13 +181,13 @@
         <div class="container p-b-40">
             <div class="row" style="padding-top:60px">
                 <div class="col-md-5 col-sm-12" style="display: flex; flex-direction: column; justify-content: center;">
-                    <h4 class="text-white txt1" style="margin-bottom: 35px; margin-top: 25px; font-size: 42px; font-family: Merriweather, serif !important;">Gia Đình Đậu</h4>
+                    <h4 class="text-white txt1" style="margin-bottom: 35px; margin-top: 25px; font-size: 42px; font-family: Merriweather, serif !important;">@tieude2_gioithieu</h4>
                     <p style="font-size: 16px" class="text-white">
-                        Beanfamily - Gia Đình Đậu là một trong những nhà hàng món chay ngon nổi tiếng tại Bình Dương với các món ăn thuần rau củ quả tươi nhiên được chế biến bởi các đầu bếp đầy đam mê và sáng tạo. Beanfamily là địa điểm thân thuộc cho các buổi sinh nhật, gặp mặt gia đình, bạn bè, đồng nghiệp... cùng tận hưởng không gian thanh nhiên tĩnh nhẹ rất khác biệt, Không gian tĩnh lặng, bài trí độc đáo, món ăn thanh nhẹ, nhân viên thân thiện, tất cả hòa quyện nơi đây tạo nên một nét riêng.
+                        @mota_gioithieu
                     </p>
                 </div>
                 <div class="col-md-7 col-sm-12">
-                    <div style="background-image: url('/Content/assets/images/ImageBean/2382148336_694728379344396_4963814383689281368_n.jpg'); background-size: auto 100%; width: 100%; height: 700px"></div>
+                    <div style="background-image: url('@hinhanh_mota_gioithieu.Replace("~", "")'); background-size: auto 100%; width: 100%; height: 700px"></div>
                 </div>
             </div>
 

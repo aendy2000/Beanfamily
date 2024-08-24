@@ -25,6 +25,44 @@
         ngaymocua = tts.ngaymocua;
     }
 
+
+    string banner_trangchu = "";
+    string mota_trangchu = "";
+    string hinhanh_mota_trangchu = "";
+    string mota_thanhphanchinh_nhahang = "";
+    string mota_thanhphanchinh_vuonrau = "";
+    string mota_thanhphanchinh_muasam = "";
+    string mota_sanphammoi_nhahang = "";
+    string mota_sanphammoi_vuonrau = "";
+    string mota_sanphammoi_muasam = "";
+    string mota_sanphamnoibat_nhahang = "";
+    string mota_sanphamnoibat_vuonrau = "";
+    string mota_sanphamnoibat_muasam = "";
+    var ndt = models.BoCucNoiDungTinhWebsite.ToList();
+    if (ndt.Count > 0)
+    {
+        var dndt = ndt.First();
+        banner_trangchu = dndt.banner_trangchu;
+        mota_trangchu = dndt.mota_trangchu;
+        hinhanh_mota_trangchu = dndt.hinhanh_mota_trangchu;
+        mota_thanhphanchinh_nhahang = dndt.mota_thanhphanchinh_nhahang;
+        mota_thanhphanchinh_vuonrau = dndt.mota_thanhphanchinh_vuonrau;
+        mota_thanhphanchinh_muasam = dndt.mota_thanhphanchinh_muasam;
+        mota_sanphammoi_nhahang = dndt.mota_sanphammoi_nhahang;
+        mota_sanphammoi_vuonrau = dndt.mota_sanphammoi_vuonrau;
+        mota_sanphammoi_muasam = dndt.mota_sanphammoi_muasam;
+        mota_sanphamnoibat_nhahang = dndt.mota_sanphamnoibat_nhahang;
+        mota_sanphamnoibat_vuonrau = dndt.mota_sanphamnoibat_vuonrau;
+        mota_sanphamnoibat_muasam = dndt.mota_sanphamnoibat_muasam;
+    }
+
+    if (string.IsNullOrEmpty(banner_trangchu))
+    {
+        banner_trangchu = "~/Content/AdminAreas/images/NoiDungTinh/GioiThieu/Banner/2z5708932492674_1e339065fc38b483bc79e1c28d01086f.jpg";
+    }
+
+    int i = 0;
+
     ViewBag.Title = "Trang Chủ";
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
 }
@@ -33,143 +71,53 @@
 <section class="section-slide" style=" height: 100%;">
     <div class="wrap-slick1">
         <div class="slick1">
-            <div class="item-slick1 item1-slick1" style="background-image: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7) ), url(/Content/assets/images/ImageBean/z5708932492674_1e339065fc38b483bc79e1c28d01086f.jpg); margin: 0">
-                <div style="width: 100%; height: 100%; background-image: linear-gradient(180deg, #00000000 20%, #122E26 100%); ">
-                    <div class="gio-mo-cua">
-                        <div class="container">
-                            <h4 class="txt13 m-b-10">
-                                Giờ mở cửa
-                            </h4>
+            @foreach (var item in banner_trangchu.Split('#').ToList())
+            {
+                <div class="item-slick1 item@(i)-slick1" style="background-image: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7) ), url(@Url.Content(item)); margin: 0">
+                    <div style="width: 100%; height: 100%; background-image: linear-gradient(180deg, #00000000 20%, #122E26 100%); ">
+                        <div class="gio-mo-cua">
+                            <div class="container">
+                                <h4 class="txt13 m-b-10">
+                                    Giờ mở cửa
+                                </h4>
 
-                            <ul>
-                                <li class="text-white" style="font-size: 16px">
-                                    @giomocua
-                                </li>
+                                <ul>
+                                    <li class="text-white" style="font-size: 16px">
+                                        @giomocua
+                                    </li>
 
-                                <li class="text-white" style="font-size: 16px">
-                                    @ngaymocua
-                                </li>
+                                    <li class="text-white" style="font-size: 16px">
+                                        @ngaymocua
+                                    </li>
 
-                                <li class="text-white" style="font-size: 16px; margin-top: 20px; cursor: pointer" onclick="location.href = 'tel:@phone'">
-                                    <b>Phone:</b> @phone
-                                </li>
-                                <li class="text-white" style="font-size: 16px; cursor: pointer" onclick="location.href = 'nailto:@mail'">
-                                    <b>Email:</b> @mail
-                                </li>
-                            </ul>
+                                    <li class="text-white" style="font-size: 16px; margin-top: 20px; cursor: pointer" onclick="location.href = 'tel:@phone'">
+                                        <b>Phone:</b> @phone
+                                    </li>
+                                    <li class="text-white" style="font-size: 16px; cursor: pointer" onclick="location.href = 'nailto:@mail'">
+                                        <b>Email:</b> @mail
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                    <div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
-                        <span class="caption1-slide1 txt1 t-center animated visible-false m-b-15" data-appear="fadeInDown">
-                            Nhà hàng chay
-                        </span>
+                        <div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
+                            <span class="caption1-slide1 txt1 t-center animated visible-false m-b-15" data-appear="fadeInDown">
+                                Nhà hàng chay
+                            </span>
 
-                        <h2 class="caption2-slide1 tit1 t-center animated visible-false m-b-37" data-appear="fadeInUp">
-                            Bean Family
-                        </h2>
+                            <h2 class="caption2-slide1 tit1 t-center animated visible-false m-b-37" data-appear="fadeInUp">
+                                Bean Family
+                            </h2>
 
-                        <div class="wrap-btn-slide1 animated visible-false" data-appear="zoomIn">
-                            <!-- Button1 -->
-                            <a href="~/Content/assets/menu.html" class="btn1 flex-c-m size1 txt3 trans-0-4">
-                                Liên Hệ Đặt Bàn
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="item-slick1 item2-slick1" style="background-image: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7) ), url(/Content/assets/images/ImageBean/z5708935562863_34aec4dc613a45c1f7275dd2e69e49e3.jpg); background-color: rgba(0, 0, 0, 0.5); margin: 0 ">
-                <div style="width: 100%; height: 100%; background-image: linear-gradient(180deg, #00000000 20%, #122E26 100%); ">
-
-                    <div class="gio-mo-cua">
-                        <div class="container">
-                            <h4 class="txt13 m-b-10">
-                                Giờ mở cửa
-                            </h4>
-
-                            <ul>
-                                <li class="text-white" style="font-size: 16px">
-                                    @giomocua
-                                </li>
-
-                                <li class="text-white" style="font-size: 16px">
-                                    @ngaymocua
-                                </li>
-
-                                <li class="text-white" style="font-size: 16px; margin-top: 20px">
-                                    <b>Phone:</b> @phone
-                                </li>
-                                <li class="text-white" style="font-size: 16px">
-                                    <b>Email:</b> @mail
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
-                        <span class="caption1-slide1 txt1 t-center animated visible-false m-b-15" data-appear="fadeInDown">
-                            Nhà hàng chay
-                        </span>
-
-                        <h2 class="caption2-slide1 tit1 t-center animated visible-false m-b-37" data-appear="fadeInUp">
-                            Bean Family
-                        </h2>
-
-                        <div class="wrap-btn-slide1 animated visible-false" data-appear="zoomIn">
-                            <!-- Button1 -->
-                            <a href="~/Content/assets/menu.html" class="btn1 flex-c-m size1 txt3 trans-0-4">
-                                Liên Hệ Đặt Bàn
-                            </a>
+                            <div class="wrap-btn-slide1 animated visible-false" data-appear="zoomIn">
+                                <!-- Button1 -->
+                                <a href="~/Content/assets/menu.html" class="btn1 flex-c-m size1 txt3 trans-0-4">
+                                    Liên Hệ Đặt Bàn
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="item-slick1 item3-slick1" style="background-image: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7) ), url(/Content/assets/images/ImageBean/382148336_694728379344396_4963814383689281368_n.jpg); margin: 0 ">
-                <div style="width: 100%; height: 100%; background-image: linear-gradient(180deg, #00000000 20%, #122E26 100%); ">
-
-                    <div class="gio-mo-cua">
-                        <div class="container">
-                            <h4 class="txt13 m-b-10">
-                                Giờ mở cửa
-                            </h4>
-
-                            <ul>
-                                <li class="text-white" style="font-size: 16px">
-                                    @giomocua
-                                </li>
-
-                                <li class="text-white" style="font-size: 16px">
-                                    @ngaymocua
-                                </li>
-
-                                <li class="text-white" style="font-size: 16px; margin-top: 20px">
-                                    <b>Phone:</b> @phone
-                                </li>
-                                <li class="text-white" style="font-size: 16px">
-                                    <b>Email:</b> @mail
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
-                        <span class="caption1-slide1 txt1 t-center animated visible-false m-b-15" data-appear="fadeInDown">
-                            Nhà hàng chay
-                        </span>
-
-                        <h2 class="caption2-slide1 tit1 t-center animated visible-false m-b-37" data-appear="fadeInUp">
-                            Bean Family
-                        </h2>
-
-                        <div class="wrap-btn-slide1 animated visible-false" data-appear="zoomIn">
-                            <!-- Button1 -->
-                            <a href="~/Content/assets/menu.html" class="btn1 flex-c-m size1 txt3 trans-0-4">
-                                Liên Hệ Đặt Bàn
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            }
         </div>
         <div class="wrap-slick1-dots"></div>
     </div>
@@ -178,7 +126,7 @@
 <!-- Welcome -->
 <section class="section-welcome bg1-pattern">
     <div class="section-child-bg1">
-        <div class="container  p-t-120 p-b-105">
+        <div class="container  p-t-80 p-b-105">
             <div class="row">
                 <div class="col-md-6 p-t-45 p-b-30">
                     <div class="wrap-text-welcome t-center">
@@ -191,19 +139,19 @@
                         </h3>
 
                         <p class="t-center m-b-22 size3 m-l-r-auto">
-                            Beanfamily - Gia Đình Đậu là một trong những nhà hàng món chay ngon nổi tiếng tại Bình Dương với các món ăn thuần rau củ quả tươi nhiên được chế biến bởi các đầu bếp đầy đam mê và sáng tạo. Beanfamily là địa điểm thân thuộc cho các buổi sinh nhật, gặp mặt gia đình, bạn bè, đồng nghiệp... cùng tận hưởng không gian thanh nhiên tĩnh nhẹ rất khác biệt, Không gian tĩnh lặng, bài trí độc đáo, món ăn thanh nhẹ, nhân viên thân thiện, tất cả hòa quyện nơi đây tạo nên một nét riêng.
+                            @mota_trangchu
                         </p>
 
-                        <a href="~/Content/assets/about.html" class="txt4">
+                        <a href="@Url.Action("index", "about")" class="txt4">
                             Đôi nét về Beanfamily
                             <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
                         </a>
                     </div>
                 </div>
 
-                <div class="col-md-6 p-b-30">
-                    <div class="wrap-pic-welcome size2 bo-rad-16 hov-img-zoom m-l-r-auto" style="margin-top: 13%">
-                        <img src="~/Content/assets/images/product/z4834791087337_dfdc737db5de4d38ad2cdb6544c4b33c.jpg" alt="IMG-OUR" />
+                <div class="col-md-6" style="display: flex; flex-direction: row; align-items: center">
+                    <div class="wrap-pic-welcome size2 bo-rad-16 hov-img-zoom m-l-r-auto">
+                        <img src="@hinhanh_mota_trangchu" alt="IMG-OUR" />
                     </div>
                 </div>
             </div>
@@ -242,7 +190,7 @@
                                 </a>
 
                                 <p class="m-b-20">
-                                    Đặt bàn - tiệc, phục vụ những món ăn ngon và đầy đủ dinh dưỡng.
+                                    @mota_thanhphanchinh_nhahang
                                 </p>
 
                                 <a href="@Url.Action("index", "nhahang")" class="txt4">
@@ -268,7 +216,7 @@
                                 </a>
 
                                 <p class="m-b-20">
-                                    Các loại rau nhà trồng, tìm hiểu công dụng và phương pháp trồng
+                                    @mota_thanhphanchinh_vuonrau
                                 </p>
 
                                 <a href="@Url.Action("index", "vuonrau")" class="txt4">
@@ -294,7 +242,7 @@
                                 </a>
 
                                 <p class="m-b-20">
-                                    Cửa hàng tạp hóa, mua bán các loại rau củ, thực phẩm thức uống, gia vị.
+                                    @mota_thanhphanchinh_muasam
                                 </p>
 
                                 <a href="@Url.Action("index", "muasam")" class="txt4">
@@ -336,7 +284,7 @@
                         </h5>
 
                         <p class="t-center m-b-22 size3 m-l-r-auto">
-                            Beanfamily - Gia Đình Đậu là một trong những nhà hàng món chay ngon nổi tiếng tại Bình Dương với các món ăn thuần rau củ quả tươi nhiên được chế biến bởi các đầu bếp đầy đam mê và sáng tạo. Beanfamily là địa điểm thân thuộc cho các buổi sinh nhật, gặp mặt gia đình, bạn bè, đồng nghiệp... cùng tận hưởng không gian thanh nhiên tĩnh nhẹ rất khác biệt, Không gian tĩnh lặng, bài trí độc đáo, món ăn thanh nhẹ, nhân viên thân thiện, tất cả hòa quyện nơi đây tạo nên một nét riêng.
+                            @mota_sanphammoi_nhahang
                         </p>
 
                         <a href="@Url.Action("index", "nhahang")" class="txt4">
@@ -390,7 +338,7 @@
                             </h5>
 
                             <p class="t-center m-b-22 size3 m-l-r-auto">
-                                Beanfamily - Gia Đình Đậu là một trong những nhà hàng món chay ngon nổi tiếng tại Bình Dương với các món ăn thuần rau củ quả tươi nhiên được chế biến bởi các đầu bếp đầy đam mê và sáng tạo. Beanfamily là địa điểm thân thuộc cho các buổi sinh nhật, gặp mặt gia đình, bạn bè, đồng nghiệp... cùng tận hưởng không gian thanh nhiên tĩnh nhẹ rất khác biệt, Không gian tĩnh lặng, bài trí độc đáo, món ăn thanh nhẹ, nhân viên thân thiện, tất cả hòa quyện nơi đây tạo nên một nét riêng.
+                                @mota_sanphammoi_vuonrau
                             </p>
 
                             <a href="@Url.Action("index", "vuonrau")" class="txt4">
@@ -447,7 +395,7 @@
                         </h5>
 
                         <p class="t-center m-b-22 size3 m-l-r-auto">
-                            Beanfamily - Gia Đình Đậu là một trong những nhà hàng món chay ngon nổi tiếng tại Bình Dương với các món ăn thuần rau củ quả tươi nhiên được chế biến bởi các đầu bếp đầy đam mê và sáng tạo. Beanfamily là địa điểm thân thuộc cho các buổi sinh nhật, gặp mặt gia đình, bạn bè, đồng nghiệp... cùng tận hưởng không gian thanh nhiên tĩnh nhẹ rất khác biệt, Không gian tĩnh lặng, bài trí độc đáo, món ăn thanh nhẹ, nhân viên thân thiện, tất cả hòa quyện nơi đây tạo nên một nét riêng.
+                            @mota_sanphammoi_muasam
                         </p>
 
                         <a href="@Url.Action("index", "muasam")" class="txt4">
@@ -516,7 +464,7 @@
                         </h5>
 
                         <p class="t-center m-b-22 size3 m-l-r-auto">
-                            Beanfamily - Gia Đình Đậu là một trong những nhà hàng món chay ngon nổi tiếng tại Bình Dương với các món ăn thuần rau củ quả tươi nhiên được chế biến bởi các đầu bếp đầy đam mê và sáng tạo. Beanfamily là địa điểm thân thuộc cho các buổi sinh nhật, gặp mặt gia đình, bạn bè, đồng nghiệp... cùng tận hưởng không gian thanh nhiên tĩnh nhẹ rất khác biệt, Không gian tĩnh lặng, bài trí độc đáo, món ăn thanh nhẹ, nhân viên thân thiện, tất cả hòa quyện nơi đây tạo nên một nét riêng.
+                            @mota_sanphamnoibat_nhahang
                         </p>
 
                         <a href="@Url.Action("index", "nhahang")" class="txt4">
@@ -572,7 +520,7 @@
                             </h5>
 
                             <p class="t-center m-b-22 size3 m-l-r-auto">
-                                Beanfamily - Gia Đình Đậu là một trong những nhà hàng món chay ngon nổi tiếng tại Bình Dương với các món ăn thuần rau củ quả tươi nhiên được chế biến bởi các đầu bếp đầy đam mê và sáng tạo. Beanfamily là địa điểm thân thuộc cho các buổi sinh nhật, gặp mặt gia đình, bạn bè, đồng nghiệp... cùng tận hưởng không gian thanh nhiên tĩnh nhẹ rất khác biệt, Không gian tĩnh lặng, bài trí độc đáo, món ăn thanh nhẹ, nhân viên thân thiện, tất cả hòa quyện nơi đây tạo nên một nét riêng.
+                                @mota_sanphamnoibat_vuonrau
                             </p>
 
                             <a href="@Url.Action("index", "vuonrau")" class="txt4">
@@ -626,7 +574,7 @@
                         </h5>
 
                         <p class="t-center m-b-22 size3 m-l-r-auto">
-                            Beanfamily - Gia Đình Đậu là một trong những nhà hàng món chay ngon nổi tiếng tại Bình Dương với các món ăn thuần rau củ quả tươi nhiên được chế biến bởi các đầu bếp đầy đam mê và sáng tạo. Beanfamily là địa điểm thân thuộc cho các buổi sinh nhật, gặp mặt gia đình, bạn bè, đồng nghiệp... cùng tận hưởng không gian thanh nhiên tĩnh nhẹ rất khác biệt, Không gian tĩnh lặng, bài trí độc đáo, món ăn thanh nhẹ, nhân viên thân thiện, tất cả hòa quyện nơi đây tạo nên một nét riêng.
+                            @mota_sanphamnoibat_muasam
                         </p>
 
                         <a href="@Url.Action("index", "muasam")" class="txt4">
@@ -1062,6 +1010,7 @@
     </div>
 </section>
 <script src="~/Validation/LienHeDatBan/GuiLienHeDatBan.js"></script>
+
 <!-- Review -->
 <!--<section class="section-review bg-brown p-t-115">-->
 <!-- - -->

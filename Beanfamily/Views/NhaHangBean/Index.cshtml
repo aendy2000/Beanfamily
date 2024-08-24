@@ -1,7 +1,35 @@
-﻿
+﻿@using Beanfamily.Models;
 @{
+    BeanfamilyEntities models = new BeanfamilyEntities();
+
     ViewBag.Title = "Nhà hàng";
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
+
+    string banner_nhahang = "";
+    string hinhanh_menuhangngay = "";
+    string hinhanh_menutiecban = "";
+    string hinhanh_menutiecbuffet = "";
+    string mota_menuhangngay = "";
+    string mota_menutiecban = "";
+    string mota_menutiecbuffet = "";
+    var ndt = models.BoCucNoiDungTinhWebsite.ToList();
+    if (ndt.Count > 0)
+    {
+        var dndt = ndt.First();
+        banner_nhahang = dndt.banner_nhahang;
+        hinhanh_menuhangngay = dndt.hinhanh_menuhangngay;
+        hinhanh_menutiecban = dndt.hinhanh_menutiecban;
+        hinhanh_menutiecbuffet = dndt.hinhanh_menutiecbuffet;
+        mota_menuhangngay = dndt.mota_menuhangngay;
+        mota_menutiecban = dndt.mota_menutiecban;
+        mota_menutiecbuffet = dndt.mota_menutiecbuffet;
+    }
+
+    if (string.IsNullOrEmpty(banner_nhahang))
+    {
+        banner_nhahang = "~/Content/AdminAreas/images/NoiDungTinh/GioiThieu/Banner/2z5708932492674_1e339065fc38b483bc79e1c28d01086f.jpg";
+    }
+
 }
 <style>
 
@@ -156,18 +184,18 @@
                     transition-duration: 0s;
                 }
 
-        .nhahanghover{
+        .nhahanghover {
             transition: ease all 1.3s;
         }
 
-        .nhahanghover:hover {
-            background-size: auto 115% !important;
-        }
+            .nhahanghover:hover {
+                background-size: auto 115% !important;
+            }
     }
 </style>
 
 <!-- Title Page -->
-<section style="background-repeat: no-repeat; background-position: center 0; background-size: cover; background-image: url(/Content/assets/images/ImageBean/2z5708932492674_1e339065fc38b483bc79e1c28d01086f.jpg);">
+<section style="background-repeat: no-repeat; background-position: center 0; background-size: cover; background-image: url(@Url.Content(banner_nhahang));">
     <div class="flex-c-m" style="background-image: linear-gradient(180deg, #00000000 0%, #122E26 100%); width: 100%; min-height: 545px; padding-left: 15px; padding-right: 15px; background-repeat: no-repeat; background-position: center 0; background-size: cover; ">
         <div>
             <h2 class="tit6 t-center">
@@ -186,11 +214,11 @@
         <div class="container p-t-60 p-b-40">
             <div class="row">
                 <div class="col-md-4 col-sm-12" style=" height: 460px; padding-right: 20px; padding-left: 20px; margin-bottom: 20px">
-                    <div style="background-image: url('/content/assets/images/master-slides-04.jpg'); background-position-x: center; background-position-y: center; background-repeat: no-repeat; background-size: auto 100%; border: 1px solid #ffc687;" class="card nhahanghover">
+                    <div style="background-image: url('@hinhanh_menuhangngay.Replace("~", "")'); background-position-x: center; background-position-y: center; background-repeat: no-repeat; background-size: auto 100%; border: 1px solid #ffc687;" class="card nhahanghover">
                         <div class="content">
                             <h2 class="title">MENU</h2>
                             <h2 class="title">HẰNG NGÀY</h2>
-                            <p class="copy">Phục vụ cho các bữa ăn hàng ngày hay thực đơn cơm gia đình.</p>
+                            <p class="copy">@mota_menuhangngay</p>
                             <div style="width: 100%" class="d-flex flex-c mt-4">
                                 <a href="@Url.Action("index", "thucdonhangngay")" class="btn1 flex-c-m size1 txt3 trans-0-4">Xem ngay</a>
                             </div>
@@ -198,11 +226,11 @@
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-12" style=" height: 460px; padding-right: 20px; padding-left: 20px; margin-bottom: 20px">
-                    <div style="background-image: url('/content/assets/images/bg-intro-01.jpg'); background-position-x: center; background-position-y: center; background-repeat: no-repeat; background-size: auto 100%; border: 1px solid #ffc687; " class="card nhahanghover">
+                    <div style="background-image: url('@hinhanh_menutiecban.Replace("~", "")'); background-position-x: center; background-position-y: center; background-repeat: no-repeat; background-size: auto 100%; border: 1px solid #ffc687; " class="card nhahanghover">
                         <div class="content">
                             <h2 class="title">MENU</h2>
                             <h2 class="title">TIỆC BÀN</h2>
-                            <p class="copy">Phục vụ các món ăn ngay trên bàn tiệc tại nhà hàng.</p>
+                            <p class="copy">@mota_menutiecban</p>
                             <div style="width: 100%" class="d-flex flex-c mt-4">
                                 <a href="@Url.Action("index", "menutiecban")" class="btn1 flex-c-m size1 txt3 trans-0-4">Xem ngay</a>
                             </div>
@@ -210,11 +238,11 @@
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-12" style=" height: 460px; padding-right: 20px; padding-left: 20px;">
-                    <div style="background-image: url('/content/assets/images/master-slides-03.jpg'); background-position-x: center; background-position-y: center; background-repeat: no-repeat; background-size: auto 100%; border: 1px solid #ffc687;" class="card nhahanghover">
+                    <div style="background-image: url('@hinhanh_menutiecbuffet.Replace("~", "")'); background-position-x: center; background-position-y: center; background-repeat: no-repeat; background-size: auto 100%; border: 1px solid #ffc687;" class="card nhahanghover">
                         <div class="content">
                             <h2 class="title">MENU</h2>
                             <h2 class="title">BUFFET</h2>
-                            <p class="copy">Phục vụ lựa chọn những món ăn hiện có theo sở thích của mình.</p>
+                            <p class="copy">@mota_menutiecbuffet</p>
                             <div style="width: 100%" class="d-flex flex-c mt-4">
                                 <a href="@Url.Action("index", "menubuffet")" class="btn1 flex-c-m size1 txt3 trans-0-4">Xem ngay</a>
                             </div>
@@ -223,6 +251,6 @@
                 </div>
             </div>
         </div>
-        </div>
+    </div>
 </section>
 <script src="~/ActionOnPage/NhaHang/loadPageNhaHang.js"></script>

@@ -601,6 +601,17 @@
                     </ul>
                 </li>
             }
+
+
+            @if (Session["ndt"] != null)
+            {
+                <li class="nav-item">
+                    <a class="nav-link @Session["active-ndt"].ToString().Split('#')[0]" href="@Url.Action("index", "noidungtinh")">
+                        <i class="bi bi-view-stacked"></i>
+                        <span>Nội Dung Trang Tĩnh</span>
+                    </a>
+                </li>
+            }
         </ul>
     </aside>
     <!-- End Sidebar-->
@@ -617,7 +628,7 @@
             Copyright &copy; @DateTime.Now.Year <strong><span>Beanfamily.vn</span></strong>. All Rights Reserved
         </div>
         <div class="credits">
-            Designed by <a target="_blank" href="https://www.aendy.net/">www.Aendy.net</a> | Tel: <a href="tel::0367909248">0367 909 248</a> | Mail: <a href="mailto::info@aendy.net">Info@aendy.net</a>
+            Designed by <a target="_blank" href="https://aendy.net/">Aendy.Net</a> | Tel: <a href="tel::0367909248">0367 909 248</a> | Mail: <a href="mailto::info@aendy.net">Info@aendy.net</a>
         </div>
         <div class="credits">
 

@@ -3,13 +3,28 @@
 @using PagedList;
 @model IPagedList<Beanfamily.Models.DonHangVuonRauMuaSamVaMenuHangNgay>
 @{
+    BeanfamilyEntities models = new BeanfamilyEntities();
+
+    string banner_khac = "";
+    var ndt = models.BoCucNoiDungTinhWebsite.ToList();
+    if (ndt.Count > 0)
+    {
+        var dndt = ndt.First();
+        banner_khac = dndt.banner_khac;
+    }
+
+    if (string.IsNullOrEmpty(banner_khac))
+    {
+        banner_khac = "~/Content/AdminAreas/images/NoiDungTinh/GioiThieu/Banner/2z5708932492674_1e339065fc38b483bc79e1c28d01086f.jpg";
+    }
+
     var tkkh = Session["user-data"] as TaiKhoanKhachHang;
 
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
 }
 
 <!-- Title Page -->
-<section style="background-repeat: no-repeat; background-position: center 0; background-size: cover; background-image: url(/Content/assets/images/ImageBean/2z5708932492674_1e339065fc38b483bc79e1c28d01086f.jpg);">
+<section style="background-repeat: no-repeat; background-position: center 0; background-size: cover; background-image: url(@banner_khac);">
     <div class="flex-c-m" style="background-image: linear-gradient(180deg, #00000000 0%, #122E26 100%); width: 100%; min-height: 545px; padding-left: 15px; padding-right: 15px; background-repeat: no-repeat; background-position: center 0; background-size: cover; ">
         <div>
             <h2 class="tit6 t-center">
