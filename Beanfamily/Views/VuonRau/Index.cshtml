@@ -6,11 +6,16 @@
     BeanfamilyEntities models = new BeanfamilyEntities();
 
     string banner_vuonrau = "";
+    string tieude_vuonrau = "";
+    string mota_vuonrau = "";
+
     var ndt = models.BoCucNoiDungTinhWebsite.ToList();
     if (ndt.Count > 0)
     {
         var dndt = ndt.First();
         banner_vuonrau = dndt.banner_vuonrau;
+        tieude_vuonrau = dndt.tieude_vuonrau;
+        mota_vuonrau = dndt.mota_vuonrau;
     }
 
     if (string.IsNullOrEmpty(banner_vuonrau))
@@ -42,8 +47,14 @@
 <!-- Our menu -->
 <section class="section-ourmenu bg1-pattern">
     <div class="section-child-bg1">
-        <div class="container p-t-60 p-b-40">
+        <div class="container p-t-40 p-b-40">
             <div class="row">
+                <div class="col-12" style="margin-bottom: 55px">
+                    <h4 class="text-white txt1  t-center" style="margin-bottom: 25px; font-size: 42px; font-family: Merriweather, serif !important;">@tieude_vuonrau</h4>
+                    <p style="font-size: 16px" class="text-white mb-4 t-center">
+                        @mota_vuonrau
+                    </p>
+                </div>
                 <div class="col-sm-0 col-md-3 categories_product">
                     <div id="categoried_card" class="card" style="border-top-left-radius: 16px; border-top-right-radius: 16px; border: 0; background: none; position: sticky; top: 120px; margin-bottom: 75px;">
                         <div style="border-top: 2px solid #ffc687; border-left: 2px solid #ffc687; border-right: 2px solid #ffc687; border-top-left-radius: 16px; border-top-right-radius: 16px " class="card-header bg-website font-weight-bold text-white text-uppercase"><i class="fa fa-list"> </i> Danh mục</div>

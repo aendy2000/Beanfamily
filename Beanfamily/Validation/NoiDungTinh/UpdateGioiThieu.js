@@ -247,6 +247,130 @@
     }
 
 
+    //Ảnh 3 tiêu đề 3
+    document.getElementById('hinhanh3_gioithieu').addEventListener('change', suareadImagehinhanh3_gioithieu, false);
+    $(".preview-images-zonehinhanh3_gioithieu").sortable();
+    $('body').on('click', '[id^="suaxoa-hinhanhsp-hinhanh3_gioithieu-"]', function (e) {
+        let fileName = $(this).attr('name');
+        if (fileName.indexOf("daylahinhcu") != -1) {
+            var filenames = fileName.replace('daylahinhcu-', '');
+            $('[id="suaidHinhAnh-hinhcu-hinhanh3_gioithieu-' + filenames + '"]').replaceWith('');
+            $('[id="url-suaidHinhAnh-hinhcu-hinhanh3_gioithieu-' + filenames + '"]').val('');
+        }
+        else {
+            var currentFile = $("#hinhanh3_gioithieu")[0].files;
+            var fileBuffer = new DataTransfer();
+
+            for (let i = 0; i < currentFile.length; i++) {
+                var fileNameArr = currentFile[i].name.replace(/\./g, '').replace(/ /g, '');
+                var fileArr = currentFile[i];
+
+                if (fileName !== fileNameArr) {
+                    fileBuffer.items.add(fileArr);
+                }
+            }
+            $("#hinhanh3_gioithieu")[0].files = fileBuffer.files;
+            suareadImagehinhanh3_gioithieu();
+        }
+    });
+    function suareadImagehinhanh3_gioithieu() {
+        if (window.File && window.FileList && window.FileReader) {
+            var files = $('#hinhanh3_gioithieu')[0].files; //FileList object
+            var output = $(".preview-images-zonehinhanh3_gioithieu");
+            output.html("");
+
+            var arrFilesCount = [];
+            for (var i = 0; i < files.length; i++) {
+                arrFilesCount.push(i);
+                var file = files[i];
+                if (!file.type.match('image')) continue;
+
+                var picReader = new FileReader();
+                picReader.fileNames = file.name;
+                picReader.addEventListener('load', function (event) {
+                    var picFile = event.target;
+                    var fileName = event.target.fileNames;
+                    var html = '<div id="suaidHinhAnh-hinhanh3_gioithieu-' + fileName.replace(/\./g, '').replace(/ /g, '') + '" class="preview-image preview-show-' + fileName.replace(/\./g, '').replace(/ /g, '') + '">' +
+                        '<div id="suaxoa-hinhanhsp-hinhanh3_gioithieu-' + fileName.replace(/\./g, '').replace(/ /g, '') + '" class="image-cancel" name="' + fileName.replace(/\./g, '').replace(/ /g, '') + '"><i class="bi bi-x-circle-fill text-dark"></i></div>' +
+                        '<div class="image-zone"><img id="suapro-img-hinhanh3_gioithieu-' + fileName.replace(/\./g, '').replace(/ /g, '') + '" src="' + picFile.result + '"></div>' +
+                        '</div>';
+
+                    output.append(html);
+                });
+                picReader.readAsDataURL(file);
+            }
+
+            $('[id^="url-suaidHinhAnh-hinhcu-hinhanh3_gioithieu-"]').each(function () {
+                $(this).val('');
+            });
+        } else {
+            console.log('Browser not support');
+        }
+    }
+
+
+    //Ảnh 4 tiêu đề 3
+    document.getElementById('hinhanh4_gioithieu').addEventListener('change', suareadImagehinhanh4_gioithieu, false);
+    $(".preview-images-zonehinhanh4_gioithieu").sortable();
+    $('body').on('click', '[id^="suaxoa-hinhanhsp-hinhanh4_gioithieu-"]', function (e) {
+        let fileName = $(this).attr('name');
+        if (fileName.indexOf("daylahinhcu") != -1) {
+            var filenames = fileName.replace('daylahinhcu-', '');
+            $('[id="suaidHinhAnh-hinhcu-hinhanh4_gioithieu-' + filenames + '"]').replaceWith('');
+            $('[id="url-suaidHinhAnh-hinhcu-hinhanh4_gioithieu-' + filenames + '"]').val('');
+        }
+        else {
+            var currentFile = $("#hinhanh4_gioithieu")[0].files;
+            var fileBuffer = new DataTransfer();
+
+            for (let i = 0; i < currentFile.length; i++) {
+                var fileNameArr = currentFile[i].name.replace(/\./g, '').replace(/ /g, '');
+                var fileArr = currentFile[i];
+
+                if (fileName !== fileNameArr) {
+                    fileBuffer.items.add(fileArr);
+                }
+            }
+            $("#hinhanh4_gioithieu")[0].files = fileBuffer.files;
+            suareadImagehinhanh4_gioithieu();
+        }
+    });
+    function suareadImagehinhanh4_gioithieu() {
+        if (window.File && window.FileList && window.FileReader) {
+            var files = $('#hinhanh4_gioithieu')[0].files; //FileList object
+            var output = $(".preview-images-zonehinhanh4_gioithieu");
+            output.html("");
+
+            var arrFilesCount = [];
+            for (var i = 0; i < files.length; i++) {
+                arrFilesCount.push(i);
+                var file = files[i];
+                if (!file.type.match('image')) continue;
+
+                var picReader = new FileReader();
+                picReader.fileNames = file.name;
+                picReader.addEventListener('load', function (event) {
+                    var picFile = event.target;
+                    var fileName = event.target.fileNames;
+                    var html = '<div id="suaidHinhAnh-hinhanh4_gioithieu-' + fileName.replace(/\./g, '').replace(/ /g, '') + '" class="preview-image preview-show-' + fileName.replace(/\./g, '').replace(/ /g, '') + '">' +
+                        '<div id="suaxoa-hinhanhsp-hinhanh4_gioithieu-' + fileName.replace(/\./g, '').replace(/ /g, '') + '" class="image-cancel" name="' + fileName.replace(/\./g, '').replace(/ /g, '') + '"><i class="bi bi-x-circle-fill text-dark"></i></div>' +
+                        '<div class="image-zone"><img id="suapro-img-hinhanh4_gioithieu-' + fileName.replace(/\./g, '').replace(/ /g, '') + '" src="' + picFile.result + '"></div>' +
+                        '</div>';
+
+                    output.append(html);
+                });
+                picReader.readAsDataURL(file);
+            }
+
+            $('[id^="url-suaidHinhAnh-hinhcu-hinhanh4_gioithieu-"]').each(function () {
+                $(this).val('');
+            });
+        } else {
+            console.log('Browser not support');
+        }
+    }
+
+
     $('body').on('click', '[id="btnLuuThongTinTrangGioiThieu"]', function () {
         var btn = $(this);
         btn.html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"> </span> Vui lòng chờ...');
@@ -272,6 +396,16 @@
         formData.append('hinhanh2_gioithieuCu', hinhanh2_gioithieuCu.substring(0, hinhanh2_gioithieuCu.length - 1));
         formData.append('hinhanh2_gioithieu', $("#hinhanh2_gioithieu")[0].files[0]);
 
+        var hinhanh3_gioithieuCu = "";
+        $('[id^="url-suaidHinhAnh-hinhcu-hinhanh3_gioithieu-"]').each(function () { if ($(this).val().length > 0) hinhanh3_gioithieuCu += $(this).val() + "#"; });
+        formData.append('hinhanh3_gioithieuCu', hinhanh3_gioithieuCu.substring(0, hinhanh3_gioithieuCu.length - 1));
+        formData.append('hinhanh3_gioithieu', $("#hinhanh3_gioithieu")[0].files[0]);
+
+        var hinhanh4_gioithieuCu = "";
+        $('[id^="url-suaidHinhAnh-hinhcu-hinhanh4_gioithieu-"]').each(function () { if ($(this).val().length > 0) hinhanh4_gioithieuCu += $(this).val() + "#"; });
+        formData.append('hinhanh4_gioithieuCu', hinhanh4_gioithieuCu.substring(0, hinhanh4_gioithieuCu.length - 1));
+        formData.append('hinhanh4_gioithieu', $("#hinhanh4_gioithieu")[0].files[0]);
+
         var hinhanh_mota_gioithieuCu = "";
         $('[id^="url-suaidHinhAnh-hinhcu-hinhanh_mota_gioithieu-"]').each(function () { if ($(this).val().length > 0) hinhanh_mota_gioithieuCu += $(this).val() + "#"; });
         formData.append('hinhanh_mota_gioithieuCu', hinhanh_mota_gioithieuCu.substring(0, hinhanh_mota_gioithieuCu.length - 1));
@@ -279,8 +413,11 @@
 
         formData.append('tieude_gioithieu', $('#tieude_gioithieu').val().trim());
         formData.append('tieude2_gioithieu', $('#tieude2_gioithieu').val().trim());
+        formData.append('tieude3_gioithieu', $('#tieude3_gioithieu').val().trim());
+
         formData.append('mota_gioithieu', $('#mota_gioithieu').val().trim());
         formData.append('mota1_gioithieu', $('#mota1_gioithieu').val().trim());
+        formData.append('mota3_gioithieu', $('#mota3_gioithieu').val().trim());
 
         $.ajax({
             error: function (a, xhr, c) { if (a.status == 403 && a.responseText.indexOf("SystemLoginAgain") != -1) { window.location.href = $('body').find('[id="requestPath"]').val() + "admin/dangnhap/logout"; } },

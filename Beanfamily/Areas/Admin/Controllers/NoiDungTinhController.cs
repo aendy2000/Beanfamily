@@ -168,7 +168,11 @@ namespace Beanfamily.Areas.Admin.Controllers
         public ActionResult SaveGioiThieu(List<HttpPostedFileBase> banner_gioithieu, string banner_gioithieuCu,
         HttpPostedFileBase hinhanh1_gioithieu, HttpPostedFileBase hinhanh2_gioithieu,
         HttpPostedFileBase hinhanh_mota_gioithieu, string tieude_gioithieu, string mota1_gioithieu, string tieude2_gioithieu,
-        string hinhanh1_gioithieuCu, string hinhanh2_gioithieuCu, string hinhanh_mota_gioithieuCu, string mota_gioithieu)
+        string hinhanh1_gioithieuCu, string hinhanh2_gioithieuCu, string hinhanh_mota_gioithieuCu, string mota_gioithieu,
+        HttpPostedFileBase hinhanh3_gioithieu, HttpPostedFileBase hinhanh4_gioithieu,
+        string hinhanh3_gioithieuCu, string hinhanh4_gioithieuCu,
+        string tieude3_gioithieu, string mota3_gioithieu
+            )
         {
             try
             {
@@ -273,6 +277,66 @@ namespace Beanfamily.Areas.Admin.Controllers
                 path = "";
                 pathDirectory = "";
 
+                string strList_hinhanh3_gioithieu = "";
+                if (hinhanh3_gioithieu != null)
+                {
+                    var item = hinhanh3_gioithieu;
+
+                    if (item != null)
+                    {
+                        if (item.ContentLength > 0)
+                        {
+                            pathDirectory = Path.Combine(Server.MapPath("~/Content/AdminAreas/images/NoiDungTinh/GioiThieu/hinhanh3_gioithieu"));
+                            if (!Directory.Exists(pathDirectory))
+                            {
+                                Directory.CreateDirectory(pathDirectory);
+                            }
+                            path = Path.Combine(Server.MapPath("~/Content/AdminAreas/images/NoiDungTinh/GioiThieu/hinhanh3_gioithieu"), item.FileName);
+                            item.SaveAs(path);
+                            strList_hinhanh3_gioithieu += "~/Content/AdminAreas/images/NoiDungTinh/GioiThieu/hinhanh3_gioithieu/" + item.FileName + "#";
+                        }
+                    }
+
+                }
+                if (!string.IsNullOrEmpty(strList_hinhanh3_gioithieu))
+                    ndt.hinhanh3_gioithieu = strList_hinhanh3_gioithieu.Substring(0, strList_hinhanh3_gioithieu.Length - 1);
+                else
+                    ndt.hinhanh3_gioithieu = hinhanh3_gioithieuCu;
+
+
+                path = "";
+                pathDirectory = "";
+
+                string strList_hinhanh4_gioithieu = "";
+                if (hinhanh4_gioithieu != null)
+                {
+                    var item = hinhanh4_gioithieu;
+
+                    if (item != null)
+                    {
+                        if (item.ContentLength > 0)
+                        {
+                            pathDirectory = Path.Combine(Server.MapPath("~/Content/AdminAreas/images/NoiDungTinh/GioiThieu/hinhanh4_gioithieu"));
+                            if (!Directory.Exists(pathDirectory))
+                            {
+                                Directory.CreateDirectory(pathDirectory);
+                            }
+                            path = Path.Combine(Server.MapPath("~/Content/AdminAreas/images/NoiDungTinh/GioiThieu/hinhanh4_gioithieu"), item.FileName);
+                            item.SaveAs(path);
+                            strList_hinhanh4_gioithieu += "~/Content/AdminAreas/images/NoiDungTinh/GioiThieu/hinhanh4_gioithieu/" + item.FileName + "#";
+                        }
+                    }
+
+                }
+                if (!string.IsNullOrEmpty(strList_hinhanh4_gioithieu))
+                    ndt.hinhanh4_gioithieu = strList_hinhanh4_gioithieu.Substring(0, strList_hinhanh4_gioithieu.Length - 1);
+                else
+                    ndt.hinhanh4_gioithieu = hinhanh4_gioithieuCu;
+
+
+                path = "";
+                pathDirectory = "";
+
                 string strList_hinhanh_mota_gioithieu = "";
                 if (hinhanh_mota_gioithieu != null)
                 {
@@ -301,8 +365,11 @@ namespace Beanfamily.Areas.Admin.Controllers
 
                 ndt.tieude_gioithieu = tieude_gioithieu;
                 ndt.tieude2_gioithieu = tieude2_gioithieu;
+                ndt.tieude3_gioithieu = tieude3_gioithieu;
+
                 ndt.mota_gioithieu = mota_gioithieu;
                 ndt.mota1_gioithieu = mota1_gioithieu;
+                ndt.mota3_gioithieu = mota3_gioithieu;
 
                 model.Entry(ndt).State = EntityState.Modified;
                 model.SaveChanges();
@@ -320,6 +387,7 @@ namespace Beanfamily.Areas.Admin.Controllers
         HttpPostedFileBase hinhanh_menuhangngay, string hinhanh_menuhangngayCu,
         HttpPostedFileBase hinhanh_menutiecban, string hinhanh_menutiecbanCu,
         HttpPostedFileBase hinhanh_menutiecbuffet, string hinhanh_menutiecbuffetCu,
+        string tieude_nhahang, string mota_nhahang,
         string mota_menuhangngay, string mota_menutiecban, string mota_menutiecbuffet)
         {
             try
@@ -454,6 +522,8 @@ namespace Beanfamily.Areas.Admin.Controllers
                 ndt.mota_menuhangngay = mota_menuhangngay;
                 ndt.mota_menutiecban = mota_menutiecban;
                 ndt.mota_menutiecbuffet = mota_menutiecbuffet;
+                ndt.tieude_nhahang = tieude_nhahang;
+                ndt.mota_nhahang = mota_nhahang;
 
                 model.Entry(ndt).State = EntityState.Modified;
                 model.SaveChanges();
@@ -629,7 +699,8 @@ namespace Beanfamily.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult SaveVuonRau(List<HttpPostedFileBase> banner_vuonrau, string banner_vuonrauCu)
+        public ActionResult SaveVuonRau(List<HttpPostedFileBase> banner_vuonrau, string banner_vuonrauCu,
+        string tieude_vuonrau, string mota_vuonrau)
         {
             try
             {
@@ -670,6 +741,9 @@ namespace Beanfamily.Areas.Admin.Controllers
                     ndt.banner_vuonrau = strList_banner_vuonrau.Substring(0, strList_banner_vuonrau.Length - 1);
                 else
                     ndt.banner_vuonrau = banner_vuonrauCu;
+
+                ndt.tieude_vuonrau = tieude_vuonrau;
+                ndt.mota_vuonrau = mota_vuonrau;
 
                 model.Entry(ndt).State = EntityState.Modified;
                 model.SaveChanges();

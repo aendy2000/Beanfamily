@@ -277,6 +277,9 @@
         formData.append('hinhanh_menutiecbuffetCu', hinhanh_menutiecbuffetCu.substring(0, hinhanh_menutiecbuffetCu.length - 1));
         formData.append('hinhanh_menutiecbuffet', $("#hinhanh_menutiecbuffet")[0].files[0]);
 
+        formData.append('tieude_nhahang', $('#tieude_nhahang').val().trim());
+        formData.append('mota_nhahang', $('#mota_nhahang').val().trim());
+
         formData.append('mota_menuhangngay', $('#mota_menuhangngay').val().trim());
         formData.append('mota_menutiecban', $('#mota_menutiecban').val().trim());
         formData.append('mota_menutiecbuffet', $('#mota_menutiecbuffet').val().trim());

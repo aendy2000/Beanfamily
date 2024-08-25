@@ -55,6 +55,14 @@
           <Property Name="hinhanh_menutiecban" Type="nvarchar(max)" />
           <Property Name="hinhanh_menutiecbuffet" Type="nvarchar(max)" />
           <Property Name="mota1_gioithieu" Type="nvarchar(max)" />
+          <Property Name="tieude_nhahang" Type="nvarchar(max)" />
+          <Property Name="mota_nhahang" Type="nvarchar(max)" />
+          <Property Name="tieude_vuonrau" Type="nvarchar(max)" />
+          <Property Name="mota_vuonrau" Type="nvarchar(max)" />
+          <Property Name="tieude3_gioithieu" Type="nvarchar(max)" />
+          <Property Name="mota3_gioithieu" Type="nvarchar(max)" />
+          <Property Name="hinhanh3_gioithieu" Type="nvarchar(max)" />
+          <Property Name="hinhanh4_gioithieu" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="CacBuocQuyTrinhTrongCay">
           <Key>
@@ -1392,6 +1400,14 @@
           <Property Name="hinhanh_menutiecban" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="hinhanh_menutiecbuffet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="mota1_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="tieude_nhahang" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="mota_nhahang" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="tieude_vuonrau" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="mota_vuonrau" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="tieude3_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="mota3_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="hinhanh3_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="hinhanh4_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="CacBuocQuyTrinhTrongCay">
           <Key>
@@ -2782,6 +2798,14 @@
           <EntitySetMapping Name="BoCucNoiDungTinhWebsite">
             <EntityTypeMapping TypeName="BeanfamilyModel.BoCucNoiDungTinhWebsite">
               <MappingFragment StoreEntitySet="BoCucNoiDungTinhWebsite">
+                <ScalarProperty Name="hinhanh4_gioithieu" ColumnName="hinhanh4_gioithieu" />
+                <ScalarProperty Name="hinhanh3_gioithieu" ColumnName="hinhanh3_gioithieu" />
+                <ScalarProperty Name="mota3_gioithieu" ColumnName="mota3_gioithieu" />
+                <ScalarProperty Name="tieude3_gioithieu" ColumnName="tieude3_gioithieu" />
+                <ScalarProperty Name="mota_vuonrau" ColumnName="mota_vuonrau" />
+                <ScalarProperty Name="tieude_vuonrau" ColumnName="tieude_vuonrau" />
+                <ScalarProperty Name="mota_nhahang" ColumnName="mota_nhahang" />
+                <ScalarProperty Name="tieude_nhahang" ColumnName="tieude_nhahang" />
                 <ScalarProperty Name="mota1_gioithieu" ColumnName="mota1_gioithieu" />
                 <ScalarProperty Name="hinhanh_menutiecbuffet" ColumnName="hinhanh_menutiecbuffet" />
                 <ScalarProperty Name="hinhanh_menutiecban" ColumnName="hinhanh_menutiecban" />

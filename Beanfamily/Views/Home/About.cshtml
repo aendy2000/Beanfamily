@@ -19,13 +19,15 @@
     string hinhanh1_gioithieu = "";
     string hinhanh2_gioithieu = "";
 
-    string mota_thanhphanchinh_nhahang = "";
-    string mota_thanhphanchinh_vuonrau = "";
-    string mota_thanhphanchinh_muasam = "";
-
     string tieude2_gioithieu = "";
     string mota_gioithieu = "";
     string hinhanh_mota_gioithieu = "";
+
+    string tieude3_gioithieu = "";
+    string mota3_gioithieu = "";
+    string hinhanh3_gioithieu = "";
+    string hinhanh4_gioithieu = "";
+
     var ndt = models.BoCucNoiDungTinhWebsite.ToList();
     if (ndt.Count > 0)
     {
@@ -36,18 +38,39 @@
         hinhanh1_gioithieu = dndt.hinhanh1_gioithieu;
         hinhanh2_gioithieu = dndt.hinhanh2_gioithieu;
 
-        mota_thanhphanchinh_nhahang = dndt.mota_thanhphanchinh_nhahang;
-        mota_thanhphanchinh_vuonrau = dndt.mota_thanhphanchinh_vuonrau;
-        mota_thanhphanchinh_muasam = dndt.mota_thanhphanchinh_muasam;
-
         tieude2_gioithieu = dndt.tieude2_gioithieu;
         mota_gioithieu = dndt.mota_gioithieu;
         hinhanh_mota_gioithieu = dndt.hinhanh_mota_gioithieu;
+
+        tieude3_gioithieu = dndt.tieude3_gioithieu;
+        mota3_gioithieu = dndt.mota3_gioithieu;
+        hinhanh3_gioithieu = dndt.hinhanh3_gioithieu;
+        hinhanh4_gioithieu = dndt.hinhanh4_gioithieu;
     }
 
     if (string.IsNullOrEmpty(banner_gioithieu))
     {
         banner_gioithieu = "~/Content/AdminAreas/images/NoiDungTinh/GioiThieu/Banner/2z5708932492674_1e339065fc38b483bc79e1c28d01086f.jpg";
+    }
+    if (!string.IsNullOrEmpty(hinhanh1_gioithieu))
+    {
+        hinhanh1_gioithieu = hinhanh1_gioithieu.Replace("~", "");
+    }
+    if (!string.IsNullOrEmpty(hinhanh2_gioithieu))
+    {
+        hinhanh2_gioithieu = hinhanh2_gioithieu.Replace("~", "");
+    }
+    if (!string.IsNullOrEmpty(hinhanh3_gioithieu))
+    {
+        hinhanh3_gioithieu = hinhanh3_gioithieu.Replace("~", "");
+    }
+    if (!string.IsNullOrEmpty(hinhanh4_gioithieu))
+    {
+        hinhanh4_gioithieu = hinhanh4_gioithieu.Replace("~", "");
+    }
+    if (!string.IsNullOrEmpty(hinhanh_mota_gioithieu))
+    {
+        hinhanh_mota_gioithieu = hinhanh_mota_gioithieu.Replace("~", "");
     }
 
     ViewBag.Title = "Giới Thiệu";
@@ -80,10 +103,10 @@
                     <p style="font-size: 16px" class="text-white mb-4">
                         @mota1_gioithieu
                     </p>
-                    <div style="background-image: url('@hinhanh1_gioithieu.Replace("~", "")'); background-size: auto 100%; width: 100%; height: 400px"></div>
+                    <div style="background-image: url('@hinhanh1_gioithieu'); background-size: auto 100%; width: 100%; height: 400px"></div>
                 </div>
                 <div class="col-md-6 col-sm-12">
-                    <div style="background-image: url('@hinhanh2_gioithieu.Replace("~", "")'); background-size: auto 100%; width: 100%; height: 700px"></div>
+                    <div style="background-image: url('@hinhanh2_gioithieu'); background-size: auto 100%; width: 100%; height: 700px"></div>
                 </div>
             </div>
 
@@ -97,104 +120,38 @@
                 </div>*@
         </div>
     </div>
-    <div class="header-intro parallax100 t-center" style="display:flex;flex-direction: column; justify-content: center ;height: 850px ;background-image: url(/Content/assets/images/ImageBean/2z5708935792217_91c04c63af0590076f807189fc0d4b5a.jpg);">
-        <div>
-            <span class="tit2 p-l-15 p-r-15">
-                Tổng hợp 3 thành phần
-            </span>
-
-            <h3 class="tit4 t-center p-l-15 p-r-15 p-t-3">
-                Thương Hiệu Chính
-            </h3>
-
-            <div class="container  p-t-77 p-b-133">
-                <div class="row">
-                    <div class="col-md-4 p-t-30 t-center">
-                        <!-- Block1 -->
-                        <div class="blo1 blogioithieu" style="border: 2px solid #ffc678; padding-bottom: 35px; backdrop-filter: blur(5px);">
-                            <div class="wrap-text-blo1 p-t-35">
-                                <a href="@Url.Action("index", "nhahang")">
-                                    <h4 class="txt5-b color0-hov trans-0-4 m-b-13">
-                                        Nhà hàng
-                                    </h4>
-                                </a>
-
-                                <p class="m-b-20 text-white">
-                                    @mota_thanhphanchinh_nhahang
-                                </p>
-
-                                <a href="@Url.Action("index", "nhahang")" class="txt4">
-                                    Xem ngay
-                                    <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4 p-t-30 t-center">
-                        <!-- Block1 -->
-                        <div class="blo1 blogioithieu" style="border: 2px solid #ffc678; padding-bottom: 35px; backdrop-filter: blur(5px);">
-                            <div class="wrap-text-blo1 p-t-35">
-                                <a href="@Url.Action("index", "vuonrau")">
-                                    <h4 class="txt5-b color0-hov trans-0-4 m-b-13">
-                                        vườn rau
-                                    </h4>
-                                </a>
-
-                                <p class="m-b-20 text-white">
-                                    @mota_thanhphanchinh_vuonrau
-                                </p>
-
-                                <a href="@Url.Action("index", "vuonrau")" class="txt4">
-                                    Xem ngay
-                                    <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4 p-t-30 t-center">
-                        <!-- Block1 -->
-                        <div class="blo1 blogioithieu" style="border: 2px solid #ffc678; padding-bottom: 35px; backdrop-filter: blur(5px);">
-                            <div class="wrap-text-blo1 p-t-35">
-                                <a href="@Url.Action("index", "muasam")">
-                                    <h4 class="txt5-b color0-hov trans-0-4 m-b-13">
-                                        Mua sắm
-                                    </h4>
-                                </a>
-
-                                <p class="m-b-20 text-white">
-                                    @mota_thanhphanchinh_muasam
-                                </p>
-
-                                <a href="@Url.Action("index", "muasam")" class="txt4">
-                                    Xem ngay
-                                    <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-
 
     <div class="section-child-bg1">
         <div class="container p-b-40">
             <div class="row" style="padding-top:60px">
+                <div class="col-md-7 col-sm-12">
+                    <div style="background-image: url('@hinhanh_mota_gioithieu'); background-size: auto 100%; width: 100%; height: 700px"></div>
+                </div>
                 <div class="col-md-5 col-sm-12" style="display: flex; flex-direction: column; justify-content: center;">
                     <h4 class="text-white txt1" style="margin-bottom: 35px; margin-top: 25px; font-size: 42px; font-family: Merriweather, serif !important;">@tieude2_gioithieu</h4>
                     <p style="font-size: 16px" class="text-white">
                         @mota_gioithieu
                     </p>
                 </div>
-                <div class="col-md-7 col-sm-12">
-                    <div style="background-image: url('@hinhanh_mota_gioithieu.Replace("~", "")'); background-size: auto 100%; width: 100%; height: 700px"></div>
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="section-child-bg1">
+        <div class="container p-b-40">
+            <div class="row" style="padding-top:60px; display: flex; flex-direction: row; align-items: center">
+                <div class="col-md-6 col-sm-12">
+                    <h4 class="text-white txt1" style="margin-bottom: 35px; margin-top: 25px; font-size: 42px; font-family: Merriweather, serif !important;">@tieude3_gioithieu</h4>
+                    <p style="font-size: 16px" class="text-white mb-4">
+                        @mota3_gioithieu
+                    </p>
+                    <div style="background-image: url('@hinhanh3_gioithieu'); background-size: auto 100%; width: 100%; height: 400px"></div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div style="background-image: url('@hinhanh4_gioithieu'); background-size: auto 100%; width: 100%; height: 700px"></div>
                 </div>
             </div>
-
 
             <div class="row" style="margin-top: 80px">
                 <div class="col-12">

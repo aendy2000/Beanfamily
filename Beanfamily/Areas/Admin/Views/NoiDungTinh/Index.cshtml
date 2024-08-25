@@ -21,8 +21,14 @@
     string tieude2_gioithieu = "";
     string mota_gioithieu = "";
     string hinhanh_mota_gioithieu = "";
+    string tieude3_gioithieu = "";
+    string mota3_gioithieu = "";
+    string hinhanh3_gioithieu = "";
+    string hinhanh4_gioithieu = "";
 
     string banner_nhahang = "";
+    string tieude_nhahang = "";
+    string mota_nhahang = "";
     string hinhanh_menuhangngay = "";
     string hinhanh_menutiecban = "";
     string hinhanh_menutiecbuffet = "";
@@ -34,6 +40,8 @@
     string banner_tiecban = "";
     string banner_buffet = "";
     string banner_vuonrau = "";
+    string tieude_vuonrau = "";
+    string mota_vuonrau = "";
     string banner_muasam = "";
     string banner_hinhanh = "";
     string banner_khac = "";
@@ -63,8 +71,14 @@
         tieude2_gioithieu = dndt.tieude2_gioithieu;
         mota_gioithieu = dndt.mota_gioithieu;
         hinhanh_mota_gioithieu = dndt.hinhanh_mota_gioithieu;
+        tieude3_gioithieu = dndt.tieude3_gioithieu;
+        mota3_gioithieu = dndt.mota3_gioithieu;
+        hinhanh3_gioithieu = dndt.hinhanh3_gioithieu;
+        hinhanh4_gioithieu = dndt.hinhanh4_gioithieu;
 
         banner_nhahang = dndt.banner_nhahang;
+        tieude_nhahang = dndt.tieude_nhahang;
+        mota_nhahang = dndt.mota_nhahang;
         hinhanh_menuhangngay = dndt.hinhanh_menuhangngay;
         hinhanh_menutiecban = dndt.hinhanh_menutiecban;
         hinhanh_menutiecbuffet = dndt.hinhanh_menutiecbuffet;
@@ -76,6 +90,8 @@
         banner_tiecban = dndt.banner_tiecban;
         banner_buffet = dndt.banner_buffet;
         banner_vuonrau = dndt.banner_vuonrau;
+        tieude_vuonrau = dndt.tieude_vuonrau;
+        mota_vuonrau = dndt.mota_vuonrau;
         banner_muasam = dndt.banner_muasam;
         banner_hinhanh = dndt.banner_hinhanh;
         banner_khac = dndt.banner_khac;
@@ -102,6 +118,7 @@
 
 <section class="section">
     <div class="row">
+        <!--Trang chủ-->
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
@@ -260,6 +277,7 @@
             </div>
         </div>
 
+        <!--Giới thiệu-->
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
@@ -389,6 +407,57 @@
                                             </div>
                                         </div>
 
+
+                                        <div class="col-12 mb-3">
+                                            <label for="tieude3_gioithieu" class="col-12 col-form-label">Tiêu đề 3:</label>
+                                            <input value="@tieude3_gioithieu" id="tieude3_gioithieu" type="text" placeholder="Nhập nội dung tiêu đề 3" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control" />
+                                        </div>
+                                        <div class="col-12 mb-4">
+                                            <label for="mota3_gioithieu" class="col-12 col-form-label">Nội dung mô tả 3:</label>
+                                            <textarea id="mota3_gioithieu" rows="4" type="text" placeholder="Nhập nội dung mô tả" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control">@mota3_gioithieu</textarea>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12 mb-4">
+                                            <fieldset class="form-group">
+                                                <a class="btn btn-sm btn-primary mb-2" onclick="$('#hinhanh3_gioithieu').click()"><i class="bi bi-images me-1"></i> Tải lên hình ảnh</a> <small class="text-muted fst-italic">(Chọn 1 hình ảnh 3).</small>
+                                                <input accept="image/jpeg, image/png" type="file" id="hinhanh3_gioithieu" name="hinhanh3_gioithieu[]" style="display: none;" class="form-control">
+                                            </fieldset>
+                                            <div class="preview-images-zone preview-images-zonehinhanh3_gioithieu form-control" style="height: 140px !important">
+                                                @if (!string.IsNullOrEmpty(hinhanh3_gioithieu))
+                                                {
+                                                    var item = hinhanh3_gioithieu;
+                                                    int lastindex = item.LastIndexOf("/") + 1;
+                                                    int childLength = item.Length - lastindex;
+                                                    <div id="suaidHinhAnh-hinhcu-hinhanh3_gioithieu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" class="preview-image preview-show-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")">
+                                                        <div id="suaxoa-hinhanhsp-hinhanh3_gioithieu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" class="image-cancel" name="daylahinhcu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")"><i class="bi bi-x-circle-fill text-dark"></i></div>
+                                                        <div class="image-zone"><img id="@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" src="@Url.Content(item)"></div>
+                                                    </div>
+                                                    <input id="url-suaidHinhAnh-hinhcu-hinhanh3_gioithieu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" value="@Url.Content(item)" hidden />
+
+                                                }
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6 col-sm-12 mb-4">
+                                            <fieldset class="form-group">
+                                                <a class="btn btn-sm btn-primary mb-2" onclick="$('#hinhanh4_gioithieu').click()"><i class="bi bi-images me-1"></i> Tải lên hình ảnh</a> <small class="text-muted fst-italic">(Chọn 1 hình ảnh 4).</small>
+                                                <input accept="image/jpeg, image/png" type="file" id="hinhanh4_gioithieu" name="hinhanh4_gioithieu[]" style="display: none;" class="form-control">
+                                            </fieldset>
+                                            <div class="preview-images-zone preview-images-zonehinhanh4_gioithieu form-control" style="height: 140px !important">
+                                                @if (!string.IsNullOrEmpty(hinhanh4_gioithieu))
+                                                {
+                                                    var item = hinhanh4_gioithieu;
+                                                    int lastindex = item.LastIndexOf("/") + 1;
+                                                    int childLength = item.Length - lastindex;
+                                                    <div id="suaidHinhAnh-hinhcu-hinhanh4_gioithieu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" class="preview-image preview-show-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")">
+                                                        <div id="suaxoa-hinhanhsp-hinhanh4_gioithieu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" class="image-cancel" name="daylahinhcu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")"><i class="bi bi-x-circle-fill text-dark"></i></div>
+                                                        <div class="image-zone"><img id="@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" src="@Url.Content(item)"></div>
+                                                    </div>
+                                                    <input id="url-suaidHinhAnh-hinhcu-hinhanh4_gioithieu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" value="@Url.Content(item)" hidden />
+
+                                                }
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -402,6 +471,7 @@
             </div>
         </div>
 
+        <!--Nhà hàng-->
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
@@ -448,6 +518,15 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="row ms-2 me-2 mb-4 mt-4">
+                                        <div class="col-12 mb-3">
+                                            <label for="tieude_nhahang" class="col-12 col-form-label">Tiêu đề nhà hàng:</label>
+                                            <input value="@tieude_nhahang" id="tieude_nhahang" type="text" placeholder="Nhập nội dung tiêu đề" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control" />
+                                        </div>
+                                        <div class="col-12 mb-4">
+                                            <label for="mota_nhahang" class="col-12 col-form-label">Nội dung mô tả nhà hàng:</label>
+                                            <textarea id="mota_nhahang" rows="4" type="text" placeholder="Nhập nội dung mô tả" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control">@mota_nhahang</textarea>
+                                        </div>
+
                                         <div class="col-12 mb-3">
                                             <label for="mota_menuhangngay" class="col-12 col-form-label">Mô tả danh mục thực đơn hằng ngày:</label>
                                             <input value="@mota_menuhangngay" id="mota_menuhangngay" type="text" placeholder="Nhập nội dung mô tả danh mục thực đơn hằng ngày" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control" />
@@ -717,6 +796,25 @@
 
                                                 }
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Nội dung trang</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row ms-2 me-2 mb-4 mt-4">
+                                        <div class="col-12 mb-3">
+                                            <label for="tieude_vuonrau" class="col-12 col-form-label">Tiêu đề vườn rau:</label>
+                                            <input value="@tieude_vuonrau" id="tieude_vuonrau" type="text" placeholder="Nhập nội dung tiêu đề" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control" />
+                                        </div>
+                                        <div class="col-12 mb-4">
+                                            <label for="mota_vuonrau" class="col-12 col-form-label">Nội dung mô tả vườn rau:</label>
+                                            <textarea id="mota_vuonrau" rows="4" type="text" placeholder="Nhập nội dung mô tả" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control">@mota_vuonrau</textarea>
                                         </div>
                                     </div>
                                 </div>

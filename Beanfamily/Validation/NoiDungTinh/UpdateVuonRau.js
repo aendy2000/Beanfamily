@@ -76,6 +76,9 @@
         $('[id^="url-suaidHinhAnh-hinhcu-banner_vuonrau-"]').each(function () { if ($(this).val().length > 0) banner_vuonrauCu += $(this).val() + "#"; });
         formData.append('banner_vuonrauCu', banner_vuonrauCu.substring(0, banner_vuonrauCu.length - 1));
 
+        formData.append('tieude_vuonrau', $('#tieude_vuonrau').val().trim());
+        formData.append('mota_vuonrau', $('#mota_vuonrau').val().trim());
+
         $.ajax({
             error: function (a, xhr, c) { if (a.status == 403 && a.responseText.indexOf("SystemLoginAgain") != -1) { window.location.href = $('body').find('[id="requestPath"]').val() + "admin/dangnhap/logout"; } },
             url: $('#requestPath').val() + "admin/noidungtinh/savevuonrau",

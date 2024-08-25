@@ -6,6 +6,8 @@
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
 
     string banner_nhahang = "";
+    string tieude_nhahang = "";
+    string mota_nhahang = "";
     string hinhanh_menuhangngay = "";
     string hinhanh_menutiecban = "";
     string hinhanh_menutiecbuffet = "";
@@ -17,6 +19,8 @@
     {
         var dndt = ndt.First();
         banner_nhahang = dndt.banner_nhahang;
+        tieude_nhahang = dndt.tieude_nhahang;
+        mota_nhahang = dndt.mota_nhahang;
         hinhanh_menuhangngay = dndt.hinhanh_menuhangngay;
         hinhanh_menutiecban = dndt.hinhanh_menutiecban;
         hinhanh_menutiecbuffet = dndt.hinhanh_menutiecbuffet;
@@ -28,6 +32,19 @@
     if (string.IsNullOrEmpty(banner_nhahang))
     {
         banner_nhahang = "~/Content/AdminAreas/images/NoiDungTinh/GioiThieu/Banner/2z5708932492674_1e339065fc38b483bc79e1c28d01086f.jpg";
+    }
+
+    if (!string.IsNullOrEmpty(hinhanh_menuhangngay))
+    {
+        hinhanh_menuhangngay = hinhanh_menuhangngay.Replace("~", "");
+    }
+    if (!string.IsNullOrEmpty(hinhanh_menutiecban))
+    {
+        hinhanh_menutiecban = hinhanh_menutiecban.Replace("~", "");
+    }
+    if (!string.IsNullOrEmpty(hinhanh_menutiecbuffet))
+    {
+        hinhanh_menutiecbuffet = hinhanh_menutiecbuffet.Replace("~", "");
     }
 
 }
@@ -211,10 +228,16 @@
 </section>
 <section class="section-ourmenu bg1-pattern">
     <div class="section-child-bg1">
-        <div class="container p-t-60 p-b-40">
+        <div class="container p-t-40 p-b-40">
             <div class="row">
+                <div class="col-12" style="margin-bottom: 55px">
+                    <h4 class="text-white txt1  t-center" style="margin-bottom: 25px; font-size: 42px; font-family: Merriweather, serif !important;">@tieude_nhahang</h4>
+                    <p style="font-size: 16px" class="text-white mb-4 t-center">
+                        @mota_nhahang
+                    </p>
+                </div>
                 <div class="col-md-4 col-sm-12" style=" height: 460px; padding-right: 20px; padding-left: 20px; margin-bottom: 20px">
-                    <div style="background-image: url('@hinhanh_menuhangngay.Replace("~", "")'); background-position-x: center; background-position-y: center; background-repeat: no-repeat; background-size: auto 100%; border: 1px solid #ffc687;" class="card nhahanghover">
+                    <div style="background-image: url('@hinhanh_menuhangngay'); background-position-x: center; background-position-y: center; background-repeat: no-repeat; background-size: auto 100%; border: 1px solid #ffc687;" class="card nhahanghover">
                         <div class="content">
                             <h2 class="title">MENU</h2>
                             <h2 class="title">HẰNG NGÀY</h2>
@@ -226,7 +249,7 @@
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-12" style=" height: 460px; padding-right: 20px; padding-left: 20px; margin-bottom: 20px">
-                    <div style="background-image: url('@hinhanh_menutiecban.Replace("~", "")'); background-position-x: center; background-position-y: center; background-repeat: no-repeat; background-size: auto 100%; border: 1px solid #ffc687; " class="card nhahanghover">
+                    <div style="background-image: url('@hinhanh_menutiecban'); background-position-x: center; background-position-y: center; background-repeat: no-repeat; background-size: auto 100%; border: 1px solid #ffc687; " class="card nhahanghover">
                         <div class="content">
                             <h2 class="title">MENU</h2>
                             <h2 class="title">TIỆC BÀN</h2>
@@ -238,7 +261,7 @@
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-12" style=" height: 460px; padding-right: 20px; padding-left: 20px;">
-                    <div style="background-image: url('@hinhanh_menutiecbuffet.Replace("~", "")'); background-position-x: center; background-position-y: center; background-repeat: no-repeat; background-size: auto 100%; border: 1px solid #ffc687;" class="card nhahanghover">
+                    <div style="background-image: url('@hinhanh_menutiecbuffet'); background-position-x: center; background-position-y: center; background-repeat: no-repeat; background-size: auto 100%; border: 1px solid #ffc687;" class="card nhahanghover">
                         <div class="content">
                             <h2 class="title">MENU</h2>
                             <h2 class="title">BUFFET</h2>

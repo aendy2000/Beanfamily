@@ -359,15 +359,15 @@
     <!-- Footer -->
     <footer class="bg1-bottom">
         <div class="bottom-child-bg1">
-            <div class="container p-t-40 p-b-70">
+            <div class="container p-t-40">
                 <div class="row">
-                    <div class="col-sm-6 col-md-6 p-t-50">
+                    <div class="col-sm-12 col-md-12 p-t-50 t-center">
                         <!-- - -->
                         <h4 class="txt13 m-b-33">
                             Thông Tin Liên Hệ
                         </h4>
 
-                        <ul class="m-b-70">
+                        <ul>
                             <li class="txt14 m-b-14" style="cursor: pointer" onclick="window.open('@linkchiduong','mywindow')">
                                 <i class="fa fa-map-marker fs-16 dis-inline-block size19" aria-hidden="true"></i>
                                 @diachi
@@ -432,63 +432,6 @@
                             </span>
                         </div>
                     </div>-->
-
-                    <div class="col-sm-6 col-md-6 p-t-50">
-                        <!-- - -->
-                        <h4 class="txt13 m-b-38">
-                            Hình Ảnh Nhà Hàng Bean
-                        </h4>
-
-                        <!-- Gallery footer -->
-                        <div class="wrap-gallery-footer flex-w">
-                            <div class="hinhanhbean-list row">
-
-                                <div class="col-6 row">
-                                    @{
-                                        i = 0;
-                                    }
-                                    @foreach (var item in models.HinhAnhBean.ToList())
-                                    {
-                                        i++;
-                                        if (i > 4)
-                                        {
-                                            break;
-                                        }
-                                        <div class="col-6">
-                                            <a class="item-gallery-footer wrap-pic-w" style="width: 100%; " href="@Url.Content(item.url)" data-lightbox="gallery-footer">
-                                                <img style="width: 100%; height: 100px; object-fit: cover; border-radius: 16px;" src="@Url.Content(item.url)" />
-                                            </a>
-                                        </div>
-                                    }
-
-                                </div>
-
-                                <div class="col-6 row">
-                                    @{
-                                        i = 0;
-                                    }
-                                    @foreach (var item in models.HinhAnhBean.ToList())
-                                    {
-                                        i++;
-                                        if (i < 5)
-                                        {
-                                            continue;
-                                        }
-                                        else if (i > 8)
-                                        {
-                                            break;
-                                        }
-                                        <div class="col-6">
-                                            <a class="item-gallery-footer wrap-pic-w" style="width: 100%;" href="@Url.Content(item.url)" data-lightbox="gallery-footer">
-                                                <img style="width: 100%; height: 100px; object-fit: cover; border-radius: 16px;" src="@Url.Content(item.url)" />
-                                            </a>
-                                        </div>
-                                    }
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
 
