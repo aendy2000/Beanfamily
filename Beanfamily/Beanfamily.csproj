@@ -340,6 +340,39 @@
     <Content Include="Content\AdminAreas\assets\img\ggsearch.png" />
     <Content Include="Content\AdminAreas\assets\img\profile-img.png" />
     <Content Include="Content\AdminAreas\assets\vendor\table2excel\jquery.table2excel.min.js" />
+    <Content Include="Content\AdminAreas\images\HinhAnhBean\025747112315082024z4834603311054_c4d6e1cc01e6d48e9fdc7d37c1a5370c.jpg" />
+    <Content Include="Content\AdminAreas\images\HinhAnhBean\087117080823082024IMG_7908.jpg" />
+    <Content Include="Content\AdminAreas\images\HinhAnhBean\1034347112315082024z4834791073770_3def198199493386a71af7b5bae066ed.jpg" />
+    <Content Include="Content\AdminAreas\images\HinhAnhBean\1134747112315082024z4834791075584_30ccc45e0a1a02c59445dd760de86f18.jpg" />
+    <Content Include="Content\AdminAreas\images\HinhAnhBean\1235247112315082024z4834791075626_1488c6046d57199e4f43784f3e737876.jpg" />
+    <Content Include="Content\AdminAreas\images\HinhAnhBean\128447112315082024z4834603316494_d2ddcec7044ac24714c7a270940aa91a.jpg" />
+    <Content Include="Content\AdminAreas\images\HinhAnhBean\1335847112315082024z4834791078401_18b860cd1a09fbe8ba4155981d2dc446.jpg" />
+    <Content Include="Content\AdminAreas\images\HinhAnhBean\1436447112315082024z4834791078410_d6f7481c96504ce170ea3ab6c110ad42.jpg" />
+    <Content Include="Content\AdminAreas\images\HinhAnhBean\1536947112315082024z4834791078437_d255e83a28d193e347e6205096502cbf.jpg" />
+    <Content Include="Content\AdminAreas\images\HinhAnhBean\1637547112315082024z4834791087337_dfdc737db5de4d38ad2cdb6544c4b33c.jpg" />
+    <Content Include="Content\AdminAreas\images\HinhAnhBean\1738147112315082024z4834791087691_f8cef859d270b5d6b810a8cd2c3691c3.jpg" />
+    <Content Include="Content\AdminAreas\images\HinhAnhBean\1838747112315082024z4834791087894_5a513b76e2e392969e702da9e5ce5e7d.jpg" />
+    <Content Include="Content\AdminAreas\images\HinhAnhBean\1939147112315082024z4834791089848_c3eab8a77fd6cec1fd385efd6c6ef642.jpg" />
+    <Content Include="Content\AdminAreas\images\HinhAnhBean\2039747112315082024z4834791099512_ed698e7f88ea4e89e247eb79a9732a3c.jpg" />
+    <Content Include="Content\AdminAreas\images\HinhAnhBean\2140247112315082024z4834791099560_20f917482c74860e2dc177d6b51a574c.jpg" />
+    <Content Include="Content\AdminAreas\images\HinhAnhBean\2240747112315082024z4834791100714_8298c1320402ae30b964f2bd5d73bb37.jpg" />
+    <Content Include="Content\AdminAreas\images\HinhAnhBean\229147112315082024z4834603316703_b92d4fd5e2bff3866632502e184a29ef.jpg" />
+    <Content Include="Content\AdminAreas\images\HinhAnhBean\2341247112315082024z4834791100808_0e1f3e66036ae7d0c1b077809efab3a3.jpg" />
+    <Content Include="Content\AdminAreas\images\HinhAnhBean\2441847112315082024z4834791100937_dbfa8bc9732faee18836ff78c35deccf.jpg" />
+    <Content Include="Content\AdminAreas\images\HinhAnhBean\2543047112315082024z4834791100945_268d3223a83d8d5cc37bedb189e923ae.jpg" />
+    <Content Include="Content\AdminAreas\images\HinhAnhBean\2643547112315082024z4834791103359_7fd09034e7d4bb35e858a0d29fa4998b.jpg" />
+    <Content Include="Content\AdminAreas\images\HinhAnhBean\2743947112315082024z4834791104137_7dd93a4a33dd7090c08cf36b3db3becb.jpg" />
+    <Content Include="Content\AdminAreas\images\HinhAnhBean\2844547112315082024z4834791105341_fbfb939c49c2bbcd4a9d2163696abcf6.jpg" />
+    <Content Include="Content\AdminAreas\images\HinhAnhBean\2944947112315082024z4834791106136_58928f8c0ff889fe02ecb6cdd42137a0.jpg" />
+    <Content Include="Content\AdminAreas\images\HinhAnhBean\3045547112315082024z4834791113456_eb17e21272883169471b36555879f6a3.jpg" />
+    <Content Include="Content\AdminAreas\images\HinhAnhBean\3146047112315082024z4836233741803_5fcec22844a5d14baa88735cc75d444d.jpg" />
+    <Content Include="Content\AdminAreas\images\HinhAnhBean\329847112315082024z4834603316936_7dce5ea4456d08384751a0c36fc97054.jpg" />
+    <Content Include="Content\AdminAreas\images\HinhAnhBean\430347112315082024z4834603318946_a0d89e7e2746ad2c653822e65bd95411.jpg" />
+    <Content Include="Content\AdminAreas\images\HinhAnhBean\531547112315082024z4834603323199_715e0839b6a46d19ea1a79928d0470f5.jpg" />
+    <Content Include="Content\AdminAreas\images\HinhAnhBean\632247112315082024z4834603328083_97f59aeeb4f64f92726eba33db2de938.jpg" />
+    <Content Include="Content\AdminAreas\images\HinhAnhBean\732747112315082024z4834603336694_fcd50a69287a7c2f079304ac13e5fc12.jpg" />
+    <Content Include="Content\AdminAreas\images\HinhAnhBean\833347112315082024z4834603339861_6621a8c2a2d128011021a43232eee40d.jpg" />
+    <Content Include="Content\AdminAreas\images\HinhAnhBean\933847112315082024z4834791067763_67e79c795ddade585f626e8ce41abdb9.jpg" />
     <Content Include="Content\assets\images\ImageBean\bannergioithieu.jpg" />
     <Content Include="Content\assets\images\ImageBean\2382148336_694728379344396_4963814383689281368_n.jpg" />
     <Content Include="Content\assets\images\ImageBean\2z5708932492674_1e339065fc38b483bc79e1c28d01086f.jpg" />
@@ -3076,7 +3109,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Content\AdminAreas\images\HinhAnhBean\" />
     <Folder Include="Content\AdminAreas\images\taikhoanbean\" />
     <Folder Include="Content\assets\vendor\splide\" />
   </ItemGroup>
