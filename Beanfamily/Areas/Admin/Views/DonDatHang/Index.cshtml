@@ -135,7 +135,14 @@
                                     </td>
 
                                     <td>
-                                        <small class="me-4">@item.hinhthucthanhtoan</small>
+                                        @if (item.hinhthucthanhtoan.ToLower().Equals("thanh toán khi nhận hàng"))
+                                        {
+                                            <small class="me-4">@item.hinhthucthanhtoan</small>
+                                        }
+                                        else
+                                        {
+                                            <small class="me-4">@item.hinhthucthanhtoan</small>
+                                        }
                                     </td>
                                     <td>
                                         <ul style="margin-left: -2rem; margin-bottom: 0;">
