@@ -613,7 +613,7 @@ namespace Beanfamily.Areas.Admin.Controllers
                             return Content("SUCCESS");
 
                         bodyMail = bodyMail.Replace("{TitleDonHang}", "BUFFET ĐÃ KẾT THÚC");
-                        bodyMail = bodyMail.Replace("{Content}", "Bữa tiệc của bạn đã kết thúc<br><br>Cảm ơn bạn đã luôn tin dùng sản phẩm và dịch vụ tại Beanfamily.shop");
+                        bodyMail = bodyMail.Replace("{Content}", "Bữa tiệc của bạn đã kết thúc<br><br>Cảm ơn bạn đã luôn tin dùng sản phẩm và dịch vụ tại beanfamily.vn");
                         bodyMail = bodyMail.Replace("{MaDonHang}", ttdh.DonHangMenuBuffet.madonhang);
                     }
                     bodyMail = bodyMail.Replace("{MaDonHang}", ttdh.DonHangMenuBuffet.madonhang);
@@ -739,7 +739,7 @@ namespace Beanfamily.Areas.Admin.Controllers
                                                                         "Nội dung: <strong>" + ghichu + "</strong><br>" +
                                                                         "Bởi NV: <strong>" + Session["user-fullname"].ToString() + "</strong> | <strong>" +
                                                                         "NV" + Int32.Parse(Session["user-id"].ToString()).ToString("D6") + "</strong><br><br>" +
-                                                                        "Cảm ơn bạn đã luôn tin dùng sản phẩm và dịch vụ tại Beanfamily.shop");
+                                                                        "Cảm ơn bạn đã luôn tin dùng sản phẩm và dịch vụ tại beanfamily.vn");
 
 
                         using (MailMessage mailMessage = new MailMessage("beanfamilyshop@gmail.com", dh.email))
@@ -828,7 +828,7 @@ namespace Beanfamily.Areas.Admin.Controllers
                                                                         "Nội dung: <strong>" + ghichu + "</strong><br>" +
                                                                         "Bởi NV: <strong>" + Session["user-fullname"].ToString() + "</strong> | <strong>" +
                                                                         "NV" + Int32.Parse(Session["user-id"].ToString()).ToString("D6") + "</strong><br><br>" +
-                                                                        "Cảm ơn bạn đã luôn tin dùng sản phẩm và dịch vụ tại Beanfamily.shop");
+                                                                        "Cảm ơn bạn đã luôn tin dùng sản phẩm và dịch vụ tại beanfamily.vn");
 
 
                         using (MailMessage mailMessage = new MailMessage("beanfamilyshop@gmail.com", dh.email))

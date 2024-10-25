@@ -603,7 +603,7 @@ namespace Beanfamily.Areas.Admin.Controllers
                         return Content("SUCCESS");
 
                     bodyMail = bodyMail.Replace("{TitleDonHang}", "ĐƯỢC GIAO THÀNH CÔNG");
-                    bodyMail = bodyMail.Replace("{Content}", "Đã hoàn tất giao hàng<br><br>Cảm ơn bạn đã luôn tin dùng sản phẩm và dịch vụ tại Beanfamily.shop");
+                    bodyMail = bodyMail.Replace("{Content}", "Đã hoàn tất giao hàng<br><br>Cảm ơn bạn đã luôn tin dùng sản phẩm và dịch vụ tại beanfamily.vn");
                     bodyMail = bodyMail.Replace("{MaDonHang}", ttdh.DonHangVuonRauMuaSamVaMenuHangNgay.madonhang);
                 }
                 bodyMail = bodyMail.Replace("{MaDonHang}", ttdh.DonHangVuonRauMuaSamVaMenuHangNgay.madonhang);
