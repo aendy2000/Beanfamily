@@ -69,7 +69,7 @@ namespace Beanfamily.Areas.Admin.Controllers
             {
                 var donhang = model.DonHangVuonRauMuaSamVaMenuHangNgay.Where(p => p.ngaydat.Month == i && p.ngaydat.Year == currentYear).ToList();
                 decimal money = 0;
-
+                int lstSoDonHangCount = 0;
                 if (donhang.Count > 0)
                 {
                     foreach (var item in donhang)
@@ -79,11 +79,13 @@ namespace Beanfamily.Areas.Admin.Controllers
                             money += item.ChiTietDonHangSanPhamMuaSam.Sum(s => s.gia * s.soluongmua)
                                 + item.ChiTietDonHangSanPhamRauNhaTrong.Sum(s => s.soluongmua * s.gia)
                                 + item.ChiTietDonHangSanPhamThucDonHangNgay.Sum(s => s.soluongmua * s.gia);
+                            
+                            lstSoDonHangCount++;
                         }
                     }
 
                     listDonHang += money + "-";
-                    listSoDonHang += donhang.Count + "-";
+                    listSoDonHang += lstSoDonHangCount + "-";
                 }
                 else
                 {

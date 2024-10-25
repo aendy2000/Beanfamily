@@ -10,6 +10,7 @@ using System.IO;
 using System.Net.Mail;
 using System.Net;
 using System.Web.Razor.Parser.SyntaxTree;
+using System.Configuration;
 
 namespace Beanfamily.Controllers
 {
@@ -396,6 +397,7 @@ namespace Beanfamily.Controllers
                 return Content("Chi tiết lỗi: " + ex.Message);
             }
         }
+
         public void UpdateCart()
         {
             // Mua sắm

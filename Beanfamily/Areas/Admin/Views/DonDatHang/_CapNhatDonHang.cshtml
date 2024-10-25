@@ -23,7 +23,16 @@
     {
         strTongTien = "0";
     }
-
+    decimal datt = Model.LichSuThanhToanDonHangTongHop.Sum(s => s.sotien);
+    string strDaTT = "";
+    if (datt > 0)
+    {
+        strDaTT = datt.ToString("0,0") + "đ";
+    }
+    else
+    {
+        strDaTT = "0";
+    }
     var ttdh = Model.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First();
 }
 <div class="modal-body" id="content-CapNhatDonHangModal">
@@ -170,6 +179,19 @@
                                 </div>
                             }
                             <div class="col-6 mb-1 text-dark">
+                                Cập nhật thanh toán:
+                            </div>
+                            <div class="col-6 mb-1 text-end text-dark">
+                                @if (datt == 0)
+                                {
+                                    <a id="confirmThanhToan" name="@Model.id" typecontent="dathanhtoan" class="btn btn-outline-success" title="Chọn để xác nhận đơn hàng đã được thanh toán">Xác nhận đã thanh toán</a>
+                                }
+                                else
+                                {
+                                    <a id="confirmThanhToan" name="@Model.id" typecontent="chuathanhtoan" class="btn btn-outline-danger" title="Chọn để xác nhận đơn hàng chưa được thanh toán">Xác nhận chưa thanh toán</a>
+                                }
+                            </div>
+                            <div class="col-6 mb-1 text-dark">
                                 Chi tiết:
                             </div>
                             <div class="col-6 mb-1 text-end text-dark">
@@ -177,7 +199,7 @@
                             </div>
 
                             <div class="col-6 text-dark">
-                                Cập nhật:
+                                Cập nhật cuối:
                             </div>
                             <div class="col-6 text-end small mt-1">
                                 <i class="bi bi-clock-history"></i>
@@ -255,7 +277,10 @@
                             <div class="col-6 text-end text-dark">
                                 <h6><b>@strTongTien</b></h6>
                             </div>
-
+                            <div class="col-6 text-dark"><h6><b>Đã thanh toán:</b></h6></div>
+                            <div class="col-6 text-end text-dark">
+                                <h6><b>@strDaTT</b></h6>
+                            </div>
                         </div>
                     </div>
                 </div>

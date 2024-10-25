@@ -358,26 +358,29 @@ namespace Beanfamily.Areas.Admin.Controllers
                         ttdhnew.tieude = "Hoàn thành";
                         ttdhnew.noidung = "Xác nhận giao thành công bởi " + Session["user-fullname"].ToString() + " - NV" + Int32.Parse(Session["user-id"].ToString()).ToString("D6");
 
-                        var donhangmuassam = dh.ChiTietDonHangSanPhamMuaSam.ToList();
-                        var donhangvuonrau = dh.ChiTietDonHangSanPhamRauNhaTrong.ToList();
-                        var donhangthucdonhangngay = dh.ChiTietDonHangSanPhamThucDonHangNgay.ToList();
+                        if (dh.hinhthucthanhtoan.ToLower().Equals("thanh toán khi nhận hàng"))
+                        {
+                            var donhangmuassam = dh.ChiTietDonHangSanPhamMuaSam.ToList();
+                            var donhangvuonrau = dh.ChiTietDonHangSanPhamRauNhaTrong.ToList();
+                            var donhangthucdonhangngay = dh.ChiTietDonHangSanPhamThucDonHangNgay.ToList();
 
-                        decimal tongTien = donhangmuassam.Sum(s => s.gia * s.soluongmua)
-                            + donhangvuonrau.Sum(s => s.soluongmua * s.gia)
-                            + donhangthucdonhangngay.Sum(s => s.soluongmua * s.gia);
+                            decimal tongTien = donhangmuassam.Sum(s => s.gia * s.soluongmua)
+                                + donhangvuonrau.Sum(s => s.soluongmua * s.gia)
+                                + donhangthucdonhangngay.Sum(s => s.soluongmua * s.gia);
 
-                        LichSuThanhToanDonHangTongHop lstt = new LichSuThanhToanDonHangTongHop();
-                        lstt.madonhang = dh.madonhang;
-                        lstt.id_donhangvuonraumuasamvamenuhangngay = id;
-                        lstt.id_taikhoanbean = Int32.Parse(Session["user-id"].ToString());
-                        lstt.sotien = tongTien;
-                        lstt.thoigian = DateTime.Now;
-                        lstt.tieude = "Thanh toán đơn đặt hàng " + "[" + dh.madonhang + "]";
-                        lstt.noidung = dh.hoten + " | " + dh.dienthoai + " đã thanh toán cho đơn hàng [" + dh.madonhang + "]. Thực hiện bởi " + Session["user-fullname"].ToString() + " - NV" + Int32.Parse(Session["user-id"].ToString()).ToString("D6");
-                        lstt.tenkhachhang = dh.hoten;
-                        lstt.sdtkhachhang = dh.dienthoai;
+                            LichSuThanhToanDonHangTongHop lstt = new LichSuThanhToanDonHangTongHop();
+                            lstt.madonhang = dh.madonhang;
+                            lstt.id_donhangvuonraumuasamvamenuhangngay = id;
+                            lstt.id_taikhoanbean = Int32.Parse(Session["user-id"].ToString());
+                            lstt.sotien = tongTien;
+                            lstt.thoigian = DateTime.Now;
+                            lstt.tieude = "Thanh toán đơn đặt hàng " + "[" + dh.madonhang + "]";
+                            lstt.noidung = dh.hoten + " | " + dh.dienthoai + " đã thanh toán cho đơn hàng [" + dh.madonhang + "]. Thực hiện bởi " + Session["user-fullname"].ToString() + " - NV" + Int32.Parse(Session["user-id"].ToString()).ToString("D6");
+                            lstt.tenkhachhang = dh.hoten;
+                            lstt.sdtkhachhang = dh.dienthoai;
 
-                        model.LichSuThanhToanDonHangTongHop.Add(lstt);
+                            model.LichSuThanhToanDonHangTongHop.Add(lstt);
+                        }
                     }
                     ttdhnew.thoigian = DateTime.Now;
                     model.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.Add(ttdhnew);
@@ -417,26 +420,29 @@ namespace Beanfamily.Areas.Admin.Controllers
                         ttdh.tieude = "Hoàn thành";
                         ttdh.noidung = "Xác nhận giao thành công bởi " + Session["user-fullname"].ToString() + " - NV" + Int32.Parse(Session["user-id"].ToString()).ToString("D6");
 
-                        var donhangmuassam = dh.ChiTietDonHangSanPhamMuaSam.ToList();
-                        var donhangvuonrau = dh.ChiTietDonHangSanPhamRauNhaTrong.ToList();
-                        var donhangthucdonhangngay = dh.ChiTietDonHangSanPhamThucDonHangNgay.ToList();
+                        if (dh.hinhthucthanhtoan.ToLower().Equals("thanh toán khi nhận hàng"))
+                        {
+                            var donhangmuassam = dh.ChiTietDonHangSanPhamMuaSam.ToList();
+                            var donhangvuonrau = dh.ChiTietDonHangSanPhamRauNhaTrong.ToList();
+                            var donhangthucdonhangngay = dh.ChiTietDonHangSanPhamThucDonHangNgay.ToList();
 
-                        decimal tongTien = donhangmuassam.Sum(s => s.gia * s.soluongmua)
-                            + donhangvuonrau.Sum(s => s.soluongmua * s.gia)
-                            + donhangthucdonhangngay.Sum(s => s.soluongmua * s.gia);
+                            decimal tongTien = donhangmuassam.Sum(s => s.gia * s.soluongmua)
+                                + donhangvuonrau.Sum(s => s.soluongmua * s.gia)
+                                + donhangthucdonhangngay.Sum(s => s.soluongmua * s.gia);
 
-                        LichSuThanhToanDonHangTongHop lstt = new LichSuThanhToanDonHangTongHop();
-                        lstt.madonhang = dh.madonhang;
-                        lstt.id_donhangvuonraumuasamvamenuhangngay = id;
-                        lstt.id_taikhoanbean = Int32.Parse(Session["user-id"].ToString());
-                        lstt.sotien = tongTien;
-                        lstt.thoigian = DateTime.Now;
-                        lstt.tieude = "Thanh toán đơn đặt hàng " + "[" + dh.madonhang + "]";
-                        lstt.noidung = dh.hoten + " | " + dh.dienthoai + " đã thanh toán cho đơn hàng [" + dh.madonhang + "]. Thực hiện bởi " + Session["user-fullname"].ToString() + " - NV" + Int32.Parse(Session["user-id"].ToString()).ToString("D6");
-                        lstt.tenkhachhang = dh.hoten;
-                        lstt.sdtkhachhang = dh.dienthoai;
+                            LichSuThanhToanDonHangTongHop lstt = new LichSuThanhToanDonHangTongHop();
+                            lstt.madonhang = dh.madonhang;
+                            lstt.id_donhangvuonraumuasamvamenuhangngay = id;
+                            lstt.id_taikhoanbean = Int32.Parse(Session["user-id"].ToString());
+                            lstt.sotien = tongTien;
+                            lstt.thoigian = DateTime.Now;
+                            lstt.tieude = "Thanh toán đơn đặt hàng " + "[" + dh.madonhang + "]";
+                            lstt.noidung = dh.hoten + " | " + dh.dienthoai + " đã thanh toán cho đơn hàng [" + dh.madonhang + "]. Thực hiện bởi " + Session["user-fullname"].ToString() + " - NV" + Int32.Parse(Session["user-id"].ToString()).ToString("D6");
+                            lstt.tenkhachhang = dh.hoten;
+                            lstt.sdtkhachhang = dh.dienthoai;
 
-                        model.LichSuThanhToanDonHangTongHop.Add(lstt);
+                            model.LichSuThanhToanDonHangTongHop.Add(lstt);
+                        }
                     }
                     ttdh.thoigian = DateTime.Now;
                     model.Entry(ttdh).State = EntityState.Modified;
@@ -622,6 +628,52 @@ namespace Beanfamily.Areas.Admin.Controllers
                 }
 
                 return Content("SUCCESS");
+            }
+            catch (Exception Ex)
+            {
+                return Content("Chi tiết lỗi: " + Ex.Message);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult TrangThaiThanhToan(int id, string loai)
+        {
+            try
+            {
+                var dh = model.DonHangVuonRauMuaSamVaMenuHangNgay.Find(id);
+                if (dh == null)
+                    return Content("NOTEXIST");
+
+                model.LichSuThanhToanDonHangTongHop.RemoveRange(dh.LichSuThanhToanDonHangTongHop);
+                model.SaveChanges();
+
+                if (loai.Equals("dathanhtoan"))
+                {
+                    var donhangmuassam = dh.ChiTietDonHangSanPhamMuaSam.ToList();
+                    var donhangvuonrau = dh.ChiTietDonHangSanPhamRauNhaTrong.ToList();
+                    var donhangthucdonhangngay = dh.ChiTietDonHangSanPhamThucDonHangNgay.ToList();
+
+                    decimal tongTien = donhangmuassam.Sum(s => s.gia * s.soluongmua)
+                        + donhangvuonrau.Sum(s => s.soluongmua * s.gia)
+                        + donhangthucdonhangngay.Sum(s => s.soluongmua * s.gia);
+
+                    LichSuThanhToanDonHangTongHop lstt = new LichSuThanhToanDonHangTongHop();
+                    lstt.madonhang = dh.madonhang;
+                    lstt.id_donhangvuonraumuasamvamenuhangngay = id;
+                    lstt.id_taikhoanbean = Int32.Parse(Session["user-id"].ToString());
+                    lstt.sotien = tongTien;
+                    lstt.thoigian = DateTime.Now;
+                    lstt.tieude = "Thanh toán đơn đặt hàng " + "[" + dh.madonhang + "]";
+                    lstt.noidung = dh.hoten + " | " + dh.dienthoai + " đã thanh toán cho đơn hàng [" + dh.madonhang + "]. Thực hiện bởi " + Session["user-fullname"].ToString() + " - NV" + Int32.Parse(Session["user-id"].ToString()).ToString("D6");
+                    lstt.tenkhachhang = dh.hoten;
+                    lstt.sdtkhachhang = dh.dienthoai;
+
+                    model.LichSuThanhToanDonHangTongHop.Add(lstt);
+                    model.SaveChanges();
+                    model = new BeanfamilyEntities();
+                }
+
+                return PartialView("_CapNhatDonHang", dh);
             }
             catch (Exception Ex)
             {

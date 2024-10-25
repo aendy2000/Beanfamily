@@ -136,7 +136,7 @@ w.TinhTrangDonHangMenuBuffet.First().tieude.Equals("Đã xác nhận")).Count())
                                     <td>
                                         @if (item.TinhTrangDonHangMenuBuffet.First().tieude.Equals("Đã hủy"))
                                         {
-                                            <span class="badge bg-danger me-2">
+                                            <span class="badge bg-danger me-2" role="button" data-bs-toggle="tooltip" data-bs-placement="top" title="@item.TinhTrangDonHangMenuBuffet.First().noidung">
                                                 @item.TinhTrangDonHangMenuBuffet.First().tieude
                                             </span>
                                             <input hidden id="inpTrangThaiDonHang@(item.id)" value="@item.TinhTrangDonHangMenuBuffet.First().tieude" />
@@ -149,7 +149,7 @@ w.TinhTrangDonHangMenuBuffet.First().tieude.Equals("Đã xác nhận")).Count())
                                             <= item.LichSuThanhToanDonHangTongHop.Sum(s => s.sotien)
                                             && item.TinhTrangDonHangMenuBuffet.First().tieude.Equals("Hoàn thành"))
                                         {
-                                            <span class="badge bg-success me-2">
+                                            <span class="badge bg-success me-2" role="button" data-bs-toggle="tooltip" data-bs-placement="top" title="@item.TinhTrangDonHangMenuBuffet.First().noidung">
                                                 @item.TinhTrangDonHangMenuBuffet.First().tieude
                                             </span>
                                             <input hidden id="inpTrangThaiDonHang@(item.id)" value="@item.TinhTrangDonHangMenuBuffet.First().tieude" />
@@ -157,7 +157,7 @@ w.TinhTrangDonHangMenuBuffet.First().tieude.Equals("Đã xác nhận")).Count())
                                         }
                                         @if (item.TinhTrangDonHangMenuBuffet.First().tieude.Equals("Chờ duyệt"))
                                         {
-                                            <span class="badge bg-warning me-2">
+                                            <span class="badge bg-warning me-2" role="button" data-bs-toggle="tooltip" data-bs-placement="top" title="@item.TinhTrangDonHangMenuBuffet.First().noidung">
                                                 @item.TinhTrangDonHangMenuBuffet.First().tieude
                                             </span>
                                             <input hidden id="inpTrangThaiDonHang@(item.id)" value="@item.TinhTrangDonHangMenuBuffet.First().tieude" />
@@ -165,7 +165,7 @@ w.TinhTrangDonHangMenuBuffet.First().tieude.Equals("Đã xác nhận")).Count())
                                         }
                                         @if (item.TinhTrangDonHangMenuBuffet.First().tieude.Equals("Đã lên món"))
                                         {
-                                            <span class="badge bg-primary me-2">
+                                            <span class="badge bg-primary me-2" role="button" data-bs-toggle="tooltip" data-bs-placement="top" title="@item.TinhTrangDonHangMenuBuffet.First().noidung">
                                                 @item.TinhTrangDonHangMenuBuffet.First().tieude
                                             </span>
                                             <input hidden id="inpTrangThaiDonHang@(item.id)" value="@item.TinhTrangDonHangMenuBuffet.First().tieude" />
@@ -174,7 +174,7 @@ w.TinhTrangDonHangMenuBuffet.First().tieude.Equals("Đã xác nhận")).Count())
                                         @if (item.TinhTrangDonHangMenuBuffet.First().tieude.Equals("Đã xác nhận")
                                             && (item.ngaybatdau - currentDate).Days < 0)
                                         {
-                                            <span class="badge bg-danger me-2">
+                                            <span class="badge bg-danger me-2" role="button" data-bs-toggle="tooltip" data-bs-placement="top" title="@item.TinhTrangDonHangMenuBuffet.First().noidung">
                                                 Quá hạn @((item.ngaybatdau - currentDate).Days.ToString().Replace("-", "")) ngày
                                             </span>
                                             <input hidden id="inpTrangThaiDonHang@(item.id)" value="Quá hạn @((item.ngaybatdau - currentDate).Days.ToString().Replace("-", "")) ngày" />
@@ -183,7 +183,7 @@ w.TinhTrangDonHangMenuBuffet.First().tieude.Equals("Đã xác nhận")).Count())
                                         @if (item.TinhTrangDonHangMenuBuffet.First().tieude.Equals("Đã xác nhận")
                                             && (item.ngaybatdau - currentDate).Days == 0)
                                         {
-                                            <span class="badge bg-primary me-2">
+                                            <span class="badge bg-primary me-2" role="button" data-bs-toggle="tooltip" data-bs-placement="top" title="@item.TinhTrangDonHangMenuBuffet.First().noidung">
                                                 Đang diễn ra
                                             </span>
                                             <input hidden id="inpTrangThaiDonHang@(item.id)" value="Đang diễn ra" />
@@ -192,7 +192,7 @@ w.TinhTrangDonHangMenuBuffet.First().tieude.Equals("Đã xác nhận")).Count())
                                         @if (item.TinhTrangDonHangMenuBuffet.First().tieude.Equals("Đã xác nhận")
                                             && (item.ngaybatdau - currentDate).Days == 1)
                                         {
-                                            <span class="badge bg-primary me-2">
+                                            <span class="badge bg-primary me-2" role="button" data-bs-toggle="tooltip" data-bs-placement="top" title="@item.TinhTrangDonHangMenuBuffet.First().noidung">
                                                 Diễn ra vào ngày mai
                                             </span>
                                             <input hidden id="inpTrangThaiDonHang@(item.id)" value="Diễn ra vào ngày mai" />
@@ -201,7 +201,7 @@ w.TinhTrangDonHangMenuBuffet.First().tieude.Equals("Đã xác nhận")).Count())
                                         @if (item.TinhTrangDonHangMenuBuffet.First().tieude.Equals("Đã xác nhận")
                                             && (item.ngaybatdau - currentDate).Days >= 2)
                                         {
-                                            <span class="badge bg-primary me-2">
+                                            <span class="badge bg-primary me-2" role="button" data-bs-toggle="tooltip" data-bs-placement="top" title="@item.TinhTrangDonHangMenuBuffet.First().noidung">
                                                 Diễn ra sau @((item.ngaybatdau - currentDate).Days) ngày
                                             </span>
                                             <input hidden id="inpTrangThaiDonHang@(item.id)" value="Diễn ra sau @((item.ngaybatdau - currentDate).Days) ngày" />
@@ -215,7 +215,7 @@ w.TinhTrangDonHangMenuBuffet.First().tieude.Equals("Đã xác nhận")).Count())
                                             > item.LichSuThanhToanDonHangTongHop.Sum(s => s.sotien)
                                             && item.TinhTrangDonHangMenuBuffet.First().tieude.Equals("Hoàn thành"))
                                         {
-                                            <span class="badge bg-danger me-2">
+                                            <span class="badge bg-danger me-2" role="button" data-bs-toggle="tooltip" data-bs-placement="top" title="@item.TinhTrangDonHangMenuBuffet.First().noidung">
                                                 Chờ thanh toán
                                             </span>
                                             <input hidden id="inpTrangThaiDonHang@(item.id)" value="Chờ thanh toán" />
@@ -223,14 +223,10 @@ w.TinhTrangDonHangMenuBuffet.First().tieude.Equals("Đã xác nhận")).Count())
                                         }
                                         <br />
                                         <label class="me-2">
-                                            <small>(@item.TinhTrangDonHangMenuBuffet.First().noidung)</small>
-                                        </label>
-                                        <br />
-                                        <label class="me-2">
                                             <small><i class="bi bi-clock-history"></i> @item.TinhTrangDonHangMenuBuffet.First().thoigian.ToString("HH:mm dd/MM/yyyy")</small>
                                         </label>
                                     </td>
-                                    <td class="text-nowrap">
+                                    <td>
                                         <ul style="margin-left: -2rem; margin-bottom: 0;" class="me-4">
                                             <li>
                                                 <small><b>Mã:</b> @item.madonhang</small>
@@ -264,7 +260,7 @@ w.TinhTrangDonHangMenuBuffet.First().tieude.Equals("Đã xác nhận")).Count())
                                         </ul>
                                     </td>
 
-                                    <td class="text-nowrap">
+                                    <td>
                                         <ul style="margin-left: -2rem; margin-bottom: 0;">
                                             <li>
                                                 <small><b>Họ & Tên:</b> @item.hoten</small>

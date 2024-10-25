@@ -53,6 +53,94 @@
         });
 
     });
+    
+    $('body').on('click', '[id="confirmThanhToan"]', function () {
+        var btn = $(this);
+        var btnTxt = btn.text();
+
+        var id = btn.attr('name');
+        var loai = btn.attr('typecontent');
+
+        var reqs = "Xác nhận cập nhật đơn hàng đã được thanh toán?";
+        if (loai == "chuathanhtoan") {
+            reqs = "Xác nhận cập nhật đơn hàng chưa được thanh toán?";
+        }
+
+        Swal.fire({
+            title: 'Cập nhật thanh toán đơn hàng?',
+            text: reqs,
+            icon: "question",
+            showCancelButton: true,
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Xác nhận",
+            cancelButtonText: "Hủy"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                btn.focus();
+                btn.html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"> </span> Vui lòng chờ...');
+                btn.prop('disabled', true);
+
+                var formData = new FormData();
+                formData.append('id', id);
+                formData.append('loai', loai);
+
+                $.ajax({
+                    error: function (a, xhr, c) { if (a.status == 403 && a.responseText.indexOf("SystemLoginAgain") != -1) { window.location.href = $('body').find('[id="requestPath"]').val() + "admin/dangnhap/logout"; } },
+                    url: $('#requestPath').val() + "admin/dondathang/trangthaithanhtoan",
+                    data: formData,
+                    dataType: 'html',
+                    type: 'POST',
+                    processData: false,
+                    contentType: false
+                }).done(function (ketqua) {
+                    if (ketqua.indexOf("Chi tiết lỗi") != -1) {
+                        btn.html(btnTxt);
+                        btn.prop('disabled', false);
+
+                        Swal.fire({
+                            title: "Đã xảy ra lỗi, vui lòng thử lại sau ít phút.",
+                            text: ketqua,
+                            icon: "error"
+                        }).then(() => {
+                            window.location.reload();
+                        });
+                    }
+                    else if (ketqua == "NOTEXIST") {
+                        btn.html(btnTxt);
+                        btn.prop('disabled', false);
+
+                        Swal.fire({
+                            title: "Đã xảy ra lỗi, vui lòng thử lại sau ít phút.",
+                            text: "Đơn hàng không tồn tại trên hệ thống!",
+                            icon: "error"
+                        }).then(() => {
+                            window.location.reload();
+                        });
+                    }
+                    else {
+                        var name = $('body').find('[id="inpMaDonHang' + id + '"]').val();
+                        var trangthai = $('body').find('[id="inpTrangThaiDonHang' + id + '"]').val();
+
+                        $('body').find('[id="content-CapNhatDonHangModal"]').replaceWith(ketqua);
+                        $('body').find('[id="TitleCapNhatDonHangModal"]').html("Chi tiết đơn hàng <b>" + name + "</b>");
+
+                        if (trangthai.toLowerCase() == "chờ duyệt") {
+                            $('body').find('[id="trangthaidonhang-chitiet"]').text(trangthai).addClass('bg-warning');
+                        }
+                        else if (trangthai.toLowerCase() == "đã hủy" || trangthai.toLowerCase() == "không thành công") {
+                            $('body').find('[id="trangthaidonhang-chitiet"]').text(trangthai).addClass('bg-danger');
+                        }
+                        else if (trangthai.toLowerCase() == "hoàn thành") {
+                            $('body').find('[id="trangthaidonhang-chitiet"]').text(trangthai).addClass('bg-success');
+                        }
+                        else {
+                            $('body').find('[id="trangthaidonhang-chitiet"]').text(trangthai).addClass('bg-primary');
+                        }                        
+                    }
+                });
+            }
+        });
+    });
 
     $('body').find('[id="btnLuuCapNhatDonHang"]').on('click', function () {
         var btn = $(this);

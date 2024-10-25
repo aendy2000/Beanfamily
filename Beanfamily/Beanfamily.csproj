@@ -391,6 +391,8 @@
     <Content Include="Content\assets\images\ImageBean\z5708938685793_b62b58fac6bd8ba24e638868c7784ec8.jpg" />
     <Content Include="Content\assets\images\ImageBean\z5708938685869_44f923cd3422cc6da332ba580aa5ba46.jpg" />
     <Content Include="Content\assets\images\ImageBean\z5708999244990_3426025b3a0a71332ed1c23db3c0acee.jpg" />
+    <Content Include="Content\assets\images\qrpayment\BIDV.jpg" />
+    <Content Include="Content\assets\images\qrpayment\momo.jpg" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="BeanfamilyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="BeanfamilyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ApDungChucNangChoQuyenTaiKhoan">
           <Key>
             <PropertyRef Name="id" />
@@ -1344,7 +1344,8 @@
             <End Role="TonKhoSanPhamMuaSam" EntitySet="TonKhoSanPhamMuaSam" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BeanfamilyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -2798,18 +2799,6 @@
           <EntitySetMapping Name="BoCucNoiDungTinhWebsite">
             <EntityTypeMapping TypeName="BeanfamilyModel.BoCucNoiDungTinhWebsite">
               <MappingFragment StoreEntitySet="BoCucNoiDungTinhWebsite">
-                <ScalarProperty Name="hinhanh4_gioithieu" ColumnName="hinhanh4_gioithieu" />
-                <ScalarProperty Name="hinhanh3_gioithieu" ColumnName="hinhanh3_gioithieu" />
-                <ScalarProperty Name="mota3_gioithieu" ColumnName="mota3_gioithieu" />
-                <ScalarProperty Name="tieude3_gioithieu" ColumnName="tieude3_gioithieu" />
-                <ScalarProperty Name="mota_vuonrau" ColumnName="mota_vuonrau" />
-                <ScalarProperty Name="tieude_vuonrau" ColumnName="tieude_vuonrau" />
-                <ScalarProperty Name="mota_nhahang" ColumnName="mota_nhahang" />
-                <ScalarProperty Name="tieude_nhahang" ColumnName="tieude_nhahang" />
-                <ScalarProperty Name="mota1_gioithieu" ColumnName="mota1_gioithieu" />
-                <ScalarProperty Name="hinhanh_menutiecbuffet" ColumnName="hinhanh_menutiecbuffet" />
-                <ScalarProperty Name="hinhanh_menutiecban" ColumnName="hinhanh_menutiecban" />
-                <ScalarProperty Name="hinhanh_menuhangngay" ColumnName="hinhanh_menuhangngay" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="banner_trangchu" ColumnName="banner_trangchu" />
                 <ScalarProperty Name="mota_trangchu" ColumnName="mota_trangchu" />
@@ -2841,6 +2830,18 @@
                 <ScalarProperty Name="banner_muasam" ColumnName="banner_muasam" />
                 <ScalarProperty Name="banner_hinhanh" ColumnName="banner_hinhanh" />
                 <ScalarProperty Name="banner_khac" ColumnName="banner_khac" />
+                <ScalarProperty Name="hinhanh_menuhangngay" ColumnName="hinhanh_menuhangngay" />
+                <ScalarProperty Name="hinhanh_menutiecban" ColumnName="hinhanh_menutiecban" />
+                <ScalarProperty Name="hinhanh_menutiecbuffet" ColumnName="hinhanh_menutiecbuffet" />
+                <ScalarProperty Name="mota1_gioithieu" ColumnName="mota1_gioithieu" />
+                <ScalarProperty Name="tieude_nhahang" ColumnName="tieude_nhahang" />
+                <ScalarProperty Name="mota_nhahang" ColumnName="mota_nhahang" />
+                <ScalarProperty Name="tieude_vuonrau" ColumnName="tieude_vuonrau" />
+                <ScalarProperty Name="mota_vuonrau" ColumnName="mota_vuonrau" />
+                <ScalarProperty Name="tieude3_gioithieu" ColumnName="tieude3_gioithieu" />
+                <ScalarProperty Name="mota3_gioithieu" ColumnName="mota3_gioithieu" />
+                <ScalarProperty Name="hinhanh3_gioithieu" ColumnName="hinhanh3_gioithieu" />
+                <ScalarProperty Name="hinhanh4_gioithieu" ColumnName="hinhanh4_gioithieu" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

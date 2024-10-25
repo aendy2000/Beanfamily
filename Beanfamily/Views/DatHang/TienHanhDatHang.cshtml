@@ -75,12 +75,13 @@
 
     string diachi = "";
     string linkchiduong = "";
-
+    string zalo = "";
     var tt = models.ThongTinCauHinh.ToList();
     if (tt.Count > 0)
     {
         var tts = tt.First();
         diachi = tts.diachi;
+        zalo = tts.zalo;
         linkchiduong = tts.linkchiduong;
     }
 
@@ -521,12 +522,66 @@
                                         <label for="ttknh" class="text-dark">Thanh toán khi nhận hàng</label><br>
                                     </div>
                                     <div style="display: flex; flex-direction: row; align-items: center;" class="mb-3">
-                                        <input disabled id="ttmm" style=" height: 25px; width: 25px;" class="bo-rad-16 txt10 p-l-20 me-2 input-radio" type="radio" name="ptnh">
-                                        <label for="ttmm" class="text-dark">Thanh toán qua MOMO <span class="text-danger fw-bold">(Bảo Trì)</span></label><br>
+                                        <input id="ttmm" style=" height: 25px; width: 25px;" class="bo-rad-16 txt10 p-l-20 me-2 input-radio" type="radio" name="ptnh">
+                                        <label for="ttmm" class="text-dark">Thanh toán qua MOMO</label><br>
                                     </div>
-                                    <div style="display: flex; flex-direction: row; align-items: center;">
-                                        <input disabled id="ttnh" style=" height: 25px; width: 25px;" class="bo-rad-16 txt10 p-l-20 me-2 input-radio" type="radio" name="ptnh">
-                                        <label for="ttnh" class="text-dark">Thanh toán qua Ngân hàng <span class="text-danger fw-bold">(Bảo Trì)</span></label><br>
+                                    <div hidden id="thanhtoanmomo" class="mb-3">
+                                        <label style="border: 2px solid #999; padding: 5px 10px;" class="mb-3">
+                                            <label class="text-dark mb-2 fw-bold">
+                                                Lưu ý: <span class="text-danger">
+                                                    Nhập đúng số tiền và nội dung chuyển khoản.
+                                                </span>
+                                            </label>
+                                            <br />
+                                            <label class="text-dark mb-2 fw-bold">
+                                                <span class="text-danger">
+                                                    * Sau khi CK hãy lưu lại [Ảnh chụp màn hình CK] và chọn Xác nhận đặt hàng.
+                                                </span>
+                                            </label>
+                                            <br />
+                                            <label class="text-dark mb-2 fw-bold">
+                                                <span class="text-danger">
+                                                    * Gửi Mã ĐH (Được cấp sau khi Xác nhận đặt hàng) + ảnh chụp màn hình CK đến [Zalo: @zalo.Replace("https://zalo.me/", "")] để xác nhận đơn hàng đã được thanh toán.
+                                                </span>
+                                            </label>
+                                        </label>
+                                        <br />
+                                        <label style="border: 2px solid #999; padding: 5px 10px;" class="w-100 text-dark mb-3 fw-bold">Số tiền: <span class="text-danger">@strTongTien</span></label>
+                                        <br />
+                                        <label style="border: 2px solid #999; padding: 5px 10px;" class="w-100 text-dark mb-3 fw-bold">Nội dung CK: <span class="text-danger">[Số ĐT của bạn] - @DateTime.Now.ToString("ddMMyyHHmm")</span></label>
+
+                                        <img class="w-100 h-auto" src="~/Content/assets/images/qrpayment/momo.jpg" />
+                                    </div>
+                                    <div style="display: flex; flex-direction: row; align-items: center;" class="mb-3">
+                                        <input id="ttnh" style=" height: 25px; width: 25px;" class="bo-rad-16 txt10 p-l-20 me-2 input-radio" type="radio" name="ptnh">
+                                        <label for="ttnh" class="text-dark">Thanh toán qua Ngân hàng</label><br>
+                                    </div>
+                                    <div hidden id="thanhtoannganhang" class="mb-3">
+                                        <label style="border: 2px solid #999; padding: 5px 10px;" class="mb-3">
+                                            <label class="text-dark mb-2 fw-bold">
+                                                Lưu ý: <span class="text-danger">
+                                                    Nhập đúng số tiền và nội dung chuyển khoản.
+                                                </span>
+                                            </label>
+                                            <br />
+                                            <label class="text-dark mb-2 fw-bold">
+                                                <span class="text-danger">
+                                                    * Sau khi CK hãy lưu lại [Ảnh chụp màn hình CK] và chọn Xác nhận đặt hàng.
+                                                </span>
+                                            </label>
+                                            <br />
+                                            <label class="text-dark mb-2 fw-bold">
+                                                <span class="text-danger">
+                                                    * Gửi Mã ĐH (Được cấp sau khi Xác nhận đặt hàng) + ảnh chụp màn hình CK đến [Zalo: @zalo.Replace("https://zalo.me/", "")] để xác nhận đơn hàng đã được thanh toán.
+                                                </span>
+                                            </label>
+                                        </label>
+                                        <br />
+                                        <label style="border: 2px solid #999; padding: 5px 10px;" class="w-100 text-dark mb-3 fw-bold">Số tiền: <span class="text-danger">@strTongTien</span></label>
+                                        <br />
+                                        <label style="border: 2px solid #999; padding: 5px 10px;" class="w-100 text-dark mb-3 fw-bold">Nội dung CK: <span class="text-danger">[Số ĐT của bạn] - @DateTime.Now.ToString("ddMMyyHHmm")</span></label>
+
+                                        <img class="w-100 h-auto" src="~/Content/assets/images/qrpayment/BIDV.jpg" />
                                     </div>
                                     <div style="width: 100%">
                                         <hr />
@@ -650,12 +705,66 @@
                                         <label for="ttknh" class="text-dark">Thanh toán khi nhận hàng</label><br>
                                     </div>
                                     <div style="display: flex; flex-direction: row; align-items: center;" class="mb-3">
-                                        <input disabled id="ttmm" style=" height: 25px; width: 25px;" class="bo-rad-16 txt10 p-l-20 me-2 input-radio" type="radio" name="ptnh">
-                                        <label for="ttmm" class="text-dark">Thanh toán qua MOMO <span class="text-danger fw-bold">(Bảo Trì)</span></label><br>
+                                        <input id="ttmm" style=" height: 25px; width: 25px;" class="bo-rad-16 txt10 p-l-20 me-2 input-radio" type="radio" name="ptnh">
+                                        <label for="ttmm" class="text-dark">Thanh toán qua MOMO</label><br>
                                     </div>
-                                    <div style="display: flex; flex-direction: row; align-items: center;">
-                                        <input disabled id="ttnh" style=" height: 25px; width: 25px;" class="bo-rad-16 txt10 p-l-20 me-2 input-radio" type="radio" name="ptnh">
-                                        <label for="ttnh" class="text-dark">Thanh toán qua Ngân hàng <span class="text-danger fw-bold">(Bảo Trì)</span></label><br>
+                                    <div hidden id="thanhtoanmomo" class="mb-3">
+                                        <label style="border: 2px solid #999; padding: 5px 10px;" class="mb-3">
+                                            <label class="text-dark mb-2 fw-bold">
+                                                Lưu ý: <span class="text-danger">
+                                                    Nhập đúng số tiền và nội dung chuyển khoản.
+                                                </span>
+                                            </label>
+                                            <br />
+                                            <label class="text-dark mb-2 fw-bold">
+                                                <span class="text-danger">
+                                                    * Sau khi CK hãy lưu lại [Ảnh chụp màn hình CK] và chọn Xác nhận đặt hàng.
+                                                </span>
+                                            </label>
+                                            <br />
+                                            <label class="text-dark mb-2 fw-bold">
+                                                <span class="text-danger">
+                                                    * Gửi Mã ĐH (Được cấp sau khi Xác nhận đặt hàng) + ảnh chụp màn hình CK đến [Zalo: @zalo.Replace("https://zalo.me/", "")] để xác nhận đơn hàng đã được thanh toán.
+                                                </span>
+                                            </label>
+                                        </label>
+                                        <br />
+                                        <label style="border: 2px solid #999; padding: 5px 10px;" class="w-100 text-dark mb-3 fw-bold">Số tiền: <span class="text-danger">@strTongTien</span></label>
+                                        <br />
+                                        <label style="border: 2px solid #999; padding: 5px 10px;" class="w-100 text-dark mb-3 fw-bold">Nội dung CK: <span class="text-danger">[Số ĐT của bạn] - @DateTime.Now.ToString("ddMMyyHHmm")</span></label>
+
+                                        <img class="w-100 h-auto" src="~/Content/assets/images/qrpayment/momo.jpg" />
+                                    </div>
+                                    <div style="display: flex; flex-direction: row; align-items: center;" class="mb-3">
+                                        <input id="ttnh" style=" height: 25px; width: 25px;" class="bo-rad-16 txt10 p-l-20 me-2 input-radio" type="radio" name="ptnh">
+                                        <label for="ttnh" class="text-dark">Thanh toán qua Ngân hàng</label><br>
+                                    </div>
+                                    <div hidden id="thanhtoannganhang" class="mb-3">
+                                        <label style="border: 2px solid #999; padding: 5px 10px;" class="mb-3">
+                                            <label class="text-dark mb-2 fw-bold">
+                                                Lưu ý: <span class="text-danger">
+                                                    Nhập đúng số tiền và nội dung chuyển khoản.
+                                                </span>
+                                            </label>
+                                            <br />
+                                            <label class="text-dark mb-2 fw-bold">
+                                                <span class="text-danger">
+                                                    * Sau khi CK hãy lưu lại [Ảnh chụp màn hình CK] và chọn Xác nhận đặt hàng.
+                                                </span>
+                                            </label>
+                                            <br />
+                                            <label class="text-dark mb-2 fw-bold">
+                                                <span class="text-danger">
+                                                    * Gửi Mã ĐH (Được cấp sau khi Xác nhận đặt hàng) + ảnh chụp màn hình CK đến [Zalo: @zalo.Replace("https://zalo.me/", "")] để xác nhận đơn hàng đã được thanh toán.
+                                                </span>
+                                            </label>
+                                        </label>
+                                        <br />
+                                        <label style="border: 2px solid #999; padding: 5px 10px;" class="w-100 text-dark mb-3 fw-bold">Số tiền: <span class="text-danger">@strTongTien</span></label>
+                                        <br />
+                                        <label style="border: 2px solid #999; padding: 5px 10px;" class="w-100 text-dark mb-3 fw-bold">Nội dung CK: <span class="text-danger">[Số ĐT của bạn] - @DateTime.Now.ToString("ddMMyyHHmm")</span></label>
+
+                                        <img class="w-100 h-auto" src="~/Content/assets/images/qrpayment/BIDV.jpg" />
                                     </div>
                                     <div style="width: 100%">
                                         <hr />
@@ -671,6 +780,7 @@
 
     </div>
 </section>
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 <script>

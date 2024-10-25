@@ -50,8 +50,8 @@
                 <th scope="col">Diễn ra</th>
                 <th scope="col">Trạng thái</th>
                 <th scope="col">Thông tin</th>
-                <th scope="col">Thanh toán</th>
                 <th scope="col">Khách hàng</th>
+                <th scope="col">Thanh toán</th>
                 <th scope="col">#</th>
             </tr>
         </thead>
@@ -79,7 +79,7 @@
                     <td>
                         @if (item.TinhTrangDonHangMenuBuffet.First().tieude.Equals("Đã hủy"))
                         {
-                            <span class="badge bg-danger me-2">
+                            <span class="badge bg-danger me-2" role="button" data-bs-toggle="tooltip" data-bs-placement="top" title="@item.TinhTrangDonHangMenuBuffet.First().noidung">
                                 @item.TinhTrangDonHangMenuBuffet.First().tieude
                             </span>
                             <input hidden id="inpTrangThaiDonHang@(item.id)" value="@item.TinhTrangDonHangMenuBuffet.First().tieude" />
@@ -92,7 +92,7 @@
                             <= item.LichSuThanhToanDonHangTongHop.Sum(s => s.sotien)
                             && item.TinhTrangDonHangMenuBuffet.First().tieude.Equals("Hoàn thành"))
                         {
-                            <span class="badge bg-success me-2">
+                            <span class="badge bg-success me-2" role="button" data-bs-toggle="tooltip" data-bs-placement="top" title="@item.TinhTrangDonHangMenuBuffet.First().noidung">
                                 @item.TinhTrangDonHangMenuBuffet.First().tieude
                             </span>
                             <input hidden id="inpTrangThaiDonHang@(item.id)" value="@item.TinhTrangDonHangMenuBuffet.First().tieude" />
@@ -100,7 +100,7 @@
                         }
                         @if (item.TinhTrangDonHangMenuBuffet.First().tieude.Equals("Chờ duyệt"))
                         {
-                            <span class="badge bg-warning me-2">
+                            <span class="badge bg-warning me-2" role="button" data-bs-toggle="tooltip" data-bs-placement="top" title="@item.TinhTrangDonHangMenuBuffet.First().noidung">
                                 @item.TinhTrangDonHangMenuBuffet.First().tieude
                             </span>
                             <input hidden id="inpTrangThaiDonHang@(item.id)" value="@item.TinhTrangDonHangMenuBuffet.First().tieude" />
@@ -108,7 +108,7 @@
                         }
                         @if (item.TinhTrangDonHangMenuBuffet.First().tieude.Equals("Đã lên món"))
                         {
-                            <span class="badge bg-primary me-2">
+                            <span class="badge bg-primary me-2" role="button" data-bs-toggle="tooltip" data-bs-placement="top" title="@item.TinhTrangDonHangMenuBuffet.First().noidung">
                                 @item.TinhTrangDonHangMenuBuffet.First().tieude
                             </span>
                             <input hidden id="inpTrangThaiDonHang@(item.id)" value="@item.TinhTrangDonHangMenuBuffet.First().tieude" />
@@ -117,7 +117,7 @@
                         @if (item.TinhTrangDonHangMenuBuffet.First().tieude.Equals("Đã xác nhận")
                             && (item.ngaybatdau - currentDate).Days < 0)
                         {
-                            <span class="badge bg-danger me-2">
+                            <span class="badge bg-danger me-2" role="button" data-bs-toggle="tooltip" data-bs-placement="top" title="@item.TinhTrangDonHangMenuBuffet.First().noidung">
                                 Quá hạn @((item.ngaybatdau - currentDate).Days.ToString().Replace("-", "")) ngày
                             </span>
                             <input hidden id="inpTrangThaiDonHang@(item.id)" value="Quá hạn @((item.ngaybatdau - currentDate).Days.ToString().Replace("-", "")) ngày" />
@@ -126,7 +126,7 @@
                         @if (item.TinhTrangDonHangMenuBuffet.First().tieude.Equals("Đã xác nhận")
                             && (item.ngaybatdau - currentDate).Days == 0)
                         {
-                            <span class="badge bg-primary me-2">
+                            <span class="badge bg-primary me-2" role="button" data-bs-toggle="tooltip" data-bs-placement="top" title="@item.TinhTrangDonHangMenuBuffet.First().noidung">
                                 Đang diễn ra
                             </span>
                             <input hidden id="inpTrangThaiDonHang@(item.id)" value="Đang diễn ra" />
@@ -135,7 +135,7 @@
                         @if (item.TinhTrangDonHangMenuBuffet.First().tieude.Equals("Đã xác nhận")
                             && (item.ngaybatdau - currentDate).Days == 1)
                         {
-                            <span class="badge bg-primary me-2">
+                            <span class="badge bg-primary me-2" role="button" data-bs-toggle="tooltip" data-bs-placement="top" title="@item.TinhTrangDonHangMenuBuffet.First().noidung">
                                 Diễn ra vào ngày mai
                             </span>
                             <input hidden id="inpTrangThaiDonHang@(item.id)" value="Diễn ra vào ngày mai" />
@@ -144,7 +144,7 @@
                         @if (item.TinhTrangDonHangMenuBuffet.First().tieude.Equals("Đã xác nhận")
                             && (item.ngaybatdau - currentDate).Days >= 2)
                         {
-                            <span class="badge bg-primary me-2">
+                            <span class="badge bg-primary me-2" role="button" data-bs-toggle="tooltip" data-bs-placement="top" title="@item.TinhTrangDonHangMenuBuffet.First().noidung">
                                 Diễn ra sau @((item.ngaybatdau - currentDate).Days) ngày
                             </span>
                             <input hidden id="inpTrangThaiDonHang@(item.id)" value="Diễn ra sau @((item.ngaybatdau - currentDate).Days) ngày" />
@@ -154,13 +154,11 @@
                             && (item.LichSuThanhToanDonHangTongHop.Count < 1
                             && item.TinhTrangDonHangMenuBuffet.First().tieude.Equals("Hoàn thành"))
                             ||
-                            (item.giamon +
-                            item.ChiTietDonHangDanhMucPhucVuMenuBuffet.Where(w => w.giatheosoban == true).Sum(s => s.gia * item.soban) +
-                            item.ChiTietDonHangDanhMucPhucVuMenuBuffet.Where(w => w.giatheosoban == false).Sum(s => s.gia))
+                            item.giamon
                             > item.LichSuThanhToanDonHangTongHop.Sum(s => s.sotien)
                             && item.TinhTrangDonHangMenuBuffet.First().tieude.Equals("Hoàn thành"))
                         {
-                            <span class="badge bg-danger me-2">
+                            <span class="badge bg-danger me-2" role="button" data-bs-toggle="tooltip" data-bs-placement="top" title="@item.TinhTrangDonHangMenuBuffet.First().noidung">
                                 Chờ thanh toán
                             </span>
                             <input hidden id="inpTrangThaiDonHang@(item.id)" value="Chờ thanh toán" />
@@ -168,14 +166,10 @@
                         }
                         <br />
                         <label class="me-2">
-                            <small>(@item.TinhTrangDonHangMenuBuffet.First().noidung)</small>
-                        </label>
-                        <br />
-                        <label class="me-2">
                             <small><i class="bi bi-clock-history"></i> @item.TinhTrangDonHangMenuBuffet.First().thoigian.ToString("HH:mm dd/MM/yyyy")</small>
                         </label>
                     </td>
-                    <td class="text-nowrap">
+                    <td>
                         <ul style="margin-left: -2rem; margin-bottom: 0;" class="me-4">
                             <li>
                                 <small><b>Mã:</b> @item.madonhang</small>
@@ -208,49 +202,8 @@
                             </li>
                         </ul>
                     </td>
-                    <td class="text-nowrap">
-                        <ul style="margin-left: -2rem; margin-bottom: 0;">
-                            <li>
-                                @if (item.giamon == 0)
-                                {
-                                    <small class="me-4 text-danger">
-                                        <b>Chưa thêm giá / Miễn phí</b>
-                                    </small>
-                                }
-                                else
-                                {
-                                    <small class="me-4">
-                                        <b>Tổng giá món: <span class="text-warning">@item.giamon.ToString("0,0")đ</span></b>
-                                    </small>
-                                }
-                            </li>
-                            <li>
-                                <small class="me-4">
-                                    <b>Tổng thanh toán:</b> @((item.giamon +
-                                item.ChiTietDonHangDanhMucPhucVuMenuBuffet.Where(w => w.giatheosoban == true).Sum(s => s.gia * item.soban) +
-                                item.ChiTietDonHangDanhMucPhucVuMenuBuffet.Where(w => w.giatheosoban == false).Sum(s => s.gia)).ToString("0,0") + "đ")
-                                </small>
-                            </li>
-                            <li>
-                                <small class="me-4">
-                                    <b>Đã thanh toán:</b> @(item.LichSuThanhToanDonHangTongHop.Sum(s => s.sotien).ToString("0,0").Equals("00") ?
-                                "0đ" : item.LichSuThanhToanDonHangTongHop.Sum(s => s.sotien).ToString("0,0") + "đ")
-                                </small>
-                            </li>
-                            <li>
-                                <small class="me-4">
-                                    <b>Còn lại:</b> @((
-                                        (item.giamon +
-                                    item.ChiTietDonHangDanhMucPhucVuMenuBuffet.Where(w => w.giatheosoban == true).Sum(s => s.gia * item.soban) +
-                                    item.ChiTietDonHangDanhMucPhucVuMenuBuffet.Where(w => w.giatheosoban == false).Sum(s => s.gia))
-                                    - item.LichSuThanhToanDonHangTongHop.Sum(s => s.sotien)
-                                    ).ToString("0,0") + "đ"
-                                    )
-                                </small>
-                            </li>
-                        </ul>
-                    </td>
-                    <td class="text-nowrap">
+
+                    <td>
                         <ul style="margin-left: -2rem; margin-bottom: 0;">
                             <li>
                                 <small><b>Họ & Tên:</b> @item.hoten</small>
@@ -267,7 +220,30 @@
                             </li>
                         </ul>
                     </td>
-
+                    <td class="text-nowrap">
+                        <ul style="margin-left: -2rem; margin-bottom: 0;">
+                            <li>
+                                @if (item.giamon == 0)
+                                {
+                                    <small class="me-4 text-danger">
+                                        <b>Chưa thêm chi phí</b>
+                                    </small>
+                                }
+                                else
+                                {
+                                    <small class="me-4">
+                                        <b>Tổng chi phí: <span class="text-warning">@item.giamon.ToString("0,0")đ</span></b>
+                                    </small>
+                                }
+                            </li>
+                            <li>
+                                <small class="me-4">
+                                    <b>Đã thanh toán:</b> @(item.LichSuThanhToanDonHangTongHop.Sum(s => s.sotien).ToString("0,0").Equals("00") ?
+"0đ" : item.LichSuThanhToanDonHangTongHop.Sum(s => s.sotien).ToString("0,0") + "đ")
+                                </small>
+                            </li>
+                        </ul>
+                    </td>
                     <td class="text-nowrap">
                         @if (Session["chophep-sua"] != null)
                         {

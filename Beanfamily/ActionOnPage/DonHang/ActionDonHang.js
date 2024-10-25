@@ -1,6 +1,5 @@
 ﻿$(document).ready(function () {
 
-
     $('body').find('[id="BtnTimkiemdonhang"]').on('click', function () {
         var btn = $(this);
         btn.html('<span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"> </span> Vui lòng chờ...');

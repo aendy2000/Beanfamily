@@ -1,4 +1,32 @@
 ﻿$(document).ready(function () {
+    $('body').on('change', '[id="ttknh"]', function () {
+        HienThiQR("ttknh");
+    });
+    $('body').on('change', '[id="ttmm"]', function () {
+        HienThiQR("ttmm");
+    }); $('body').on('change', '[id="ttnh"]', function () {
+        HienThiQR("ttnh");
+    });
+
+    function HienThiQR(type) {
+        var momo = $('body').find('[id="thanhtoanmomo"]');
+        var nganhang = $('body').find('[id="thanhtoannganhang"]');
+
+        if (type == "ttknh") {
+            momo.prop('hidden', true);
+            nganhang.prop('hidden', true);
+        }
+        else if (type == "ttmm") {
+            momo.prop('hidden', false);
+            nganhang.prop('hidden', true);
+        }
+        else {
+            momo.prop('hidden', true);
+            nganhang.prop('hidden', false);
+        }
+    };
+
+
     $('body').find('[id="xacNhanDatHang"]').on('click', function () {
         Swal.fire({
             title: 'Đặt Hàng?',

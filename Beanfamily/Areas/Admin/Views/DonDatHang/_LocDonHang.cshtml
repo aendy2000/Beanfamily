@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<Beanfamily.Models.DonHangVuonRauMuaSamVaMenuHangNgay>
 
+
 <div class="card-body" id="content-table">
     <!-- Table with stripped rows -->
     <table id="lstDonDatHangTable" class="table datatable" width="100%">
@@ -36,7 +37,7 @@
                     </td>
                     <td>
                         <small>
-                            <i class="bi bi-clock-history"></i> @item.ngaydat.ToString("HH:mm") @item.ngaydat.ToString("dd/MM/yyyy")
+                            <i class="bi bi-clock-history"></i> @item.ngaydat.ToString("HH:mm")<br />@item.ngaydat.ToString("dd/MM/yyyy")
                         </small>
                     </td>
                     <td>
@@ -50,38 +51,79 @@
                         @if (item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude.ToLower().Equals("đã hủy")
                             || item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude.ToLower().Equals("không thành công"))
                         {
-                            <span class="badge bg-danger">
+                            <span role="button" class="badge bg-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="@item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().noidung">
                                 @item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude
                             </span>
                         }
                         else if (item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude.ToLower().Equals("hoàn thành"))
                         {
-                            <span class="badge bg-success">
+                            <span role="button" class="badge bg-success" data-bs-toggle="tooltip" data-bs-placement="top" title="@item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().noidung">
                                 @item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude
                             </span>
                         }
                         else if (item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude.ToLower().Equals("chờ duyệt"))
                         {
-                            <span class="badge bg-warning">
+                            <span role="button" class="badge bg-warning" data-bs-toggle="tooltip" data-bs-placement="top" title="@item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().noidung">
                                 @item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude
                             </span>
                         }
                         else
                         {
-                            <span class="badge bg-primary">
+                            <span role="button" class="badge bg-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="@item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().noidung">
                                 @item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().tieude
                             </span>
                         }
-                        <label>
-                            <small>(@item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().noidung)</small>
-                        </label>
+                        <br />
                         <label>
                             <small><i class="bi bi-clock-history"></i> @item.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First().thoigian.ToString("HH:mm dd/MM/yyyy")</small>
                         </label>
                     </td>
 
                     <td>
-                        <small>@item.hinhthucthanhtoan</small>
+                        @{
+                            var donhangmuassam = item.ChiTietDonHangSanPhamMuaSam.ToList();
+                            var donhangvuonrau = item.ChiTietDonHangSanPhamRauNhaTrong.ToList();
+                            var donhangthucdonhangngay = item.ChiTietDonHangSanPhamThucDonHangNgay.ToList();
+
+                            decimal tongTien = donhangmuassam.Sum(s => s.gia * s.soluongmua)
+                                + donhangvuonrau.Sum(s => s.soluongmua * s.gia)
+                                + donhangthucdonhangngay.Sum(s => s.soluongmua * s.gia);
+
+                            string strTongTien = "";
+                            if (tongTien > 0) { strTongTien = tongTien.ToString("0,0") + "đ"; }
+                            else { strTongTien = "0"; }
+                            decimal datt = item.LichSuThanhToanDonHangTongHop.Sum(s => s.sotien);
+
+                            <ul style="margin-left: -2rem; margin-bottom: 0; margin-right: 10px">
+                                <li>
+                                    <small><b>PTTT:</b> @item.hinhthucthanhtoan</small>
+                                </li>
+                                <li>
+                                    <small><b>Tổng TT:</b> @strTongTien</small>
+                                </li>
+                                @if (datt != 0)
+                                {
+                                    <li>
+                                        <small>
+                                            <span class="badge bg-success">
+                                                Đã thanh toán: @datt.ToString("0,0")đ
+                                            </span>
+                                        </small>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li>
+                                        <small>
+                                            <span class="badge bg-danger">
+                                                Chưa thanh toán
+                                            </span>
+                                        </small>
+                                    </li>
+                                }
+
+                            </ul>
+                        }
                     </td>
                     <td>
                         <ul style="margin-left: -2rem; margin-bottom: 0;">
@@ -167,3 +209,4 @@
         });
     </script>
 </div>
+
