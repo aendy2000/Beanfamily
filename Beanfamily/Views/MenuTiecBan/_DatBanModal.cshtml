@@ -25,7 +25,7 @@
                     @foreach (var item in Model)
                     {
                         <div class="col-12">
-                            <ul style=" list-style-position: outside !important;" class=" ms-3">
+                            <ul style=" list-style-position: outside !important;" class=" ms-1">
                                 @if (!string.IsNullOrEmpty(item.hinhanh))
                                 {
                                     <li class="mt-1" style="list-style-type: none !important;">
@@ -174,8 +174,8 @@
         <h5 class="text-center mb-3 text-white" style="background: #5e443b !important; border-radius: 16px 16px 0 0; height: 40px; display: flex; flex-direction: column; justify-content: center; ">Thông Tin Đặt Bàn</h5>
         @if (tk == null)
         {
-            <div class="row  p-l-30">
-                <div class="col-12">
+            <div class="row p-l-15">
+                <div class="col-12 p-r-5">
                     <span class="txt9" style="color: #333 !important">
                         Họ và Tên <span class="text-danger">*</span>
                     </span>
@@ -186,7 +186,7 @@
                     </div>
 
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 p-r-5">
 
                     <span class="txt9" style="color: #333 !important">
                         Số điện thoại <span class="text-danger">*</span>
@@ -209,7 +209,7 @@
 
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-md-6 p-r-5">
 
                     <span class="txt9" style="color: #333 !important">
                         Địa chỉ Email
@@ -264,8 +264,8 @@
         }
         else
         {
-            <div class="row p-l-30">
-                <div class="col-12">
+            <div class="row p-l-15">
+                <div class="col-12 p-r-5">
                     <span class="txt9" style="color: #333 !important">
                         Họ và Tên <span class="text-danger">*</span>
                     </span>
@@ -276,7 +276,7 @@
                     </div>
 
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 p-r-5">
 
                     <span class="txt9" style="color: #333 !important">
                         Số điện thoại <span class="text-danger">*</span>
@@ -299,7 +299,7 @@
 
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-md-6 p-r-5">
                     <span class="txt9" style="color: #333 !important">
                         Địa chỉ Email
                     </span>

@@ -1517,7 +1517,7 @@ body {
 
 @media (max-width: 576px) {
     .bg-title-page .tit6 {
-        font-size: 30px;
+        font-size: 20px;
     }
 }
 
@@ -2316,8 +2316,57 @@ body {
         padding-bottom: 30px !important;
     }
 
+.text-in-slidepage {
+    margin-top: unset;
+}
 
 @media (max-width: 992px) {
+    .arrow-slick1, .arrow-slick2, .arrow-slick3 {
+        width: 40px !important;
+        height: 40px !important;
+    }
+
+    .detail-booking-modal {
+        padding-left: 5px !important;
+        padding-right: 5px !important;
+    }
+
+    .sticky-menu-booking {
+        top: 10px !important;
+    }
+
+    .check-booking-parent {
+        height: auto !important;
+    }
+
+    .btn-check-booking {
+        align-items: center !important;
+    }
+
+        .btn-check-booking > a {
+            margin-bottom: 15px !important;
+        }
+
+    .total-check-booking {
+        margin-top: 13px !important;
+        margin-bottom: 15px !important;
+        align-items: center !important;
+    }
+
+        .total-check-booking > h5 {
+            font-size: 1.1rem !important;
+        }
+
+    .tit6 {
+        font-size: 32px;
+        letter-spacing: 1px;
+        word-spacing: 2px;
+    }
+
+    .text-in-slidepage {
+        margin-top: 30%;
+    }
+
     .col-img-5 {
         -webkit-column-count: 2;
         -moz-column-count: 2;
@@ -2364,6 +2413,7 @@ body {
         padding-right: 15px !important;
         padding-left: 15px !important;
     }
+
     .product-thdh-2 > div {
         padding-right: 15px !important;
         padding-left: 15px !important;
