@@ -21,7 +21,7 @@
         <div class="ttmondadattiecbanleft col-md-6 col-12 mb-4">
             <div style="border: 2px solid #ffc678; border-radius: 16px; padding: 0; height: 100%; width: 100%">
                 <h5 class="text-center mb-3 text-white" style="background: #5e443b !important; border-radius: 16px 16px 0 0; height: 40px; display: flex; flex-direction: column; justify-content: center; ">Thông Tin Món Đã Đặt</h5>
-                <div class="row p-l-15 p-r-15">
+                <div class="row p-l-15 p-r-15 mb-3">
                     @foreach (var item in Model)
                     {
                         <div class="col-12">
@@ -174,7 +174,7 @@
         <h5 class="text-center mb-3 text-white" style="background: #5e443b !important; border-radius: 16px 16px 0 0; height: 40px; display: flex; flex-direction: column; justify-content: center; ">Thông Tin Đặt Bàn</h5>
         @if (tk == null)
         {
-            <div class="row p-l-15">
+            <div class="row p-r-0 p-l-15">
                 <div class="col-12 p-r-5">
                     <span class="txt9" style="color: #333 !important">
                         Họ và Tên <span class="text-danger">*</span>
@@ -264,7 +264,7 @@
         }
         else
         {
-            <div class="row p-l-15">
+            <div class="row p-r-0 p-l-15">
                 <div class="col-12 p-r-5">
                     <span class="txt9" style="color: #333 !important">
                         Họ và Tên <span class="text-danger">*</span>
