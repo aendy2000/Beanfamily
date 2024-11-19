@@ -92,6 +92,8 @@
 
 </head>
 <body>
+    <div hidden id="load-fill-page" style="background: #ffffff00; width: 120vw; height: 120vh; position: fixed; top: -10vw; z-index: 999999; overflow: hidden; cursor: progress"></div>
+
     <!-- ======= Header ======= -->
     <header id="header" class="header fixed-top d-flex align-items-center">
 
@@ -650,6 +652,17 @@
     <!-- Template Main JS File -->
     <script src="~/Content/AdminAreas/assets/js/main.js"></script>
     <script src="~/Scripts/SweetAlert/sweetalert2.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(document).on("ajaxStart", function () {
+                $('body').find('[id="load-fill-page"]').prop('hidden', false);
+            });
+            $(document).on("ajaxStop", function () {
+                $('body').find('[id="load-fill-page"]').prop('hidden', true);
+            });
+        })
+    </script>
+
 </body>
 </html>
 

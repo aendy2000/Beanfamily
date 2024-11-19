@@ -152,6 +152,7 @@
     }
 </head>
 <body>
+    <div hidden id="load-fill-page" style="background: #ffffff00; width: 120vw; height: 120vh; position: fixed; top: -10vw; z-index: 999999; overflow: hidden; cursor: progress"></div>
 
     <!-- Header -->
     <header>
@@ -484,17 +485,17 @@
     <!-- Modal Video 01-->
     @*<div class="modal fade" id="modal-video-01" tabindex="-1" role="dialog" aria-hidden="true">
 
-        <div class="modal-dialog" role="document" data-dismiss="modal">
-            <div class="close-mo-video-01 trans-0-4" data-dismiss="modal" aria-label="Close">&times;</div>
+            <div class="modal-dialog" role="document" data-dismiss="modal">
+                <div class="close-mo-video-01 trans-0-4" data-dismiss="modal" aria-label="Close">&times;</div>
 
-            <div class="wrap-video-mo-01">
-                <div class="w-full wrap-pic-w op-0-0"><img src="~/Content/assets/images/icons/video-16-9.jpg" alt="IMG"></div>
-                <div class="video-mo-01">
-                    <iframe src="https://www.youtube.com/embed/5k1hSu2gdKE?rel=0&amp;showinfo=0" allowfullscreen></iframe>
+                <div class="wrap-video-mo-01">
+                    <div class="w-full wrap-pic-w op-0-0"><img src="~/Content/assets/images/icons/video-16-9.jpg" alt="IMG"></div>
+                    <div class="video-mo-01">
+                        <iframe src="https://www.youtube.com/embed/5k1hSu2gdKE?rel=0&amp;showinfo=0" allowfullscreen></iframe>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>*@
+        </div>*@
 
     <!-- GIỎ HÀNG -->
 
@@ -1187,6 +1188,16 @@
         });
     </script>
 
+    <script>
+        $(document).ready(function () {
+            $(document).on("ajaxStart", function () {
+                $('body').find('[id="load-fill-page"]').prop('hidden', false);
+            });
+            $(document).on("ajaxStop", function () {
+                $('body').find('[id="load-fill-page"]').prop('hidden', true);
+            });
+        })
+    </script>
 </body>
 </html>
 
