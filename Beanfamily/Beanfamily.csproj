@@ -3002,6 +3002,9 @@
     <Content Include="Areas\Admin\Views\LienHeDatBan\_OpenTaoDonTiecBan.cshtml" />
     <Content Include="Areas\Admin\Views\LienHeDatBan\_OpenTaoDonBuffet.cshtml" />
     <Content Include="Areas\Admin\Views\NoiDungTinh\Index.cshtml" />
+    <Content Include="ZaloAPI\img\bannerDDB.png" />
+    <Content Include="ZaloAPI\img\bannerDDH.png" />
+    <Content Include="ZaloAPI\img\bannerZaloAPI.png" />
     <EntityDeploy Include="Models\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>

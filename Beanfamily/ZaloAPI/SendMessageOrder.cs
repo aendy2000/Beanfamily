@@ -4,16 +4,91 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Helpers;
 using ZaloDotNetSDK;
+using ZaloDotNetSDK.entities.oa;
+using System.IO;
 
 namespace Beanfamily.ZaloAPI
 {
     public class SendMessageOrder
     {
-        public void ThongBaoDonDatHang(string message)
+        ZaloClient client = new ZaloClient("_SUgCuNO6pl_ng4qXzuQEV78hZ2FoNaxaOMHH-_SNZNKlUX-_SOpTUFOYIwSfaT-aFEN8kwM86ZMpzi4gQaKJTAmnH7ivIyTyllkVSg1FoAfwunhgAexOP3jq2odYnvTkTIaKhh3KbkMgvSDk-T0KhoEcGYR-IrQjud5CBl_456VWFyQdESbSUEPyto0tpOoX9xRQ_l-6n7Yfi9Gn_W6FxY4vtI1p0qahRcsATN01tlAkkKtwUzMITACeGZUrH92vh3tC_xU6dxPoSqGpg5-U-QxY7J6rNuswREIO-RVNmp3fxvvlwKCEA33pLEQbXSfeV3w9OENIqxyzO4tnhytD_denZh6i2elkD7RJQUa5XVUmlGVv8KvSy3PYYEufqDYb-MkD-6656d8aTKbjE4JAcbOJY-3E8V663e");
+        public void ThongBaoDonDatHang(string ngaydat, string ma, string hoten, string sdt, string diachi, string hinhthuc, string sotien, string urlImg, string urlManagement)
         {
-            ZaloClient client = new ZaloClient("H4rBHgacMaj6J411go1RIKX2JqMZDmHB5I5389O_1Iaz8X5SWGnQLMmcDIhlEbTnOYr50_Kk2KnfJ4KtvNO3K7juS5tYQZ4wJaGbFzrTHsjkP3HkvWz06Nuy6dNcB5fvU1yt7k4kP6iNF7O_ebCNH3ib106P94PJ5JSTAA0VKbmVD49HXXuu7X0G8dACU5Ht6Kv2F9L-4smMTbSKermH6Gn8PdoxOpKkLcmkQjLRJYuuBJzgXGD5D0ao4twqCLumFGykG9KoLpHvMJb_vcnH87nTDtJBRKu0PW8hMD0tPp5i9tDBWoC_H1KkSX2H81HE14jR1fPJ3tSYV4y8Y49KVZHpGMwrU1PWLsrdEluR9KHH3KmmpcOUG5XC42_vH6PyQtHs0-zrEau5GYa-jcjjMZX-119sIjjR8pshE5bA");
-            JObject result = client.getListFollower(0, 20);
+            List<ElementV3> elements = new List<ElementV3>();
+            BannerElementV3 bannerElement = new BannerElementV3(urlImg, "");
+            HeaderElementV3 headerElementV3 = new HeaderElementV3("ĐƠN ĐẶT HÀNG MỚI!", ElementV3Align.CENTER);
+            TextElementV3 textElementV3 = new TextElementV3("<br>Ngày đặt hàng: " + ngaydat, ElementV3Align.LEFT);
+
+            List<ElementV3TableItem> tableItems = new List<ElementV3TableItem>();
+            ElementV3TableItem tableItem1 = new ElementV3TableItem("Mã đơn hàng", ma, ElementV3TableItemStyle.BLUE);
+            ElementV3TableItem tableItem2 = new ElementV3TableItem("Họ & Tên", hoten, ElementV3TableItemStyle.NONE);
+            ElementV3TableItem tableItem3 = new ElementV3TableItem("Điện thoại", sdt, ElementV3TableItemStyle.NONE);
+            ElementV3TableItem tableItem4 = new ElementV3TableItem("Địa chỉ", diachi, ElementV3TableItemStyle.NONE);
+            ElementV3TableItem tableItem5 = new ElementV3TableItem("Hình thức", hinhthuc, ElementV3TableItemStyle.NONE);
+            ElementV3TableItem tableItem6 = new ElementV3TableItem("Số tiền", sotien, ElementV3TableItemStyle.NONE);
+
+            tableItems.Add(tableItem1);
+            tableItems.Add(tableItem2);
+            tableItems.Add(tableItem3);
+            tableItems.Add(tableItem4);
+            tableItems.Add(tableItem5);
+            tableItems.Add(tableItem6);
+            TableElementV3 tableElement = new TableElementV3(tableItems);
+
+            elements.Add(bannerElement);
+            elements.Add(headerElementV3);
+            elements.Add(textElementV3);
+            elements.Add(tableElement);
+
+            List<ButtonV3> buttons = new List<ButtonV3>();
+            OpenUrlButtonV3 openUrlButton = new OpenUrlButtonV3("Truy Cập Trang Quản Lý Đơn Hàng", "", urlManagement);
+            OpenPhoneButtonV3 openPhoneButton = new OpenPhoneButtonV3("Gọi Cho Khách Hàng", "", sdt);
+            buttons.Add(openUrlButton);
+            buttons.Add(openPhoneButton);
+
+            JObject jObject1 = client.sendTransactionMessagetoUserId("61868408479739071", "VI", elements, buttons, TransactionTemplateType.TRANSACTION_ORDER);
+            JObject jObject2 = client.sendTransactionMessagetoUserId("3684922333495928647", "VI", elements, buttons, TransactionTemplateType.TRANSACTION_ORDER);
+        }
+
+        public void ThongBaoDonDatBan(string ngaydat, string ma, string loai, string soban, string hoten, string sdt, string thoigian, string ghichu, string urlImg, string urlManagement)
+        {
+
+            List<ElementV3> elements = new List<ElementV3>();
+            BannerElementV3 bannerElement = new BannerElementV3(urlImg, "");
+            HeaderElementV3 headerElementV3 = new HeaderElementV3("ĐƠN ĐẶT BÀN " + loai + " MỚI!", ElementV3Align.CENTER);
+            TextElementV3 textElementV3 = new TextElementV3("<br>Ngày đặt bàn:  " + ngaydat, ElementV3Align.LEFT);
+
+            List<ElementV3TableItem> tableItems = new List<ElementV3TableItem>();
+            ElementV3TableItem tableItem1 = new ElementV3TableItem("Mã đơn hàng", ma, ElementV3TableItemStyle.BLUE);
+            ElementV3TableItem tableItem2 = new ElementV3TableItem("Số bàn", soban, ElementV3TableItemStyle.NONE);
+            ElementV3TableItem tableItem3 = new ElementV3TableItem("Ngày bắt đầu", thoigian, ElementV3TableItemStyle.NONE);
+            ElementV3TableItem tableItem4 = new ElementV3TableItem("Họ & Tên", hoten, ElementV3TableItemStyle.NONE);
+            ElementV3TableItem tableItem5 = new ElementV3TableItem("Điện thoại", sdt, ElementV3TableItemStyle.NONE);
+            ElementV3TableItem tableItem6 = new ElementV3TableItem("Ghi chú", ghichu, ElementV3TableItemStyle.NONE);
+
+            tableItems.Add(tableItem1);
+            tableItems.Add(tableItem2);
+            tableItems.Add(tableItem3);
+            tableItems.Add(tableItem4);
+            tableItems.Add(tableItem5);
+            tableItems.Add(tableItem6);
+            TableElementV3 tableElement = new TableElementV3(tableItems);
+
+            elements.Add(bannerElement);
+            elements.Add(headerElementV3);
+            elements.Add(textElementV3);
+            elements.Add(tableElement);
+
+            List<ButtonV3> buttons = new List<ButtonV3>();
+            OpenUrlButtonV3 openUrlButton = new OpenUrlButtonV3("Truy Cập Trang Quản Lý Đơn Hàng", "", urlManagement);
+            OpenPhoneButtonV3 openPhoneButton = new OpenPhoneButtonV3("Gọi Cho Khách Hàng", "", sdt);
+            buttons.Add(openUrlButton);
+            buttons.Add(openPhoneButton);
+
+            JObject jObject1 = client.sendTransactionMessagetoUserId("61868408479739071", "VI", elements, buttons, TransactionTemplateType.TRANSACTION_ORDER);
+            JObject jObject2 = client.sendTransactionMessagetoUserId("3684922333495928647", "VI", elements, buttons, TransactionTemplateType.TRANSACTION_ORDER);
         }
     }
 }

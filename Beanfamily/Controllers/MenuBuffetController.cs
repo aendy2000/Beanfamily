@@ -14,6 +14,7 @@ using System.Net;
 using System.Web.Services.Description;
 using System.Xml.Linq;
 using System.IO;
+using Beanfamily.ZaloAPI;
 
 namespace Beanfamily.Controllers
 {
@@ -57,7 +58,8 @@ namespace Beanfamily.Controllers
             try
             {
                 DonHangMenuBuffet donhang = new DonHangMenuBuffet();
-                donhang.ngaytao = DateTime.Now;
+                var ngaydathang = DateTime.Now;
+                donhang.ngaytao = ngaydathang;
                 donhang.soban = soban;
                 donhang.hoten = hovaten;
                 donhang.sdt = sodienthoai;
@@ -207,6 +209,12 @@ namespace Beanfamily.Controllers
                         }
                     }
                 }
+
+                string strUrl = HttpContext.Request.Url.AbsoluteUri.Replace(HttpContext.Request.Url.PathAndQuery, "/");
+                string imgZalo = strUrl.Substring(0, strUrl.Length - 1) + Url.Content("~/ZaloAPI/img/bannerDDB.png");
+                string urlZalo = strUrl.Substring(0, strUrl.Length - 1) + Url.Content("~/admin/dondatbanbuffet");
+                var zaloApi = new SendMessageOrder();
+                zaloApi.ThongBaoDonDatBan(ngaydathang.ToString("HH:mm dd/MM/yyyy"), madonhang, "BUFFET", soban.ToString(), hovaten, sodienthoai, giotochuc + " " + ngaytochuc, ghichu, imgZalo, urlZalo);
 
                 return Content("SUCCESS-" + madonhang);
             }

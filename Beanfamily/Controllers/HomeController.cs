@@ -710,7 +710,7 @@ namespace Beanfamily.Controllers
 
                 string bodyMail = hovaten + " | " + sodienthoai + " đã gửi một liên hệ đặt bàn mới!.<br>Hãy nhanh chóng liên hệ lại với khách hàng để xác nhận." +
                     "<br><br>Truy cập quản lý: https://beanfamily.vn/admin/lienhedatban";
-               
+
                 using (MailMessage mailMessage = new MailMessage("beanfamilyshop@gmail.com", "duongle15012000@gmail.com"))
                 {
                     if (string.IsNullOrEmpty(email))
@@ -731,7 +731,7 @@ namespace Beanfamily.Controllers
                         smtp.Send(mailMessage);
                     }
                 }
-               
+
                 return Content("SUCCESS");
             }
             catch (Exception Ex)

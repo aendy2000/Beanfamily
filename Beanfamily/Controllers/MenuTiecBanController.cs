@@ -12,6 +12,7 @@ using PagedList;
 using System.Net.Mail;
 using System.Net;
 using System.IO;
+using Beanfamily.ZaloAPI;
 
 namespace Beanfamily.Controllers
 {
@@ -55,8 +56,10 @@ namespace Beanfamily.Controllers
         {
             try
             {
+                var ngaydathang = DateTime.Now;
+
                 DonHangMenuTiecBan donhang = new DonHangMenuTiecBan();
-                donhang.ngaytao = DateTime.Now;
+                donhang.ngaytao = ngaydathang;
                 donhang.soban = soban;
                 donhang.hoten = hovaten;
                 donhang.sdt = sodienthoai;
@@ -207,6 +210,13 @@ namespace Beanfamily.Controllers
                         }
                     }
                 }
+
+                string strUrl = HttpContext.Request.Url.AbsoluteUri.Replace(HttpContext.Request.Url.PathAndQuery, "/");
+                string imgZalo = strUrl.Substring(0, strUrl.Length - 1) + Url.Content("~/ZaloAPI/img/bannerDDB.png");
+                string urlZalo = strUrl.Substring(0, strUrl.Length - 1) + Url.Content("~/admin/dondatbantiec");
+                var zaloApi = new SendMessageOrder();
+                zaloApi.ThongBaoDonDatBan(ngaydathang.ToString("HH:mm dd/MM/yyyy"), madonhang, "TIỆC", soban.ToString(), hovaten, sodienthoai, giotochuc + " " + ngaytochuc, ghichu, imgZalo, urlZalo);
+               
                 return Content("SUCCESS-" + madonhang);
             }
             catch (Exception Ex)

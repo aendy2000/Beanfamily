@@ -11,6 +11,7 @@ using System.Net.Mail;
 using System.Net;
 using System.Web.Razor.Parser.SyntaxTree;
 using System.Configuration;
+using Beanfamily.ZaloAPI;
 
 namespace Beanfamily.Controllers
 {
@@ -86,6 +87,8 @@ namespace Beanfamily.Controllers
                 else
                     idtk = tkkh.id;
 
+                var ngaydathang = DateTime.Now;
+                string thongtindiachi = "Nhận tại nhà hàng";
                 var donhang = new DonHangVuonRauMuaSamVaMenuHangNgay();
                 donhang.id_taikhoankhkachhang = idtk;
                 donhang.hoten = hoten;
@@ -94,12 +97,13 @@ namespace Beanfamily.Controllers
                 donhang.ghichu = ghichu;
                 if (giaotannoi == true)
                 {
+                    thongtindiachi = diachi + ", " + phuongxa + ", " + quanhuyen + ", " + tinh;
                     donhang.diachi = diachi;
                     donhang.tinh = tinh;
                     donhang.quanhuyen = quanhuyen;
                     donhang.phuongxa = phuongxa;
                 }
-                donhang.ngaydat = DateTime.Now;
+                donhang.ngaydat = ngaydathang;
                 donhang.hinhthucthanhtoan = pttt;
                 donhang.giaohangtannoi = giaotannoi;
 
@@ -365,6 +369,27 @@ namespace Beanfamily.Controllers
                         }
                     }
                 }
+
+
+                model = new BeanfamilyEntities();
+                var donhangmuassam = donhang.ChiTietDonHangSanPhamMuaSam.ToList();
+                var donhangvuonrau = donhang.ChiTietDonHangSanPhamRauNhaTrong.ToList();
+                var donhangthucdonhangngay = donhang.ChiTietDonHangSanPhamThucDonHangNgay.ToList();
+
+                decimal tongTien = donhangmuassam.Sum(s => s.gia * s.soluongmua)
+                    + donhangvuonrau.Sum(s => s.soluongmua * s.gia)
+                    + donhangthucdonhangngay.Sum(s => s.soluongmua * s.gia);
+
+                string strTongTien = "";
+                if (tongTien > 0) { strTongTien = tongTien.ToString("0,0") + " VNĐ"; }
+                else { strTongTien = "0"; }
+
+                string strUrl = HttpContext.Request.Url.AbsoluteUri.Replace(HttpContext.Request.Url.PathAndQuery, "/");
+                string imgZalo = strUrl.Substring(0, strUrl.Length - 1) + Url.Content("~/ZaloAPI/img/bannerDDH.png");
+                string urlZalo = strUrl.Substring(0, strUrl.Length - 1) + Url.Content("~/admin/dondathang");
+                var zaloApi = new SendMessageOrder();
+                zaloApi.ThongBaoDonDatHang(ngaydathang.ToString("HH:mm dd/MM/yyyy"), madonhang, hoten, sodienthoai, thongtindiachi, pttt, strTongTien, imgZalo, urlZalo);
+
                 return Content("SUCCESS-" + madonhang);
             }
             catch (Exception ex)
