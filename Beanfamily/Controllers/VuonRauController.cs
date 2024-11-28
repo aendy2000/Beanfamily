@@ -68,7 +68,6 @@ namespace Beanfamily.Controllers
                 return PartialView("_ListProduct", lstPr.ToPagedList((int)pageNum, (int)pageSize));
             }
         }
-
         public ActionResult ProductDetail(int id)
         {
             var sp = model.SanPhamRauNhaTrong.Find(id);
@@ -80,6 +79,19 @@ namespace Beanfamily.Controllers
             model.SaveChanges();
             model = new BeanfamilyEntities();
             return View("productdetail", sp);
+        }
+
+        public ActionResult QuickProductDetail(int id)
+        {
+            var sp = model.SanPhamRauNhaTrong.Find(id);
+            if (sp == null)
+                return RedirectToAction("index");
+
+            sp.luotxem = sp.luotxem + 1;
+            model.Entry(sp).State = System.Data.Entity.EntityState.Modified;
+            model.SaveChanges();
+            model = new BeanfamilyEntities();
+            return PartialView("_quickproductdetail", sp);
         }
 
         [HttpPost]

@@ -1,0 +1,106 @@
+﻿@model Beanfamily.Models.SanPhamThucDonHangNgay
+
+<div class="modal-body" id="partial-content-quick-detail" style="margin-top: -30px; overflow-x: hidden">
+
+    <!-- Title Page -->
+    <input id="idPro" value="@Model.id" hidden />
+    <section class="section-ourmenu">
+        <div class="">
+            <div class="container p-b-20">
+                <div class="row gx-5">
+                    <main class="col-lg-12">
+                        <div class="">
+                            <h4 class="title text-white font-weight-bold">
+                                @Model.tensanpham
+                            </h4>
+                            <div class="d-flex flex-row my-3">
+                                <div class="text-warning me-2">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <span class="ms-1">
+                                        5
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="mb-2">
+                                @if (Model.conhang == false)
+                                {
+                                    <span id="trangthaihang" class="text-danger">Hết hàng</span>
+                                }
+                                else
+                                {
+                                    <span id="trangthaihang" class="text-success">Còn hàng</span>
+                                }
+                            </div>
+                            <div class="mb-2">
+                                <span class="text-white">@Model.luotxem.ToString("0,0") lượt xem</span>
+                            </div>
+
+                            <p class="mb-2 text-white" style="word-wrap: break-word">
+                                Mô tả: @Model.mota
+                            </p>
+
+                            <div class="mb-3">
+                                <span class="text-white">Giá: <span class="text-warning font-weight-bold">@Model.gia.ToString("0,0")đ</span></span>
+                            </div>
+                            <div class="row mb-2 text-white">
+                                <!-- col.// -->
+                                <div class="col-md-6 col-sm-12 mb-2">
+                                    <label class="mb-2 d-block">Số lượng:</label>
+                                    <div class="input-group" style="width: 100%;">
+
+                                        @if (Model.conhang == false)
+                                        {
+                                            <button disabled class="text-white btn btn-white border border-secondary px-3" type="button" id="button-minus-product" data-mdb-ripple-color="dark">
+                                                <i class="fa fa-minus"></i>
+                                            </button>
+                                            <input disabled value="0" id="soluong" data-type='currency' type="text" class="form-control text-center border border-secondary" placeholder="0" aria-label="Example text with button addon" aria-describedby="button-addon1" />
+                                            <button disabled class="text-white btn btn-white border border-secondary px-3" type="button" id="button-addon-product" data-mdb-ripple-color="dark">
+                                                <i class="fa fa-plus"></i>
+                                            </button>
+                                        }
+                                        else
+                                        {
+                                            <button class="text-white btn btn-white border border-secondary px-3" type="button" id="button-minus-product" data-mdb-ripple-color="dark">
+                                                <i class="fa fa-minus"></i>
+                                            </button>
+                                            <input value="1" id="soluong" data-type='currency' type="text" class="form-control text-center border border-secondary" placeholder="0" aria-label="Example text with button addon" aria-describedby="button-addon1" />
+                                            <button class="text-white btn btn-white border border-secondary px-3" type="button" id="button-addon-product" data-mdb-ripple-color="dark">
+                                                <i class="fa fa-plus"></i>
+                                            </button>
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+                            @if (Model.conhang == false)
+                            {
+                                <div class="row mt-3">
+                                    <div class="col-md-12 col-sm-12">
+                                        <button disabled id="addToCart" style="width:100%; cursor: pointer;" class="btn1 flex-c-m size1 txt3 trans-0-4">
+                                            <i class="fa fa-cart-plus" style="margin-right: 6px" aria-hidden="true"></i> THÊM VÀO GIỎ
+                                        </button>
+                                    </div>
+                                </div>
+
+                            }
+                            else
+                            {
+                                <div class="row mt-3">
+                                    <div class="col-md-12 col-sm-12">
+                                        <button id="addToCart" style="width:100%; cursor: pointer;" class="btn1 flex-c-m size1 txt3 trans-0-4">
+                                            <i class="fa fa-cart-plus" style="margin-right: 6px" aria-hidden="true"></i> THÊM VÀO GIỎ
+                                        </button>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

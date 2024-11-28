@@ -82,6 +82,19 @@ namespace Beanfamily.Controllers
             return View("productdetail", sp);
         }
 
+        public ActionResult QuickProductDetail(int id)
+        {
+            var sp = model.SanPhamThucDonHangNgay.Find(id);
+            if (sp == null)
+                return RedirectToAction("index");
+
+            sp.luotxem = sp.luotxem + 1;
+            model.Entry(sp).State = System.Data.Entity.EntityState.Modified;
+            model.SaveChanges();
+            model = new BeanfamilyEntities();
+            return PartialView("_quickproductdetail", sp);
+        }
+
         [HttpPost]
         public ActionResult AddToCart(int idsp, int soluong)
         {

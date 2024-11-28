@@ -65,6 +65,8 @@
 
                 $('body').find('[id="soluong"]').val(1);
                 $('body').find('[id="gioHangModal"]').modal('toggle');
+                $('body').find('[id="quickDetailProduct"]').modal('toggle');
+
             }
         });
     });

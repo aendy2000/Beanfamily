@@ -342,6 +342,9 @@
     <Content Include="ActionOnPage\MenuTiecBan\DatBan.js" />
     <Content Include="ActionOnPage\MenuTiecBan\loadPageMenuTiecBan.js" />
     <Content Include="ActionOnPage\MenuTiecBan\SubmitFormDatBan.js" />
+    <Content Include="ActionOnPage\MuaSam\AddToCartQuick.js" />
+    <Content Include="ActionOnPage\ThucDonHangNgay\AddToCartQuick.js" />
+    <Content Include="ActionOnPage\VuonRau\AddToCartQuick.js" />
     <Content Include="Content\AdminAreas\assets\img\analyst.png" />
     <Content Include="Content\AdminAreas\assets\img\default-hinhanhbean.png" />
     <Content Include="Content\AdminAreas\assets\img\ggsearch.png" />
@@ -3125,6 +3128,9 @@
     <Content Include="Views\Home\_TimKiemDonHang.cshtml" />
     <Content Include="Views\Home\_ChiTietDonHang.cshtml" />
     <Content Include="Views\HinhAnh\Index.cshtml" />
+    <Content Include="Views\MuaSam\_QuickProductDetail.cshtml" />
+    <Content Include="Views\VuonRau\_QuickProductDetail.cshtml" />
+    <Content Include="Views\ThucDonHangNgay\_QuickProductDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

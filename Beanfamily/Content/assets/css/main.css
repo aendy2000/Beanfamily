@@ -1783,7 +1783,7 @@ body {
     background-color: #5e443b;
     font-family: 'san_francisco_text_regularRg', sans-serif;
     text-align: center;
-    height: 300px;
+    height: auto;
     border-radius: 16px;
     border: 2px solid #ffc687;
 }
