@@ -38,16 +38,28 @@
 <section class="section-ourmenu bg1-pattern">
     <div class="section-child-bg1">
         <div class="container p-t-60 p-b-40">
-            <div class="col-img-5">
+            @*<div class="col-img-5">
+                    @foreach (var item in Model)
+                    {
+                        <div style="border-radius: 16px; " class="img-item-show">
+                            <a style="width: 100%; " href="@Url.Content(item.url)" data-lightbox="gallery-footer">
+                                <img style="width: 100%; height: auto; border-radius: 16px; border: 3px solid #ffc687" src="@Url.Content(item.url)" />
+                            </a>
+                        </div>
+                    }
+
+                </div>*@
+            <div class="row">
                 @foreach (var item in Model)
                 {
-                    <div style="border-radius: 16px; " class="img-item-show">
-                        <a style="width: 100%; " href="@Url.Content(item.url)" data-lightbox="gallery-footer">
-                            <img style="width: 100%; height: auto; border-radius: 16px; border: 3px solid #ffc687" src="@Url.Content(item.url)" />
-                        </a>
+                    <div class="col-3 mb-4">
+                        <div style="border-radius: 16px; " class="img-item-show">
+                            <a style="width: 100%; " href="@Url.Content(item.url)" data-lightbox="gallery-footer">
+                                <img style="width: 100%; height: auto" src="@Url.Content(item.url)" />
+                            </a>
+                        </div>
                     </div>
                 }
-
             </div>
         </div>
     </div>

@@ -219,6 +219,7 @@
                                 @if (Session["user-dangnhap"] == null)
                                 {
                                     <li id="user-dangnhap">Đăng nhập</li>
+                                    <li id="user-main-dangky">Đăng ký</li>
                                 }
                                 else
                                 {
@@ -1198,6 +1199,11 @@
             });
         })
     </script>
+
+
+    <div class="zalo-chat-widget" data-oaid="1656336062251150230" data-welcome-message="Bạn cần hỗ trợ gì không?" data-autopopup="2" style="bottom: 90px !important; right: 30px !important" data-width="300" data-height="300"></div>
+    <script src="~/ZaloAPI/js/zaloSdk.js"></script>
+    <link href="~/ZaloAPI/css/zaloSdk.css" rel="stylesheet" />
 </body>
 </html>
 

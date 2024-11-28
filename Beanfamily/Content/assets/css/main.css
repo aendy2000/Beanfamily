@@ -39,7 +39,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 /*[ FONT ]
 ///////////////////////////////////////////////////////////
 */
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+@import url('https://fonts.googleapis.com/css?family=san_francisco_text_regularRg:400,700');
 
 @import url('https://fonts.googleapis.com/css?family=Courgette');
 
@@ -47,7 +47,12 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans');
 
-@font-face {
+/*
+    Font Default
+    ///////////////////////////////////////////////////////////
+*/
+
+/*@font-face {
     font-family: Montserrat-Regular;
     src: url('../fonts/montserrat/Montserrat-Regular.ttf');
 }
@@ -85,9 +90,64 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 @font-face {
     font-family: NotoSans-Regular;
     src: url('../fonts/notosans/NotoSans-Regular.ttf');
+}*/
+
+
+/*
+    Font Vingroup
+    ///////////////////////////////////////////////////////////
+*/
+
+@font-face {
+    font-family: riftbold;
+    src: url(../fonts/vingroup/Rift-Bold.eot?#iefix) format("embedded-opentype"),url(../fonts/vingroup/Rift-Bold.otf) format("opentype"),url(../fonts/vingroup/Rift-Bold.woff) format("woff"),url(../fonts/vingroup/Rift-Bold.ttf) format("truetype"),url(../fonts/vingroup/Rift-Bold.svg#Rift-Bold) format("svg");
+    font-weight: 400;
+    font-style: normal
 }
 
+@font-face {
+    font-family: riftdemi;
+    src: url(../fonts/vingroup/fort_foundry_-_rift-demi-webfont.eot);
+    src: url(../fonts/vingroup/fort_foundry_-_rift-demi-webfont.eot?#iefix) format("embedded-opentype"),url(../fonts/vingroup/fort_foundry_-_rift-demi-webfont.woff2) format("woff2"),url(../fonts/vingroup/fort_foundry_-_rift-demi-webfont.woff) format("woff"),url(../fonts/vingroup/fort_foundry_-_rift-demi-webfont.svg#riftdemi) format("svg");
+    font-weight: 400;
+    font-style: normal
+}
 
+@font-face {
+    font-family: riftregular;
+    src: url(../fonts/vingroup/Rift.eot?#iefix) format("embedded-opentype"),url(../fonts/vingroup/Rift.otf) format("opentype"),url(../fonts/vingroup/Rift.woff) format("woff"),url(../fonts/vingroup/Rift.ttf) format("truetype"),url(../fonts/vingroup/Rift.svg#Rift) format("svg");
+    font-weight: 400;
+    font-style: normal
+}
+
+@font-face {
+    font-family: Rift-Light;
+    src: url(../fonts/vingroup/Rift-Light.eot?#iefix) format("embedded-opentype"),url(../fonts/vingroup/Rift-Light.otf) format("opentype"),url(../fonts/vingroup/Rift-Light.woff) format("woff"),url(../fonts/vingroup/Rift-Light.ttf) format("truetype"),url(../fonts/vingroup/Rift-Light.svg#Rift-Light) format("svg");
+    font-weight: 400;
+    font-style: normal
+}
+
+@font-face {
+    font-family: san_francisco_textbold;
+    src: url(../fonts/vingroup/SanFranciscoTextBold.eot);
+    src: url(../fonts/vingroup/SanFranciscoTextBold.eot) format("embedded-opentype"),url(../fonts/vingroup/SanFranciscoTextBold.woff2) format("woff2"),url(../fonts/vingroup/SanFranciscoTextBold.woff) format("woff"),url(../fonts/vingroup/SanFranciscoTextBold.ttf) format("truetype"),url(../fonts/vingroup/SanFranciscoTextBold.svg#SanFranciscoTextBold) format("svg")
+}
+
+@font-face {
+    font-family: san_francisco_text_regularRg;
+    src: url(../fonts/vingroup/sanfranciscotext-regular-webfont.eot);
+    src: url(../fonts/vingroup/sanfranciscotext-regular-webfont.eot?#iefix) format("embedded-opentype"),url(../fonts/vingroup/sanfranciscotext-regular-webfont.woff2) format("woff2"),url(../fonts/vingroup/sanfranciscotext-regular-webfont.woff) format("woff"),url(../fonts/vingroup/sanfranciscotext-regular-webfont.svg#san_francisco_text_regularRg) format("svg");
+    font-weight: 400;
+    font-style: normal
+}
+
+@font-face {
+    font-family: san_francisco_textthin;
+    src: url(../fonts/vingroup/sanfranciscotext-thin-webfont.eot);
+    src: url(../fonts/vingroup/sanfranciscotext-thin-webfont.eot?#iefix) format("embedded-opentype"),url(../fonts/vingroup/sanfranciscotext-thin-webfont.woff2) format("woff2"),url(../fonts/vingroup/sanfranciscotext-thin-webfont.woff) format("woff"),url(../fonts/vingroup/sanfranciscotext-thin-webfont.ttf) format("truetype"),url(../fonts/vingroup/sanfranciscotext-thin-webfont.svg#san_francisco_textthin) format("svg");
+    font-weight: 400;
+    font-style: normal
+}
 
 /*[ RESTYLE TAG ]
 ///////////////////////////////////////////////////////////
@@ -100,13 +160,13 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 
 body, html {
     height: 100%;
-    font-family: Montserrat, sans-serif;
+    font-family: san_francisco_text_regularRg;
     font-weight: 400;
 }
 
 /* ------------------------------------ */
 a {
-    font-family: Montserrat;
+    font-family: san_francisco_text_regularRg;
     font-weight: 400;
     font-size: 15px;
     line-height: 1.7;
@@ -133,7 +193,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 p {
-    font-family: Montserrat;
+    font-family: san_francisco_text_regularRg;
     font-weight: 400;
     font-size: 15px;
     line-height: 1.7;
@@ -321,7 +381,7 @@ input[type="date" i] {
 
 .table-condensed td, .table-condensed th {
     font-size: 14px;
-    font-family: Montserrat;
+    font-family: san_francisco_text_regularRg;
     font-weight: 400;
 }
 
@@ -441,7 +501,7 @@ input[type="date" i] {
 ===========================================================*/
 .select2-selection__rendered {
     font-size: 14px;
-    font-family: Montserrat;
+    font-family: san_francisco_text_regularRg;
     font-weight: 400;
     color: #666666 !important;
     padding-left: 20px !important;
@@ -508,7 +568,7 @@ input[type="date" i] {
 
 .select2-results__options {
     font-size: 14px;
-    font-family: Montserrat;
+    font-family: san_francisco_text_regularRg;
     font-weight: 400;
     color: #666666 !important;
 }
@@ -517,7 +577,7 @@ input[type="date" i] {
 .select2-search--dropdown .select2-search__field {
     border: 1px solid #aaa !important;
     outline: none;
-    font-family: Montserrat;
+    font-family: san_francisco_text_regularRg;
     font-weight: 400;
     font-size: 14px;
     color: #666666;
@@ -629,7 +689,7 @@ input[type="date" i] {
     }
 
         .main_menu > li > a {
-            font-family: Montserrat;
+            font-family: san_francisco_text_regularRg;
             font-weight: bold;
             font-size: 14px;
             text-transform: uppercase;
@@ -716,7 +776,7 @@ input[type="date" i] {
 
 .sub_menu li, .sub_menu a {
     padding: 10px;
-    font-family: Montserrat;
+    font-family: san_francisco_text_regularRg;
     font-weight: 400;
     font-size: 14px;
     color: #ffffff;
@@ -1463,7 +1523,7 @@ body {
     bottom: 11px;
     background-color: rgba(0,0,0,0.5);
     padding: 3px 15px;
-    font-family: Montserrat;
+    font-family: san_francisco_text_regularRg;
     font-weight: 400;
     font-size: 12px;
     color: white;
@@ -1639,7 +1699,7 @@ body {
 ///////////////////////////////////////////////////////////
 */
 .item-pagination {
-    font-family: Montserrat;
+    font-family: san_francisco_text_regularRg;
     font-weight: 400;
     font-size: 13px;
     color: #808080;
@@ -1721,7 +1781,7 @@ body {
 /* PRODUCT GRID */
 .product-grid {
     background-color: #5e443b;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'san_francisco_text_regularRg', sans-serif;
     text-align: center;
     height: 300px;
     border-radius: 16px;
@@ -1917,7 +1977,7 @@ body {
 
     .product-grid {
         background-color: #5e443b;
-        font-family: 'Montserrat', sans-serif;
+        font-family: 'san_francisco_text_regularRg', sans-serif;
         text-align: center;
         height: 350px;
         border-radius: 16px;
@@ -2027,7 +2087,7 @@ body {
 
     .product-grid {
         background-color: #5e443b;
-        font-family: 'Montserrat', sans-serif;
+        font-family: 'san_francisco_text_regularRg', sans-serif;
         text-align: center;
         height: 350px;
         border-radius: 16px;

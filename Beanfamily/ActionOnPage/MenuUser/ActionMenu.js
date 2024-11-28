@@ -23,6 +23,9 @@
     $('body').find('[id="user-dangnhap"]').on('click', function () {
         $('body').find('[id="userDangNhapModal"]').modal('toggle');
     });
+    $('body').find('[id="user-main-dangky"]').on('click', function () {
+        $('body').find('[id="userDangKyModal"]').modal('toggle');
+    });
 
     $('body').find('[id="user-thongtintaikhoan"]').on('click', function () {
         $('body').find('[id="userInfoModal"]').modal('toggle');

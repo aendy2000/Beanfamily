@@ -485,13 +485,13 @@
                                             </div>
                                             <p hidden id="validate-tienhanhdathang-diachi" style="margin-top: -20px; margin-bottom: 10px" class="text-danger"></p>
                                         </div>
-                                        <div class="col-md-12">
+                                        <div class="col-md-12 mb-3">
                                             <select style="border-radius: 16px; padding: 14px" class="form-select form-select-sm mb-3" id="city" aria-label=".form-select-sm">
                                                 <option value="" selected>Chọn tỉnh thành</option>
                                             </select>
                                             <p hidden id="validate-tienhanhdathang-city" style="margin-top: -20px; margin-bottom: 10px" class="text-danger"></p>
                                         </div>
-                                        <div class="col-md-12">
+                                        <div class="col-md-12 mb-3">
                                             <select style="border-radius: 16px; padding: 14px" class="form-select form-select-sm mb-3" id="district" aria-label=".form-select-sm">
                                                 <option value="" selected>Chọn quận huyện</option>
                                             </select>
@@ -668,13 +668,13 @@
                                             </div>
                                             <p hidden id="validate-tienhanhdathang-diachi" style="margin-top: -20px; margin-bottom: 10px" class="text-danger"></p>
                                         </div>
-                                        <div class="col-md-12">
+                                        <div class="col-md-12 mb-3">
                                             <select style="border-radius: 16px; padding: 14px" class="form-select form-select-sm mb-3" id="city" aria-label=".form-select-sm">
                                                 <option value="" selected>Chọn tỉnh thành</option>
                                             </select>
                                             <p hidden id="validate-tienhanhdathang-city" style="margin-top: -20px; margin-bottom: 10px" class="text-danger"></p>
                                         </div>
-                                        <div class="col-md-12">
+                                        <div class="col-md-12 mb-3">
                                             <select style="border-radius: 16px; padding: 14px" class="form-select form-select-sm mb-3" id="district" aria-label=".form-select-sm">
                                                 <option value="" selected>Chọn quận huyện</option>
                                             </select>
@@ -783,6 +783,8 @@
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+<link href="~/Content/assets/vendor/select2/select2TienHanhDatHang.min.css" rel="stylesheet" />
+
 <script>
     var firstHeight = $('body').find('[id="firstHeight"]').height();
     var lastHeight = $('body').find('[id="lastHeight"]').height();
@@ -792,6 +794,10 @@
     if (lastHeight > MinHeight) {
         $('body').find('[id="lastHeight"]').height(MinHeight);
     }
+
+    $('#city').prop('disabled', true);
+    $('#district').prop('disabled', true);
+    $('#ward').prop('disabled', true);
 
     var citis = document.getElementById("city");
     var districts = document.getElementById("district");
@@ -805,6 +811,14 @@
     var promise = axios(Parameter);
     promise.then(function (result) {
         renderCity(result.data);
+    }).then(function () {
+        $('#city').prop('disabled', false);
+        $('#district').prop('disabled', false);
+        $('#ward').prop('disabled', false);
+
+        $('#city').select2();
+        $('#district').select2();
+        $('#ward').select2();
     });
 
     function renderCity(data) {

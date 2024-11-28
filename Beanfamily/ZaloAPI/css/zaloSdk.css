@@ -1,0 +1,11 @@
+﻿.zalo-chat-widget {
+    bottom: 100px !important;
+    right: 30px !important;
+}
+
+@media(max-width: 767px) {
+    .zalo-chat-widget {
+        bottom: 80px !important;
+        right: 10px !important;
+    }
+}

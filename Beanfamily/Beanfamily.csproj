@@ -400,6 +400,7 @@
     <Content Include="Content\assets\images\ImageBean\z5708999244990_3426025b3a0a71332ed1c23db3c0acee.jpg" />
     <Content Include="Content\assets\images\qrpayment\BIDV.jpg" />
     <Content Include="Content\assets\images\qrpayment\momo.jpg" />
+    <Content Include="Content\assets\vendor\select2\select2TienHanhDatHang.min.css" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
@@ -3002,9 +3003,11 @@
     <Content Include="Areas\Admin\Views\LienHeDatBan\_OpenTaoDonTiecBan.cshtml" />
     <Content Include="Areas\Admin\Views\LienHeDatBan\_OpenTaoDonBuffet.cshtml" />
     <Content Include="Areas\Admin\Views\NoiDungTinh\Index.cshtml" />
+    <Content Include="ZaloAPI\css\zaloSdk.css" />
     <Content Include="ZaloAPI\img\bannerDDB.png" />
     <Content Include="ZaloAPI\img\bannerDDH.png" />
     <Content Include="ZaloAPI\img\bannerZaloAPI.png" />
+    <Content Include="ZaloAPI\js\zaloSdk.js" />
     <EntityDeploy Include="Models\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
@@ -3012,6 +3015,11 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\assets\fonts\vingroup\fort_foundry_-_rift-demi-webfont.woff2" />
+    <Content Include="Content\assets\fonts\vingroup\Rift-Bold.otf" />
+    <Content Include="Content\assets\fonts\vingroup\Rift.otf" />
+    <Content Include="Content\assets\fonts\vingroup\sanfranciscotext-regular-webfont.woff2" />
+    <Content Include="Content\assets\fonts\vingroup\SanFranciscoTextBold.woff2" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
