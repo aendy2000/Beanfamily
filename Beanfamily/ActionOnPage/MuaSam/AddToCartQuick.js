@@ -33,6 +33,9 @@
                 slFirst = $('body').find('[id="selectloai"] :selected').attr('tonkhosoluong');
                 giaFirst = $('body').find('[id="selectloai"] :selected').attr('tonkhogia');
 
+                $('body').find('[id="soluong-tonkho"]').text('Kho: ' + slFirst + ' sản phẩm');
+                $('body').find('[id="gia-tonkho"]').text(giaFirst + 'đ');
+
                 if (firstLoad == 0) {
                     DieuChinhSoLuong();
                     firstLoad++;
