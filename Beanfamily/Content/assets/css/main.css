@@ -2072,7 +2072,19 @@ body {
     top: 125px;
 }
 
+.title_product_items {
+    padding: 0 14px 0 14px;
+}
+
 @media (max-width: 768px) {
+    .title_product_items {
+        padding: 0 20px 0 20px !important;
+    }
+
+    .product_items {
+        padding: 0 20px 0 20px !important;
+    }
+
     .hinhanhbean-list {
         justify-content: center;
     }
@@ -2089,7 +2101,7 @@ body {
         background-color: #5e443b;
         font-family: 'san_francisco_text_regularRg', sans-serif;
         text-align: center;
-        height: 350px;
+        height: auto;
         border-radius: 16px;
         border: 2px solid #ffc687;
     }
