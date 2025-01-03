@@ -57,7 +57,7 @@
                 </div>
             </div>
             <div class="row p-t-30">
-                @foreach (var item in Model)
+                @foreach (var item in Model.OrderBy(o => o.sothutu).ToList())
                 {
                     if (item.hienthi == true && item.SanPhamMenuBuffet.Count > 0)
                     {
@@ -79,7 +79,7 @@
                                     <div class="col-1">
                                         <input id="monanbuffet-@item.id-all" type="checkbox" style="height: 20px; width: 20px; margin-left: -5px; accent-color: #12634c " />
                                     </div>
-                                    @foreach (var items in item.SanPhamMenuBuffet)
+                                    @foreach (var items in item.SanPhamMenuBuffet.OrderBy(o => o.sothutu).ToList())
                                     {
                                         <div class="col-11 p-0 mt-1">
                                             @if (!string.IsNullOrEmpty(items.hinhanh))

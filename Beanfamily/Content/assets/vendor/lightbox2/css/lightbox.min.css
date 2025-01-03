@@ -41,8 +41,8 @@ body.lb-disable-scrolling {
         height: auto;
         max-width: inherit;
         max-height: none;
-        border-radius: 36px;
-        border: 2px solid #ffc678;
+/*        border-radius: 36px;
+        border: 2px solid #ffc678;*/
     }
 
     .lightbox a img {
@@ -54,8 +54,8 @@ body.lb-disable-scrolling {
     width: 250px;
     height: 250px;
     margin: 0 auto;
-    border-radius: 36px;
-    background-color: #fff
+    /*    border-radius: 36px;
+*/ background-color: #122E26
 }
 
 .lb-loader, .lb-nav {
