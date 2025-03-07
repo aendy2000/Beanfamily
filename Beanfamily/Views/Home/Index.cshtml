@@ -91,7 +91,7 @@
                                     </li>
 
                                     <li class="text-white" style="font-size: 16px; margin-top: 20px; cursor: pointer" onclick="location.href = 'tel:@phone'">
-                                        <b>Phone:</b> @phone
+                                        <b>Hotline:</b> @phone
                                     </li>
                                     <li class="text-white" style="font-size: 16px; cursor: pointer" onclick="location.href = 'nailto:@mail'">
                                         <b>Email:</b> @mail
@@ -128,11 +128,11 @@
     <div class="section-child-bg1">
         <div class="container  p-t-80 p-b-105">
             <div class="row">
-                <div class="col-md-6 p-t-45 p-b-30">
+                <div class="col-md-6 p-b-30">
                     <div class="wrap-text-welcome t-center">
-                        <span class="tit2 t-center">
+                        <label class="tit2 t-center" style="font-size: 38px; margin-top: 20px">
                             Bean Family
-                        </span>
+                        </label>
 
                         <h3 class="tit3 t-center m-b-35 m-t-5">
                             Welcome
@@ -280,14 +280,17 @@
                     {
                         <div class="col-md-6 p-t-45 p-b-30">
                             <div class="wrap-text-welcome t-center">
-                                <h6 class="tit6 t-center m-b-20 m-t-0">
+                                <h6 class="tit6 t-center m-t-0" style="font-size: 30px; padding-bottom: 0; letter-spacing: 3px; word-spacing: 3px;">
                                     @item.tensanpham
                                 </h6>
-                                @*<p class="t-center m-b-22 size3 m-l-r-auto">
-            @item.mota
-        </p>*@
-                                <a href="@Url.Action("productdetail", "thucdonhangngay", new { id = item.id })" class="txt4">
-                                    @item.tensanpham - @item.gia.ToString("0,0")đ
+                                @if (!string.IsNullOrEmpty(item.mota))
+                                {
+                                    <p class="t-center m-b-22 size3 m-l-r-auto">
+                                        @item.mota
+                                    </p>
+                                }
+                                <a style="font-size: 16px;" href="@Url.Action("productdetail", "thucdonhangngay", new { id = item.id })" class="txt4">
+                                    Xem @item.tensanpham - @item.gia.ToString("0,0")đ
                                     <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
                                 </a>
                                 <div style="margin-top: 20px; width: 100%; height: 460px;
@@ -299,13 +302,25 @@
                     }
                     else
                     {
-                        <div class="col-md-6 p-b-30">
-                            <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom bg-bg1" onclick="location.href = '@(Url.Action("productdetail", "thucdonhangngay", new { id = item.id }))'">
-                                <div class="pic-blo3 size20 hov-img-zoom" style="width: 100%; height: auto">
-                                    <a href="@Url.Action("productdetail", "thucdonhangngay", new { id = item.id })">
-                                        <img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU">
-                                    </a>
+                        <div class="col-md-6 p-t-45 p-b-30">
+                            <div class="wrap-text-welcome t-center">
+                                <div style="margin-top: 0px; width: 100%; height: 460px;
+                                background-image: url(@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh)));
+                                background-size: cover">
                                 </div>
+                                <h6 class="tit6 t-center m-t-20" style="font-size: 30px; padding-bottom: 0; letter-spacing: 3px; word-spacing: 3px;">
+                                    @item.tensanpham
+                                </h6>
+                                @if (!string.IsNullOrEmpty(item.mota))
+                                {
+                                    <p class="t-center m-b-22 size3 m-l-r-auto">
+                                        @item.mota
+                                    </p>
+                                }
+                                <a style="font-size: 16px;" href="@Url.Action("productdetail", "thucdonhangngay", new { id = item.id })" class="txt4">
+                                    Xem @item.tensanpham - @item.gia.ToString("0,0")đ
+                                    <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
+                                </a>
                             </div>
                         </div>
                     }
@@ -326,16 +341,19 @@
                         i++;
                         if (i == 1)
                         {
-                            <div class="p-t-45 p-b-30 change-position-map-right">
+                            <div class="col-md-6 p-t-45 p-b-30">
                                 <div class="wrap-text-welcome t-center">
-                                    <h6 class="tit6 t-center m-b-20 m-t-0">
+                                    <h6 class="tit6 t-center m-t-0" style="font-size: 30px; padding-bottom: 0; letter-spacing: 3px; word-spacing: 3px;">
                                         @item.tensanpham
                                     </h6>
-                                    @*<p class="t-center m-b-22 size3 m-l-r-auto">
-            @item.mota
-        </p>*@
-                                    <a href="@Url.Action("productdetail", "vuonrau", new { id = item.id })" class="txt4">
-                                        @item.tensanpham - @item.gia.ToString("0,0")đ
+                                    @if (!string.IsNullOrEmpty(item.mota))
+                                    {
+                                        <p class="t-center m-b-22 size3 m-l-r-auto">
+                                            @item.mota
+                                        </p>
+                                    }
+                                    <a style="font-size: 16px;" href="@Url.Action("productdetail", "vuonrau", new { id = item.id })" class="txt4">
+                                        Xem @item.tensanpham - @item.gia.ToString("0,0")đ
                                         <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
                                     </a>
                                     <div style="margin-top: 20px; width: 100%; height: 460px;
@@ -347,16 +365,26 @@
                         }
                         else
                         {
-                            <div class="p-b-30 change-position-map-left">
-
-                                <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom bg-bg1" onclick="location.href = '@(Url.Action("productdetail", "vuonrau", new { id = item.id }))'">
-                                    <div class="pic-blo3 size20 hov-img-zoom" style="width: 100%; height: auto">
-                                        <a href="@Url.Action("productdetail", "vuonrau", new { id = item.id })">
-                                            <img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU">
-                                        </a>
+                            <div class="col-md-6 p-t-45 p-b-30">
+                                <div class="wrap-text-welcome t-center">
+                                    <div style="margin-top: 0px; width: 100%; height: 460px;
+                                    background-image: url(@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh)));
+                                    background-size: cover">
                                     </div>
+                                    <h6 class="tit6 t-center m-t-20" style="font-size: 30px; padding-bottom: 0; letter-spacing: 3px; word-spacing: 3px;">
+                                        @item.tensanpham
+                                    </h6>
+                                    @if (!string.IsNullOrEmpty(item.mota))
+                                    {
+                                        <p class="t-center m-b-22 size3 m-l-r-auto">
+                                            @item.mota
+                                        </p>
+                                    }
+                                    <a style="font-size: 16px;" href="@Url.Action("productdetail", "vuonrau", new { id = item.id })" class="txt4">
+                                        Xem @item.tensanpham - @item.gia.ToString("0,0")đ
+                                        <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
+                                    </a>
                                 </div>
-
                             </div>
                         }
                     }
@@ -374,16 +402,19 @@
                     i++;
                     if (i == 1)
                     {
-                        <div class="col-md-6 p-t-20 p-b-30">
+                        <div class="col-md-6 p-t-45 p-b-30">
                             <div class="wrap-text-welcome t-center">
-                                <h6 class="tit6 t-center m-b-20 m-t-0">
+                                <h6 class="tit6 t-center m-t-0" style="font-size: 30px; padding-bottom: 0; letter-spacing: 3px; word-spacing: 3px;">
                                     @item.tensanpham
                                 </h6>
-                                @*<p class="t-center m-b-22 size3 m-l-r-auto">
-            @item.mota
-        </p>*@
-                                <a href="@Url.Action("productdetail", "muasam", new { id = item.id })" class="txt4">
-                                    @item.tensanpham - @item.TonKhoSanPhamMuaSam.First().gia.ToString("0,0") đ
+                                @if (!string.IsNullOrEmpty(item.mota))
+                                {
+                                    <p class="t-center m-b-22 size3 m-l-r-auto">
+                                        @item.mota
+                                    </p>
+                                }
+                                <a style="font-size: 16px;" href="@Url.Action("productdetail", "muasam", new { id = item.id })" class="txt4">
+                                    Xem @item.tensanpham - @item.TonKhoSanPhamMuaSam.First().gia.ToString("0,0")đ
                                     <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
                                 </a>
                                 <div style="margin-top: 20px; width: 100%; height: 460px;
@@ -395,13 +426,25 @@
                     }
                     else
                     {
-                        <div class="col-md-6 p-b-30">
-                            <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom bg-bg1" onclick="location.href = '@(Url.Action("productdetail", "muasam", new { id = item.id }))'">
-                                <div class="pic-blo3 size20 hov-img-zoom" style="width: 100%; height: auto">
-                                    <a href="@Url.Action("productdetail", "muasam", new { id = item.id })">
-                                        <img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU">
-                                    </a>
+                        <div class="col-md-6 p-t-45 p-b-30">
+                            <div class="wrap-text-welcome t-center">
+                                <div style="margin-top: 0px; width: 100%; height: 460px;
+                                background-image: url(@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh)));
+                                background-size: cover">
                                 </div>
+                                <h6 class="tit6 t-center m-t-20" style="font-size: 30px; padding-bottom: 0; letter-spacing: 3px; word-spacing: 3px;">
+                                    @item.tensanpham
+                                </h6>
+                                @if (!string.IsNullOrEmpty(item.mota))
+                                {
+                                    <p class="t-center m-b-22 size3 m-l-r-auto">
+                                        @item.mota
+                                    </p>
+                                }
+                                <a style="font-size: 16px;" href="@Url.Action("productdetail", "muasam", new { id = item.id })" class="txt4">
+                                    Xem @item.tensanpham - @item.TonKhoSanPhamMuaSam.First().gia.ToString("0,0")đ
+                                    <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
+                                </a>
                             </div>
                         </div>
                     }
@@ -434,14 +477,17 @@
                     {
                         <div class="col-md-6 p-t-45 p-b-30">
                             <div class="wrap-text-welcome t-center">
-                                <h6 class="tit6 t-center m-b-20 m-t-0">
+                                <h6 class="tit6 t-center m-t-0" style="font-size: 30px; padding-bottom: 0; letter-spacing: 3px; word-spacing: 3px;">
                                     @item.tensanpham
                                 </h6>
-                                @*<p class="t-center m-b-22 size3 m-l-r-auto">
-            @mota_sanphamnoibat_nhahang
-        </p>*@
-                                <a href="@Url.Action("productdetail", "thucdonhangngay", new { id = item.id })" class="txt4">
-                                    @item.tensanpham - @item.gia.ToString("0,0")đ
+                                @if (!string.IsNullOrEmpty(item.mota))
+                                {
+                                    <p class="t-center m-b-22 size3 m-l-r-auto">
+                                        @item.mota
+                                    </p>
+                                }
+                                <a style="font-size: 16px;" href="@Url.Action("productdetail", "thucdonhangngay", new { id = item.id })" class="txt4">
+                                    Xem @item.tensanpham - @item.gia.ToString("0,0")đ
                                     <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
                                 </a>
                                 <div style="margin-top: 20px; width: 100%; height: 460px;
@@ -453,13 +499,25 @@
                     }
                     else
                     {
-                        <div class="col-md-6 p-b-30">
-                            <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom bg-bg1" onclick="location.href = '@(Url.Action("productdetail", "thucdonhangngay", new { id = item.id }))'">
-                                <div class="pic-blo3 size20 hov-img-zoom" style="width: 100%; height: auto">
-                                    <a href="@Url.Action("productdetail", "thucdonhangngay", new { id = item.id })">
-                                        <img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU">
-                                    </a>
+                        <div class="col-md-6 p-t-45 p-b-30">
+                            <div class="wrap-text-welcome t-center">
+                                <div style="margin-top: 0px; width: 100%; height: 460px;
+                                background-image: url(@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh)));
+                                background-size: cover">
                                 </div>
+                                <h6 class="tit6 t-center m-t-20" style="font-size: 30px; padding-bottom: 0; letter-spacing: 3px; word-spacing: 3px;">
+                                    @item.tensanpham
+                                </h6>
+                                @if (!string.IsNullOrEmpty(item.mota))
+                                {
+                                    <p class="t-center m-b-22 size3 m-l-r-auto">
+                                        @item.mota
+                                    </p>
+                                }
+                                <a style="font-size: 16px;" href="@Url.Action("productdetail", "thucdonhangngay", new { id = item.id })" class="txt4">
+                                    Xem @item.tensanpham - @item.gia.ToString("0,0")đ
+                                    <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
+                                </a>
                             </div>
                         </div>
                     }
@@ -477,16 +535,19 @@
                         i++;
                         if (i == 1)
                         {
-                            <div class="p-t-45 p-b-30 change-position-map-right">
+                            <div class="col-md-6 p-t-45 p-b-30">
                                 <div class="wrap-text-welcome t-center">
-                                    <h6 class="tit6 t-center m-b-20 m-t-0">
+                                    <h6 class="tit6 t-center m-t-0" style="font-size: 30px; padding-bottom: 0; letter-spacing: 3px; word-spacing: 3px;">
                                         @item.tensanpham
                                     </h6>
-                                    @*<p class="t-center m-b-22 size3 m-l-r-auto">
-            @mota_sanphamnoibat_vuonrau
-        </p>*@
-                                    <a href="@Url.Action("productdetail", "vuonrau", new { id = item.id })" class="txt4">
-                                        @item.tensanpham - @item.gia.ToString("0,0")đ
+                                    @if (!string.IsNullOrEmpty(item.mota))
+                                    {
+                                        <p class="t-center m-b-22 size3 m-l-r-auto">
+                                            @item.mota
+                                        </p>
+                                    }
+                                    <a style="font-size: 16px;" href="@Url.Action("productdetail", "vuonrau", new { id = item.id })" class="txt4">
+                                        Xem @item.tensanpham - @item.gia.ToString("0,0")đ
                                         <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
                                     </a>
                                     <div style="margin-top: 20px; width: 100%; height: 460px;
@@ -498,16 +559,26 @@
                         }
                         else
                         {
-                            <div class="p-b-30 change-position-map-left">
-
-                                <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom bg-bg1" onclick="location.href = '@(Url.Action("productdetail", "vuonrau", new { id = item.id }))'">
-                                    <div class="pic-blo3 size20 hov-img-zoom" style="width: 100%; height: auto">
-                                        <a href="@Url.Action("productdetail", "vuonrau", new { id = item.id })">
-                                            <img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU">
-                                        </a>
+                            <div class="col-md-6 p-t-45 p-b-30">
+                                <div class="wrap-text-welcome t-center">
+                                    <div style="margin-top: 0px; width: 100%; height: 460px;
+                                    background-image: url(@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh)));
+                                    background-size: cover">
                                     </div>
+                                    <h6 class="tit6 t-center m-t-20" style="font-size: 30px; padding-bottom: 0; letter-spacing: 3px; word-spacing: 3px;">
+                                        @item.tensanpham
+                                    </h6>
+                                    @if (!string.IsNullOrEmpty(item.mota))
+                                    {
+                                        <p class="t-center m-b-22 size3 m-l-r-auto">
+                                            @item.mota
+                                        </p>
+                                    }
+                                    <a style="font-size: 16px;" href="@Url.Action("productdetail", "vuonrau", new { id = item.id })" class="txt4">
+                                        Xem @item.tensanpham - @item.gia.ToString("0,0")đ
+                                        <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
+                                    </a>
                                 </div>
-
                             </div>
                         }
                     }
@@ -525,14 +596,17 @@
                     {
                         <div class="col-md-6 p-t-45 p-b-30">
                             <div class="wrap-text-welcome t-center">
-                               <h6 class="tit6 t-center m-b-20 m-t-0">
-                                   @item.tensanpham
-                               </h6>
-                                @*<p class="t-center m-b-22 size3 m-l-r-auto">
-                                    @mota_sanphamnoibat_muasam
-                                </p>*@
-                                <a href="@Url.Action("productdetail", "muasam", new { id = item.id })" class="txt4">
-                                    @item.tensanpham - @item.TonKhoSanPhamMuaSam.First().gia.ToString("0,0") đ
+                                <h6 class="tit6 t-center m-t-0" style="font-size: 30px; padding-bottom: 0; letter-spacing: 3px; word-spacing: 3px;">
+                                    @item.tensanpham
+                                </h6>
+                                @if (!string.IsNullOrEmpty(item.mota))
+                                {
+                                    <p class="t-center m-b-22 size3 m-l-r-auto">
+                                        @item.mota
+                                    </p>
+                                }
+                                <a style="font-size: 16px;" href="@Url.Action("productdetail", "muasam", new { id = item.id })" class="txt4">
+                                    Xem @item.tensanpham - @item.TonKhoSanPhamMuaSam.First().gia.ToString("0,0") đ
                                     <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
                                 </a>
                                 <div style="margin-top: 20px; width: 100%; height: 460px;
@@ -544,13 +618,26 @@
                     }
                     else
                     {
-                        <div class="col-md-6 p-b-30">
-                            <div class="blo3 flex-w flex-col-l-sm m-b-30 parent-hov-img-zoom bg-bg1" onclick="location.href = '@(Url.Action("productdetail", "muasam", new { id = item.id }))'">
-                                <div class="pic-blo3 size20 hov-img-zoom" style="width: 100%; height: auto">
-                                    <a href="@Url.Action("productdetail", "muasam", new { id = item.id })">
-                                        <img src="@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh))" alt="IMG-MENU">
-                                    </a>
+                        <div class="col-md-6 p-t-45 p-b-30">
+                            <div class="wrap-text-welcome t-center">
+
+                                <div style="margin-top: 0px; width: 100%; height: 460px;
+                                background-image: url(@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh)));
+                                background-size: cover">
                                 </div>
+                                <h6 class="tit6 t-center m-t-20" style="font-size: 30px; padding-bottom: 0; letter-spacing: 3px; word-spacing: 3px;">
+                                    @item.tensanpham
+                                </h6>
+                                @if (!string.IsNullOrEmpty(item.mota))
+                                {
+                                    <p class="t-center m-b-22 size3 m-l-r-auto">
+                                        @item.mota
+                                    </p>
+                                }
+                                <a style="font-size: 16px;" href="@Url.Action("productdetail", "muasam", new { id = item.id })" class="txt4">
+                                    Xem @item.tensanpham - @item.TonKhoSanPhamMuaSam.First().gia.ToString("0,0") đ
+                                    <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
+                                </a>
                             </div>
                         </div>
                     }
