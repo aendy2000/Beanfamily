@@ -23,8 +23,8 @@ namespace Beanfamily
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/bootstrap.css?v=22062025.1",
+                      "~/Content/site.css?v=22062025.1"));
         }
     }
 }
