@@ -44,7 +44,7 @@ namespace Beanfamily.Areas.Admin.Controllers
             Session["active-hab"] = "collapsed # # ";
             Session["active-qlsp"] = "collapsed # # ";
             Session["active-tlc-ttw"] = "collapsed # # ";
-            Session["active-tlc-lkmxh"] = "collapsed # # "; Session["active-ndt"] = "collapsed # # ";
+            Session["active-tlc-lkmxh"] = "collapsed # # "; Session["active-ndt"] = "collapsed # # "; Session["active-cs"] = "collapsed # # ";
 
             var currentYear = DateTime.Now.Year;
             var currentMonth = DateTime.Now.Year;

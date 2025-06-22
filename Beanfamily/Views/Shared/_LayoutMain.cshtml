@@ -62,6 +62,8 @@
     {
         ViewBag.Title = Title;
     }
+
+    var cs = models.ChinhSachBean.ToList().OrderBy(o => o.tenchinhsach).OrderBy(o => o.sothutu).ToList();
 }
 <!DOCTYPE html>
 <html lang="vi">
@@ -363,77 +365,56 @@
         <div class="bottom-child-bg1">
             <div class="container p-t-40">
                 <div class="row">
-                    <div class="col-sm-12 col-md-12 p-t-50 t-center">
-                        <!-- - -->
+                    <div class="col-md-6 p-t-50 footer-info-page footer-info-1">
                         <h4 class="txt13 m-b-33">
                             Thông Tin Liên Hệ
                         </h4>
 
                         <ul>
-                            <li class="txt14 m-b-14" style="cursor: pointer" onclick="window.open('@linkchiduong','mywindow')">
-                                <i class="fa fa-map-marker fs-16 dis-inline-block size19" aria-hidden="true"></i>
-                                @diachi
+                            <li class="txt14 m-b-14">
+                                <label  style="cursor: pointer" onclick="window.open('@linkchiduong','mywindow')">
+                                    <i class="fa fa-map-marker fs-16 dis-inline-block size19" aria-hidden="true"></i>
+                                    @diachi
+                                </label> 
                             </li>
 
-                            <li class="txt14 m-b-14" style="cursor: pointer" onclick="location.href = 'tel:@phone'">
-                                <i class="fa fa-phone fs-16 dis-inline-block size19" aria-hidden="true"></i>
-                                @phone
+                            <li class="txt14 m-b-14">
+                                <label style="cursor: pointer" onclick="location.href = 'tel:@phone'">
+                                    <i class="fa fa-phone fs-16 dis-inline-block size19" aria-hidden="true"></i>
+                                    @phone
+                                </label>
                             </li>
 
-                            <li class="txt14 m-b-14" style="cursor: pointer" onclick="location.href = 'mailto:@mail'">
-                                <i class="fa fa-envelope fs-13 dis-inline-block size19" aria-hidden="true"></i>
-                                @mail
+                            <li class="txt14 m-b-14">
+                                <label style="cursor: pointer" onclick="location.href = 'mailto:@mail'">
+                                    <i class="fa fa-envelope fs-13 dis-inline-block size19" aria-hidden="true"></i>
+                                    @mail
+                                </label>
                             </li>
+                            <li class="txt14 m-b-14">
+                                <label style="cursor: pointer">
+                                    <i class="fa fa-id-card fs-13 dis-inline-block size19" aria-hidden="true"></i>
+                                    MST: 3702764555
+                                </label>
+                            </li>
+                            
                         </ul>
 
                     </div>
 
-                    <!--<div class="col-sm-6 col-md-4 p-t-50">-->
-                    <!-- - -->
-                    <!--<h4 class="txt13 m-b-33">
-                            Bài viết mới
+                    <div class="col-md-6 p-t-50 footer-info-page footer-info-2">
+                        <h4 class="txt13 m-b-33">
+                            Chính Sách
                         </h4>
-
-                        <div class="m-b-25">
-                            <span class="fs-13 color2 m-r-5">
-                                <i class="fa fa-twitter" aria-hidden="true"></i>
-                            </span>
-                            <a href="~/Content/assets/#" class="txt15">
-                                @@colorlib
-                            </a>
-
-                            <p class="txt14 m-b-18">
-                                Activello is a good option. It has a slider built into that displays the featured image in the slider.
-                                <a href="~/Content/assets/#" class="txt15">
-                                    https://buff.ly/2zaSfAQ
-                                </a>
-                            </p>
-
-                            <span class="txt16">
-                                21 Th2 2017
-                            </span>
-                        </div>
-
-                        <div>
-                            <span class="fs-13 color2 m-r-5">
-                                <i class="fa fa-twitter" aria-hidden="true"></i>
-                            </span>
-                            <a href="~/Content/assets/#" class="txt15">
-                                @@colorlib
-                            </a>
-
-                            <p class="txt14 m-b-18">
-                                Activello is a good option. It has a slider built into that displays
-                                <a href="~/Content/assets/#" class="txt15">
-                                    https://buff.ly/2zaSfAQ
-                                </a>
-                            </p>
-
-                            <span class="txt16">
-                                21 Th2 2017
-                            </span>
-                        </div>
-                    </div>-->
+                        <ul>
+                            @foreach (var item in cs)
+                            {
+                                <li class="txt14 m-b-14">
+                                    <label style="cursor: pointer" onclick="location.href = '@Url.Action("chinhsach", "chinhsachbean", new {id = @item.id})'">@item.tenchinhsach.ToUpper()</label>
+                                </li>
+                            }
+                        </ul>
+                    </div>
                 </div>
             </div>
 

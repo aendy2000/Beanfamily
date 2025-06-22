@@ -143,6 +143,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountBeanController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ChinhSachController.cs" />
     <Compile Include="Areas\Admin\Controllers\DangNhapController.cs" />
     <Compile Include="Areas\Admin\Controllers\DanhMucPhucVuController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
@@ -168,6 +169,7 @@
     <Compile Include="Areas\Admin\Controllers\SEOPageConfigController.cs" />
     <Compile Include="Areas\Admin\Controllers\CauHinhWebController.cs" />
     <Compile Include="Areas\Admin\Controllers\ThongTinWebController.cs" />
+    <Compile Include="Controllers\ChinhSachBeanController.cs" />
     <Compile Include="Controllers\DatHangController.cs" />
     <Compile Include="Controllers\HinhAnhController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -188,6 +190,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CacBuocQuyTrinhTrongCay.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ChinhSachBean.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ChiTietDonHangDanhMucPhucVuMenuBuffet.cs">
@@ -298,6 +303,9 @@
     <Compile Include="Models\SanPhamThucDonHangNgay.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SuKienBean.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TaiKhoanBean.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -317,6 +325,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TonKhoSanPhamMuaSam.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VideoBean.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -2842,6 +2853,10 @@
     <Content Include="Content\assets\vendor\parallax100\parallax100.js" />
     <Content Include="Content\assets\vendor\perfect-scrollbar\perfect-scrollbar.css" />
     <Content Include="Content\assets\vendor\perfect-scrollbar\perfect-scrollbar.min.js" />
+    <Content Include="Content\assets\vendor\Quill\atom-one-dark.min.css" />
+    <Content Include="Content\assets\vendor\Quill\highlight.min.js" />
+    <Content Include="Content\assets\vendor\Quill\quill.js" />
+    <Content Include="Content\assets\vendor\Quill\quill.snow.css" />
     <Content Include="Content\assets\vendor\select2\select2.css" />
     <Content Include="Content\assets\vendor\select2\select2.js" />
     <Content Include="Content\assets\vendor\select2\select2.min.css" />
@@ -2865,6 +2880,10 @@
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
     <Content Include="Validation\CauHinhWeb\Update.js" />
+    <Content Include="Validation\ChinhSach\Sua.js" />
+    <Content Include="Validation\ChinhSach\Them.js" />
+    <Content Include="Validation\ChinhSach\Xoa.js" />
+    <Content Include="Validation\ChinhSach\XoaHangLoat.js" />
     <Content Include="Validation\Dashboard\ThongKeNam.js" />
     <Content Include="Validation\DonDatBanBuffet\CapNhatDon.js" />
     <Content Include="Validation\DonDatBanBuffet\CapNhatThongTinDonDatBan.js" />
@@ -3271,6 +3290,7 @@
     <Content Include="Content\assets\vendor\slick\slick-theme.scss" />
     <Content Include="Content\assets\vendor\slick\slick.less" />
     <Content Include="Content\assets\vendor\slick\slick.scss" />
+    <Content Include="Areas\Admin\Views\ChinhSach\Index.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -3379,6 +3399,7 @@
     <Content Include="Views\MuaSam\_QuickProductDetail.cshtml" />
     <Content Include="Views\VuonRau\_QuickProductDetail.cshtml" />
     <Content Include="Views\ThucDonHangNgay\_QuickProductDetail.cshtml" />
+    <Content Include="Views\ChinhSachBean\ChinhSach.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

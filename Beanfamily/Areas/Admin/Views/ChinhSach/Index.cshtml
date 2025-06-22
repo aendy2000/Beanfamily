@@ -1,0 +1,344 @@
+﻿@model IEnumerable<Beanfamily.Models.ChinhSachBean>
+@using Beanfamily.Models
+@{
+    ViewBag.Title = "Quản Lý Chính Sách";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="pagetitle">
+    <div class="row">
+        <div class="col-md-7 col-12">
+            <h1>Quản Lý Chính Sách</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="@Url.Action("index", "dashboard")">Bảng Điều Khiển</a></li>
+                    <li class="breadcrumb-item active">Chính Sách</li>
+                </ol>
+            </nav>
+        </div>
+        <div class="col-md-5 col-12 text-end">
+            @if (Session["chophep-them"] != null)
+            {
+                if (Convert.ToBoolean(Session["chophep-them"]) == true)
+                {
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ThemMoiModal"><i class="bi bi-plus-circle me-1"> </i> Thêm mới</button>
+                }
+            }
+            @if (Session["chophep-xoa"] != null)
+            {
+                if (Convert.ToBoolean(Session["chophep-xoa"]) == true)
+                {
+                    <button id="xoahangloat" class="btn btn-danger ms-1"><i class="bi bi-trash me-1"> </i> Xóa mục đã chọn</button>
+                }
+            }
+        </div>
+    </div>
+
+</div><!-- End Page Title -->
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="card">
+                <div class="card-body">
+                    <!-- Table with stripped rows -->
+                    <table id="lstDataTable" class="table datatable" width="100%" data-order='[[2, "desc"]]'>
+                        <thead>
+                            <tr class="text-nowrap">
+                                <th style="width: 10px">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input p-2" id="checkAlls" />
+                                        <label class="form-check-label" for="checkAlls"></label>
+                                    </div>
+                                </th>
+                                <th scope="col">Mã</th>
+                                <th scope="col">STT</th>
+                                <th scope="col">Tên chính sách</th>
+                                <th scope="col">Nội dung chính sách</th>
+                                <th scope="col">Hiển thị</th>
+                                <th scope="col">#</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+
+                                <tr style="vertical-align: middle">
+                                    <td>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input p-2" id="checkitem@(item.id)" name="@item.id" />
+                                            <label class="form-check-label" for="checkitem@(item.id)"></label>
+                                        </div>
+                                    </td>
+                                    <td scope="row">CS@(item.id.ToString("D6"))</td>
+                                    <td>@item.sothutu</td>
+                                    <td>
+                                        @item.tenchinhsach
+                                        <input hidden id="inpMa@(item.id)" value="CS@(item.id.ToString("D6"))" />
+                                        <input hidden id="inpTen@(item.id)" value="@item.tenchinhsach" />
+                                        <input hidden id="inpNoidung@(item.id)" value="@item.noidung" />
+                                        <input hidden id="inpSothutu@(item.id)" value="@item.sothutu" />
+                                        <input hidden id="inpHienthi@(item.id)" value="@item.hienthi.ToString().ToLower()" />
+                                    </td>
+                                    <td>
+                                        @Html.Raw(item.noidung)
+                                    </td>
+                                    <td>
+                                        @if (item.hienthi == true)
+                                        {
+                                            <span class="badge bg-success"><i class="bi bi-eye-fill me-1"></i> Hiển thị</span> }
+                                        else
+                                        {
+                                            <span class="badge bg-danger"><i class="bi bi-eye-slash-fill me-1"></i> Đã ẩn</span>
+                                        }
+                                    </td>
+                                    <td class="text-nowrap">
+                                        @if (Session["chophep-sua"] != null)
+                                        {
+                                            if (Convert.ToBoolean(Session["chophep-sua"]) == true)
+                                            {
+                                                <button id="btnsua@(item.id)" name="@item.id" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Cập nhật chính sách"><i class="bi bi-pencil-square"></i></button>
+                                            }
+                                        }
+                                        @if (Session["chophep-xoa"] != null)
+                                        {
+                                            if (Convert.ToBoolean(Session["chophep-xoa"]) == true)
+                                            {
+                                                <button id="btnxoa@(item.id)" name="@item.id" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Xóa chính sách"><i class="bi bi-trash"></i></button>
+                                            }
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+@if (Session["chophep-them"] != null)
+{
+    if (Convert.ToBoolean(Session["chophep-them"]) == true)
+    {
+        <!-- Thêm danh mục -->
+        <div class="modal fade" id="ThemMoiModal" tabindex="-1">
+            <div class="modal-dialog  modal-dialog-centered modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Thêm chính sách mới</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <h5 class="text-center mb-4 text-bg-primary text-white" style="border-radius: 16px; height: 30px; display: flex; flex-direction: column; justify-content: center;">THÔNG TIN CHÍNH SÁCH</h5>
+
+                        <div class="row m-2">
+                            <div class="col-sm-12 col-lg-12">
+                                <div class="row mb-3">
+                                    <label for="tenchinhsach" class="col-md-12 col-lg-2 col-form-label">Tên chính sách <span class="text-danger">*</span></label>
+                                    <div class="col-md-12 col-lg-10">
+                                        <input id="tenchinhsach" type="text" placeholder="Tên chính sách" class="form-control">
+                                        <label style="margin-left: 5px" id="invalid-tenchinhsach-feedback" class="text-danger" hidden></label>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="noidung" class="col-md-12 col-lg-2 col-form-label">Nội dung <span class="text-danger">*</span></label>
+                                    <div class="col-md-12 col-lg-10" style="height: 100%">
+                                        <div id="toolbar-container">
+                                            <span class="ql-formats">
+                                                <select class="ql-font"></select>
+                                                <select class="ql-size"></select>
+                                            </span>
+                                            <span class="ql-formats">
+                                                <button class="ql-bold"></button>
+                                                <button class="ql-italic"></button>
+                                                <button class="ql-underline"></button>
+                                                <button class="ql-strike"></button>
+                                            </span>
+                                            <span class="ql-formats">
+                                                <select class="ql-color"></select>
+                                                <select class="ql-background"></select>
+                                            </span>
+                                            <span class="ql-formats">
+                                                <button class="ql-script" value="sub"></button>
+                                                <button class="ql-script" value="super"></button>
+                                            </span>
+                                            <span class="ql-formats">
+                                                <button class="ql-header" value="1"></button>
+                                                <button class="ql-header" value="2"></button>
+                                                <button class="ql-blockquote"></button>
+                                                <button class="ql-code-block"></button>
+                                            </span>
+                                            <span class="ql-formats">
+                                                <button class="ql-list" value="ordered"></button>
+                                                <button class="ql-list" value="bullet"></button>
+                                                <button class="ql-indent" value="-1"></button>
+                                                <button class="ql-indent" value="+1"></button>
+                                            </span>
+                                            <span class="ql-formats">
+                                                <button class="ql-direction" value="rtl"></button>
+                                                <select class="ql-align"></select>
+                                            </span>
+                                            <span class="ql-formats">
+                                                <button class="ql-link"></button>
+                                                <button class="ql-image"></button>
+                                                <button class="ql-video"></button>
+                                                <button class="ql-formula"></button>
+                                            </span>
+                                            <span class="ql-formats">
+                                                <button class="ql-clean"></button>
+                                            </span>
+                                        </div>
+                                        <div id="noidung">
+                                        </div>
+                                        @*<textarea id="noidung" type="text" placeholder="Nội dung chính sách" class="form-control"></textarea>*@
+                                        <label style="margin-left: 5px" id="invalid-noidung-feedback" class="text-danger" hidden></label>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="sothutu" class="col-md-12 col-lg-2 col-form-label">Số thứ tự</label>
+                                    <div class="col-md-12 col-lg-10">
+                                        <input id="sothutu" type="text" data-type='numbers' placeholder="Số thứ tự" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="hienthi" class="col-md-12 col-lg-2 col-form-label">Hiển thị</label>
+                                    <div class="col-md-12 col-lg-10">
+                                        <div class="form-control">
+                                            <div class="form-check form-switch">
+                                                <input checked class="form-check-input" type="checkbox" id="hienthi">
+                                                <label class="form-check-label" style="margin-left: 0.8em" for="hienthi"> Hiển thị sau khi tạo</label>
+                                            </div>
+                                            <label style="margin-left: 5px" id="invalid-hienthi-feedback" class="text-danger" hidden></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer mt-3">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                        <button id="btnluuthem" type="button" class="btn btn-primary">Lưu thông tin</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+@if (Session["chophep-sua"] != null)
+{
+    if (Convert.ToBoolean(Session["chophep-sua"]) == true)
+    {
+        <!-- Sửa danh mục -->
+        <div class="modal fade" id="ChinhSuaModal" tabindex="-1">
+            <div class="modal-dialog  modal-dialog-centered modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 id="TitleChinhSuaModal" class="modal-title">Cập nhật chính sách</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <h5 class="text-center mb-4 text-bg-primary text-white" style="border-radius: 16px; height: 30px; display: flex; flex-direction: column; justify-content: center;">THÔNG TIN CHÍNH SÁCH</h5>
+
+                        <div class="row m-2">
+                            <div class="col-sm-12 col-lg-12">
+                                <div class="row mb-3">
+                                    <label for="suatenchinhsach" class="col-md-12 col-lg-2 col-form-label">Tên danh mục <span class="text-danger">*</span></label>
+                                    <div class="col-md-12 col-lg-10">
+                                        <input hidden id="suaidchinhsach">
+                                        <input hidden id="suastridchinhsach">
+                                        <input id="suatenchinhsach" type="text" placeholder="Tên chính sách" class="form-control">
+                                        <label style="margin-left: 5px" id="invalid-suatenchinhsach-feedback" class="text-danger" hidden></label>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="suanoidung" class="col-md-12 col-lg-2 col-form-label">Nội dung <span class="text-danger">*</span></label>
+                                    <div class="col-md-12 col-lg-10" style="height: 100%">
+                                        <div id="toolbar-container-edit">
+                                            <span class="ql-formats">
+                                                <select class="ql-font"></select>
+                                                <select class="ql-size"></select>
+                                            </span>
+                                            <span class="ql-formats">
+                                                <button class="ql-bold"></button>
+                                                <button class="ql-italic"></button>
+                                                <button class="ql-underline"></button>
+                                                <button class="ql-strike"></button>
+                                            </span>
+                                            <span class="ql-formats">
+                                                <select class="ql-color"></select>
+                                                <select class="ql-background"></select>
+                                            </span>
+                                            <span class="ql-formats">
+                                                <button class="ql-script" value="sub"></button>
+                                                <button class="ql-script" value="super"></button>
+                                            </span>
+                                            <span class="ql-formats">
+                                                <button class="ql-header" value="1"></button>
+                                                <button class="ql-header" value="2"></button>
+                                                <button class="ql-blockquote"></button>
+                                                <button class="ql-code-block"></button>
+                                            </span>
+                                            <span class="ql-formats">
+                                                <button class="ql-list" value="ordered"></button>
+                                                <button class="ql-list" value="bullet"></button>
+                                                <button class="ql-indent" value="-1"></button>
+                                                <button class="ql-indent" value="+1"></button>
+                                            </span>
+                                            <span class="ql-formats">
+                                                <button class="ql-direction" value="rtl"></button>
+                                                <select class="ql-align"></select>
+                                            </span>
+                                            <span class="ql-formats">
+                                                <button class="ql-link"></button>
+                                                <button class="ql-image"></button>
+                                                <button class="ql-video"></button>
+                                                <button class="ql-formula"></button>
+                                            </span>
+                                            <span class="ql-formats">
+                                                <button class="ql-clean"></button>
+                                            </span>
+                                        </div>
+                                        <div id="suanoidung">
+                                        </div>
+                                        @*<textarea id="noidung" type="text" placeholder="Nội dung chính sách" class="form-control"></textarea>*@
+                                        <label style="margin-left: 5px" id="invalid-suanoidung-feedback" class="text-danger" hidden></label>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="suasothutu" class="col-md-12 col-lg-2 col-form-label">Số thứ tự</label>
+                                    <div class="col-md-12 col-lg-10">
+                                        <input id="suasothutu" type="text" placeholder="Số thứ tự" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="suahienthi" class="col-md-12 col-lg-2 col-form-label">Hiển thị</label>
+                                    <div class="col-md-12 col-lg-10">
+                                        <div class="form-check form-switch form-control">
+                                            <input checked class="form-check-input" style="margin-left: -1.5em" type="checkbox" id="suahienthi">
+                                            <label class="form-check-label" style="margin-left: 0.8em" for="suahienthi"> Hiển thị sau khi tạo</label>
+                                        </div>
+                                        <label style="margin-left: 5px" id="invalid-suahienthi-feedback" class="text-danger" hidden></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer mt-3">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                        <button id="btnluuSua" type="button" class="btn btn-primary">Lưu thông tin</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+
+<script src="~/Validation/ChinhSach/Them.js"></script>
+<script src="~/Validation/ChinhSach/Sua.js"></script>
+<script src="~/Validation/ChinhSach/Xoa.js"></script>
+<script src="~/Validation/ChinhSach/XoaHangLoat.js"></script>

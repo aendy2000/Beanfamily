@@ -2265,7 +2265,17 @@ body {
     padding-right: 15px;
 }
 
+.footer-info-1 {
+    text-align: right;
+}
+
 @media (max-width: 767px) {
+    .footer-info-page {
+        text-align: left !important;
+    }
+    .bg1-bottom {
+        background-size: cover;
+    }
     .change-position-map-right {
         float: none;
         width: 100%;

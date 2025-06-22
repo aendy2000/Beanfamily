@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BeanfamilyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="BeanfamilyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ApDungChucNangChoQuyenTaiKhoan">
           <Key>
             <PropertyRef Name="id" />
@@ -75,6 +75,16 @@
           <Property Name="hinhanh" Type="nvarchar(max)" />
           <Property Name="ngaytao" Type="datetime" Nullable="false" />
           <Property Name="ngaysuadoi" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ChinhSachBean">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tenchinhsach" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="noidung" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="sothutu" Type="int" Nullable="false" />
+          <Property Name="hienthi" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="ChiTietDonHangDanhMucPhucVuMenuBuffet">
           <Key>
@@ -477,6 +487,17 @@
           <Property Name="hienthi" Type="bit" Nullable="false" />
           <Property Name="conhang" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="SuKienBean">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tieude" Type="nvarchar(max)" />
+          <Property Name="noidung" Type="nvarchar(max)" />
+          <Property Name="baiviet" Type="nvarchar(max)" />
+          <Property Name="hinhanh" Type="nvarchar(max)" />
+          <Property Name="ngaygio" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="TaiKhoanBean">
           <Key>
             <PropertyRef Name="id" />
@@ -580,6 +601,14 @@
           <Property Name="toadogooglemapiframe" Type="nvarchar(max)" />
           <Property Name="googleanalyst" Type="nvarchar(max)" />
           <Property Name="googlesearchconsole" Type="nvarchar(max)" />
+          <Property Name="hotline" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="VideoBean">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="url" Type="nvarchar(max)" />
         </EntityType>
         <Association Name="FK_ApDungChucNangChoQuyenTaiKhoan_ChucNangHeThongBean">
           <End Role="ChucNangHeThongBean" Type="Self.ChucNangHeThongBean" Multiplicity="1" />
@@ -1125,6 +1154,7 @@
           <EntitySet Name="ApDungChucNangChoQuyenTaiKhoan" EntityType="Self.ApDungChucNangChoQuyenTaiKhoan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BoCucNoiDungTinhWebsite" EntityType="Self.BoCucNoiDungTinhWebsite" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CacBuocQuyTrinhTrongCay" EntityType="Self.CacBuocQuyTrinhTrongCay" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ChinhSachBean" EntityType="Self.ChinhSachBean" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ChiTietDonHangDanhMucPhucVuMenuBuffet" EntityType="Self.ChiTietDonHangDanhMucPhucVuMenuBuffet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ChiTietDonHangDanhMucPhucVuMenuTiecBan" EntityType="Self.ChiTietDonHangDanhMucPhucVuMenuTiecBan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ChiTietDonHangSanPhamMenuBuffet" EntityType="Self.ChiTietDonHangSanPhamMenuBuffet" Schema="dbo" store:Type="Tables" />
@@ -1156,6 +1186,7 @@
           <EntitySet Name="SanPhamMuaSam" EntityType="Self.SanPhamMuaSam" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SanPhamRauNhaTrong" EntityType="Self.SanPhamRauNhaTrong" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SanPhamThucDonHangNgay" EntityType="Self.SanPhamThucDonHangNgay" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SuKienBean" EntityType="Self.SuKienBean" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TaiKhoanBean" EntityType="Self.TaiKhoanBean" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TaiKhoanKhachHang" EntityType="Self.TaiKhoanKhachHang" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TinhTrangDonHangMenuBuffet" EntityType="Self.TinhTrangDonHangMenuBuffet" Schema="dbo" store:Type="Tables" />
@@ -1163,6 +1194,7 @@
           <EntitySet Name="TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay" EntityType="Self.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TonKhoSanPhamMuaSam" EntityType="Self.TonKhoSanPhamMuaSam" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ThongTinCauHinh" EntityType="Self.ThongTinCauHinh" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VideoBean" EntityType="Self.VideoBean" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_ApDungChucNangChoQuyenTaiKhoan_ChucNangHeThongBean" Association="Self.FK_ApDungChucNangChoQuyenTaiKhoan_ChucNangHeThongBean">
             <End Role="ChucNangHeThongBean" EntitySet="ChucNangHeThongBean" />
             <End Role="ApDungChucNangChoQuyenTaiKhoan" EntitySet="ApDungChucNangChoQuyenTaiKhoan" />
@@ -1344,8 +1376,7 @@
             <End Role="TonKhoSanPhamMuaSam" EntitySet="TonKhoSanPhamMuaSam" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BeanfamilyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -2014,6 +2045,7 @@
           <Property Name="toadogooglemapiframe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="googleanalyst" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="googlesearchconsole" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="hotline" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_ApDungChucNangChoQuyenTaiKhoan_ChucNangHeThongBean">
           <End Role="ChucNangHeThongBean" Type="Self.ChucNangHeThongBean" Multiplicity="1" />
@@ -2777,7 +2809,38 @@
             <End Role="TaiKhoanBean" EntitySet="TaiKhoanBean" />
             <End Role="TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay" EntitySet="TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay" />
           </AssociationSet>
+          <EntitySet Name="ChinhSachBean" EntityType="BeanfamilyModel.ChinhSachBean" />
+          <EntitySet Name="SuKienBean" EntityType="BeanfamilyModel.SuKienBean" />
+          <EntitySet Name="VideoBean" EntityType="BeanfamilyModel.VideoBean" />
         </EntityContainer>
+        <EntityType Name="ChinhSachBean">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tenchinhsach" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="noidung" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="sothutu" Type="Int32" Nullable="false" />
+          <Property Name="hienthi" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SuKienBean">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tieude" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="noidung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="baiviet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="hinhanh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ngaygio" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="VideoBean">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="url" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3382,6 +3445,7 @@
           <EntitySetMapping Name="ThongTinCauHinh">
             <EntityTypeMapping TypeName="BeanfamilyModel.ThongTinCauHinh">
               <MappingFragment StoreEntitySet="ThongTinCauHinh">
+                <ScalarProperty Name="hotline" ColumnName="hotline" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="giomocua" ColumnName="giomocua" />
                 <ScalarProperty Name="ngaymocua" ColumnName="ngaymocua" />
@@ -3398,6 +3462,37 @@
                 <ScalarProperty Name="toadogooglemapiframe" ColumnName="toadogooglemapiframe" />
                 <ScalarProperty Name="googleanalyst" ColumnName="googleanalyst" />
                 <ScalarProperty Name="googlesearchconsole" ColumnName="googlesearchconsole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChinhSachBean">
+            <EntityTypeMapping TypeName="BeanfamilyModel.ChinhSachBean">
+              <MappingFragment StoreEntitySet="ChinhSachBean">
+                <ScalarProperty Name="hienthi" ColumnName="hienthi" />
+                <ScalarProperty Name="sothutu" ColumnName="sothutu" />
+                <ScalarProperty Name="noidung" ColumnName="noidung" />
+                <ScalarProperty Name="tenchinhsach" ColumnName="tenchinhsach" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SuKienBean">
+            <EntityTypeMapping TypeName="BeanfamilyModel.SuKienBean">
+              <MappingFragment StoreEntitySet="SuKienBean">
+                <ScalarProperty Name="ngaygio" ColumnName="ngaygio" />
+                <ScalarProperty Name="hinhanh" ColumnName="hinhanh" />
+                <ScalarProperty Name="baiviet" ColumnName="baiviet" />
+                <ScalarProperty Name="noidung" ColumnName="noidung" />
+                <ScalarProperty Name="tieude" ColumnName="tieude" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VideoBean">
+            <EntityTypeMapping TypeName="BeanfamilyModel.VideoBean">
+              <MappingFragment StoreEntitySet="VideoBean">
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

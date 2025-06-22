@@ -84,11 +84,13 @@
     <link href="~/Content/AdminAreas/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
     <link href="~/Content/AdminAreas/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
     <link href="~/Content/AdminAreas/assets/vendor/DataTables/css/jquery.dataTables.css" rel="stylesheet" />
-
+    <link href="~/Content/assets/vendor/Quill/quill.snow.css" rel="stylesheet" />
+    <link href="~/Content/assets/vendor/Quill/atom-one-dark.min.css" rel="stylesheet" />
     <!-- Template Main CSS File -->
     <link href="~/Content/AdminAreas/assets/css/style.css" rel="stylesheet">
     <link href="~/Scripts/SweetAlert/sweetalert2.min.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
 
 </head>
 <body>
@@ -614,6 +616,15 @@
                     </a>
                 </li>
             }
+            @if (Session["cs"] != null)
+            {
+                <li class="nav-item">
+                    <a class="nav-link @Session["active-cs"].ToString().Split('#')[0]" href="@Url.Action("index", "chinhsach")">
+                        <i class="bi bi-file-earmark-lock"></i>
+                        <span>Chính Sách</span>
+                    </a>
+                </li>
+            }
         </ul>
     </aside>
     <!-- End Sidebar-->
@@ -648,6 +659,9 @@
     <script src="~/Content/AdminAreas/assets/vendor/quill/quill.min.js"></script>
     <script src="~/Content/AdminAreas/assets/vendor/DataTables/js/jquery.dataTables.min.js"></script>
     <script src="~/Content/AdminAreas/assets/vendor/tinymce/tinymce.min.js"></script>
+    <script src="~/Content/assets/vendor/Quill/highlight.min.js"></script>
+    <script src="~/Content/assets/vendor/Quill/quill.js"></script>
+
 
     <!-- Template Main JS File -->
     <script src="~/Content/AdminAreas/assets/js/main.js"></script>

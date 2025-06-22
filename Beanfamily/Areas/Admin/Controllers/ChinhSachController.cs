@@ -1,19 +1,19 @@
-﻿using System;
+﻿using Beanfamily.Middlewall;
+using Beanfamily.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Beanfamily.Models;
-using Beanfamily.Middlewall;
-using System.Data.Entity;
 
 namespace Beanfamily.Areas.Admin.Controllers
 {
     [AdminLoginverification]
-    public class DmCap1VuonRauBeanController : Controller
+    public class ChinhSachController : Controller
     {
         BeanfamilyEntities model = new BeanfamilyEntities();
-        // GET: Admin/DmCap1VuonRauBean
+
+        // GET: Admin/ChinhSachBean
         public ActionResult Index()
         {
             Session["active-dashboard"] = "collapsed # # ";
@@ -24,29 +24,32 @@ namespace Beanfamily.Areas.Admin.Controllers
             Session["active-dmpv"] = "collapsed # # ";
             Session["active-mhn-dmc1"] = "collapsed # # ";
             Session["active-mhn-qlm"] = "collapsed # # ";
-            Session["active-vrb-dmc1"] = " # show # active";
-            Session["active-vrb-spr"] = " # show # ";
-            Session["active-vrb-qltc"] = " # show # ";
+            Session["active-vrb-dmc1"] = "collapsed # # ";
+            Session["active-vrb-spr"] = "collapsed # # ";
+            Session["active-vrb-qltc"] = "collapsed # # ";
             Session["active-chtl-dmc1"] = "collapsed # # ";
             Session["active-chtl-sp"] = "collapsed # # ";
             Session["active-tkb-pq"] = "collapsed # # ";
             Session["active-tkb-tk"] = "collapsed # # ";
             Session["active-ddh"] = "collapsed # # ";
             Session["active-ddbt"] = "collapsed # # ";
-            Session["active-ddbb"] = "collapsed # # "; Session["active-lhdb"] = "collapsed # # ";
+            Session["active-ddbb"] = "collapsed # # ";
+            Session["active-lhdb"] = "collapsed # # ";
             Session["active-hab"] = "collapsed # # ";
             Session["active-qlsp"] = "collapsed # # ";
             Session["active-tlc-ttw"] = "collapsed # # ";
-            Session["active-tlc-lkmxh"] = "collapsed # # "; Session["active-ndt"] = "collapsed # # "; Session["active-cs"] = "collapsed # # ";
+            Session["active-tlc-lkmxh"] = "collapsed # # ";
+            Session["active-ndt"] = "collapsed # # "; 
+            Session["active-cs"] = " # # ";
 
-            if (Session["active-vrb-dmc1"] == null)
+            if (Session["lhdb"] == null)
                 return RedirectToAction("index", "dashboard");
 
-            var dm = model.DanhMucSanPhamRauNhaTrongCap1.ToList();
+            var cs = model.ChinhSachBean.ToList();
 
             int idRole = Int32.Parse(Session["user-role-id"].ToString());
             var chophepthemsuaxoa = model.ApDungChucNangChoQuyenTaiKhoan.FirstOrDefault(a => a.id_quyentaikhoanbean == idRole
-            && a.ChucNangHeThongBean.keycode.Equals("vrb-dmc1"));
+            && a.ChucNangHeThongBean.keycode.Equals("lhdb"));
             if (chophepthemsuaxoa != null)
             {
                 Session["chophep-them"] = chophepthemsuaxoa.chophepthem;
@@ -58,58 +61,29 @@ namespace Beanfamily.Areas.Admin.Controllers
                 return RedirectToAction("index", "dashboard");
             }
 
-            return View("index", dm);
+            return View("Index", cs.OrderByDescending(o => o.id).ToList());
         }
+
         [HttpPost]
-        public ActionResult ThemDm(string tendanhmuc, bool hienthi, string sothutu)
+        [ValidateInput(false)]
+        public ActionResult ThemMoi(string tenchinhsach, string noidung, bool hienthi, string sothutu)
         {
             try
             {
-                var checkExist = model.DanhMucSanPhamRauNhaTrongCap1.FirstOrDefault(d => d.tendanhmuc.ToLower().Equals(tendanhmuc.ToLower().Trim()));
+                var checkExist = model.ChinhSachBean.FirstOrDefault(d => d.tenchinhsach.ToLower().Equals(tenchinhsach.ToLower().Trim()));
                 if (checkExist != null)
                     return Content("EXIST");
 
-                DanhMucSanPhamRauNhaTrongCap1 dm = new DanhMucSanPhamRauNhaTrongCap1();
-                dm.tendanhmuc = tendanhmuc;
-                dm.hienthi = hienthi;
+                ChinhSachBean cs = new ChinhSachBean();
+                cs.tenchinhsach = tenchinhsach;
+                cs.noidung = noidung;
+                cs.hienthi = hienthi;
                 if (!string.IsNullOrEmpty(sothutu))
-                    dm.sothutu = Int32.Parse(sothutu);
+                    cs.sothutu = Int32.Parse(sothutu);
                 else
-                    dm.sothutu = 0;
-                dm.ngaytao = DateTime.Now;
-                dm.ngaysuadoi = DateTime.Now;
+                    cs.sothutu = 0;
 
-                model.DanhMucSanPhamRauNhaTrongCap1.Add(dm);
-                model.SaveChanges();
-                return Content("SUCCESS");
-            }
-            catch (Exception ex)
-            {
-                return Content("Chi tiết lỗi: " + ex.Message);
-            }
-        }
-        [HttpPost]
-        public ActionResult SuaDm(int id, string tendanhmuc, bool hienthi, string sothutu)
-        {
-            try
-            {
-                var checkExist = model.DanhMucSanPhamRauNhaTrongCap1.FirstOrDefault(d => d.tendanhmuc.ToLower().Equals(tendanhmuc.ToLower().Trim()) && d.id != id);
-                if (checkExist != null)
-                    return Content("EXIST");
-
-                var dm = model.DanhMucSanPhamRauNhaTrongCap1.Find(id);
-                if (dm == null)
-                    return Content("KHONGTONTAI");
-
-                dm.tendanhmuc = tendanhmuc;
-                dm.hienthi = hienthi;
-                if (!string.IsNullOrEmpty(sothutu))
-                    dm.sothutu = Int32.Parse(sothutu);
-                else
-                    dm.sothutu = 0;
-                dm.ngaysuadoi = DateTime.Now;
-               
-                model.Entry(dm).State = EntityState.Modified;
+                model.ChinhSachBean.Add(cs);
                 model.SaveChanges();
                 return Content("SUCCESS");
             }
@@ -120,15 +94,46 @@ namespace Beanfamily.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult XoaDm(int id)
+        [ValidateInput(false)]
+        public ActionResult ChinhSua(int id, string tenchinhsach, string noidung, bool hienthi, string sothutu)
         {
             try
             {
-                var dm = model.DanhMucSanPhamRauNhaTrongCap1.Find(id);
-                if (dm == null)
+                var checkExist = model.ChinhSachBean.FirstOrDefault(d => d.tenchinhsach.ToLower().Equals(tenchinhsach.ToLower().Trim()) && d.id != id);
+                if (checkExist != null)
+                    return Content("EXIST");
+
+                var cs = model.ChinhSachBean.Find(id);
+                if (cs == null)
                     return Content("KHONGTONTAI");
 
-                model.DanhMucSanPhamRauNhaTrongCap1.Remove(dm);
+                cs.tenchinhsach = tenchinhsach;
+                cs.noidung = noidung;
+                cs.hienthi = hienthi;
+                if (!string.IsNullOrEmpty(sothutu))
+                    cs.sothutu = Int32.Parse(sothutu);
+                else
+                    cs.sothutu = 0;
+
+                model.Entry(cs).State = System.Data.Entity.EntityState.Modified;
+                model.SaveChanges();
+                return Content("SUCCESS");
+            }
+            catch (Exception ex)
+            {
+                return Content("Chi tiết lỗi: " + ex.Message);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Xoa(int id)
+        {
+            try
+            {
+                var cs = model.ChinhSachBean.Find(id);
+                if (cs == null)
+                    return Content("KHONGTONTAI");
+                model.ChinhSachBean.Remove(cs);
                 model.SaveChanges();
 
                 return Content("SUCCESS");
@@ -136,25 +141,6 @@ namespace Beanfamily.Areas.Admin.Controllers
             catch (Exception ex)
             {
                 return Content(ex.Message);
-            }
-        }
-
-        [HttpPost]
-        public ActionResult ShowDanhSachMon(int id)
-        {
-            try
-            {
-                var dm = model.DanhMucSanPhamRauNhaTrongCap1.Find(id);
-                if (dm == null)
-                    return Content("KHONGTONTAI");
-
-                var mon = model.SanPhamRauNhaTrong.Where(m => m.id_danhmucsanphamraunhatrongcap1 == id).ToList();
-                return PartialView("_DanhSachMonVuonRauBean", mon);
-            }
-            catch (Exception ex)
-            {
-
-                return Content("Chi tiết lỗi: " + ex.Message);
             }
         }
         [HttpPost]
@@ -167,16 +153,16 @@ namespace Beanfamily.Areas.Admin.Controllers
                     foreach (var item in lstId.Split('-'))
                     {
                         int id = Int32.Parse(item);
-                        var dm = model.DanhMucSanPhamRauNhaTrongCap1.Find(id);
-                        model.DanhMucSanPhamRauNhaTrongCap1.Remove(dm);
+                        var cs = model.ChinhSachBean.Find(id);
+                        model.ChinhSachBean.Remove(cs);
                         model.SaveChanges();
                     }
                 }
                 else
                 {
                     int id = Int32.Parse(lstId);
-                    var dm = model.DanhMucSanPhamRauNhaTrongCap1.Find(id);
-                    model.DanhMucSanPhamRauNhaTrongCap1.Remove(dm);
+                    var cs = model.ChinhSachBean.Find(id);
+                    model.ChinhSachBean.Remove(cs);
                     model.SaveChanges();
                 }
 

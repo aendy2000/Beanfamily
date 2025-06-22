@@ -38,7 +38,7 @@ namespace Beanfamily.Areas.Admin.Controllers
             Session["active-hab"] = "collapsed # # ";
             Session["active-qlsp"] = "collapsed # # ";
             Session["active-tlc-ttw"] = "collapsed # # ";
-            Session["active-tlc-lkmxh"] = "collapsed # # "; Session["active-ndt"] = "collapsed # # ";
+            Session["active-tlc-lkmxh"] = "collapsed # # "; Session["active-ndt"] = "collapsed # # "; Session["active-cs"] = "collapsed # # ";
 
             if (Session["chtl-dmc1"] == null)
                 return RedirectToAction("index", "dashboard");
@@ -89,6 +89,7 @@ namespace Beanfamily.Areas.Admin.Controllers
                 return Content("Chi tiết lỗi: " + ex.Message);
             }
         }
+
         [HttpPost]
         public ActionResult SuaDm(int id, string tendanhmuc, bool hienthi, string sothutu)
         {

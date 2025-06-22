@@ -30,5 +30,6 @@ namespace Beanfamily.Models
         public string toadogooglemapiframe { get; set; }
         public string googleanalyst { get; set; }
         public string googlesearchconsole { get; set; }
+        public string hotline { get; set; }
     }
 }

@@ -91,6 +91,9 @@
         <AssociationConnector Association="BeanfamilyModel.FK_TinhTrangDonHangMenuBuffet_TaiKhoanBean" ManuallyRouted="false" />
         <AssociationConnector Association="BeanfamilyModel.FK_TinhTrangDonHangMenuTiecBan_TaiKhoanBean" ManuallyRouted="false" />
         <AssociationConnector Association="BeanfamilyModel.FK_TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay_TaiKhoanBean" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="BeanfamilyModel.ChinhSachBean" Width="1.5" PointX="11.375" PointY="6.75" />
+        <EntityTypeShape EntityType="BeanfamilyModel.SuKienBean" Width="1.5" PointX="11.375" PointY="9.75" />
+        <EntityTypeShape EntityType="BeanfamilyModel.VideoBean" Width="1.5" PointX="10.375" PointY="12.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
