@@ -15,6 +15,8 @@
         var ig = $('#ig').val().trim();
         var tiktok = $('#tiktok').val().trim();
         var chiduong = $('#linkchiduong').val().trim();
+        var foothotline = $('#foothotline').val().trim();
+        var footFb = $('#footFb').val().trim();
 
         var toado = $('#htmltoado').val().trim();
         if (toado.length > 0) {
@@ -38,6 +40,8 @@
         formData.append('chiduong', chiduong);
         formData.append('toado', toado);
         formData.append('tenmien', tenmien);
+        formData.append('foothotline', foothotline);
+        formData.append('footFb', footFb);
 
         $.ajax({
             error: function (a, xhr, c) { if (a.status == 403 && a.responseText.indexOf("SystemLoginAgain") != -1) { window.location.href = $('body').find('[id="requestPath"]').val() + "admin/dangnhap/logout"; } },

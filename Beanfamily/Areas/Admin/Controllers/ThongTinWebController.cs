@@ -66,7 +66,8 @@ namespace Beanfamily.Areas.Admin.Controllers
         }
         [HttpPost]
         public ActionResult CapNhat(string giomocua, string ngaymocua, string sodienthoai, string email, string diachi, 
-            string facebook, string mess, string zalo, string ig, string tiktok, string chiduong, string toado, string tenmien)
+            string facebook, string mess, string zalo, string ig, string tiktok, string chiduong, string toado, string tenmien,
+            string foothotline, string footFb)
         {
             try
             {
@@ -87,6 +88,8 @@ namespace Beanfamily.Areas.Admin.Controllers
                     cauhinhs.linkchiduong = chiduong;
                     cauhinhs.toadogooglemapiframe = toado;
                     cauhinhs.coppyright = tenmien;
+                    cauhinhs.footer_hotline = foothotline;
+                    cauhinhs.footer_page_facebook = footFb;
 
                     model.ThongTinCauHinh.Add(cauhinhs);
                 }
@@ -106,6 +109,8 @@ namespace Beanfamily.Areas.Admin.Controllers
                     cauhinhs.linkchiduong = chiduong;
                     cauhinhs.toadogooglemapiframe = toado;
                     cauhinhs.coppyright = tenmien;
+                    cauhinhs.footer_hotline = foothotline;
+                    cauhinhs.footer_page_facebook = footFb;
 
                     model.Entry(cauhinhs).State = EntityState.Modified;
                 }

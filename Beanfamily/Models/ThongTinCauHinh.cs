@@ -31,5 +31,7 @@ namespace Beanfamily.Models
         public string googleanalyst { get; set; }
         public string googlesearchconsole { get; set; }
         public string hotline { get; set; }
+        public string footer_hotline { get; set; }
+        public string footer_page_facebook { get; set; }
     }
 }

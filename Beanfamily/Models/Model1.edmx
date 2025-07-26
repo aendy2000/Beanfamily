@@ -602,6 +602,8 @@
           <Property Name="googleanalyst" Type="nvarchar(max)" />
           <Property Name="googlesearchconsole" Type="nvarchar(max)" />
           <Property Name="hotline" Type="nvarchar(max)" />
+          <Property Name="footer_hotline" Type="nvarchar" MaxLength="50" />
+          <Property Name="footer_page_facebook" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="VideoBean">
           <Key>
@@ -2046,6 +2048,8 @@
           <Property Name="googleanalyst" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="googlesearchconsole" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="hotline" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="footer_hotline" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="footer_page_facebook" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_ApDungChucNangChoQuyenTaiKhoan_ChucNangHeThongBean">
           <End Role="ChucNangHeThongBean" Type="Self.ChucNangHeThongBean" Multiplicity="1" />
@@ -3445,6 +3449,8 @@
           <EntitySetMapping Name="ThongTinCauHinh">
             <EntityTypeMapping TypeName="BeanfamilyModel.ThongTinCauHinh">
               <MappingFragment StoreEntitySet="ThongTinCauHinh">
+                <ScalarProperty Name="footer_page_facebook" ColumnName="footer_page_facebook" />
+                <ScalarProperty Name="footer_hotline" ColumnName="footer_hotline" />
                 <ScalarProperty Name="hotline" ColumnName="hotline" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="giomocua" ColumnName="giomocua" />

@@ -41,6 +41,8 @@
     string mail = "";
     string diachi = "";
     string linkchiduong = "";
+    string footHotline = "";
+    string footFb = "";
 
     var tt = models.ThongTinCauHinh.ToList();
     if (tt.Count > 0)
@@ -56,6 +58,8 @@
         mail = tts.email;
         diachi = tts.diachi;
         linkchiduong = tts.linkchiduong;
+        footHotline = tts.footer_hotline;
+        footFb = tts.footer_page_facebook;
     }
 
     if (ViewBag.Title == "Trang Chủ")
@@ -372,10 +376,10 @@
 
                         <ul>
                             <li class="txt14 m-b-14">
-                                <label  style="cursor: pointer" onclick="window.open('@linkchiduong','mywindow')">
+                                <label style="cursor: pointer" onclick="window.open('@linkchiduong','mywindow')">
                                     <i class="fa fa-map-marker fs-16 dis-inline-block size19" aria-hidden="true"></i>
                                     @diachi
-                                </label> 
+                                </label>
                             </li>
 
                             <li class="txt14 m-b-14">
@@ -397,7 +401,20 @@
                                     MST: 3702764555
                                 </label>
                             </li>
-                            
+
+                            <li class="txt14 m-b-14">
+                                <label style="cursor: pointer" onclick="location.href = 'tel:@footHotline'">
+                                    <i class="fa fa-phone fs-16 dis-inline-block size19" aria-hidden="true"></i>
+                                    Hotline: @footHotline
+                                </label>
+                            </li>
+
+                            <li class="txt14 m-b-14">
+                                <label style="cursor: pointer" onclick="window.open('@footFb','mywindow')">
+                                    <i class="fa fa-facebook-square fs-16 dis-inline-block size19" aria-hidden="true"></i>
+                                    Trang Facebook
+                                </label>
+                            </li>
                         </ul>
 
                     </div>

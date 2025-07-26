@@ -13,6 +13,8 @@
     string chiduong = "";
     string toado = "";
     string coppy = "";
+    string fotHotline = "";
+    string fotFb = "";
 
     if (Model.Count() > 0)
     {
@@ -30,6 +32,8 @@
         chiduong = ttw.linkchiduong;
         toado = ttw.toadogooglemapiframe;
         coppy = ttw.coppyright;
+        fotHotline = ttw.footer_hotline;
+        fotFb = ttw.footer_page_facebook;
     }
 
     ViewBag.Title = "Thông Tin Website";
@@ -114,6 +118,17 @@
                             <input id="tiktok" type="text" placeholder="https://www.tiktok.com/username" spellcheck="false" value="@tiktok" style="border: 2px solid var(--bs-primary) !important" class="form-control" />
                         </div>
                     </div>
+                    <hr />
+                    <div class="row  ms-2 me-2 mb-4 ">
+                        <div class="col-12">
+                            <label for="foothotline" class="col-12 col-form-label">Hotline chân trang:</label>
+                            <input id="foothotline" type="text" placeholder="Số hotline" spellcheck="false" value="@fotHotline" style="border: 2px solid var(--bs-primary) !important" class="form-control" />
+                        </div>
+                        <div class="col-12">
+                            <label for="footFb" class="col-12 col-form-label">Facebook Page:</label>
+                            <input id="footFb" type="text" placeholder="https://www.facebook.com/page" spellcheck="false" value="@fotFb" style="border: 2px solid var(--bs-primary) !important" class="form-control" />
+                        </div>
+                    </div>
                     <div class="row ms-2 me-2 mb-3" style="display: flex; justify-content: end;">
                         <button style="width: 200px; height: 40px; margin-right: .5rem;" id="btnLuuThongTin" type="button" class="btn btn-primary mt-2">Lưu thông tin</button>
                     </div>
@@ -122,4 +137,4 @@
         </div>
     </div>
 </section>
-<script src="~/Validation/ThongTinWeb/Update.js"></script>
+<script src="~/Validation/ThongTinWeb/Update.js?v=1.1"></script>
