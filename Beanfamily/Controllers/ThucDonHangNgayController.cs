@@ -15,7 +15,7 @@ namespace Beanfamily.Controllers
         // GET: ThucDonHangNgay
         public ActionResult Index(int? pageNum, int? pageSize)
         {
-            var lstSanPham = model.SanPhamThucDonHangNgay.Where(s => s.hienthi == true).OrderBy(o => o.tensanpham).ToList();
+            var lstSanPham = model.SanPhamThucDonHangNgay.Where(s => s.hienthi == true && s.daxoa == false).OrderBy(o => o.tensanpham).ToList();
             Session["categories-thucdonhangngay"] = model.DanhMucThucDocHangNgayCap1.Where(s => s.hienthi == true).OrderBy(o => o.tendanhmuc).ToList();
 
             if (pageSize == null)
@@ -26,20 +26,20 @@ namespace Beanfamily.Controllers
             if (Session["id-category-thucdonhangngay"] == null)
             {
                 Session["id-category-thucdonhangngay"] = "tatca";
-                var lstPr = model.SanPhamThucDonHangNgay.Where(s => s.hienthi == true).OrderBy(o => o.tensanpham).ToList();
+                var lstPr = model.SanPhamThucDonHangNgay.Where(s => s.hienthi == true && s.daxoa == false).OrderBy(o => o.tensanpham).ToList();
                 return PartialView("index", lstPr.ToPagedList((int)pageNum, (int)pageSize));
             }
             else
             {
                 if (Session["id-category-thucdonhangngay"].ToString().Equals("tatca"))
                 {
-                    var lstPr = model.SanPhamThucDonHangNgay.Where(s => s.hienthi == true).OrderBy(o => o.tensanpham).ToList();
+                    var lstPr = model.SanPhamThucDonHangNgay.Where(s => s.hienthi == true && s.daxoa == false).OrderBy(o => o.tensanpham).ToList();
                     return PartialView("index", lstPr.ToPagedList((int)pageNum, (int)pageSize));
                 }
                 else
                 {
                     int ids = Int32.Parse(Session["id-category-thucdonhangngay"].ToString());
-                    var lstPr = model.SanPhamThucDonHangNgay.Where(s => s.hienthi == true && s.id_danhmucthucdonhangngaycap1 == ids).OrderBy(o => o.tensanpham).ToList();
+                    var lstPr = model.SanPhamThucDonHangNgay.Where(s => s.hienthi == true && s.daxoa == false && s.id_danhmucthucdonhangngaycap1 == ids).OrderBy(o => o.tensanpham).ToList();
                     return PartialView("index", lstPr.ToPagedList((int)pageNum, (int)pageSize));
                 }
             }
@@ -58,13 +58,13 @@ namespace Beanfamily.Controllers
             Session["id-category-muasam"] = id;
             if (id.Equals("tatca"))
             {
-                var lstPr = model.SanPhamThucDonHangNgay.Where(s => s.hienthi == true).OrderBy(o => o.tensanpham).ToList();
+                var lstPr = model.SanPhamThucDonHangNgay.Where(s => s.hienthi == true && s.daxoa == false).OrderBy(o => o.tensanpham).ToList();
                 return PartialView("_ListProduct", lstPr.ToPagedList((int)pageNum, (int)pageSize));
             }
             else
             {
                 int ids = Int32.Parse(id);
-                var lstPr = model.SanPhamThucDonHangNgay.Where(s => s.hienthi == true && s.id_danhmucthucdonhangngaycap1 == ids).OrderBy(o => o.tensanpham).ToList();
+                var lstPr = model.SanPhamThucDonHangNgay.Where(s => s.hienthi == true && s.daxoa == false && s.id_danhmucthucdonhangngaycap1 == ids).OrderBy(o => o.tensanpham).ToList();
                 return PartialView("_ListProduct", lstPr.ToPagedList((int)pageNum, (int)pageSize));
             }
         }

@@ -429,6 +429,7 @@
           <Property Name="hinhanh" Type="nvarchar(max)" />
           <Property Name="tensanpham" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="hienthi" Type="bit" Nullable="false" />
+          <Property Name="daxoa" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="SanPhamMenuTiecBan">
           <Key>
@@ -441,6 +442,7 @@
           <Property Name="tensanpham" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="gia" Type="money" Nullable="false" />
           <Property Name="hienthi" Type="bit" Nullable="false" />
+          <Property Name="daxoa" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="SanPhamMuaSam">
           <Key>
@@ -454,6 +456,7 @@
           <Property Name="mota" Type="nvarchar(max)" />
           <Property Name="luotxem" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="hienthi" Type="bit" Nullable="false" />
+          <Property Name="daxoa" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="SanPhamRauNhaTrong">
           <Key>
@@ -471,6 +474,7 @@
           <Property Name="mota" Type="nvarchar(max)" />
           <Property Name="luotxem" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="hienthi" Type="bit" Nullable="false" />
+          <Property Name="daxoa" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="SanPhamThucDonHangNgay">
           <Key>
@@ -486,6 +490,7 @@
           <Property Name="luotxem" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="hienthi" Type="bit" Nullable="false" />
           <Property Name="conhang" Type="bit" Nullable="false" />
+          <Property Name="daxoa" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="SuKienBean">
           <Key>
@@ -1856,6 +1861,7 @@
           <Property Name="hienthi" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="ChiTietDonHangSanPhamMenuBuffet" Relationship="Self.FK_ChiTietDonHangSanPhamMenuBuffet_SanPhamMenuBuffet" FromRole="SanPhamMenuBuffet" ToRole="ChiTietDonHangSanPhamMenuBuffet" />
           <NavigationProperty Name="DanhMucMenuBuffetCap1" Relationship="Self.FK_SanPhamMenuBuffet_DanhMucMenuBuffetCap1" FromRole="SanPhamMenuBuffet" ToRole="DanhMucMenuBuffetCap1" />
+          <Property Name="daxoa" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="SanPhamMenuTiecBan">
           <Key>
@@ -1870,6 +1876,7 @@
           <Property Name="hienthi" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="ChiTietDonHangSanPhamMenuTiecBan" Relationship="Self.FK_ChiTietDonHangSanPhamMenuTiecBan_SanPhamMenuTiecBan" FromRole="SanPhamMenuTiecBan" ToRole="ChiTietDonHangSanPhamMenuTiecBan" />
           <NavigationProperty Name="DanhMucMenuTiecBanCap1" Relationship="Self.FK_SanPhamMenuTiecBan_DanhMucMenuTiecBanCap1" FromRole="SanPhamMenuTiecBan" ToRole="DanhMucMenuTiecBanCap1" />
+          <Property Name="daxoa" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="SanPhamMuaSam">
           <Key>
@@ -1887,6 +1894,7 @@
           <NavigationProperty Name="DanhMucSanPhamMuaSamCap1" Relationship="Self.FK_SanPhamMuaSam_DanhMucSanPhamMuaSamCap1" FromRole="SanPhamMuaSam" ToRole="DanhMucSanPhamMuaSamCap1" />
           <NavigationProperty Name="GioHangMuaSam" Relationship="Self.FK_GioHangMuaSam_SanPhamMuaSam" FromRole="SanPhamMuaSam" ToRole="GioHangMuaSam" />
           <NavigationProperty Name="TonKhoSanPhamMuaSam" Relationship="Self.FK_TonKhoSanPhamMuaSam_SanPhamMuaSam" FromRole="SanPhamMuaSam" ToRole="TonKhoSanPhamMuaSam" />
+          <Property Name="daxoa" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="SanPhamRauNhaTrong">
           <Key>
@@ -1908,6 +1916,7 @@
           <NavigationProperty Name="DanhMucSanPhamRauNhaTrongCap1" Relationship="Self.FK_SanPhamRauNhaTrong_DanhMucSanPhamRauNhaTrongCap1" FromRole="SanPhamRauNhaTrong" ToRole="DanhMucSanPhamRauNhaTrongCap1" />
           <NavigationProperty Name="GioHangVuonRauBean" Relationship="Self.FK_GioHangVuonRauBean_SanPhamRauNhaTrong" FromRole="SanPhamRauNhaTrong" ToRole="GioHangVuonRauBean" />
           <NavigationProperty Name="QuyTrinhTrongCay" Relationship="Self.FK_SanPhamRauNhaTrong_QuyTrinhTrongCay" FromRole="SanPhamRauNhaTrong" ToRole="QuyTrinhTrongCay" />
+          <Property Name="daxoa" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="SanPhamThucDonHangNgay">
           <Key>
@@ -1926,6 +1935,7 @@
           <NavigationProperty Name="ChiTietDonHangSanPhamThucDonHangNgay" Relationship="Self.FK_ChiTietDonHangSanPhamThucDonHangNgay_SanPhamThucDonHangNgay" FromRole="SanPhamThucDonHangNgay" ToRole="ChiTietDonHangSanPhamThucDonHangNgay" />
           <NavigationProperty Name="DanhMucThucDocHangNgayCap1" Relationship="Self.FK_SanPhamThucDonHangNgay_SanPhamThucDonHangNgay1" FromRole="SanPhamThucDonHangNgay" ToRole="DanhMucThucDocHangNgayCap1" />
           <NavigationProperty Name="GioHangThucDonHangNgay" Relationship="Self.FK_GioHangThucDonHangNgay_SanPhamThucDonHangNgay" FromRole="SanPhamThucDonHangNgay" ToRole="GioHangThucDonHangNgay" />
+          <Property Name="daxoa" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="TaiKhoanBean">
           <Key>
@@ -3287,6 +3297,7 @@
           <EntitySetMapping Name="SanPhamMenuBuffet">
             <EntityTypeMapping TypeName="BeanfamilyModel.SanPhamMenuBuffet">
               <MappingFragment StoreEntitySet="SanPhamMenuBuffet">
+                <ScalarProperty Name="daxoa" ColumnName="daxoa" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_danhmucmenubuffetcap1" ColumnName="id_danhmucmenubuffetcap1" />
                 <ScalarProperty Name="sothutu" ColumnName="sothutu" />
@@ -3299,6 +3310,7 @@
           <EntitySetMapping Name="SanPhamMenuTiecBan">
             <EntityTypeMapping TypeName="BeanfamilyModel.SanPhamMenuTiecBan">
               <MappingFragment StoreEntitySet="SanPhamMenuTiecBan">
+                <ScalarProperty Name="daxoa" ColumnName="daxoa" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_danhmucmenutiecbancap1" ColumnName="id_danhmucmenutiecbancap1" />
                 <ScalarProperty Name="sothutu" ColumnName="sothutu" />
@@ -3312,6 +3324,7 @@
           <EntitySetMapping Name="SanPhamMuaSam">
             <EntityTypeMapping TypeName="BeanfamilyModel.SanPhamMuaSam">
               <MappingFragment StoreEntitySet="SanPhamMuaSam">
+                <ScalarProperty Name="daxoa" ColumnName="daxoa" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_danhmucmuasamcap1" ColumnName="id_danhmucmuasamcap1" />
                 <ScalarProperty Name="hinhanh" ColumnName="hinhanh" />
@@ -3326,6 +3339,7 @@
           <EntitySetMapping Name="SanPhamRauNhaTrong">
             <EntityTypeMapping TypeName="BeanfamilyModel.SanPhamRauNhaTrong">
               <MappingFragment StoreEntitySet="SanPhamRauNhaTrong">
+                <ScalarProperty Name="daxoa" ColumnName="daxoa" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_danhmucsanphamraunhatrongcap1" ColumnName="id_danhmucsanphamraunhatrongcap1" />
                 <ScalarProperty Name="id_quytrinhtrongcay" ColumnName="id_quytrinhtrongcay" />
@@ -3344,6 +3358,7 @@
           <EntitySetMapping Name="SanPhamThucDonHangNgay">
             <EntityTypeMapping TypeName="BeanfamilyModel.SanPhamThucDonHangNgay">
               <MappingFragment StoreEntitySet="SanPhamThucDonHangNgay">
+                <ScalarProperty Name="daxoa" ColumnName="daxoa" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_danhmucthucdonhangngaycap1" ColumnName="id_danhmucthucdonhangngaycap1" />
                 <ScalarProperty Name="hinhanh" ColumnName="hinhanh" />

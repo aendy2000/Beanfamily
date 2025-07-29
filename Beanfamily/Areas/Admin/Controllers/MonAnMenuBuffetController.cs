@@ -43,7 +43,7 @@ namespace Beanfamily.Areas.Admin.Controllers
             if (Session["mb-qlm"] == null)
                 return RedirectToAction("index", "dashboard");
 
-            var monAn = model.SanPhamMenuBuffet.ToList();
+            var monAn = model.SanPhamMenuBuffet.Where(w => w.daxoa == false).ToList();
 
             int idRole = Int32.Parse(Session["user-role-id"].ToString());
             var chophepthemsuaxoa = model.ApDungChucNangChoQuyenTaiKhoan.FirstOrDefault(a => a.id_quyentaikhoanbean == idRole
@@ -196,7 +196,8 @@ namespace Beanfamily.Areas.Admin.Controllers
                 if (mon == null)
                     return Content("KHONGTONTAI");
 
-                model.SanPhamMenuBuffet.Remove(mon);
+                mon.daxoa = true;
+                model.Entry(mon).State = EntityState.Modified;
                 model.SaveChanges();
 
                 return Content("SUCCESS");
@@ -218,7 +219,8 @@ namespace Beanfamily.Areas.Admin.Controllers
                     {
                         int id = Int32.Parse(item);
                         var dm = model.SanPhamMenuBuffet.Find(id);
-                        model.SanPhamMenuBuffet.Remove(dm);
+                        dm.daxoa = true;
+                        model.Entry(dm).State = EntityState.Modified;
                         model.SaveChanges();
                     }
                 }
@@ -226,7 +228,8 @@ namespace Beanfamily.Areas.Admin.Controllers
                 {
                     int id = Int32.Parse(lstId);
                     var dm = model.SanPhamMenuBuffet.Find(id);
-                    model.SanPhamMenuBuffet.Remove(dm);
+                    dm.daxoa = true;
+                    model.Entry(dm).State = EntityState.Modified;
                     model.SaveChanges();
                 }
 

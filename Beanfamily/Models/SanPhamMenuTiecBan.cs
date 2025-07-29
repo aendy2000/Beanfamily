@@ -27,6 +27,7 @@ namespace Beanfamily.Models
         public string tensanpham { get; set; }
         public decimal gia { get; set; }
         public bool hienthi { get; set; }
+        public bool daxoa { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietDonHangSanPhamMenuTiecBan> ChiTietDonHangSanPhamMenuTiecBan { get; set; }

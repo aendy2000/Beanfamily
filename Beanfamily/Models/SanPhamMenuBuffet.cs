@@ -26,6 +26,7 @@ namespace Beanfamily.Models
         public string hinhanh { get; set; }
         public string tensanpham { get; set; }
         public bool hienthi { get; set; }
+        public bool daxoa { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietDonHangSanPhamMenuBuffet> ChiTietDonHangSanPhamMenuBuffet { get; set; }
