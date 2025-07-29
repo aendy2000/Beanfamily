@@ -13,7 +13,7 @@ namespace Beanfamily.ZaloAPI
 {
     public class SendMessageOrder
     {
-        ZaloClient client = new ZaloClient("_SUgCuNO6pl_ng4qXzuQEV78hZ2FoNaxaOMHH-_SNZNKlUX-_SOpTUFOYIwSfaT-aFEN8kwM86ZMpzi4gQaKJTAmnH7ivIyTyllkVSg1FoAfwunhgAexOP3jq2odYnvTkTIaKhh3KbkMgvSDk-T0KhoEcGYR-IrQjud5CBl_456VWFyQdESbSUEPyto0tpOoX9xRQ_l-6n7Yfi9Gn_W6FxY4vtI1p0qahRcsATN01tlAkkKtwUzMITACeGZUrH92vh3tC_xU6dxPoSqGpg5-U-QxY7J6rNuswREIO-RVNmp3fxvvlwKCEA33pLEQbXSfeV3w9OENIqxyzO4tnhytD_denZh6i2elkD7RJQUa5XVUmlGVv8KvSy3PYYEufqDYb-MkD-6656d8aTKbjE4JAcbOJY-3E8V663e");
+        ZaloClient client = new ZaloClient("JGkvKbegupjF2h9LM2pYEK44lL5GEx9RGqUjGJ4kzcjqVkjW9IlYIKDesK8H4EjUScRGDJL3o0jDFim1E6UN450Wcpv3NPK6AHo-47zxWI489DvA7L3lG5TvtMz32lPiDq7x3LCX_68vKgTNJHojOWjfZaj-09zKQLQ1J0CahLiKShTDSngkGnb6a4bk1jLVF77rQ2mJztKwLlfkK2RJ0ZnFqorr9ja0P6FaFdS6vYGCViWSQZVLBNb1oXWFFUiB0npa1qra_MauGQTlQZQxH0bHWcm5RPzgTaMnMGy3aqz6PPLP2YkPDsneamKB9iilGdgM3YaXXX5DT9ejL2365XfKn0jw4zay4sFa96WwwnWbJT8lDH78DND5p1bZ8-rm0rhWN6yfyZGUQwyV3WEYCdftZp8rSo4HQ5bODE0w");
         public void ThongBaoDonDatHang(string ngaydat, string ma, string hoten, string sdt, string diachi, string hinhthuc, string sotien, string urlImg, string urlManagement)
         {
             List<ElementV3> elements = new List<ElementV3>();
@@ -48,8 +48,8 @@ namespace Beanfamily.ZaloAPI
             buttons.Add(openUrlButton);
             buttons.Add(openPhoneButton);
 
-            JObject jObject1 = client.sendTransactionMessagetoUserId("61868408479739071", "VI", elements, buttons, TransactionTemplateType.TRANSACTION_ORDER);
-            JObject jObject2 = client.sendTransactionMessagetoUserId("3684922333495928647", "VI", elements, buttons, TransactionTemplateType.TRANSACTION_ORDER);
+            JObject jObject1 = client.sendTransactionMessagetoUserId("61868408479739071", "VI", elements, buttons, TransactionTemplateType.TRANSACTION_ORDER); //Đặng Văn Tuấn
+            JObject jObject2 = client.sendTransactionMessagetoUserId("3684922333495928647", "VI", elements, buttons, TransactionTemplateType.TRANSACTION_ORDER); //Beanfamily
         }
 
         public void ThongBaoDonDatBan(string ngaydat, string ma, string loai, string soban, string hoten, string sdt, string thoigian, string ghichu, string urlImg, string urlManagement)
@@ -87,8 +87,8 @@ namespace Beanfamily.ZaloAPI
             buttons.Add(openUrlButton);
             buttons.Add(openPhoneButton);
 
-            JObject jObject1 = client.sendTransactionMessagetoUserId("61868408479739071", "VI", elements, buttons, TransactionTemplateType.TRANSACTION_ORDER);
-            JObject jObject2 = client.sendTransactionMessagetoUserId("3684922333495928647", "VI", elements, buttons, TransactionTemplateType.TRANSACTION_ORDER);
+            JObject jObject1 = client.sendTransactionMessagetoUserId("61868408479739071", "VI", elements, buttons, TransactionTemplateType.TRANSACTION_ORDER); //Đặng Văn Tuấn
+            JObject jObject2 = client.sendTransactionMessagetoUserId("3684922333495928647", "VI", elements, buttons, TransactionTemplateType.TRANSACTION_ORDER); //Beanfamily
         }
     }
 }
