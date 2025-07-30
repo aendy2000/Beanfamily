@@ -22,6 +22,17 @@
                         <label style="margin-left: 5px" id="invalid-suaten-feedback" class="text-danger" hidden></label>
                     </div>
                 </div>
+
+                <div class="row mb-3">
+                    <label for="suathamkhao" class="col-md-12 col-lg-2 col-form-label">Tag</label>
+                    <div class="col-md-12 col-lg-10">
+                        <div class="form-check form-switch form-control">
+                            <input checked="@Model.thamkhao" class="form-check-input" style="margin-left: -1.5em" type="checkbox" id="suathamkhao">
+                            <label class="form-check-label" style="margin-left: 0.8em" for="suathamkhao"> Giá và số lượng tham khảo</label>
+                        </div>
+                        <label style="margin-left: 5px" id="invalid-suathamkhao-feedback" class="text-danger" hidden></label>
+                    </div>
+                </div>
                 <div class="row mb-3">
                     <label for="suagia" class="col-md-12 col-lg-2 col-form-label">Giá <span class="text-danger">*</span></label>
                     <div class="col-md-12 col-lg-10">
@@ -29,6 +40,7 @@
                         <label style="margin-left: 5px" id="invalid-suagia-feedback" class="text-danger" hidden></label>
                     </div>
                 </div>
+
                 <div class="row mb-3">
                     <label for="suagiatri" class="col-md-12 col-lg-2 col-form-label">Tồn kho <span class="text-danger">*</span></label>
                     <div class="col-md-12 col-lg-7 text-nowrap">
@@ -161,5 +173,5 @@
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
         <button id="btnluusuaSanPham" type="button" class="btn btn-primary">Lưu thông tin</button>
     </div>
-    <script src="~/Validation/SanPhamVuonRau/SuaSanpham.js"></script>
+    <script src="~/Validation/SanPhamVuonRau/SuaSanpham.js?v=1.0"></script>
 </div>

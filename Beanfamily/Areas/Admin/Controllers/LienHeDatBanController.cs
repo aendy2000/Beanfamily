@@ -43,7 +43,7 @@ namespace Beanfamily.Areas.Admin.Controllers
             Session["active-tlc-ttw"] = "collapsed # # ";
             Session["active-tlc-lkmxh"] = "collapsed # # ";
             Session["active-ndt"] = "collapsed # # "; 
-            Session["active-cs"] = "collapsed # # ";
+            Session["active-cs"] = "collapsed # # ";Session["active-spnb"] = "collapsed # # ";
             Session["active-lhdb"] = " # # ";
 
             model = new BeanfamilyEntities(); var donhangTB = model.LienHeDatBan.ToList();

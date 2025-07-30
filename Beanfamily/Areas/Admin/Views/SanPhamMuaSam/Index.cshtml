@@ -83,6 +83,10 @@
                                     <td>@item.DanhMucSanPhamMuaSamCap1.tendanhmuc</td>
                                     <td data-bs-toggle="tooltip" dropzone="top" title="@item.mota">@item.tensanpham</td>
                                     <td>
+                                        @if (item.thamkhao)
+                                        {
+                                            <label>(Kèm tag tham khảo)</label>
+                                        }
                                         <ul style="margin-left: -2rem; margin-bottom: 0; list-style-type: none;">
                                             @foreach (var tonkho in item.TonKhoSanPhamMuaSam)
                                             {
@@ -198,6 +202,16 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
+                                    <label for="thamkhao" class="col-md-12 col-lg-2 col-form-label">Tag</label>
+                                    <div class="col-md-12 col-lg-10">
+                                        <div class="form-check form-switch form-control">
+                                            <input checked class="form-check-input" style="margin-left: -1.5em" type="checkbox" id="thamkhao">
+                                            <label class="form-check-label" style="margin-left: 0.8em" for="thamkhao"> Giá và số lượng tham khảo</label>
+                                        </div>
+                                        <label style="margin-left: 5px" id="invalid-thamkhao-feedback" class="text-danger" hidden></label>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
                                     <label for="mota" class="col-md-12 col-lg-2 col-form-label">Mô tả</label>
                                     <div class="col-md-12 col-lg-10">
                                         <textarea rows="4" class="form-control" id="mota" placeholder="Mô tả món"></textarea>
@@ -302,9 +316,9 @@
     }
 }
 
-<script src="~/Scripts/jquery-ui.js"></script>
-<script src="~/Validation/SanPhamMuaSam/ThemSanPham.js"></script>
-<script src="~/Validation/SanPhamMuaSam/XemHinhAnh.js"></script>
-<script src="~/Validation/SanPhamMuaSam/XoaSanPham.js"></script>
-<script src="~/Validation/SanPhamMuaSam/OpenModalSuaSanPham.js"></script>
-<script src="~/Validation/SanPhamMuaSam/XoaHangLoat.js"></script>
+<script src="~/Scripts/jquery-ui.js?v=1.0"></script>
+<script src="~/Validation/SanPhamMuaSam/ThemSanPham.js?v=1.0"></script>
+<script src="~/Validation/SanPhamMuaSam/XemHinhAnh.js?v=1.0"></script>
+<script src="~/Validation/SanPhamMuaSam/XoaSanPham.js?v=1.0"></script>
+<script src="~/Validation/SanPhamMuaSam/OpenModalSuaSanPham.js?v=1.0"></script>
+<script src="~/Validation/SanPhamMuaSam/XoaHangLoat.js?v=1.0"></script>

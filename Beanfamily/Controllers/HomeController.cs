@@ -23,9 +23,7 @@ namespace Beanfamily.Controllers
             Session["sanphammoi-vuonrau"] = model.SanPhamRauNhaTrong.OrderByDescending(o => o.id).Take(2).ToList();
             Session["sanphammoi-muasam"] = model.SanPhamMuaSam.OrderByDescending(o => o.id).Take(2).ToList();
 
-            Session["sanphamnoibat-nhahang"] = model.SanPhamThucDonHangNgay.OrderByDescending(o => o.luotxem).Take(2).ToList();
-            Session["sanphamnoibat-vuonrau"] = model.SanPhamRauNhaTrong.OrderByDescending(o => o.luotxem).Take(2).ToList();
-            Session["sanphamnoibat-muasam"] = model.SanPhamMuaSam.OrderByDescending(o => o.luotxem).Take(2).ToList();
+            Session["sanphamnoibat-data"] = model.TopSanPhamNoiBat.First();
 
             return View("index");
         }

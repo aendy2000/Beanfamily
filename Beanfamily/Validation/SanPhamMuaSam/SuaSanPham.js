@@ -193,6 +193,7 @@
             formData.append('danhmuc', danhmuc);
             formData.append('mota', $('#suamota').val().trim());
             formData.append('hienthi', $('#suahienthi').prop('checked'));
+            formData.append('thamkhao', $('#suathamkhao').prop('checked'));
             formData.append('lstIdLoai', lstIdLoai.substring(0, lstIdLoai.length - 1));
             formData.append('lstLoai', lstLoai.substring(0, lstLoai.length - 1));
             formData.append('lstSoLuong', lstSoLuong.substring(0, lstSoLuong.length - 1));

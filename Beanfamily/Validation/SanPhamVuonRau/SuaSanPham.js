@@ -140,6 +140,7 @@
             formData.append('quytrinhtrong', quytrinhtrong);
             formData.append('mota', $('#suamota').val().trim());
             formData.append('hienthi', $('#suahienthi').prop('checked'));
+            formData.append('thamkhao', $('#suathamkhao').prop('checked'));
 
             var imageCu = "";
             $('[id^="url-suaidHinhAnh-hinhcu-"]').each(function () {

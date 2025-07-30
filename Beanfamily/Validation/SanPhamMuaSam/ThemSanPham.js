@@ -180,6 +180,7 @@
             formData.append('danhmuc', danhmuc);
             formData.append('mota', $('#mota').val().trim());
             formData.append('hienthi', $('#hienthi').prop('checked'));
+            formData.append('thamkhao', $('#thamkhao').prop('checked'));
             formData.append('lstLoai', lstLoai.substring(0, lstLoai.length - 1));
             formData.append('lstSoLuong', lstSoLuong.substring(0, lstSoLuong.length - 1));
             formData.append('lstGia', lstGia.substring(0, lstGia.length - 1));

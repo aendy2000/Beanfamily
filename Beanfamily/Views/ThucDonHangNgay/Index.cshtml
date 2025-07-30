@@ -45,6 +45,23 @@
 <section class="section-ourmenu bg1-pattern">
     <div class="section-child-bg1">
         <div class="container  p-t-60 p-b-40">
+            <div class="row mb-4">
+                <div class="col-12 title_product_items">
+                    <div class="row bg-bg2" style="width: 100%; height: 120px; border-radius: 16px; border: 1px solid #ffc687; margin: 30px 0 0 0 !important; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+                        <div class="col-md-12 col-sm-12" style="padding: 0 30px; margin-bottom: 3px; display: flex; flex-direction: column; align-items: start; justify-content: center; ">
+                            <span class="txt9">
+                                Tìm kiếm sản phẩm:
+                            </span>
+                            <div class="wrap-inputphone size12 bo-rad-16 m-t-3 flex-r-m">
+                                <input id="inptimkiem" style="border-radius: 16px 0 0 16px" class="bo-rad-16 sizefull txt10 p-l-20 p-r-10" type="search" placeholder="Nhập tên sản phẩm cần tìm">
+                                <input hidden id="data-timkiem" value="@Session["data-timkiem"]" />
+                                <a id="btnTimkiem" style="border-radius: 0 16px 16px 0;height: 52px; width: auto; padding: 10px 20px 10px 20px; cursor: pointer; float: right" class="btn3 flex-c-m size1 txt11 trans-0-4 text-nowrap">Tìm kiếm</a>
+                            </div>
+                            <p id="validate-inptimkiem" class="text-danger" style="margin-bottom: 20px"> </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-sm-0 col-md-3 categories_product">
                     <div id="categoried_card" class="card" style="border-top-left-radius: 16px; border-top-right-radius: 16px; border: 0; background: none; position: sticky; top: 120px; margin-bottom: 75px;">
@@ -80,6 +97,7 @@
                     <div class="row title_product_items">
                         <div class="col-sm-12 col-md-12 mb-4 bg-website text-center text-white text-uppercase" style="border: 2px solid #ffc687; border-radius: 15px; padding: 14.5px;">
                             <h6 style="font-size:18px; font-weight: bold">Sản Phẩm</h6>
+                            <span style="text-transform: none" id="title-product-list"></span>
                         </div>
                     </div>
                     <div id="product_list" class="row">
@@ -169,8 +187,8 @@
         </div>
     </div>
 
-    <script src="~/ActionOnPage/ThucDonHangNgay/loadPageThucDonHangNgay.js"></script>
-    <script src="~/ActionOnPage/ThucDonHangNgay/sanPhamTheoDanhMuc.js"></script>
-    <script src="~/ActionOnPage/ThucDonHangNgay/AddToCart.js"></script>
-    <script src="~/ActionOnPage/ThucDonHangNgay/AddToCartQuick.js"></script>
+    <script src="~/ActionOnPage/ThucDonHangNgay/loadPageThucDonHangNgay.js?v=1.0"></script>
+    <script src="~/ActionOnPage/ThucDonHangNgay/sanPhamTheoDanhMuc.js?v=1.0"></script>
+    <script src="~/ActionOnPage/ThucDonHangNgay/AddToCart.js?v=1.0"></script>
+    <script src="~/ActionOnPage/ThucDonHangNgay/AddToCartQuick.js?v=1.0"></script>
 </section>

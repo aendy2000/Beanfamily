@@ -41,6 +41,7 @@ namespace Beanfamily.Areas.Admin.Controllers
             Session["active-tlc-lkmxh"] = "collapsed # # ";
             Session["active-ndt"] = "collapsed # # "; 
             Session["active-cs"] = " # # ";
+            Session["active-spnb"] = "collapsed # # ";
 
             if (Session["lhdb"] == null)
                 return RedirectToAction("index", "dashboard");

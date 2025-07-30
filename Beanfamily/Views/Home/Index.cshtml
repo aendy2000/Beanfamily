@@ -5,9 +5,7 @@
     var sanphammoivuonrau = Session["sanphammoi-vuonrau"] as List<SanPhamRauNhaTrong>;
     var sanphammoimuasam = Session["sanphammoi-muasam"] as List<SanPhamMuaSam>;
 
-    var sanphamnoibatnhahang = Session["sanphamnoibat-nhahang"] as List<SanPhamThucDonHangNgay>;
-    var sanphamnoibatvuonrau = Session["sanphamnoibat-vuonrau"] as List<SanPhamRauNhaTrong>;
-    var sanphamnoibatmuasam = Session["sanphamnoibat-muasam"] as List<SanPhamMuaSam>;
+    var sanphamnoibat = Session["sanphamnoibat-data"] as TopSanPhamNoiBat;
 
     string phone = "";
     string mail = "";
@@ -465,177 +463,153 @@
     <div class="section-child-bg2">
         <div class="container  p-t-115 p-b-120">
             <div @*style="border: 1px solid; border-color: darkgray; border-radius: 15px; margin-bottom: 50px"*@ class="row">
-                @{ i = 0;}
-                @foreach (var item in sanphamnoibatnhahang)
-                {
-                    i++;
-                    if (i == 1)
-                    {
+
                         <div class="col-md-6 p-t-45 p-b-30">
                             <div class="wrap-text-welcome t-center">
                                 <h6 class="tit6 t-center m-t-0" style="font-size: 30px; padding-bottom: 0; letter-spacing: 3px; word-spacing: 3px;">
-                                    @item.tensanpham
+                                    @sanphamnoibat.SanPhamThucDonHangNgay.tensanpham
                                 </h6>
-                                @if (!string.IsNullOrEmpty(item.mota))
+                                @if (!string.IsNullOrEmpty(sanphamnoibat.SanPhamThucDonHangNgay.mota))
                                 {
                                     <p class="t-center m-b-22 size3 m-l-r-auto">
-                                        @item.mota
+                                        @sanphamnoibat.SanPhamThucDonHangNgay.mota
                                     </p>
                                 }
-                                <a style="font-size: 16px;" href="@Url.Action("productdetail", "thucdonhangngay", new { id = item.id })" class="txt4">
-                                    Xem @item.tensanpham - @item.gia.ToString("0,0")đ
+                                <a style="font-size: 16px;" href="@Url.Action("productdetail", "thucdonhangngay", new { id = sanphamnoibat.SanPhamThucDonHangNgay.id })" class="txt4">
+                                    Xem @sanphamnoibat.SanPhamThucDonHangNgay.tensanpham - @sanphamnoibat.SanPhamThucDonHangNgay.gia.ToString("0,0")đ
                                     <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
                                 </a>
                                 <div style="margin-top: 20px; width: 100%; height: 460px;
-                                background-image: url(@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh)));
+                                background-image: url(@(string.IsNullOrEmpty(sanphamnoibat.SanPhamThucDonHangNgay.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : sanphamnoibat.SanPhamThucDonHangNgay.hinhanh.IndexOf("#") != -1 ? Url.Content(sanphamnoibat.SanPhamThucDonHangNgay.hinhanh.Split('#')[0]) : Url.Content(sanphamnoibat.SanPhamThucDonHangNgay.hinhanh)));
                                 background-size: cover">
                                 </div>
                             </div>
                         </div>
-                    }
-                    else
-                    {
+
                         <div class="col-md-6 p-t-45 p-b-30">
                             <div class="wrap-text-welcome t-center">
                                 <div style="margin-top: 0px; width: 100%; height: 460px;
-                                background-image: url(@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh)));
+                                background-image: url(@(string.IsNullOrEmpty(sanphamnoibat.SanPhamThucDonHangNgay1.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : sanphamnoibat.SanPhamThucDonHangNgay1.hinhanh.IndexOf("#") != -1 ? Url.Content(sanphamnoibat.SanPhamThucDonHangNgay1.hinhanh.Split('#')[0]) : Url.Content(sanphamnoibat.SanPhamThucDonHangNgay1.hinhanh)));
                                 background-size: cover">
                                 </div>
                                 <h6 class="tit6 t-center m-t-20" style="font-size: 30px; padding-bottom: 0; letter-spacing: 3px; word-spacing: 3px;">
-                                    @item.tensanpham
+                                    @sanphamnoibat.SanPhamThucDonHangNgay1.tensanpham
                                 </h6>
-                                @if (!string.IsNullOrEmpty(item.mota))
+                                @if (!string.IsNullOrEmpty(sanphamnoibat.SanPhamThucDonHangNgay1.mota))
                                 {
                                     <p class="t-center m-b-22 size3 m-l-r-auto">
-                                        @item.mota
+                                        @sanphamnoibat.SanPhamThucDonHangNgay1.mota
                                     </p>
                                 }
-                                <a style="font-size: 16px;" href="@Url.Action("productdetail", "thucdonhangngay", new { id = item.id })" class="txt4">
-                                    Xem @item.tensanpham - @item.gia.ToString("0,0")đ
+                                <a style="font-size: 16px;" href="@Url.Action("productdetail", "thucdonhangngay", new { id = sanphamnoibat.SanPhamThucDonHangNgay1.id })" class="txt4">
+                                    Xem @sanphamnoibat.SanPhamThucDonHangNgay1.tensanpham - @sanphamnoibat.SanPhamThucDonHangNgay1.gia.ToString("0,0")đ
                                     <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
                                 </a>
                             </div>
                         </div>
-                    }
-                }
+                    
+                
             </div>
             <hr class="my-3" style="background-color: darkgray">
 
             <br />
             <br />
             <div class="row">
-                @{ i = 0;}
-                @foreach (var item in sanphamnoibatvuonrau)
-                {
-                    i++;
-                    if (i == 1)
-                    {
+
                         <div class="col-md-6 p-t-45 p-b-30">
                             <div class="wrap-text-welcome t-center">
                                 <h6 class="tit6 t-center m-t-0" style="font-size: 30px; padding-bottom: 0; letter-spacing: 3px; word-spacing: 3px;">
-                                    @item.tensanpham
+                                    @sanphamnoibat.SanPhamRauNhaTrong.tensanpham
                                 </h6>
-                                @if (!string.IsNullOrEmpty(item.mota))
+                                @if (!string.IsNullOrEmpty(sanphamnoibat.SanPhamRauNhaTrong.mota))
                                 {
                                     <p class="t-center m-b-22 size3 m-l-r-auto">
-                                        @item.mota
+                                        @sanphamnoibat.SanPhamRauNhaTrong.mota
                                     </p>
                                 }
-                                <a style="font-size: 16px;" href="@Url.Action("productdetail", "vuonrau", new { id = item.id })" class="txt4">
-                                    Xem @item.tensanpham - @item.gia.ToString("0,0")đ
+                                <a style="font-size: 16px;" href="@Url.Action("productdetail", "vuonrau", new { id = sanphamnoibat.SanPhamRauNhaTrong.id })" class="txt4">
+                                    Xem @sanphamnoibat.SanPhamRauNhaTrong.tensanpham - @sanphamnoibat.SanPhamRauNhaTrong.gia.ToString("0,0")đ
                                     <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
                                 </a>
                                 <div style="margin-top: 20px; width: 100%; height: 460px;
-                                    background-image: url(@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh)));
+                                    background-image: url(@(string.IsNullOrEmpty(sanphamnoibat.SanPhamRauNhaTrong.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : sanphamnoibat.SanPhamRauNhaTrong.hinhanh.IndexOf("#") != -1 ? Url.Content(sanphamnoibat.SanPhamRauNhaTrong.hinhanh.Split('#')[0]) : Url.Content(sanphamnoibat.SanPhamRauNhaTrong.hinhanh)));
                                     background-size: cover">
                                 </div>
                             </div>
                         </div>
-                    }
-                    else
-                    {
+                   
                         <div class="col-md-6 p-t-45 p-b-30">
                             <div class="wrap-text-welcome t-center">
                                 <div style="margin-top: 0px; width: 100%; height: 460px;
-                                    background-image: url(@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh)));
+                                    background-image: url(@(string.IsNullOrEmpty(sanphamnoibat.SanPhamRauNhaTrong1.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : sanphamnoibat.SanPhamRauNhaTrong1.hinhanh.IndexOf("#") != -1 ? Url.Content(sanphamnoibat.SanPhamRauNhaTrong1.hinhanh.Split('#')[0]) : Url.Content(sanphamnoibat.SanPhamRauNhaTrong1.hinhanh)));
                                     background-size: cover">
                                 </div>
                                 <h6 class="tit6 t-center m-t-20" style="font-size: 30px; padding-bottom: 0; letter-spacing: 3px; word-spacing: 3px;">
-                                    @item.tensanpham
+                                    @sanphamnoibat.SanPhamRauNhaTrong1.tensanpham
                                 </h6>
-                                @if (!string.IsNullOrEmpty(item.mota))
+                                @if (!string.IsNullOrEmpty(sanphamnoibat.SanPhamRauNhaTrong1.mota))
                                 {
                                     <p class="t-center m-b-22 size3 m-l-r-auto">
-                                        @item.mota
+                                        @sanphamnoibat.SanPhamRauNhaTrong1.mota
                                     </p>
                                 }
-                                <a style="font-size: 16px;" href="@Url.Action("productdetail", "vuonrau", new { id = item.id })" class="txt4">
-                                    Xem @item.tensanpham - @item.gia.ToString("0,0")đ
+                                <a style="font-size: 16px;" href="@Url.Action("productdetail", "vuonrau", new { id = sanphamnoibat.SanPhamRauNhaTrong1.id })" class="txt4">
+                                    Xem @sanphamnoibat.SanPhamRauNhaTrong1.tensanpham - @sanphamnoibat.SanPhamRauNhaTrong1.gia.ToString("0,0")đ
                                     <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
                                 </a>
                             </div>
                         </div>
-                    }
-                }
             </div>
             <hr class="my-3" style="background-color: darkgray">
             <br />
             <br />
             <div class="row">
-                @{ i = 0;}
-                @foreach (var item in sanphamnoibatmuasam)
-                {
-                    i++;
-                    if (i == 1)
-                    {
+
                         <div class="col-md-6 p-t-45 p-b-30">
                             <div class="wrap-text-welcome t-center">
                                 <h6 class="tit6 t-center m-t-0" style="font-size: 30px; padding-bottom: 0; letter-spacing: 3px; word-spacing: 3px;">
-                                    @item.tensanpham
+                                    @sanphamnoibat.SanPhamMuaSam.tensanpham
                                 </h6>
-                                @if (!string.IsNullOrEmpty(item.mota))
+                                @if (!string.IsNullOrEmpty(sanphamnoibat.SanPhamMuaSam.mota))
                                 {
                                     <p class="t-center m-b-22 size3 m-l-r-auto">
-                                        @item.mota
+                                        @sanphamnoibat.SanPhamMuaSam.mota
                                     </p>
                                 }
-                                <a style="font-size: 16px;" href="@Url.Action("productdetail", "muasam", new { id = item.id })" class="txt4">
-                                    Xem @item.tensanpham - @item.TonKhoSanPhamMuaSam.First().gia.ToString("0,0") đ
+                                <a style="font-size: 16px;" href="@Url.Action("productdetail", "muasam", new { id = sanphamnoibat.SanPhamMuaSam.id })" class="txt4">
+                                    Xem @sanphamnoibat.SanPhamMuaSam.tensanpham - @sanphamnoibat.SanPhamMuaSam.TonKhoSanPhamMuaSam.First().gia.ToString("0,0") đ
                                     <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
                                 </a>
                                 <div style="margin-top: 20px; width: 100%; height: 460px;
-                                background-image: url(@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh)));
+                                background-image: url(@(string.IsNullOrEmpty(sanphamnoibat.SanPhamMuaSam.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : sanphamnoibat.SanPhamMuaSam.hinhanh.IndexOf("#") != -1 ? Url.Content(sanphamnoibat.SanPhamMuaSam.hinhanh.Split('#')[0]) : Url.Content(sanphamnoibat.SanPhamMuaSam.hinhanh)));
                                 background-size: cover">
                                 </div>
                             </div>
                         </div>
-                    }
-                    else
-                    {
+                   
                         <div class="col-md-6 p-t-45 p-b-30">
                             <div class="wrap-text-welcome t-center">
 
                                 <div style="margin-top: 0px; width: 100%; height: 460px;
-                                background-image: url(@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh)));
+                                background-image: url(@(string.IsNullOrEmpty(sanphamnoibat.SanPhamMuaSam1.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : sanphamnoibat.SanPhamMuaSam1.hinhanh.IndexOf("#") != -1 ? Url.Content(sanphamnoibat.SanPhamMuaSam1.hinhanh.Split('#')[0]) : Url.Content(sanphamnoibat.SanPhamMuaSam1.hinhanh)));
                                 background-size: cover">
                                 </div>
                                 <h6 class="tit6 t-center m-t-20" style="font-size: 30px; padding-bottom: 0; letter-spacing: 3px; word-spacing: 3px;">
-                                    @item.tensanpham
+                                    @sanphamnoibat.SanPhamMuaSam1.tensanpham
                                 </h6>
-                                @if (!string.IsNullOrEmpty(item.mota))
+                                @if (!string.IsNullOrEmpty(sanphamnoibat.SanPhamMuaSam1.mota))
                                 {
                                     <p class="t-center m-b-22 size3 m-l-r-auto">
-                                        @item.mota
+                                        @sanphamnoibat.SanPhamMuaSam1.mota
                                     </p>
                                 }
-                                <a style="font-size: 16px;" href="@Url.Action("productdetail", "muasam", new { id = item.id })" class="txt4">
-                                    Xem @item.tensanpham - @item.TonKhoSanPhamMuaSam.First().gia.ToString("0,0") đ
+                                <a style="font-size: 16px;" href="@Url.Action("productdetail", "muasam", new { id = sanphamnoibat.SanPhamMuaSam1.id })" class="txt4">
+                                    Xem @sanphamnoibat.SanPhamMuaSam1.tensanpham - @sanphamnoibat.SanPhamMuaSam1.TonKhoSanPhamMuaSam.First().gia.ToString("0,0") đ
                                     <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
                                 </a>
                             </div>
                         </div>
-                    }
-                }
+                   
             </div>
         </div>
 
@@ -1029,7 +1003,7 @@
         </div>
     </div>
 </section>
-<script src="~/Validation/LienHeDatBan/GuiLienHeDatBan.js"></script>
+<script src="~/Validation/LienHeDatBan/GuiLienHeDatBan.js?v=1.0"></script>
 
 <!-- Review -->
 <!--<section class="section-review bg-brown p-t-115">-->

@@ -457,6 +457,7 @@
           <Property Name="luotxem" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="hienthi" Type="bit" Nullable="false" />
           <Property Name="daxoa" Type="bit" Nullable="false" />
+          <Property Name="thamkhao" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="SanPhamRauNhaTrong">
           <Key>
@@ -475,6 +476,7 @@
           <Property Name="luotxem" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="hienthi" Type="bit" Nullable="false" />
           <Property Name="daxoa" Type="bit" Nullable="false" />
+          <Property Name="thamkhao" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="SanPhamThucDonHangNgay">
           <Key>
@@ -585,6 +587,18 @@
           <Property Name="tenloai" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="soluong" Type="int" Nullable="false" />
           <Property Name="gia" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TopSanPhamNoiBat">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_thucdon" Type="int" Nullable="false" />
+          <Property Name="id_vuonrau" Type="int" Nullable="false" />
+          <Property Name="id_muasam" Type="int" Nullable="false" />
+          <Property Name="id_thucdon_2" Type="int" Nullable="false" />
+          <Property Name="id_vuonrau_2" Type="int" Nullable="false" />
+          <Property Name="id_muasam_2" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ThongTinCauHinh">
           <Key>
@@ -1157,6 +1171,78 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TopSanPhamNoiBat_SanPhamMuaSam">
+          <End Role="SanPhamMuaSam" Type="Self.SanPhamMuaSam" Multiplicity="1" />
+          <End Role="TopSanPhamNoiBat" Type="Self.TopSanPhamNoiBat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SanPhamMuaSam">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TopSanPhamNoiBat">
+              <PropertyRef Name="id_muasam" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TopSanPhamNoiBat_SanPhamMuaSam_2">
+          <End Role="SanPhamMuaSam" Type="Self.SanPhamMuaSam" Multiplicity="1" />
+          <End Role="TopSanPhamNoiBat" Type="Self.TopSanPhamNoiBat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SanPhamMuaSam">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TopSanPhamNoiBat">
+              <PropertyRef Name="id_muasam_2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TopSanPhamNoiBat_SanPhamRauNhaTrong">
+          <End Role="SanPhamRauNhaTrong" Type="Self.SanPhamRauNhaTrong" Multiplicity="1" />
+          <End Role="TopSanPhamNoiBat" Type="Self.TopSanPhamNoiBat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SanPhamRauNhaTrong">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TopSanPhamNoiBat">
+              <PropertyRef Name="id_vuonrau" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TopSanPhamNoiBat_SanPhamRauNhaTrong_2">
+          <End Role="SanPhamRauNhaTrong" Type="Self.SanPhamRauNhaTrong" Multiplicity="1" />
+          <End Role="TopSanPhamNoiBat" Type="Self.TopSanPhamNoiBat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SanPhamRauNhaTrong">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TopSanPhamNoiBat">
+              <PropertyRef Name="id_vuonrau_2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TopSanPhamNoiBat_SanPhamThucDonHangNgay">
+          <End Role="SanPhamThucDonHangNgay" Type="Self.SanPhamThucDonHangNgay" Multiplicity="1" />
+          <End Role="TopSanPhamNoiBat" Type="Self.TopSanPhamNoiBat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SanPhamThucDonHangNgay">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TopSanPhamNoiBat">
+              <PropertyRef Name="id_thucdon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TopSanPhamNoiBat_SanPhamThucDonHangNgay_2">
+          <End Role="SanPhamThucDonHangNgay" Type="Self.SanPhamThucDonHangNgay" Multiplicity="1" />
+          <End Role="TopSanPhamNoiBat" Type="Self.TopSanPhamNoiBat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SanPhamThucDonHangNgay">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TopSanPhamNoiBat">
+              <PropertyRef Name="id_thucdon_2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="BeanfamilyModelStoreContainer">
           <EntitySet Name="ApDungChucNangChoQuyenTaiKhoan" EntityType="Self.ApDungChucNangChoQuyenTaiKhoan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BoCucNoiDungTinhWebsite" EntityType="Self.BoCucNoiDungTinhWebsite" Schema="dbo" store:Type="Tables" />
@@ -1200,6 +1286,7 @@
           <EntitySet Name="TinhTrangDonHangMenuTiecBan" EntityType="Self.TinhTrangDonHangMenuTiecBan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay" EntityType="Self.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TonKhoSanPhamMuaSam" EntityType="Self.TonKhoSanPhamMuaSam" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TopSanPhamNoiBat" EntityType="Self.TopSanPhamNoiBat" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ThongTinCauHinh" EntityType="Self.ThongTinCauHinh" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VideoBean" EntityType="Self.VideoBean" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_ApDungChucNangChoQuyenTaiKhoan_ChucNangHeThongBean" Association="Self.FK_ApDungChucNangChoQuyenTaiKhoan_ChucNangHeThongBean">
@@ -1381,6 +1468,30 @@
           <AssociationSet Name="FK_TonKhoSanPhamMuaSam_SanPhamMuaSam" Association="Self.FK_TonKhoSanPhamMuaSam_SanPhamMuaSam">
             <End Role="SanPhamMuaSam" EntitySet="SanPhamMuaSam" />
             <End Role="TonKhoSanPhamMuaSam" EntitySet="TonKhoSanPhamMuaSam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TopSanPhamNoiBat_SanPhamMuaSam" Association="Self.FK_TopSanPhamNoiBat_SanPhamMuaSam">
+            <End Role="SanPhamMuaSam" EntitySet="SanPhamMuaSam" />
+            <End Role="TopSanPhamNoiBat" EntitySet="TopSanPhamNoiBat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TopSanPhamNoiBat_SanPhamMuaSam_2" Association="Self.FK_TopSanPhamNoiBat_SanPhamMuaSam_2">
+            <End Role="SanPhamMuaSam" EntitySet="SanPhamMuaSam" />
+            <End Role="TopSanPhamNoiBat" EntitySet="TopSanPhamNoiBat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TopSanPhamNoiBat_SanPhamRauNhaTrong" Association="Self.FK_TopSanPhamNoiBat_SanPhamRauNhaTrong">
+            <End Role="SanPhamRauNhaTrong" EntitySet="SanPhamRauNhaTrong" />
+            <End Role="TopSanPhamNoiBat" EntitySet="TopSanPhamNoiBat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TopSanPhamNoiBat_SanPhamRauNhaTrong_2" Association="Self.FK_TopSanPhamNoiBat_SanPhamRauNhaTrong_2">
+            <End Role="SanPhamRauNhaTrong" EntitySet="SanPhamRauNhaTrong" />
+            <End Role="TopSanPhamNoiBat" EntitySet="TopSanPhamNoiBat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TopSanPhamNoiBat_SanPhamThucDonHangNgay" Association="Self.FK_TopSanPhamNoiBat_SanPhamThucDonHangNgay">
+            <End Role="SanPhamThucDonHangNgay" EntitySet="SanPhamThucDonHangNgay" />
+            <End Role="TopSanPhamNoiBat" EntitySet="TopSanPhamNoiBat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TopSanPhamNoiBat_SanPhamThucDonHangNgay_2" Association="Self.FK_TopSanPhamNoiBat_SanPhamThucDonHangNgay_2">
+            <End Role="SanPhamThucDonHangNgay" EntitySet="SanPhamThucDonHangNgay" />
+            <End Role="TopSanPhamNoiBat" EntitySet="TopSanPhamNoiBat" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -1895,6 +2006,9 @@
           <NavigationProperty Name="GioHangMuaSam" Relationship="Self.FK_GioHangMuaSam_SanPhamMuaSam" FromRole="SanPhamMuaSam" ToRole="GioHangMuaSam" />
           <NavigationProperty Name="TonKhoSanPhamMuaSam" Relationship="Self.FK_TonKhoSanPhamMuaSam_SanPhamMuaSam" FromRole="SanPhamMuaSam" ToRole="TonKhoSanPhamMuaSam" />
           <Property Name="daxoa" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TopSanPhamNoiBat" Relationship="BeanfamilyModel.FK_TopSanPhamNoiBat_SanPhamMuaSam" FromRole="SanPhamMuaSam" ToRole="TopSanPhamNoiBat" />
+          <NavigationProperty Name="TopSanPhamNoiBat1" Relationship="BeanfamilyModel.FK_TopSanPhamNoiBat_SanPhamMuaSam_2" FromRole="SanPhamMuaSam" ToRole="TopSanPhamNoiBat" />
+          <Property Name="thamkhao" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="SanPhamRauNhaTrong">
           <Key>
@@ -1917,6 +2031,9 @@
           <NavigationProperty Name="GioHangVuonRauBean" Relationship="Self.FK_GioHangVuonRauBean_SanPhamRauNhaTrong" FromRole="SanPhamRauNhaTrong" ToRole="GioHangVuonRauBean" />
           <NavigationProperty Name="QuyTrinhTrongCay" Relationship="Self.FK_SanPhamRauNhaTrong_QuyTrinhTrongCay" FromRole="SanPhamRauNhaTrong" ToRole="QuyTrinhTrongCay" />
           <Property Name="daxoa" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TopSanPhamNoiBat" Relationship="BeanfamilyModel.FK_TopSanPhamNoiBat_SanPhamRauNhaTrong" FromRole="SanPhamRauNhaTrong" ToRole="TopSanPhamNoiBat" />
+          <NavigationProperty Name="TopSanPhamNoiBat1" Relationship="BeanfamilyModel.FK_TopSanPhamNoiBat_SanPhamRauNhaTrong_2" FromRole="SanPhamRauNhaTrong" ToRole="TopSanPhamNoiBat" />
+          <Property Name="thamkhao" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="SanPhamThucDonHangNgay">
           <Key>
@@ -1936,6 +2053,8 @@
           <NavigationProperty Name="DanhMucThucDocHangNgayCap1" Relationship="Self.FK_SanPhamThucDonHangNgay_SanPhamThucDonHangNgay1" FromRole="SanPhamThucDonHangNgay" ToRole="DanhMucThucDocHangNgayCap1" />
           <NavigationProperty Name="GioHangThucDonHangNgay" Relationship="Self.FK_GioHangThucDonHangNgay_SanPhamThucDonHangNgay" FromRole="SanPhamThucDonHangNgay" ToRole="GioHangThucDonHangNgay" />
           <Property Name="daxoa" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TopSanPhamNoiBat" Relationship="BeanfamilyModel.FK_TopSanPhamNoiBat_SanPhamThucDonHangNgay" FromRole="SanPhamThucDonHangNgay" ToRole="TopSanPhamNoiBat" />
+          <NavigationProperty Name="TopSanPhamNoiBat1" Relationship="BeanfamilyModel.FK_TopSanPhamNoiBat_SanPhamThucDonHangNgay_2" FromRole="SanPhamThucDonHangNgay" ToRole="TopSanPhamNoiBat" />
         </EntityType>
         <EntityType Name="TaiKhoanBean">
           <Key>
@@ -2826,6 +2945,31 @@
           <EntitySet Name="ChinhSachBean" EntityType="BeanfamilyModel.ChinhSachBean" />
           <EntitySet Name="SuKienBean" EntityType="BeanfamilyModel.SuKienBean" />
           <EntitySet Name="VideoBean" EntityType="BeanfamilyModel.VideoBean" />
+          <EntitySet Name="TopSanPhamNoiBat" EntityType="BeanfamilyModel.TopSanPhamNoiBat" />
+          <AssociationSet Name="FK_TopSanPhamNoiBat_SanPhamMuaSam" Association="BeanfamilyModel.FK_TopSanPhamNoiBat_SanPhamMuaSam">
+            <End Role="SanPhamMuaSam" EntitySet="SanPhamMuaSam" />
+            <End Role="TopSanPhamNoiBat" EntitySet="TopSanPhamNoiBat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TopSanPhamNoiBat_SanPhamRauNhaTrong" Association="BeanfamilyModel.FK_TopSanPhamNoiBat_SanPhamRauNhaTrong">
+            <End Role="SanPhamRauNhaTrong" EntitySet="SanPhamRauNhaTrong" />
+            <End Role="TopSanPhamNoiBat" EntitySet="TopSanPhamNoiBat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TopSanPhamNoiBat_SanPhamThucDonHangNgay" Association="BeanfamilyModel.FK_TopSanPhamNoiBat_SanPhamThucDonHangNgay">
+            <End Role="SanPhamThucDonHangNgay" EntitySet="SanPhamThucDonHangNgay" />
+            <End Role="TopSanPhamNoiBat" EntitySet="TopSanPhamNoiBat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TopSanPhamNoiBat_SanPhamMuaSam_2" Association="BeanfamilyModel.FK_TopSanPhamNoiBat_SanPhamMuaSam_2">
+            <End Role="SanPhamMuaSam" EntitySet="SanPhamMuaSam" />
+            <End Role="TopSanPhamNoiBat" EntitySet="TopSanPhamNoiBat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TopSanPhamNoiBat_SanPhamRauNhaTrong_2" Association="BeanfamilyModel.FK_TopSanPhamNoiBat_SanPhamRauNhaTrong_2">
+            <End Role="SanPhamRauNhaTrong" EntitySet="SanPhamRauNhaTrong" />
+            <End Role="TopSanPhamNoiBat" EntitySet="TopSanPhamNoiBat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TopSanPhamNoiBat_SanPhamThucDonHangNgay_2" Association="BeanfamilyModel.FK_TopSanPhamNoiBat_SanPhamThucDonHangNgay_2">
+            <End Role="SanPhamThucDonHangNgay" EntitySet="SanPhamThucDonHangNgay" />
+            <End Role="TopSanPhamNoiBat" EntitySet="TopSanPhamNoiBat" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="ChinhSachBean">
           <Key>
@@ -2855,6 +2999,96 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="url" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="TopSanPhamNoiBat">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_thucdon" Type="Int32" Nullable="false" />
+          <Property Name="id_vuonrau" Type="Int32" Nullable="false" />
+          <Property Name="id_muasam" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SanPhamMuaSam" Relationship="BeanfamilyModel.FK_TopSanPhamNoiBat_SanPhamMuaSam" FromRole="TopSanPhamNoiBat" ToRole="SanPhamMuaSam" />
+          <NavigationProperty Name="SanPhamRauNhaTrong" Relationship="BeanfamilyModel.FK_TopSanPhamNoiBat_SanPhamRauNhaTrong" FromRole="TopSanPhamNoiBat" ToRole="SanPhamRauNhaTrong" />
+          <NavigationProperty Name="SanPhamThucDonHangNgay" Relationship="BeanfamilyModel.FK_TopSanPhamNoiBat_SanPhamThucDonHangNgay" FromRole="TopSanPhamNoiBat" ToRole="SanPhamThucDonHangNgay" />
+          <Property Name="id_thucdon_2" Type="Int32" Nullable="false" />
+          <Property Name="id_vuonrau_2" Type="Int32" Nullable="false" />
+          <Property Name="id_muasam_2" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SanPhamMuaSam1" Relationship="BeanfamilyModel.FK_TopSanPhamNoiBat_SanPhamMuaSam_2" FromRole="TopSanPhamNoiBat" ToRole="SanPhamMuaSam" />
+          <NavigationProperty Name="SanPhamRauNhaTrong1" Relationship="BeanfamilyModel.FK_TopSanPhamNoiBat_SanPhamRauNhaTrong_2" FromRole="TopSanPhamNoiBat" ToRole="SanPhamRauNhaTrong" />
+          <NavigationProperty Name="SanPhamThucDonHangNgay1" Relationship="BeanfamilyModel.FK_TopSanPhamNoiBat_SanPhamThucDonHangNgay_2" FromRole="TopSanPhamNoiBat" ToRole="SanPhamThucDonHangNgay" />
+        </EntityType>
+        <Association Name="FK_TopSanPhamNoiBat_SanPhamMuaSam">
+          <End Type="BeanfamilyModel.SanPhamMuaSam" Role="SanPhamMuaSam" Multiplicity="1" />
+          <End Type="BeanfamilyModel.TopSanPhamNoiBat" Role="TopSanPhamNoiBat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SanPhamMuaSam">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TopSanPhamNoiBat">
+              <PropertyRef Name="id_muasam" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TopSanPhamNoiBat_SanPhamRauNhaTrong">
+          <End Type="BeanfamilyModel.SanPhamRauNhaTrong" Role="SanPhamRauNhaTrong" Multiplicity="1" />
+          <End Type="BeanfamilyModel.TopSanPhamNoiBat" Role="TopSanPhamNoiBat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SanPhamRauNhaTrong">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TopSanPhamNoiBat">
+              <PropertyRef Name="id_vuonrau" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TopSanPhamNoiBat_SanPhamThucDonHangNgay">
+          <End Type="BeanfamilyModel.SanPhamThucDonHangNgay" Role="SanPhamThucDonHangNgay" Multiplicity="1" />
+          <End Type="BeanfamilyModel.TopSanPhamNoiBat" Role="TopSanPhamNoiBat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SanPhamThucDonHangNgay">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TopSanPhamNoiBat">
+              <PropertyRef Name="id_thucdon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TopSanPhamNoiBat_SanPhamMuaSam_2">
+          <End Type="BeanfamilyModel.SanPhamMuaSam" Role="SanPhamMuaSam" Multiplicity="1" />
+          <End Type="BeanfamilyModel.TopSanPhamNoiBat" Role="TopSanPhamNoiBat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SanPhamMuaSam">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TopSanPhamNoiBat">
+              <PropertyRef Name="id_muasam_2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TopSanPhamNoiBat_SanPhamRauNhaTrong_2">
+          <End Type="BeanfamilyModel.SanPhamRauNhaTrong" Role="SanPhamRauNhaTrong" Multiplicity="1" />
+          <End Type="BeanfamilyModel.TopSanPhamNoiBat" Role="TopSanPhamNoiBat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SanPhamRauNhaTrong">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TopSanPhamNoiBat">
+              <PropertyRef Name="id_vuonrau_2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TopSanPhamNoiBat_SanPhamThucDonHangNgay_2">
+          <End Type="BeanfamilyModel.SanPhamThucDonHangNgay" Role="SanPhamThucDonHangNgay" Multiplicity="1" />
+          <End Type="BeanfamilyModel.TopSanPhamNoiBat" Role="TopSanPhamNoiBat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SanPhamThucDonHangNgay">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TopSanPhamNoiBat">
+              <PropertyRef Name="id_thucdon_2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3324,6 +3558,7 @@
           <EntitySetMapping Name="SanPhamMuaSam">
             <EntityTypeMapping TypeName="BeanfamilyModel.SanPhamMuaSam">
               <MappingFragment StoreEntitySet="SanPhamMuaSam">
+                <ScalarProperty Name="thamkhao" ColumnName="thamkhao" />
                 <ScalarProperty Name="daxoa" ColumnName="daxoa" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_danhmucmuasamcap1" ColumnName="id_danhmucmuasamcap1" />
@@ -3339,6 +3574,7 @@
           <EntitySetMapping Name="SanPhamRauNhaTrong">
             <EntityTypeMapping TypeName="BeanfamilyModel.SanPhamRauNhaTrong">
               <MappingFragment StoreEntitySet="SanPhamRauNhaTrong">
+                <ScalarProperty Name="thamkhao" ColumnName="thamkhao" />
                 <ScalarProperty Name="daxoa" ColumnName="daxoa" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_danhmucsanphamraunhatrongcap1" ColumnName="id_danhmucsanphamraunhatrongcap1" />
@@ -3513,6 +3749,19 @@
             <EntityTypeMapping TypeName="BeanfamilyModel.VideoBean">
               <MappingFragment StoreEntitySet="VideoBean">
                 <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TopSanPhamNoiBat">
+            <EntityTypeMapping TypeName="BeanfamilyModel.TopSanPhamNoiBat">
+              <MappingFragment StoreEntitySet="TopSanPhamNoiBat">
+                <ScalarProperty Name="id_muasam_2" ColumnName="id_muasam_2" />
+                <ScalarProperty Name="id_vuonrau_2" ColumnName="id_vuonrau_2" />
+                <ScalarProperty Name="id_thucdon_2" ColumnName="id_thucdon_2" />
+                <ScalarProperty Name="id_muasam" ColumnName="id_muasam" />
+                <ScalarProperty Name="id_vuonrau" ColumnName="id_vuonrau" />
+                <ScalarProperty Name="id_thucdon" ColumnName="id_thucdon" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

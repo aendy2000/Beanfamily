@@ -33,11 +33,15 @@ namespace Beanfamily.Areas.Admin.Controllers
             Session["active-tkb-tk"] = "collapsed # # ";
             Session["active-ddh"] = "collapsed # # ";
             Session["active-ddbt"] = "collapsed # # ";
-            Session["active-ddbb"] = "collapsed # # "; Session["active-lhdb"] = "collapsed # # ";
+            Session["active-ddbb"] = "collapsed # # "; 
+            Session["active-lhdb"] = "collapsed # # ";
             Session["active-hab"] = "collapsed # # ";
             Session["active-qlsp"] = " # # ";
             Session["active-tlc-ttw"] = "collapsed # # ";
-            Session["active-tlc-lkmxh"] = "collapsed # # "; Session["active-ndt"] = "collapsed # # "; Session["active-cs"] = "collapsed # # ";
+            Session["active-tlc-lkmxh"] = "collapsed # # "; 
+            Session["active-ndt"] = "collapsed # # "; 
+            Session["active-cs"] = "collapsed # # ";
+            Session["active-spnb"] = "collapsed # # ";
 
             if (Session["qlsp"] == null)
                 return RedirectToAction("index", "dashboard");

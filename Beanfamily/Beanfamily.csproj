@@ -165,6 +165,7 @@
     <Compile Include="Areas\Admin\Controllers\QuyTrinhTrongCayController.cs" />
     <Compile Include="Areas\Admin\Controllers\RoleController.cs" />
     <Compile Include="Areas\Admin\Controllers\SanPhamMuaSamController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SanPhamNoiBatController.cs" />
     <Compile Include="Areas\Admin\Controllers\SanPhamVuonRauBeanController.cs" />
     <Compile Include="Areas\Admin\Controllers\SEOPageConfigController.cs" />
     <Compile Include="Areas\Admin\Controllers\CauHinhWebController.cs" />
@@ -325,6 +326,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TonKhoSanPhamMuaSam.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TopSanPhamNoiBat.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\VideoBean.cs">
@@ -3043,6 +3047,7 @@
     <Content Include="Areas\Admin\Views\LienHeDatBan\_OpenTaoDonTiecBan.cshtml" />
     <Content Include="Areas\Admin\Views\LienHeDatBan\_OpenTaoDonBuffet.cshtml" />
     <Content Include="Areas\Admin\Views\NoiDungTinh\Index.cshtml" />
+    <Content Include="Validation\SanPhamNoiBat\SuaSanPham.js" />
     <Content Include="ZaloAPI\css\zaloSdk.css" />
     <Content Include="ZaloAPI\img\bannerDDB.png" />
     <Content Include="ZaloAPI\img\bannerDDH.png" />
@@ -3291,6 +3296,8 @@
     <Content Include="Content\assets\vendor\slick\slick.less" />
     <Content Include="Content\assets\vendor\slick\slick.scss" />
     <Content Include="Areas\Admin\Views\ChinhSach\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\SanPhamNoiBat\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\SanPhamNoiBat\_OpenSua.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

@@ -13,7 +13,7 @@
                             <h4 class="title text-white font-weight-bold">
                                 @Model.tensanpham
                             </h4>
-
+                            
                             <div class="d-flex flex-row my-3">
                                 <div class="text-warning me-2">
                                     <i class="fa fa-star"></i>
@@ -46,15 +46,21 @@
                             </p>
 
                             <div class="mb-2">
-                                <span class="text-white">Giá: <span id="gia-tonkho" class="text-warning font-weight-bold">@Model.gia.ToString("0,0")đ / @Model.donvi</span></span>
+                                <span class="text-white">
+                                    Giá: <span id="gia-tonkho" class="text-warning font-weight-bold me-2">@Model.gia.ToString("0,0")đ / @Model.donvi</span>
+                                    @if (Model.thamkhao)
+                                    {
+                                        <span class="text-white" style="font-style: italic">(Giá và số lượng tham khảo)</span>
+                                    }
+                                </span>
                             </div>
                             <div class="row mb-2 text-white">
                                 <div class="col-md-12 col-sm-12 mb-3">
-                                    <label class="d-block">Tồn kho: @Model.giatritrendonvi.ToString("0.00").Replace(",00", String.Empty) @Model.donvi</label>
+                                    <label class="d-block">Tồn kho: @Model.giatritrendonvi.ToString("0.00").Replace(",00", String.Empty)</label>
                                 </div>
                                 <!-- col.// -->
                                 <div class="col-md-6 col-sm-12 mb-2">
-                                    <label id="tonkhothucte" tonkhosoluong="@Model.giatritrendonvi.ToString("0.00").Replace(",00", String.Empty)" class="mb-2 d-block">Số lượng (@Model.donvi):</label>
+                                    <label id="tonkhothucte" tonkhosoluong="@Model.giatritrendonvi.ToString("0.00").Replace(",00", String.Empty)" class="mb-2 d-block">Số lượng × @Model.donvi:</label>
                                     <div class="input-group" style="width: 100%;">
 
                                         @if (Model.giatritrendonvi <= 0)
@@ -83,7 +89,7 @@
                                 <!-- col.// -->
                                 <!--<div class="col-md-6 col-6">
 
-                                </div>-->
+        </div>-->
                             </div>
                             @if (Model.giatritrendonvi <= 0)
                             {

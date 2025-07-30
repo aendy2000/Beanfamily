@@ -94,8 +94,14 @@
                                     </td>
                                     <td>@item.DanhMucSanPhamRauNhaTrongCap1.tendanhmuc</td>
                                     <td data-bs-toggle="tooltip" dropzone="top" title="@item.mota">@item.tensanpham</td>
-                                    <td>@item.gia.ToString("0,0") đ</td>
-                                    <td>@item.giatritrendonvi @item.donvi </td>
+                                    <td>
+                                        @if (item.thamkhao)
+                                        {
+                                            <label>(Kèm tag tham khảo)</label>
+                                        }
+                                        @item.gia.ToString("0,0") đ
+                                    </td>
+                                    <td>@item.giatritrendonvi x @item.donvi </td>
                                     <td>@item.luotxem.ToString("0,0") Lượt</td>
                                     <td>
                                         @if (item.hienthi == true)
@@ -169,6 +175,16 @@
                                     <div class="col-md-12 col-lg-10">
                                         <input id="ten" type="text" placeholder="Tên sản phẩm mới" class="form-control">
                                         <label style="margin-left: 5px" id="invalid-ten-feedback" class="text-danger" hidden></label>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="thamkhao" class="col-md-12 col-lg-2 col-form-label">Tag</label>
+                                    <div class="col-md-12 col-lg-10">
+                                        <div class="form-check form-switch form-control">
+                                            <input checked class="form-check-input" style="margin-left: -1.5em" type="checkbox" id="thamkhao">
+                                            <label class="form-check-label" style="margin-left: 0.8em" for="thamkhao"> Giá và số lượng tham khảo</label>
+                                        </div>
+                                        <label style="margin-left: 5px" id="invalid-thamkhao-feedback" class="text-danger" hidden></label>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -308,9 +324,9 @@
     }
 }
 
-<script src="~/Scripts/jquery-ui.js"></script>
-<script src="~/Validation/SanPhamVuonRau/ThemSanPham.js"></script>
-<script src="~/Validation/SanPhamVuonRau/XemHinhAnh.js"></script>
-<script src="~/Validation/SanPhamVuonRau/XoaSanPham.js"></script>
-<script src="~/Validation/SanPhamVuonRau/OpenModalSuaSanPham.js"></script>
-<script src="~/Validation/SanPhamVuonRau/XoaHangLoat.js"></script>
+<script src="~/Scripts/jquery-ui.js?v=1.0"></script>
+<script src="~/Validation/SanPhamVuonRau/ThemSanPham.js?v=1.0"></script>
+<script src="~/Validation/SanPhamVuonRau/XemHinhAnh.js?v=1.0"></script>
+<script src="~/Validation/SanPhamVuonRau/XoaSanPham.js?v=1.0"></script>
+<script src="~/Validation/SanPhamVuonRau/OpenModalSuaSanPham.js?v=1.0"></script>
+<script src="~/Validation/SanPhamVuonRau/XoaHangLoat.js?v=1.0"></script>

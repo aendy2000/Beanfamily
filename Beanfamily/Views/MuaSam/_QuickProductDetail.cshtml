@@ -5,7 +5,7 @@
 
 <div class="modal-body" id="partial-content-quick-detail" style="margin-top: -30px; overflow-x: hidden ">
 
-    <link rel="stylesheet" type="text/css" href="~/Content/assets/vendor/slick/slick.css?v=22062025.1">
+    <link rel="stylesheet" type="text/css" href="~/Content/assets/vendor/slick/slick.css?v=1.0">
     <!-- Title Page -->
     <input id="idPro" value="@Model.id" hidden />
     <section class="section-ourmenu">
@@ -50,7 +50,13 @@
                             </p>
 
                             <div class="mb-3">
-                                <span class="text-white">Giá: <span id="gia-tonkho" class="text-warning font-weight-bold"></span></span>
+                                <span class="text-white">
+                                    Giá: <span id="gia-tonkho" class="text-warning font-weight-bold me-2"></span>
+                                    @if (Model.thamkhao)
+                                    {
+                                        <span class="text-white" style="font-style: italic">(Giá và số lượng tham khảo)</span>
+                                    }
+                                </span>
                             </div>
                             <div class="row mb-2 text-white">
                                 <div class="col-md-6 col-sm-12">
@@ -115,7 +121,7 @@
                                 <!-- col.// -->
                                 <!--<div class="col-md-6 col-6">
 
-        </div>-->
+                                </div>-->
                             </div>
                             @if (Model.TonKhoSanPhamMuaSam.OrderByDescending(o => o.soluong).First().soluong < 1)
                             {

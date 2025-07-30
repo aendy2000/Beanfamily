@@ -41,7 +41,7 @@ namespace Beanfamily.Areas.Admin.Controllers
             Session["active-hab"] = "collapsed # # ";
             Session["active-qlsp"] = "collapsed # # ";
             Session["active-tlc-ttw"] = "collapsed # # ";
-            Session["active-tlc-lkmxh"] = "collapsed # # "; Session["active-ndt"] = "collapsed # # "; Session["active-cs"] = "collapsed # # ";
+            Session["active-tlc-lkmxh"] = "collapsed # # "; Session["active-ndt"] = "collapsed # # "; Session["active-cs"] = "collapsed # # ";Session["active-spnb"] = "collapsed # # ";
             Session["active-lhdb"] = "collapsed # # ";
 
             model = new BeanfamilyEntities(); var donhangTB = model.DonHangMenuTiecBan.ToList();

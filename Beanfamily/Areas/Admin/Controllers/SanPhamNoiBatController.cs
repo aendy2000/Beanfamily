@@ -1,22 +1,19 @@
-﻿using System;
+﻿using Beanfamily.Middlewall;
+using Beanfamily.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Beanfamily.Models;
-using Beanfamily.Middlewall;
-using System.Data.Entity;
-using System.Security.Cryptography;
-using System.Web.Razor.Tokenizer.Symbols;
-
 
 namespace Beanfamily.Areas.Admin.Controllers
 {
     [AdminLoginverification]
-    public class CauHinhWebController : Controller
+    public class SanPhamNoiBatController : Controller
     {
         BeanfamilyEntities model = new BeanfamilyEntities();
-        // GET: Admin/CauHinhWeb
+
+        // GET: Admin/SanPhamNoiBat
         public ActionResult Index()
         {
             Session["active-dashboard"] = "collapsed # # ";
@@ -36,21 +33,24 @@ namespace Beanfamily.Areas.Admin.Controllers
             Session["active-tkb-tk"] = "collapsed # # ";
             Session["active-ddh"] = "collapsed # # ";
             Session["active-ddbt"] = "collapsed # # ";
-            Session["active-ddbb"] = "collapsed # # "; Session["active-lhdb"] = "collapsed # # ";
+            Session["active-ddbb"] = "collapsed # # ";
+            Session["active-lhdb"] = "collapsed # # ";
             Session["active-hab"] = "collapsed # # ";
             Session["active-qlsp"] = "collapsed # # ";
-            Session["active-tlc-ttw"] = " # show # active";
-            Session["active-tlc-lkmxh"] = " # show # ";
-            Session["active-ndt"] = "collapsed # # "; Session["active-cs"] = "collapsed # # ";Session["active-spnb"] = "collapsed # # ";
+            Session["active-tlc-ttw"] = "collapsed # # ";
+            Session["active-tlc-lkmxh"] = "collapsed # # ";
+            Session["active-ndt"] = "collapsed # # ";
+            Session["active-cs"] = "collapsed # # ";
+            Session["active-spnb"] = " # # ";
 
-            if (Session["tlc-ttw"] == null)
+            if (Session["spnb"] == null)
                 return RedirectToAction("index", "dashboard");
 
-            var chw = model.ThongTinCauHinh.ToList();
+            var spnb = model.TopSanPhamNoiBat.First();
 
             int idRole = Int32.Parse(Session["user-role-id"].ToString());
             var chophepthemsuaxoa = model.ApDungChucNangChoQuyenTaiKhoan.FirstOrDefault(a => a.id_quyentaikhoanbean == idRole
-            && a.ChucNangHeThongBean.keycode.Equals("tlc-ttw"));
+            && a.ChucNangHeThongBean.keycode.Equals("spnb"));
             if (chophepthemsuaxoa != null)
             {
                 Session["chophep-them"] = chophepthemsuaxoa.chophepthem;
@@ -62,31 +62,33 @@ namespace Beanfamily.Areas.Admin.Controllers
                 return RedirectToAction("index", "dashboard");
             }
 
-            return View("index", chw);
+            return View("index", spnb);
         }
 
+        public ActionResult OpenSua()
+        {
+            Session["spnb-thucdon"] = model.SanPhamThucDonHangNgay.Where(w => w.hienthi == true && w.daxoa == false).ToList();
+            Session["spnb-vuonrau"] = model.SanPhamRauNhaTrong.Where(w => w.hienthi == true && w.daxoa == false).ToList();
+            Session["spnb-muasam"] = model.SanPhamMuaSam.Where(w => w.hienthi == true && w.daxoa == false).ToList();
+
+            return PartialView("_OpenSua", model.TopSanPhamNoiBat.First());
+        }
         [HttpPost]
-        public ActionResult CapNhat(string googlesearchconsole, string googleanalyst)
+        public ActionResult LuuChinhSua(int thucdon, int vuonrau, int muasam, int thucdon2, int vuonrau2, int muasam2)
         {
             try
             {
-                var cauhinh = model.ThongTinCauHinh.ToList();
-                if (cauhinh.Count < 1)
-                {
-                    ThongTinCauHinh cauhinhs = new ThongTinCauHinh();
-                    cauhinhs.googleanalyst = googleanalyst;
-                    cauhinhs.googlesearchconsole = googlesearchconsole;
+                var spnb = model.TopSanPhamNoiBat.First();
 
-                    model.ThongTinCauHinh.Add(cauhinhs);
-                }
-                else
-                {
-                    var cauhinhs = cauhinh.First();
-                    cauhinhs.googleanalyst = googleanalyst;
-                    cauhinhs.googlesearchconsole = googlesearchconsole;
+                spnb.id_thucdon = thucdon;
+                spnb.id_vuonrau = vuonrau;
+                spnb.id_muasam = muasam;
 
-                    model.Entry(cauhinhs).State = EntityState.Modified;
-                }
+                spnb.id_thucdon_2 = thucdon2;
+                spnb.id_vuonrau_2 = vuonrau2;
+                spnb.id_muasam_2 = muasam2;
+
+                model.Entry(spnb).State = System.Data.Entity.EntityState.Modified;
                 model.SaveChanges();
 
                 return Content("SUCCESS");

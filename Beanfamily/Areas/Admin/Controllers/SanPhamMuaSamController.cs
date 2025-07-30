@@ -38,7 +38,7 @@ namespace Beanfamily.Areas.Admin.Controllers
             Session["active-hab"] = "collapsed # # ";
             Session["active-qlsp"] = "collapsed # # ";
             Session["active-tlc-ttw"] = "collapsed # # ";
-            Session["active-tlc-lkmxh"] = "collapsed # # "; Session["active-ndt"] = "collapsed # # "; Session["active-cs"] = "collapsed # # ";
+            Session["active-tlc-lkmxh"] = "collapsed # # "; Session["active-ndt"] = "collapsed # # "; Session["active-cs"] = "collapsed # # ";Session["active-spnb"] = "collapsed # # ";
 
             if (Session["chtl-sp"] == null)
                 return RedirectToAction("index", "dashboard");
@@ -62,7 +62,7 @@ namespace Beanfamily.Areas.Admin.Controllers
             return View("index", sanpham);
         }
         [HttpPost]
-        public ActionResult ThemSanPham(List<HttpPostedFileBase> images, HttpPostedFileBase video, string ten, int danhmuc, string mota, bool hienthi, string lstLoai, string lstSoLuong, string lstGia)
+        public ActionResult ThemSanPham(List<HttpPostedFileBase> images, HttpPostedFileBase video, string ten, int danhmuc, string mota, bool hienthi, bool thamkhao, string lstLoai, string lstSoLuong, string lstGia)
         {
             try
             {
@@ -76,6 +76,8 @@ namespace Beanfamily.Areas.Admin.Controllers
                 sanpham.mota = mota;
                 sanpham.luotxem = 0;
                 sanpham.hienthi = hienthi;
+                sanpham.thamkhao = thamkhao;
+
                 model.SanPhamMuaSam.Add(sanpham);
                 model.SaveChanges();
 
@@ -201,7 +203,7 @@ namespace Beanfamily.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult SuaSanPham(int id, List<HttpPostedFileBase> images, HttpPostedFileBase video, string ten, int danhmuc, string mota, bool hienthi, string lstIdLoai, string lstLoai, string lstSoLuong, string lstGia, string imageCu, string videoCu)
+        public ActionResult SuaSanPham(int id, List<HttpPostedFileBase> images, HttpPostedFileBase video, string ten, int danhmuc, string mota, bool hienthi, bool thamkhao, string lstIdLoai, string lstLoai, string lstSoLuong, string lstGia, string imageCu, string videoCu)
         {
             try
             {
@@ -217,6 +219,7 @@ namespace Beanfamily.Areas.Admin.Controllers
                 sanpham.id_danhmucmuasamcap1 = danhmuc;
                 sanpham.mota = mota;
                 sanpham.hienthi = hienthi;
+                sanpham.thamkhao = thamkhao;
 
                 model.Entry(sanpham).State = EntityState.Modified;
                 model.SaveChanges();
@@ -389,6 +392,24 @@ namespace Beanfamily.Areas.Admin.Controllers
                 model.Entry(sanpham).State = EntityState.Modified;
                 model.SaveChanges();
 
+                var spms = model.SanPhamMuaSam.Where(w => w.hienthi == true && w.daxoa == false).OrderByDescending(o => o.luotxem).Take(2).ToList();
+
+                var spnb = model.TopSanPhamNoiBat.FirstOrDefault(f => f.id_muasam == id);
+                if (spnb != null)
+                {
+                    spnb.id_muasam = spms[0].id;
+                    model.Entry(spnb).State = EntityState.Modified;
+                    model.SaveChanges();
+                }
+
+                var spnb2 = model.TopSanPhamNoiBat.FirstOrDefault(f => f.id_muasam_2 == id);
+                if (spnb2 != null)
+                {
+                    spnb2.id_muasam_2 = spms[1].id;
+                    model.Entry(spnb2).State = EntityState.Modified;
+                    model.SaveChanges();
+                }
+
                 return Content("SUCCESS");
             }
             catch (Exception ex)
@@ -418,6 +439,23 @@ namespace Beanfamily.Areas.Admin.Controllers
                     var dm = model.SanPhamMuaSam.Find(id);
                     dm.daxoa = true;
                     model.Entry(dm).State = EntityState.Modified;
+                    model.SaveChanges();
+                }
+                var spms = model.SanPhamMuaSam.Where(w => w.hienthi == true && w.daxoa == false).OrderByDescending(o => o.luotxem).Take(2).ToList();
+
+                var spnb = model.TopSanPhamNoiBat.FirstOrDefault(f => lstId.Contains(f.id_muasam.ToString()));
+                if (spnb != null)
+                {
+                    spnb.id_muasam = spms[0].id;
+                    model.Entry(spnb).State = EntityState.Modified;
+                    model.SaveChanges();
+                }
+
+                var spnb2 = model.TopSanPhamNoiBat.FirstOrDefault(f => lstId.Contains(f.id_muasam_2.ToString()));
+                if (spnb2 != null)
+                {
+                    spnb2.id_muasam_2 = spms[1].id;
+                    model.Entry(spnb2).State = EntityState.Modified;
                     model.SaveChanges();
                 }
 

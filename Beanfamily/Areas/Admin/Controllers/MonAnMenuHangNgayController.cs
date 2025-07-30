@@ -38,7 +38,7 @@ namespace Beanfamily.Areas.Admin.Controllers
             Session["active-hab"] = "collapsed # # ";
             Session["active-qlsp"] = "collapsed # # ";
             Session["active-tlc-ttw"] = "collapsed # # ";
-            Session["active-tlc-lkmxh"] = "collapsed # # "; Session["active-ndt"] = "collapsed # # "; Session["active-cs"] = "collapsed # # ";
+            Session["active-tlc-lkmxh"] = "collapsed # # "; Session["active-ndt"] = "collapsed # # "; Session["active-cs"] = "collapsed # # ";Session["active-spnb"] = "collapsed # # ";
 
             if (Session["mhn-qlm"] == null)
                 return RedirectToAction("index", "dashboard");
@@ -160,28 +160,7 @@ namespace Beanfamily.Areas.Admin.Controllers
                 return Content("Chi tiết lỗi: " + ex.Message);
             }
         }
-
-        [HttpPost]
-        public ActionResult XoaMon(int id)
-        {
-            try
-            {
-                var mon = model.SanPhamThucDonHangNgay.Find(id);
-                if (mon == null)
-                    return Content("KHONGTONTAI");
-
-                mon.daxoa = true;
-                model.Entry(mon).State = EntityState.Modified;
-                model.SaveChanges();
-
-                return Content("SUCCESS");
-            }
-            catch (Exception ex)
-            {
-                return Content(ex.Message);
-            }
-        }
-
+       
         [HttpPost]
         public ActionResult OpenSuaMon(int id)
         {
@@ -288,6 +267,44 @@ namespace Beanfamily.Areas.Admin.Controllers
             }
         }
 
+        [HttpPost]
+        public ActionResult XoaMon(int id)
+        {
+            try
+            {
+                var mon = model.SanPhamThucDonHangNgay.Find(id);
+                if (mon == null)
+                    return Content("KHONGTONTAI");
+
+                mon.daxoa = true;
+                model.Entry(mon).State = EntityState.Modified;
+                model.SaveChanges();
+
+                var spms = model.SanPhamThucDonHangNgay.Where(w => w.hienthi == true && w.daxoa == false).OrderByDescending(o => o.luotxem).Take(2).ToList();
+
+                var spnb = model.TopSanPhamNoiBat.FirstOrDefault(f => f.id_thucdon == id);
+                if (spnb != null)
+                {
+                    spnb.id_thucdon = spms[0].id;
+                    model.Entry(spnb).State = EntityState.Modified;
+                    model.SaveChanges();
+                }
+
+                var spnb2 = model.TopSanPhamNoiBat.FirstOrDefault(f => f.id_thucdon_2 == id);
+                if (spnb2 != null)
+                {
+                    spnb2.id_thucdon_2 = spms[1].id;
+                    model.Entry(spnb2).State = EntityState.Modified;
+                    model.SaveChanges();
+                }
+
+                return Content("SUCCESS");
+            }
+            catch (Exception ex)
+            {
+                return Content(ex.Message);
+            }
+        }
 
         [HttpPost]
         public ActionResult XoaHangLoat(string lstId)
@@ -311,6 +328,24 @@ namespace Beanfamily.Areas.Admin.Controllers
                     var dm = model.SanPhamThucDonHangNgay.Find(id);
                     dm.daxoa = true;
                     model.Entry(dm).State = EntityState.Modified;
+                    model.SaveChanges();
+                }
+
+                var spms = model.SanPhamThucDonHangNgay.Where(w => w.hienthi == true && w.daxoa == false).OrderByDescending(o => o.luotxem).Take(2).ToList();
+
+                var spnb = model.TopSanPhamNoiBat.FirstOrDefault(f => lstId.Contains(f.id_thucdon.ToString()));
+                if (spnb != null)
+                {
+                    spnb.id_thucdon = spms[0].id;
+                    model.Entry(spnb).State = EntityState.Modified;
+                    model.SaveChanges();
+                }
+
+                var spnb2 = model.TopSanPhamNoiBat.FirstOrDefault(f => lstId.Contains(f.id_vuonrau_2.ToString()));
+                if (spnb2 != null)
+                {
+                    spnb2.id_thucdon_2 = spms[1].id;
+                    model.Entry(spnb2).State = EntityState.Modified;
                     model.SaveChanges();
                 }
 

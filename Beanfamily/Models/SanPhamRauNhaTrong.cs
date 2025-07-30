@@ -19,6 +19,8 @@ namespace Beanfamily.Models
         {
             this.ChiTietDonHangSanPhamRauNhaTrong = new HashSet<ChiTietDonHangSanPhamRauNhaTrong>();
             this.GioHangVuonRauBean = new HashSet<GioHangVuonRauBean>();
+            this.TopSanPhamNoiBat = new HashSet<TopSanPhamNoiBat>();
+            this.TopSanPhamNoiBat1 = new HashSet<TopSanPhamNoiBat>();
         }
     
         public int id { get; set; }
@@ -34,6 +36,7 @@ namespace Beanfamily.Models
         public decimal luotxem { get; set; }
         public bool hienthi { get; set; }
         public bool daxoa { get; set; }
+        public bool thamkhao { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietDonHangSanPhamRauNhaTrong> ChiTietDonHangSanPhamRauNhaTrong { get; set; }
@@ -41,5 +44,9 @@ namespace Beanfamily.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GioHangVuonRauBean> GioHangVuonRauBean { get; set; }
         public virtual QuyTrinhTrongCay QuyTrinhTrongCay { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TopSanPhamNoiBat> TopSanPhamNoiBat { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TopSanPhamNoiBat> TopSanPhamNoiBat1 { get; set; }
     }
 }

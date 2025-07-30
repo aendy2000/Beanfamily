@@ -60,6 +60,16 @@
                     </div>
                 </div>
                 <div class="row mb-3">
+                    <label for="suathamkhao" class="col-md-12 col-lg-2 col-form-label">Tag</label>
+                    <div class="col-md-12 col-lg-10">
+                        <div class="form-check form-switch form-control">
+                            <input checked="@Model.thamkhao" class="form-check-input" style="margin-left: -1.5em" type="checkbox" id="suathamkhao">
+                            <label class="form-check-label" style="margin-left: 0.8em" for="suathamkhao"> Giá và số lượng tham khảo</label>
+                        </div>
+                        <label style="margin-left: 5px" id="invalid-suathamkhao-feedback" class="text-danger" hidden></label>
+                    </div>
+                </div>
+                <div class="row mb-3">
                     <label for="suamota" class="col-md-12 col-lg-2 col-form-label">Mô tả</label>
                     <div class="col-md-12 col-lg-10">
                         <textarea rows="4" class="form-control" id="suamota" placeholder="Mô tả món">@Model.mota</textarea>
@@ -175,5 +185,5 @@
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
         <button id="btnluusuaSanPham" type="button" class="btn btn-primary">Lưu thông tin</button>
     </div>
-    <script src="~/Validation/SanPhamMuaSam/SuaSanpham.js"></script>
+    <script src="~/Validation/SanPhamMuaSam/SuaSanpham.js?v=1.0"></script>
 </div>

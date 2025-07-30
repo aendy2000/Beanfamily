@@ -1,11 +1,13 @@
-﻿using System;
+﻿using Beanfamily.Models;
+using PagedList;
+using System;
 using System.Collections.Generic;
+using System.Drawing.Printing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Web;
 using System.Web.DynamicData;
 using System.Web.Mvc;
-using Beanfamily.Models;
-using PagedList;
 
 namespace Beanfamily.Controllers
 {
@@ -17,6 +19,8 @@ namespace Beanfamily.Controllers
         {
             var lstSanPham = model.SanPhamThucDonHangNgay.Where(s => s.hienthi == true && s.daxoa == false).OrderBy(o => o.tensanpham).ToList();
             Session["categories-thucdonhangngay"] = model.DanhMucThucDocHangNgayCap1.Where(s => s.hienthi == true).OrderBy(o => o.tendanhmuc).ToList();
+
+            Session["data-timkiem"] = "";
 
             if (pageSize == null)
                 pageSize = 24;
@@ -44,8 +48,21 @@ namespace Beanfamily.Controllers
                 }
             }
         }
+
         [HttpPost]
-        public ActionResult getProductOnCategories(string id, int? pageNum, int? pageSize)
+        public ActionResult SearchProduct(string search)
+        {
+            int pageSize = 24;
+            int pageNum = 1;
+
+            Session["data-timkiem"] = search;
+
+            var lstPr = model.SanPhamThucDonHangNgay.Where(s => s.hienthi == true && s.daxoa == false && s.tensanpham.ToLower().Contains(search.ToLower())).OrderBy(o => o.tensanpham).ToList();
+            return PartialView("_ListProduct", lstPr.ToPagedList((int)pageNum, lstPr.Count + 1));
+        }
+
+        [HttpPost]
+        public ActionResult getProductOnCategories(string id, int? pageNum, int? pageSize, string search)
         {
             if (string.IsNullOrEmpty(id))
                 return Content("empty");
@@ -56,16 +73,42 @@ namespace Beanfamily.Controllers
                 pageNum = 1;
 
             Session["id-category-muasam"] = id;
-            if (id.Equals("tatca"))
+
+            if (string.IsNullOrEmpty(search))
             {
-                var lstPr = model.SanPhamThucDonHangNgay.Where(s => s.hienthi == true && s.daxoa == false).OrderBy(o => o.tensanpham).ToList();
-                return PartialView("_ListProduct", lstPr.ToPagedList((int)pageNum, (int)pageSize));
+                if (id.Equals("tatca"))
+                {
+                    var lstPr = model.SanPhamThucDonHangNgay.Where(s => s.hienthi == true 
+                    && s.daxoa == false).OrderBy(o => o.tensanpham).ToList();
+                    return PartialView("_ListProduct", lstPr.ToPagedList((int)pageNum, (int)pageSize));
+                }
+                else
+                {
+                    int ids = Int32.Parse(id);
+                    var lstPr = model.SanPhamThucDonHangNgay.Where(s => s.hienthi == true 
+                    && s.daxoa == false
+                    && s.id_danhmucthucdonhangngaycap1 == ids).OrderBy(o => o.tensanpham).ToList();
+                    return PartialView("_ListProduct", lstPr.ToPagedList((int)pageNum, (int)pageSize));
+                }
             }
             else
             {
-                int ids = Int32.Parse(id);
-                var lstPr = model.SanPhamThucDonHangNgay.Where(s => s.hienthi == true && s.daxoa == false && s.id_danhmucthucdonhangngaycap1 == ids).OrderBy(o => o.tensanpham).ToList();
-                return PartialView("_ListProduct", lstPr.ToPagedList((int)pageNum, (int)pageSize));
+                if (id.Equals("tatca"))
+                {
+                    var lstPr = model.SanPhamThucDonHangNgay.Where(s => s.hienthi == true 
+                    && s.daxoa == false 
+                    && s.tensanpham.ToLower().Contains(search.ToLower())).OrderBy(o => o.tensanpham).ToList();
+                    return PartialView("_ListProduct", lstPr.ToPagedList((int)pageNum, lstPr.Count + 1));
+                }
+                else
+                {
+                    int ids = Int32.Parse(id);
+                    var lstPr = model.SanPhamThucDonHangNgay.Where(s => s.hienthi == true
+                    && s.daxoa == false 
+                    && s.id_danhmucthucdonhangngaycap1 == ids 
+                    && s.tensanpham.ToLower().Contains(search.ToLower())).OrderBy(o => o.tensanpham).ToList();
+                    return PartialView("_ListProduct", lstPr.ToPagedList((int)pageNum, lstPr.Count + 1));
+                }
             }
         }
 

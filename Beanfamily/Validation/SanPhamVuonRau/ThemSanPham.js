@@ -127,6 +127,7 @@
             formData.append('quytrinhtrong', quytrinhtrong);
             formData.append('mota', $('#mota').val().trim());
             formData.append('hienthi', $('#hienthi').prop('checked'));
+            formData.append('thamkhao', $('#thamkhao').prop('checked'));
 
             $.ajax({error: function (a, xhr, c) {if (a.status == 403 && a.responseText.indexOf("SystemLoginAgain") != -1) {window.location.href = $('body').find('[id="requestPath"]').val() + "admin/dangnhap/logout";}},
                 url: $('#requestPath').val() + "admin/sanphamvuonraubean/themsanpham",
