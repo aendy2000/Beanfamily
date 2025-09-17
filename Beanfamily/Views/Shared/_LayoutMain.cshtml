@@ -76,7 +76,7 @@
 
     <title>@ViewBag.Title</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
     <meta name="description" content="@Desc.ToString()">
     <meta name="keywords" charset="utf-8" content="@Keyword.ToString()">
 
@@ -432,6 +432,7 @@
                             }
                         </ul>
                     </div>
+
                 </div>
             </div>
 
@@ -462,9 +463,12 @@
                             </a>
                         </div>
 
-                        <div class="txt17 p-r-20 p-t-5 p-b-80" style="width: 100%">
-                            Copyright &copy; @DateTime.Now.Year  <a href="@(web.IndexOf("http") != -1 ? web : "https://" + web)">@(web.IndexOf("http") != -1 ? web.Split('/')[2] : web)</a>  |  Design by <a href="https://www.aendy.net" target="_blank">Aendy.Net</a>
+                        <div class="txt14 p-t-5 p-b-80" style="width: 100%">
+                            Chịu trách nhiệm nội dung: Nguyễn Ngọc Thạch
+                            <br />
+                            &copy; 2025.  Công Ty TNHH Bean Family  |  Design by <a class="txt14" href="https://www.aendy.net" target="_blank">Aendy.Net</a>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -498,7 +502,7 @@
 
     <!-- GIỎ HÀNG -->
 
-    <div class="modal fade" id="gioHangModal" style="height: 97%;" aria-hidden="true" aria-labelledby="gioHangModalLabel2" tabindex="-1">
+    <div class="modal fade" id="gioHangModal"  aria-hidden="true" aria-labelledby="gioHangModalLabel2" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
             <div style="border-radius:16px;" class="modal-content">
                 <div class="modal-header">
