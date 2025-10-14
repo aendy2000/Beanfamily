@@ -26,7 +26,6 @@ namespace Beanfamily.Models
         }
     
         public virtual DbSet<ApDungChucNangChoQuyenTaiKhoan> ApDungChucNangChoQuyenTaiKhoan { get; set; }
-        public virtual DbSet<BoCucNoiDungTinhWebsite> BoCucNoiDungTinhWebsite { get; set; }
         public virtual DbSet<CacBuocQuyTrinhTrongCay> CacBuocQuyTrinhTrongCay { get; set; }
         public virtual DbSet<ChiTietDonHangDanhMucPhucVuMenuBuffet> ChiTietDonHangDanhMucPhucVuMenuBuffet { get; set; }
         public virtual DbSet<ChiTietDonHangDanhMucPhucVuMenuTiecBan> ChiTietDonHangDanhMucPhucVuMenuTiecBan { get; set; }
@@ -70,5 +69,6 @@ namespace Beanfamily.Models
         public virtual DbSet<SuKienBean> SuKienBean { get; set; }
         public virtual DbSet<VideoBean> VideoBean { get; set; }
         public virtual DbSet<TopSanPhamNoiBat> TopSanPhamNoiBat { get; set; }
+        public virtual DbSet<BoCucNoiDungTinhWebsite> BoCucNoiDungTinhWebsite { get; set; }
     }
 }

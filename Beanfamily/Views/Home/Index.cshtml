@@ -1,9 +1,6 @@
 ﻿@using Beanfamily.Models;
 @{
     BeanfamilyEntities models = new BeanfamilyEntities();
-    var sanphammoinhahang = Session["sanphammoi-nhahang"] as List<SanPhamThucDonHangNgay>;
-    var sanphammoivuonrau = Session["sanphammoi-vuonrau"] as List<SanPhamRauNhaTrong>;
-    var sanphammoimuasam = Session["sanphammoi-muasam"] as List<SanPhamMuaSam>;
 
     var sanphamnoibat = Session["sanphamnoibat-data"] as TopSanPhamNoiBat;
 
@@ -11,7 +8,8 @@
     string mail = "";
     string giomocua = "";
     string ngaymocua = "";
-
+    string diachi = "";
+    string toado = "";
 
     var tt = models.ThongTinCauHinh.ToList();
     if (tt.Count > 0)
@@ -21,12 +19,16 @@
         mail = tts.email;
         giomocua = tts.giomocua;
         ngaymocua = tts.ngaymocua;
+        diachi = tts.diachi; 
+        toado = tts.toadogooglemapiframe;
     }
 
 
     string banner_trangchu = "";
-    string mota_trangchu = "";
-    string hinhanh_mota_trangchu = "";
+
+    string menu_trangchu = "";
+    string video_trangchu = "";
+
     string mota_thanhphanchinh_nhahang = "";
     string mota_thanhphanchinh_vuonrau = "";
     string mota_thanhphanchinh_muasam = "";
@@ -41,8 +43,10 @@
     {
         var dndt = ndt.First();
         banner_trangchu = dndt.banner_trangchu;
-        mota_trangchu = dndt.mota_trangchu;
-        hinhanh_mota_trangchu = dndt.hinhanh_mota_trangchu;
+
+        menu_trangchu = dndt.hinhanh_menu_trangchu;
+        video_trangchu = dndt.video_trangchu;
+
         mota_thanhphanchinh_nhahang = dndt.mota_thanhphanchinh_nhahang;
         mota_thanhphanchinh_vuonrau = dndt.mota_thanhphanchinh_vuonrau;
         mota_thanhphanchinh_muasam = dndt.mota_thanhphanchinh_muasam;
@@ -65,6 +69,7 @@
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
 }
 <meta title="@Session["meta-title"]" />
+
 <!-- Slide1 -->
 <section class="section-slide" style=" height: 100%;">
     <div class="wrap-slick1">
@@ -121,43 +126,459 @@
     </div>
 </section>
 
-<!-- Welcome -->
+<!-- Sản phẩm nỗi bật - Menu -->
 <section class="section-welcome bg1-pattern">
     <div class="section-child-bg1">
         <div class="container  p-t-80 p-b-105">
-            <div class="row">
-                <div class="col-md-6 p-b-30">
-                    <div class="wrap-text-welcome t-center">
-                        <label class="tit2 t-center" style="font-size: 38px; margin-top: 20px">
-                            Bean Family
-                        </label>
+            <div class="row  p-b-30">
+                <div class="col-md-7 col-sm-12">
+                    <div class="h-100" style=" display: flex; flex-direction: column; justify-content: center;">
 
-                        <h3 class="tit3 t-center m-b-35 m-t-5">
-                            Welcome
-                        </h3>
+                        <style>
+                            .title-menu-product-hot {
+                                font-size: 40px;
+                                text-align: left;
+                            }
 
-                        <p class="t-center m-b-22 size3 m-l-r-auto">
-                            @mota_trangchu
-                        </p>
+                            @@media (max-width: 768px) {
+                                .title-menu-product-hot {
+                                    font-size: 26px;
+                                    text-align: center;
+                                }
+                            }
+                        </style>
+                        <h4 class="tit3 title-menu-product-hot m-b-35 m-t-5">Sản Phẩm Nổi Bật</h4>
+                        <div class="slider-for gallery-product">
+                            @if (!string.IsNullOrEmpty(sanphamnoibat.SanPhamThucDonHangNgay.hinhanh))
+                            {
+                                <div class="slickSlider">
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <div class="bor-rad-16 mb-3 d-flex justify-content-center">
+                                                <a style="" class="photo-product-style bor-rad-16" data-type="image" href="@Url.Action("productdetail", "thucdonhangngay", new {id = sanphamnoibat.SanPhamThucDonHangNgay.id })">
+                                                    <img style="border: 0; max-width: 100%; max-height: 100vh; margin: auto;" class="bor-rad-16 fit" src="@Url.Content(sanphamnoibat.SanPhamThucDonHangNgay.hinhanh.Split('#')[0])" />
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <hr class="mt-0 mb-3 bg-white" style="height:1px; opacity: .75" />
+                                            <h4 class="title text-white font-weight-bold mb-4">
+                                                @sanphamnoibat.SanPhamThucDonHangNgay.tensanpham
+                                            </h4>
+                                            <p class="text-white" style="word-wrap: break-word; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden;  -webkit-line-clamp: 8; ">
+                                                @sanphamnoibat.SanPhamThucDonHangNgay.mota
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
 
-                        <a href="@Url.Action("about", "home")" class="txt4">
-                            Đôi nét về Beanfamily
-                            <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
-                        </a>
+                            @if (!string.IsNullOrEmpty(sanphamnoibat.SanPhamThucDonHangNgay1.hinhanh))
+                            {
+                                <div class="slickSlider">
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <div class=" bor-rad-16 mb-3 d-flex justify-content-center">
+                                                <a style="" class="photo-product-style bor-rad-16" data-type="image" href="@Url.Action("productdetail", "thucdonhangngay", new {id = sanphamnoibat.SanPhamThucDonHangNgay1.id })">
+                                                    <img style="border: 0; max-width: 100%; max-height: 100vh; margin: auto;" class="bor-rad-16 fit" src="@Url.Content(sanphamnoibat.SanPhamThucDonHangNgay1.hinhanh.Split('#')[0])" />
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+
+                                            <hr class="mt-0 mb-3 bg-white" style="height:1px; opacity: .75" />
+                                            <h4 class="title text-white font-weight-bold mb-4">
+                                                @sanphamnoibat.SanPhamThucDonHangNgay1.tensanpham
+                                            </h4>
+
+                                            <p class="text-white" style="word-wrap: break-word; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden;  -webkit-line-clamp: 8; ">
+                                                @sanphamnoibat.SanPhamThucDonHangNgay1.mota
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                            @if (!string.IsNullOrEmpty(sanphamnoibat.SanPhamRauNhaTrong.hinhanh))
+                            {
+                                <div class="slickSlider">
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <div class=" bor-rad-16 mb-3 d-flex justify-content-center">
+                                                <a style="" class="photo-product-style bor-rad-16" data-type="image" href="@Url.Action("productdetail", "vuonrau", new {id = sanphamnoibat.SanPhamRauNhaTrong.id })">
+                                                    <img style="border: 0; max-width: 100%; max-height: 100vh; margin: auto;" class="bor-rad-16 fit" src="@Url.Content(sanphamnoibat.SanPhamRauNhaTrong.hinhanh.Split('#')[0])" />
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+
+                                            <hr class="mt-0 mb-3 bg-white" style="height:1px; opacity: .75" />
+                                            <h4 class="title text-white font-weight-bold mb-4">
+                                                @sanphamnoibat.SanPhamRauNhaTrong.tensanpham
+                                            </h4>
+
+                                            <p class="text-white" style="word-wrap: break-word; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden;  -webkit-line-clamp: 8; ">
+                                                @sanphamnoibat.SanPhamRauNhaTrong.mota
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                            @if (!string.IsNullOrEmpty(sanphamnoibat.SanPhamRauNhaTrong1.hinhanh))
+                            {
+                                <div class="slickSlider">
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <div class=" bor-rad-16 mb-3 d-flex justify-content-center">
+                                                <a style="" class="photo-product-style bor-rad-16" data-type="image" href="@Url.Action("productdetail", "vuonrau", new {id = sanphamnoibat.SanPhamRauNhaTrong1.id })">
+                                                    <img style="border: 0; max-width: 100%; max-height: 100vh; margin: auto;" class="bor-rad-16 fit" src="@Url.Content(sanphamnoibat.SanPhamRauNhaTrong1.hinhanh.Split('#')[0])" />
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+
+                                            <hr class="mt-0 mb-3 bg-white" style="height:1px; opacity: .75" />
+                                            <h4 class="title text-white font-weight-bold mb-4">
+                                                @sanphamnoibat.SanPhamRauNhaTrong1.tensanpham
+                                            </h4>
+
+                                            <p class="text-white" style="word-wrap: break-word; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden;  -webkit-line-clamp: 8; ">
+                                                @sanphamnoibat.SanPhamRauNhaTrong1.mota
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                            @if (!string.IsNullOrEmpty(sanphamnoibat.SanPhamMuaSam.hinhanh))
+                            {
+                                <div class="slickSlider">
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <div class=" bor-rad-16 mb-3 d-flex justify-content-center">
+                                                <a style="" class="photo-product-style bor-rad-16" data-type="image" href="@Url.Action("productdetail", "muasam", new {id = sanphamnoibat.SanPhamMuaSam.id })">
+                                                    <img style="border: 0; max-width: 100%; max-height: 100vh; margin: auto;" class="bor-rad-16 fit" src="@Url.Content(sanphamnoibat.SanPhamMuaSam.hinhanh.Split('#')[0])" />
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+
+                                            <hr class="mt-0 mb-3 bg-white" style="height:1px; opacity: .75" />
+                                            <h4 class="title text-white font-weight-bold mb-4">
+                                                @sanphamnoibat.SanPhamMuaSam.tensanpham
+                                            </h4>
+
+                                            <p class="text-white" style="word-wrap: break-word; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden;  -webkit-line-clamp: 8; ">
+                                                @sanphamnoibat.SanPhamMuaSam.mota
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                            @if (!string.IsNullOrEmpty(sanphamnoibat.SanPhamMuaSam1.hinhanh))
+                            {
+                                <div class="slickSlider">
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <div class=" bor-rad-16 mb-3 d-flex justify-content-center">
+                                                <a style="" class="photo-product-style bor-rad-16" data-type="image" href="@Url.Action("productdetail", "muasam", new {id = sanphamnoibat.SanPhamMuaSam1.id })">
+                                                    <img style="border: 0; max-width: 100%; max-height: 100vh; margin: auto;" class="bor-rad-16 fit" src="@Url.Content(sanphamnoibat.SanPhamMuaSam1.hinhanh.Split('#')[0])" />
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+
+                                            <hr class="mt-0 mb-3 bg-white" style="height:1px; opacity: .75" />
+                                            <h4 class="title text-white font-weight-bold mb-4">
+                                                @sanphamnoibat.SanPhamMuaSam1.tensanpham
+                                            </h4>
+
+                                            <p class="text-white" style="word-wrap: break-word; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden;  -webkit-line-clamp: 8; ">
+                                                @sanphamnoibat.SanPhamMuaSam1.mota
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <div class="ms-1 mt-4 me-1 mb-3 slider-nav bg-bg2 p-l-20 p-r-20 bor-rad-16">
+
+                            @if (!string.IsNullOrEmpty(sanphamnoibat.SanPhamThucDonHangNgay.hinhanh))
+                            {
+                                <div class="slickSlider">
+                                    <a style="" data-fslightbox="mygalley" class="mx-1  item-thumb" data-type="image">
+                                        <img style="object-fit: cover" width="80" height="80" class="bor-rad-8" src="@Url.Content(sanphamnoibat.SanPhamThucDonHangNgay.hinhanh.Split('#')[0])" />
+                                    </a>
+                                </div>
+                            }
+                            @if (!string.IsNullOrEmpty(sanphamnoibat.SanPhamThucDonHangNgay1.hinhanh))
+                            {
+                                <div class="slickSlider">
+                                    <a style="" data-fslightbox="mygalley" class="mx-1  item-thumb" data-type="image">
+                                        <img style="object-fit: cover" width="80" height="80" class="bor-rad-8" src="@Url.Content(sanphamnoibat.SanPhamThucDonHangNgay1.hinhanh.Split('#')[0])" />
+                                    </a>
+                                </div>
+                            }
+
+                            @if (!string.IsNullOrEmpty(sanphamnoibat.SanPhamRauNhaTrong.hinhanh))
+                            {
+                                <div class="slickSlider">
+                                    <a style="" data-fslightbox="mygalley" class="mx-1  item-thumb" data-type="image">
+                                        <img style="object-fit: cover" width="80" height="80" class="bor-rad-8" src="@Url.Content(sanphamnoibat.SanPhamRauNhaTrong.hinhanh.Split('#')[0])" />
+                                    </a>
+                                </div>
+                            }
+                            @if (!string.IsNullOrEmpty(sanphamnoibat.SanPhamRauNhaTrong1.hinhanh))
+                            {
+                                <div class="slickSlider">
+                                    <a style="" data-fslightbox="mygalley" class="mx-1  item-thumb" data-type="image">
+                                        <img style="object-fit: cover" width="80" height="80" class="bor-rad-8" src="@Url.Content(sanphamnoibat.SanPhamRauNhaTrong1.hinhanh.Split('#')[0])" />
+                                    </a>
+                                </div>
+                            }
+
+                            @if (!string.IsNullOrEmpty(sanphamnoibat.SanPhamMuaSam.hinhanh))
+                            {
+                                <div class="slickSlider">
+                                    <a style="" data-fslightbox="mygalley" class="mx-1  item-thumb" data-type="image">
+                                        <img style="object-fit: cover" width="80" height="80" class="bor-rad-8" src="@Url.Content(sanphamnoibat.SanPhamMuaSam.hinhanh.Split('#')[0])" />
+                                    </a>
+                                </div>
+                            }
+                            @if (!string.IsNullOrEmpty(sanphamnoibat.SanPhamMuaSam1.hinhanh))
+                            {
+                                <div class="slickSlider">
+                                    <a style="" data-fslightbox="mygalley" class="mx-1  item-thumb" data-type="image">
+                                        <img style="object-fit: cover" width="80" height="80" class="bor-rad-8" src="@Url.Content(sanphamnoibat.SanPhamMuaSam1.hinhanh.Split('#')[0])" />
+                                    </a>
+                                </div>
+                            }
+
+                        </div>
+                        <!-- thumbs-wrap.// -->
+                        <!-- gallery-wrap .end// -->
+                        <script>
+                            $(document).ready(function () {
+                                $('.slider-for').slick({
+                                    slidesToShow: 1,
+                                    slidesToScroll: 1,
+                                    arrows: false,
+                                    fade: true,
+                                    asNavFor: '.slider-nav'
+                                });
+                                $('.slider-nav').slick({
+                                    slidesToShow: 5,
+                                    slidesToScroll: 1,
+                                    asNavFor: '.slider-for',
+                                    dots: false,
+                                    arrows: false,
+                                    centerMode: false,
+                                    autoplay: true,
+                                    autoplaySpeed: 2000,
+                                    speed: 300,
+                                    focusOnSelect: true,
+                                    variableWidth: false,
+                                    responsive: [
+                                        {
+                                            breakpoint: 768, // Áp dụng cho màn hình từ 768px trở xuống
+                                            settings: {
+                                                slidesToShow: 3, // Hiển thị 3 slide
+                                            }
+                                        }
+                                        // Bạn có thể thêm các breakpoint khác ở đây
+                                    ]
+                                });
+
+                            });
+                        </script>
+
                     </div>
                 </div>
-
-                <div class="col-md-6" style="display: flex; flex-direction: row; align-items: center">
-                    <div class="wrap-pic-welcome size2 bo-rad-16 hov-img-zoom m-l-r-auto">
-                        <img src="@Url.Content(hinhanh_mota_trangchu)" alt="IMG-OUR" />
+                @if (!string.IsNullOrEmpty(menu_trangchu))
+                {
+                    <div class="col-md-5 col-sm-12">
+                        <div class="m-1 menu-slider-nav gallery-product">
+                            @foreach (var item in menu_trangchu.Split('#').ToList())
+                            {
+                                <div class="slickSlider-menu m-0">
+                                    <div class=" rounded-4 mb-3 d-flex justify-content-center">
+                                        <a style="aspect-ratio: 5 / 7 !important"  class="photo-product-style">
+                                            <img style="border:0; max-width: 100%; max-height: 100vh; margin: auto;" class="rounded-4 fit" src="@Url.Content(item)" />
+                                        </a>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <script>
+                            $(document).ready(function () {
+                                $('.menu-slider-nav').slick({
+                                    dots: false,
+                                    slidesToShow: 1,
+                                    slidesToScroll: 1,
+                                    arrows: true,
+                                    autoplay: false,
+                                    prevArrow: '<button style="opacity: .25; left: 15px" class="arrow-slick1 prev-slick1"><i class="fa fa-angle-left" aria-hidden="true"></i></button>',
+                                    nextArrow: '<button style="opacity: .25; right: 15px" class="arrow-slick1 next-slick1"><i class="fa fa-angle-right" aria-hidden="true"></i></button>',
+                                });
+                            });
+                        </script>
                     </div>
-                </div>
+                }
             </div>
         </div>
     </div>
 </section>
 
-<!-- Intro -->
+<!-- Video bean -->
+<section class="section-ourmenu bg1-pattern">
+    <div class="header-intro parallax100 t-center p-t-135 p-b-158" style="background-image: url(/Content/assets/images/ImageBean/bannerlabel2.jpg); ">
+        <h3 class="tit4 t-center p-l-15 p-r-15 p-t-3">
+            Video Clip Bean Family
+        </h3>
+    </div>
+
+    @if (!string.IsNullOrEmpty(video_trangchu))
+    {
+
+        <div class="section-child-bg1">
+            <div class="container p-t-115 p-b-120">
+                <div class="w-100 bg-bg2 p-0" style=" border-radius: 16px;">
+                    <div class="slider-video-for" style="margin: 0 -5px 0 -5px ">
+                        @foreach (var item in video_trangchu.Split('#').ToList())
+                        {
+                            // --- PHẦN SỬA ĐỔI QUAN TRỌNG ---
+                            // 1. Lấy phần URL chính, loại bỏ các tham số thừa như &list=...
+                            var cleanUrl = item.Split('&')[0];
+
+                            // 2. Tạo URL embed hoàn chỉnh với cú pháp ĐÚNG
+                            var embedUrl = cleanUrl.Replace("watch?v=", "embed/") + "?enablejsapi=1&rel=0";
+                            // --- KẾT THÚC SỬA ĐỔI ---
+
+                            <div class="slickSlider">
+                                <div style="border-radius: 16px; border: 2px solid #ffc678; position: relative; padding-bottom: 56.25%; height: 0;" class="rounded-4 mb-3">
+                                    <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 16px;"
+                                            src="@embedUrl"
+                                            frameborder="0"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                            allowfullscreen>
+                                    </iframe>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="ms-1 me-1 mb-3 slider-video-nav p-l-20 p-r-20">
+                        @foreach (var item in video_trangchu.Split('#').ToList())
+                        {
+                            // --- PHẦN SỬA ĐỔI ---
+                            // 1. Lấy video ID từ URL đầy đủ
+                            var videoId = item.Split(new[] { "v=" }, StringSplitOptions.None).LastOrDefault();
+                            if (videoId != null && videoId.Contains("&"))
+                            {
+                                videoId = videoId.Split('&')[0];
+                            }
+
+                            // 2. Tạo URL thumbnail từ video ID
+                            var thumbnailUrl = $"https://img.youtube.com/vi/{videoId}/mqdefault.jpg";
+                            // --- KẾT THÚC SỬA ĐỔI ---
+
+                            <div class="slickSlider">
+                                <a style="cursor: pointer;" class="mx-1 item-thumb">
+                                    @* Sử dụng thumbnailUrl vừa tạo *@
+                                    <img style="object-fit: cover; border-radius: 8px;" width="100" height="80" class="" src="@thumbnailUrl" />
+                                </a>
+                            </div>
+                        }
+                    </div>
+                    <script>
+                        $(document).ready(function () {
+                            var sliderFor = $('.slider-video-for');
+                            var sliderNav = $('.slider-video-nav');
+                            var players = {}; // Dùng object để quản lý player tốt hơn
+
+                            // 1. Tải API YouTube Iframe Player
+                            var tag = document.createElement('script');
+                            tag.src = "https://www.youtube.com/iframe_api";
+                            var firstScriptTag = document.getElementsByTagName('script')[0];
+                            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+                            // 2. Hàm này được gọi tự động khi API YouTube đã sẵn sàng
+                            window.onYouTubeIframeAPIReady = function () {
+                                // Gán ID duy nhất cho mỗi iframe để YT Player có thể nhận diện
+                                sliderFor.find('iframe').each(function (index, iframe) {
+                                    var iframeId = 'player-' + index;
+                                    iframe.id = iframeId;
+                                    players[iframeId] = new YT.Player(iframeId, {
+                                        events: { 'onReady': onPlayerReady }
+                                    });
+                                });
+
+                                // 3. Khởi tạo Slick SAU KHI API đã sẵn sàng
+                                sliderFor.slick({
+                                    slidesToShow: 1,
+                                    slidesToScroll: 1,
+                                    arrows: false,
+                                    fade: true,
+                                    asNavFor: '.slider-video-nav'
+                                });
+
+                                sliderNav.slick({
+                                    slidesToShow: 5,
+                                    slidesToScroll: 1,
+                                    asNavFor: '.slider-video-for',
+                                    dots: false,
+                                    arrows: false,
+                                    centerMode: false,
+                                    focusOnSelect: true,
+                                    variableWidth: true,
+                                    responsive: [
+                                        {
+                                            breakpoint: 768, // Áp dụng cho màn hình từ 768px trở xuống
+                                            settings: {
+                                                slidesToShow: 3, // Hiển thị 3 slide
+                                                variableWidth: false,
+                                            }
+                                        }
+                                        // Bạn có thể thêm các breakpoint khác ở đây
+                                    ]
+                                });
+                            };
+
+                            function onPlayerReady(event) {
+                                // Video đã sẵn sàng
+                            }
+
+                            // 4. Tạm dừng video cũ trước khi chuyển slide
+                            sliderFor.on('beforeChange', function (event, slick, currentSlide, nextSlide) {
+                                var currentIframe = $(slick.$slides[currentSlide]).find('iframe');
+                                if (currentIframe.length) {
+                                    var currentPlayer = players[currentIframe.attr('id')];
+                                    if (currentPlayer && typeof currentPlayer.pauseVideo === 'function') {
+                                        currentPlayer.pauseVideo();
+                                    }
+                                }
+                            });
+
+                            // 5. [THÊM MỚI] Tự động phát video mới sau khi chuyển slide
+                            sliderFor.on('afterChange', function (event, slick, currentSlide) {
+                                var currentIframe = $(slick.$slides[currentSlide]).find('iframe');
+                                if (currentIframe.length) {
+                                    var currentPlayer = players[currentIframe.attr('id')];
+                                    if (currentPlayer && typeof currentPlayer.playVideo === 'function') {
+                                        currentPlayer.playVideo();
+                                    }
+                                }
+                            });
+                        });
+                    </script>
+                </div>
+            </div>
+        </div>
+    }
+</section>
+
+
 <section class="section-intro">
     <div class="header-intro parallax100 t-center p-t-135 p-b-158" style="background-image: url(/Content/assets/images/ImageBean/bannerlabel1.jpg);">
         <h3 class="tit4 t-center p-l-15 p-r-15 p-t-3">
@@ -170,6 +591,7 @@
             <div class="container  p-t-77 p-b-133">
                 <div class="row">
                     <div class="col-md-4 p-t-30 t-center">
+
                         <!-- Block1 -->
                         <div class="blo1">
                             <div class="wrap-pic-blo1 bo-rad-16 hov-img-zoom">
@@ -253,634 +675,6 @@
         </div>
     </div>
 </section>
-
-<!-- Sản phẩm mới -->
-<section class="section-ourmenu bg1-pattern">
-    <div class="header-intro parallax100 t-center p-t-135 p-b-158" style="background-image: url(/Content/assets/images/ImageBean/bannerlabel2.jpg); ">
-        <span class="tit2 p-l-15 p-r-15">
-            Khám phá
-        </span>
-
-        <h3 class="tit4 t-center p-l-15 p-r-15 p-t-3">
-            Sản Phẩm Mới
-        </h3>
-    </div>
-
-    <div class="section-child-bg1">
-
-        <div class="container p-t-115 p-b-120">
-            <div @*style="border: 1px solid; border-color: darkgray; border-radius: 15px; margin-bottom: 50px"*@ class="row">
-                @{ i = 0;}
-                @foreach (var item in sanphammoinhahang)
-                {
-                    i++;
-                    if (i == 1)
-                    {
-                        <div class="col-md-6 p-t-45 p-b-30">
-                            <div class="wrap-text-welcome t-center">
-                                <h6 class="tit6 t-center m-t-0" style="font-size: 30px; padding-bottom: 0; letter-spacing: 3px; word-spacing: 3px;">
-                                    @item.tensanpham
-                                </h6>
-                                @if (!string.IsNullOrEmpty(item.mota))
-                                {
-                                    <p class="t-center m-b-22 size3 m-l-r-auto">
-                                        @item.mota
-                                    </p>
-                                }
-                                <a style="font-size: 16px;" href="@Url.Action("productdetail", "thucdonhangngay", new { id = item.id })" class="txt4">
-                                    Xem @item.tensanpham - @item.gia.ToString("0,0")đ
-                                    <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
-                                </a>
-                                <div style="margin-top: 20px; width: 100%; height: 460px;
-                                background-image: url(@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh)));
-                                background-size: cover">
-                                </div>
-                            </div>
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="col-md-6 p-t-45 p-b-30">
-                            <div class="wrap-text-welcome t-center">
-                                <div style="margin-top: 0px; width: 100%; height: 460px;
-                                background-image: url(@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh)));
-                                background-size: cover">
-                                </div>
-                                <h6 class="tit6 t-center m-t-20" style="font-size: 30px; padding-bottom: 0; letter-spacing: 3px; word-spacing: 3px;">
-                                    @item.tensanpham
-                                </h6>
-                                @if (!string.IsNullOrEmpty(item.mota))
-                                {
-                                    <p class="t-center m-b-22 size3 m-l-r-auto">
-                                        @item.mota
-                                    </p>
-                                }
-                                <a style="font-size: 16px;" href="@Url.Action("productdetail", "thucdonhangngay", new { id = item.id })" class="txt4">
-                                    Xem @item.tensanpham - @item.gia.ToString("0,0")đ
-                                    <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
-                                </a>
-                            </div>
-                        </div>
-                    }
-                }
-
-            </div>
-
-            <hr class="my-3" style="background-color: darkgray">
-
-            <br />
-            <br />
-            <div class="row">
-                    @{ i = 0;}
-                    @foreach (var item in sanphammoivuonrau)
-                    {
-                        i++;
-                        if (i == 1)
-                        {
-                            <div class="col-md-6 p-t-45 p-b-30">
-                                <div class="wrap-text-welcome t-center">
-                                    <h6 class="tit6 t-center m-t-0" style="font-size: 30px; padding-bottom: 0; letter-spacing: 3px; word-spacing: 3px;">
-                                        @item.tensanpham
-                                    </h6>
-                                    @if (!string.IsNullOrEmpty(item.mota))
-                                    {
-                                        <p class="t-center m-b-22 size3 m-l-r-auto">
-                                            @item.mota
-                                        </p>
-                                    }
-                                    <a style="font-size: 16px;" href="@Url.Action("productdetail", "vuonrau", new { id = item.id })" class="txt4">
-                                        Xem @item.tensanpham - @item.gia.ToString("0,0")đ
-                                        <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
-                                    </a>
-                                    <div style="margin-top: 20px; width: 100%; height: 460px;
-                                    background-image: url(@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh)));
-                                    background-size: cover">
-                                    </div>
-                                </div>
-                            </div>
-                        }
-                        else
-                        {
-                            <div class="col-md-6 p-t-45 p-b-30">
-                                <div class="wrap-text-welcome t-center">
-                                    <div style="margin-top: 0px; width: 100%; height: 460px;
-                                    background-image: url(@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh)));
-                                    background-size: cover">
-                                    </div>
-                                    <h6 class="tit6 t-center m-t-20" style="font-size: 30px; padding-bottom: 0; letter-spacing: 3px; word-spacing: 3px;">
-                                        @item.tensanpham
-                                    </h6>
-                                    @if (!string.IsNullOrEmpty(item.mota))
-                                    {
-                                        <p class="t-center m-b-22 size3 m-l-r-auto">
-                                            @item.mota
-                                        </p>
-                                    }
-                                    <a style="font-size: 16px;" href="@Url.Action("productdetail", "vuonrau", new { id = item.id })" class="txt4">
-                                        Xem @item.tensanpham - @item.gia.ToString("0,0")đ
-                                        <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        }
-                    }
-            </div>
-            <hr class="my-3" style="background-color: darkgray">
-
-            <br />
-            <br />
-            <div class="row">
-                @{ i = 0;}
-                @foreach (var item in sanphammoimuasam)
-                {
-                    i++;
-                    if (i == 1)
-                    {
-                        <div class="col-md-6 p-t-45 p-b-30">
-                            <div class="wrap-text-welcome t-center">
-                                <h6 class="tit6 t-center m-t-0" style="font-size: 30px; padding-bottom: 0; letter-spacing: 3px; word-spacing: 3px;">
-                                    @item.tensanpham
-                                </h6>
-                                @if (!string.IsNullOrEmpty(item.mota))
-                                {
-                                    <p class="t-center m-b-22 size3 m-l-r-auto">
-                                        @item.mota
-                                    </p>
-                                }
-                                <a style="font-size: 16px;" href="@Url.Action("productdetail", "muasam", new { id = item.id })" class="txt4">
-                                    Xem @item.tensanpham - @item.TonKhoSanPhamMuaSam.First().gia.ToString("0,0")đ
-                                    <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
-                                </a>
-                                <div style="margin-top: 20px; width: 100%; height: 460px;
-                                background-image: url(@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh)));
-                                background-size: cover">
-                                </div>
-                            </div>
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="col-md-6 p-t-45 p-b-30">
-                            <div class="wrap-text-welcome t-center">
-                                <div style="margin-top: 0px; width: 100%; height: 460px;
-                                background-image: url(@(string.IsNullOrEmpty(item.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : item.hinhanh.IndexOf("#") != -1 ? Url.Content(item.hinhanh.Split('#')[0]) : Url.Content(item.hinhanh)));
-                                background-size: cover">
-                                </div>
-                                <h6 class="tit6 t-center m-t-20" style="font-size: 30px; padding-bottom: 0; letter-spacing: 3px; word-spacing: 3px;">
-                                    @item.tensanpham
-                                </h6>
-                                @if (!string.IsNullOrEmpty(item.mota))
-                                {
-                                    <p class="t-center m-b-22 size3 m-l-r-auto">
-                                        @item.mota
-                                    </p>
-                                }
-                                <a style="font-size: 16px;" href="@Url.Action("productdetail", "muasam", new { id = item.id })" class="txt4">
-                                    Xem @item.tensanpham - @item.TonKhoSanPhamMuaSam.First().gia.ToString("0,0")đ
-                                    <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
-                                </a>
-                            </div>
-                        </div>
-                    }
-                }
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Sản phẩm nổi bật -->
-<section class="section-ourmenu bg2-pattern">
-    <div class="header-intro parallax100 t-center p-t-135 p-b-158" style="background-image: url(/Content/assets/images/ImageBean/bannerlabel3.jpg); ">
-        <span class="tit2 p-l-15 p-r-15">
-            Khám phá
-        </span>
-
-        <h3 class="tit4 t-center p-l-15 p-r-15 p-t-3">
-            Sản Phẩm nổi bật
-        </h3>
-    </div>
-
-    <div class="section-child-bg2">
-        <div class="container  p-t-115 p-b-120">
-            <div @*style="border: 1px solid; border-color: darkgray; border-radius: 15px; margin-bottom: 50px"*@ class="row">
-
-                        <div class="col-md-6 p-t-45 p-b-30">
-                            <div class="wrap-text-welcome t-center">
-                                <h6 class="tit6 t-center m-t-0" style="font-size: 30px; padding-bottom: 0; letter-spacing: 3px; word-spacing: 3px;">
-                                    @sanphamnoibat.SanPhamThucDonHangNgay.tensanpham
-                                </h6>
-                                @if (!string.IsNullOrEmpty(sanphamnoibat.SanPhamThucDonHangNgay.mota))
-                                {
-                                    <p class="t-center m-b-22 size3 m-l-r-auto">
-                                        @sanphamnoibat.SanPhamThucDonHangNgay.mota
-                                    </p>
-                                }
-                                <a style="font-size: 16px;" href="@Url.Action("productdetail", "thucdonhangngay", new { id = sanphamnoibat.SanPhamThucDonHangNgay.id })" class="txt4">
-                                    Xem @sanphamnoibat.SanPhamThucDonHangNgay.tensanpham - @sanphamnoibat.SanPhamThucDonHangNgay.gia.ToString("0,0")đ
-                                    <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
-                                </a>
-                                <div style="margin-top: 20px; width: 100%; height: 460px;
-                                background-image: url(@(string.IsNullOrEmpty(sanphamnoibat.SanPhamThucDonHangNgay.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : sanphamnoibat.SanPhamThucDonHangNgay.hinhanh.IndexOf("#") != -1 ? Url.Content(sanphamnoibat.SanPhamThucDonHangNgay.hinhanh.Split('#')[0]) : Url.Content(sanphamnoibat.SanPhamThucDonHangNgay.hinhanh)));
-                                background-size: cover">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6 p-t-45 p-b-30">
-                            <div class="wrap-text-welcome t-center">
-                                <div style="margin-top: 0px; width: 100%; height: 460px;
-                                background-image: url(@(string.IsNullOrEmpty(sanphamnoibat.SanPhamThucDonHangNgay1.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : sanphamnoibat.SanPhamThucDonHangNgay1.hinhanh.IndexOf("#") != -1 ? Url.Content(sanphamnoibat.SanPhamThucDonHangNgay1.hinhanh.Split('#')[0]) : Url.Content(sanphamnoibat.SanPhamThucDonHangNgay1.hinhanh)));
-                                background-size: cover">
-                                </div>
-                                <h6 class="tit6 t-center m-t-20" style="font-size: 30px; padding-bottom: 0; letter-spacing: 3px; word-spacing: 3px;">
-                                    @sanphamnoibat.SanPhamThucDonHangNgay1.tensanpham
-                                </h6>
-                                @if (!string.IsNullOrEmpty(sanphamnoibat.SanPhamThucDonHangNgay1.mota))
-                                {
-                                    <p class="t-center m-b-22 size3 m-l-r-auto">
-                                        @sanphamnoibat.SanPhamThucDonHangNgay1.mota
-                                    </p>
-                                }
-                                <a style="font-size: 16px;" href="@Url.Action("productdetail", "thucdonhangngay", new { id = sanphamnoibat.SanPhamThucDonHangNgay1.id })" class="txt4">
-                                    Xem @sanphamnoibat.SanPhamThucDonHangNgay1.tensanpham - @sanphamnoibat.SanPhamThucDonHangNgay1.gia.ToString("0,0")đ
-                                    <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
-                                </a>
-                            </div>
-                        </div>
-                    
-                
-            </div>
-            <hr class="my-3" style="background-color: darkgray">
-
-            <br />
-            <br />
-            <div class="row">
-
-                        <div class="col-md-6 p-t-45 p-b-30">
-                            <div class="wrap-text-welcome t-center">
-                                <h6 class="tit6 t-center m-t-0" style="font-size: 30px; padding-bottom: 0; letter-spacing: 3px; word-spacing: 3px;">
-                                    @sanphamnoibat.SanPhamRauNhaTrong.tensanpham
-                                </h6>
-                                @if (!string.IsNullOrEmpty(sanphamnoibat.SanPhamRauNhaTrong.mota))
-                                {
-                                    <p class="t-center m-b-22 size3 m-l-r-auto">
-                                        @sanphamnoibat.SanPhamRauNhaTrong.mota
-                                    </p>
-                                }
-                                <a style="font-size: 16px;" href="@Url.Action("productdetail", "vuonrau", new { id = sanphamnoibat.SanPhamRauNhaTrong.id })" class="txt4">
-                                    Xem @sanphamnoibat.SanPhamRauNhaTrong.tensanpham - @sanphamnoibat.SanPhamRauNhaTrong.gia.ToString("0,0")đ
-                                    <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
-                                </a>
-                                <div style="margin-top: 20px; width: 100%; height: 460px;
-                                    background-image: url(@(string.IsNullOrEmpty(sanphamnoibat.SanPhamRauNhaTrong.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : sanphamnoibat.SanPhamRauNhaTrong.hinhanh.IndexOf("#") != -1 ? Url.Content(sanphamnoibat.SanPhamRauNhaTrong.hinhanh.Split('#')[0]) : Url.Content(sanphamnoibat.SanPhamRauNhaTrong.hinhanh)));
-                                    background-size: cover">
-                                </div>
-                            </div>
-                        </div>
-                   
-                        <div class="col-md-6 p-t-45 p-b-30">
-                            <div class="wrap-text-welcome t-center">
-                                <div style="margin-top: 0px; width: 100%; height: 460px;
-                                    background-image: url(@(string.IsNullOrEmpty(sanphamnoibat.SanPhamRauNhaTrong1.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : sanphamnoibat.SanPhamRauNhaTrong1.hinhanh.IndexOf("#") != -1 ? Url.Content(sanphamnoibat.SanPhamRauNhaTrong1.hinhanh.Split('#')[0]) : Url.Content(sanphamnoibat.SanPhamRauNhaTrong1.hinhanh)));
-                                    background-size: cover">
-                                </div>
-                                <h6 class="tit6 t-center m-t-20" style="font-size: 30px; padding-bottom: 0; letter-spacing: 3px; word-spacing: 3px;">
-                                    @sanphamnoibat.SanPhamRauNhaTrong1.tensanpham
-                                </h6>
-                                @if (!string.IsNullOrEmpty(sanphamnoibat.SanPhamRauNhaTrong1.mota))
-                                {
-                                    <p class="t-center m-b-22 size3 m-l-r-auto">
-                                        @sanphamnoibat.SanPhamRauNhaTrong1.mota
-                                    </p>
-                                }
-                                <a style="font-size: 16px;" href="@Url.Action("productdetail", "vuonrau", new { id = sanphamnoibat.SanPhamRauNhaTrong1.id })" class="txt4">
-                                    Xem @sanphamnoibat.SanPhamRauNhaTrong1.tensanpham - @sanphamnoibat.SanPhamRauNhaTrong1.gia.ToString("0,0")đ
-                                    <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
-                                </a>
-                            </div>
-                        </div>
-            </div>
-            <hr class="my-3" style="background-color: darkgray">
-            <br />
-            <br />
-            <div class="row">
-
-                        <div class="col-md-6 p-t-45 p-b-30">
-                            <div class="wrap-text-welcome t-center">
-                                <h6 class="tit6 t-center m-t-0" style="font-size: 30px; padding-bottom: 0; letter-spacing: 3px; word-spacing: 3px;">
-                                    @sanphamnoibat.SanPhamMuaSam.tensanpham
-                                </h6>
-                                @if (!string.IsNullOrEmpty(sanphamnoibat.SanPhamMuaSam.mota))
-                                {
-                                    <p class="t-center m-b-22 size3 m-l-r-auto">
-                                        @sanphamnoibat.SanPhamMuaSam.mota
-                                    </p>
-                                }
-                                <a style="font-size: 16px;" href="@Url.Action("productdetail", "muasam", new { id = sanphamnoibat.SanPhamMuaSam.id })" class="txt4">
-                                    Xem @sanphamnoibat.SanPhamMuaSam.tensanpham - @sanphamnoibat.SanPhamMuaSam.TonKhoSanPhamMuaSam.First().gia.ToString("0,0") đ
-                                    <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
-                                </a>
-                                <div style="margin-top: 20px; width: 100%; height: 460px;
-                                background-image: url(@(string.IsNullOrEmpty(sanphamnoibat.SanPhamMuaSam.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : sanphamnoibat.SanPhamMuaSam.hinhanh.IndexOf("#") != -1 ? Url.Content(sanphamnoibat.SanPhamMuaSam.hinhanh.Split('#')[0]) : Url.Content(sanphamnoibat.SanPhamMuaSam.hinhanh)));
-                                background-size: cover">
-                                </div>
-                            </div>
-                        </div>
-                   
-                        <div class="col-md-6 p-t-45 p-b-30">
-                            <div class="wrap-text-welcome t-center">
-
-                                <div style="margin-top: 0px; width: 100%; height: 460px;
-                                background-image: url(@(string.IsNullOrEmpty(sanphamnoibat.SanPhamMuaSam1.hinhanh) ? Url.Content("~/Content/assets/images/product/sanphamdefault.jpg") : sanphamnoibat.SanPhamMuaSam1.hinhanh.IndexOf("#") != -1 ? Url.Content(sanphamnoibat.SanPhamMuaSam1.hinhanh.Split('#')[0]) : Url.Content(sanphamnoibat.SanPhamMuaSam1.hinhanh)));
-                                background-size: cover">
-                                </div>
-                                <h6 class="tit6 t-center m-t-20" style="font-size: 30px; padding-bottom: 0; letter-spacing: 3px; word-spacing: 3px;">
-                                    @sanphamnoibat.SanPhamMuaSam1.tensanpham
-                                </h6>
-                                @if (!string.IsNullOrEmpty(sanphamnoibat.SanPhamMuaSam1.mota))
-                                {
-                                    <p class="t-center m-b-22 size3 m-l-r-auto">
-                                        @sanphamnoibat.SanPhamMuaSam1.mota
-                                    </p>
-                                }
-                                <a style="font-size: 16px;" href="@Url.Action("productdetail", "muasam", new { id = sanphamnoibat.SanPhamMuaSam1.id })" class="txt4">
-                                    Xem @sanphamnoibat.SanPhamMuaSam1.tensanpham - @sanphamnoibat.SanPhamMuaSam1.TonKhoSanPhamMuaSam.First().gia.ToString("0,0") đ
-                                    <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
-                                </a>
-                            </div>
-                        </div>
-                   
-            </div>
-        </div>
-
-    </div>
-</section>
-
-<!-- Event -->
-<!--<section class="section-event">
-    <div class="wrap-slick2">
-        <div class="slick2">
-            <div class="item-slick2 item1-slick2" style="background-image: url(/Content/assets/images/bg-event-01.jpg);">
-                <div class="wrap-content-slide2 p-t-115 p-b-208">
-                    <div class="container">-->
-<!-- - -->
-<!--<div class="title-event t-center m-b-52">
-    <span class="tit2 p-l-15 p-r-15">
-        Upcomming
-    </span>
-
-    <h3 class="tit6 t-center p-l-15 p-r-15 p-t-3">
-        Events
-    </h3>
-</div>-->
-<!-- Block2 -->
-<!--<div class="blo2 flex-w flex-str flex-col-c-m-lg animated visible-false" data-appear="zoomIn">-->
-<!-- Pic block2 -->
-<!--<a href="~/Content/assets/#" class="wrap-pic-blo2 bg1-blo2" style="background-image: url(/Content/assets/images/event-02.jpg);">
-    <div class="time-event size10 txt6 effect1">
-        <span class="txt-effect1 flex-c-m t-center">
-            08:00 PM Tuesday - 21 November 2018
-        </span>
-    </div>
-</a>-->
-<!-- Text block2 -->
-<!--<div class="wrap-text-blo2 flex-col-c-m p-l-40 p-r-40 p-t-45 p-b-30">
-                    <h4 class="tit7 t-center m-b-10">
-                        Wines during specific nights
-                    </h4>
-
-                    <p class="t-center">
-                        Donec quis lorem nulla. Nunc eu odio mi. Morbi nec lobortis est. Sed fringilla, nunc sed imperdiet lacinia
-                    </p>
-
-                    <div class="flex-sa-m flex-w w-full m-t-40">
-                        <div class="size11 flex-col-c-m">
-                            <span class="dis-block t-center txt7 m-b-2 days">
-                                25
-                            </span>
-
-                            <span class="dis-block t-center txt8">
-                                Days
-                            </span>
-                        </div>
-
-                        <div class="size11 flex-col-c-m">
-                            <span class="dis-block t-center txt7 m-b-2 hours">
-                                12
-                            </span>
-
-                            <span class="dis-block t-center txt8">
-                                Hours
-                            </span>
-                        </div>
-
-                        <div class="size11 flex-col-c-m">
-                            <span class="dis-block t-center txt7 m-b-2 minutes">
-                                59
-                            </span>
-
-                            <span class="dis-block t-center txt8">
-                                Minutes
-                            </span>
-                        </div>
-
-                        <div class="size11 flex-col-c-m">
-                            <span class="dis-block t-center txt7 m-b-2 seconds">
-                                56
-                            </span>
-
-                            <span class="dis-block t-center txt8">
-                                Seconds
-                            </span>
-                        </div>
-                    </div>
-
-                    <a href="~/Content/assets/#" class="txt4 m-t-40">
-                        View Details
-                        <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="item-slick2 item2-slick2" style="background-image: url(/Content/assets/images/bg-event-02.jpg);">
-    <div class="wrap-content-slide2 p-t-115 p-b-208">
-        <div class="container">-->
-<!-- - -->
-<!--<div class="title-event t-center m-b-52">
-    <span class="tit2 p-l-15 p-r-15">
-        Upcomming
-    </span>
-
-    <h3 class="tit6 t-center p-l-15 p-r-15 p-t-3">
-        Events
-    </h3>
-</div>-->
-<!-- Block2 -->
-<!--<div class="blo2 flex-w flex-str flex-col-c-m-lg animated visible-false" data-appear="fadeInDown">-->
-<!-- Pic block2 -->
-<!--<a href="~/Content/assets/#" class="wrap-pic-blo2 bg2-blo2" style="background-image: url(/Content/assets/images/event-06.jpg);">
-    <div class="time-event size10 txt6 effect1">
-        <span class="txt-effect1 flex-c-m">
-            08:00 PM Tuesday - 21 November 2018
-        </span>
-    </div>
-</a>-->
-<!-- Text block2 -->
-<!--<div class="wrap-text-blo2 flex-col-c-m p-l-40 p-r-40 p-t-45 p-b-30">
-                    <h4 class="tit7 t-center m-b-10">
-                        Wines during specific nights
-                    </h4>
-
-                    <p class="t-center">
-                        Donec quis lorem nulla. Nunc eu odio mi. Morbi nec lobortis est. Sed fringilla, nunc sed imperdiet lacinia
-                    </p>
-
-                    <div class="flex-sa-m flex-w w-full m-t-40">
-                        <div class="size11 flex-col-c-m">
-                            <span class="dis-block t-center txt7 m-b-2 days">
-                                25
-                            </span>
-
-                            <span class="dis-block t-center txt8">
-                                Days
-                            </span>
-                        </div>
-
-                        <div class="size11 flex-col-c-m">
-                            <span class="dis-block t-center txt7 m-b-2 hours">
-                                12
-                            </span>
-
-                            <span class="dis-block t-center txt8">
-                                Hours
-                            </span>
-                        </div>
-
-                        <div class="size11 flex-col-c-m">
-                            <span class="dis-block t-center txt7 m-b-2 minutes">
-                                59
-                            </span>
-
-                            <span class="dis-block t-center txt8">
-                                Minutes
-                            </span>
-                        </div>
-
-                        <div class="size11 flex-col-c-m">
-                            <span class="dis-block t-center txt7 m-b-2 seconds">
-                                56
-                            </span>
-
-                            <span class="dis-block t-center txt8">
-                                Seconds
-                            </span>
-                        </div>
-                    </div>
-
-                    <a href="~/Content/assets/#" class="txt4 m-t-40">
-                        View Details
-                        <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="item-slick2 item3-slick2" style="background-image: url(/Content/assets/images/bg-event-04.jpg);">
-    <div class="wrap-content-slide2 p-t-115 p-b-208">
-        <div class="container">-->
-<!-- - -->
-<!--<div class="title-event t-center m-b-52">
-    <span class="tit2 p-l-15 p-r-15">
-        Upcomming
-    </span>
-
-    <h3 class="tit6 t-center p-l-15 p-r-15 p-t-3">
-        Events
-    </h3>
-</div>-->
-<!-- Block2 -->
-<!--<div class="blo2 flex-w flex-str flex-col-c-m-lg animated visible-false" data-appear="rotateInUpLeft">-->
-<!-- Pic block2 -->
-<!--<a href="~/Content/assets/#" class="wrap-pic-blo2 bg3-blo2" style="background-image: url(/Content/assets/images/event-01.jpg);">
-    <div class="time-event size10 txt6 effect1">
-        <span class="txt-effect1 flex-c-m">
-            08:00 PM Tuesday - 21 November 2018
-        </span>
-    </div>
-</a>-->
-<!-- Text block2 -->
-<!--<div class="wrap-text-blo2 flex-col-c-m p-l-40 p-r-40 p-t-45 p-b-30">
-                                <h4 class="tit7 t-center m-b-10">
-                                    Wines during specific nights
-                                </h4>
-
-                                <p class="t-center">
-                                    Donec quis lorem nulla. Nunc eu odio mi. Morbi nec lobortis est. Sed fringilla, nunc sed imperdiet lacinia
-                                </p>
-
-                                <div class="flex-sa-m flex-w w-full m-t-40">
-                                    <div class="size11 flex-col-c-m">
-                                        <span class="dis-block t-center txt7 m-b-2 days">
-                                            25
-                                        </span>
-
-                                        <span class="dis-block t-center txt8">
-                                            Days
-                                        </span>
-                                    </div>
-
-                                    <div class="size11 flex-col-c-m">
-                                        <span class="dis-block t-center txt7 m-b-2 hours">
-                                            12
-                                        </span>
-
-                                        <span class="dis-block t-center txt8">
-                                            Hours
-                                        </span>
-                                    </div>
-
-                                    <div class="size11 flex-col-c-m">
-                                        <span class="dis-block t-center txt7 m-b-2 minutes">
-                                            59
-                                        </span>
-
-                                        <span class="dis-block t-center txt8">
-                                            Minutes
-                                        </span>
-                                    </div>
-
-                                    <div class="size11 flex-col-c-m">
-                                        <span class="dis-block t-center txt7 m-b-2 seconds">
-                                            56
-                                        </span>
-
-                                        <span class="dis-block t-center txt8">
-                                            Seconds
-                                        </span>
-                                    </div>
-                                </div>
-
-                                <a href="~/Content/assets/#" class="txt4 m-t-40">
-                                    View Details
-                                    <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="wrap-slick2-dots"></div>
-    </div>
-</section>-->
-
 
 <section id="lhdb" class="section-booking bg1-pattern">
     <div class="section-child-bg1">
@@ -1004,6 +798,32 @@
     </div>
 </section>
 <script src="~/Validation/LienHeDatBan/GuiLienHeDatBan.js?v=1.0"></script>
+
+
+<section class="section-intro">
+    <div class="content-intro bg2-pattern">
+        <div class="section-child-bg2">
+            <div class="container  p-t-77 p-b-133">
+                <div class="row">
+                    <div class="t-center">
+                        <h3 class="tit3 t-center m-b-80 m-t-15">
+                            Địa chỉ đến bean
+                        </h3>
+                    </div>
+                    <div class="col-12">
+                        <h6 class="text-white" style="margin-bottom: 10px"><i class="fa fa-map-marker fs-16 dis-inline-block"> </i> @diachi</h6>
+                        <div id="map" style="height: 500px">
+                            <iframe class="bor-rad-16" src="@toado" width="100%" height="500px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
 
 <!-- Review -->
 <!--<section class="section-review bg-brown p-t-115">-->

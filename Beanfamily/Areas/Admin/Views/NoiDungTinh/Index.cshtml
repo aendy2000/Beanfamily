@@ -1,8 +1,10 @@
 ﻿@model IEnumerable<Beanfamily.Models.BoCucNoiDungTinhWebsite>
 @{
     string banner_trangchu = "";
-    string mota_trangchu = "";
-    string hinhanh_mota_trangchu = "";
+
+    string menu_trangchu = "";
+    string video_trangchu = "";
+
     string mota_thanhphanchinh_nhahang = "";
     string mota_thanhphanchinh_vuonrau = "";
     string mota_thanhphanchinh_muasam = "";
@@ -51,8 +53,10 @@
     {
         var dndt = Model.First();
         banner_trangchu = dndt.banner_trangchu;
-        mota_trangchu = dndt.mota_trangchu;
-        hinhanh_mota_trangchu = dndt.hinhanh_mota_trangchu;
+
+        menu_trangchu = dndt.hinhanh_menu_trangchu;
+        video_trangchu = dndt.video_trangchu;
+
         mota_thanhphanchinh_nhahang = dndt.mota_thanhphanchinh_nhahang;
         mota_thanhphanchinh_vuonrau = dndt.mota_thanhphanchinh_vuonrau;
         mota_thanhphanchinh_muasam = dndt.mota_thanhphanchinh_muasam;
@@ -162,35 +166,50 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5>Giới thiệu</h5>
+                                    <h5>Hình ảnh Menu</h5>
                                 </div>
                                 <div class="card-body">
                                     <div class="row ms-2 me-2 mb-3 mt-4">
-                                        <div class="col-12 mb-3">
-                                            <label for="mota_trangchu" class="col-12 col-form-label">Nội dung giới thiệu:</label>
-                                            <textarea id="mota_trangchu" rows="4" type="text" placeholder="Nhập nội dung giới thiệu trên trang chủ" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control">@mota_trangchu</textarea>
-                                        </div>
                                         <div class="col-12">
                                             <fieldset class="form-group">
-                                                <a class="btn btn-sm btn-primary mb-2" onclick="$('#hinhanh_mota_trangchu').click()"><i class="bi bi-images me-1"></i> Tải lên hình ảnh</a> <small class="text-muted fst-italic">(Chọn 1 hình ảnh).</small>
-                                                <input accept="image/jpeg, image/png" type="file" id="hinhanh_mota_trangchu" name="hinhanh_mota_trangchu[]" style="display: none;" class="form-control">
+                                                <a class="btn btn-sm btn-primary mb-2" onclick="$('#menu_trangchu').click()"><i class="bi bi-images me-1"></i> Tải lên hình ảnh</a> <small class="text-muted fst-italic">(Chọn nhiều hình ảnh có kích thước <b>A4 hoặc 5:7</b> xuất hiện trên Menu bao gồm trang bìa).</small>
+                                                <input accept="image/jpeg, image/png" type="file" id="menu_trangchu" name="menu_trangchu[]" style="display: none;" class="form-control" multiple>
                                             </fieldset>
-                                            <div class="preview-images-zone preview-images-zonehinhanh_mota_trangchu form-control" style="height: 140px !important">
-                                                @if (!string.IsNullOrEmpty(hinhanh_mota_trangchu))
+                                            <div class="preview-images-zone preview-images-zonemenu_trangchu form-control" style="height: 140px !important">
+                                                @if (!string.IsNullOrEmpty(menu_trangchu))
                                                 {
-                                                    var item = hinhanh_mota_trangchu;
-                                                    int lastindex = item.LastIndexOf("/") + 1;
-                                                    int childLength = item.Length - lastindex;
-                                                    <div id="suaidHinhAnh-hinhcu-hinhanh_mota_trangchu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" class="preview-image preview-show-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")">
-                                                        <div id="suaxoa-hinhanhsp-hinhanh_mota_trangchu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" class="image-cancel" name="daylahinhcu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")"><i class="bi bi-x-circle-fill text-dark"></i></div>
-                                                        <div class="image-zone"><img id="@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" src="@Url.Content(item)"></div>
-                                                    </div>
-                                                    <input id="url-suaidHinhAnh-hinhcu-hinhanh_mota_trangchu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" value="@Url.Content(item)" hidden />
-
+                                                    foreach (string item in menu_trangchu.Split('#').ToList())
+                                                    {
+                                                        int lastindex = item.LastIndexOf("/") + 1;
+                                                        int childLength = item.Length - lastindex;
+                                                        <div id="suaidHinhAnh-hinhcu-menu_trangchu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" class="preview-image preview-show-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")">
+                                                            <div id="suaxoa-hinhanhsp-menu_trangchu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" class="image-cancel" name="daylahinhcu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")"><i class="bi bi-x-circle-fill text-dark"></i></div>
+                                                            <div class="image-zone"><img id="@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" src="@Url.Content(item)"></div>
+                                                        </div>
+                                                        <input id="url-suaidHinhAnh-hinhcu-menu_trangchu-@item.Substring(lastindex, childLength).Replace(".", "").Replace(" ", "")" value="@Url.Content(item)" hidden />
+                                                    }
                                                 }
                                             </div>
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Video Bean</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row ms-2 me-2 mb-3 mt-4">
+                                        <div class="col-12">
+                                            <label for="video_trangchu" class="col-12 col-form-label">
+                                                Link video Youtube
+                                                <span class="small"><i>(mỗi video sẽ là 1 dòng, có thể nhấn phím Enter để xuống dòng, không chấp nhận ký tự #)</i></span>
+                                            </label>
+                                            <textarea id="video_trangchu" rows="6" type="text" placeholder="Dán link video youtube, mỗi video là 1 dòng" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control">@(string.IsNullOrEmpty(video_trangchu) ? "" : video_trangchu.Replace("#", "\n"))</textarea>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -205,15 +224,15 @@
                                     <div class="row ms-2 me-2 mb-3 mt-4">
                                         <div class="col-12 mb-3">
                                             <label for="mota_thanhphanchinh_nhahang" class="col-12 col-form-label">Mô tả danh mục Nhà hàng:</label>
-                                            <textarea id="mota_thanhphanchinh_nhahang" rows="3" type="text" placeholder="Nhập nội dung mô tả danh mục nhà hàng" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control">@mota_thanhphanchinh_nhahang</textarea>
+                                            <textarea id="mota_thanhphanchinh_nhahang" rows="6" type="text" placeholder="Nhập nội dung mô tả danh mục nhà hàng" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control">@mota_thanhphanchinh_nhahang</textarea>
                                         </div>
                                         <div class="col-12 mb-3">
                                             <label for="mota_thanhphanchinh_vuonrau" class="col-12 col-form-label">Mô tả danh mục Vườn rau:</label>
-                                            <textarea id="mota_thanhphanchinh_vuonrau" rows="3" type="text" placeholder="Nhập nội dung mô tả danh mục vườn rau" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control">@mota_thanhphanchinh_vuonrau</textarea>
+                                            <textarea id="mota_thanhphanchinh_vuonrau" rows="6" type="text" placeholder="Nhập nội dung mô tả danh mục vườn rau" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control">@mota_thanhphanchinh_vuonrau</textarea>
                                         </div>
                                         <div class="col-12 mb-3">
                                             <label for="mota_thanhphanchinh_muasam" class="col-12 col-form-label">Mô tả danh mục Mua sắm:</label>
-                                            <textarea id="mota_thanhphanchinh_muasam" rows="3" type="text" placeholder="Nhập nội dung mô tả danh mục mua sắm" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control">@mota_thanhphanchinh_muasam</textarea>
+                                            <textarea id="mota_thanhphanchinh_muasam" rows="6" type="text" placeholder="Nhập nội dung mô tả danh mục mua sắm" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control">@mota_thanhphanchinh_muasam</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -229,15 +248,15 @@
                                     <div class="row ms-2 me-2 mb-3 mt-4">
                                         <div class="col-12 mb-3">
                                             <label for="mota_sanphammoi_nhahang" class="col-12 col-form-label">Mô tả sản phẩm mới Nhà hàng:</label>
-                                            <textarea id="mota_sanphammoi_nhahang" rows="3" type="text" placeholder="Nhập nội dung mô tả sản phẩm mới nhà hàng" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control">@mota_sanphammoi_nhahang</textarea>
+                                            <textarea id="mota_sanphammoi_nhahang" rows="6" type="text" placeholder="Nhập nội dung mô tả sản phẩm mới nhà hàng" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control">@mota_sanphammoi_nhahang</textarea>
                                         </div>
                                         <div class="col-12 mb-3">
                                             <label for="mota_sanphammoi_vuonrau" class="col-12 col-form-label">Mô tả sản phẩm mới Vườn rau:</label>
-                                            <textarea id="mota_sanphammoi_vuonrau" rows="3" type="text" placeholder="Nhập nội dung mô tả sản phẩm mới vườn rau" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control">@mota_sanphammoi_vuonrau</textarea>
+                                            <textarea id="mota_sanphammoi_vuonrau" rows="6" type="text" placeholder="Nhập nội dung mô tả sản phẩm mới vườn rau" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control">@mota_sanphammoi_vuonrau</textarea>
                                         </div>
                                         <div class="col-12 mb-3">
                                             <label for="mota_sanphammoi_muasam" class="col-12 col-form-label">Mô tả sản phẩm mới Mua sắm:</label>
-                                            <textarea id="mota_sanphammoi_muasam" rows="3" type="text" placeholder="Nhập nội dung mô tả sản phẩm mới mua sắm" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control">@mota_sanphammoi_muasam</textarea>
+                                            <textarea id="mota_sanphammoi_muasam" rows="6" type="text" placeholder="Nhập nội dung mô tả sản phẩm mới mua sắm" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control">@mota_sanphammoi_muasam</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -253,15 +272,15 @@
                                     <div class="row ms-2 me-2 mb-3 mt-4">
                                         <div class="col-12 mb-3">
                                             <label for="mota_sanphamnoibat_nhahang" class="col-12 col-form-label">Mô tả sản phẩm nổi bật Nhà hàng:</label>
-                                            <textarea id="mota_sanphamnoibat_nhahang" rows="3" type="text" placeholder="Nhập nội dung mô tả sản phẩm nổi bật nhà hàng" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control">@mota_sanphamnoibat_nhahang</textarea>
+                                            <textarea id="mota_sanphamnoibat_nhahang" rows="6" type="text" placeholder="Nhập nội dung mô tả sản phẩm nổi bật nhà hàng" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control">@mota_sanphamnoibat_nhahang</textarea>
                                         </div>
                                         <div class="col-12 mb-3">
                                             <label for="mota_sanphamnoibat_vuonrau" class="col-12 col-form-label">Mô tả sản phẩm nổi bật Vườn rau:</label>
-                                            <textarea id="mota_sanphamnoibat_vuonrau" rows="3" type="text" placeholder="Nhập nội dung mô tả sản phẩm nổi bật vườn rau" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control">@mota_sanphamnoibat_vuonrau</textarea>
+                                            <textarea id="mota_sanphamnoibat_vuonrau" rows="6" type="text" placeholder="Nhập nội dung mô tả sản phẩm nổi bật vườn rau" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control">@mota_sanphamnoibat_vuonrau</textarea>
                                         </div>
                                         <div class="col-12 mb-3">
                                             <label for="mota_sanphamnoibat_muasam" class="col-12 col-form-label">Mô tả sản phẩm nổi bật Mua sắm:</label>
-                                            <textarea id="mota_sanphamnoibat_muasam" rows="3" type="text" placeholder="Nhập nội dung mô tả sản phẩm nổi bật mua sắm" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control">@mota_sanphamnoibat_muasam</textarea>
+                                            <textarea id="mota_sanphamnoibat_muasam" rows="6" type="text" placeholder="Nhập nội dung mô tả sản phẩm nổi bật mua sắm" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control">@mota_sanphamnoibat_muasam</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -330,7 +349,7 @@
                                         </div>
                                         <div class="col-12 mb-4">
                                             <label for="mota1_gioithieu" class="col-12 col-form-label">Nội dung mô tả 1:</label>
-                                            <textarea id="mota1_gioithieu" rows="4" type="text" placeholder="Nhập nội dung mô tả" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control">@mota1_gioithieu</textarea>
+                                            <textarea id="mota1_gioithieu" rows="6" type="text" placeholder="Nhập nội dung mô tả" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control">@mota1_gioithieu</textarea>
                                         </div>
                                         <div class="col-md-6 col-sm-12 mb-4">
                                             <fieldset class="form-group">
@@ -383,7 +402,7 @@
                                             </div>
                                             <div class="col-12 mb-2">
                                                 <label for="mota_gioithieu" class="col-12 col-form-label">Nội dung mô tả 2:</label>
-                                                <textarea id="mota_gioithieu" rows="4" type="text" placeholder="Nhập nội dung mô tả" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control">@mota_gioithieu</textarea>
+                                                <textarea id="mota_gioithieu" rows="6" type="text" placeholder="Nhập nội dung mô tả" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control">@mota_gioithieu</textarea>
                                             </div>
                                         </div>
                                         <div class="col-12 mb-3">
@@ -414,7 +433,7 @@
                                         </div>
                                         <div class="col-12 mb-4">
                                             <label for="mota3_gioithieu" class="col-12 col-form-label">Nội dung mô tả 3:</label>
-                                            <textarea id="mota3_gioithieu" rows="4" type="text" placeholder="Nhập nội dung mô tả" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control">@mota3_gioithieu</textarea>
+                                            <textarea id="mota3_gioithieu" rows="6" type="text" placeholder="Nhập nội dung mô tả" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control">@mota3_gioithieu</textarea>
                                         </div>
                                         <div class="col-md-6 col-sm-12 mb-4">
                                             <fieldset class="form-group">
@@ -524,7 +543,7 @@
                                         </div>
                                         <div class="col-12 mb-4">
                                             <label for="mota_nhahang" class="col-12 col-form-label">Nội dung mô tả nhà hàng:</label>
-                                            <textarea id="mota_nhahang" rows="4" type="text" placeholder="Nhập nội dung mô tả" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control">@mota_nhahang</textarea>
+                                            <textarea id="mota_nhahang" rows="6" type="text" placeholder="Nhập nội dung mô tả" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control">@mota_nhahang</textarea>
                                         </div>
 
                                         <div class="col-12 mb-3">
@@ -814,7 +833,7 @@
                                         </div>
                                         <div class="col-12 mb-4">
                                             <label for="mota_vuonrau" class="col-12 col-form-label">Nội dung mô tả vườn rau:</label>
-                                            <textarea id="mota_vuonrau" rows="4" type="text" placeholder="Nhập nội dung mô tả" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control">@mota_vuonrau</textarea>
+                                            <textarea id="mota_vuonrau" rows="6" type="text" placeholder="Nhập nội dung mô tả" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control">@mota_vuonrau</textarea>
                                         </div>
                                     </div>
                                 </div>

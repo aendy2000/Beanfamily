@@ -165,6 +165,37 @@ body, html {
 }
 
 /* ------------------------------------ */
+
+.photo-product-style {
+    aspect-ratio: 4 / 3; /* luôn giữ tỷ lệ 3x4 */
+    overflow: hidden; /* cắt phần dư */
+}
+
+    .photo-product-style img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* luôn cắt giữa */
+        object-position: center; /* cắt ở giữa */
+        display: block;
+    }
+
+.slick-current img {
+    border: 2px solid #ffc678;
+}
+
+.bor-rad-16 {
+    border-radius: 16px;
+}
+
+.bor-rad-8 {
+    border-radius: 8px;
+}
+
+.bor-style-gold {
+    border: 2px solid #ffc678;
+}
+
+/* ------------------------------------ */
 a {
     font-family: san_francisco_text_regularRg;
     font-weight: 400;
@@ -1789,9 +1820,10 @@ body {
 }
 
     .product-grid .product-image {
+        aspect-ratio: 4 / 3;
         overflow: hidden;
         position: relative;
-        height: 210px;
+        max-height: 210px;
         border-radius: 15px;
     }
 
@@ -2273,9 +2305,11 @@ body {
     .footer-info-page {
         text-align: left !important;
     }
+
     .bg1-bottom {
         background-size: cover;
     }
+
     .change-position-map-right {
         float: none;
         width: 100%;

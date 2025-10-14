@@ -4,24 +4,18 @@
     });
     $('body').on('change', '[id="ttmm"]', function () {
         HienThiQR("ttmm");
-    }); $('body').on('change', '[id="ttnh"]', function () {
+    });
+    $('body').on('change', '[id="ttnh"]', function () {
         HienThiQR("ttnh");
     });
 
     function HienThiQR(type) {
-        var momo = $('body').find('[id="thanhtoanmomo"]');
         var nganhang = $('body').find('[id="thanhtoannganhang"]');
 
-        if (type == "ttknh") {
-            momo.prop('hidden', true);
-            nganhang.prop('hidden', true);
-        }
-        else if (type == "ttmm") {
-            momo.prop('hidden', false);
+        if (type == "ttknh" || type == "ttmm") {
             nganhang.prop('hidden', true);
         }
         else {
-            momo.prop('hidden', true);
             nganhang.prop('hidden', false);
         }
     };
@@ -175,6 +169,7 @@
 
                     formData.append('pttt', pttt);
                     formData.append('giaotannoi', giaotannoi);
+                    formData.append('mack', btn.attr('mack'));
 
                     $.ajax({
                         url: $('body').find('[id="requestPath"]').val() + 'dathang/xacnhandathang',
@@ -183,69 +178,94 @@
                         type: 'POST',
                         processData: false,
                         contentType: false,
-                    }).done(function (ketqua) {
-                        if (ketqua.indexOf('SUCCESS-') !== -1) {
-                            btn.html('Xác nhận đặt hàng');
-                            btn.css('pointer-events', 'auto');
-                            var madonhang = ketqua.split('-')[1];
-                            Swal.fire({
-                                title: "Đặt hàng Thành Công!",
-                                text: "Cảm ơn bạn đã đặt hàng, chúng tôi đã nhận được thông tin và sẽ sớm liên hệ lại với bạn để xác nhận đơn đặt hàng này. \nMã đơn hàng: " + madonhang,
-                                icon: "success"
-                            }).then(() => {
-                                window.location.href = $('#requestPath').val() + "home/tracuudonhang?id=" + madonhang;
+                    }).done(function (ketquas) {
+
+                        var jsons = JSON.parse(ketquas);
+
+                        if (jsons.ReturnStatus == "redirect") {
+                            var form = $('<form>', {
+                                action: jsons.url,
+                                method: 'POST'
                             });
-                        }
-                        else if (ketqua.indexOf("Chi tiết lỗi:") !== -1) {
-                            btn.css('pointer-events', 'auto');
-                            btn.html('Xác nhận đặt hàng');
-                            Swal.fire({
-                                title: "Đã xảy ra lỗi, vui lòng thử lại sau.",
-                                text: ketqua,
-                                icon: "error"
-                            }).then(() => {
-                                window.location.reload();
+
+                            // Gắn các input hidden từ jsons.data
+                            $.each(jsons.data, function (key, value) {
+                                form.append($('<input>', {
+                                    type: 'hidden',
+                                    name: key,
+                                    value: value
+                                }));
                             });
-                        }
-                        else if (ketqua == "NOTEXIST") {
-                            btn.css('pointer-events', 'auto');
-                            btn.html('Xác nhận đặt hàng');
-                            Swal.fire({
-                                title: "Có Sản Phẩm Đã Bị Xóa",
-                                text: "Một sản phẩm đã được xóa bỏ bởi quản trị nhà hàng, hãy kiểm tra lại giỏ hàng trước!",
-                                icon: "warning"
-                            }).then(() => {
-                                $.ajax({
-                                    url: $('body').find('[id="requestPath"]').val() + 'dathang/UpdateInfoCart',
-                                    dataType: 'html',
-                                    type: 'GET',
-                                    processData: false,
-                                    contentType: false,
-                                }).done(function (ketqua) {
-                                    $('body').find('[id="content-chitiet-giohang"]').replaceWith(ketqua);
-                                    window.location = $('#requestPath').val() + "gio-hang";
+
+                            // Add vào body và submit
+                            $('body').append(form);
+                            form.submit();
+                        } else {
+                            var ketqua = jsons.contents;
+
+                            if (ketqua.indexOf('SUCCESS-') !== -1) {
+                                btn.html('Xác nhận đặt hàng');
+                                btn.css('pointer-events', 'auto');
+                                var madonhang = ketqua.split('-')[1];
+                                Swal.fire({
+                                    title: "Đặt hàng Thành Công!",
+                                    text: "Cảm ơn bạn đã đặt hàng, chúng tôi đã nhận được thông tin và sẽ sớm liên hệ lại với bạn để xác nhận đơn đặt hàng này. \nMã đơn hàng: " + madonhang,
+                                    icon: "success"
+                                }).then(() => {
+                                    window.location.href = $('#requestPath').val() + "home/tracuudonhang?id=" + madonhang;
                                 });
-                            });
-                        }
-                        else if (ketqua == "VUOTSOLUONG") {
-                            btn.css('pointer-events', 'auto');
-                            btn.html('Xác nhận đặt hàng');
-                            Swal.fire({
-                                title: "Số Lượng Vượt Tồn Kho",
-                                text: "Có sản phẩm tồn kho đã giảm hơn so với số lượng mua, hãy kiểm tra lại giỏ hàng của bạn.",
-                                icon: "warning"
-                            }).then(() => {
-                                $.ajax({
-                                    url: $('body').find('[id="requestPath"]').val() + 'dathang/UpdateInfoCart',
-                                    dataType: 'html',
-                                    type: 'GET',
-                                    processData: false,
-                                    contentType: false,
-                                }).done(function (ketqua) {
-                                    $('body').find('[id="content-chitiet-giohang"]').replaceWith(ketqua);
-                                    window.location = $('#requestPath').val() + "gio-hang";
+                            }
+                            else if (ketqua.indexOf("Chi tiết lỗi:") !== -1) {
+                                btn.css('pointer-events', 'auto');
+                                btn.html('Xác nhận đặt hàng');
+                                Swal.fire({
+                                    title: "Đã xảy ra lỗi, vui lòng thử lại sau.",
+                                    text: ketqua,
+                                    icon: "error"
+                                }).then(() => {
+                                    window.location.reload();
                                 });
-                            });
+                            }
+                            else if (ketqua == "NOTEXIST") {
+                                btn.css('pointer-events', 'auto');
+                                btn.html('Xác nhận đặt hàng');
+                                Swal.fire({
+                                    title: "Có Sản Phẩm Đã Bị Xóa",
+                                    text: "Một sản phẩm đã được xóa bỏ bởi quản trị nhà hàng, hãy kiểm tra lại giỏ hàng trước!",
+                                    icon: "warning"
+                                }).then(() => {
+                                    $.ajax({
+                                        url: $('body').find('[id="requestPath"]').val() + 'dathang/UpdateInfoCart',
+                                        dataType: 'html',
+                                        type: 'GET',
+                                        processData: false,
+                                        contentType: false,
+                                    }).done(function (ketqua) {
+                                        $('body').find('[id="content-chitiet-giohang"]').replaceWith(ketqua);
+                                        window.location = $('#requestPath').val() + "gio-hang";
+                                    });
+                                });
+                            }
+                            else if (ketqua == "VUOTSOLUONG") {
+                                btn.css('pointer-events', 'auto');
+                                btn.html('Xác nhận đặt hàng');
+                                Swal.fire({
+                                    title: "Số Lượng Vượt Tồn Kho",
+                                    text: "Có sản phẩm tồn kho đã giảm hơn so với số lượng mua, hãy kiểm tra lại giỏ hàng của bạn.",
+                                    icon: "warning"
+                                }).then(() => {
+                                    $.ajax({
+                                        url: $('body').find('[id="requestPath"]').val() + 'dathang/UpdateInfoCart',
+                                        dataType: 'html',
+                                        type: 'GET',
+                                        processData: false,
+                                        contentType: false,
+                                    }).done(function (ketqua) {
+                                        $('body').find('[id="content-chitiet-giohang"]').replaceWith(ketqua);
+                                        window.location = $('#requestPath').val() + "gio-hang";
+                                    });
+                                });
+                            }
                         }
                     });
                 }

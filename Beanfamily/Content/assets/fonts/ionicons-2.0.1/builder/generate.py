@@ -216,7 +216,7 @@ def generate_component_json(data):
     "development": {},
     "license": "MIT",
     "styles": [
-      "css/%s.css?v=22062025.1" % (data['name'].lower())
+      "css/%s.css?v=15102025.1" % (data['name'].lower())
     ],
     "fonts": [
       "fonts/%s.eot" % (data['name'].lower()),
@@ -284,7 +284,7 @@ def generate_bower_json(data):
     ],
     "description": "Ionicons - free and beautiful icons from the creators of Ionic Framework",
     "main": [
-      "css/%s.css?v=22062025.1" % (data['name'].lower()),
+      "css/%s.css?v=15102025.1" % (data['name'].lower()),
       "fonts/*"
     ],
     "keywords": [ "fonts", "icon font", "icons", "ionic", "web font"],

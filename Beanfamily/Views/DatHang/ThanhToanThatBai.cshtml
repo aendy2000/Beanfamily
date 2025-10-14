@@ -1,0 +1,425 @@
+﻿@using Beanfamily.Models;
+@model Beanfamily.Models.DonHangVuonRauMuaSamVaMenuHangNgay
+@{
+    BeanfamilyEntities models = new BeanfamilyEntities();
+
+    string banner_khac = "";
+    var ndt = models.BoCucNoiDungTinhWebsite.ToList();
+    if (ndt.Count > 0)
+    {
+        var dndt = ndt.First();
+        banner_khac = dndt.banner_khac;
+    }
+
+    if (string.IsNullOrEmpty(banner_khac))
+    {
+        banner_khac = "~/Content/AdminAreas/images/NoiDungTinh/GioiThieu/Banner/2z5708932492674_1e339065fc38b483bc79e1c28d01086f.jpg";
+    }
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+
+
+    var donhangmuassam = Model.ChiTietDonHangSanPhamMuaSam.ToList();
+    var donhangvuonrau = Model.ChiTietDonHangSanPhamRauNhaTrong.ToList();
+    var donhangthucdonhangngay = Model.ChiTietDonHangSanPhamThucDonHangNgay.ToList();
+
+    int SPMuaSam = (donhangmuassam != null ? donhangmuassam.Count : 0);
+    int SPVuonRau = (donhangvuonrau != null ? donhangvuonrau.Count : 0);
+    int SPMNHN = (donhangthucdonhangngay != null ? donhangthucdonhangngay.Count : 0);
+
+    int sosanpham = SPMuaSam + SPVuonRau + SPMNHN;
+
+    decimal tongTien = donhangmuassam.Sum(s => s.gia * s.soluongmua)
+        + donhangvuonrau.Sum(s => s.soluongmua * s.gia)
+        + donhangthucdonhangngay.Sum(s => s.soluongmua * s.gia);
+
+    string strTongTien = "";
+    if (tongTien > 0)
+    {
+        strTongTien = tongTien.ToString("0,0") + "đ";
+    }
+    else
+    {
+        strTongTien = "0";
+    }
+
+    var ttdh = Model.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay.First();
+}
+<script src="https://unpkg.com/@("@lottiefiles")/dotlottie-wc@0.8.1/dist/dotlottie-wc.js" type="module"></script>
+
+<section class="section-ourmenu bg1-pattern">
+    <div class="section-child-bg1">
+        <div class="container p-t-120 p-b-40">
+            <div class="row mb-3">
+                <div class="col-12 d-flex flex-column justify-content-center align-items-center">
+                    <dotlottie-wc src="https://lottie.host/b9a4d68a-dbb5-4526-ba1b-05e428727f41/pKlfcuF7qI.lottie" style="width: 200px;height: 200px" autoplay></dotlottie-wc>
+                    <h1 class="text-white fw-bold mb-4">Đã đặt hàng, nhưng chưa thanh toán</h1>
+                    <h5 class="text-warning text-center mb-4">
+                        (Vui lòng liên hệ hỗ trợ qua <b>Zalo Chat</b> kèm mã đơn hàng:
+                        <span class="text-dark p-l-10 p-r-10 p-t-2 p-b-2" style="line-height: 1.5;border-radius: 10px; background: #fff">
+                            <b>@Model.madonhang</b>
+                        </span>
+                        <br />
+                        để thực hiện thanh toán đơn hàng hoặc thay đổi hình thức thanh toán khác)
+                        <br />
+                    </h5>
+                    <p class="text-center  mb-4">
+                        Chúng tôi đã nhận được thông tin đặt hàng và sẽ sớm chuẩn bị để giao đến bạn sau khi xác nhận phương thức thanh toán.
+                        <br />
+                        Hãy chú ý thông tin liên lạc và mã đơn hàng để tiện cho việc theo giỏi tiến trình đơn hàng nhé.
+                        <br />
+                        Chúc bạn một ngày thật tốt lành!
+                    </p>
+                    <a href="@Url.Action("Index", "Home")" class="btn1 flex-c-m size1 txt3 trans-0-4" tabindex="-1">
+                        Trởi về Trang chủ
+                    </a>
+                </div>
+            </div>
+            <hr class="my-4" style="background-color: darkgray">
+            <div class="row ms-2 me-2">
+                <div class="col-md-12 col-sm-12">
+                    <div class="mb-2 text-white">
+                        <h3>Chi tiết đơn hàng:</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 p-0">
+                            <div class="bg-white bo-rad-16 txt10 p-t-20 p-b-20 p-l-20 p-r-20 mb-3 m-t-3" style=" border: 2px solid #ffc678;">
+                                <div class="row">
+                                    <div class="col-6 mb-2 text-dark">
+                                        Mã Đơn hàng:
+                                    </div>
+                                    <div class="col-6 mb-1 float-end t-right text-dark">
+                                        <span class="text-white p-l-10 p-r-10 p-t-3 p-b-3" style="border-radius: 10px; background: rgba(18,46,38,1)"><b>@Model.madonhang</b></span>
+                                    </div>
+                                    <div class="col-6 mb-1 text-dark">
+                                        Trạng thái:
+                                    </div>
+                                    <div class="col-6 mb-1 float-end t-right text-dark">
+                                        @if (ttdh.tieude.ToLower().Equals("chờ duyệt"))
+                                        {
+                                            <span class="text-white p-l-10 p-r-10 p-t-2 p-b-2" style="border-radius: 10px; background: #ffc687">@ttdh.tieude</span>
+                                        }
+                                        else if (ttdh.tieude.ToLower().Equals("đang đóng gói") || ttdh.tieude.ToLower().Equals("đang giao"))
+                                        {
+                                            <span class="text-white bg-primary p-l-10 p-r-10 p-t-2 p-b-2  bg-primary" style="border-radius: 10px; ">@ttdh.tieude</span>
+                                        }
+                                        else if (ttdh.tieude.ToLower().Equals("không thành công") || ttdh.tieude.ToLower().Equals("đã hủy"))
+                                        {
+                                            <span class="text-white bg-danger p-l-10 p-r-10  p-t-2 p-b-2" style="border-radius: 10px; background: #ffc687">@ttdh.tieude</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="text-white bg-danger p-l-10 p-r-10  p-t-2 p-b-2 bg-success" style="border-radius: 10px;">@ttdh.tieude</span>
+                                        }
+                                    </div>
+
+                                    <div class="col-6 mb-1  text-dark">
+                                        Chi tiết:
+                                    </div>
+                                    <div class="col-6 mb-1  float-end t-right text-dark">
+                                        @ttdh.noidung
+                                    </div>
+
+                                    <div class="col-6 text-dark">
+                                        Cập nhật:
+                                    </div>
+                                    <div class="col-6 float-end t-right small mt-1">
+                                        <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                        @ttdh.thoigian.ToString("HH:mm") ngày @ttdh.thoigian.ToString("dd/MM/yyyy")
+                                    </div>
+                                    <div class="col-12">
+                                        <hr />
+                                    </div>
+                                    <div class="col-6 mb-1 text-dark">
+                                        Họ & tên:
+                                    </div>
+                                    <div class="col-6 mb-1 float-end t-right text-dark">
+                                        @Model.hoten
+                                    </div>
+                                    <div class="col-6 mb-1 text-dark">
+                                        Điện thoại:
+                                    </div>
+                                    <div class="col-6 mb-1 float-end t-right text-dark">
+                                        @Model.dienthoai
+                                    </div>
+                                    <div class="col-6 mb-1 text-dark">
+                                        Email:
+                                    </div>
+                                    <div class="col-6 mb-1 float-end t-right text-dark">
+                                        @Model.email
+                                    </div>
+                                    <div class="col-6 mb-1 text-dark">
+                                        Nhận hàng:
+                                    </div>
+                                    <div class="col-6 mb-1 float-end t-right text-dark">
+                                        @if (Model.giaohangtannoi == true)
+                                        {
+                                            <span>@Model.diachi, @Model.phuongxa, @Model.quanhuyen, @Model.tinh</span>
+                                        }
+                                        else
+                                        {
+                                            <span>Nhận tại cửa hàng</span>
+                                        }
+                                    </div>
+                                    <div class="col-6 mb-1 text-dark">
+                                        HTTT:
+                                    </div>
+                                    <div class="col-6 mb-1 float-end t-right text-dark">
+                                        @Model.hinhthucthanhtoan
+                                    </div>
+                                    <div class="col-6 mb-1 text-dark">
+                                        Ghi chú:
+                                    </div>
+                                    <div class="col-6 mb-1 float-end t-right text-dark">
+                                        @Model.ghichu
+                                    </div>
+                                    <div class="col-12">
+                                        <hr />
+                                    </div>
+                                    <div class="col-6 mb-1 text-dark">
+                                        Giá đơn hàng:
+                                    </div>
+                                    <div class="col-6 mb-1 float-end t-right text-dark">
+                                        @strTongTien
+                                    </div>
+
+                                    <div class="col-6 mb-3 text-dark">
+                                        Phí vận chuyển:
+                                    </div>
+                                    <div class="col-6 mb-3 float-end t-right text-dark">
+                                        ---
+                                    </div>
+                                    <div class="col-6 text-dark"><h6><b>Tổng thanh toán:</b></h6></div>
+                                    <div class="col-6 float-end t-right text-dark">
+                                        <h6><b>@strTongTien</b></h6>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div id="lastHeight" class="row mt-2" style=" overflow-y: auto; border: 2px solid #ffc678; border-radius: 18px;">
+                        <div class="col-lg-12 bgwhite" style="padding: 0; border-radius: 18px;">
+                            @if ((donhangmuassam == null || donhangmuassam.Count < 1) && (donhangvuonrau == null || donhangvuonrau.Count < 1) && (donhangthucdonhangngay == null || donhangthucdonhangngay.Count < 1))
+                            {
+                                <div class="mb-3 bo-rad-16 text-white ms-3 me-3">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between row">
+                                            <div style="width: 100%" class="d-flex flex-col align-items-center justify-content-center col-md-6 col-sm-6 ms-2 me-2 mt-2 mb-2">
+                                                <h5 style="text-align: center; font-weight: bold; color: #333" class="mb-4 mt-4">Chưa có sản phẩm nào trong giỏ hàng!</h5>
+                                                <a href="@Url.Action("index", "home")" style="width: auto; padding: 10px" class="btn3 flex-c-m size1 txt11 trans-0-4 mb-3">TIẾP TỤC MUA SẮM</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                if ((donhangmuassam != null && donhangmuassam.Count > 0))
+                                {
+                                    <h5 class="text-center mb-3 text-white" style="background: #5e443b !important; border-radius: 16px 16px 0 0; height: 50px; display: flex; flex-direction: column; justify-content: center; ">SẢN PHẨM MỤC MUA SẮM</h5>
+
+                                    foreach (var item in donhangmuassam)
+                                    {
+                                        <div class="card mb-3 bo-rad-16 bggreen text-white  ms-3 me-3">
+                                            <div class="card-body" style="padding: 10px;">
+                                                <div class="d-flex justify-content-between row">
+                                                    <div class="col-md-8 col-sm-8 ">
+                                                        <div class="d-flex flex-row align-items-center ms-2 me-2 mt-2 mb-2">
+                                                            <div>
+                                                                @if (string.IsNullOrEmpty(item.hinhanh))
+                                                                {
+                                                                    <a class="text-white" href="@Url.Action("productdetail", "muasam", new { id = item.id_sanphammuasam })">
+                                                                        <img src="@Url.Content("~/Content/assets/images/product/sanphamdefault.jpg")"
+                                                                             class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
+                                                                    </a>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <a class="text-white" href="@Url.Action("productdetail", "muasam", new { id = item.id_sanphammuasam })">
+                                                                        <img src="@Url.Content(item.hinhanh.Split('#')[0])"
+                                                                             class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
+                                                                    </a>
+                                                                }
+                                                            </div>
+                                                            <div class="ms-3">
+                                                                <a class="text-white" href="@Url.Action("productdetail", "muasam", new { id = item.id_sanphammuasam })"><h6>@item.tensanpham</h6></a>
+                                                                <p class="small mb-0">@item.tenloaitonkho, @(item.gia.ToString("0,0"))đ</p>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class=" col-md-4 col-sm-4">
+                                                        <div class="d-flex flex-row align-items-center  float-end me-2">
+                                                            <div class="row">
+                                                                <div class="ms-2 me-2 mt-2 col-sm-12 t-right">
+                                                                    <a class="text-white">
+                                                                        Số lượng: @item.soluongmua
+                                                                    </a>
+                                                                    <br />
+                                                                    <a class="text-white mt-2">
+                                                                        Tổng: @((item.soluongmua * item.gia).ToString("0,0"))đ
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    }
+                                }
+
+                                if (donhangvuonrau != null && donhangvuonrau.Count > 0)
+                                {
+                                    if (donhangmuassam != null && donhangvuonrau != null)
+                                    {
+                                        if (donhangmuassam.Count > 0 && donhangvuonrau.Count > 0)
+                                        {
+                                            <h5 class="text-center mb-3 text-white" style="background: #5e443b !important; height: 50px; display: flex; flex-direction: column; justify-content: center;">SẢN PHẨM RAU NHÀ TRỒNG</h5>
+                                        }
+                                        else
+                                        {
+                                            <h5 class="text-center mb-3 text-white" style="background: #5e443b !important; border-radius: 16px 16px 0 0; height: 50px; display: flex; flex-direction: column; justify-content: center;">SẢN PHẨM RAU NHÀ TRỒNG</h5>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <h5 class="text-center mb-3 text-white" style="background: #5e443b !important; border-radius: 16px 16px 0 0; height: 50px; display: flex; flex-direction: column; justify-content: center;">SẢN PHẨM RAU NHÀ TRỒNG</h5>
+                                    }
+
+                                    @*<h5 class="text-center mb-3 text-white" style="background: #5e443b !important; border-radius: 16px 16px 0 0; height: 50px; display: flex; flex-direction: column; justify-content: center;">SẢN PHẨM RAU NHÀ TRỒNG</h5>*@
+
+                                    foreach (var item in donhangvuonrau)
+                                    {
+
+                                        <div class="card mb-3 bo-rad-16 bggreen text-white ms-3 me-3">
+                                            <div class="card-body" style="padding: 10px;">
+                                                <div class="d-flex justify-content-between row">
+                                                    <div class="col-md-8 col-sm-8 ">
+                                                        <div class="d-flex flex-row align-items-center ms-2 me-2 mt-2 mb-2">
+                                                            <div>
+                                                                @if (string.IsNullOrEmpty(item.hinhanh))
+                                                                {
+                                                                    <a class="text-white" href="@Url.Action("productdetail", "vuonrau", new { id = item.id_sanphamraunhatrong })">
+                                                                        <img src="@Url.Content("~/Content/assets/images/product/sanphamdefault.jpg")"
+                                                                             class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
+                                                                    </a>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <a class="text-white" href="@Url.Action("productdetail", "vuonrau", new { id = item.id_sanphamraunhatrong })">
+                                                                        <img src="@Url.Content(item.hinhanh.Split('#')[0])"
+                                                                             class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
+                                                                    </a>
+                                                                }
+                                                            </div>
+                                                            <div class="ms-3">
+                                                                <a class="text-white" href="@Url.Action("productdetail", "vuonrau", new { id = item.id_sanphamraunhatrong })"><h6>@item.tensanpham</h6></a>
+                                                                <p class="small mb-0">@item.gia.ToString("0,0")đ / @item.donvi</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 col-sm-4 ">
+                                                        <div class="d-flex flex-row align-items-center  float-end me-2">
+                                                            <div class="row">
+                                                                <div class="ms-2 me-2 mt-2 col-sm-12 t-right">
+                                                                    <a class="text-white">
+                                                                        Số lượng: @item.soluongmua
+                                                                    </a>
+                                                                    <br />
+                                                                    <a class="text-white mt-2">
+                                                                        Tổng: @((item.gia * item.soluongmua).ToString("0,0") + "đ")
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    }
+                                }
+
+                                if (donhangthucdonhangngay != null && donhangthucdonhangngay.Count > 0)
+                                {
+                                    if (donhangvuonrau != null && donhangthucdonhangngay != null)
+                                    {
+                                        if (donhangvuonrau.Count > 0 && donhangthucdonhangngay.Count > 0)
+                                        {
+                                            <h5 class="text-center mb-3 text-white" style="background: #5e443b !important; height: 50px; display: flex; flex-direction: column; justify-content: center;">THỰC ĐƠN HẰNG NGÀY</h5>
+                                        }
+                                        else
+                                        {
+                                            <h5 class="text-center mb-3 text-white" style="background: #5e443b !important; border-radius: 16px 16px 0 0; height: 50px; display: flex; flex-direction: column; justify-content: center;">THỰC ĐƠN HẰNG NGÀY</h5>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <h5 class="text-center mb-3 text-white" style="background: #5e443b !important; border-radius: 16px 16px 0 0; height: 50px; display: flex; flex-direction: column; justify-content: center;">THỰC ĐƠN HẰNG NGÀY</h5>
+                                    }
+
+                                    foreach (var item in donhangthucdonhangngay)
+                                    {
+
+                                        <div class="card mb-3 bo-rad-16 bggreen text-white ms-3 me-3">
+                                            <div class="card-body" style="padding: 10px;">
+                                                <div class="d-flex justify-content-between row">
+                                                    <div class="col-md-8 col-sm-8 ">
+                                                        <div class="d-flex flex-row align-items-center ms-2 me-2 mt-2 mb-2">
+                                                            <div>
+                                                                @if (string.IsNullOrEmpty(item.hinhanh))
+                                                                {
+                                                                    <a class="text-white" href="@Url.Action("productdetail", "thucdonhangngay", new { id = item.id_sanphamthucdonhangngay })">
+                                                                        <img src="@Url.Content("~/Content/assets/images/product/sanphamdefault.jpg")"
+                                                                             class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
+                                                                    </a>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <a class="text-white" href="@Url.Action("productdetail", "thucdonhangngay", new { id = item.id_sanphamthucdonhangngay })">
+                                                                        <img src="@Url.Content(item.hinhanh.Split('#')[0])"
+                                                                             class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
+                                                                    </a>
+                                                                }
+                                                            </div>
+                                                            <div class="ms-3">
+                                                                <a class="text-white" href="@Url.Action("productdetail", "thucdonhangngay", new { id = item.id_sanphamthucdonhangngay })"><h6>@item.tensanpham</h6></a>
+                                                                <p class="small mb-0">@item.gia.ToString("0,0")đ</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 col-sm-4 ">
+                                                        <div class="d-flex flex-row align-items-center  float-end me-2">
+                                                            <div class="row">
+                                                                <div class="ms-2 me-2 mt-2 col-sm-12 t-right">
+
+                                                                    <a class="text-white">
+                                                                        Số lượng: @item.soluongmua
+                                                                    </a>
+                                                                    <br />
+                                                                    <a class="text-white mt-2">
+                                                                        Tổng: @((item.gia * item.soluongmua).ToString("0,0") + "đ")
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

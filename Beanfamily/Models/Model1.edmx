@@ -22,8 +22,6 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="banner_trangchu" Type="nvarchar(max)" />
-          <Property Name="mota_trangchu" Type="nvarchar(max)" />
-          <Property Name="hinhanh_mota_trangchu" Type="nvarchar(max)" />
           <Property Name="mota_thanhphanchinh_nhahang" Type="nvarchar(max)" />
           <Property Name="mota_thanhphanchinh_vuonrau" Type="nvarchar(max)" />
           <Property Name="mota_thanhphanchinh_muasam" Type="nvarchar(max)" />
@@ -63,6 +61,8 @@
           <Property Name="mota3_gioithieu" Type="nvarchar(max)" />
           <Property Name="hinhanh3_gioithieu" Type="nvarchar(max)" />
           <Property Name="hinhanh4_gioithieu" Type="nvarchar(max)" />
+          <Property Name="hinhanh_menu_trangchu" Type="nvarchar(max)" />
+          <Property Name="video_trangchu" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="CacBuocQuyTrinhTrongCay">
           <Key>
@@ -1511,54 +1511,6 @@
           <NavigationProperty Name="ChucNangHeThongBean" Relationship="Self.FK_ApDungChucNangChoQuyenTaiKhoan_ChucNangHeThongBean" FromRole="ApDungChucNangChoQuyenTaiKhoan" ToRole="ChucNangHeThongBean" />
           <NavigationProperty Name="QuyenTaiKhoanBean" Relationship="Self.FK_ApDungChucNangChoQuyenTaiKhoan_QuyenTaiKhoanBean" FromRole="ApDungChucNangChoQuyenTaiKhoan" ToRole="QuyenTaiKhoanBean" />
         </EntityType>
-        <EntityType Name="BoCucNoiDungTinhWebsite">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="banner_trangchu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="mota_trangchu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="hinhanh_mota_trangchu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="mota_thanhphanchinh_nhahang" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="mota_thanhphanchinh_vuonrau" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="mota_thanhphanchinh_muasam" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="mota_sanphammoi_nhahang" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="mota_sanphammoi_vuonrau" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="mota_sanphammoi_muasam" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="mota_sanphamnoibat_nhahang" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="mota_sanphamnoibat_vuonrau" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="mota_sanphamnoibat_muasam" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="banner_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="tieude_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="hinhanh1_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="hinhanh2_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="tieude2_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="mota_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="hinhanh_mota_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="banner_nhahang" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="mota_menuhangngay" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="mota_menutiecban" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="mota_menutiecbuffet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="banner_thucdonhangngay" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="banner_tiecban" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="banner_buffet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="banner_vuonrau" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="banner_muasam" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="banner_hinhanh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="banner_khac" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="hinhanh_menuhangngay" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="hinhanh_menutiecban" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="hinhanh_menutiecbuffet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="mota1_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="tieude_nhahang" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="mota_nhahang" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="tieude_vuonrau" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="mota_vuonrau" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="tieude3_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="mota3_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="hinhanh3_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="hinhanh4_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="CacBuocQuyTrinhTrongCay">
           <Key>
             <PropertyRef Name="id" />
@@ -2722,7 +2674,6 @@
         </Association>
         <EntityContainer Name="BeanfamilyEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ApDungChucNangChoQuyenTaiKhoan" EntityType="Self.ApDungChucNangChoQuyenTaiKhoan" />
-          <EntitySet Name="BoCucNoiDungTinhWebsite" EntityType="Self.BoCucNoiDungTinhWebsite" />
           <EntitySet Name="CacBuocQuyTrinhTrongCay" EntityType="Self.CacBuocQuyTrinhTrongCay" />
           <EntitySet Name="ChiTietDonHangDanhMucPhucVuMenuBuffet" EntityType="Self.ChiTietDonHangDanhMucPhucVuMenuBuffet" />
           <EntitySet Name="ChiTietDonHangDanhMucPhucVuMenuTiecBan" EntityType="Self.ChiTietDonHangDanhMucPhucVuMenuTiecBan" />
@@ -2970,6 +2921,7 @@
             <End Role="SanPhamThucDonHangNgay" EntitySet="SanPhamThucDonHangNgay" />
             <End Role="TopSanPhamNoiBat" EntitySet="TopSanPhamNoiBat" />
           </AssociationSet>
+          <EntitySet Name="BoCucNoiDungTinhWebsite" EntityType="BeanfamilyModel.BoCucNoiDungTinhWebsite" />
         </EntityContainer>
         <EntityType Name="ChinhSachBean">
           <Key>
@@ -3089,6 +3041,54 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="BoCucNoiDungTinhWebsite">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="banner_trangchu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="mota_thanhphanchinh_nhahang" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="mota_thanhphanchinh_vuonrau" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="mota_thanhphanchinh_muasam" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="mota_sanphammoi_nhahang" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="mota_sanphammoi_vuonrau" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="mota_sanphammoi_muasam" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="mota_sanphamnoibat_nhahang" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="mota_sanphamnoibat_vuonrau" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="mota_sanphamnoibat_muasam" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="banner_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="tieude_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="hinhanh1_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="hinhanh2_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="tieude2_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="mota_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="hinhanh_mota_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="banner_nhahang" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="mota_menuhangngay" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="mota_menutiecban" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="mota_menutiecbuffet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="banner_thucdonhangngay" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="banner_tiecban" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="banner_buffet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="banner_vuonrau" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="banner_muasam" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="banner_hinhanh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="banner_khac" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="hinhanh_menuhangngay" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="hinhanh_menutiecban" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="hinhanh_menutiecbuffet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="mota1_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="tieude_nhahang" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="mota_nhahang" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="tieude_vuonrau" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="mota_vuonrau" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="tieude3_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="mota3_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="hinhanh3_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="hinhanh4_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="hinhanh_menu_trangchu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="video_trangchu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3104,55 +3104,6 @@
                 <ScalarProperty Name="chophepthem" ColumnName="chophepthem" />
                 <ScalarProperty Name="chophepsua" ColumnName="chophepsua" />
                 <ScalarProperty Name="chophepxoa" ColumnName="chophepxoa" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="BoCucNoiDungTinhWebsite">
-            <EntityTypeMapping TypeName="BeanfamilyModel.BoCucNoiDungTinhWebsite">
-              <MappingFragment StoreEntitySet="BoCucNoiDungTinhWebsite">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="banner_trangchu" ColumnName="banner_trangchu" />
-                <ScalarProperty Name="mota_trangchu" ColumnName="mota_trangchu" />
-                <ScalarProperty Name="hinhanh_mota_trangchu" ColumnName="hinhanh_mota_trangchu" />
-                <ScalarProperty Name="mota_thanhphanchinh_nhahang" ColumnName="mota_thanhphanchinh_nhahang" />
-                <ScalarProperty Name="mota_thanhphanchinh_vuonrau" ColumnName="mota_thanhphanchinh_vuonrau" />
-                <ScalarProperty Name="mota_thanhphanchinh_muasam" ColumnName="mota_thanhphanchinh_muasam" />
-                <ScalarProperty Name="mota_sanphammoi_nhahang" ColumnName="mota_sanphammoi_nhahang" />
-                <ScalarProperty Name="mota_sanphammoi_vuonrau" ColumnName="mota_sanphammoi_vuonrau" />
-                <ScalarProperty Name="mota_sanphammoi_muasam" ColumnName="mota_sanphammoi_muasam" />
-                <ScalarProperty Name="mota_sanphamnoibat_nhahang" ColumnName="mota_sanphamnoibat_nhahang" />
-                <ScalarProperty Name="mota_sanphamnoibat_vuonrau" ColumnName="mota_sanphamnoibat_vuonrau" />
-                <ScalarProperty Name="mota_sanphamnoibat_muasam" ColumnName="mota_sanphamnoibat_muasam" />
-                <ScalarProperty Name="banner_gioithieu" ColumnName="banner_gioithieu" />
-                <ScalarProperty Name="tieude_gioithieu" ColumnName="tieude_gioithieu" />
-                <ScalarProperty Name="hinhanh1_gioithieu" ColumnName="hinhanh1_gioithieu" />
-                <ScalarProperty Name="hinhanh2_gioithieu" ColumnName="hinhanh2_gioithieu" />
-                <ScalarProperty Name="tieude2_gioithieu" ColumnName="tieude2_gioithieu" />
-                <ScalarProperty Name="mota_gioithieu" ColumnName="mota_gioithieu" />
-                <ScalarProperty Name="hinhanh_mota_gioithieu" ColumnName="hinhanh_mota_gioithieu" />
-                <ScalarProperty Name="banner_nhahang" ColumnName="banner_nhahang" />
-                <ScalarProperty Name="mota_menuhangngay" ColumnName="mota_menuhangngay" />
-                <ScalarProperty Name="mota_menutiecban" ColumnName="mota_menutiecban" />
-                <ScalarProperty Name="mota_menutiecbuffet" ColumnName="mota_menutiecbuffet" />
-                <ScalarProperty Name="banner_thucdonhangngay" ColumnName="banner_thucdonhangngay" />
-                <ScalarProperty Name="banner_tiecban" ColumnName="banner_tiecban" />
-                <ScalarProperty Name="banner_buffet" ColumnName="banner_buffet" />
-                <ScalarProperty Name="banner_vuonrau" ColumnName="banner_vuonrau" />
-                <ScalarProperty Name="banner_muasam" ColumnName="banner_muasam" />
-                <ScalarProperty Name="banner_hinhanh" ColumnName="banner_hinhanh" />
-                <ScalarProperty Name="banner_khac" ColumnName="banner_khac" />
-                <ScalarProperty Name="hinhanh_menuhangngay" ColumnName="hinhanh_menuhangngay" />
-                <ScalarProperty Name="hinhanh_menutiecban" ColumnName="hinhanh_menutiecban" />
-                <ScalarProperty Name="hinhanh_menutiecbuffet" ColumnName="hinhanh_menutiecbuffet" />
-                <ScalarProperty Name="mota1_gioithieu" ColumnName="mota1_gioithieu" />
-                <ScalarProperty Name="tieude_nhahang" ColumnName="tieude_nhahang" />
-                <ScalarProperty Name="mota_nhahang" ColumnName="mota_nhahang" />
-                <ScalarProperty Name="tieude_vuonrau" ColumnName="tieude_vuonrau" />
-                <ScalarProperty Name="mota_vuonrau" ColumnName="mota_vuonrau" />
-                <ScalarProperty Name="tieude3_gioithieu" ColumnName="tieude3_gioithieu" />
-                <ScalarProperty Name="mota3_gioithieu" ColumnName="mota3_gioithieu" />
-                <ScalarProperty Name="hinhanh3_gioithieu" ColumnName="hinhanh3_gioithieu" />
-                <ScalarProperty Name="hinhanh4_gioithieu" ColumnName="hinhanh4_gioithieu" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3762,6 +3713,55 @@
                 <ScalarProperty Name="id_muasam" ColumnName="id_muasam" />
                 <ScalarProperty Name="id_vuonrau" ColumnName="id_vuonrau" />
                 <ScalarProperty Name="id_thucdon" ColumnName="id_thucdon" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BoCucNoiDungTinhWebsite">
+            <EntityTypeMapping TypeName="BeanfamilyModel.BoCucNoiDungTinhWebsite">
+              <MappingFragment StoreEntitySet="BoCucNoiDungTinhWebsite">
+                <ScalarProperty Name="video_trangchu" ColumnName="video_trangchu" />
+                <ScalarProperty Name="hinhanh_menu_trangchu" ColumnName="hinhanh_menu_trangchu" />
+                <ScalarProperty Name="hinhanh4_gioithieu" ColumnName="hinhanh4_gioithieu" />
+                <ScalarProperty Name="hinhanh3_gioithieu" ColumnName="hinhanh3_gioithieu" />
+                <ScalarProperty Name="mota3_gioithieu" ColumnName="mota3_gioithieu" />
+                <ScalarProperty Name="tieude3_gioithieu" ColumnName="tieude3_gioithieu" />
+                <ScalarProperty Name="mota_vuonrau" ColumnName="mota_vuonrau" />
+                <ScalarProperty Name="tieude_vuonrau" ColumnName="tieude_vuonrau" />
+                <ScalarProperty Name="mota_nhahang" ColumnName="mota_nhahang" />
+                <ScalarProperty Name="tieude_nhahang" ColumnName="tieude_nhahang" />
+                <ScalarProperty Name="mota1_gioithieu" ColumnName="mota1_gioithieu" />
+                <ScalarProperty Name="hinhanh_menutiecbuffet" ColumnName="hinhanh_menutiecbuffet" />
+                <ScalarProperty Name="hinhanh_menutiecban" ColumnName="hinhanh_menutiecban" />
+                <ScalarProperty Name="hinhanh_menuhangngay" ColumnName="hinhanh_menuhangngay" />
+                <ScalarProperty Name="banner_khac" ColumnName="banner_khac" />
+                <ScalarProperty Name="banner_hinhanh" ColumnName="banner_hinhanh" />
+                <ScalarProperty Name="banner_muasam" ColumnName="banner_muasam" />
+                <ScalarProperty Name="banner_vuonrau" ColumnName="banner_vuonrau" />
+                <ScalarProperty Name="banner_buffet" ColumnName="banner_buffet" />
+                <ScalarProperty Name="banner_tiecban" ColumnName="banner_tiecban" />
+                <ScalarProperty Name="banner_thucdonhangngay" ColumnName="banner_thucdonhangngay" />
+                <ScalarProperty Name="mota_menutiecbuffet" ColumnName="mota_menutiecbuffet" />
+                <ScalarProperty Name="mota_menutiecban" ColumnName="mota_menutiecban" />
+                <ScalarProperty Name="mota_menuhangngay" ColumnName="mota_menuhangngay" />
+                <ScalarProperty Name="banner_nhahang" ColumnName="banner_nhahang" />
+                <ScalarProperty Name="hinhanh_mota_gioithieu" ColumnName="hinhanh_mota_gioithieu" />
+                <ScalarProperty Name="mota_gioithieu" ColumnName="mota_gioithieu" />
+                <ScalarProperty Name="tieude2_gioithieu" ColumnName="tieude2_gioithieu" />
+                <ScalarProperty Name="hinhanh2_gioithieu" ColumnName="hinhanh2_gioithieu" />
+                <ScalarProperty Name="hinhanh1_gioithieu" ColumnName="hinhanh1_gioithieu" />
+                <ScalarProperty Name="tieude_gioithieu" ColumnName="tieude_gioithieu" />
+                <ScalarProperty Name="banner_gioithieu" ColumnName="banner_gioithieu" />
+                <ScalarProperty Name="mota_sanphamnoibat_muasam" ColumnName="mota_sanphamnoibat_muasam" />
+                <ScalarProperty Name="mota_sanphamnoibat_vuonrau" ColumnName="mota_sanphamnoibat_vuonrau" />
+                <ScalarProperty Name="mota_sanphamnoibat_nhahang" ColumnName="mota_sanphamnoibat_nhahang" />
+                <ScalarProperty Name="mota_sanphammoi_muasam" ColumnName="mota_sanphammoi_muasam" />
+                <ScalarProperty Name="mota_sanphammoi_vuonrau" ColumnName="mota_sanphammoi_vuonrau" />
+                <ScalarProperty Name="mota_sanphammoi_nhahang" ColumnName="mota_sanphammoi_nhahang" />
+                <ScalarProperty Name="mota_thanhphanchinh_muasam" ColumnName="mota_thanhphanchinh_muasam" />
+                <ScalarProperty Name="mota_thanhphanchinh_vuonrau" ColumnName="mota_thanhphanchinh_vuonrau" />
+                <ScalarProperty Name="mota_thanhphanchinh_nhahang" ColumnName="mota_thanhphanchinh_nhahang" />
+                <ScalarProperty Name="banner_trangchu" ColumnName="banner_trangchu" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

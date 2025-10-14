@@ -211,7 +211,7 @@ namespace Beanfamily.Controllers
                 }
 
                 string strUrl = HttpContext.Request.Url.AbsoluteUri.Replace(HttpContext.Request.Url.PathAndQuery, "/");
-                string imgZalo = strUrl.Substring(0, strUrl.Length - 1) + Url.Content("~/ZaloAPI/img/bannerDDB.png");
+                string imgZalo = strUrl.Substring(0, strUrl.Length - 1) + Url.Content("~/API/Zalo/img/bannerDDB.png");
                 string urlZalo = strUrl.Substring(0, strUrl.Length - 1) + Url.Content("~/admin/dondatbanbuffet");
                 var zaloApi = new SendMessageOrder();
                 zaloApi.ThongBaoDonDatBan(ngaydathang.ToString("HH:mm dd/MM/yyyy"), madonhang, "BUFFET", soban.ToString(), hovaten, sodienthoai, giotochuc + " " + ngaytochuc, ghichu, imgZalo, urlZalo);

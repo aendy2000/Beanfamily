@@ -85,6 +85,12 @@
         linkchiduong = tts.linkchiduong;
     }
 
+    const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    Random random = new Random();
+    char[] result = new char[7];
+    for (int i = 0; i < 7; i++) { result[i] = chars[random.Next(chars.Length)]; }
+    string MaCk = new string(result) + DateTime.Now.ToString("ddMMyyHHmmsss");
+
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
 }
 
@@ -521,40 +527,40 @@
                                         <input checked id="ttknh" style=" height: 25px; width: 25px;" class="bo-rad-16 txt10 p-l-20 me-2 input-radio" type="radio" name="ptnh">
                                         <label for="ttknh" class="text-dark">Thanh toán khi nhận hàng</label><br>
                                     </div>
-                                    <div style="display: flex; flex-direction: row; align-items: center;" class="mb-3">
+                                    @*<div style="display: flex; flex-direction: row; align-items: center;" class="mb-3">
                                         <input id="ttmm" style=" height: 25px; width: 25px;" class="bo-rad-16 txt10 p-l-20 me-2 input-radio" type="radio" name="ptnh">
                                         <label for="ttmm" class="text-dark">Thanh toán qua MOMO</label><br>
-                                    </div>
-                                    <div hidden id="thanhtoanmomo" class="mb-3">
-                                        <label style="border: 2px solid #999; padding: 5px 10px;" class="mb-3">
-                                            <label class="text-dark mb-2 fw-bold">
-                                                Lưu ý: <span class="text-danger">
-                                                    Nhập đúng số tiền và nội dung chuyển khoản.
-                                                </span>
+                                    </div>*@
+                                    @*<div hidden id="thanhtoanmomo" class="mb-3">
+                                            <label style="border: 2px solid #999; padding: 5px 10px;" class="mb-3">
+                                                <label class="text-dark mb-2 fw-bold">
+                                                    Lưu ý: <span class="text-danger">
+                                                        Nhập đúng số tiền và nội dung chuyển khoản.
+                                                    </span>
+                                                </label>
+                                                <br />
+                                                <label class="text-dark mb-2 fw-bold">
+                                                    <span class="text-danger">
+                                                        * Sau khi CK hãy lưu lại [Ảnh chụp màn hình CK] và chọn Xác nhận đặt hàng.
+                                                    </span>
+                                                </label>
+                                                <br />
+                                                <label class="text-dark mb-2 fw-bold">
+                                                    <span class="text-danger">
+                                                        * Gửi Mã ĐH (Được cấp sau khi Xác nhận đặt hàng) + ảnh chụp màn hình CK đến [Zalo: @zalo.Replace("https://zalo.me/", "")] để xác nhận đơn hàng đã được thanh toán.
+                                                    </span>
+                                                </label>
                                             </label>
                                             <br />
-                                            <label class="text-dark mb-2 fw-bold">
-                                                <span class="text-danger">
-                                                    * Sau khi CK hãy lưu lại [Ảnh chụp màn hình CK] và chọn Xác nhận đặt hàng.
-                                                </span>
-                                            </label>
+                                            <label style="border: 2px solid #999; padding: 5px 10px;" class="w-100 text-dark mb-3 fw-bold">Số tiền: <span class="text-danger">@strTongTien</span></label>
                                             <br />
-                                            <label class="text-dark mb-2 fw-bold">
-                                                <span class="text-danger">
-                                                    * Gửi Mã ĐH (Được cấp sau khi Xác nhận đặt hàng) + ảnh chụp màn hình CK đến [Zalo: @zalo.Replace("https://zalo.me/", "")] để xác nhận đơn hàng đã được thanh toán.
-                                                </span>
-                                            </label>
-                                        </label>
-                                        <br />
-                                        <label style="border: 2px solid #999; padding: 5px 10px;" class="w-100 text-dark mb-3 fw-bold">Số tiền: <span class="text-danger">@strTongTien</span></label>
-                                        <br />
-                                        <label style="border: 2px solid #999; padding: 5px 10px;" class="w-100 text-dark mb-3 fw-bold">Nội dung CK: <span class="text-danger">[Số ĐT của bạn] - @DateTime.Now.ToString("ddMMyyHHmm")</span></label>
+                                            <label style="border: 2px solid #999; padding: 5px 10px;" class="w-100 text-dark mb-3 fw-bold">Nội dung CK: <span class="text-danger">[Số ĐT của bạn] - @DateTime.Now.ToString("ddMMyyHHmm")</span></label>
 
-                                        <img class="w-100 h-auto" src="~/Content/assets/images/qrpayment/momo.jpg" />
-                                    </div>
+                                            <img class="w-100 h-auto" src="~/Content/assets/images/qrpayment/momo.jpg" />
+                                        </div>*@
                                     <div style="display: flex; flex-direction: row; align-items: center;" class="mb-3">
                                         <input id="ttnh" style=" height: 25px; width: 25px;" class="bo-rad-16 txt10 p-l-20 me-2 input-radio" type="radio" name="ptnh">
-                                        <label for="ttnh" class="text-dark">Thanh toán qua Ngân hàng</label><br>
+                                        <label for="ttnh" class="text-dark">Chuyển khoản Ngân hàng</label><br>
                                     </div>
                                     <div hidden id="thanhtoannganhang" class="mb-3">
                                         <label style="border: 2px solid #999; padding: 5px 10px;" class="mb-3">
@@ -579,13 +585,16 @@
                                         <br />
                                         <label style="border: 2px solid #999; padding: 5px 10px;" class="w-100 text-dark mb-3 fw-bold">Số tiền: <span class="text-danger">@strTongTien</span></label>
                                         <br />
-                                        <label style="border: 2px solid #999; padding: 5px 10px;" class="w-100 text-dark mb-3 fw-bold">Nội dung CK: <span class="text-danger">[Số ĐT của bạn] - @DateTime.Now.ToString("ddMMyyHHmm")</span></label>
+                                        <label style="border: 2px solid #999; padding: 5px 10px;" class="w-100 text-dark mb-3 fw-bold">
+                                            Nội dung CK:
+                                            <span class="text-danger">@MaCk</span>
+                                        </label>
 
-                                        <img class="w-100 h-auto" src="~/Content/assets/images/qrpayment/BIDV.jpg" />
+                                        <img class="w-100 h-auto" src="@("https://img.vietqr.io/image/bidv-65010001925982-compact.png?amount=" + tongTien.ToString() + "&addInfo=" + MaCk + "&accountName=BO%20THI%20HONG%20LOI")" alt="Quét mã để thanh toán" />
                                     </div>
                                     <div style="width: 100%">
                                         <hr />
-                                        <a id="xacNhanDatHang" style="width: auto; padding: 10px; cursor: pointer" class="btn3 flex-c-m size1 txt11 trans-0-4">XÁC NHẬN ĐẶT HÀNG</a>
+                                        <a id="xacNhanDatHang" mack="@MaCk" style="width: auto; padding: 10px; cursor: pointer" class="btn3 flex-c-m size1 txt11 trans-0-4">XÁC NHẬN ĐẶT HÀNG</a>
                                     </div>
                                 </div>
                             </div>
@@ -704,37 +713,10 @@
                                         <input checked id="ttknh" style=" height: 25px; width: 25px;" class="bo-rad-16 txt10 p-l-20 me-2 input-radio" type="radio" name="ptnh">
                                         <label for="ttknh" class="text-dark">Thanh toán khi nhận hàng</label><br>
                                     </div>
-                                    <div style="display: flex; flex-direction: row; align-items: center;" class="mb-3">
+                                    @*<div style="display: flex; flex-direction: row; align-items: center;" class="mb-3">
                                         <input id="ttmm" style=" height: 25px; width: 25px;" class="bo-rad-16 txt10 p-l-20 me-2 input-radio" type="radio" name="ptnh">
                                         <label for="ttmm" class="text-dark">Thanh toán qua MOMO</label><br>
-                                    </div>
-                                    <div hidden id="thanhtoanmomo" class="mb-3">
-                                        <label style="border: 2px solid #999; padding: 5px 10px;" class="mb-3">
-                                            <label class="text-dark mb-2 fw-bold">
-                                                Lưu ý: <span class="text-danger">
-                                                    Nhập đúng số tiền và nội dung chuyển khoản.
-                                                </span>
-                                            </label>
-                                            <br />
-                                            <label class="text-dark mb-2 fw-bold">
-                                                <span class="text-danger">
-                                                    * Sau khi CK hãy lưu lại [Ảnh chụp màn hình CK] và chọn Xác nhận đặt hàng.
-                                                </span>
-                                            </label>
-                                            <br />
-                                            <label class="text-dark mb-2 fw-bold">
-                                                <span class="text-danger">
-                                                    * Gửi Mã ĐH (Được cấp sau khi Xác nhận đặt hàng) + ảnh chụp màn hình CK đến [Zalo: @zalo.Replace("https://zalo.me/", "")] để xác nhận đơn hàng đã được thanh toán.
-                                                </span>
-                                            </label>
-                                        </label>
-                                        <br />
-                                        <label style="border: 2px solid #999; padding: 5px 10px;" class="w-100 text-dark mb-3 fw-bold">Số tiền: <span class="text-danger">@strTongTien</span></label>
-                                        <br />
-                                        <label style="border: 2px solid #999; padding: 5px 10px;" class="w-100 text-dark mb-3 fw-bold">Nội dung CK: <span class="text-danger">[Số ĐT của bạn] - @DateTime.Now.ToString("ddMMyyHHmm")</span></label>
-
-                                        <img class="w-100 h-auto" src="~/Content/assets/images/qrpayment/momo.jpg" />
-                                    </div>
+                                    </div>*@
                                     <div style="display: flex; flex-direction: row; align-items: center;" class="mb-3">
                                         <input id="ttnh" style=" height: 25px; width: 25px;" class="bo-rad-16 txt10 p-l-20 me-2 input-radio" type="radio" name="ptnh">
                                         <label for="ttnh" class="text-dark">Thanh toán qua Ngân hàng</label><br>
@@ -762,13 +744,13 @@
                                         <br />
                                         <label style="border: 2px solid #999; padding: 5px 10px;" class="w-100 text-dark mb-3 fw-bold">Số tiền: <span class="text-danger">@strTongTien</span></label>
                                         <br />
-                                        <label style="border: 2px solid #999; padding: 5px 10px;" class="w-100 text-dark mb-3 fw-bold">Nội dung CK: <span class="text-danger">[Số ĐT của bạn] - @DateTime.Now.ToString("ddMMyyHHmm")</span></label>
+                                        <label style="border: 2px solid #999; padding: 5px 10px;" class="w-100 text-dark mb-3 fw-bold">Nội dung CK: <span class="text-danger">@MaCk</span></label>
 
-                                        <img class="w-100 h-auto" src="~/Content/assets/images/qrpayment/BIDV.jpg" />
+                                        <img class="w-100 h-auto" src="@("https://img.vietqr.io/image/bidv-65010001925982-compact.png?amount=" + tongTien.ToString() + "&addInfo=" + MaCk + "&accountName=BO%20THI%20HONG%20LOI")" alt="Quét mã để thanh toán" />
                                     </div>
                                     <div style="width: 100%">
                                         <hr />
-                                        <a id="xacNhanDatHang" style="width: auto; padding: 10px; cursor: pointer" class="btn3 flex-c-m size1 txt11 trans-0-4">XÁC NHẬN ĐẶT HÀNG</a>
+                                        <a id="xacNhanDatHang" mack="@MaCk" style="width: auto; padding: 10px; cursor: pointer" class="btn3 flex-c-m size1 txt11 trans-0-4">XÁC NHẬN ĐẶT HÀNG</a>
                                     </div>
                                 </div>
                             </div>
@@ -783,7 +765,7 @@
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js?v=1.0"></script>
-<link href="~/Content/assets/vendor/select2/select2TienHanhDatHang.min.css?v=22062025.1" rel="stylesheet" />
+<link href="~/Content/assets/vendor/select2/select2TienHanhDatHang.min.css?v=15102025.1" rel="stylesheet" />
 
 <script>
     var firstHeight = $('body').find('[id="firstHeight"]').height();

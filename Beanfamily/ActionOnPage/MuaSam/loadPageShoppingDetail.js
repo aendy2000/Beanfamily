@@ -11,11 +11,11 @@
     $('body').find('.slider-for').slick({
         slidesToShow: 1,
         slidesToScroll: 1,
-        dots: true,
+        dots: false,
         fade: true,
         infinite: true,
         autoplay: true,
-        autoplaySpeed: 2500,
+        autoplaySpeed: 2000,
         speed: 300,
         arrows: true,
         asNavFor: '.slider-nav',

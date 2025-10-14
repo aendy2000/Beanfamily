@@ -16,8 +16,6 @@ namespace Beanfamily.Models
     {
         public int id { get; set; }
         public string banner_trangchu { get; set; }
-        public string mota_trangchu { get; set; }
-        public string hinhanh_mota_trangchu { get; set; }
         public string mota_thanhphanchinh_nhahang { get; set; }
         public string mota_thanhphanchinh_vuonrau { get; set; }
         public string mota_thanhphanchinh_muasam { get; set; }
@@ -57,5 +55,7 @@ namespace Beanfamily.Models
         public string mota3_gioithieu { get; set; }
         public string hinhanh3_gioithieu { get; set; }
         public string hinhanh4_gioithieu { get; set; }
+        public string hinhanh_menu_trangchu { get; set; }
+        public string video_trangchu { get; set; }
     }
 }

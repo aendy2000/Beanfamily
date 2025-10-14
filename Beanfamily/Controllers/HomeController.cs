@@ -19,10 +19,6 @@ namespace Beanfamily.Controllers
         BeanfamilyEntities model = new BeanfamilyEntities();
         public ActionResult Index()
         {
-            Session["sanphammoi-nhahang"] = model.SanPhamThucDonHangNgay.OrderByDescending(o => o.id).Take(2).ToList();
-            Session["sanphammoi-vuonrau"] = model.SanPhamRauNhaTrong.OrderByDescending(o => o.id).Take(2).ToList();
-            Session["sanphammoi-muasam"] = model.SanPhamMuaSam.OrderByDescending(o => o.id).Take(2).ToList();
-
             Session["sanphamnoibat-data"] = model.TopSanPhamNoiBat.First();
 
             return View("index");

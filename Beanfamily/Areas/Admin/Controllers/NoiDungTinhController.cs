@@ -43,7 +43,7 @@ namespace Beanfamily.Areas.Admin.Controllers
             Session["active-tlc-ttw"] = "collapsed # # ";
             Session["active-tlc-lkmxh"] = "collapsed # # ";
             Session["active-ndt"] = " # # ";
-            Session["active-cs"] = "collapsed # # ";Session["active-spnb"] = "collapsed # # ";
+            Session["active-cs"] = "collapsed # # "; Session["active-spnb"] = "collapsed # # ";
 
             if (Session["ndt"] == null)
                 return RedirectToAction("index", "dashboard");
@@ -69,7 +69,7 @@ namespace Beanfamily.Areas.Admin.Controllers
 
         [HttpPost]
         public ActionResult SaveTrangChu(List<HttpPostedFileBase> banner_trangchu, string banner_trangchuCu,
-            string mota_trangchu, HttpPostedFileBase hinhanh_mota_trangchu, string hinhanh_mota_trangchuCu,
+            List<HttpPostedFileBase> menu_trangchu, string menu_trangchuCu, string video_trangchu,
             string mota_thanhphanchinh_nhahang, string mota_thanhphanchinh_vuonrau, string mota_thanhphanchinh_muasam,
             string mota_sanphammoi_nhahang, string mota_sanphammoi_vuonrau, string mota_sanphammoi_muasam,
             string mota_sanphamnoibat_nhahang, string mota_sanphamnoibat_vuonrau, string mota_sanphamnoibat_muasam)
@@ -85,6 +85,7 @@ namespace Beanfamily.Areas.Admin.Controllers
                 }
 
                 var ndt = model.BoCucNoiDungTinhWebsite.First();
+
                 string path = "";
                 string pathDirectory = "";
 
@@ -117,33 +118,33 @@ namespace Beanfamily.Areas.Admin.Controllers
                 path = "";
                 pathDirectory = "";
 
-                string strList_hinhanh_mota_trangchu = "";
-                if (hinhanh_mota_trangchu != null)
+                string strList_menu_trangchu = "";
+                if (menu_trangchu != null)
                 {
-                    var item = hinhanh_mota_trangchu;
-
-                    if (item != null)
+                    foreach (var item in menu_trangchu)
                     {
-                        if (item.ContentLength > 0)
+                        if (item != null)
                         {
-                            pathDirectory = Path.Combine(Server.MapPath("~/Content/AdminAreas/images/NoiDungTinh/TrangChu/hinhanh_mota_trangchu"));
-                            if (!Directory.Exists(pathDirectory))
+                            if (item.ContentLength > 0)
                             {
-                                Directory.CreateDirectory(pathDirectory);
+                                pathDirectory = Path.Combine(Server.MapPath("~/Content/AdminAreas/images/NoiDungTinh/TrangChu/Menu"));
+                                if (!Directory.Exists(pathDirectory))
+                                {
+                                    Directory.CreateDirectory(pathDirectory);
+                                }
+                                path = Path.Combine(Server.MapPath("~/Content/AdminAreas/images/NoiDungTinh/TrangChu/Menu"), item.FileName);
+                                item.SaveAs(path);
+                                strList_menu_trangchu += "~/Content/AdminAreas/images/NoiDungTinh/TrangChu/Menu/" + item.FileName + "#";
                             }
-                            path = Path.Combine(Server.MapPath("~/Content/AdminAreas/images/NoiDungTinh/TrangChu/hinhanh_mota_trangchu"), item.FileName);
-                            item.SaveAs(path);
-                            strList_hinhanh_mota_trangchu += "~/Content/AdminAreas/images/NoiDungTinh/TrangChu/hinhanh_mota_trangchu/" + item.FileName + "#";
                         }
                     }
-
                 }
-                if (!string.IsNullOrEmpty(strList_hinhanh_mota_trangchu))
-                    ndt.hinhanh_mota_trangchu = strList_hinhanh_mota_trangchu.Substring(0, strList_hinhanh_mota_trangchu.Length - 1);
+                if (!string.IsNullOrEmpty(strList_menu_trangchu))
+                    ndt.hinhanh_menu_trangchu = strList_menu_trangchu.Substring(0, strList_menu_trangchu.Length - 1);
                 else
-                    ndt.hinhanh_mota_trangchu = hinhanh_mota_trangchuCu;
+                    ndt.hinhanh_menu_trangchu = menu_trangchuCu;
 
-                ndt.mota_trangchu = mota_trangchu;
+                ndt.video_trangchu = video_trangchu;
                 ndt.mota_thanhphanchinh_nhahang = mota_thanhphanchinh_nhahang;
                 ndt.mota_thanhphanchinh_vuonrau = mota_thanhphanchinh_vuonrau;
                 ndt.mota_thanhphanchinh_muasam = mota_thanhphanchinh_muasam;

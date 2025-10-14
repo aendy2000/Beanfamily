@@ -1,57 +1,92 @@
 ﻿$(document).ready(function () {
     //Banner trang chủ
     document.getElementById('banner_trangchu').addEventListener('change', suareadImage, false);
-    $(".preview-images-zonebanner_trangchu").sortable();
+    $(".preview-images-zonebanner_trangchu").sortable({
+        update: function (event, ui) {
+            // Lấy danh sách file gốc từ input
+            var originalFiles = Array.from($("#banner_trangchu")[0].files);
+            // Tạo đối tượng DataTransfer để xây dựng lại FileList
+            var dataTransfer = new DataTransfer();
+
+            // Lặp qua các div preview theo thứ tự mới trên giao diện
+            $('.preview-images-zonebanner_trangchu .preview-image').each(function () {
+                // Lấy tên file gốc đã lưu
+                var filename = $(this).data('filename');
+                // Tìm file gốc tương ứng
+                var originalFile = originalFiles.find(f => f.name === filename);
+                // Nếu tìm thấy, thêm vào danh sách mới theo đúng thứ tự
+                if (originalFile) {
+                    dataTransfer.items.add(originalFile);
+                }
+            });
+
+            // Gán FileList mới đã được sắp xếp lại cho input
+            $("#banner_trangchu")[0].files = dataTransfer.files;
+        }
+    }).disableSelection();
     $('body').on('click', '[id^="suaxoa-hinhanhsp-banner_trangchu-"]', function (e) {
         let fileName = $(this).attr('name');
+
+        // Xóa ảnh cũ đã có trên server
         if (fileName.indexOf("daylahinhcu") != -1) {
             var filenames = fileName.replace('daylahinhcu-', '');
-            $('[id="suaidHinhAnh-hinhcu-banner_trangchu-' + filenames + '"]').replaceWith('');
+            $('[id="suaidHinhAnh-hinhcu-banner_trangchu-' + filenames + '"]').remove();
             $('[id="url-suaidHinhAnh-hinhcu-banner_trangchu-' + filenames + '"]').val('');
         }
+        // Xóa ảnh mới upload
         else {
-            var currentFile = $("#banner_trangchu")[0].files;
+            var currentFiles = $("#banner_trangchu")[0].files;
             var fileBuffer = new DataTransfer();
 
-            for (let i = 0; i < currentFile.length; i++) {
-                var fileNameArr = currentFile[i].name.replace(/\./g, '').replace(/ /g, '');
-                var fileArr = currentFile[i];
+            for (let i = 0; i < currentFiles.length; i++) {
+                var fileArr = currentFiles[i];
+                var fileNameArr = fileArr.name.replace(/\./g, '').replace(/ /g, '');
 
                 if (fileName !== fileNameArr) {
                     fileBuffer.items.add(fileArr);
                 }
             }
+            // Cập nhật lại input sau khi xóa
             $("#banner_trangchu")[0].files = fileBuffer.files;
+            // Vẽ lại preview với các ảnh còn lại
             suareadImage();
         }
     });
     function suareadImage() {
         if (window.File && window.FileList && window.FileReader) {
-            var files = $('#banner_trangchu')[0].files; //FileList object
+            var files = $('#banner_trangchu')[0].files;
             var output = $(".preview-images-zonebanner_trangchu");
-            output.html("");
+            output.html(""); // Luôn xóa preview cũ trước khi vẽ lại
 
-            var arrFilesCount = [];
-            for (var i = 0; i < files.length; i++) {
-                arrFilesCount.push(i);
-                var file = files[i];
-                if (!file.type.match('image')) continue;
+            if (!files || files.length === 0) return;
+
+            Array.from(files).forEach(function (file) {
+                if (!file.type.match('image')) return;
 
                 var picReader = new FileReader();
-                picReader.fileNames = file.name;
-                picReader.addEventListener('load', function (event) {
+
+                picReader.onload = function (event) {
                     var picFile = event.target;
-                    var fileName = event.target.fileNames;
-                    var html = '<div id="suaidHinhAnh-banner_trangchu-' + fileName.replace(/\./g, '').replace(/ /g, '') + '" class="preview-image preview-show-' + fileName.replace(/\./g, '').replace(/ /g, '') + '">' +
-                        '<div id="suaxoa-hinhanhsp-banner_trangchu-' + fileName.replace(/\./g, '').replace(/ /g, '') + '" class="image-cancel" name="' + fileName.replace(/\./g, '').replace(/ /g, '') + '"><i class="bi bi-x-circle-fill text-dark"></i></div>' +
-                        '<div class="image-zone"><img id="suapro-img-banner_trangchu-' + fileName.replace(/\./g, '').replace(/ /g, '') + '" src="' + picFile.result + '"></div>' +
-                        '</div>';
 
+                    // Tạo tên file an toàn để dùng trong ID và name
+                    var safeFileName = file.name.replace(/\./g, '').replace(/ /g, '');
+
+                    // Dùng `data-filename` để lưu tên file gốc, giúp việc sắp xếp dễ dàng
+                    var html = `
+                    <div class="preview-image" data-filename="${file.name}">
+                        <div id="suaxoa-hinhanhsp-banner_trangchu-${safeFileName}" class="image-cancel" name="${safeFileName}">
+                            <i class="bi bi-x-circle-fill text-dark"></i>
+                        </div>
+                        <div class="image-zone">
+                            <img src="${picFile.result}">
+                        </div>
+                    </div>`;
                     output.append(html);
-                });
+                };
                 picReader.readAsDataURL(file);
-            }
+            });
 
+            // Xử lý ảnh cũ (logic của bạn)
             $('[id^="url-suaidHinhAnh-hinhcu-banner_trangchu-"]').each(function () {
                 $(this).val('');
             });
@@ -60,68 +95,108 @@
         }
     }
 
+    //ảnh Menu trên trang chủ
+    document.getElementById('menu_trangchu').addEventListener('change', suareadImageMenu, false);
+    $(".preview-images-zonemenu_trangchu").sortable({
+        // Sự kiện 'update' sẽ được gọi sau khi người dùng kéo thả và thứ tự đã thay đổi
+        update: function (event, ui) {
+            // 1. Lấy danh sách file gốc từ input
+            var originalFiles = Array.from($("#menu_trangchu")[0].files);
 
-    //Hình ảnh giới thiệu trang chủ
-    document.getElementById('hinhanh_mota_trangchu').addEventListener('change', suareadImagehinhanh_mota_trangchu, false);
-    $(".preview-images-zonehinhanh_mota_trangchu").sortable();
-    $('body').on('click', '[id^="suaxoa-hinhanhsp-hinhanh_mota_trangchu-"]', function (e) {
+            // 2. Tạo một đối tượng DataTransfer để xây dựng lại FileList
+            var dataTransfer = new DataTransfer();
+
+            // 3. Lặp qua các div preview THEO THỨ TỰ MỚI trên giao diện
+            $('.preview-images-zonemenu_trangchu .preview-image').each(function () {
+                var filename = $(this).data('filename');
+
+                // 4. Tìm file gốc tương ứng trong danh sách ban đầu
+                var originalFile = originalFiles.find(f => f.name === filename);
+
+                // 5. Thêm file đã tìm thấy vào DataTransfer theo đúng thứ tự mới
+                if (originalFile) {
+                    dataTransfer.items.add(originalFile);
+                }
+            });
+
+            // 6. Gán FileList mới đã được sắp xếp lại cho input
+            $("#menu_trangchu")[0].files = dataTransfer.files;
+        }
+    }).disableSelection();
+    $('body').on('click', '[id^="suaxoa-hinhanhsp-menu_trangchu-"]', function (e) {
+        // ... code xóa của bạn vẫn giữ nguyên ...
+        // Lưu ý: Sau khi xóa, hàm suareadImageMenu() của bạn được gọi lại,
+        // nó sẽ tự động vẽ lại các preview đúng cách.
         let fileName = $(this).attr('name');
         if (fileName.indexOf("daylahinhcu") != -1) {
             var filenames = fileName.replace('daylahinhcu-', '');
-            $('[id="suaidHinhAnh-hinhcu-hinhanh_mota_trangchu-' + filenames + '"]').replaceWith('');
-            $('[id="url-suaidHinhAnh-hinhcu-hinhanh_mota_trangchu-' + filenames + '"]').val('');
-        }
-        else {
-            var currentFile = $("#banner_trangchu")[0].files;
+            $('[id="suaidHinhAnh-hinhcu-menu_trangchu-' + filenames + '"]').remove();
+            $('[id="url-suaidHinhAnh-hinhcu-menu_trangchu-' + filenames + '"]').val('');
+        } else {
+            var currentFiles = $("#menu_trangchu")[0].files;
             var fileBuffer = new DataTransfer();
 
-            for (let i = 0; i < currentFile.length; i++) {
-                var fileNameArr = currentFile[i].name.replace(/\./g, '').replace(/ /g, '');
-                var fileArr = currentFile[i];
+            for (let i = 0; i < currentFiles.length; i++) {
+                var fileArr = currentFiles[i];
+                var fileNameArr = fileArr.name.replace(/\./g, '').replace(/ /g, '');
 
                 if (fileName !== fileNameArr) {
                     fileBuffer.items.add(fileArr);
                 }
             }
-            $("#hinhanh_mota_trangchu")[0].files = fileBuffer.files;
-            suareadImagehinhanh_mota_trangchu();
+            $("#menu_trangchu")[0].files = fileBuffer.files;
+            suareadImageMenu(); // Vẽ lại preview sau khi xóa
         }
     });
-    function suareadImagehinhanh_mota_trangchu() {
+    function suareadImageMenu() {
         if (window.File && window.FileList && window.FileReader) {
-            var files = $('#hinhanh_mota_trangchu')[0].files; //FileList object
-            var output = $(".preview-images-zonehinhanh_mota_trangchu");
-            output.html("");
+            var files = $('#menu_trangchu')[0].files;
+            var output = $(".preview-images-zonemenu_trangchu");
+            output.html(""); // Xóa các ảnh preview cũ
 
-            var arrFilesCount = [];
-            for (var i = 0; i < files.length; i++) {
-                arrFilesCount.push(i);
-                var file = files[i];
-                if (!file.type.match('image')) continue;
+            // Chuyển FileList thành Array để dễ xử lý
+            var fileArray = Array.from(files);
+
+            fileArray.forEach(function (file) {
+                if (!file.type.match('image')) return;
 
                 var picReader = new FileReader();
-                picReader.fileNames = file.name;
-                picReader.addEventListener('load', function (event) {
+
+                picReader.onload = function (event) {
                     var picFile = event.target;
-                    var fileName = event.target.fileNames;
-                    var html = '<div id="suaidHinhAnh-hinhanh_mota_trangchu-' + fileName.replace(/\./g, '').replace(/ /g, '') + '" class="preview-image preview-show-' + fileName.replace(/\./g, '').replace(/ /g, '') + '">' +
-                        '<div id="suaxoa-hinhanhsp-hinhanh_mota_trangchu-' + fileName.replace(/\./g, '').replace(/ /g, '') + '" class="image-cancel" name="' + fileName.replace(/\./g, '').replace(/ /g, '') + '"><i class="bi bi-x-circle-fill text-dark"></i></div>' +
-                        '<div class="image-zone"><img id="suapro-img-hinhanh_mota_trangchu-' + fileName.replace(/\./g, '').replace(/ /g, '') + '" src="' + picFile.result + '"></div>' +
-                        '</div>';
+
+                    // THÊM data-filename để lưu tên file gốc
+                    var html = `
+                    <div class="preview-image" data-filename="${file.name}">
+                        <div class="image-cancel" name="${file.name.replace(/\./g, '').replace(/ /g, '')}">
+                            <i class="bi bi-x-circle-fill text-dark"></i>
+                        </div>
+                        <div class="image-zone">
+                            <img src="${picFile.result}">
+                        </div>
+                    </div>`;
 
                     output.append(html);
-                });
-                picReader.readAsDataURL(file);
-            }
+                };
 
-            $('[id^="url-suaidHinhAnh-hinhcu-hinhanh_mota_trangchu-"]').each(function () {
-                $(this).val('');
+                picReader.readAsDataURL(file);
             });
+
         } else {
             console.log('Browser not support');
         }
     }
 
+    $('#video_trangchu').on('input', function () {
+        let currentValue = $(this).val();
+
+        // Nếu giá trị hiện tại có chứa ký tự '#' (do paste)
+        if (currentValue.includes('#')) {
+            // Thay thế tất cả các ký tự '#' bằng chuỗi rỗng
+            let sanitizedValue = currentValue.replace(/#/g, '');
+            $(this).val(sanitizedValue);
+        }
+    });
 
     $('body').on('click', '[id="btnLuuThongTinTrangChu"]', function () {
         var btn = $(this);
@@ -134,17 +209,26 @@
             var file = $("#banner_trangchu")[0].files[i];
             formData.append('banner_trangchu', file);
         }
-
         var banner_trangchuCu = "";
         $('[id^="url-suaidHinhAnh-hinhcu-banner_trangchu-"]').each(function () { if ($(this).val().length > 0) banner_trangchuCu += $(this).val() + "#"; });
         formData.append('banner_trangchuCu', banner_trangchuCu.substring(0, banner_trangchuCu.length - 1));
 
-        formData.append('mota_trangchu', $('#mota_trangchu').val().trim());
-        formData.append('hinhanh_mota_trangchu', $("#hinhanh_mota_trangchu")[0].files[0]);
+        for (var i = 0; i < $("#menu_trangchu")[0].files.length; i++) {
+            var file = $("#menu_trangchu")[0].files[i];
+            formData.append('menu_trangchu', file);
+        }
+        var menu_trangchuCu = "";
+        $('[id^="url-suaidHinhAnh-hinhcu-menu_trangchu-"]').each(function () { if ($(this).val().length > 0) menu_trangchuCu += $(this).val() + "#"; });
+        formData.append('menu_trangchuCu', menu_trangchuCu.substring(0, menu_trangchuCu.length - 1));
 
-        var hinhanh_mota_trangchuCu = "";
-        $('[id^="url-suaidHinhAnh-hinhcu-hinhanh_mota_trangchu-"]').each(function () { if ($(this).val().length > 0) hinhanh_mota_trangchuCu += $(this).val() + "#"; });
-        formData.append('hinhanh_mota_trangchuCu', hinhanh_mota_trangchuCu.substring(0, hinhanh_mota_trangchuCu.length - 1));
+
+        var inp_video_trangchu = $('#video_trangchu').val();
+        let video_trangchu = inp_video_trangchu
+            .split('\n')                  // Tách thành mảng các dòng
+            .filter(line => line.trim() !== '') // Lọc bỏ các dòng rỗng
+            .join('#'); 
+
+        formData.append('video_trangchu', video_trangchu);
 
         formData.append('mota_thanhphanchinh_nhahang', $('#mota_thanhphanchinh_nhahang').val().trim());
         formData.append('mota_thanhphanchinh_vuonrau', $('#mota_thanhphanchinh_vuonrau').val().trim());
@@ -193,6 +277,4 @@
             }
         });
     });
-
-
 });
