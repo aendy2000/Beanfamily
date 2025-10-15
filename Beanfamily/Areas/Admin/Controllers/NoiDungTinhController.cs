@@ -43,7 +43,7 @@ namespace Beanfamily.Areas.Admin.Controllers
             Session["active-tlc-ttw"] = "collapsed # # ";
             Session["active-tlc-lkmxh"] = "collapsed # # ";
             Session["active-ndt"] = " # # ";
-            Session["active-cs"] = "collapsed # # "; Session["active-spnb"] = "collapsed # # ";
+            Session["active-cs"] = "collapsed # # "; Session["active-spnb"] = "collapsed # # "; Session["active-ttsk"] = "collapsed # # ";
 
             if (Session["ndt"] == null)
                 return RedirectToAction("index", "dashboard");
@@ -69,7 +69,9 @@ namespace Beanfamily.Areas.Admin.Controllers
 
         [HttpPost]
         public ActionResult SaveTrangChu(List<HttpPostedFileBase> banner_trangchu, string banner_trangchuCu,
-            List<HttpPostedFileBase> menu_trangchu, string menu_trangchuCu, string video_trangchu,
+            List<HttpPostedFileBase> menu_trangchu, string menu_trangchuCu,
+            string tieude_menu_trangchu, string mota_menu_trangchu,
+            string video_trangchu, string mota_video_trangchu,
             string mota_thanhphanchinh_nhahang, string mota_thanhphanchinh_vuonrau, string mota_thanhphanchinh_muasam,
             string mota_sanphammoi_nhahang, string mota_sanphammoi_vuonrau, string mota_sanphammoi_muasam,
             string mota_sanphamnoibat_nhahang, string mota_sanphamnoibat_vuonrau, string mota_sanphamnoibat_muasam)
@@ -144,7 +146,10 @@ namespace Beanfamily.Areas.Admin.Controllers
                 else
                     ndt.hinhanh_menu_trangchu = menu_trangchuCu;
 
+                ndt.tieude_menu_trangchu = tieude_menu_trangchu;
+                ndt.mota_menu_trangchu = mota_menu_trangchu;
                 ndt.video_trangchu = video_trangchu;
+                ndt.mota_video_trangchu = mota_video_trangchu;
                 ndt.mota_thanhphanchinh_nhahang = mota_thanhphanchinh_nhahang;
                 ndt.mota_thanhphanchinh_vuonrau = mota_thanhphanchinh_vuonrau;
                 ndt.mota_thanhphanchinh_muasam = mota_thanhphanchinh_muasam;

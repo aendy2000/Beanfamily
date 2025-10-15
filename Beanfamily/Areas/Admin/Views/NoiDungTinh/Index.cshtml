@@ -2,8 +2,13 @@
 @{
     string banner_trangchu = "";
 
+    string tieude_menu_trangchu = "";
+    string mota_menu_trangchu = "";
+
+
     string menu_trangchu = "";
     string video_trangchu = "";
+    string mota_video_trangchu = "";
 
     string mota_thanhphanchinh_nhahang = "";
     string mota_thanhphanchinh_vuonrau = "";
@@ -54,8 +59,12 @@
         var dndt = Model.First();
         banner_trangchu = dndt.banner_trangchu;
 
+        tieude_menu_trangchu = dndt.tieude_menu_trangchu;
+        mota_menu_trangchu = dndt.mota_menu_trangchu;
+
         menu_trangchu = dndt.hinhanh_menu_trangchu;
         video_trangchu = dndt.video_trangchu;
+        mota_video_trangchu = dndt.mota_video_trangchu;
 
         mota_thanhphanchinh_nhahang = dndt.mota_thanhphanchinh_nhahang;
         mota_thanhphanchinh_vuonrau = dndt.mota_thanhphanchinh_vuonrau;
@@ -166,6 +175,27 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
+                                    <h5>Lời nói đầu trang</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row ms-2 me-2 mb-4 mt-4">
+                                        <div class="col-12 mb-2">
+                                            <label for="tieude_menu_trangchu" class="col-12 col-form-label">Tiêu đề:</label>
+                                            <input value="@tieude_menu_trangchu" id="tieude_menu_trangchu" type="text" placeholder="Nhập nội dung tiêu đề" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control" />
+                                        </div>
+                                        <div class="col-12 mb-4">
+                                            <label for="mota_menu_trangchu" class="col-12 col-form-label">Nội dung mô tả:</label>
+                                            <textarea id="mota_menu_trangchu" rows="6" type="text" placeholder="Nhập nội dung mô tả" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control">@mota_menu_trangchu</textarea>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
                                     <h5>Hình ảnh Menu</h5>
                                 </div>
                                 <div class="card-body">
@@ -209,6 +239,22 @@
                                                 <span class="small"><i>(mỗi video sẽ là 1 dòng, có thể nhấn phím Enter để xuống dòng, không chấp nhận ký tự #)</i></span>
                                             </label>
                                             <textarea id="video_trangchu" rows="6" type="text" placeholder="Dán link video youtube, mỗi video là 1 dòng" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control">@(string.IsNullOrEmpty(video_trangchu) ? "" : video_trangchu.Replace("#", "\n"))</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Giới thiệu Video Bean</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row ms-2 me-2 mb-4 mt-4">
+                                        <div class="col-12 mb-4">
+                                            <label for="mota_video_trangchu" class="col-12 col-form-label">Nội dung mô tả:</label>
+                                            <textarea id="mota_video_trangchu" rows="6" type="text" placeholder="Nhập nội dung mô tả" spellcheck="false" style="border: 2px solid var(--bs-primary) !important" class="form-control">@mota_video_trangchu</textarea>
                                         </div>
                                     </div>
                                 </div>

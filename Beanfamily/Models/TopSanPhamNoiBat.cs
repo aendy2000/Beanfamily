@@ -15,18 +15,6 @@ namespace Beanfamily.Models
     public partial class TopSanPhamNoiBat
     {
         public int id { get; set; }
-        public int id_thucdon { get; set; }
-        public int id_vuonrau { get; set; }
-        public int id_muasam { get; set; }
-        public int id_thucdon_2 { get; set; }
-        public int id_vuonrau_2 { get; set; }
-        public int id_muasam_2 { get; set; }
-    
-        public virtual SanPhamMuaSam SanPhamMuaSam { get; set; }
-        public virtual SanPhamRauNhaTrong SanPhamRauNhaTrong { get; set; }
-        public virtual SanPhamThucDonHangNgay SanPhamThucDonHangNgay { get; set; }
-        public virtual SanPhamMuaSam SanPhamMuaSam1 { get; set; }
-        public virtual SanPhamRauNhaTrong SanPhamRauNhaTrong1 { get; set; }
-        public virtual SanPhamThucDonHangNgay SanPhamThucDonHangNgay1 { get; set; }
+        public string list_id_thucdon { get; set; }
     }
 }

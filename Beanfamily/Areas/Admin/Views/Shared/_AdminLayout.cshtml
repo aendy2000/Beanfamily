@@ -541,6 +541,16 @@
                 </li>
             }
 
+            @if (Session["ttsk"] != null)
+            {
+                <li class="nav-item">
+                    <a class="nav-link @Session["active-ttsk"].ToString().Split('#')[0]" href="@Url.Action("index", "sukien")">
+                        <i class="bi bi-newspaper"></i>
+                        <span>Tin Tức & Sự Kiện</span>
+                    </a>
+                </li>
+            }
+
             @if (Session["tkb-pq"] != null || Session["tkb-tk"] != null)
             {
                 <li class="nav-item">

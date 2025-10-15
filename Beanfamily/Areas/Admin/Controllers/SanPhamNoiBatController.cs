@@ -42,6 +42,7 @@ namespace Beanfamily.Areas.Admin.Controllers
             Session["active-ndt"] = "collapsed # # ";
             Session["active-cs"] = "collapsed # # ";
             Session["active-spnb"] = " # # ";
+            Session["active-ttsk"] = "collapsed # # ";
 
             if (Session["spnb"] == null)
                 return RedirectToAction("index", "dashboard");
@@ -67,29 +68,37 @@ namespace Beanfamily.Areas.Admin.Controllers
 
         public ActionResult OpenSua()
         {
-            Session["spnb-thucdon"] = model.SanPhamThucDonHangNgay.Where(w => w.hienthi == true && w.daxoa == false).ToList();
-            Session["spnb-vuonrau"] = model.SanPhamRauNhaTrong.Where(w => w.hienthi == true && w.daxoa == false).ToList();
-            Session["spnb-muasam"] = model.SanPhamMuaSam.Where(w => w.hienthi == true && w.daxoa == false).ToList();
-
             return PartialView("_OpenSua", model.TopSanPhamNoiBat.First());
         }
+
         [HttpPost]
-        public ActionResult LuuChinhSua(int thucdon, int vuonrau, int muasam, int thucdon2, int vuonrau2, int muasam2)
+        public ActionResult LuuChinhSua(string idthucdon)
         {
             try
             {
-                var spnb = model.TopSanPhamNoiBat.First();
+                if (string.IsNullOrEmpty(idthucdon))
+                {
+                    var spms = model.SanPhamThucDonHangNgay.Where(w => w.hienthi == true && w.daxoa == false).OrderByDescending(o => o.luotxem).Take(10).ToList();
 
-                spnb.id_thucdon = thucdon;
-                spnb.id_vuonrau = vuonrau;
-                spnb.id_muasam = muasam;
+                    string lstIdNew = "";
+                    foreach (var item in spms)
+                        lstIdNew += item.id + "#";
 
-                spnb.id_thucdon_2 = thucdon2;
-                spnb.id_vuonrau_2 = vuonrau2;
-                spnb.id_muasam_2 = muasam2;
+                    var spnb = model.TopSanPhamNoiBat.First();
+                    spnb.list_id_thucdon = !string.IsNullOrEmpty(lstIdNew) ? "" : lstIdNew.Remove(lstIdNew.Length - 1);
+                    model.Entry(spnb).State = System.Data.Entity.EntityState.Modified;
+                    model.SaveChanges();
 
-                model.Entry(spnb).State = System.Data.Entity.EntityState.Modified;
-                model.SaveChanges();
+                }
+                else
+                {
+                    var spnb = model.TopSanPhamNoiBat.First();
+
+                    spnb.list_id_thucdon = idthucdon;
+
+                    model.Entry(spnb).State = System.Data.Entity.EntityState.Modified;
+                    model.SaveChanges();
+                }
 
                 return Content("SUCCESS");
             }

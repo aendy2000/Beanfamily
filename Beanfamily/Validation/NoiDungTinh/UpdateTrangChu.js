@@ -221,6 +221,8 @@
         $('[id^="url-suaidHinhAnh-hinhcu-menu_trangchu-"]').each(function () { if ($(this).val().length > 0) menu_trangchuCu += $(this).val() + "#"; });
         formData.append('menu_trangchuCu', menu_trangchuCu.substring(0, menu_trangchuCu.length - 1));
 
+        formData.append('tieude_menu_trangchu', $('#tieude_menu_trangchu').val().trim());
+        formData.append('mota_menu_trangchu', $('#mota_menu_trangchu').val().trim());
 
         var inp_video_trangchu = $('#video_trangchu').val();
         let video_trangchu = inp_video_trangchu
@@ -229,6 +231,7 @@
             .join('#'); 
 
         formData.append('video_trangchu', video_trangchu);
+        formData.append('mota_video_trangchu', $('#mota_video_trangchu').val().trim());
 
         formData.append('mota_thanhphanchinh_nhahang', $('#mota_thanhphanchinh_nhahang').val().trim());
         formData.append('mota_thanhphanchinh_vuonrau', $('#mota_thanhphanchinh_vuonrau').val().trim());

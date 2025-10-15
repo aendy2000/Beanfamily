@@ -2,7 +2,7 @@
 @{
     BeanfamilyEntities models = new BeanfamilyEntities();
 
-    var sanphamnoibat = Session["sanphamnoibat-data"] as TopSanPhamNoiBat;
+    var spnoibat = (Session["sanphamnoibat-data"] as TopSanPhamNoiBat).list_id_thucdon.ToString().Split('#').ToList();
 
     string phone = "";
     string mail = "";
@@ -19,15 +19,18 @@
         mail = tts.email;
         giomocua = tts.giomocua;
         ngaymocua = tts.ngaymocua;
-        diachi = tts.diachi; 
+        diachi = tts.diachi;
         toado = tts.toadogooglemapiframe;
     }
 
 
     string banner_trangchu = "";
+    string tieude_menu_trangchu = "";
+    string mota_menu_trangchu = "";
 
     string menu_trangchu = "";
     string video_trangchu = "";
+    string mota_video_trangchu = "";
 
     string mota_thanhphanchinh_nhahang = "";
     string mota_thanhphanchinh_vuonrau = "";
@@ -42,10 +45,14 @@
     if (ndt.Count > 0)
     {
         var dndt = ndt.First();
+
         banner_trangchu = dndt.banner_trangchu;
+        tieude_menu_trangchu = dndt.tieude_menu_trangchu;
+        mota_menu_trangchu = dndt.mota_menu_trangchu;
 
         menu_trangchu = dndt.hinhanh_menu_trangchu;
         video_trangchu = dndt.video_trangchu;
+        mota_video_trangchu = dndt.mota_video_trangchu;
 
         mota_thanhphanchinh_nhahang = dndt.mota_thanhphanchinh_nhahang;
         mota_thanhphanchinh_vuonrau = dndt.mota_thanhphanchinh_vuonrau;
@@ -63,12 +70,81 @@
         banner_trangchu = "~/Content/AdminAreas/images/NoiDungTinh/GioiThieu/Banner/2z5708932492674_1e339065fc38b483bc79e1c28d01086f.jpg";
     }
 
-    int i = 0;
+    var sk = models.SuKienBean.OrderByDescending(o => o.ngaygio).ToList();
+    var skHead = sk.First();
+    int firstSk = 0;
 
     ViewBag.Title = "Trang Chủ";
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
 }
 <meta title="@Session["meta-title"]" />
+
+<style>
+    .banner-thucdon {
+        display: flex;
+    }
+
+    .title-menu-product-hot {
+        font-size: 40px;
+        text-align: left;
+        letter-spacing: 2px !important;
+    }
+
+    .caption1-slide1-banner {
+        font-size: 60px;
+    }
+
+    .caption2-slide1-banner {
+        font-size: 80px;
+        letter-spacing: 10px;
+    }
+
+    .sukien-dau-content {
+        padding: 30px 30px 0 30px;
+    }
+
+    .date-sukien-dau-content {
+        display: block;
+    }
+
+    .vertical-nav-col {
+        flex: 0 0 140px;
+        margin-top: -9px;
+    }
+
+    @@media (max-width: 768px) {
+        .caption1-slide1-banner {
+            font-size: 40px !important;
+        }
+
+        .banner-thucdon {
+            display: none !important;
+        }
+
+        .caption2-slide1-banner {
+            font-size: 46px !important;
+            letter-spacing: 5px !important;
+        }
+
+        .title-menu-product-hot {
+            font-size: 28px;
+            text-align: center;
+        }
+
+        .sukien-dau-content {
+            padding: 30px 0 0 0;
+        }
+
+        .date-sukien-dau-content {
+            display: none;
+        }
+
+        .vertical-nav-col {
+            flex: 0 0 60px;
+            margin-top: -9px;
+        }
+    }
+</style>
 
 <!-- Slide1 -->
 <section class="section-slide" style=" height: 100%;">
@@ -76,8 +152,8 @@
         <div class="slick1">
             @foreach (var item in banner_trangchu.Split('#').ToList())
             {
-                <div class="item-slick1 item@(i)-slick1" style="background-image: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7) ), url(@Url.Content(item)); margin: 0">
-                    <div style="width: 100%; height: 100%; background-image: linear-gradient(180deg, #00000000 20%, #122E26 100%); ">
+                <div class="item-slick1" style="background-image: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7) ), url(@Url.Content(item)); margin: 0">
+                    <div style="width: 100%; height: 100%; background-image: linear-gradient(180deg, #00000000 60%, #122E26 100%); ">
                         <div class="gio-mo-cua">
                             <div class="container">
                                 <h4 class="txt13 m-b-10">
@@ -103,20 +179,22 @@
                             </div>
                         </div>
                         <div class="text-in-slidepage wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
-                            <span class="caption1-slide1 txt1 t-center animated visible-false m-b-15" data-appear="fadeInDown">
+                            <span class="caption1-slide1 caption1-slide1-banner txt1 t-center animated visible-false m-b-15" data-appear="fadeInDown">
                                 Nhà hàng chay
                             </span>
-
-                            <h2 class="caption2-slide1 tit1 t-center animated visible-false m-b-37" style="font-family: Courgette !important; text-transform: unset;" data-appear="fadeInUp">
+                            <style>
+                            </style>
+                            <h2 class="caption2-slide1 caption2-slide1-banner tit1 t-center animated visible-false m-b-37" style="font-family: Courgette !important; text-transform: unset;" data-appear="fadeInUp">
                                 Bean Family
                             </h2>
-
                             <div class="wrap-btn-slide1 animated visible-false" data-appear="zoomIn">
                                 <!-- Button1 -->
                                 <a href="#lhdb" class="btn1 flex-c-m size1 txt3 trans-0-4">
                                     Liên Hệ Đặt Bàn
                                 </a>
                             </div>
+
+
                         </div>
                     </div>
                 </div>
@@ -129,236 +207,62 @@
 <!-- Sản phẩm nỗi bật - Menu -->
 <section class="section-welcome bg1-pattern">
     <div class="section-child-bg1">
-        <div class="container  p-t-80 p-b-105">
-            <div class="row  p-b-30">
-                <div class="col-md-7 col-sm-12">
+        <div class="container p-t-80 p-b-60">
+            <div class="row">
+                <div class="col-12 p-b-80">
+                    <div>
+                        <h4 class="text-white txt1  t-center" style="margin-bottom: 25px; font-size: 42px; font-family: riftdemi !important;">@tieude_menu_trangchu</h4>
+                        <p style="font-size: 16px; max-width: 1200px" class="text-white mb-4 t-center">
+                            @mota_menu_trangchu
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-7 col-sm-12 p-b-30">
                     <div class="h-100" style=" display: flex; flex-direction: column; justify-content: center;">
-
-                        <style>
-                            .title-menu-product-hot {
-                                font-size: 40px;
-                                text-align: left;
-                            }
-
-                            @@media (max-width: 768px) {
-                                .title-menu-product-hot {
-                                    font-size: 26px;
-                                    text-align: center;
-                                }
-                            }
-                        </style>
-                        <h4 class="tit3 title-menu-product-hot m-b-35 m-t-5">Sản Phẩm Nổi Bật</h4>
+                        <h4 class="tit3 title-menu-product-hot m-b-45 m-t-5">Sản Phẩm ĐẶC TRƯNG</h4>
                         <div class="slider-for gallery-product">
-                            @if (!string.IsNullOrEmpty(sanphamnoibat.SanPhamThucDonHangNgay.hinhanh))
+
+                            @foreach (var item in spnoibat)
                             {
+
+                                var id = Int32.Parse(item);
+                                var sp = models.SanPhamThucDonHangNgay.Find(id);
                                 <div class="slickSlider">
                                     <div class="row">
                                         <div class="col-8">
-                                            <div class="bor-rad-16 mb-3 d-flex justify-content-center">
-                                                <a style="" class="photo-product-style bor-rad-16" data-type="image" href="@Url.Action("productdetail", "thucdonhangngay", new {id = sanphamnoibat.SanPhamThucDonHangNgay.id })">
-                                                    <img style="border: 0; max-width: 100%; max-height: 100vh; margin: auto;" class="bor-rad-16 fit" src="@Url.Content(sanphamnoibat.SanPhamThucDonHangNgay.hinhanh.Split('#')[0])" />
+                                            <div class=" mb-3 d-flex justify-content-center">
+                                                <a style="" class="photo-product-style " data-type="image" href="@Url.Action("productdetail", "thucdonhangngay", new {id = sp.id })">
+                                                    <img style="border: 0; max-width: 100%; max-height: 100vh; margin: auto;" class=" fit" src="@Url.Content(sp.hinhanh.Split('#')[0])" />
                                                 </a>
                                             </div>
                                         </div>
-                                        <div class="col-4">
-                                            <hr class="mt-0 mb-3 bg-white" style="height:1px; opacity: .75" />
+                                        <div class="col-4 align-content-center">
+                                            <hr class="mt-0 mb-3 bg-white" style="height: 1px; opacity: 1; width: 50%;" />
                                             <h4 class="title text-white font-weight-bold mb-4">
-                                                @sanphamnoibat.SanPhamThucDonHangNgay.tensanpham
+                                                @sp.tensanpham
                                             </h4>
                                             <p class="text-white" style="word-wrap: break-word; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden;  -webkit-line-clamp: 8; ">
-                                                @sanphamnoibat.SanPhamThucDonHangNgay.mota
+                                                @sp.mota
                                             </p>
                                         </div>
                                     </div>
                                 </div>
                             }
 
-                            @if (!string.IsNullOrEmpty(sanphamnoibat.SanPhamThucDonHangNgay1.hinhanh))
-                            {
-                                <div class="slickSlider">
-                                    <div class="row">
-                                        <div class="col-8">
-                                            <div class=" bor-rad-16 mb-3 d-flex justify-content-center">
-                                                <a style="" class="photo-product-style bor-rad-16" data-type="image" href="@Url.Action("productdetail", "thucdonhangngay", new {id = sanphamnoibat.SanPhamThucDonHangNgay1.id })">
-                                                    <img style="border: 0; max-width: 100%; max-height: 100vh; margin: auto;" class="bor-rad-16 fit" src="@Url.Content(sanphamnoibat.SanPhamThucDonHangNgay1.hinhanh.Split('#')[0])" />
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-4">
-
-                                            <hr class="mt-0 mb-3 bg-white" style="height:1px; opacity: .75" />
-                                            <h4 class="title text-white font-weight-bold mb-4">
-                                                @sanphamnoibat.SanPhamThucDonHangNgay1.tensanpham
-                                            </h4>
-
-                                            <p class="text-white" style="word-wrap: break-word; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden;  -webkit-line-clamp: 8; ">
-                                                @sanphamnoibat.SanPhamThucDonHangNgay1.mota
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            }
-
-                            @if (!string.IsNullOrEmpty(sanphamnoibat.SanPhamRauNhaTrong.hinhanh))
-                            {
-                                <div class="slickSlider">
-                                    <div class="row">
-                                        <div class="col-8">
-                                            <div class=" bor-rad-16 mb-3 d-flex justify-content-center">
-                                                <a style="" class="photo-product-style bor-rad-16" data-type="image" href="@Url.Action("productdetail", "vuonrau", new {id = sanphamnoibat.SanPhamRauNhaTrong.id })">
-                                                    <img style="border: 0; max-width: 100%; max-height: 100vh; margin: auto;" class="bor-rad-16 fit" src="@Url.Content(sanphamnoibat.SanPhamRauNhaTrong.hinhanh.Split('#')[0])" />
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-4">
-
-                                            <hr class="mt-0 mb-3 bg-white" style="height:1px; opacity: .75" />
-                                            <h4 class="title text-white font-weight-bold mb-4">
-                                                @sanphamnoibat.SanPhamRauNhaTrong.tensanpham
-                                            </h4>
-
-                                            <p class="text-white" style="word-wrap: break-word; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden;  -webkit-line-clamp: 8; ">
-                                                @sanphamnoibat.SanPhamRauNhaTrong.mota
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            }
-
-                            @if (!string.IsNullOrEmpty(sanphamnoibat.SanPhamRauNhaTrong1.hinhanh))
-                            {
-                                <div class="slickSlider">
-                                    <div class="row">
-                                        <div class="col-8">
-                                            <div class=" bor-rad-16 mb-3 d-flex justify-content-center">
-                                                <a style="" class="photo-product-style bor-rad-16" data-type="image" href="@Url.Action("productdetail", "vuonrau", new {id = sanphamnoibat.SanPhamRauNhaTrong1.id })">
-                                                    <img style="border: 0; max-width: 100%; max-height: 100vh; margin: auto;" class="bor-rad-16 fit" src="@Url.Content(sanphamnoibat.SanPhamRauNhaTrong1.hinhanh.Split('#')[0])" />
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-4">
-
-                                            <hr class="mt-0 mb-3 bg-white" style="height:1px; opacity: .75" />
-                                            <h4 class="title text-white font-weight-bold mb-4">
-                                                @sanphamnoibat.SanPhamRauNhaTrong1.tensanpham
-                                            </h4>
-
-                                            <p class="text-white" style="word-wrap: break-word; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden;  -webkit-line-clamp: 8; ">
-                                                @sanphamnoibat.SanPhamRauNhaTrong1.mota
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            }
-
-                            @if (!string.IsNullOrEmpty(sanphamnoibat.SanPhamMuaSam.hinhanh))
-                            {
-                                <div class="slickSlider">
-                                    <div class="row">
-                                        <div class="col-8">
-                                            <div class=" bor-rad-16 mb-3 d-flex justify-content-center">
-                                                <a style="" class="photo-product-style bor-rad-16" data-type="image" href="@Url.Action("productdetail", "muasam", new {id = sanphamnoibat.SanPhamMuaSam.id })">
-                                                    <img style="border: 0; max-width: 100%; max-height: 100vh; margin: auto;" class="bor-rad-16 fit" src="@Url.Content(sanphamnoibat.SanPhamMuaSam.hinhanh.Split('#')[0])" />
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-4">
-
-                                            <hr class="mt-0 mb-3 bg-white" style="height:1px; opacity: .75" />
-                                            <h4 class="title text-white font-weight-bold mb-4">
-                                                @sanphamnoibat.SanPhamMuaSam.tensanpham
-                                            </h4>
-
-                                            <p class="text-white" style="word-wrap: break-word; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden;  -webkit-line-clamp: 8; ">
-                                                @sanphamnoibat.SanPhamMuaSam.mota
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            }
-
-                            @if (!string.IsNullOrEmpty(sanphamnoibat.SanPhamMuaSam1.hinhanh))
-                            {
-                                <div class="slickSlider">
-                                    <div class="row">
-                                        <div class="col-8">
-                                            <div class=" bor-rad-16 mb-3 d-flex justify-content-center">
-                                                <a style="" class="photo-product-style bor-rad-16" data-type="image" href="@Url.Action("productdetail", "muasam", new {id = sanphamnoibat.SanPhamMuaSam1.id })">
-                                                    <img style="border: 0; max-width: 100%; max-height: 100vh; margin: auto;" class="bor-rad-16 fit" src="@Url.Content(sanphamnoibat.SanPhamMuaSam1.hinhanh.Split('#')[0])" />
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-4">
-
-                                            <hr class="mt-0 mb-3 bg-white" style="height:1px; opacity: .75" />
-                                            <h4 class="title text-white font-weight-bold mb-4">
-                                                @sanphamnoibat.SanPhamMuaSam1.tensanpham
-                                            </h4>
-
-                                            <p class="text-white" style="word-wrap: break-word; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden;  -webkit-line-clamp: 8; ">
-                                                @sanphamnoibat.SanPhamMuaSam1.mota
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            }
                         </div>
-                        <div class="ms-1 mt-4 me-1 mb-3 slider-nav bg-bg2 p-l-20 p-r-20 bor-rad-16">
-
-                            @if (!string.IsNullOrEmpty(sanphamnoibat.SanPhamThucDonHangNgay.hinhanh))
+                        <div class="ms-1 mt-4 me-1 mb-3 slider-nav">
+                            @foreach (var item in spnoibat)
                             {
+                                var id = Int32.Parse(item);
+                                var sp = models.SanPhamThucDonHangNgay.Find(id);
                                 <div class="slickSlider">
                                     <a style="" data-fslightbox="mygalley" class="mx-1  item-thumb" data-type="image">
-                                        <img style="object-fit: cover" width="80" height="80" class="bor-rad-8" src="@Url.Content(sanphamnoibat.SanPhamThucDonHangNgay.hinhanh.Split('#')[0])" />
-                                    </a>
-                                </div>
-                            }
-                            @if (!string.IsNullOrEmpty(sanphamnoibat.SanPhamThucDonHangNgay1.hinhanh))
-                            {
-                                <div class="slickSlider">
-                                    <a style="" data-fslightbox="mygalley" class="mx-1  item-thumb" data-type="image">
-                                        <img style="object-fit: cover" width="80" height="80" class="bor-rad-8" src="@Url.Content(sanphamnoibat.SanPhamThucDonHangNgay1.hinhanh.Split('#')[0])" />
-                                    </a>
-                                </div>
-                            }
-
-                            @if (!string.IsNullOrEmpty(sanphamnoibat.SanPhamRauNhaTrong.hinhanh))
-                            {
-                                <div class="slickSlider">
-                                    <a style="" data-fslightbox="mygalley" class="mx-1  item-thumb" data-type="image">
-                                        <img style="object-fit: cover" width="80" height="80" class="bor-rad-8" src="@Url.Content(sanphamnoibat.SanPhamRauNhaTrong.hinhanh.Split('#')[0])" />
-                                    </a>
-                                </div>
-                            }
-                            @if (!string.IsNullOrEmpty(sanphamnoibat.SanPhamRauNhaTrong1.hinhanh))
-                            {
-                                <div class="slickSlider">
-                                    <a style="" data-fslightbox="mygalley" class="mx-1  item-thumb" data-type="image">
-                                        <img style="object-fit: cover" width="80" height="80" class="bor-rad-8" src="@Url.Content(sanphamnoibat.SanPhamRauNhaTrong1.hinhanh.Split('#')[0])" />
-                                    </a>
-                                </div>
-                            }
-
-                            @if (!string.IsNullOrEmpty(sanphamnoibat.SanPhamMuaSam.hinhanh))
-                            {
-                                <div class="slickSlider">
-                                    <a style="" data-fslightbox="mygalley" class="mx-1  item-thumb" data-type="image">
-                                        <img style="object-fit: cover" width="80" height="80" class="bor-rad-8" src="@Url.Content(sanphamnoibat.SanPhamMuaSam.hinhanh.Split('#')[0])" />
-                                    </a>
-                                </div>
-                            }
-                            @if (!string.IsNullOrEmpty(sanphamnoibat.SanPhamMuaSam1.hinhanh))
-                            {
-                                <div class="slickSlider">
-                                    <a style="" data-fslightbox="mygalley" class="mx-1  item-thumb" data-type="image">
-                                        <img style="object-fit: cover" width="80" height="80" class="bor-rad-8" src="@Url.Content(sanphamnoibat.SanPhamMuaSam1.hinhanh.Split('#')[0])" />
+                                        <img style="object-fit: cover" width="80" height="80" class="" src="@Url.Content(sp.hinhanh.Split('#')[0])" />
                                     </a>
                                 </div>
                             }
 
                         </div>
-                        <!-- thumbs-wrap.// -->
-                        <!-- gallery-wrap .end// -->
                         <script>
                             $(document).ready(function () {
                                 $('.slider-for').slick({
@@ -369,7 +273,7 @@
                                     asNavFor: '.slider-nav'
                                 });
                                 $('.slider-nav').slick({
-                                    slidesToShow: 5,
+                                    slidesToShow: 6,
                                     slidesToScroll: 1,
                                     asNavFor: '.slider-for',
                                     dots: false,
@@ -379,7 +283,7 @@
                                     autoplaySpeed: 2000,
                                     speed: 300,
                                     focusOnSelect: true,
-                                    variableWidth: false,
+                                    variableWidth: true,
                                     responsive: [
                                         {
                                             breakpoint: 768, // Áp dụng cho màn hình từ 768px trở xuống
@@ -398,32 +302,47 @@
                 </div>
                 @if (!string.IsNullOrEmpty(menu_trangchu))
                 {
-                    <div class="col-md-5 col-sm-12">
-                        <div class="m-1 menu-slider-nav gallery-product">
-                            @foreach (var item in menu_trangchu.Split('#').ToList())
-                            {
-                                <div class="slickSlider-menu m-0">
-                                    <div class=" rounded-4 mb-3 d-flex justify-content-center">
-                                        <a style="aspect-ratio: 5 / 7 !important"  class="photo-product-style">
-                                            <img style="border:0; max-width: 100%; max-height: 100vh; margin: auto;" class="rounded-4 fit" src="@Url.Content(item)" />
-                                        </a>
-                                    </div>
+                    <div class="col-md-5 col-sm-12 p-b-30">
+                        <div class="d-flex flex-row p-0 m-1">
+
+                            <div class="banner-thucdon p-0 m-0 bg-bg1 text-center h4 d-flex align-items-center justify-content-center"
+                                 style="color: #ffc687;width: 60px; writing-mode: vertical-lr; text-orientation: upright;">
+                                <hr style="transform: rotateY(0deg);height: 20%;width: 1px;opacity: 1;">
+                                <label class="h5 w-100 align-content-center" style="letter-spacing: 5px;">
+                                    THỰC ĐƠN
+                                </label>
+                                <hr style="transform: rotateY(0deg);height: 20%;width: 1px;opacity: 1;">
+
+                            </div>
+
+                            <div class="p-0 m-0 flex-fill w-100">
+                                <div class="menu-slider-nav gallery-product">
+                                    @foreach (var item in menu_trangchu.Split('#').ToList())
+                                    {
+                                        <div class="slickSlider-menu m-0">
+                                            <div class="rounded-4 d-flex justify-content-center">
+                                                <a style="aspect-ratio: 1.92 / 2.92 !important" class="photo-product-style">
+                                                    <img style=" object-fit: cover;object-position: right; border: 0; max-width: 100%; max-height: 100%; margin: auto;" class="rounded-4 fit" src="@Url.Content(item)" />
+                                                </a>
+                                            </div>
+                                        </div>
+                                    }
                                 </div>
-                            }
+                                <script>
+                                    $(document).ready(function () {
+                                        $('.menu-slider-nav').slick({
+                                            dots: false,
+                                            slidesToShow: 1,
+                                            slidesToScroll: 1,
+                                            arrows: true,
+                                            autoplay: false,
+                                            prevArrow: '<button style="opacity: .25; left: 15px; z-index: 1;" class="arrow-slick1 prev-slick1"><i class="fa fa-angle-left" aria-hidden="true"></i></button>',
+                                            nextArrow: '<button style="opacity: .25; right: 15px; z-index: 1;" class="arrow-slick1 next-slick1"><i class="fa fa-angle-right" aria-hidden="true"></i></button>',
+                                        });
+                                    });
+                                </script>
+                            </div>
                         </div>
-                        <script>
-                            $(document).ready(function () {
-                                $('.menu-slider-nav').slick({
-                                    dots: false,
-                                    slidesToShow: 1,
-                                    slidesToScroll: 1,
-                                    arrows: true,
-                                    autoplay: false,
-                                    prevArrow: '<button style="opacity: .25; left: 15px" class="arrow-slick1 prev-slick1"><i class="fa fa-angle-left" aria-hidden="true"></i></button>',
-                                    nextArrow: '<button style="opacity: .25; right: 15px" class="arrow-slick1 next-slick1"><i class="fa fa-angle-right" aria-hidden="true"></i></button>',
-                                });
-                            });
-                        </script>
                     </div>
                 }
             </div>
@@ -433,7 +352,11 @@
 
 <!-- Video bean -->
 <section class="section-ourmenu bg1-pattern">
-    <div class="header-intro parallax100 t-center p-t-135 p-b-158" style="background-image: url(/Content/assets/images/ImageBean/bannerlabel2.jpg); ">
+    <div class="header-intro parallax100 t-center p-t-80 p-b-80"
+         style="background-image: url(&quot;/Content/assets/images/ImageBean/bannerlabel2.jpg&quot;); background-position: center -40.3333px;">
+        <h4 class="txt5 color0-hov trans-0-4 m-b-13">
+            Ống kính thời gian
+        </h4>
         <h3 class="tit4 t-center p-l-15 p-r-15 p-t-3">
             Video Clip Bean Family
         </h3>
@@ -441,71 +364,74 @@
 
     @if (!string.IsNullOrEmpty(video_trangchu))
     {
-
         <div class="section-child-bg1">
-            <div class="container p-t-115 p-b-120">
-                <div class="w-100 bg-bg2 p-0" style=" border-radius: 16px;">
-                    <div class="slider-video-for" style="margin: 0 -5px 0 -5px ">
-                        @foreach (var item in video_trangchu.Split('#').ToList())
-                        {
-                            // --- PHẦN SỬA ĐỔI QUAN TRỌNG ---
-                            // 1. Lấy phần URL chính, loại bỏ các tham số thừa như &list=...
-                            var cleanUrl = item.Split('&')[0];
+            <div class="container p-t-80 p-b-40">
 
-                            // 2. Tạo URL embed hoàn chỉnh với cú pháp ĐÚNG
-                            var embedUrl = cleanUrl.Replace("watch?v=", "embed/") + "?enablejsapi=1&rel=0";
-                            // --- KẾT THÚC SỬA ĐỔI ---
-
-                            <div class="slickSlider">
-                                <div style="border-radius: 16px; border: 2px solid #ffc678; position: relative; padding-bottom: 56.25%; height: 0;" class="rounded-4 mb-3">
-                                    <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 16px;"
-                                            src="@embedUrl"
-                                            frameborder="0"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                            allowfullscreen>
-                                    </iframe>
-                                </div>
+                <p style="font-size: 16px; max-width: 1200px" class="text-white mb-5 t-center">
+                    @mota_video_trangchu
+                </p>
+                <div class="w-100">
+                    <div class="d-flex flex-column flex-md-row">
+                        <div class="main-video-col mb-4" style="flex: 1; min-width: 0;">
+                            <div class="slider-video-for">
+                                @foreach (var item in video_trangchu.Split('#').ToList())
+                                {
+                                    var cleanUrl = item.Split('&')[0];
+                                    var embedUrl = cleanUrl.Replace("watch?v=", "embed/") + "?enablejsapi=1&rel=0";
+                                    <div class="slickSlider">
+                                        <div class="video-aspect-ratio" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+                                            <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+                                                    src="@embedUrl" frameborder="0"
+                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                                            </iframe>
+                                        </div>
+                                    </div>
+                                }
                             </div>
-                        }
-                    </div>
-                    <div class="ms-1 me-1 mb-3 slider-video-nav p-l-20 p-r-20">
-                        @foreach (var item in video_trangchu.Split('#').ToList())
-                        {
-                            // --- PHẦN SỬA ĐỔI ---
-                            // 1. Lấy video ID từ URL đầy đủ
-                            var videoId = item.Split(new[] { "v=" }, StringSplitOptions.None).LastOrDefault();
-                            if (videoId != null && videoId.Contains("&"))
-                            {
-                                videoId = videoId.Split('&')[0];
-                            }
+                        </div>
 
-                            // 2. Tạo URL thumbnail từ video ID
-                            var thumbnailUrl = $"https://img.youtube.com/vi/{videoId}/mqdefault.jpg";
-                            // --- KẾT THÚC SỬA ĐỔI ---
-
-                            <div class="slickSlider">
-                                <a style="cursor: pointer;" class="mx-1 item-thumb">
-                                    @* Sử dụng thumbnailUrl vừa tạo *@
-                                    <img style="object-fit: cover; border-radius: 8px;" width="100" height="80" class="" src="@thumbnailUrl" />
-                                </a>
+                        <div class="vertical-nav-col">
+                            <div class="slider-video-nav">
+                                @foreach (var item in video_trangchu.Split('#').ToList())
+                                {
+                                    var videoId = item.Split(new[] { "v=" }, StringSplitOptions.None).LastOrDefault()?.Split('&')[0];
+                                    var thumbnailUrl = $"https://img.youtube.com/vi/{videoId}/mqdefault.jpg";
+                                    <div class="slickSlider p-2">
+                                        <a style="cursor: pointer; display: block;" class="item-thumb">
+                                            <img style="object-fit: cover; width: 100%; aspect-ratio: 16 / 9;" class="thumb-img" src="@thumbnailUrl" />
+                                        </a>
+                                    </div>
+                                }
                             </div>
-                        }
+                        </div>
                     </div>
+
                     <script>
                         $(document).ready(function () {
                             var sliderFor = $('.slider-video-for');
                             var sliderNav = $('.slider-video-nav');
-                            var players = {}; // Dùng object để quản lý player tốt hơn
+                            var players = {};
 
-                            // 1. Tải API YouTube Iframe Player
+                            // SỬA 2: Hàm đồng bộ chiều cao để sửa lỗi vỡ màn hình
+                            function syncSliderHeights() {
+                                // Chỉ thực hiện trên màn hình lớn (desktop)
+                                if (window.innerWidth >= 768) {
+                                    var mainVideoHeight = sliderFor.height();
+                                    if (mainVideoHeight > 0) {
+                                        sliderNav.height(mainVideoHeight);
+                                    }
+                                } else {
+                                    // Trên mobile, trả lại chiều cao tự động
+                                    sliderNav.height('auto');
+                                }
+                            }
+
                             var tag = document.createElement('script');
                             tag.src = "https://www.youtube.com/iframe_api";
                             var firstScriptTag = document.getElementsByTagName('script')[0];
                             firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-                            // 2. Hàm này được gọi tự động khi API YouTube đã sẵn sàng
                             window.onYouTubeIframeAPIReady = function () {
-                                // Gán ID duy nhất cho mỗi iframe để YT Player có thể nhận diện
                                 sliderFor.find('iframe').each(function (index, iframe) {
                                     var iframeId = 'player-' + index;
                                     iframe.id = iframeId;
@@ -514,7 +440,7 @@
                                     });
                                 });
 
-                                // 3. Khởi tạo Slick SAU KHI API đã sẵn sàng
+                                // Cấu hình cho slider video chính (giữ nguyên)
                                 sliderFor.slick({
                                     slidesToShow: 1,
                                     slidesToScroll: 1,
@@ -523,33 +449,41 @@
                                     asNavFor: '.slider-video-nav'
                                 });
 
+                                // Cấu hình cho slider menu dọc (đã chỉnh sửa)
                                 sliderNav.slick({
-                                    slidesToShow: 5,
+                                    slidesToShow: 7,
                                     slidesToScroll: 1,
                                     asNavFor: '.slider-video-for',
                                     dots: false,
                                     arrows: false,
-                                    centerMode: false,
+                                    vertical: true, // Chế độ dọc
+                                    verticalSwiping: true,
                                     focusOnSelect: true,
-                                    variableWidth: true,
                                     responsive: [
                                         {
-                                            breakpoint: 768, // Áp dụng cho màn hình từ 768px trở xuống
+                                            breakpoint: 768,
                                             settings: {
-                                                slidesToShow: 3, // Hiển thị 3 slide
-                                                variableWidth: false,
+                                                vertical: false, // Trở về trượt ngang trên mobile
+                                                verticalSwiping: false,
+                                                slidesToShow: 4,
                                             }
                                         }
-                                        // Bạn có thể thêm các breakpoint khác ở đây
                                     ]
                                 });
+
+                                // Gọi hàm đồng bộ chiều cao sau khi slick khởi tạo xong
+                                syncSliderHeights();
+
+                                // Gọi lại hàm khi thay đổi kích thước cửa sổ
+                                $(window).on('resize', syncSliderHeights);
+
                             };
 
                             function onPlayerReady(event) {
-                                // Video đã sẵn sàng
+                                // event.target.playVideo(); // Xóa // nếu muốn tự động phát video ĐẦU TIÊN
                             }
 
-                            // 4. Tạm dừng video cũ trước khi chuyển slide
+                            // Dừng video cũ trước khi chuyển slide (giữ nguyên)
                             sliderFor.on('beforeChange', function (event, slick, currentSlide, nextSlide) {
                                 var currentIframe = $(slick.$slides[currentSlide]).find('iframe');
                                 if (currentIframe.length) {
@@ -560,7 +494,7 @@
                                 }
                             });
 
-                            // 5. [THÊM MỚI] Tự động phát video mới sau khi chuyển slide
+                            // Tự động phát video mới sau khi chuyển (giữ nguyên)
                             sliderFor.on('afterChange', function (event, slick, currentSlide) {
                                 var currentIframe = $(slick.$slides[currentSlide]).find('iframe');
                                 if (currentIframe.length) {
@@ -578,9 +512,140 @@
     }
 </section>
 
+<section class="section-blog bg1-pattern">
+    <div class="section-child-bg1">
+        <div class="container  p-t-40 p-b-80">
+            <div class="title-section-ourmenu t-center m-b-42">
+                <h4 class="txt5 color0-hov trans-0-4 m-b-13">
+                    Tin tức & sự kiện
+                </h4>
+
+                <h3 class="tit5 t-center m-t-2" style="color: white">
+                    Cộng đồng vị lai
+                </h3>
+            </div>
+
+            @if (sk.Count > 0)
+            {
+                <div class="row">
+                    <div class="col-12 p-t-30 mb-3">
+                        <div class="flex-row row">
+                            <div class="col-md-5 col-sm-12 wrap-pic-blo1 hov-img-zoom pos-relative">
+                                <a target="_blank" href="@skHead.baiviet"><img style="object-fit: cover; width: 100%; aspect-ratio: 4 / 3; border: 0 !important" src="@Url.Content(skHead.hinhanh)" alt="IMG-INTRO"></a>
+
+                                <div class="time-blog">
+                                    @skHead.ngaygio.ToString("HH:mm dd/MM/yyyy")
+                                </div>
+                            </div>
+                            <div class="col-md-7 col-sm-12">
+                                <div class="date-sukien-dau-content m-l-30">
+                                    <div class="time-blog txt4 p-2" style="position: unset; width: fit-content;">
+                                        @skHead.ngaygio.ToString("HH:mm dd/MM/yyyy")
+                                    </div>
+                                    <hr class="mt-3 mb-0 bg-white" style="height: 1px; opacity: 1; width: 40%;">
+                                </div>
+                                <div class="wrap-text-blo1 sukien-dau-content flex-col h-100">
+                                    <a href="@skHead.baiviet">
+                                        <h4 title="@skHead.tieude" class="txt5 color0-hov trans-0-4 m-b-13"
+                                            style="display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; -webkit-line-clamp: 2;">
+                                            @skHead.tieude
+                                        </h4>
+                                    </a>
+
+                                    <p title="@skHead.noidung" class="m-b-40 m-t-20"
+                                       style="display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; -webkit-line-clamp: 4;">
+                                        @skHead.noidung
+                                    </p>
+                                    <div class="w-100 date-sukien-dau-content">
+                                        <a target="_blank" href="@skHead.baiviet" class="btn1 flex-c-m size1 txt3 trans-0-4" tabindex="0">
+                                            Xem bài viết
+                                            <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row slick-sukien">
+
+
+                    @foreach (var item in sk)
+                    {
+                        if (firstSk == 0)
+                        {
+                            firstSk++;
+                            continue;
+                        }
+
+                        <div class="col-md-3 p-t-30">
+                            <div class="blo1 ps-2 pe-2">
+                                <div class="wrap-pic-blo1 hov-img-zoom pos-relative">
+                                    <a target="_blank" href="@item.baiviet"><img style="object-fit: cover; width: 100%; aspect-ratio: 4 / 3; border: 0 !important" src="@Url.Content(item.hinhanh)" alt="IMG-INTRO"></a>
+
+                                    <div class="time-blog">
+                                        @item.ngaygio.ToString("HH:mm dd/MM/yyyy")
+                                    </div>
+                                </div>
+
+                                <div class="wrap-text-blo1 p-t-35">
+                                    <a href="@item.baiviet">
+                                        <h4 title="@item.tieude" class="txt5 color0-hov trans-0-4 m-b-13"
+                                            style="display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; -webkit-line-clamp: 1;">
+                                            @item.tieude
+                                        </h4>
+                                    </a>
+
+                                    <p title="@item.noidung" class="m-b-20"
+                                       style="display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; -webkit-line-clamp: 2;">
+                                        @item.noidung
+                                    </p>
+                                    <div class="w-100 text-center">
+                                        <a href="@item.baiviet" class="txt4 ">
+                                            Xem bài viết
+                                            <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+                <script>
+                    $(document).ready(function () {
+                        $('.slick-sukien').slick({
+                            dots: false,
+                            slidesToShow: 4,
+                            slidesToScroll: 1,
+                            arrows: true,
+                            autoplay: true,
+                            autoplaySpeed: 2000,
+                            focusOnSelect: false,
+                            responsive: [
+                                {
+                                    breakpoint: 768,
+                                    settings: {
+                                        slidesToShow: 2,
+                                    }
+                                }
+                            ],
+                            prevArrow: '<button style=" top: 33%;" class="arrow-slick1 prev-slick1"><i class="fa fa-angle-left" aria-hidden="true"></i></button>',
+                            nextArrow: '<button style=" top: 33%;" class="arrow-slick1 next-slick1"><i class="fa fa-angle-right" aria-hidden="true"></i></button>',
+                        });
+                    });
+                </script>
+            }
+
+        </div>
+    </div>
+</section>
+
+
+
 
 <section class="section-intro">
-    <div class="header-intro parallax100 t-center p-t-135 p-b-158" style="background-image: url(/Content/assets/images/ImageBean/bannerlabel1.jpg);">
+    <div class="header-intro parallax100 t-center p-t-135 p-b-135" style="background-image: url(/Content/assets/images/ImageBean/bannerlabel1.jpg);">
         <h3 class="tit4 t-center p-l-15 p-r-15 p-t-3">
             Khám Phá 3 Lĩnh Vực Chính
         </h3>
@@ -800,257 +865,151 @@
 <script src="~/Validation/LienHeDatBan/GuiLienHeDatBan.js?v=1.0"></script>
 
 
-<section class="section-intro">
-    <div class="content-intro bg2-pattern">
-        <div class="section-child-bg2">
-            <div class="container  p-t-77 p-b-133">
-                <div class="row">
-                    <div class="t-center">
-                        <h3 class="tit3 t-center m-b-80 m-t-15">
-                            Địa chỉ đến bean
-                        </h3>
-                    </div>
-                    <div class="col-12">
-                        <h6 class="text-white" style="margin-bottom: 10px"><i class="fa fa-map-marker fs-16 dis-inline-block"> </i> @diachi</h6>
-                        <div id="map" style="height: 500px">
-                            <iframe class="bor-rad-16" src="@toado" width="100%" height="500px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+@*<section class="section-intro">
+        <div class="content-intro bg2-pattern">
+            <div class="section-child-bg2">
+                <div class="container  p-t-77 p-b-133">
+                    <div class="row">
+                        <div class="t-center">
+                            <h3 class="tit3 t-center m-b-80 m-t-15">
+                                Địa chỉ đến bean
+                            </h3>
+                        </div>
+                        <div class="col-12">
+                            <h6 class="text-white" style="margin-bottom: 10px"><i class="fa fa-map-marker fs-16 dis-inline-block"> </i> @diachi</h6>
+                            <div id="map" style="height: 500px">
+                                <iframe class="bor-rad-16" src="@toado" width="100%" height="500px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>*@
 
 
 
 
 <!-- Review -->
-<!--<section class="section-review bg-brown p-t-115">-->
-<!-- - -->
-<!--<div class="title-review t-center m-b-2">
-    <span class="tit2 p-l-15 p-r-15">
-        Customers Say
-    </span>
+@*<section class="section-review bg-brown p-t-115">
 
-    <h3 class="tit8 t-center p-l-20 p-r-15 p-t-3" style="color: white">
-        Review
-    </h3>
-</div>-->
-<!-- - -->
-<!--<div class="wrap-slick3">
-        <div class="slick3">
-            <div class="item-slick3 item1-slick3">
-                <div class="wrap-content-slide3 p-b-50 p-t-50">
-                    <div class="container">
-                        <div class="pic-review size14 bo4 wrap-cir-pic m-l-r-auto animated visible-false" data-appear="zoomIn">
-                            <img src="~/Content/assets/images/avatar-01.jpg" alt="IGM-AVATAR">
-                        </div>
-
-                        <div class="content-review m-t-33 animated visible-false" data-appear="fadeInUp">
-                            <p class="t-center txt12 size15 m-l-r-auto">
-                                “ We are lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tellus sem, mattis in pre-tium nec, fermentum viverra dui ”
-                            </p>
-
-                            <div class="star-review fs-18 color0 flex-c-m m-t-12">
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star p-l-1" aria-hidden="true"></i>
-                                <i class="fa fa-star p-l-1" aria-hidden="true"></i>
-                                <i class="fa fa-star p-l-1" aria-hidden="true"></i>
-                                <i class="fa fa-star p-l-1" aria-hidden="true"></i>
-                            </div>
-
-                            <div class="more-review txt4 t-center animated visible-false m-t-32" data-appear="fadeInUp">
-                                Marie Simmons ˗ New York
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="item-slick3 item2-slick3">
-                <div class="wrap-content-slide3 p-b-50 p-t-50">
-                    <div class="container">
-                        <div class="pic-review size14 bo4 wrap-cir-pic m-l-r-auto animated visible-false" data-appear="zoomIn">
-                            <img src="~/Content/assets/images/avatar-04.jpg" alt="IGM-AVATAR">
-                        </div>
-
-                        <div class="content-review m-t-33 animated visible-false" data-appear="fadeInUp">
-                            <p class="t-center txt12 size15 m-l-r-auto">
-                                “ We are lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tellus sem, mattis in pre-tium nec, fermentum viverra dui ”
-                            </p>
-
-                            <div class="star-review fs-18 color0 flex-c-m m-t-12">
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star p-l-1" aria-hidden="true"></i>
-                                <i class="fa fa-star p-l-1" aria-hidden="true"></i>
-                                <i class="fa fa-star p-l-1" aria-hidden="true"></i>
-                                <i class="fa fa-star p-l-1" aria-hidden="true"></i>
-                            </div>
-
-                            <div class="more-review txt4 t-center animated visible-false m-t-32" data-appear="fadeInUp">
-                                Marie Simmons ˗ New York
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="item-slick3 item3-slick3">
-                <div class="wrap-content-slide3 p-b-50 p-t-50">
-                    <div class="container">
-                        <div class="pic-review size14 bo4 wrap-cir-pic m-l-r-auto animated visible-false" data-appear="zoomIn">
-                            <img src="~/Content/assets/images/avatar-05.jpg" alt="IGM-AVATAR">
-                        </div>
-
-                        <div class="content-review m-t-33 animated visible-false" data-appear="fadeInUp">
-                            <p class="t-center txt12 size15 m-l-r-auto">
-                                “ We are lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tellus sem, mattis in pre-tium nec, fermentum viverra dui ”
-                            </p>
-
-                            <div class="star-review fs-18 color0 flex-c-m m-t-12">
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star p-l-1" aria-hidden="true"></i>
-                                <i class="fa fa-star p-l-1" aria-hidden="true"></i>
-                                <i class="fa fa-star p-l-1" aria-hidden="true"></i>
-                                <i class="fa fa-star p-l-1" aria-hidden="true"></i>
-                            </div>
-
-                            <div class="more-review txt4 t-center animated visible-false m-t-32" data-appear="fadeInUp">
-                                Marie Simmons ˗ New York
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="wrap-slick3-dots m-t-30"></div>
-    </div>
-</section>-->
-<!-- Video -->
-<!--<section class="section-video parallax100" style="background-image: url(/Content/assets/images/bg-cover-video-02.jpg);">
-    <div class="content-video t-center p-t-225 p-b-250">
-        <span class="tit2 p-l-15 p-r-15">
-            Discover
-        </span>
-
-        <h3 class="tit4 t-center p-l-15 p-r-15 p-t-3">
-            Our Video
-        </h3>
-
-        <div class="btn-play ab-center size16 hov-pointer m-l-r-auto m-t-43 m-b-33" data-toggle="modal" data-target="#modal-video-01">
-            <div class="flex-c-m sizefull bo-cir bgwhite color1 hov1 trans-0-4">
-                <i class="fa fa-play fs-18 m-l-2" aria-hidden="true"></i>
-            </div>
-        </div>
-    </div>
-</section>-->
-<!-- Blog -->
-<!--<section class="section-blog bg-brown p-t-115 p-b-123">
-    <div class="container">
-        <div class="title-section-ourmenu t-center m-b-22">
-            <span class="tit2 t-center">
-                Latest News
+        <div class="title-review t-center m-b-2">
+            <span class="tit2 p-l-15 p-r-15">
+                Customers Say
             </span>
 
-            <h3 class="tit5 t-center m-t-2" style="color: white">
-                The Blog
+            <h3 class="tit8 t-center p-l-20 p-r-15 p-t-3" style="color: white">
+                Review
             </h3>
         </div>
 
-        <div class="row">
-            <div class="col-md-4 p-t-30">-->
-<!-- Block1 -->
-<!--<div class="blo1">
-        <div class="wrap-pic-blo1 bo-rad-16 hov-img-zoom pos-relative">
-            <a href="~/Content/assets/blog-detail.html"><img src="~/Content/assets/images/blog-01.jpg" alt="IMG-INTRO"></a>
+        <div class="wrap-slick3">
+            <div class="slick3">
+                <div class="item-slick3 item1-slick3">
+                    <div class="wrap-content-slide3 p-b-50 p-t-50">
+                        <div class="container">
+                            <div class="pic-review size14 bo4 wrap-cir-pic m-l-r-auto animated visible-false" data-appear="zoomIn">
+                                <img src="~/Content/assets/images/avatar-01.jpg" alt="IGM-AVATAR">
+                            </div>
 
-            <div class="time-blog">
-                21 Dec 2017
-            </div>
-        </div>
+                            <div class="content-review m-t-33 animated visible-false" data-appear="fadeInUp">
+                                <p class="t-center txt12 size15 m-l-r-auto">
+                                    “ We are lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tellus sem, mattis in pre-tium nec, fermentum viverra dui ”
+                                </p>
 
-        <div class="wrap-text-blo1 p-t-35">
-            <a href="~/Content/assets/blog-detail.html">
-                <h4 class="txt5 color0-hov trans-0-4 m-b-13">
-                    Best Places for Wine
-                </h4>
-            </a>
+                                <div class="star-review fs-18 color0 flex-c-m m-t-12">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star p-l-1" aria-hidden="true"></i>
+                                    <i class="fa fa-star p-l-1" aria-hidden="true"></i>
+                                    <i class="fa fa-star p-l-1" aria-hidden="true"></i>
+                                    <i class="fa fa-star p-l-1" aria-hidden="true"></i>
+                                </div>
 
-            <p class="m-b-20">
-                Phasellus lorem enim, luctus ut velit eget, con-vallis egestas eros.
-            </p>
-
-            <a href="~/Content/assets/blog-detail.html" class="txt4">
-                Continue Reading
-                <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
-            </a>
-        </div>
-    </div>
-</div>
-
-<div class="col-md-4 p-t-30">-->
-<!-- Block1 -->
-<!--<div class="blo1">
-        <div class="wrap-pic-blo1 bo-rad-16 hov-img-zoom pos-relative">
-            <a href="~/Content/assets/blog-detail.html"><img src="~/Content/assets/images/blog-02.jpg" alt="IMG-INTRO"></a>
-
-            <div class="time-blog">
-                15 Dec 2017
-            </div>
-        </div>
-
-        <div class="wrap-text-blo1 p-t-35">
-            <a href="~/Content/assets/blog-detail.html">
-                <h4 class="txt5 color0-hov trans-0-4 m-b-13">
-                    Eggs and Cheese
-                </h4>
-            </a>
-
-            <p class="m-b-20">
-                Duis elementum, risus sit amet lobortis nunc justo condimentum ligula, vitae feugiat
-            </p>
-
-            <a href="~/Content/assets/blog-detail.html" class="txt4">
-                Continue Reading
-                <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
-            </a>
-        </div>
-    </div>
-</div>
-
-<div class="col-md-4 p-t-30">-->
-<!-- Block1 -->
-<!--<div class="blo1">
-                    <div class="wrap-pic-blo1 bo-rad-16 hov-img-zoom pos-relative">
-                        <a href="~/Content/assets/blog-detail.html"><img src="~/Content/assets/images/blog-03.jpg" alt="IMG-INTRO"></a>
-
-                        <div class="time-blog">
-                            12 Dec 2017
+                                <div class="more-review txt4 t-center animated visible-false m-t-32" data-appear="fadeInUp">
+                                    Marie Simmons ˗ New York
+                                </div>
+                            </div>
                         </div>
                     </div>
+                </div>
 
-                    <div class="wrap-text-blo1 p-t-35">
-                        <a href="~/Content/assets/blog-detail.html">
-                            <h4 class="txt5 color0-hov trans-0-4 m-b-13">
-                                Style the Wedding Party
-                            </h4>
-                        </a>
+                <div class="item-slick3 item2-slick3">
+                    <div class="wrap-content-slide3 p-b-50 p-t-50">
+                        <div class="container">
+                            <div class="pic-review size14 bo4 wrap-cir-pic m-l-r-auto animated visible-false" data-appear="zoomIn">
+                                <img src="~/Content/assets/images/avatar-04.jpg" alt="IGM-AVATAR">
+                            </div>
 
-                        <p class="m-b-20">
-                            Sed ornare ligula eget tortor tempor, quis porta tellus dictum.
-                        </p>
+                            <div class="content-review m-t-33 animated visible-false" data-appear="fadeInUp">
+                                <p class="t-center txt12 size15 m-l-r-auto">
+                                    “ We are lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tellus sem, mattis in pre-tium nec, fermentum viverra dui ”
+                                </p>
 
-                        <a href="~/Content/assets/blog-detail.html" class="txt4">
-                            Continue Reading
-                            <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
-                        </a>
+                                <div class="star-review fs-18 color0 flex-c-m m-t-12">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star p-l-1" aria-hidden="true"></i>
+                                    <i class="fa fa-star p-l-1" aria-hidden="true"></i>
+                                    <i class="fa fa-star p-l-1" aria-hidden="true"></i>
+                                    <i class="fa fa-star p-l-1" aria-hidden="true"></i>
+                                </div>
+
+                                <div class="more-review txt4 t-center animated visible-false m-t-32" data-appear="fadeInUp">
+                                    Marie Simmons ˗ New York
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
+                <div class="item-slick3 item3-slick3">
+                    <div class="wrap-content-slide3 p-b-50 p-t-50">
+                        <div class="container">
+                            <div class="pic-review size14 bo4 wrap-cir-pic m-l-r-auto animated visible-false" data-appear="zoomIn">
+                                <img src="~/Content/assets/images/avatar-05.jpg" alt="IGM-AVATAR">
+                            </div>
+
+                            <div class="content-review m-t-33 animated visible-false" data-appear="fadeInUp">
+                                <p class="t-center txt12 size15 m-l-r-auto">
+                                    “ We are lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tellus sem, mattis in pre-tium nec, fermentum viverra dui ”
+                                </p>
+
+                                <div class="star-review fs-18 color0 flex-c-m m-t-12">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star p-l-1" aria-hidden="true"></i>
+                                    <i class="fa fa-star p-l-1" aria-hidden="true"></i>
+                                    <i class="fa fa-star p-l-1" aria-hidden="true"></i>
+                                    <i class="fa fa-star p-l-1" aria-hidden="true"></i>
+                                </div>
+
+                                <div class="more-review txt4 t-center animated visible-false m-t-32" data-appear="fadeInUp">
+                                    Marie Simmons ˗ New York
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
+            <div class="wrap-slick3-dots m-t-30"></div>
         </div>
-    </div>
-</section>-->
+    </section>*@
+
+@*<section class="section-video parallax100" style="background-image: url(/Content/assets/images/bg-cover-video-02.jpg);">
+        <div class="content-video t-center p-t-225 p-b-250">
+            <span class="tit2 p-l-15 p-r-15">
+                Discover
+            </span>
+
+            <h3 class="tit4 t-center p-l-15 p-r-15 p-t-3">
+                Our Video
+            </h3>
+
+            <div class="btn-play ab-center size16 hov-pointer m-l-r-auto m-t-43 m-b-33" data-toggle="modal" data-target="#modal-video-01">
+                <div class="flex-c-m sizefull bo-cir bgwhite color1 hov1 trans-0-4">
+                    <i class="fa fa-play fs-18 m-l-2" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+    </section>*@
+

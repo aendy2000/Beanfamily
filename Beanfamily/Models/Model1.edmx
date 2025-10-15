@@ -63,6 +63,9 @@
           <Property Name="hinhanh4_gioithieu" Type="nvarchar(max)" />
           <Property Name="hinhanh_menu_trangchu" Type="nvarchar(max)" />
           <Property Name="video_trangchu" Type="nvarchar(max)" />
+          <Property Name="tieude_menu_trangchu" Type="nvarchar(max)" />
+          <Property Name="mota_menu_trangchu" Type="nvarchar(max)" />
+          <Property Name="mota_video_trangchu" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="CacBuocQuyTrinhTrongCay">
           <Key>
@@ -593,12 +596,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="id_thucdon" Type="int" Nullable="false" />
-          <Property Name="id_vuonrau" Type="int" Nullable="false" />
-          <Property Name="id_muasam" Type="int" Nullable="false" />
-          <Property Name="id_thucdon_2" Type="int" Nullable="false" />
-          <Property Name="id_vuonrau_2" Type="int" Nullable="false" />
-          <Property Name="id_muasam_2" Type="int" Nullable="false" />
+          <Property Name="list_id_thucdon" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="ThongTinCauHinh">
           <Key>
@@ -1171,78 +1169,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TopSanPhamNoiBat_SanPhamMuaSam">
-          <End Role="SanPhamMuaSam" Type="Self.SanPhamMuaSam" Multiplicity="1" />
-          <End Role="TopSanPhamNoiBat" Type="Self.TopSanPhamNoiBat" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SanPhamMuaSam">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="TopSanPhamNoiBat">
-              <PropertyRef Name="id_muasam" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TopSanPhamNoiBat_SanPhamMuaSam_2">
-          <End Role="SanPhamMuaSam" Type="Self.SanPhamMuaSam" Multiplicity="1" />
-          <End Role="TopSanPhamNoiBat" Type="Self.TopSanPhamNoiBat" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SanPhamMuaSam">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="TopSanPhamNoiBat">
-              <PropertyRef Name="id_muasam_2" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TopSanPhamNoiBat_SanPhamRauNhaTrong">
-          <End Role="SanPhamRauNhaTrong" Type="Self.SanPhamRauNhaTrong" Multiplicity="1" />
-          <End Role="TopSanPhamNoiBat" Type="Self.TopSanPhamNoiBat" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SanPhamRauNhaTrong">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="TopSanPhamNoiBat">
-              <PropertyRef Name="id_vuonrau" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TopSanPhamNoiBat_SanPhamRauNhaTrong_2">
-          <End Role="SanPhamRauNhaTrong" Type="Self.SanPhamRauNhaTrong" Multiplicity="1" />
-          <End Role="TopSanPhamNoiBat" Type="Self.TopSanPhamNoiBat" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SanPhamRauNhaTrong">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="TopSanPhamNoiBat">
-              <PropertyRef Name="id_vuonrau_2" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TopSanPhamNoiBat_SanPhamThucDonHangNgay">
-          <End Role="SanPhamThucDonHangNgay" Type="Self.SanPhamThucDonHangNgay" Multiplicity="1" />
-          <End Role="TopSanPhamNoiBat" Type="Self.TopSanPhamNoiBat" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SanPhamThucDonHangNgay">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="TopSanPhamNoiBat">
-              <PropertyRef Name="id_thucdon" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TopSanPhamNoiBat_SanPhamThucDonHangNgay_2">
-          <End Role="SanPhamThucDonHangNgay" Type="Self.SanPhamThucDonHangNgay" Multiplicity="1" />
-          <End Role="TopSanPhamNoiBat" Type="Self.TopSanPhamNoiBat" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SanPhamThucDonHangNgay">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="TopSanPhamNoiBat">
-              <PropertyRef Name="id_thucdon_2" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="BeanfamilyModelStoreContainer">
           <EntitySet Name="ApDungChucNangChoQuyenTaiKhoan" EntityType="Self.ApDungChucNangChoQuyenTaiKhoan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BoCucNoiDungTinhWebsite" EntityType="Self.BoCucNoiDungTinhWebsite" Schema="dbo" store:Type="Tables" />
@@ -1469,30 +1395,6 @@
             <End Role="SanPhamMuaSam" EntitySet="SanPhamMuaSam" />
             <End Role="TonKhoSanPhamMuaSam" EntitySet="TonKhoSanPhamMuaSam" />
           </AssociationSet>
-          <AssociationSet Name="FK_TopSanPhamNoiBat_SanPhamMuaSam" Association="Self.FK_TopSanPhamNoiBat_SanPhamMuaSam">
-            <End Role="SanPhamMuaSam" EntitySet="SanPhamMuaSam" />
-            <End Role="TopSanPhamNoiBat" EntitySet="TopSanPhamNoiBat" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TopSanPhamNoiBat_SanPhamMuaSam_2" Association="Self.FK_TopSanPhamNoiBat_SanPhamMuaSam_2">
-            <End Role="SanPhamMuaSam" EntitySet="SanPhamMuaSam" />
-            <End Role="TopSanPhamNoiBat" EntitySet="TopSanPhamNoiBat" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TopSanPhamNoiBat_SanPhamRauNhaTrong" Association="Self.FK_TopSanPhamNoiBat_SanPhamRauNhaTrong">
-            <End Role="SanPhamRauNhaTrong" EntitySet="SanPhamRauNhaTrong" />
-            <End Role="TopSanPhamNoiBat" EntitySet="TopSanPhamNoiBat" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TopSanPhamNoiBat_SanPhamRauNhaTrong_2" Association="Self.FK_TopSanPhamNoiBat_SanPhamRauNhaTrong_2">
-            <End Role="SanPhamRauNhaTrong" EntitySet="SanPhamRauNhaTrong" />
-            <End Role="TopSanPhamNoiBat" EntitySet="TopSanPhamNoiBat" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TopSanPhamNoiBat_SanPhamThucDonHangNgay" Association="Self.FK_TopSanPhamNoiBat_SanPhamThucDonHangNgay">
-            <End Role="SanPhamThucDonHangNgay" EntitySet="SanPhamThucDonHangNgay" />
-            <End Role="TopSanPhamNoiBat" EntitySet="TopSanPhamNoiBat" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TopSanPhamNoiBat_SanPhamThucDonHangNgay_2" Association="Self.FK_TopSanPhamNoiBat_SanPhamThucDonHangNgay_2">
-            <End Role="SanPhamThucDonHangNgay" EntitySet="SanPhamThucDonHangNgay" />
-            <End Role="TopSanPhamNoiBat" EntitySet="TopSanPhamNoiBat" />
-          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -1511,6 +1413,57 @@
           <NavigationProperty Name="ChucNangHeThongBean" Relationship="Self.FK_ApDungChucNangChoQuyenTaiKhoan_ChucNangHeThongBean" FromRole="ApDungChucNangChoQuyenTaiKhoan" ToRole="ChucNangHeThongBean" />
           <NavigationProperty Name="QuyenTaiKhoanBean" Relationship="Self.FK_ApDungChucNangChoQuyenTaiKhoan_QuyenTaiKhoanBean" FromRole="ApDungChucNangChoQuyenTaiKhoan" ToRole="QuyenTaiKhoanBean" />
         </EntityType>
+        <EntityType Name="BoCucNoiDungTinhWebsite">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="banner_trangchu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="mota_thanhphanchinh_nhahang" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="mota_thanhphanchinh_vuonrau" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="mota_thanhphanchinh_muasam" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="mota_sanphammoi_nhahang" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="mota_sanphammoi_vuonrau" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="mota_sanphammoi_muasam" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="mota_sanphamnoibat_nhahang" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="mota_sanphamnoibat_vuonrau" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="mota_sanphamnoibat_muasam" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="banner_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="tieude_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="hinhanh1_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="hinhanh2_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="tieude2_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="mota_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="hinhanh_mota_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="banner_nhahang" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="mota_menuhangngay" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="mota_menutiecban" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="mota_menutiecbuffet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="banner_thucdonhangngay" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="banner_tiecban" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="banner_buffet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="banner_vuonrau" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="banner_muasam" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="banner_hinhanh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="banner_khac" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="hinhanh_menuhangngay" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="hinhanh_menutiecban" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="hinhanh_menutiecbuffet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="mota1_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="tieude_nhahang" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="mota_nhahang" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="tieude_vuonrau" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="mota_vuonrau" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="tieude3_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="mota3_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="hinhanh3_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="hinhanh4_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="hinhanh_menu_trangchu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="video_trangchu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="tieude_menu_trangchu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="mota_menu_trangchu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="mota_video_trangchu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="CacBuocQuyTrinhTrongCay">
           <Key>
             <PropertyRef Name="id" />
@@ -1523,6 +1476,16 @@
           <Property Name="ngaytao" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ngaysuadoi" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="QuyTrinhTrongCay" Relationship="Self.FK_CacBuocQuyTrinhTrongCay_QuyTrinhTrongCay" FromRole="CacBuocQuyTrinhTrongCay" ToRole="QuyTrinhTrongCay" />
+        </EntityType>
+        <EntityType Name="ChinhSachBean">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tenchinhsach" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="noidung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sothutu" Type="Int32" Nullable="false" />
+          <Property Name="hienthi" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="ChiTietDonHangDanhMucPhucVuMenuBuffet">
           <Key>
@@ -1922,9 +1885,9 @@
           <Property Name="hinhanh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="tensanpham" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="hienthi" Type="Boolean" Nullable="false" />
+          <Property Name="daxoa" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="ChiTietDonHangSanPhamMenuBuffet" Relationship="Self.FK_ChiTietDonHangSanPhamMenuBuffet_SanPhamMenuBuffet" FromRole="SanPhamMenuBuffet" ToRole="ChiTietDonHangSanPhamMenuBuffet" />
           <NavigationProperty Name="DanhMucMenuBuffetCap1" Relationship="Self.FK_SanPhamMenuBuffet_DanhMucMenuBuffetCap1" FromRole="SanPhamMenuBuffet" ToRole="DanhMucMenuBuffetCap1" />
-          <Property Name="daxoa" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="SanPhamMenuTiecBan">
           <Key>
@@ -1937,9 +1900,9 @@
           <Property Name="tensanpham" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="gia" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="hienthi" Type="Boolean" Nullable="false" />
+          <Property Name="daxoa" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="ChiTietDonHangSanPhamMenuTiecBan" Relationship="Self.FK_ChiTietDonHangSanPhamMenuTiecBan_SanPhamMenuTiecBan" FromRole="SanPhamMenuTiecBan" ToRole="ChiTietDonHangSanPhamMenuTiecBan" />
           <NavigationProperty Name="DanhMucMenuTiecBanCap1" Relationship="Self.FK_SanPhamMenuTiecBan_DanhMucMenuTiecBanCap1" FromRole="SanPhamMenuTiecBan" ToRole="DanhMucMenuTiecBanCap1" />
-          <Property Name="daxoa" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="SanPhamMuaSam">
           <Key>
@@ -1953,14 +1916,12 @@
           <Property Name="mota" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="luotxem" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="hienthi" Type="Boolean" Nullable="false" />
+          <Property Name="daxoa" Type="Boolean" Nullable="false" />
+          <Property Name="thamkhao" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="ChiTietDonHangSanPhamMuaSam" Relationship="Self.FK_ChiTietDonHangSanPhamMuaSam_SanPhamMuaSam" FromRole="SanPhamMuaSam" ToRole="ChiTietDonHangSanPhamMuaSam" />
           <NavigationProperty Name="DanhMucSanPhamMuaSamCap1" Relationship="Self.FK_SanPhamMuaSam_DanhMucSanPhamMuaSamCap1" FromRole="SanPhamMuaSam" ToRole="DanhMucSanPhamMuaSamCap1" />
           <NavigationProperty Name="GioHangMuaSam" Relationship="Self.FK_GioHangMuaSam_SanPhamMuaSam" FromRole="SanPhamMuaSam" ToRole="GioHangMuaSam" />
           <NavigationProperty Name="TonKhoSanPhamMuaSam" Relationship="Self.FK_TonKhoSanPhamMuaSam_SanPhamMuaSam" FromRole="SanPhamMuaSam" ToRole="TonKhoSanPhamMuaSam" />
-          <Property Name="daxoa" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="TopSanPhamNoiBat" Relationship="BeanfamilyModel.FK_TopSanPhamNoiBat_SanPhamMuaSam" FromRole="SanPhamMuaSam" ToRole="TopSanPhamNoiBat" />
-          <NavigationProperty Name="TopSanPhamNoiBat1" Relationship="BeanfamilyModel.FK_TopSanPhamNoiBat_SanPhamMuaSam_2" FromRole="SanPhamMuaSam" ToRole="TopSanPhamNoiBat" />
-          <Property Name="thamkhao" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="SanPhamRauNhaTrong">
           <Key>
@@ -1978,14 +1939,12 @@
           <Property Name="mota" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="luotxem" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="hienthi" Type="Boolean" Nullable="false" />
+          <Property Name="daxoa" Type="Boolean" Nullable="false" />
+          <Property Name="thamkhao" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="ChiTietDonHangSanPhamRauNhaTrong" Relationship="Self.FK_ChiTietDonHangSanPhamRauNhaTrong_SanPhamRauNhaTrong" FromRole="SanPhamRauNhaTrong" ToRole="ChiTietDonHangSanPhamRauNhaTrong" />
           <NavigationProperty Name="DanhMucSanPhamRauNhaTrongCap1" Relationship="Self.FK_SanPhamRauNhaTrong_DanhMucSanPhamRauNhaTrongCap1" FromRole="SanPhamRauNhaTrong" ToRole="DanhMucSanPhamRauNhaTrongCap1" />
           <NavigationProperty Name="GioHangVuonRauBean" Relationship="Self.FK_GioHangVuonRauBean_SanPhamRauNhaTrong" FromRole="SanPhamRauNhaTrong" ToRole="GioHangVuonRauBean" />
           <NavigationProperty Name="QuyTrinhTrongCay" Relationship="Self.FK_SanPhamRauNhaTrong_QuyTrinhTrongCay" FromRole="SanPhamRauNhaTrong" ToRole="QuyTrinhTrongCay" />
-          <Property Name="daxoa" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="TopSanPhamNoiBat" Relationship="BeanfamilyModel.FK_TopSanPhamNoiBat_SanPhamRauNhaTrong" FromRole="SanPhamRauNhaTrong" ToRole="TopSanPhamNoiBat" />
-          <NavigationProperty Name="TopSanPhamNoiBat1" Relationship="BeanfamilyModel.FK_TopSanPhamNoiBat_SanPhamRauNhaTrong_2" FromRole="SanPhamRauNhaTrong" ToRole="TopSanPhamNoiBat" />
-          <Property Name="thamkhao" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="SanPhamThucDonHangNgay">
           <Key>
@@ -2001,12 +1960,10 @@
           <Property Name="luotxem" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="hienthi" Type="Boolean" Nullable="false" />
           <Property Name="conhang" Type="Boolean" Nullable="false" />
+          <Property Name="daxoa" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="ChiTietDonHangSanPhamThucDonHangNgay" Relationship="Self.FK_ChiTietDonHangSanPhamThucDonHangNgay_SanPhamThucDonHangNgay" FromRole="SanPhamThucDonHangNgay" ToRole="ChiTietDonHangSanPhamThucDonHangNgay" />
           <NavigationProperty Name="DanhMucThucDocHangNgayCap1" Relationship="Self.FK_SanPhamThucDonHangNgay_SanPhamThucDonHangNgay1" FromRole="SanPhamThucDonHangNgay" ToRole="DanhMucThucDocHangNgayCap1" />
           <NavigationProperty Name="GioHangThucDonHangNgay" Relationship="Self.FK_GioHangThucDonHangNgay_SanPhamThucDonHangNgay" FromRole="SanPhamThucDonHangNgay" ToRole="GioHangThucDonHangNgay" />
-          <Property Name="daxoa" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="TopSanPhamNoiBat" Relationship="BeanfamilyModel.FK_TopSanPhamNoiBat_SanPhamThucDonHangNgay" FromRole="SanPhamThucDonHangNgay" ToRole="TopSanPhamNoiBat" />
-          <NavigationProperty Name="TopSanPhamNoiBat1" Relationship="BeanfamilyModel.FK_TopSanPhamNoiBat_SanPhamThucDonHangNgay_2" FromRole="SanPhamThucDonHangNgay" ToRole="TopSanPhamNoiBat" />
         </EntityType>
         <EntityType Name="TaiKhoanBean">
           <Key>
@@ -2108,6 +2065,13 @@
           <NavigationProperty Name="GioHangMuaSam" Relationship="Self.FK_GioHangMuaSam_TonKhoSanPhamMuaSam" FromRole="TonKhoSanPhamMuaSam" ToRole="GioHangMuaSam" />
           <NavigationProperty Name="SanPhamMuaSam" Relationship="Self.FK_TonKhoSanPhamMuaSam_SanPhamMuaSam" FromRole="TonKhoSanPhamMuaSam" ToRole="SanPhamMuaSam" />
         </EntityType>
+        <EntityType Name="TopSanPhamNoiBat">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="list_id_thucdon" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="ThongTinCauHinh">
           <Key>
             <PropertyRef Name="id" />
@@ -2131,6 +2095,13 @@
           <Property Name="hotline" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="footer_hotline" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="footer_page_facebook" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="VideoBean">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="url" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_ApDungChucNangChoQuyenTaiKhoan_ChucNangHeThongBean">
           <End Role="ChucNangHeThongBean" Type="Self.ChucNangHeThongBean" Multiplicity="1" />
@@ -2674,7 +2645,9 @@
         </Association>
         <EntityContainer Name="BeanfamilyEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ApDungChucNangChoQuyenTaiKhoan" EntityType="Self.ApDungChucNangChoQuyenTaiKhoan" />
+          <EntitySet Name="BoCucNoiDungTinhWebsite" EntityType="Self.BoCucNoiDungTinhWebsite" />
           <EntitySet Name="CacBuocQuyTrinhTrongCay" EntityType="Self.CacBuocQuyTrinhTrongCay" />
+          <EntitySet Name="ChinhSachBean" EntityType="Self.ChinhSachBean" />
           <EntitySet Name="ChiTietDonHangDanhMucPhucVuMenuBuffet" EntityType="Self.ChiTietDonHangDanhMucPhucVuMenuBuffet" />
           <EntitySet Name="ChiTietDonHangDanhMucPhucVuMenuTiecBan" EntityType="Self.ChiTietDonHangDanhMucPhucVuMenuTiecBan" />
           <EntitySet Name="ChiTietDonHangSanPhamMenuBuffet" EntityType="Self.ChiTietDonHangSanPhamMenuBuffet" />
@@ -2712,7 +2685,9 @@
           <EntitySet Name="TinhTrangDonHangMenuTiecBan" EntityType="Self.TinhTrangDonHangMenuTiecBan" />
           <EntitySet Name="TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay" EntityType="Self.TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay" />
           <EntitySet Name="TonKhoSanPhamMuaSam" EntityType="Self.TonKhoSanPhamMuaSam" />
+          <EntitySet Name="TopSanPhamNoiBat" EntityType="Self.TopSanPhamNoiBat" />
           <EntitySet Name="ThongTinCauHinh" EntityType="Self.ThongTinCauHinh" />
+          <EntitySet Name="VideoBean" EntityType="Self.VideoBean" />
           <AssociationSet Name="FK_ApDungChucNangChoQuyenTaiKhoan_ChucNangHeThongBean" Association="Self.FK_ApDungChucNangChoQuyenTaiKhoan_ChucNangHeThongBean">
             <End Role="ChucNangHeThongBean" EntitySet="ChucNangHeThongBean" />
             <End Role="ApDungChucNangChoQuyenTaiKhoan" EntitySet="ApDungChucNangChoQuyenTaiKhoan" />
@@ -2893,46 +2868,8 @@
             <End Role="TaiKhoanBean" EntitySet="TaiKhoanBean" />
             <End Role="TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay" EntitySet="TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay" />
           </AssociationSet>
-          <EntitySet Name="ChinhSachBean" EntityType="BeanfamilyModel.ChinhSachBean" />
           <EntitySet Name="SuKienBean" EntityType="BeanfamilyModel.SuKienBean" />
-          <EntitySet Name="VideoBean" EntityType="BeanfamilyModel.VideoBean" />
-          <EntitySet Name="TopSanPhamNoiBat" EntityType="BeanfamilyModel.TopSanPhamNoiBat" />
-          <AssociationSet Name="FK_TopSanPhamNoiBat_SanPhamMuaSam" Association="BeanfamilyModel.FK_TopSanPhamNoiBat_SanPhamMuaSam">
-            <End Role="SanPhamMuaSam" EntitySet="SanPhamMuaSam" />
-            <End Role="TopSanPhamNoiBat" EntitySet="TopSanPhamNoiBat" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TopSanPhamNoiBat_SanPhamRauNhaTrong" Association="BeanfamilyModel.FK_TopSanPhamNoiBat_SanPhamRauNhaTrong">
-            <End Role="SanPhamRauNhaTrong" EntitySet="SanPhamRauNhaTrong" />
-            <End Role="TopSanPhamNoiBat" EntitySet="TopSanPhamNoiBat" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TopSanPhamNoiBat_SanPhamThucDonHangNgay" Association="BeanfamilyModel.FK_TopSanPhamNoiBat_SanPhamThucDonHangNgay">
-            <End Role="SanPhamThucDonHangNgay" EntitySet="SanPhamThucDonHangNgay" />
-            <End Role="TopSanPhamNoiBat" EntitySet="TopSanPhamNoiBat" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TopSanPhamNoiBat_SanPhamMuaSam_2" Association="BeanfamilyModel.FK_TopSanPhamNoiBat_SanPhamMuaSam_2">
-            <End Role="SanPhamMuaSam" EntitySet="SanPhamMuaSam" />
-            <End Role="TopSanPhamNoiBat" EntitySet="TopSanPhamNoiBat" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TopSanPhamNoiBat_SanPhamRauNhaTrong_2" Association="BeanfamilyModel.FK_TopSanPhamNoiBat_SanPhamRauNhaTrong_2">
-            <End Role="SanPhamRauNhaTrong" EntitySet="SanPhamRauNhaTrong" />
-            <End Role="TopSanPhamNoiBat" EntitySet="TopSanPhamNoiBat" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TopSanPhamNoiBat_SanPhamThucDonHangNgay_2" Association="BeanfamilyModel.FK_TopSanPhamNoiBat_SanPhamThucDonHangNgay_2">
-            <End Role="SanPhamThucDonHangNgay" EntitySet="SanPhamThucDonHangNgay" />
-            <End Role="TopSanPhamNoiBat" EntitySet="TopSanPhamNoiBat" />
-          </AssociationSet>
-          <EntitySet Name="BoCucNoiDungTinhWebsite" EntityType="BeanfamilyModel.BoCucNoiDungTinhWebsite" />
         </EntityContainer>
-        <EntityType Name="ChinhSachBean">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="tenchinhsach" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="noidung" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="sothutu" Type="Int32" Nullable="false" />
-          <Property Name="hienthi" Type="Boolean" Nullable="false" />
-        </EntityType>
         <EntityType Name="SuKienBean">
           <Key>
             <PropertyRef Name="id" />
@@ -2943,151 +2880,6 @@
           <Property Name="baiviet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="hinhanh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ngaygio" Type="DateTime" Nullable="false" Precision="3" />
-        </EntityType>
-        <EntityType Name="VideoBean">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="url" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="TopSanPhamNoiBat">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="id_thucdon" Type="Int32" Nullable="false" />
-          <Property Name="id_vuonrau" Type="Int32" Nullable="false" />
-          <Property Name="id_muasam" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="SanPhamMuaSam" Relationship="BeanfamilyModel.FK_TopSanPhamNoiBat_SanPhamMuaSam" FromRole="TopSanPhamNoiBat" ToRole="SanPhamMuaSam" />
-          <NavigationProperty Name="SanPhamRauNhaTrong" Relationship="BeanfamilyModel.FK_TopSanPhamNoiBat_SanPhamRauNhaTrong" FromRole="TopSanPhamNoiBat" ToRole="SanPhamRauNhaTrong" />
-          <NavigationProperty Name="SanPhamThucDonHangNgay" Relationship="BeanfamilyModel.FK_TopSanPhamNoiBat_SanPhamThucDonHangNgay" FromRole="TopSanPhamNoiBat" ToRole="SanPhamThucDonHangNgay" />
-          <Property Name="id_thucdon_2" Type="Int32" Nullable="false" />
-          <Property Name="id_vuonrau_2" Type="Int32" Nullable="false" />
-          <Property Name="id_muasam_2" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="SanPhamMuaSam1" Relationship="BeanfamilyModel.FK_TopSanPhamNoiBat_SanPhamMuaSam_2" FromRole="TopSanPhamNoiBat" ToRole="SanPhamMuaSam" />
-          <NavigationProperty Name="SanPhamRauNhaTrong1" Relationship="BeanfamilyModel.FK_TopSanPhamNoiBat_SanPhamRauNhaTrong_2" FromRole="TopSanPhamNoiBat" ToRole="SanPhamRauNhaTrong" />
-          <NavigationProperty Name="SanPhamThucDonHangNgay1" Relationship="BeanfamilyModel.FK_TopSanPhamNoiBat_SanPhamThucDonHangNgay_2" FromRole="TopSanPhamNoiBat" ToRole="SanPhamThucDonHangNgay" />
-        </EntityType>
-        <Association Name="FK_TopSanPhamNoiBat_SanPhamMuaSam">
-          <End Type="BeanfamilyModel.SanPhamMuaSam" Role="SanPhamMuaSam" Multiplicity="1" />
-          <End Type="BeanfamilyModel.TopSanPhamNoiBat" Role="TopSanPhamNoiBat" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SanPhamMuaSam">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="TopSanPhamNoiBat">
-              <PropertyRef Name="id_muasam" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TopSanPhamNoiBat_SanPhamRauNhaTrong">
-          <End Type="BeanfamilyModel.SanPhamRauNhaTrong" Role="SanPhamRauNhaTrong" Multiplicity="1" />
-          <End Type="BeanfamilyModel.TopSanPhamNoiBat" Role="TopSanPhamNoiBat" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SanPhamRauNhaTrong">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="TopSanPhamNoiBat">
-              <PropertyRef Name="id_vuonrau" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TopSanPhamNoiBat_SanPhamThucDonHangNgay">
-          <End Type="BeanfamilyModel.SanPhamThucDonHangNgay" Role="SanPhamThucDonHangNgay" Multiplicity="1" />
-          <End Type="BeanfamilyModel.TopSanPhamNoiBat" Role="TopSanPhamNoiBat" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SanPhamThucDonHangNgay">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="TopSanPhamNoiBat">
-              <PropertyRef Name="id_thucdon" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TopSanPhamNoiBat_SanPhamMuaSam_2">
-          <End Type="BeanfamilyModel.SanPhamMuaSam" Role="SanPhamMuaSam" Multiplicity="1" />
-          <End Type="BeanfamilyModel.TopSanPhamNoiBat" Role="TopSanPhamNoiBat" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SanPhamMuaSam">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="TopSanPhamNoiBat">
-              <PropertyRef Name="id_muasam_2" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TopSanPhamNoiBat_SanPhamRauNhaTrong_2">
-          <End Type="BeanfamilyModel.SanPhamRauNhaTrong" Role="SanPhamRauNhaTrong" Multiplicity="1" />
-          <End Type="BeanfamilyModel.TopSanPhamNoiBat" Role="TopSanPhamNoiBat" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SanPhamRauNhaTrong">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="TopSanPhamNoiBat">
-              <PropertyRef Name="id_vuonrau_2" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TopSanPhamNoiBat_SanPhamThucDonHangNgay_2">
-          <End Type="BeanfamilyModel.SanPhamThucDonHangNgay" Role="SanPhamThucDonHangNgay" Multiplicity="1" />
-          <End Type="BeanfamilyModel.TopSanPhamNoiBat" Role="TopSanPhamNoiBat" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SanPhamThucDonHangNgay">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="TopSanPhamNoiBat">
-              <PropertyRef Name="id_thucdon_2" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="BoCucNoiDungTinhWebsite">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="banner_trangchu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="mota_thanhphanchinh_nhahang" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="mota_thanhphanchinh_vuonrau" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="mota_thanhphanchinh_muasam" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="mota_sanphammoi_nhahang" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="mota_sanphammoi_vuonrau" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="mota_sanphammoi_muasam" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="mota_sanphamnoibat_nhahang" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="mota_sanphamnoibat_vuonrau" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="mota_sanphamnoibat_muasam" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="banner_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="tieude_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="hinhanh1_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="hinhanh2_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="tieude2_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="mota_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="hinhanh_mota_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="banner_nhahang" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="mota_menuhangngay" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="mota_menutiecban" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="mota_menutiecbuffet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="banner_thucdonhangngay" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="banner_tiecban" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="banner_buffet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="banner_vuonrau" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="banner_muasam" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="banner_hinhanh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="banner_khac" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="hinhanh_menuhangngay" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="hinhanh_menutiecban" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="hinhanh_menutiecbuffet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="mota1_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="tieude_nhahang" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="mota_nhahang" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="tieude_vuonrau" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="mota_vuonrau" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="tieude3_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="mota3_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="hinhanh3_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="hinhanh4_gioithieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="hinhanh_menu_trangchu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="video_trangchu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -3107,6 +2899,58 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="BoCucNoiDungTinhWebsite">
+            <EntityTypeMapping TypeName="BeanfamilyModel.BoCucNoiDungTinhWebsite">
+              <MappingFragment StoreEntitySet="BoCucNoiDungTinhWebsite">
+                <ScalarProperty Name="mota_video_trangchu" ColumnName="mota_video_trangchu" />
+                <ScalarProperty Name="mota_menu_trangchu" ColumnName="mota_menu_trangchu" />
+                <ScalarProperty Name="tieude_menu_trangchu" ColumnName="tieude_menu_trangchu" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="banner_trangchu" ColumnName="banner_trangchu" />
+                <ScalarProperty Name="mota_thanhphanchinh_nhahang" ColumnName="mota_thanhphanchinh_nhahang" />
+                <ScalarProperty Name="mota_thanhphanchinh_vuonrau" ColumnName="mota_thanhphanchinh_vuonrau" />
+                <ScalarProperty Name="mota_thanhphanchinh_muasam" ColumnName="mota_thanhphanchinh_muasam" />
+                <ScalarProperty Name="mota_sanphammoi_nhahang" ColumnName="mota_sanphammoi_nhahang" />
+                <ScalarProperty Name="mota_sanphammoi_vuonrau" ColumnName="mota_sanphammoi_vuonrau" />
+                <ScalarProperty Name="mota_sanphammoi_muasam" ColumnName="mota_sanphammoi_muasam" />
+                <ScalarProperty Name="mota_sanphamnoibat_nhahang" ColumnName="mota_sanphamnoibat_nhahang" />
+                <ScalarProperty Name="mota_sanphamnoibat_vuonrau" ColumnName="mota_sanphamnoibat_vuonrau" />
+                <ScalarProperty Name="mota_sanphamnoibat_muasam" ColumnName="mota_sanphamnoibat_muasam" />
+                <ScalarProperty Name="banner_gioithieu" ColumnName="banner_gioithieu" />
+                <ScalarProperty Name="tieude_gioithieu" ColumnName="tieude_gioithieu" />
+                <ScalarProperty Name="hinhanh1_gioithieu" ColumnName="hinhanh1_gioithieu" />
+                <ScalarProperty Name="hinhanh2_gioithieu" ColumnName="hinhanh2_gioithieu" />
+                <ScalarProperty Name="tieude2_gioithieu" ColumnName="tieude2_gioithieu" />
+                <ScalarProperty Name="mota_gioithieu" ColumnName="mota_gioithieu" />
+                <ScalarProperty Name="hinhanh_mota_gioithieu" ColumnName="hinhanh_mota_gioithieu" />
+                <ScalarProperty Name="banner_nhahang" ColumnName="banner_nhahang" />
+                <ScalarProperty Name="mota_menuhangngay" ColumnName="mota_menuhangngay" />
+                <ScalarProperty Name="mota_menutiecban" ColumnName="mota_menutiecban" />
+                <ScalarProperty Name="mota_menutiecbuffet" ColumnName="mota_menutiecbuffet" />
+                <ScalarProperty Name="banner_thucdonhangngay" ColumnName="banner_thucdonhangngay" />
+                <ScalarProperty Name="banner_tiecban" ColumnName="banner_tiecban" />
+                <ScalarProperty Name="banner_buffet" ColumnName="banner_buffet" />
+                <ScalarProperty Name="banner_vuonrau" ColumnName="banner_vuonrau" />
+                <ScalarProperty Name="banner_muasam" ColumnName="banner_muasam" />
+                <ScalarProperty Name="banner_hinhanh" ColumnName="banner_hinhanh" />
+                <ScalarProperty Name="banner_khac" ColumnName="banner_khac" />
+                <ScalarProperty Name="hinhanh_menuhangngay" ColumnName="hinhanh_menuhangngay" />
+                <ScalarProperty Name="hinhanh_menutiecban" ColumnName="hinhanh_menutiecban" />
+                <ScalarProperty Name="hinhanh_menutiecbuffet" ColumnName="hinhanh_menutiecbuffet" />
+                <ScalarProperty Name="mota1_gioithieu" ColumnName="mota1_gioithieu" />
+                <ScalarProperty Name="tieude_nhahang" ColumnName="tieude_nhahang" />
+                <ScalarProperty Name="mota_nhahang" ColumnName="mota_nhahang" />
+                <ScalarProperty Name="tieude_vuonrau" ColumnName="tieude_vuonrau" />
+                <ScalarProperty Name="mota_vuonrau" ColumnName="mota_vuonrau" />
+                <ScalarProperty Name="tieude3_gioithieu" ColumnName="tieude3_gioithieu" />
+                <ScalarProperty Name="mota3_gioithieu" ColumnName="mota3_gioithieu" />
+                <ScalarProperty Name="hinhanh3_gioithieu" ColumnName="hinhanh3_gioithieu" />
+                <ScalarProperty Name="hinhanh4_gioithieu" ColumnName="hinhanh4_gioithieu" />
+                <ScalarProperty Name="hinhanh_menu_trangchu" ColumnName="hinhanh_menu_trangchu" />
+                <ScalarProperty Name="video_trangchu" ColumnName="video_trangchu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="CacBuocQuyTrinhTrongCay">
             <EntityTypeMapping TypeName="BeanfamilyModel.CacBuocQuyTrinhTrongCay">
               <MappingFragment StoreEntitySet="CacBuocQuyTrinhTrongCay">
@@ -3117,6 +2961,17 @@
                 <ScalarProperty Name="hinhanh" ColumnName="hinhanh" />
                 <ScalarProperty Name="ngaytao" ColumnName="ngaytao" />
                 <ScalarProperty Name="ngaysuadoi" ColumnName="ngaysuadoi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChinhSachBean">
+            <EntityTypeMapping TypeName="BeanfamilyModel.ChinhSachBean">
+              <MappingFragment StoreEntitySet="ChinhSachBean">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="tenchinhsach" ColumnName="tenchinhsach" />
+                <ScalarProperty Name="noidung" ColumnName="noidung" />
+                <ScalarProperty Name="sothutu" ColumnName="sothutu" />
+                <ScalarProperty Name="hienthi" ColumnName="hienthi" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3482,20 +3337,19 @@
           <EntitySetMapping Name="SanPhamMenuBuffet">
             <EntityTypeMapping TypeName="BeanfamilyModel.SanPhamMenuBuffet">
               <MappingFragment StoreEntitySet="SanPhamMenuBuffet">
-                <ScalarProperty Name="daxoa" ColumnName="daxoa" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_danhmucmenubuffetcap1" ColumnName="id_danhmucmenubuffetcap1" />
                 <ScalarProperty Name="sothutu" ColumnName="sothutu" />
                 <ScalarProperty Name="hinhanh" ColumnName="hinhanh" />
                 <ScalarProperty Name="tensanpham" ColumnName="tensanpham" />
                 <ScalarProperty Name="hienthi" ColumnName="hienthi" />
+                <ScalarProperty Name="daxoa" ColumnName="daxoa" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SanPhamMenuTiecBan">
             <EntityTypeMapping TypeName="BeanfamilyModel.SanPhamMenuTiecBan">
               <MappingFragment StoreEntitySet="SanPhamMenuTiecBan">
-                <ScalarProperty Name="daxoa" ColumnName="daxoa" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_danhmucmenutiecbancap1" ColumnName="id_danhmucmenutiecbancap1" />
                 <ScalarProperty Name="sothutu" ColumnName="sothutu" />
@@ -3503,14 +3357,13 @@
                 <ScalarProperty Name="tensanpham" ColumnName="tensanpham" />
                 <ScalarProperty Name="gia" ColumnName="gia" />
                 <ScalarProperty Name="hienthi" ColumnName="hienthi" />
+                <ScalarProperty Name="daxoa" ColumnName="daxoa" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SanPhamMuaSam">
             <EntityTypeMapping TypeName="BeanfamilyModel.SanPhamMuaSam">
               <MappingFragment StoreEntitySet="SanPhamMuaSam">
-                <ScalarProperty Name="thamkhao" ColumnName="thamkhao" />
-                <ScalarProperty Name="daxoa" ColumnName="daxoa" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_danhmucmuasamcap1" ColumnName="id_danhmucmuasamcap1" />
                 <ScalarProperty Name="hinhanh" ColumnName="hinhanh" />
@@ -3519,14 +3372,14 @@
                 <ScalarProperty Name="mota" ColumnName="mota" />
                 <ScalarProperty Name="luotxem" ColumnName="luotxem" />
                 <ScalarProperty Name="hienthi" ColumnName="hienthi" />
+                <ScalarProperty Name="daxoa" ColumnName="daxoa" />
+                <ScalarProperty Name="thamkhao" ColumnName="thamkhao" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SanPhamRauNhaTrong">
             <EntityTypeMapping TypeName="BeanfamilyModel.SanPhamRauNhaTrong">
               <MappingFragment StoreEntitySet="SanPhamRauNhaTrong">
-                <ScalarProperty Name="thamkhao" ColumnName="thamkhao" />
-                <ScalarProperty Name="daxoa" ColumnName="daxoa" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_danhmucsanphamraunhatrongcap1" ColumnName="id_danhmucsanphamraunhatrongcap1" />
                 <ScalarProperty Name="id_quytrinhtrongcay" ColumnName="id_quytrinhtrongcay" />
@@ -3539,13 +3392,14 @@
                 <ScalarProperty Name="mota" ColumnName="mota" />
                 <ScalarProperty Name="luotxem" ColumnName="luotxem" />
                 <ScalarProperty Name="hienthi" ColumnName="hienthi" />
+                <ScalarProperty Name="daxoa" ColumnName="daxoa" />
+                <ScalarProperty Name="thamkhao" ColumnName="thamkhao" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SanPhamThucDonHangNgay">
             <EntityTypeMapping TypeName="BeanfamilyModel.SanPhamThucDonHangNgay">
               <MappingFragment StoreEntitySet="SanPhamThucDonHangNgay">
-                <ScalarProperty Name="daxoa" ColumnName="daxoa" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_danhmucthucdonhangngaycap1" ColumnName="id_danhmucthucdonhangngaycap1" />
                 <ScalarProperty Name="hinhanh" ColumnName="hinhanh" />
@@ -3556,6 +3410,7 @@
                 <ScalarProperty Name="luotxem" ColumnName="luotxem" />
                 <ScalarProperty Name="hienthi" ColumnName="hienthi" />
                 <ScalarProperty Name="conhang" ColumnName="conhang" />
+                <ScalarProperty Name="daxoa" ColumnName="daxoa" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3648,12 +3503,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="TopSanPhamNoiBat">
+            <EntityTypeMapping TypeName="BeanfamilyModel.TopSanPhamNoiBat">
+              <MappingFragment StoreEntitySet="TopSanPhamNoiBat">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="list_id_thucdon" ColumnName="list_id_thucdon" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="ThongTinCauHinh">
             <EntityTypeMapping TypeName="BeanfamilyModel.ThongTinCauHinh">
               <MappingFragment StoreEntitySet="ThongTinCauHinh">
-                <ScalarProperty Name="footer_page_facebook" ColumnName="footer_page_facebook" />
-                <ScalarProperty Name="footer_hotline" ColumnName="footer_hotline" />
-                <ScalarProperty Name="hotline" ColumnName="hotline" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="giomocua" ColumnName="giomocua" />
                 <ScalarProperty Name="ngaymocua" ColumnName="ngaymocua" />
@@ -3670,17 +3530,17 @@
                 <ScalarProperty Name="toadogooglemapiframe" ColumnName="toadogooglemapiframe" />
                 <ScalarProperty Name="googleanalyst" ColumnName="googleanalyst" />
                 <ScalarProperty Name="googlesearchconsole" ColumnName="googlesearchconsole" />
+                <ScalarProperty Name="hotline" ColumnName="hotline" />
+                <ScalarProperty Name="footer_hotline" ColumnName="footer_hotline" />
+                <ScalarProperty Name="footer_page_facebook" ColumnName="footer_page_facebook" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ChinhSachBean">
-            <EntityTypeMapping TypeName="BeanfamilyModel.ChinhSachBean">
-              <MappingFragment StoreEntitySet="ChinhSachBean">
-                <ScalarProperty Name="hienthi" ColumnName="hienthi" />
-                <ScalarProperty Name="sothutu" ColumnName="sothutu" />
-                <ScalarProperty Name="noidung" ColumnName="noidung" />
-                <ScalarProperty Name="tenchinhsach" ColumnName="tenchinhsach" />
+          <EntitySetMapping Name="VideoBean">
+            <EntityTypeMapping TypeName="BeanfamilyModel.VideoBean">
+              <MappingFragment StoreEntitySet="VideoBean">
                 <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="url" ColumnName="url" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3692,76 +3552,6 @@
                 <ScalarProperty Name="baiviet" ColumnName="baiviet" />
                 <ScalarProperty Name="noidung" ColumnName="noidung" />
                 <ScalarProperty Name="tieude" ColumnName="tieude" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="VideoBean">
-            <EntityTypeMapping TypeName="BeanfamilyModel.VideoBean">
-              <MappingFragment StoreEntitySet="VideoBean">
-                <ScalarProperty Name="url" ColumnName="url" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TopSanPhamNoiBat">
-            <EntityTypeMapping TypeName="BeanfamilyModel.TopSanPhamNoiBat">
-              <MappingFragment StoreEntitySet="TopSanPhamNoiBat">
-                <ScalarProperty Name="id_muasam_2" ColumnName="id_muasam_2" />
-                <ScalarProperty Name="id_vuonrau_2" ColumnName="id_vuonrau_2" />
-                <ScalarProperty Name="id_thucdon_2" ColumnName="id_thucdon_2" />
-                <ScalarProperty Name="id_muasam" ColumnName="id_muasam" />
-                <ScalarProperty Name="id_vuonrau" ColumnName="id_vuonrau" />
-                <ScalarProperty Name="id_thucdon" ColumnName="id_thucdon" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="BoCucNoiDungTinhWebsite">
-            <EntityTypeMapping TypeName="BeanfamilyModel.BoCucNoiDungTinhWebsite">
-              <MappingFragment StoreEntitySet="BoCucNoiDungTinhWebsite">
-                <ScalarProperty Name="video_trangchu" ColumnName="video_trangchu" />
-                <ScalarProperty Name="hinhanh_menu_trangchu" ColumnName="hinhanh_menu_trangchu" />
-                <ScalarProperty Name="hinhanh4_gioithieu" ColumnName="hinhanh4_gioithieu" />
-                <ScalarProperty Name="hinhanh3_gioithieu" ColumnName="hinhanh3_gioithieu" />
-                <ScalarProperty Name="mota3_gioithieu" ColumnName="mota3_gioithieu" />
-                <ScalarProperty Name="tieude3_gioithieu" ColumnName="tieude3_gioithieu" />
-                <ScalarProperty Name="mota_vuonrau" ColumnName="mota_vuonrau" />
-                <ScalarProperty Name="tieude_vuonrau" ColumnName="tieude_vuonrau" />
-                <ScalarProperty Name="mota_nhahang" ColumnName="mota_nhahang" />
-                <ScalarProperty Name="tieude_nhahang" ColumnName="tieude_nhahang" />
-                <ScalarProperty Name="mota1_gioithieu" ColumnName="mota1_gioithieu" />
-                <ScalarProperty Name="hinhanh_menutiecbuffet" ColumnName="hinhanh_menutiecbuffet" />
-                <ScalarProperty Name="hinhanh_menutiecban" ColumnName="hinhanh_menutiecban" />
-                <ScalarProperty Name="hinhanh_menuhangngay" ColumnName="hinhanh_menuhangngay" />
-                <ScalarProperty Name="banner_khac" ColumnName="banner_khac" />
-                <ScalarProperty Name="banner_hinhanh" ColumnName="banner_hinhanh" />
-                <ScalarProperty Name="banner_muasam" ColumnName="banner_muasam" />
-                <ScalarProperty Name="banner_vuonrau" ColumnName="banner_vuonrau" />
-                <ScalarProperty Name="banner_buffet" ColumnName="banner_buffet" />
-                <ScalarProperty Name="banner_tiecban" ColumnName="banner_tiecban" />
-                <ScalarProperty Name="banner_thucdonhangngay" ColumnName="banner_thucdonhangngay" />
-                <ScalarProperty Name="mota_menutiecbuffet" ColumnName="mota_menutiecbuffet" />
-                <ScalarProperty Name="mota_menutiecban" ColumnName="mota_menutiecban" />
-                <ScalarProperty Name="mota_menuhangngay" ColumnName="mota_menuhangngay" />
-                <ScalarProperty Name="banner_nhahang" ColumnName="banner_nhahang" />
-                <ScalarProperty Name="hinhanh_mota_gioithieu" ColumnName="hinhanh_mota_gioithieu" />
-                <ScalarProperty Name="mota_gioithieu" ColumnName="mota_gioithieu" />
-                <ScalarProperty Name="tieude2_gioithieu" ColumnName="tieude2_gioithieu" />
-                <ScalarProperty Name="hinhanh2_gioithieu" ColumnName="hinhanh2_gioithieu" />
-                <ScalarProperty Name="hinhanh1_gioithieu" ColumnName="hinhanh1_gioithieu" />
-                <ScalarProperty Name="tieude_gioithieu" ColumnName="tieude_gioithieu" />
-                <ScalarProperty Name="banner_gioithieu" ColumnName="banner_gioithieu" />
-                <ScalarProperty Name="mota_sanphamnoibat_muasam" ColumnName="mota_sanphamnoibat_muasam" />
-                <ScalarProperty Name="mota_sanphamnoibat_vuonrau" ColumnName="mota_sanphamnoibat_vuonrau" />
-                <ScalarProperty Name="mota_sanphamnoibat_nhahang" ColumnName="mota_sanphamnoibat_nhahang" />
-                <ScalarProperty Name="mota_sanphammoi_muasam" ColumnName="mota_sanphammoi_muasam" />
-                <ScalarProperty Name="mota_sanphammoi_vuonrau" ColumnName="mota_sanphammoi_vuonrau" />
-                <ScalarProperty Name="mota_sanphammoi_nhahang" ColumnName="mota_sanphammoi_nhahang" />
-                <ScalarProperty Name="mota_thanhphanchinh_muasam" ColumnName="mota_thanhphanchinh_muasam" />
-                <ScalarProperty Name="mota_thanhphanchinh_vuonrau" ColumnName="mota_thanhphanchinh_vuonrau" />
-                <ScalarProperty Name="mota_thanhphanchinh_nhahang" ColumnName="mota_thanhphanchinh_nhahang" />
-                <ScalarProperty Name="banner_trangchu" ColumnName="banner_trangchu" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

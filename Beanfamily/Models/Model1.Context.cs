@@ -26,7 +26,9 @@ namespace Beanfamily.Models
         }
     
         public virtual DbSet<ApDungChucNangChoQuyenTaiKhoan> ApDungChucNangChoQuyenTaiKhoan { get; set; }
+        public virtual DbSet<BoCucNoiDungTinhWebsite> BoCucNoiDungTinhWebsite { get; set; }
         public virtual DbSet<CacBuocQuyTrinhTrongCay> CacBuocQuyTrinhTrongCay { get; set; }
+        public virtual DbSet<ChinhSachBean> ChinhSachBean { get; set; }
         public virtual DbSet<ChiTietDonHangDanhMucPhucVuMenuBuffet> ChiTietDonHangDanhMucPhucVuMenuBuffet { get; set; }
         public virtual DbSet<ChiTietDonHangDanhMucPhucVuMenuTiecBan> ChiTietDonHangDanhMucPhucVuMenuTiecBan { get; set; }
         public virtual DbSet<ChiTietDonHangSanPhamMenuBuffet> ChiTietDonHangSanPhamMenuBuffet { get; set; }
@@ -64,11 +66,9 @@ namespace Beanfamily.Models
         public virtual DbSet<TinhTrangDonHangMenuTiecBan> TinhTrangDonHangMenuTiecBan { get; set; }
         public virtual DbSet<TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay> TinhTrangDonHangVuonRauMuaSamVaMenuHangNgay { get; set; }
         public virtual DbSet<TonKhoSanPhamMuaSam> TonKhoSanPhamMuaSam { get; set; }
-        public virtual DbSet<ThongTinCauHinh> ThongTinCauHinh { get; set; }
-        public virtual DbSet<ChinhSachBean> ChinhSachBean { get; set; }
-        public virtual DbSet<SuKienBean> SuKienBean { get; set; }
-        public virtual DbSet<VideoBean> VideoBean { get; set; }
         public virtual DbSet<TopSanPhamNoiBat> TopSanPhamNoiBat { get; set; }
-        public virtual DbSet<BoCucNoiDungTinhWebsite> BoCucNoiDungTinhWebsite { get; set; }
+        public virtual DbSet<ThongTinCauHinh> ThongTinCauHinh { get; set; }
+        public virtual DbSet<VideoBean> VideoBean { get; set; }
+        public virtual DbSet<SuKienBean> SuKienBean { get; set; }
     }
 }

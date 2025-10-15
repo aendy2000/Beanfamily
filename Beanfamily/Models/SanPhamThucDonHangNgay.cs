@@ -19,8 +19,6 @@ namespace Beanfamily.Models
         {
             this.ChiTietDonHangSanPhamThucDonHangNgay = new HashSet<ChiTietDonHangSanPhamThucDonHangNgay>();
             this.GioHangThucDonHangNgay = new HashSet<GioHangThucDonHangNgay>();
-            this.TopSanPhamNoiBat = new HashSet<TopSanPhamNoiBat>();
-            this.TopSanPhamNoiBat1 = new HashSet<TopSanPhamNoiBat>();
         }
     
         public int id { get; set; }
@@ -40,9 +38,5 @@ namespace Beanfamily.Models
         public virtual DanhMucThucDocHangNgayCap1 DanhMucThucDocHangNgayCap1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GioHangThucDonHangNgay> GioHangThucDonHangNgay { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TopSanPhamNoiBat> TopSanPhamNoiBat { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TopSanPhamNoiBat> TopSanPhamNoiBat1 { get; set; }
     }
 }

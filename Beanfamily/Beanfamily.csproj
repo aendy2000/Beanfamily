@@ -52,6 +52,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.12.4.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.12.4\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
@@ -174,6 +177,7 @@
     <Compile Include="Areas\Admin\Controllers\SanPhamVuonRauBeanController.cs" />
     <Compile Include="Areas\Admin\Controllers\SEOPageConfigController.cs" />
     <Compile Include="Areas\Admin\Controllers\CauHinhWebController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SuKienController.cs" />
     <Compile Include="Areas\Admin\Controllers\ThongTinWebController.cs" />
     <Compile Include="Controllers\ChinhSachBeanController.cs" />
     <Compile Include="Controllers\DatHangController.cs" />
@@ -3324,6 +3328,9 @@
     <Content Include="Validation\ChinhSach\Them.js" />
     <Content Include="Validation\ChinhSach\Xoa.js" />
     <Content Include="Validation\ChinhSach\XoaHangLoat.js" />
+    <Content Include="Validation\SuKien\Them.js" />
+    <Content Include="Validation\SuKien\Xoa.js" />
+    <Content Include="Validation\SuKien\XoaHangLoat.js" />
     <Content Include="Validation\Dashboard\ThongKeNam.js" />
     <Content Include="Validation\DonDatBanBuffet\CapNhatDon.js" />
     <Content Include="Validation\DonDatBanBuffet\CapNhatThongTinDonDatBan.js" />
@@ -3484,13 +3491,6 @@
     <Content Include="Areas\Admin\Views\LienHeDatBan\_OpenTaoDonBuffet.cshtml" />
     <Content Include="Areas\Admin\Views\NoiDungTinh\Index.cshtml" />
     <Content Include="Validation\SanPhamNoiBat\SuaSanPham.js" />
-    <EntityDeploy Include="Models\Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Content>
     <Content Include="Content\AdminAreas\assets\vendor\apexcharts\locales\ar.json" />
     <Content Include="Content\AdminAreas\assets\vendor\apexcharts\locales\ca.json" />
     <Content Include="Content\AdminAreas\assets\vendor\apexcharts\locales\cs.json" />
@@ -3730,6 +3730,14 @@
     <Content Include="Areas\Admin\Views\SanPhamNoiBat\Index.cshtml" />
     <Content Include="Areas\Admin\Views\SanPhamNoiBat\_OpenSua.cshtml" />
     <Content Include="API\Zalo\zalo_tokens.json" />
+    <EntityDeploy Include="Models\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\Admin\Views\SuKien\Index.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

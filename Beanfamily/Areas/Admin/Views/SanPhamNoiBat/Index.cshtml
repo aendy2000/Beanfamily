@@ -1,10 +1,11 @@
 ﻿@model  Beanfamily.Models.TopSanPhamNoiBat
 @using Beanfamily.Models
 @{
+    BeanfamilyEntities models = new BeanfamilyEntities();
     ViewBag.Title = "Sản Phẩm Nổi Bật";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    int i = 0;
 }
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
 <div class="pagetitle">
     <div class="row">
@@ -36,86 +37,34 @@
             <div class="card">
                 <div class="card-body">
                     <!-- Table with stripped rows -->
-                    <table id="lstDataTable" class="table datatable" width="100%" data-order='[[0, "desc"]]'>
+                    <table id="lstDataTable" class="table datatable" width="100%">
                         <thead>
                             <tr class="text-nowrap">
-                                <th scope="col">Loại</th>
+                                <th scope="col">#</th>
                                 <th scope="col">Mã</th>
                                 <th scope="col">Tên Sản Phẩm</th>
                                 <th scope="col">Giá</th>
+                                <th scope="col">View</th>
+                                <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr style="vertical-align: middle">
-                                <td>TĐ Hằng Ngày</td>
-                                <td scope="row">SP@(Model.id_thucdon.ToString("D6"))</td>
-                                <td data-bs-toggle="tooltip" dropzone="top" title="@Model.SanPhamThucDonHangNgay.mota">@Model.SanPhamThucDonHangNgay.tensanpham</td>
-                                <td>@Model.SanPhamThucDonHangNgay.gia.ToString("0,0") đ</td>
-                            </tr>
-                            <tr style="vertical-align: middle">
-                                <td>TĐ Hằng Ngày</td>
-                                <td scope="row">SP@(Model.id_thucdon_2.ToString("D6"))</td>
-                                <td data-bs-toggle="tooltip" dropzone="top" title="@Model.SanPhamThucDonHangNgay1.mota">@Model.SanPhamThucDonHangNgay1.tensanpham</td>
-                                <td>@Model.SanPhamThucDonHangNgay1.gia.ToString("0,0") đ</td>
-                            </tr>
+                            @foreach (var item in Model.list_id_thucdon.ToString().Split('#').ToList())
+                            {
+                                i++;
+                                int id = Int32.Parse(item);
+                                var sp = models.SanPhamThucDonHangNgay.Find(id);
 
-                            <tr style="vertical-align: middle">
-                                <td>Vườn Rau</td>
-                                <td scope="row">SP@(Model.id_vuonrau.ToString("D6"))</td>
-                                <td data-bs-toggle="tooltip" dropzone="top" title="@Model.SanPhamRauNhaTrong.mota">@Model.SanPhamRauNhaTrong.tensanpham</td>
-                                <td>@Model.SanPhamRauNhaTrong.gia.ToString("0,0") đ</td>
-                            </tr>
-                            <tr style="vertical-align: middle">
-                                <td>Vườn Rau</td>
-                                <td scope="row">SP@(Model.id_vuonrau_2.ToString("D6"))</td>
-                                <td data-bs-toggle="tooltip" dropzone="top" title="@Model.SanPhamRauNhaTrong1.mota">@Model.SanPhamRauNhaTrong1.tensanpham</td>
-                                <td>@Model.SanPhamRauNhaTrong1.gia.ToString("0,0") đ</td>
-                            </tr>
+                                <tr style="vertical-align: middle">
+                                    <td scope="row">@i</td>
+                                    <td scope="row">SP@(sp.id.ToString("D6"))</td>
+                                    <td data-bs-toggle="tooltip" dropzone="top">@sp.tensanpham</td>
+                                    <td>@sp.gia.ToString("0,0") đ</td>
+                                    <td>@sp.luotxem lượt xem</td>
+                                    <td><a target="_blank" class="btn btn-sm btn-primary" href="@Url.Action("ProductDetail", "ThucDonHangNgay", new { area = "", id = sp.id})">Xem trang</a></td>
+                                </tr>
+                            }
 
-                            <tr style="vertical-align: middle">
-                                <td>Mua Sắm</td>
-                                <td scope="row">SP@(Model.id_muasam.ToString("D6"))</td>
-                                <td data-bs-toggle="tooltip" dropzone="top" title="@Model.SanPhamMuaSam.mota">@Model.SanPhamMuaSam.tensanpham</td>
-                                <td>
-                                    <ul style="margin-left: -2rem; margin-bottom: 0; list-style-type: none;">
-                                        @foreach (var tonkho in Model.SanPhamMuaSam.TonKhoSanPhamMuaSam)
-                                        {
-                                            <li>
-                                                @if (tonkho.soluong > 0)
-                                                {
-                                                    <span>@(tonkho.tenloai) | @(tonkho.gia.ToString("0,0"))đ</span>
-                                                }
-                                                else
-                                                {
-                                                    <span>@(tonkho.tenloai) | @(tonkho.gia.ToString("0,0"))đ</span>
-                                                }
-                                            </li>
-                                        }
-                                    </ul>
-                                </td>
-                            </tr>
-                            <tr style="vertical-align: middle">
-                                <td>Mua Sắm</td>
-                                <td scope="row">SP@(Model.id_muasam_2.ToString("D6"))</td>
-                                <td data-bs-toggle="tooltip" dropzone="top" title="@Model.SanPhamMuaSam1.mota">@Model.SanPhamMuaSam1.tensanpham</td>
-                                <td>
-                                    <ul style="margin-left: -2rem; margin-bottom: 0; list-style-type: none;">
-                                        @foreach (var tonkho in Model.SanPhamMuaSam1.TonKhoSanPhamMuaSam)
-                                        {
-                                            <li>
-                                                @if (tonkho.soluong > 0)
-                                                {
-                                                    <span>@(tonkho.tenloai) | @(tonkho.gia.ToString("0,0"))đ</span>
-                                                }
-                                                else
-                                                {
-                                                    <span>@(tonkho.tenloai) | @(tonkho.gia.ToString("0,0"))đ</span>
-                                                }
-                                            </li>
-                                        }
-                                    </ul>
-                                </td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -131,7 +80,7 @@
     {
         <!-- Sửa danh mục -->
         <div class="modal fade" id="SuaSpnbModal" tabindex="-1">
-            <div class="modal-dialog  modal-dialog-centered modal-lg">
+            <div class="modal-dialog  modal-dialog-centered modal-dialog-scrollable modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 id="TitleSuaSpnbModal" class="modal-title">Cập nhật sản phẩm</h5>
@@ -150,5 +99,4 @@
         </div>
     }
 }
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js?v=1.0"></script>
 <script src="~/Validation/SanPhamNoiBat/SuaSanPham.js?v=1.0"></script>

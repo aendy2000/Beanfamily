@@ -101,7 +101,7 @@ namespace Beanfamily.Areas.Admin.Controllers
                         Session["ndt"] = null;
                         Session["cs"] = null;
                         Session["spnb"] = null;
-
+                        Session["ttsk"] = null;
                         Session["chophep-them"] = null;
                         Session["chophep-sua"] = null;
                         Session["chophep-xoa"] = null;
@@ -176,6 +176,9 @@ namespace Beanfamily.Areas.Admin.Controllers
 
                             else if (keycodes.Equals("spnb"))
                                 Session["spnb"] = true;
+
+                            else if (keycodes.Equals("ttsk"))
+                                Session["ttsk"] = true;
                         }
 
                         return Content("SUCCESS");

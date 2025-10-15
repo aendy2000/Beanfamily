@@ -28,15 +28,6 @@
                 $('#btnSuaSpnbModal').prop('disabled', false);
 
                 $('body').find('[id="content-spnb-modal"]').replaceWith(ketqua);
-
-                $('#sptdhn').select2({ dropdownParent: $('#SuaSpnbModal') });
-                $('#spvr').select2({ dropdownParent: $('#SuaSpnbModal') });
-                $('#spms').select2({ dropdownParent: $('#SuaSpnbModal') });
-
-                $('#sptdhn2').select2({ dropdownParent: $('#SuaSpnbModal') });
-                $('#spvr2').select2({ dropdownParent: $('#SuaSpnbModal') });
-                $('#spms2').select2({ dropdownParent: $('#SuaSpnbModal') });
-
                 $('body').find('[id="SuaSpnbModal"]').modal('toggle');
 
             }
@@ -47,22 +38,16 @@
         $('#btnluuSua').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"> </span> Vui lòng chờ...');
         $('#btnluuSua').prop('disabled', true);
 
-        var idtdhn = $('body').find('[id="sptdhn"]').val();
-        var idvr = $('body').find('[id="spvr"]').val();
-        var idms = $('body').find('[id="spms"]').val();
-
-        var idtdhn2 = $('body').find('[id="sptdhn2"]').val();
-        var idvr2 = $('body').find('[id="spvr2"]').val();
-        var idms2 = $('body').find('[id="spms2"]').val();
-
+        var strId = "";
+        $('body').find('[id^="sanpham-"]').each(function () {
+            if ($(this).prop('checked'))
+                strId += $(this).attr('name') + "#";
+        });
+        var idtdhn = strId.length > 0 ? strId.substring(0, strId.length - 1) : strId;
         var formData = new FormData();
-        formData.append('thucdon', idtdhn);
-        formData.append('vuonrau', idvr);
-        formData.append('muasam', idms);
+        formData.append('idthucdon', idtdhn);
 
-        formData.append('thucdon2', idtdhn2);
-        formData.append('vuonrau2', idvr2);
-        formData.append('muasam2', idms2);
+        alert(idtdhn);
 
         $.ajax({
             error: function (a, xhr, c) { if (a.status == 403 && a.responseText.indexOf("SystemLoginAgain") != -1) { window.location.href = $('body').find('[id="requestPath"]').val() + "admin/dangnhap/logout"; } },

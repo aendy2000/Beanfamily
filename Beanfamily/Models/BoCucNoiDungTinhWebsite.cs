@@ -57,5 +57,8 @@ namespace Beanfamily.Models
         public string hinhanh4_gioithieu { get; set; }
         public string hinhanh_menu_trangchu { get; set; }
         public string video_trangchu { get; set; }
+        public string tieude_menu_trangchu { get; set; }
+        public string mota_menu_trangchu { get; set; }
+        public string mota_video_trangchu { get; set; }
     }
 }

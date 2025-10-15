@@ -1,118 +1,33 @@
 ﻿@model  Beanfamily.Models.TopSanPhamNoiBat
 @using Beanfamily.Models
 @{
-    var spthucdon = Session["spnb-thucdon"] as List<SanPhamThucDonHangNgay>;
-    var spvuonrau = Session["spnb-vuonrau"] as List<SanPhamRauNhaTrong>;
-    var spmuasam = Session["spnb-muasam"] as List<SanPhamMuaSam>;
+    BeanfamilyEntities models = new BeanfamilyEntities();
+    var lstSp = models.SanPhamThucDonHangNgay.ToList();
 }
 <div class="modal-body" id="content-spnb-modal">
     <div class="row mb-2">
-        <label for="sptdhn" class="col-md-12 col-lg-3 col-form-label">TĐ hằng ngày <span class="text-danger">*</span></label>
-        <div class="col-md-12 col-lg-9">
-            <select class="js-example-basic-single" name="tdhn" id="sptdhn" data-width="100%">
-                @foreach (var item in spthucdon)
+        <div class="col-12">
+            @foreach (var item in lstSp)
+            {
+                if (Model.list_id_thucdon.IndexOf(item.id.ToString()) != -1)
                 {
-                    if (item.id == Model.id_thucdon)
-                    {
-                        <option selected value="@item.id">SP@(item.id.ToString("D6")) - @item.tensanpham - @item.gia.ToString("0,0") đ</option>
-                    }
-                    else
-                    {
-                        <option value="@item.id">SP@(item.id.ToString("D6")) - @item.tensanpham - @item.gia.ToString("0,0") đ</option>
-                    }
+                    <div class="form-group mb-3 form-control">
+                        <input checked type="checkbox" class="form-check-input p-2 me-2" name="@item.id" id="sanpham-@item.id" />
+                        <label class="form-check-label" for="sanpham-@item.id">
+                            SP@(item.id.ToString("D6")) - @item.tensanpham - @item.gia.ToString("0,0") đ
+                        </label>
+                    </div>
                 }
-            </select>
-        </div>
-    </div>
-    <div class="row mb-3">
-        <label for="sptdhn2" class="col-md-12 col-lg-3 col-form-label">TĐ hằng ngày 2 <span class="text-danger">*</span></label>
-        <div class="col-md-12 col-lg-9">
-            <select class="js-example-basic-single" name="tdhn2" id="sptdhn2" data-width="100%">
-                @foreach (var item in spthucdon)
+                else
                 {
-                    if (item.id == Model.id_thucdon_2)
-                    {
-                        <option selected value="@item.id">SP@(item.id.ToString("D6")) - @item.tensanpham - @item.gia.ToString("0,0") đ</option>
-                    }
-                    else
-                    {
-                        <option value="@item.id">SP@(item.id.ToString("D6")) - @item.tensanpham - @item.gia.ToString("0,0") đ</option>
-                    }
+                    <div class="form-group mb-3 form-control">
+                        <input type="checkbox" class="form-check-input p-2 me-2" name="@item.id" id="sanpham-@item.id" />
+                        <label class="form-check-label" for="sanpham-@item.id">
+                            SP@(item.id.ToString("D6")) - @item.tensanpham - @item.gia.ToString("0,0") đ
+                        </label>
+                    </div>
                 }
-            </select>
-        </div>
-    </div>
-
-    <div class="row mb-2">
-        <label for="spvr" class="col-md-12 col-lg-3 col-form-label">Vườn rau <span class="text-danger">*</span></label>
-        <div class="col-md-12 col-lg-9">
-            <select class="js-example-basic-single" name="tdhn" id="spvr" data-width="100%">
-                @foreach (var item in spvuonrau)
-                {
-                    if (item.id == Model.id_vuonrau)
-                    {
-                        <option selected value="@item.id">SP@(item.id.ToString("D6")) - @item.tensanpham - @item.gia.ToString("0,0") đ</option>
-                    }
-                    else
-                    {
-                        <option value="@item.id">SP@(item.id.ToString("D6")) - @item.tensanpham - @item.gia.ToString("0,0") đ</option>
-                    }
-                }
-            </select>
-        </div>
-    </div>
-    <div class="row mb-3">
-        <label for="spvr2" class="col-md-12 col-lg-3 col-form-label">Vườn rau 2<span class="text-danger">*</span></label>
-        <div class="col-md-12 col-lg-9">
-            <select class="js-example-basic-single" name="tdhn" id="spvr2" data-width="100%">
-                @foreach (var item in spvuonrau)
-                {
-                    if (item.id == Model.id_vuonrau_2)
-                    {
-                        <option selected value="@item.id">SP@(item.id.ToString("D6")) - @item.tensanpham - @item.gia.ToString("0,0") đ</option>
-                    }
-                    else
-                    {
-                        <option value="@item.id">SP@(item.id.ToString("D6")) - @item.tensanpham - @item.gia.ToString("0,0") đ</option>
-                    }
-                }
-            </select>
-        </div>
-    </div>
-    <div class="row mb-2">
-        <label for="spms" class="col-md-12 col-lg-3 col-form-label">Mua sắm <span class="text-danger">*</span></label>
-        <div class="col-md-12 col-lg-9">
-            <select class="js-example-basic-single" name="tdhn" id="spms" data-width="100%">
-                @foreach (var item in spmuasam)
-                {
-                    if (item.id == Model.id_muasam)
-                    {
-                        <option selected value="@item.id">SP@(item.id.ToString("D6")) - @item.tensanpham</option>
-                    }
-                    else
-                    {
-                        <option value="@item.id">SP@(item.id.ToString("D6")) - @item.tensanpham</option>
-                    }
-                }
-            </select>
-        </div>
-    </div>
-    <div class="row mb-3">
-        <label for="spms2" class="col-md-12 col-lg-3 col-form-label">Mua sắm 2 <span class="text-danger">*</span></label>
-        <div class="col-md-12 col-lg-9">
-            <select class="js-example-basic-single" name="tdhn" id="spms2" data-width="100%">
-                @foreach (var item in spmuasam)
-                {
-                    if (item.id == Model.id_muasam_2)
-                    {
-                        <option selected value="@item.id">SP@(item.id.ToString("D6")) - @item.tensanpham</option>
-                    }
-                    else
-                    {
-                        <option value="@item.id">SP@(item.id.ToString("D6")) - @item.tensanpham</option>
-                    }
-                }
-            </select>
+            }
         </div>
     </div>
 </div>
