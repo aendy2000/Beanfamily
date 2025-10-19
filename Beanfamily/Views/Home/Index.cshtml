@@ -603,7 +603,7 @@
                                         @item.noidung
                                     </p>
                                     <div class="w-100 text-center">
-                                        <a href="@item.baiviet" class="txt4 ">
+                                        <a target="_blank" href="@item.baiviet" class="txt4 ">
                                             Xem bài viết
                                             <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
                                         </a>
@@ -656,126 +656,118 @@
                 </h3>
             </div>
             <style>
-                /* Phần 1: TÙY CHỈNH CHÍNH
-                  Bạn có thể thay đổi các giá trị trong phần này để tùy biến băng rôn.
-                */
-                :root {
-                    --banner-bg-color: transparent; /* Nền trong suốt hoặc màu nhạt để hình ảnh nổi bật */
-                    --item-border-color: #ffffff; /* Màu viền (nếu muốn) */
-                    --animation-duration: @(lstHinhAnh.Take(10).Count() * 4)s; /* Thời gian chạy hết 1 vòng (càng lớn càng chậm) */
-                    --image-height: 350px; /* Chiều cao cố định cho mỗi hình ảnh */
-                    --image-width: 450px; /* Chiều rộng cố định cho mỗi hình ảnh */
-                    --item-spacing: 20px; /* Khoảng cách giữa các hình ảnh */
-                    --leaf-color-light: rgba(140, 198, 63, 0.2); /* Màu lá cây nhạt */
-                    --leaf-color-dark: rgba(60, 140, 30, 0.2); /* Màu lá cây đậm hơn */
+    /* Phần 1: TÙY CHỈNH CHÍNH */
+    :root {
+        --banner-bg-color: transparent;
+        --animation-duration: @(lstHinhAnh.Take(10).Count() * 6)s;
+        --image-height: 350px;
+        --image-width: 450px;
+        --item-spacing: 15px;
+    }
+
+    @@media (max-width: 768px) {
+        :root {
+            --image-height: 250px;
+            --image-width: 350px;
+        }
+    }
+
+    /* Khung chứa bên ngoài, tạo hiệu ứng "cửa sổ" để xem */
+    .scrolling-banner-container {
+        position: relative;
+        width: 95%;
+        max-width: 1200px;
+        overflow: hidden;
+        background-color: var(--banner-bg-color);
+        padding: 35px 0;
+        border-radius: 12px;
+        -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    }
+
+    /* Viền phim trên và dưới (chỉ phần này có nền) */
+                .scrolling-banner-container::before,
+                .scrolling-banner-container::after {
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    width: 100%;
+                    height: 35px; /* Chiều cao dải phim */
+                    background-color: #a9978d; /* Nền đen chỉ áp dụng ở đây */
+                    z-index: 10;
+                    -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 28 25' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='4' y='5' width='20' height='15' rx='3' fill='white'/%3E%3C/svg%3E");
+                    mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 28 25' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='4' y='5' width='20' height='15' rx='3' fill='white'/%3E%3C/svg%3E");
+                    -webkit-mask-repeat: repeat-x;
+                    mask-repeat: repeat-x;
+                    -webkit-mask-size: 28px 100%;
+                    mask-size: 28px 100%;
+                    animation: scroll-reverse 1.5s linear infinite;
                 }
 
-                @@media (max-width: 768px) {
-                    :root {
-                         --image-height: 250px;
-                         --image-width: 350px;
-                    }
-                }
+    .scrolling-banner-container::before { top: 0; }
+    .scrolling-banner-container::after { bottom: 0; }
 
-                    /* Khung chứa bên ngoài, tạo hiệu ứng "cửa sổ" để xem */
-                    .scrolling-banner-container {
-                        position: relative; /* Quan trọng để định vị các họa tiết cây cối */
-                        width: 95%;
-                        max-width: 1200px;
-                        overflow: hidden; /* Đây là thuộc tính quan trọng nhất, ẩn mọi thứ tràn ra ngoài */
-                        padding: 10px 0;
-                        background-color: var(--banner-bg-color);
-                        border-radius: 12px;
-                        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); /* Bóng nhẹ để nổi bật */
-                        /* Tạo hiệu ứng mờ dần ở hai đầu */
-                        -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-                        mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-                    }
+    /* Dải băng chứa các thẻ div, đây là phần sẽ di chuyển */
+    .scrolling-banner {
+        display: flex;
+        width: max-content;
+        /* XÓA BỎ: Nền tối ở đây đã được loại bỏ */
+        /* background-color: #1a1a1a; */
+        animation: scroll var(--animation-duration) linear infinite;
+    }
 
-                        /* Lớp giả cho họa tiết cành cây ở trên */
-                        .scrolling-banner-container::before {
-                            content: '';
-                            position: absolute;
-                            top: -15px; /* Dịch chuyển họa tiết ra ngoài viền một chút */
-                            left: 0;
-                            width: 100%;
-                            height: 50px;
-                            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 50'%3e%3cstyle%3e.branch { stroke: rgba(60, 140, 30, 0.7); stroke-width: 1.5; fill: none; } .leaf { fill: rgba(140, 198, 63, 0.7); }%3c/style%3e%3cpath class='branch' d='M -10 35 Q 50 10, 100 25 T 210 15'/%3e%3ccircle class='leaf' cx='45' cy='11' r='4'/%3e%3ccircle class='leaf' cx='60' cy='15' r='5'/%3e%3ccircle class='leaf' cx='110' cy='28' r='3'/%3e%3ccircle class='leaf' cx='140' cy='20' r='6'/%3e%3ccircle class='leaf' cx='180' cy='12' r='4'/%3e%3c/svg%3e");
-                            background-size: 200px 50px;
-                            background-repeat: repeat-x;
-                            z-index: 10;
-                        }
+    .scrolling-banner-container:hover .scrolling-banner,
+    .scrolling-banner-container:hover::before,
+    .scrolling-banner-container:hover::after {
+        animation-play-state: paused;
+    }
 
-                        /* Lớp giả cho họa tiết cành cây ở dưới */
-                        .scrolling-banner-container::after {
-                            content: '';
-                            position: absolute;
-                            bottom: -15px; /* Dịch chuyển họa tiết ra ngoài viền một chút */
-                            left: 0;
-                            width: 100%;
-                            height: 50px;
-                            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 50'%3e%3cstyle%3e.branch { stroke: rgba(60, 140, 30, 0.7); stroke-width: 1.5; fill: none; } .leaf { fill: rgba(140, 198, 63, 0.7); }%3c/style%3e%3cpath class='branch' d='M -10 15 Q 50 40, 100 25 T 210 35'/%3e%3ccircle class='leaf' cx='45' cy='39' r='4'/%3e%3ccircle class='leaf' cx='60' cy='35' r='5'/%3e%3ccircle class='leaf' cx='110' cy='22' r='3'/%3e%3ccircle class='leaf' cx='140' cy='30' r='6'/%3e%3ccircle class='leaf' cx='180' cy='38' r='4'/%3e%3c/svg%3e");
-                            background-size: 200px 50px;
-                            background-repeat: repeat-x;
-                            z-index: 10;
-                        }
+    @@keyframes scroll {
+        0% { transform: translateX(0%); }
+        100% { transform: translateX(-50%); }
+    }
 
-                    /* Dải băng chứa các thẻ div (giờ chứa img), đây là phần sẽ di chuyển */
-                    .scrolling-banner {
-                        display: flex; /* Sắp xếp các hình ảnh trên một hàng ngang */
-                        width: max-content; /* Độ rộng sẽ tự dãn ra theo nội dung bên trong */
-                        /* Gọi animation để di chuyển */
-                        animation: scroll var(--animation-duration) linear infinite;
-                    }
+    @@keyframes scroll-reverse {
+        from {
+            -webkit-mask-position-x: 0;
+            mask-position-x: 0;
+        }
+        to {
+            -webkit-mask-position-x: 28px;
+            mask-position-x: 28px;
+        }
+    }
 
-                    /* Hiệu ứng: Dừng lại khi người dùng di chuột vào */
-                    .scrolling-banner-container:hover .scrolling-banner {
-                        animation-play-state: paused;
-                    }
+    /* Kiểu dáng cho từng "khung hình" */
+    .banner-item {
+        flex-shrink: 0;
+        width: var(--image-width);
+        height: var(--image-height);
+        margin: 0 var(--item-spacing);
+        background-color: transparent;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+        transition: transform 0.3s ease, border-color 0.3s ease;
+        cursor: pointer;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-                    /* Định nghĩa animation di chuyển từ phải qua trái */
-                    @@keyframes scroll {
-                        0% {
-                            transform: translateX(0%);
-                        }
+    .banner-item img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 0;
+    }
 
-                        100% {
-                            /* Di chuyển sang trái một khoảng bằng 50% chiều rộng của chính nó */
-                            transform: translateX(-50%);
-                        }
-                    }
-
-                    /* Kiểu dáng cho từng item (hình ảnh) bên trong băng rôn */
-                    .banner-item {
-                        flex-shrink: 0; /* Ngăn các hình ảnh bị co lại khi không đủ chỗ */
-                        width: var(--image-width); /* Chiều rộng cố định cho mỗi hình ảnh */
-                        height: var(--image-height); /* Chiều cao cố định cho mỗi hình ảnh */
-                        margin: 0 var(--item-spacing); /* Khoảng cách giữa các hình ảnh */
-                        background-color: #ffffff; /* Nền trắng cho item */
-                        border: none; /* Viền nhẹ */
-                        border-radius: 0;
-                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                        transition: transform 0.3s ease, box-shadow 0.3s ease;
-                        cursor: pointer;
-                        overflow: hidden; /* Đảm bảo hình ảnh không tràn ra ngoài bo tròn */
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                    }
-
-                        .banner-item img {
-                            display: block;
-                            width: 100%;
-                            height: 100%;
-                            object-fit: cover; /* Đảm bảo ảnh lấp đầy khung mà không bị méo */
-                            border-radius: 0; /* Bo tròn góc ảnh */
-                        }
-
-                        /* Hiệu ứng khi di chuột lên từng hình ảnh */
-                        .banner-item:hover {
-                            transform: translateY(-5px) scale(1.02);
-                            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-                        }
+    .banner-item:hover {
+        transform: scale(1.03);
+        border-color: #fff;
+    }
             </style>
 
             @if (lstHinhAnh.Count > 0)
@@ -789,11 +781,18 @@
                                 <img src="@Url.Content(item.url)" alt="Hình ảnh bean">
                             </div>
                         }
+
+                        @foreach (var item in lstHinhAnh)
+                        {
+                            <div class="banner-item">
+                                <img src="@Url.Content(item.url)" alt="Hình ảnh bean">
+                            </div>
+                        }
                     </div>
                 </div>
 
                 <div class="w-100 text-center d-flex justify-content-center">
-                    <a target="_blank" href="@Url.Action("index", "hinhanh")" class="btn1 p-l-30 p-r-30 w-auto flex-c-m size1 txt3 trans-0-4" tabindex="0">
+                    <a href="@Url.Action("index", "hinhanh")" class="btn1 p-l-30 p-r-30 w-auto flex-c-m size1 txt3 trans-0-4" tabindex="0">
                         Xem tất cả hình ảnh
                         <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
                     </a>
