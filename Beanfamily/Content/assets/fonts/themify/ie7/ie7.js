@@ -3,7 +3,7 @@
 
 /* Use conditional comments in order to target IE 7 and older:
 	<!--[if lt IE 8]><!-->
-	<script src="ie7/ie7.js?v=1.0"></script>
+	<script src="ie7/ie7.js?v=15102025.1"></script>
 	<!--<![endif]-->
 */
 
