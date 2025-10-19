@@ -96,14 +96,14 @@
                 processData: false,
                 contentType: false
             }).done(function (ketqua) {
-                if (ketqua == "SUCCESS") {
+                if (ketqua.indexOf("Chi tiết lỗi") !== -1) {
                     $('#btnluuSuaDmpv').html('Lưu thông tin');
                     $('#btnluuSuaDmpv').prop('disabled', false);
 
                     Swal.fire({
-                        title: "Thành công!",
-                        text: 'Đã lưu cập nhật danh mục "' + $('#suastriddanhmuc').val() + '".',
-                        icon: "success"
+                        title: "Đã xảy ra lỗi, vui lòng thử lại sau ít phút.",
+                        text: ketqua,
+                        icon: "error"
                     }).then(() => {
                         window.location.reload();
                     });
@@ -129,16 +129,33 @@
                     });
                 }
                 else {
+                    var table = $('#lstDmTdhnTable').DataTable();
+                    var rowId = '#row-' + $('#suaiddanhmuc').val();
+
+                    var row = table.row(rowId);
+                    if (row.length > 0) {
+                        var newRowHtml = $(ketqua);
+
+                        var cellData = [];
+                        newRowHtml.find('td').each(function () {
+                            cellData.push($(this).html());
+                        });
+
+                        row.data(cellData).draw(false);
+                        $(rowId).find('[data-bs-toggle="tooltip"]').tooltip();
+                    }
+
+                    $('#SuaDmMtbModal').modal('toggle');
+
                     $('#btnluuSuaDmpv').html('Lưu thông tin');
                     $('#btnluuSuaDmpv').prop('disabled', false);
 
                     Swal.fire({
-                        title: "Đã xảy ra lỗi, vui lòng thử lại sau ít phút.",
-                        text: ketqua,
-                        icon: "error"
-                    }).then(() => {
-                        window.location.reload();
+                        title: "Thành công!",
+                        text: 'Đã lưu cập nhật danh mục "' + $('#suastriddanhmuc').val() + '".',
+                        icon: "success"
                     });
+                    
                 }
             });
         }

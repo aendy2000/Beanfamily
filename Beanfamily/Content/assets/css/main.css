@@ -1823,7 +1823,7 @@ body {
         aspect-ratio: 4 / 3;
         overflow: hidden;
         position: relative;
-        max-height: 210px;
+        max-height: 260px;
         border-radius: 15px;
     }
 

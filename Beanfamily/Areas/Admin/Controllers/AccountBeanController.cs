@@ -116,7 +116,8 @@ namespace Beanfamily.Areas.Admin.Controllers
                 model.TaiKhoanBean.Add(acc);
                 model.SaveChanges();
 
-                return Content("SUCCESS");
+                model = new BeanfamilyEntities();
+                return PartialView("_RefreshData", model.TaiKhoanBean.Find(acc.id));
             }
             catch (Exception ex)
             {

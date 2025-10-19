@@ -63,7 +63,7 @@
                             @foreach (var item in Model.OrderByDescending(o => o.id).ToList())
                             {
                                 i++;
-                                <tr style="vertical-align: middle">
+                                <tr id="row-@item.id" style="vertical-align: middle">
                                     <td>
                                         <div class="form-check">
                                             <input type="checkbox" class="form-check-input p-2" id="checkitem@(item.id)" name="@item.id" />

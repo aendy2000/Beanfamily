@@ -196,7 +196,9 @@ namespace Beanfamily.Areas.Admin.Controllers
                     model.CacBuocQuyTrinhTrongCay.Add(buoc);
                 }
                 model.SaveChanges();
-                return Content("SUCCESS");
+
+                model = new BeanfamilyEntities();
+                return PartialView("_RefreshData", model.QuyTrinhTrongCay.Find(quytrinh.id));
             }
             catch (Exception ex)
             {
@@ -377,7 +379,9 @@ namespace Beanfamily.Areas.Admin.Controllers
                     model.CacBuocQuyTrinhTrongCay.Add(buoc);
                 }
                 model.SaveChanges();
-                return Content("SUCCESS");
+
+                model = new BeanfamilyEntities();
+                return PartialView("_RefreshData", model.QuyTrinhTrongCay.Find(quytrinh.id));
             }
             catch (Exception ex)
             {

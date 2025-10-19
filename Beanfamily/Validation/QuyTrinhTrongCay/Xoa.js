@@ -23,12 +23,18 @@
                     contentType: false
                 }).done(function (ketqua) {
                     if (ketqua == "SUCCESS") {
+                        var table = $('#lstSanPhamRauTable').DataTable();
+
+                        var rowSelector = '#row-' + id;
+                        var row = table.row(rowSelector);
+                        if (row.length) {
+                            row.remove().draw(false);
+                        }
+
                         Swal.fire({
                             title: "Thành công!",
                             text: 'Quy trình "' + idquytrinh + '" đã được xóa bỏ.',
                             icon: "success"
-                        }).then(() => {
-                            window.location.reload();
                         });
                     }
                     else if (ketqua == "KHONGTONTAI") {

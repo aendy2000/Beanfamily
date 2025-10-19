@@ -2,6 +2,8 @@
 @{
     BeanfamilyEntities models = new BeanfamilyEntities();
 
+    var lstHinhAnh = models.HinhAnhBean.OrderByDescending(o => o.id).Take(10).ToList();
+
     var spnoibat = (Session["sanphamnoibat-data"] as TopSanPhamNoiBat).list_id_thucdon.ToString().Split('#').ToList();
 
     string phone = "";
@@ -229,19 +231,19 @@
                                 var sp = models.SanPhamThucDonHangNgay.Find(id);
                                 <div class="slickSlider">
                                     <div class="row">
-                                        <div class="col-8">
+                                        <div class="col-md-8 col-sm-12">
                                             <div class=" mb-3 d-flex justify-content-center">
                                                 <a style="" class="photo-product-style " data-type="image" href="@Url.Action("productdetail", "thucdonhangngay", new {id = sp.id })">
                                                     <img style="border: 0; max-width: 100%; max-height: 100vh; margin: auto;" class=" fit" src="@Url.Content(sp.hinhanh.Split('#')[0])" />
                                                 </a>
                                             </div>
                                         </div>
-                                        <div class="col-4 align-content-center">
+                                        <div class="col-md-4 col-sm-12 align-content-center">
                                             <hr class="mt-0 mb-3 bg-white" style="height: 1px; opacity: 1; width: 50%;" />
                                             <h4 class="title text-white font-weight-bold mb-4">
                                                 @sp.tensanpham
                                             </h4>
-                                            <p class="text-white" style="word-wrap: break-word; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden;  -webkit-line-clamp: 8; ">
+                                            <p class="text-white" style="word-wrap: break-word; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden;  -webkit-line-clamp: 4; ">
                                                 @sp.mota
                                             </p>
                                         </div>
@@ -521,7 +523,7 @@
                 </h4>
 
                 <h3 class="tit5 t-center m-t-2" style="color: white">
-                    Cộng đồng vị lai
+                    Bean Family
                 </h3>
             </div>
 
@@ -640,6 +642,168 @@
         </div>
     </div>
 </section>
+
+<section class="section-blog bg1-pattern">
+    <div class="section-child-bg1">
+        <div class="container p-t-40 p-b-80">
+            <div class="title-section-ourmenu t-center m-b-42">
+                <h4 class="txt5 color0-hov trans-0-4 m-b-13">
+                    khoảnh khắc an lạc
+                </h4>
+
+                <h3 class="tit5 t-center m-t-2" style="color: white">
+                    Hình ảnh Bean
+                </h3>
+            </div>
+            <style>
+                /* Phần 1: TÙY CHỈNH CHÍNH
+                  Bạn có thể thay đổi các giá trị trong phần này để tùy biến băng rôn.
+                */
+                :root {
+                    --banner-bg-color: transparent; /* Nền trong suốt hoặc màu nhạt để hình ảnh nổi bật */
+                    --item-border-color: #ffffff; /* Màu viền (nếu muốn) */
+                    --animation-duration: @(lstHinhAnh.Take(10).Count() * 4)s; /* Thời gian chạy hết 1 vòng (càng lớn càng chậm) */
+                    --image-height: 350px; /* Chiều cao cố định cho mỗi hình ảnh */
+                    --image-width: 450px; /* Chiều rộng cố định cho mỗi hình ảnh */
+                    --item-spacing: 20px; /* Khoảng cách giữa các hình ảnh */
+                    --leaf-color-light: rgba(140, 198, 63, 0.2); /* Màu lá cây nhạt */
+                    --leaf-color-dark: rgba(60, 140, 30, 0.2); /* Màu lá cây đậm hơn */
+                }
+
+                @@media (max-width: 768px) {
+                    :root {
+                         --image-height: 250px;
+                         --image-width: 350px;
+                    }
+                }
+
+                    /* Khung chứa bên ngoài, tạo hiệu ứng "cửa sổ" để xem */
+                    .scrolling-banner-container {
+                        position: relative; /* Quan trọng để định vị các họa tiết cây cối */
+                        width: 95%;
+                        max-width: 1200px;
+                        overflow: hidden; /* Đây là thuộc tính quan trọng nhất, ẩn mọi thứ tràn ra ngoài */
+                        padding: 10px 0;
+                        background-color: var(--banner-bg-color);
+                        border-radius: 12px;
+                        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); /* Bóng nhẹ để nổi bật */
+                        /* Tạo hiệu ứng mờ dần ở hai đầu */
+                        -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+                        mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+                    }
+
+                        /* Lớp giả cho họa tiết cành cây ở trên */
+                        .scrolling-banner-container::before {
+                            content: '';
+                            position: absolute;
+                            top: -15px; /* Dịch chuyển họa tiết ra ngoài viền một chút */
+                            left: 0;
+                            width: 100%;
+                            height: 50px;
+                            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 50'%3e%3cstyle%3e.branch { stroke: rgba(60, 140, 30, 0.7); stroke-width: 1.5; fill: none; } .leaf { fill: rgba(140, 198, 63, 0.7); }%3c/style%3e%3cpath class='branch' d='M -10 35 Q 50 10, 100 25 T 210 15'/%3e%3ccircle class='leaf' cx='45' cy='11' r='4'/%3e%3ccircle class='leaf' cx='60' cy='15' r='5'/%3e%3ccircle class='leaf' cx='110' cy='28' r='3'/%3e%3ccircle class='leaf' cx='140' cy='20' r='6'/%3e%3ccircle class='leaf' cx='180' cy='12' r='4'/%3e%3c/svg%3e");
+                            background-size: 200px 50px;
+                            background-repeat: repeat-x;
+                            z-index: 10;
+                        }
+
+                        /* Lớp giả cho họa tiết cành cây ở dưới */
+                        .scrolling-banner-container::after {
+                            content: '';
+                            position: absolute;
+                            bottom: -15px; /* Dịch chuyển họa tiết ra ngoài viền một chút */
+                            left: 0;
+                            width: 100%;
+                            height: 50px;
+                            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 50'%3e%3cstyle%3e.branch { stroke: rgba(60, 140, 30, 0.7); stroke-width: 1.5; fill: none; } .leaf { fill: rgba(140, 198, 63, 0.7); }%3c/style%3e%3cpath class='branch' d='M -10 15 Q 50 40, 100 25 T 210 35'/%3e%3ccircle class='leaf' cx='45' cy='39' r='4'/%3e%3ccircle class='leaf' cx='60' cy='35' r='5'/%3e%3ccircle class='leaf' cx='110' cy='22' r='3'/%3e%3ccircle class='leaf' cx='140' cy='30' r='6'/%3e%3ccircle class='leaf' cx='180' cy='38' r='4'/%3e%3c/svg%3e");
+                            background-size: 200px 50px;
+                            background-repeat: repeat-x;
+                            z-index: 10;
+                        }
+
+                    /* Dải băng chứa các thẻ div (giờ chứa img), đây là phần sẽ di chuyển */
+                    .scrolling-banner {
+                        display: flex; /* Sắp xếp các hình ảnh trên một hàng ngang */
+                        width: max-content; /* Độ rộng sẽ tự dãn ra theo nội dung bên trong */
+                        /* Gọi animation để di chuyển */
+                        animation: scroll var(--animation-duration) linear infinite;
+                    }
+
+                    /* Hiệu ứng: Dừng lại khi người dùng di chuột vào */
+                    .scrolling-banner-container:hover .scrolling-banner {
+                        animation-play-state: paused;
+                    }
+
+                    /* Định nghĩa animation di chuyển từ phải qua trái */
+                    @@keyframes scroll {
+                        0% {
+                            transform: translateX(0%);
+                        }
+
+                        100% {
+                            /* Di chuyển sang trái một khoảng bằng 50% chiều rộng của chính nó */
+                            transform: translateX(-50%);
+                        }
+                    }
+
+                    /* Kiểu dáng cho từng item (hình ảnh) bên trong băng rôn */
+                    .banner-item {
+                        flex-shrink: 0; /* Ngăn các hình ảnh bị co lại khi không đủ chỗ */
+                        width: var(--image-width); /* Chiều rộng cố định cho mỗi hình ảnh */
+                        height: var(--image-height); /* Chiều cao cố định cho mỗi hình ảnh */
+                        margin: 0 var(--item-spacing); /* Khoảng cách giữa các hình ảnh */
+                        background-color: #ffffff; /* Nền trắng cho item */
+                        border: none; /* Viền nhẹ */
+                        border-radius: 0;
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                        transition: transform 0.3s ease, box-shadow 0.3s ease;
+                        cursor: pointer;
+                        overflow: hidden; /* Đảm bảo hình ảnh không tràn ra ngoài bo tròn */
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+
+                        .banner-item img {
+                            display: block;
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover; /* Đảm bảo ảnh lấp đầy khung mà không bị méo */
+                            border-radius: 0; /* Bo tròn góc ảnh */
+                        }
+
+                        /* Hiệu ứng khi di chuột lên từng hình ảnh */
+                        .banner-item:hover {
+                            transform: translateY(-5px) scale(1.02);
+                            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+                        }
+            </style>
+
+            @if (lstHinhAnh.Count > 0)
+            {
+                <div class="scrolling-banner-container mb-5">
+                    <div class="scrolling-banner">
+                        <!-- Quan trọng: Nội dung được lặp lại 2 lần để tạo hiệu ứng nối tiếp mượt mà --><!-- Nhóm 1: Thay thế các URL dưới đây bằng đường dẫn đến ảnh của bạn -->
+                        @foreach (var item in lstHinhAnh)
+                        {
+                            <div class="banner-item">
+                                <img src="@Url.Content(item.url)" alt="Hình ảnh bean">
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <div class="w-100 text-center d-flex justify-content-center">
+                    <a target="_blank" href="@Url.Action("index", "hinhanh")" class="btn1 p-l-30 p-r-30 w-auto flex-c-m size1 txt3 trans-0-4" tabindex="0">
+                        Xem tất cả hình ảnh
+                        <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
+                    </a>
+                </div>
+            }
+
+        </div>
+    </div>
+</section>
+
 
 
 

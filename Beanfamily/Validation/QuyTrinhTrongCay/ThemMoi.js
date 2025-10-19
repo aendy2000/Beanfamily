@@ -228,14 +228,14 @@
                     console.log(ex);
                 },
             }).done(function (ketqua) {
-                if (ketqua == "SUCCESS") {
+                if (ketqua.indexOf("Chi tiết lỗi") !== -1) {
                     $('#btnluuthemSanPham').html('Lưu thông tin');
                     $('#btnluuthemSanPham').prop('disabled', false);
 
                     Swal.fire({
-                        title: "Thành công!",
-                        text: "Đã thêm một quy trình mới.",
-                        icon: "success"
+                        title: "Đã xảy ra lỗi, vui lòng thử lại sau ít phút.",
+                        text: ketqua,
+                        icon: "error"
                     }).then(() => {
                         window.location.reload();
                     });
@@ -249,15 +249,17 @@
                     $('#btnluuthemSanPham').prop('disabled', false);
                 }
                 else {
+                    var table = $('#lstSanPhamRauTable').DataTable();
+                    table.row.add($(ketqua)).draw(false);
+                    $('#ThemMoiModal').modal('toggle');
+
                     $('#btnluuthemSanPham').html('Lưu thông tin');
                     $('#btnluuthemSanPham').prop('disabled', false);
 
                     Swal.fire({
-                        title: "Đã xảy ra lỗi, vui lòng thử lại sau ít phút.",
-                        text: ketqua,
-                        icon: "error"
-                    }).then(() => {
-                        window.location.reload();
+                        title: "Thành công!",
+                        text: "Đã thêm một quy trình mới.",
+                        icon: "success"
                     });
                 }
             });

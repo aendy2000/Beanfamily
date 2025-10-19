@@ -53,7 +53,8 @@
             formData.append('hienthi', $('#hienthi').prop('checked'));
             formData.append('sothutu', sothutu);
 
-            $.ajax({error: function (a, xhr, c) {if (a.status == 403 && a.responseText.indexOf("SystemLoginAgain") != -1) {window.location.href = $('body').find('[id="requestPath"]').val() + "admin/dangnhap/logout";}},
+            $.ajax({
+                error: function (a, xhr, c) { if (a.status == 403 && a.responseText.indexOf("SystemLoginAgain") != -1) { window.location.href = $('body').find('[id="requestPath"]').val() + "admin/dangnhap/logout"; } },
                 url: $('#requestPath').val() + "admin/chinhsach/themmoi",
                 data: formData,
                 dataType: 'html',
@@ -61,14 +62,14 @@
                 processData: false,
                 contentType: false
             }).done(function (ketqua) {
-                if (ketqua == "SUCCESS") {
+                if (ketqua.indexOf("Chi tiết lỗi") !== -1) {
                     $('#btnluuthem').html('Lưu thông tin');
                     $('#btnluuthem').prop('disabled', false);
 
                     Swal.fire({
-                        title: "Thành công!",
-                        text: "Đã thêm một chính sách mới.",
-                        icon: "success"
+                        title: "Đã xảy ra lỗi, vui lòng thử lại sau ít phút.",
+                        text: ketqua,
+                        icon: "error"
                     }).then(() => {
                         window.location.reload();
                     });
@@ -82,15 +83,17 @@
                     $('#btnluuthem').prop('disabled', false);
                 }
                 else {
+                    var table = $('#lstDataTable').DataTable();
+                    table.row.add($(ketqua)).draw(false);
+                    $('#ThemMoiModal').modal('toggle');
+
                     $('#btnluuthem').html('Lưu thông tin');
                     $('#btnluuthem').prop('disabled', false);
 
                     Swal.fire({
-                        title: "Đã xảy ra lỗi, vui lòng thử lại sau ít phút.",
-                        text: ketqua,
-                        icon: "error"
-                    }).then(() => {
-                        window.location.reload();
+                        title: "Thành công!",
+                        text: "Đã thêm một chính sách mới.",
+                        icon: "success"
                     });
                 }
             });

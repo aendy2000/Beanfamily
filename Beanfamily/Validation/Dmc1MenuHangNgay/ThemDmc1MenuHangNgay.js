@@ -37,14 +37,15 @@
                 processData: false,
                 contentType: false
             }).done(function (ketqua) {
-                if (ketqua == "SUCCESS") {
+                if (ketqua.indexOf("Chi tiết lỗi") !== -1) {
+
                     $('#btnluuthemDmtdhn').html('Lưu thông tin');
                     $('#btnluuthemDmtdhn').prop('disabled', false);
 
                     Swal.fire({
-                        title: "Thành công!",
-                        text: "Đã thêm một danh mục mới.",
-                        icon: "success"
+                        title: "Đã xảy ra lỗi, vui lòng thử lại sau ít phút.",
+                        text: ketqua,
+                        icon: "error"
                     }).then(() => {
                         window.location.reload();
                     });
@@ -58,16 +59,19 @@
                     $('#btnluuthemDmtdhn').prop('disabled', false);
                 }
                 else {
+                    var table = $('#lstDmTdhnTable').DataTable();
+                    table.row.add($(ketqua)).draw(false);
+                    $('#ThemDmTdhnModal').modal('toggle');
+
                     $('#btnluuthemDmtdhn').html('Lưu thông tin');
                     $('#btnluuthemDmtdhn').prop('disabled', false);
 
                     Swal.fire({
-                        title: "Đã xảy ra lỗi, vui lòng thử lại sau ít phút.",
-                        text: ketqua,
-                        icon: "error"
-                    }).then(() => {
-                        window.location.reload();
+                        title: "Thành công!",
+                        text: "Đã thêm một danh mục mới.",
+                        icon: "success"
                     });
+
                 }
             });
         }

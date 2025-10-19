@@ -1,0 +1,47 @@
+﻿@model Beanfamily.Models.TaiKhoanBean
+
+<tr id="row-@Model.id" style="vertical-align: middle">
+    <td scope="row">NV@(Model.id.ToString("D6"))</td>
+    <td>
+        <a role="button" id="opentDetail@(Model.id)" name="@Model.id" class="nav-link nav-profile d-flex align-Models-center pe-0 text-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Xem tài khoản">
+            @if (string.IsNullOrEmpty(Model.hinhdaidien))
+            {
+                <img style="max-width: 30px" src="~/Content/AdminAreas/assets/img/profile-img.png" alt="Profile" class="rounded-circle">
+            }
+            else
+            {
+                <img style="max-width: 30px" src="@Url.Content(Model.hinhdaidien)" alt="Profile" class="rounded-circle">
+            }
+            <span class="d-none d-md-block ps-2">@Model.hovaten</span>
+        </a>
+    </td>
+    <td>
+        @Model.QuyenTaiKhoanBean.name
+    </td>
+    <td>@Model.sodienthoai</td>
+    <td>@Model.email</td>
+    <td>
+        @if (Model.khoataikhoan)
+        {
+            <span class="badge bg-danger"><i class="bi bi-exclamation-octagon me-1"></i> Đã khóa</span> }
+        else
+        {
+            <span class="badge bg-success"><i class="bi bi-check-circle me-1"></i> Hoạt động</span>
+        }
+    </td>
+
+    <td class="text-nowrap">
+        @if (Model.id != 1)
+        {
+            <button id="btnxemchitiet@(Model.id)" name="@Model.id" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Chi tiết tài khoản"><i class="bi bi-info-square"></i></button>
+            if (Model.khoataikhoan == true)
+            {
+                <button id="btnmokhoataikhoan@(Model.id)" name="@Model.id#@("NV" + Model.id.ToString("D6"))" class="btn btn-sm btn-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Mở khóa tài khoản"><i class="bi bi-unlock-fill"></i></button>
+            }
+            else
+            {
+                <button id="btnkhoataikhoan@(Model.id)" name="@Model.id#@("NV" + Model.id.ToString("D6"))" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Khóa tài khoản"><i class="bi bi-lock-fill"></i></button>
+            }
+        }
+    </td>
+</tr>

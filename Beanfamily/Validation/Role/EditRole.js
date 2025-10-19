@@ -73,17 +73,18 @@
                 processData: false,
                 contentType: false
             }).done(function (ketqua) {
-                if (ketqua == "SUCCESS") {
+                if (ketqua.indexOf("Chi tiết lỗi") !== -1) {
                     $('#btnluuchinhsuarole').html('Lưu thông tin');
                     $('#btnluuchinhsuarole').prop('disabled', false);
 
                     Swal.fire({
-                        title: "Thành công!",
-                        text: "Đã lưu thông tin cập nhật quyền.",
-                        icon: "success"
+                        title: "Đã xảy ra lỗi, vui lòng thử lại sau ít phút.",
+                        text: "Chi tiết lỗi: " + ketqua,
+                        icon: "error"
                     }).then(() => {
                         window.location.reload();
                     });
+                    
                 }
                 else if (ketqua == "DATONTAI") {
                     $("#editname").addClass('valid-was-validated');
@@ -106,15 +107,31 @@
                     });
                 }
                 else {
+                    var table = $('#tbRole').DataTable();
+                    var rowId = '#row-' + $('#editid').val();
+
+                    var row = table.row(rowId);
+                    if (row.length > 0) {
+                        var newRowHtml = $(ketqua);
+
+                        var cellData = [];
+                        newRowHtml.find('td').each(function () {
+                            cellData.push($(this).html());
+                        });
+
+                        row.data(cellData).draw(false);
+                        $(rowId).find('[data-bs-toggle="tooltip"]').tooltip();
+                    }
+
+                    $('#SuaPhanQuyenModal').modal('toggle');
+
                     $('#btnluuchinhsuarole').html('Lưu thông tin');
                     $('#btnluuchinhsuarole').prop('disabled', false);
 
                     Swal.fire({
-                        title: "Đã xảy ra lỗi, vui lòng thử lại sau ít phút.",
-                        text: "Chi tiết lỗi: " + ketqua,
-                        icon: "error"
-                    }).then(() => {
-                        window.location.reload();
+                        title: "Thành công!",
+                        text: "Đã lưu thông tin cập nhật quyền.",
+                        icon: "success"
                     });
                 }
             });

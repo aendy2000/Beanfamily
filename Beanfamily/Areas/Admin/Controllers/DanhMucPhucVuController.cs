@@ -86,7 +86,9 @@ namespace Beanfamily.Areas.Admin.Controllers
 
                 model.DanhMucPhucVuMenuTiecBanVaMenuBuffet.Add(dm);
                 model.SaveChanges();
-                return Content("SUCCESS");
+
+                model = new BeanfamilyEntities();
+                return PartialView("_RefreshData", model.DanhMucPhucVuMenuTiecBanVaMenuBuffet.Find(dm.id));
             }
             catch (Exception ex)
             {
@@ -120,7 +122,9 @@ namespace Beanfamily.Areas.Admin.Controllers
                 dm.ngaysuadoi = DateTime.Now;
                 model.Entry(dm).State = EntityState.Modified;
                 model.SaveChanges();
-                return Content("SUCCESS");
+
+                model = new BeanfamilyEntities();
+                return PartialView("_RefreshData", model.DanhMucPhucVuMenuTiecBanVaMenuBuffet.Find(dm.id));
             }
             catch (Exception ex)
             {

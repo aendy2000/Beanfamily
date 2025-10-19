@@ -69,7 +69,7 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                                <tr style="vertical-align: middle">
+                                <tr id="row-@item.id" style="vertical-align: middle">
                                     <td>
                                         <div class="form-check">
                                             <input type="checkbox" class="form-check-input p-2" id="checkitem@(item.id)" name="@item.id" />
@@ -117,7 +117,7 @@
 
                                     </td>
                                     <td class="text-nowrap">
-                                        <button class="btn btn-sm btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Xem món"><i class="bi bi-eye"></i></button>
+                                        <a target="_blank" href="@Url.Action("productdetail", "thucdonhangngay", new {area="", id= item.id})" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Xem món"><i class="bi bi-eye"></i></a>
                                         @if (Session["chophep-sua"] != null)
                                         {
                                             if (Convert.ToBoolean(Session["chophep-sua"]) == true)
@@ -299,7 +299,7 @@
 
 <script src="~/Scripts/jquery-ui.js?v=1.0"></script>
 <script src="~/Validation/MonAnMenuHangNgay/ThemMonAn.js?v=1.0"></script>
-<script src="~/Validation/MonAnMenuHangNgay/XemHinhAnh.js?v=1.0"></script>
 <script src="~/Validation/MonAnMenuHangNgay/XoaMonAn.js?v=1.0"></script>
+<script src="~/Validation/MonAnMenuHangNgay/XemHinhAnh.js?v=1.0"></script>
 <script src="~/Validation/MonAnMenuHangNgay/OpenModalSuaMonAn.js?v=1.0"></script>
 <script src="~/Validation/MonAnMenuHangNgay/XoaHangLoat.js?v=1.0"></script>

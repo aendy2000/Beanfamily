@@ -1,0 +1,55 @@
+﻿@model Beanfamily.Models.SanPhamMenuBuffet
+
+<tr id="row-@Model.id" style="vertical-align: middle">
+    <td>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input p-2" id="checkitem@(Model.id)" name="@Model.id" />
+            <label class="form-check-label" for="checkitem@(Model.id)"></label>
+        </div>
+    </td>
+    <td scope="row">
+        SP@(Model.id.ToString("D6"))
+        <input hidden id="inpMamonan@(Model.id)" value="SP@(Model.id.ToString("D6"))" />
+    </td>
+    <td>@Model.sothutu</td>
+    <td>
+        @if (!string.IsNullOrEmpty(Model.hinhanh))
+        {
+            <div style="height: 50px; width: 50px; float: left">
+                <img style="float: left; height: 50px; width: 50px;object-fit: cover; border-radius: 50% " src="@Url.Content(Model.hinhanh)" />
+            </div>
+        }
+        <label style="margin-left: 10px; display: inline-block; vertical-align: middle; line-height: 50px ">
+            @Model.tensanpham
+        </label>
+    </td>
+    <td>@Model.DanhMucMenuBuffetCap1.tendanhmuc</td>
+    <td>
+        @if (Model.hienthi == true)
+        {
+            <span class="badge bg-success"><i class="bi bi-eye-fill me-1"></i> Hiển thị</span> }
+        else
+        {
+            <span class="badge bg-danger"><i class="bi bi-eye-slash-fill me-1"></i> Đã ẩn</span>
+        }
+    </td>
+    <td class="text-nowrap">
+        @if (Session["chophep-sua"] != null)
+        {
+            if (Convert.ToBoolean(Session["chophep-sua"]) == true)
+            {
+                <button id="btnsuasp@(Model.id)" name="@Model.id" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Cập nhật món"><i class="bi bi-pencil-square"></i></button>
+            }
+        }
+        @if (Session["chophep-xoa"] != null)
+        {
+            if (Convert.ToBoolean(Session["chophep-xoa"]) == true)
+            {
+                //if (Model.SoLuongDatHang.Count < 1)
+                //{
+                <button id="btnxoasp@(Model.id)" name="@Model.id" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Xóa món"><i class="bi bi-trash"></i></button>
+                //}
+            }
+        }
+    </td>
+</tr>

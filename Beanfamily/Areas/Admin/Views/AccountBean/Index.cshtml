@@ -55,7 +55,7 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                                <tr style="vertical-align: middle">
+                                <tr id="row-@item.id" style="vertical-align: middle">
                                     <td scope="row">NV@(item.id.ToString("D6"))</td>
                                     <td>
                                         <a role="button" id="opentDetail@(item.id)" name="@item.id" class="nav-link nav-profile d-flex align-items-center pe-0 text-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Xem tài khoản">

@@ -82,7 +82,9 @@ namespace Beanfamily.Areas.Admin.Controllers
 
                 model.DanhMucSanPhamMuaSamCap1.Add(dm);
                 model.SaveChanges();
-                return Content("SUCCESS");
+
+                model = new BeanfamilyEntities();
+                return PartialView("_RefreshData", model.DanhMucSanPhamMuaSamCap1.Find(dm.id));
             }
             catch (Exception ex)
             {
@@ -113,7 +115,9 @@ namespace Beanfamily.Areas.Admin.Controllers
 
                 model.Entry(dm).State = EntityState.Modified;
                 model.SaveChanges();
-                return Content("SUCCESS");
+
+                model = new BeanfamilyEntities();
+                return PartialView("_RefreshData", model.DanhMucSanPhamMuaSamCap1.Find(dm.id));
             }
             catch (Exception ex)
             {

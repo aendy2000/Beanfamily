@@ -235,14 +235,14 @@
                     console.log(ex);
                 },
             }).done(function (ketqua) {
-                if (ketqua == "SUCCESS") {
+                if (ketqua.indexOf("Chi tiết lỗi") !== -1) {
                     $('#btnluusuaSanPham').html('Lưu thông tin');
                     $('#btnluusuaSanPham').prop('disabled', false);
 
                     Swal.fire({
-                        title: "Thành công!",
-                        text: 'Đã cập nhật quy trình "' + $('#inpMaQuyTrinh' + idQuyTrinh).val() + '".',
-                        icon: "success"
+                        title: "Đã xảy ra lỗi, vui lòng thử lại sau ít phút.",
+                        text: ketqua,
+                        icon: "error"
                     }).then(() => {
                         window.location.reload();
                     });
@@ -268,15 +268,31 @@
                     });
                 }
                 else {
+                    var table = $('#lstSanPhamRauTable').DataTable();
+                    var rowId = '#row-' + idQuyTrinh;
+
+                    var row = table.row(rowId);
+                    if (row.length > 0) {
+                        var newRowHtml = $(ketqua);
+
+                        var cellData = [];
+                        newRowHtml.find('td').each(function () {
+                            cellData.push($(this).html());
+                        });
+
+                        row.data(cellData).draw(false);
+                        $(rowId).find('[data-bs-toggle="tooltip"]').tooltip();
+                    }
+
+                    $('#SuaModal').modal('toggle');
+
                     $('#btnluusuaSanPham').html('Lưu thông tin');
                     $('#btnluusuaSanPham').prop('disabled', false);
 
                     Swal.fire({
-                        title: "Đã xảy ra lỗi, vui lòng thử lại sau ít phút.",
-                        text: ketqua,
-                        icon: "error"
-                    }).then(() => {
-                        window.location.reload();
+                        title: "Thành công!",
+                        text: 'Đã cập nhật quy trình "' + $('#inpMaQuyTrinh' + idQuyTrinh).val() + '".',
+                        icon: "success"
                     });
                 }
             });

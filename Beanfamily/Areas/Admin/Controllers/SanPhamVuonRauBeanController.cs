@@ -140,7 +140,9 @@ namespace Beanfamily.Areas.Admin.Controllers
                     model.Entry(addImageVideoSanPham).State = EntityState.Modified;
                     model.SaveChanges();
                 }
-                return Content("SUCCESS");
+
+                model = new BeanfamilyEntities();
+                return PartialView("_RefreshData", model.SanPhamRauNhaTrong.Find(sanpham.id));
             }
             catch (Exception ex)
             {
@@ -265,8 +267,8 @@ namespace Beanfamily.Areas.Admin.Controllers
                 model.Entry(addImageVideoSanPham).State = EntityState.Modified;
                 model.SaveChanges();
 
-
-                return Content("SUCCESS");
+                model = new BeanfamilyEntities();
+                return PartialView("_RefreshData", model.SanPhamRauNhaTrong.Find(sanpham.id));
             }
             catch (Exception ex)
             {

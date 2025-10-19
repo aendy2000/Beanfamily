@@ -108,7 +108,9 @@ namespace Beanfamily.Areas.Admin.Controllers
                         model.SaveChanges();
                     }
                 }
-                return Content("SUCCESS");
+
+                model = new BeanfamilyEntities();
+                return PartialView("_RefreshData", model.SanPhamMenuBuffet.Find(monan.id));
             }
             catch (Exception ex)
             {
@@ -179,7 +181,9 @@ namespace Beanfamily.Areas.Admin.Controllers
                 }
                 model.Entry(monan).State = EntityState.Modified;
                 model.SaveChanges();
-                return Content("SUCCESS");
+
+                model = new BeanfamilyEntities();
+                return PartialView("_RefreshData", model.SanPhamMenuBuffet.Find(monan.id));
             }
             catch (Exception ex)
             {

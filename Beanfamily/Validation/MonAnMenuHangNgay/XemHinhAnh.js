@@ -1,5 +1,4 @@
 ﻿$(document).ready(function () {
-
     $('body').on('click', '[id^="btnXemHinhAnhItem"]', function (e) {
         var id = $(this).attr('name');
         var formData = new FormData();

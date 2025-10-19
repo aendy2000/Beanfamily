@@ -86,7 +86,9 @@ namespace Beanfamily.Areas.Admin.Controllers
 
                 model.ChinhSachBean.Add(cs);
                 model.SaveChanges();
-                return Content("SUCCESS");
+
+                model = new BeanfamilyEntities();
+                return PartialView("_RefreshData", model.ChinhSachBean.Find(cs.id));
             }
             catch (Exception ex)
             {
@@ -118,7 +120,9 @@ namespace Beanfamily.Areas.Admin.Controllers
 
                 model.Entry(cs).State = System.Data.Entity.EntityState.Modified;
                 model.SaveChanges();
-                return Content("SUCCESS");
+
+                model = new BeanfamilyEntities();
+                return PartialView("_RefreshData", model.ChinhSachBean.Find(cs.id));
             }
             catch (Exception ex)
             {

@@ -1,0 +1,23 @@
+﻿@model Beanfamily.Models.SuKienBean
+
+<tr id="row-@Model.id" style="vertical-align: middle">
+    <td>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input p-2" id="checkitem@(Model.id)" name="@Model.id" />
+            <label class="form-check-label" for="checkitem@(Model.id)"></label>
+        </div>
+    </td>
+    <td scope="row">@Model.ngaygio.ToString("HH:mm dd/MM/yyyy")</td>
+    <td>@Model.tieude</td>
+    <td>@Model.noidung</td>
+
+    <td>
+        @if (Session["chophep-xoa"] != null)
+        {
+            if (Convert.ToBoolean(Session["chophep-xoa"]) == true)
+            {
+                <button id="btnxoa@(Model.id)" name="@Model.id" tensukien="@Model.tieude" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Xóa sự kiện"><i class="bi bi-trash"></i></button>
+            }
+        }
+    </td>
+</tr>

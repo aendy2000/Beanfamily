@@ -66,7 +66,7 @@
                             @foreach (var item in Model)
                             {
 
-                                <tr style="vertical-align: middle">
+                                <tr id="row-@item.id" style="vertical-align: middle">
                                     <td>
                                         <div class="form-check">
                                             @if (item.SanPhamRauNhaTrong.Count < 1)

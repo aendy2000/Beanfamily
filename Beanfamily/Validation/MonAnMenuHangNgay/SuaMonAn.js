@@ -8,7 +8,7 @@
         let fileName = $(this).attr('name');
         if (fileName.indexOf("daylahinhcu") != -1) {
             var filenames = fileName.replace('daylahinhcu-', '');
-            $('[id="suaidHinhAnh-hinhcu-' + filenames +'"]').replaceWith('');
+            $('[id="suaidHinhAnh-hinhcu-' + filenames + '"]').replaceWith('');
             $('[id="url-suaidHinhAnh-hinhcu-' + filenames + '"]').val('');
         }
         else {
@@ -118,7 +118,8 @@
             formData.append('imageCu', imageCu.substring(0, imageCu.length - 1));
             formData.append('videoCu', $('#url-suapro-video').val());
 
-            $.ajax({error: function (a, xhr, c) {if (a.status == 403 && a.responseText.indexOf("SystemLoginAgain") != -1) {window.location.href = $('body').find('[id="requestPath"]').val() + "admin/dangnhap/logout";}},
+            $.ajax({
+                error: function (a, xhr, c) { if (a.status == 403 && a.responseText.indexOf("SystemLoginAgain") != -1) { window.location.href = $('body').find('[id="requestPath"]').val() + "admin/dangnhap/logout"; } },
                 url: $('#requestPath').val() + "admin/monanmenuhangngay/suamon",
                 data: formData,
                 dataType: 'html',
@@ -126,14 +127,14 @@
                 processData: false,
                 contentType: false
             }).done(function (ketqua) {
-                if (ketqua == "SUCCESS") {
+                if (ketqua.indexOf("Chi tiết lỗi") !== -1) {
                     $('#btnluusuaMonAn').html('Lưu thông tin');
                     $('#btnluusuaMonAn').prop('disabled', false);
 
                     Swal.fire({
-                        title: "Thành công!",
-                        text: "Đã cập nhật thông tin món.",
-                        icon: "success"
+                        title: "Đã xảy ra lỗi, vui lòng thử lại sau ít phút.",
+                        text: ketqua,
+                        icon: "error"
                     }).then(() => {
                         window.location.reload();
                     });
@@ -159,15 +160,31 @@
                     });
                 }
                 else {
+                    var table = $('#lstMonAnMenuHangNgayTable').DataTable();
+                    var rowId = '#row-' + $('#idmonsua').val();
+
+                    var row = table.row(rowId);
+                    if (row.length > 0) {
+                        var newRowHtml = $(ketqua);
+
+                        var cellData = [];
+                        newRowHtml.find('td').each(function () {
+                            cellData.push($(this).html());
+                        });
+
+                        row.data(cellData).draw(false);
+                        $(rowId).find('[data-bs-toggle="tooltip"]').tooltip();
+                    }
+
+                    $('#SuaMonAnModal').modal('toggle');
+
                     $('#btnluusuaMonAn').html('Lưu thông tin');
                     $('#btnluusuaMonAn').prop('disabled', false);
 
                     Swal.fire({
-                        title: "Đã xảy ra lỗi, vui lòng thử lại sau ít phút.",
-                        text: ketqua,
-                        icon: "error"
-                    }).then(() => {
-                        window.location.reload();
+                        title: "Thành công!",
+                        text: "Đã cập nhật thông tin món.",
+                        icon: "success"
                     });
                 }
             });

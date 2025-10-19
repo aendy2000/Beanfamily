@@ -94,7 +94,9 @@ namespace Beanfamily.Areas.Admin.Controllers
                     model.ApDungChucNangChoQuyenTaiKhoan.Add(apDung);
                 }
                 model.SaveChanges();
-                return Content("SUCCESS");
+
+                model = new BeanfamilyEntities();
+                return PartialView("_RefreshData", model.QuyenTaiKhoanBean.Find(role.id));
             }
             catch (Exception ex)
             {
@@ -155,7 +157,9 @@ namespace Beanfamily.Areas.Admin.Controllers
                     model.ApDungChucNangChoQuyenTaiKhoan.Add(apDung);
                 }
                 model.SaveChanges();
-                return Content("SUCCESS");
+
+                model = new BeanfamilyEntities();
+                return PartialView("_RefreshData", model.QuyenTaiKhoanBean.Find(role.id));
             }
             catch (Exception ex)
             {

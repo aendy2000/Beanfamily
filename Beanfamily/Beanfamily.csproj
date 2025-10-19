@@ -3738,6 +3738,22 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
     <Content Include="Areas\Admin\Views\SuKien\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ChinhSach\_RefreshData.cshtml" />
+    <Content Include="Areas\Admin\Views\AccountBean\_RefreshData.cshtml" />
+    <Content Include="Areas\Admin\Views\DanhMucPhucVu\_RefreshData.cshtml" />
+    <Content Include="Areas\Admin\Views\DmCap1MenuBuffet\_RefreshData.cshtml" />
+    <Content Include="Areas\Admin\Views\DmCap1MenuHangNgay\_RefreshData.cshtml" />
+    <Content Include="Areas\Admin\Views\DmCap1MenuTiecBan\_RefreshData.cshtml" />
+    <Content Include="Areas\Admin\Views\DmCap1MuaSam\_RefreshData.cshtml" />
+    <Content Include="Areas\Admin\Views\DmCap1VuonRauBean\_RefreshData.cshtml" />
+    <Content Include="Areas\Admin\Views\MonAnMenuBuffet\_RefreshData.cshtml" />
+    <Content Include="Areas\Admin\Views\MonAnMenuHangNgay\_RefreshData.cshtml" />
+    <Content Include="Areas\Admin\Views\MonAnMenuTiecBan\_RefreshData.cshtml" />
+    <Content Include="Areas\Admin\Views\QuyTrinhTrongCay\_RefreshData.cshtml" />
+    <Content Include="Areas\Admin\Views\Role\_RefreshData.cshtml" />
+    <Content Include="Areas\Admin\Views\SanPhamMuaSam\_RefreshData.cshtml" />
+    <Content Include="Areas\Admin\Views\SanPhamVuonRauBean\_RefreshData.cshtml" />
+    <Content Include="Areas\Admin\Views\SuKien\_RefreshData.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

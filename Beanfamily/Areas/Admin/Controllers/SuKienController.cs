@@ -99,7 +99,8 @@ namespace Beanfamily.Areas.Admin.Controllers
                 model.SuKienBean.Add(sk);
                 model.SaveChanges();
 
-                return Content("SUCCESS");
+                model = new BeanfamilyEntities();
+                return PartialView("_RefreshData", model.SuKienBean.Find(sk.id));
             }
             catch (Exception Ex)
             {

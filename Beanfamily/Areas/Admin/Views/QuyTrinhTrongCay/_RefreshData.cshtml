@@ -1,0 +1,67 @@
+﻿@model Beanfamily.Models.QuyTrinhTrongCay
+
+<tr id="row-@Model.id" style="vertical-align: middle">
+    <td>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input p-2" id="checkitem@(Model.id)" name="@Model.id" />
+            <label class="form-check-label" for="checkitem@(Model.id)"></label>
+        </div>
+    </td>
+    <td scope="row">
+        QT@(Model.id.ToString("D6"))
+        <input hidden id="inpMaQuyTrinh@(Model.id)" value="QT@(Model.id.ToString("D6"))" />
+    </td>
+    <td>
+        @Model.tenquytrinhtrongcay
+    </td>
+    <td>
+        @Model.CacBuocQuyTrinhTrongCay.Count
+    </td>
+    <td>@Model.ngaytao.ToString("HH:mm dd/MM/yy")</td>
+    <td>@Model.luotxem.ToString("0,0") Lượt</td>
+    <td>
+        @if (Model.hienthi == true)
+        {
+            <span class="badge bg-success"><i class="bi bi-eye-fill me-1"></i> Hiển thị</span> }
+        else
+        {
+            <span class="badge bg-danger"><i class="bi bi-eye-slash-fill me-1"></i> Đã ẩn</span>
+        }
+    </td>
+    <td>
+        @if (Model.SanPhamRauNhaTrong.Count < 1)
+        {
+            <span class="badge bg-warning"><i class="bi bi-exclamation-octagon me-1"></i> Chưa áp dụng</span>
+        }
+        else
+        {
+            <ul style="padding-left: 1rem; margin-bottom: 0;">
+                @foreach (var menutiecban in Model.SanPhamRauNhaTrong.ToList())
+                {
+                    <li>
+                        @menutiecban.tensanpham
+                    </li>
+                }
+            </ul>
+        }
+
+    </td>
+    <td class="text-nowrap">
+        @if (Session["chophep-sua"] != null)
+        {
+            if (Convert.ToBoolean(Session["chophep-sua"]) == true)
+            {
+                <button id="btnsuasp@(Model.id)" name="@Model.id" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Cập nhật quy trình"><i class="bi bi-pencil-square"></i></button>
+            }
+        }
+        @if (Session["chophep-xoa"] != null)
+        {
+            if (Convert.ToBoolean(Session["chophep-xoa"]) == true)
+            {
+
+                <button id="btnxoasp@(Model.id)" name="@Model.id" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Xóa quy trình"><i class="bi bi-trash"></i></button>
+
+            }
+        }
+    </td>
+</tr>

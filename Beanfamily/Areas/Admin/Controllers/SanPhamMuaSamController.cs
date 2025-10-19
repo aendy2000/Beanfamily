@@ -162,7 +162,9 @@ namespace Beanfamily.Areas.Admin.Controllers
                     model.TonKhoSanPhamMuaSam.Add(tonkho);
                     model.SaveChanges();
                 }
-                return Content("SUCCESS");
+
+                model = new BeanfamilyEntities();
+                return PartialView("_RefreshData", model.SanPhamMuaSam.Find(sanpham.id));
             }
             catch (Exception ex)
             {
@@ -373,7 +375,9 @@ namespace Beanfamily.Areas.Admin.Controllers
 
                     }
                 }
-                return Content("SUCCESS");
+
+                model = new BeanfamilyEntities();
+                return PartialView("_RefreshData", model.SanPhamMuaSam.Find(sanpham.id));
             }
             catch (Exception ex)
             {
