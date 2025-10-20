@@ -1823,7 +1823,7 @@ body {
         aspect-ratio: 4 / 3;
         overflow: hidden;
         position: relative;
-        max-height: 260px;
+        max-height: auto;
         border-radius: 15px;
     }
 
@@ -2011,7 +2011,7 @@ body {
         background-color: #5e443b;
         font-family: 'san_francisco_text_regularRg', sans-serif;
         text-align: center;
-        height: 350px;
+        height: auto;
         border-radius: 16px;
         border: 2px solid #ffc687;
     }
@@ -2019,7 +2019,7 @@ body {
         .product-grid .product-image {
             overflow: hidden;
             position: relative;
-            height: 260px;
+            height: auto;
             border-radius: 15px;
         }
 }
@@ -2141,7 +2141,7 @@ body {
         .product-grid .product-image {
             overflow: hidden;
             position: relative;
-            height: 260px;
+            height: auto;
             border-radius: 15px;
         }
 }

@@ -282,7 +282,7 @@ namespace Beanfamily.Areas.Admin.Controllers
                 model.Entry(mon).State = EntityState.Modified;
                 model.SaveChanges();
 
-                var spms = model.SanPhamThucDonHangNgay.Where(w => w.hienthi == true && w.daxoa == false).OrderByDescending(o => o.luotxem).Take(10).ToList();
+                var spms = model.SanPhamThucDonHangNgay.Where(w => w.hienthi == true && w.daxoa == false).OrderByDescending(o => o.luotxem).Take(6).ToList();
 
                 string lstIdNew = "";
                 foreach (var item in spms)
@@ -335,7 +335,7 @@ namespace Beanfamily.Areas.Admin.Controllers
                     model.SaveChanges();
                 }
 
-                var spms = model.SanPhamThucDonHangNgay.Where(w => w.hienthi == true && w.daxoa == false).OrderByDescending(o => o.luotxem).Take(10).ToList();
+                var spms = model.SanPhamThucDonHangNgay.Where(w => w.hienthi == true && w.daxoa == false).OrderByDescending(o => o.luotxem).Take(6).ToList();
 
                 string lstIdNew = "";
                 foreach (var item in spms)

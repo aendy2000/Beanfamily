@@ -3328,6 +3328,7 @@
     <Content Include="Validation\ChinhSach\Them.js" />
     <Content Include="Validation\ChinhSach\Xoa.js" />
     <Content Include="Validation\ChinhSach\XoaHangLoat.js" />
+    <Content Include="Validation\HinhAnhBean\SuaHinhAnh.js" />
     <Content Include="Validation\SuKien\Them.js" />
     <Content Include="Validation\SuKien\Xoa.js" />
     <Content Include="Validation\SuKien\XoaHangLoat.js" />

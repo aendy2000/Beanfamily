@@ -2,32 +2,58 @@
 @using Beanfamily.Models
 @{
     BeanfamilyEntities models = new BeanfamilyEntities();
-    var lstSp = models.SanPhamThucDonHangNgay.ToList();
+    var lstSp = models.SanPhamThucDonHangNgay.Where(w => w.daxoa == false).ToList();
 }
 <div class="modal-body" id="content-spnb-modal">
-    <div class="row mb-2">
-        <div class="col-12">
+    <table id="lstDataTableSPNB" class="table" width="100%">
+        <thead>
+            <tr class="text-nowrap">
+                <th style="width: 10px">
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input p-2" id="checkAlls" />
+                        <label class="form-check-label" for="checkAlls"></label>
+                    </div>
+                </th>
+                <th scope="col">Mã</th>
+                <th scope="col">Tên Sản Phẩm</th>
+            </tr>
+        </thead>
+        <tbody>
             @foreach (var item in lstSp)
             {
-                if (Model.list_id_thucdon.IndexOf(item.id.ToString()) != -1)
-                {
-                    <div class="form-group mb-3 form-control">
-                        <input checked type="checkbox" class="form-check-input p-2 me-2" name="@item.id" id="sanpham-@item.id" />
-                        <label class="form-check-label" for="sanpham-@item.id">
-                            SP@(item.id.ToString("D6")) - @item.tensanpham - @item.gia.ToString("0,0") đ
+
+                <tr style="vertical-align: middle">
+                    <td scope="row">
+                        <div class="form-check">
+                            @if (Model.list_id_thucdon.IndexOf(item.id.ToString()) != -1)
+                            {
+                                <input checked type="checkbox" class="form-check-input p-2" id="checkitem@(item.id)" name="@item.id" />
+                            }
+                            else
+                            {
+                                <input type="checkbox" class="form-check-input p-2" id="checkitem@(item.id)" name="@item.id" />
+                            }
+                            <label class="form-check-label" for="checkitem@(item.id)"></label>
+                        </div>
+                    </td>
+                    <td scope="row">
+                        <label for="checkitem@(item.id)">
+                            SP@(item.id.ToString("D6"))
                         </label>
-                    </div>
-                }
-                else
-                {
-                    <div class="form-group mb-3 form-control">
-                        <input type="checkbox" class="form-check-input p-2 me-2" name="@item.id" id="sanpham-@item.id" />
-                        <label class="form-check-label" for="sanpham-@item.id">
-                            SP@(item.id.ToString("D6")) - @item.tensanpham - @item.gia.ToString("0,0") đ
+                    </td>
+                    <td scope="row" class="text-nowrap">
+                        @if (!string.IsNullOrEmpty(item.hinhanh))
+                        {
+                            <div style="height: 50px; width: 50px; float: left">
+                                <img style="float: left; height: 50px; width: 50px;object-fit: cover; border-radius: 50% " src="@Url.Content(item.hinhanh.Split('#')[0])" />
+                            </div>
+                        }
+                        <label  for="checkitem@(item.id)" style="margin-left: 10px; display: inline-block; vertical-align: middle; line-height: 50px ">
+                            @item.tensanpham
                         </label>
-                    </div>
-                }
+                    </td>
+                </tr>
             }
-        </div>
-    </div>
+        </tbody>
+    </table>
 </div>

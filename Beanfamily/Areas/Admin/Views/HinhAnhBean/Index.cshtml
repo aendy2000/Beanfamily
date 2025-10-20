@@ -14,24 +14,25 @@
                     <li class="breadcrumb-item active">Hình Ảnh Bean</li>
                 </ol>
             </nav>
+            <label class="breadcrumb-item mb-3"><i>* Tích vào checkbox bên dưới hình ảnh để chọn ảnh sẽ hiển thị trên bằng truyền trang chủ.</i></label>
         </div>
     </div>
 </div>
 <!-- End Page Title -->
 
 <section class="section">
-    <div class="col-img-5">
-        <div class="img-item-add" style="cursor: pointer; display: flex; flex-direction: column; justify-content: center; align-items: center;
-       border-radius: 16px; background: #fff; border: 2px solid #dbdcff">
-            <img style="width: 70%; padding-top: 50px; height: auto" src="~/Content/AdminAreas/assets/img/default-hinhanhbean.png" />
-            <h6 style="padding-bottom: 40px; padding-top: 15px" class="fw-bold">
-                Thêm Hình Ảnh
-            </h6>
+    <div class="col-img-5" style="-webkit-column-count: 10; -moz-column-count: 10; column-count: 10; ">
+        <div class="img-item-add p-3" style="cursor: pointer; display: flex; flex-direction: column; justify-content: center; align-items: center;
+        background: #fff; border: 2px solid #dbdcff">
+            <img title="thêm hình ảnh" style="width: 100%; height: auto;" src="~/Content/AdminAreas/assets/img/default-hinhanhbean.png" />
         </div>
         @foreach (var item in Model)
         {
-            <div style="border-radius: 16px; " class="img-item-show">
-                <img id="hinhanhbean-show-@item.id" name="@item.id" data-src="@Url.Content(item.url)" style="width: 100%; height: auto; border-radius: 16px; " src="@Url.Content(item.url)" />
+            <div class="img-item-show bg-white" style="border: 1px solid #dbdcff;">
+                <img id="hinhanhbean-show-@item.id" name="@item.id" data-src="@Url.Content(item.url)" style="width: 100%; height: auto;" src="@Url.Content(item.url)" />
+                <label class="form-check d-flex justify-content-center p-2" for="checkimage@(item.id)">
+                    <input checked="@item.trangchu" type="checkbox" class="form-check-input m-0" style="padding: 0.6rem !important " checkitem="checkimage@(item.id)" name="@item.id" />
+                </label>
             </div>
         }
 
@@ -99,5 +100,13 @@
             </div>
         </div>
         <script src="~/Validation/HinhAnhBean/XoaHinhAnh.js?v=15102025.1"></script>
+    }
+}
+
+@if (Session["chophep-sua"] != null)
+{
+    if (Convert.ToBoolean(Session["chophep-sua"]) == true)
+    {
+        <script src="~/Validation/HinhAnhBean/SuaHinhAnh.js?v=15102025.1"></script>
     }
 }

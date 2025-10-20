@@ -38,7 +38,7 @@ namespace Beanfamily.Areas.Admin.Controllers
             Session["active-hab"] = " # # ";
             Session["active-qlsp"] = "collapsed # # ";
             Session["active-tlc-ttw"] = "collapsed # # ";
-            Session["active-tlc-lkmxh"] = "collapsed # # "; Session["active-ndt"] = "collapsed # # "; Session["active-cs"] = "collapsed # # ";Session["active-spnb"] = "collapsed # # "; Session["active-ttsk"] = "collapsed # # ";
+            Session["active-tlc-lkmxh"] = "collapsed # # "; Session["active-ndt"] = "collapsed # # "; Session["active-cs"] = "collapsed # # "; Session["active-spnb"] = "collapsed # # "; Session["active-ttsk"] = "collapsed # # ";
 
             if (Session["hab"] == null)
                 return RedirectToAction("index", "dashboard");
@@ -88,6 +88,7 @@ namespace Beanfamily.Areas.Admin.Controllers
                                 item.SaveAs(path);
 
                                 ha.url = "~/Content/AdminAreas/images/HinhAnhBean/" + pathSecond + item.FileName;
+                                ha.trangchu = false;
                                 model.HinhAnhBean.Add(ha);
                                 model.SaveChanges();
 
@@ -111,7 +112,8 @@ namespace Beanfamily.Areas.Admin.Controllers
             try
             {
                 var ha = model.HinhAnhBean.Find(id);
-                if (ha != null) { 
+                if (ha != null)
+                {
                     model.HinhAnhBean.Remove(ha);
                     model.SaveChanges();
                 }
@@ -121,13 +123,33 @@ namespace Beanfamily.Areas.Admin.Controllers
                     string path = Path.Combine(Server.MapPath(src));
                     System.IO.File.Delete(path);
                 }
-                catch (Exception) {}
+                catch (Exception) { }
 
                 return Content("SUCCESS");
             }
             catch (Exception ex)
             {
                 return Content("Chi tiết lỗi: " + ex.Message);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult HinhAnhTrangChu(int id, bool check)
+        {
+            try
+            {
+                var ha = model.HinhAnhBean.Find(id);
+                if (ha != null)
+                {
+                    ha.trangchu = check;
+                    model.Entry(ha).State = EntityState.Modified;
+                    model.SaveChanges();
+                }
+                return Content("SUCCESS");
+            }
+            catch (Exception Ex)
+            {
+                return Content("Chi tiết lỗi: " + Ex.Message);
             }
         }
     }

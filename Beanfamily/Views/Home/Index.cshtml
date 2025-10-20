@@ -2,7 +2,7 @@
 @{
     BeanfamilyEntities models = new BeanfamilyEntities();
 
-    var lstHinhAnh = models.HinhAnhBean.OrderByDescending(o => o.id).Take(10).ToList();
+    var lstHinhAnh = models.HinhAnhBean.Where(w => w.trangchu == true).ToList();
 
     var spnoibat = (Session["sanphamnoibat-data"] as TopSanPhamNoiBat).list_id_thucdon.ToString().Split('#').ToList();
 
@@ -206,7 +206,7 @@
     </div>
 </section>
 
-<!-- Sản phẩm nỗi bật - Menu -->
+<!-- Sản phẩm Nổi Bật - Menu -->
 <section class="section-welcome bg1-pattern">
     <div class="section-child-bg1">
         <div class="container p-t-80 p-b-60">
@@ -659,7 +659,7 @@
     /* Phần 1: TÙY CHỈNH CHÍNH */
     :root {
         --banner-bg-color: transparent;
-        --animation-duration: @(lstHinhAnh.Take(10).Count() * 6)s;
+        --animation-duration: @(lstHinhAnh.Count() * 8)s;
         --image-height: 350px;
         --image-width: 450px;
         --item-spacing: 15px;
@@ -679,7 +679,7 @@
         max-width: 1200px;
         overflow: hidden;
         background-color: var(--banner-bg-color);
-        padding: 35px 0;
+        padding: 42px 0;
         border-radius: 12px;
         -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
         mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);

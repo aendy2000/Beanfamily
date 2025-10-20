@@ -356,6 +356,7 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="url" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="trangchu" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="LichSuThanhToanDonHangTongHop">
           <Key>
@@ -1799,6 +1800,7 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="url" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="trangchu" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="LichSuThanhToanDonHangTongHop">
           <Key>
@@ -3259,6 +3261,7 @@
           <EntitySetMapping Name="HinhAnhBean">
             <EntityTypeMapping TypeName="BeanfamilyModel.HinhAnhBean">
               <MappingFragment StoreEntitySet="HinhAnhBean">
+                <ScalarProperty Name="trangchu" ColumnName="trangchu" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="url" ColumnName="url" />
               </MappingFragment>

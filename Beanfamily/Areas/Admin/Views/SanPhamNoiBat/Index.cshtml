@@ -58,7 +58,17 @@
                                 <tr style="vertical-align: middle">
                                     <td scope="row">@i</td>
                                     <td scope="row">SP@(sp.id.ToString("D6"))</td>
-                                    <td data-bs-toggle="tooltip" dropzone="top">@sp.tensanpham</td>
+                                    <td scope="row">
+                                        @if (!string.IsNullOrEmpty(sp.hinhanh))
+                                        {
+                                            <div style="height: 50px; width: 50px; float: left">
+                                                <img style="float: left; height: 50px; width: 50px;object-fit: cover; border-radius: 50% " src="@Url.Content(sp.hinhanh.Split('#')[0])" />
+                                            </div>
+                                        }
+                                        <label style="margin-left: 10px; display: inline-block; vertical-align: middle; line-height: 50px ">
+                                            @sp.tensanpham
+                                        </label>
+                                    </td>
                                     <td>@sp.gia.ToString("0,0") đ</td>
                                     <td>@sp.luotxem lượt xem</td>
                                     <td><a target="_blank" class="btn btn-sm btn-primary" href="@Url.Action("ProductDetail", "ThucDonHangNgay", new { area = "", id = sp.id})">Xem trang</a></td>
@@ -83,7 +93,8 @@
             <div class="modal-dialog  modal-dialog-centered modal-dialog-scrollable modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 id="TitleSuaSpnbModal" class="modal-title">Cập nhật sản phẩm</h5>
+                        <h5 id="TitleSuaSpnbModal" class="modal-title">Cập nhật sản phẩm
+                        <label class="small"><i>(chọn tối thiểu 6 sản phẩm)</i></label></h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body" id="content-spnb-modal">
@@ -91,6 +102,7 @@
                     </div>
 
                     <div class="modal-footer mt-3">
+                        <label class="font-weight-bold me-3" id="checkbox-dachon"></label>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
                         <button id="btnluuSua" type="button" class="btn btn-primary">Lưu thông tin</button>
                     </div>
